@@ -17,7 +17,7 @@ namespace CnControls
     /// Simple joystick class
     /// Contains logic for creating a simple joystick
     /// </summary>
-    public class SimpleJoystick : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
+    public class SimpleJoystick1 : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
         /// <summary>
         /// Current event camera reference. Needed for the sake of Unity Remote input
@@ -101,12 +101,21 @@ namespace CnControls
 
         public Text t;
 
-        
-        public GameObject Player;
-        
+        private float SX;
+        private float SY;
+        private bool moving;
+
+        public GameObject player;
+        public Player playerScript;
 
         private void Awake()
         {
+
+
+            moving = false;
+            SX = 0;
+            SY = 0;
+
             _stickTransform = Stick.GetComponent<RectTransform>();
             _baseTransform = JoystickBase.GetComponent<RectTransform>();
 
@@ -122,6 +131,12 @@ namespace CnControls
             if (HideOnRelease)
             {
                 Hide(true);
+            }
+        }
+
+        void LateUpdate() {
+            if (moving) {
+                playerScript.move(SX, SY);
             }
         }
 
@@ -209,9 +224,12 @@ namespace CnControls
             //Debug.Log("Diff.x " + difference.x);
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
-            float SX = Stick.rectTransform.localPosition.x/50;
-            float SY = Stick.rectTransform.localPosition.y/50;
+
+            SX = Stick.rectTransform.localPosition.x/50;
+            SY = Stick.rectTransform.localPosition.y/50;
             t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
+
+            moving = true;
 
             // Finally, we update our virtual axis
             HorizintalAxis.Value = horizontalValue;
@@ -220,6 +238,7 @@ namespace CnControls
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            moving = false;
             // When we lift our finger, we reset everything to the initial state
             _baseTransform.anchoredPosition = _initialBasePosition;
             _stickTransform.anchoredPosition = _initialStickPosition;
@@ -234,10 +253,9 @@ namespace CnControls
             }
         }
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-
-            Debug.Log("JFIDOAWJDIOWA");
+        public void OnPointerDown(PointerEventData eventData) {
+            SX = SY = 0;
+            //Debug.Log("JFIDOAWJDIOWA");
             // When we press, we first want to snap the joystick to the user's finger
             if (SnapsToFinger)
             {
