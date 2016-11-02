@@ -1,0 +1,41 @@
+[CustomEditor(typeof(DialogInfo))]
+public class DialogEditor : Editor
+{
+    [CanEditMultipleObjects]
+
+    public string[] popNames = new string[] { "Player", "Sword", "Enemey" };
+    public int index = 0;
+
+    public override void OnInspectorGUI()
+    {
+
+        
+
+
+        index = EditorGUILayout.Popup(index, popNames);
+
+
+    }
+
+    void InstantiatePrimitive()
+    {
+        DialogInfo di = (DialogInfo)target;
+
+        switch (index)
+        {
+            case 0:
+                di.Name[1] = "Player";
+                break;
+            case 1:
+                di.Name[1] = "Sword";
+                break;
+            case 2:
+                di.Name[1] = "Enemey";
+                break;
+            default:
+                Debug.LogError("Unrecognized Option");
+                break;
+        }
+    }
+
+}

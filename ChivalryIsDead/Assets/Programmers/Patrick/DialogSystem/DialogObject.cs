@@ -30,17 +30,25 @@ public class DialogObject : MonoBehaviour {
 
     IEnumerator Test(DialogInfo v)
     {
+        v.Dialog = v.Name.Length;
+
         for(int i = 0; i < v.Dialog; i++)
         {
-            if(v.Name[i] == "Sandra")
+            if(v.Name[i] == "Player")
             {
-                gameObject.GetComponent<Text>().text = "Sandra: " + v.Text[i];
+                gameObject.GetComponent<Text>().text = "Player: " + v.Text[i];
                 yield return new WaitForSeconds(v.Wait[i]);
             }
 
-            if (v.Name[i] == "Cip")
+            if (v.Name[i] == "Sword")
             {
-                gameObject.GetComponent<Text>().text = "Cip: " + v.Text[i];
+                gameObject.GetComponent<Text>().text = "Sword: " + v.Text[i];
+                yield return new WaitForSeconds(v.Wait[i]);
+            }
+
+            if (v.Name[i] == "Enemy")
+            {
+                gameObject.GetComponent<Text>().text = "Enemy: " + v.Text[i];
                 yield return new WaitForSeconds(v.Wait[i]);
             }
         }

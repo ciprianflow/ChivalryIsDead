@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -7,19 +8,24 @@ using System.Collections.Generic;
 public class DialogInfo : ScriptableObject
 {
 
-    //public List<string> spawnPattern;
 
-
-    //public List<Dialog> test;
-
+    [HideInInspector]
     public int Dialog;
 
     public string[] Name;
+
+    [TextArea(3, 10)]
     public string[] Text;
+
     public float[] Wait;
+
 
     
 
 
-
 }
+
+
+
+
+
