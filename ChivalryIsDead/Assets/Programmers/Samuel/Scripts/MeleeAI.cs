@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
 public class MeleeAI : MonsterAI
 {
 
     [Header("Melee Specific Values")]
     public float chargeSpeedMultiplier = 3f;
+
+    public float attackLength = 1f;
+    public float attackAngleWidth = 0.6f;
 
     private float normSpeed;
 
@@ -33,15 +36,25 @@ public class MeleeAI : MonsterAI
 
     public void MeleeAttack()
     {
+        Collider[] Colliders = new Collider[0];
+        Colliders = Physics.OverlapSphere(transform.position, attackLength);
+        for (int i = 0; i < Colliders.Length; i++)
+        {
+            if (Colliders[i].tag == "Player")
+            {
+                Debug.Log("UH WEE");
+                Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
+                Debug.Log(Vector3.Dot(vectorToCollider, transform.forward));
+                if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
+                {
+                    Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                    if (body)
+                        body.AddExplosionForce(5000, transform.position, attackLength);
+                    Debug.Log("Hit player");
+                }
+            }
+        }
 
-        //Physi
-
-        //Vector3 vectorToCollider = (collider.transform.position - player.transform.position).Normalize();
-        // 180 degree arc, change 0 to 0.5 for a 90 degree "pie"
-        //if (Vector3.Dot(vectorToCollider, player.transform.forward)) > 0)
-        //{
-            //Damage the enemy
-        //}
         Debug.Log("Attacking");
 
     }

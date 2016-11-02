@@ -20,7 +20,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     private float pathUpdateTime = 0.1f;
 
-    public Transform target;
+    public Transform targetObject;
 
     protected State state;
     protected Action stateFunc;
@@ -135,7 +135,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     void updateNavAgent()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(targetObject.position);
     }
 
     protected void GotoNextPoint()
@@ -161,7 +161,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     protected bool RangeCheck()
     {
-        float dist = Vector3.Distance(transform.position, target.position);
+        float dist = Vector3.Distance(transform.position, targetObject.position);
         if (dist > attackRange)
             return true;
         return false;
@@ -195,7 +195,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     protected void rotateTowardsTarget()
     {
-        Quaternion q = Quaternion.LookRotation(target.position - transform.position);
+        Quaternion q = Quaternion.LookRotation(targetObject.position - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
     }
 
