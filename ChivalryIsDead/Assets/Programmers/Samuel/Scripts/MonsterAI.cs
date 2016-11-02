@@ -9,8 +9,10 @@ public abstract class MonsterAI : MonoBehaviour {
     protected float t1 = 0;
     protected float t2 = 0;
 
+    [Header("Defense Values")]
     public float Health = 2f;
 
+    [Header("Attack Values")]
     public float attackTime = 3f;
     public float attackRange = 5f;
 

@@ -91,8 +91,18 @@ namespace CnControls
         /// <summary>
         /// Rect Transform of the touch zone
         /// </summary>
-        [Tooltip("Touch Zone transform")]
+        //[Tooltip("Touch Zone transform")]
         //public RectTransform TouchZone;
+
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        [Header("TESTING VARIABLES")]
+        public MonsterAI monster1;
+        public MonsterAI monster2;
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        //TESTING VARIABLES
 
         // ---------------------------------------------------------------------------
 
@@ -287,13 +297,13 @@ namespace CnControls
                 t.text = "Red";
                 t.color = new Color(1, 0, 0, 1);
                 Vibration.Vibrate(50);
-
+                monster1.Taunt();
+                monster2.Taunt();
             }
             else if (SY < -0.2) {
                 t.text = "Blue";
                 t.color = new Color(0, 0, 1, 1);
                 Vibration.Vibrate(50);
-
             }
             else {
                 t.text = "";

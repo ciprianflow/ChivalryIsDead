@@ -5,6 +5,7 @@ using System;
 public class MeleeAI : MonsterAI
 {
 
+    [Header("Melee Specific Values")]
     public float chargeSpeedMultiplier = 3f;
 
     private float normSpeed;
@@ -33,6 +34,14 @@ public class MeleeAI : MonsterAI
     public void MeleeAttack()
     {
 
+        //Physi
+
+        //Vector3 vectorToCollider = (collider.transform.position - player.transform.position).Normalize();
+        // 180 degree arc, change 0 to 0.5 for a 90 degree "pie"
+        //if (Vector3.Dot(vectorToCollider, player.transform.forward)) > 0)
+        //{
+            //Damage the enemy
+        //}
         Debug.Log("Attacking");
 
     }
