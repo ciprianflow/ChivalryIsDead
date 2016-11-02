@@ -88,6 +88,7 @@ public class PlayerActionController : MonoBehaviour {
 
     public void Attacked()
     {
+        
         //can overreact
         Debug.Log("player hit");
     }

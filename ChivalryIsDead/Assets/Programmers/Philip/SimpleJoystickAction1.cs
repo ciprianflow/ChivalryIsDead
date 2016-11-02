@@ -19,6 +19,9 @@ namespace CnControls
     /// </summary>
     public class SimpleJoystickAction1 : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
+
+        private PlayerActionController playerActionController;
+
         /// <summary>
         /// Current event camera reference. Needed for the sake of Unity Remote input
         /// </summary>
@@ -91,13 +94,18 @@ namespace CnControls
         /// <summary>
         /// Rect Transform of the touch zone
         /// </summary>
-        [Tooltip("Touch Zone transform")]
+        //[Tooltip("Touch Zone transform")]
         //public RectTransform TouchZone;
 
-
-        //TEST THINGY
-        public MonsterAI m1;
-        public MonsterAI m2;
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        [Header("TESTING VARIABLES")]
+        public MonsterAI monster1;
+        public MonsterAI monster2;
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        //TESTING VARIABLES
 
         // ---------------------------------------------------------------------------
 
@@ -153,16 +161,11 @@ namespace CnControls
             {
                 Hide(true);
             }
-        }
-        void Update() {
-            if (Input.GetKeyDown(KeyCode.Z)) {
-                pushedUp();
-            }
-            else if (Input.GetKeyDown(KeyCode.X)) {
-                pushedDown();
-            }
 
+            //instantiate player
+            playerActionController = GameObject.Find("Player").GetComponent<PlayerActionController>();
         }
+
 
         void LateUpdate() {
             //if (moving) {
@@ -298,10 +301,21 @@ namespace CnControls
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
 
             if (SY > 0.2) {
-                pushedUp();
+                t.text = "Red";
+                t.color = new Color(1, 0, 0, 1);
+                Vibration.Vibrate(50);
+
+                redButtonPressed();
+
+
+                
             }
             else if (SY < -0.2) {
-                pushedDown();
+                t.text = "Blue";
+                t.color = new Color(0, 0, 1, 1);
+                Vibration.Vibrate(50);
+
+                blueButtonPressed();
             }
             else {
                 t.text = "";
@@ -314,18 +328,14 @@ namespace CnControls
             }
         }
 
-        void pushedUp() {
-            t.text = "Taunted";
-            t.color = new Color(1, 0, 0, 1);
-            Vibration.Vibrate(50);
-            m1.Taunt();
-            m2.Taunt();
+        private void redButtonPressed()
+        {
+            playerActionController.Attack();
         }
 
-        void pushedDown() {
-            t.text = "Blue";
-            t.color = new Color(0, 0, 1, 1);
-            Vibration.Vibrate(50);
+        private void blueButtonPressed()
+        {
+            playerActionController.HandleTaunt();
         }
 
         public void OnPointerDown(PointerEventData eventData) {
