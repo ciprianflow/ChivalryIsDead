@@ -25,9 +25,11 @@ public class CameraMovement : MonoBehaviour {
 
 	void Awake ()
     {
-       
+        setPos();
+        setRot();
+
         if(target)
-            setPos();
+            movePos();
 
     }
 
@@ -35,13 +37,13 @@ public class CameraMovement : MonoBehaviour {
     {
         if (target)
         {
-            setPos();
-            setRot();
+            movePos();
+            moveRot();
         }     
         
     }
 
-    void setPos()
+    void movePos()
     {
         int multiplier = -1;
         if (reverseRotation)
@@ -61,7 +63,7 @@ public class CameraMovement : MonoBehaviour {
         
     }
 
-    void setRot()
+    void moveRot()
     {
         if (fixedRotation)
             return;
@@ -69,5 +71,30 @@ public class CameraMovement : MonoBehaviour {
         //Look at and dampen the rotation
         Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
+    }
+
+    void setPos()
+    {
+        int multiplier = -1;
+        if (reverseRotation)
+            multiplier = 1;
+
+        //Set height and distance
+        if (fixedRotation)
+        {
+            Vector3 pos = (Vector3.forward * multiplier * distance) + target.position + new Vector3(0, height + target.position.y, 0);
+            transform.position = pos;
+        }
+        else
+        {
+            Vector3 pos = (target.forward * multiplier * distance) + target.position + new Vector3(0, height + target.position.y, 0);
+            transform.position = pos;
+        }
+    }
+
+    void setRot()
+    {
+        Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
+        transform.rotation = rotation;
     }
 }
