@@ -11,25 +11,6 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1000013612086222}
   m_IsPrefabParent: 1
---- !u!1 &1000010185364568
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 4000010555826436}
-  - 20: {fileID: 20000012441972394}
-  - 92: {fileID: 92000012547489838}
-  - 124: {fileID: 124000010641131032}
-  - 81: {fileID: 81000011947693994}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1000012127413790
 GameObject:
   m_ObjectHideFlags: 1
@@ -95,19 +76,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000013619424652}
   m_RootOrder: 0
---- !u!4 &4000010555826436
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010185364568}
-  m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
-  m_LocalPosition: {x: -204.49, y: -460.04993, z: -2.89}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
-  m_Children: []
-  m_Father: {fileID: 4000010574198558}
-  m_RootOrder: 1
 --- !u!4 &4000010574198558
 Transform:
   m_ObjectHideFlags: 1
@@ -115,12 +83,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013612086222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 201.6, y: 463.99994, z: 0}
+  m_LocalPosition: {x: 6.68, y: 1.43, z: 1.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013619424652}
-  - {fileID: 4000010555826436}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000013619424652
@@ -130,47 +97,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012847356652}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -201.6, y: -463.49994, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010439289522}
   m_Father: {fileID: 4000010574198558}
   m_RootOrder: 0
---- !u!20 &20000012441972394
-Camera:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010185364568}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
-  orthographic: 1
-  orthographic size: 5.56
-  m_Depth: -1
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!23 &23000013092362202
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -267,20 +200,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!81 &81000011947693994
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010185364568}
-  m_Enabled: 1
---- !u!92 &92000012547489838
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010185364568}
-  m_Enabled: 1
 --- !u!114 &114000013991542020
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -294,10 +213,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 0.1
   PlayerObj: {fileID: 1000012847356652}
---- !u!124 &124000010641131032
-Behaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010185364568}
-  m_Enabled: 1

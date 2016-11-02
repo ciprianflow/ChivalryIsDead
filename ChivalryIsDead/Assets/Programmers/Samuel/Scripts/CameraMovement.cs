@@ -105,7 +105,7 @@ public class CameraMovement : MonoBehaviour {
         Vector3 direction = Camera.main.transform.position - transform.position;
         if (Physics.Raycast(transform.position, direction, out hit))
         {
-            if (!hit.collider.CompareTag("Player"))
+            if (!hit.collider.CompareTag("Player")) 
             {
                 //do something here
             }

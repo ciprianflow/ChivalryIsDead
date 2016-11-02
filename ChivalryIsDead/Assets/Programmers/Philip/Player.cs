@@ -3,27 +3,31 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-
+    [Header("Variables")]
     public float maxSpeed = 0.5f;
+
+    [Header("GameObjects")]
     public GameObject PlayerObj;
 
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     public void move(float x, float y) {
-        
-        float worldX = (x * Mathf.Cos(-Mathf.PI/4)) - (y * Mathf.Sin(-Mathf.PI / 4));
-        float worldY = (x * Mathf.Sin(-Mathf.PI/4)) + (y * Mathf.Cos(-Mathf.PI / 4));
+
+        FixedPosition(x, y);
+
+    }
+
+    void FixedPosition(float x, float y)
+    {
+
+        float camRot = Mathf.Deg2Rad * Camera.main.transform.eulerAngles.y;
+
+        Debug.Log(Camera.main.transform.rotation.y);
+
+        float worldX = (x * Mathf.Cos(camRot)) - (y * Mathf.Sin(camRot));
+        float worldY = (x * Mathf.Sin(camRot)) + (y * Mathf.Cos(camRot));
 
         //Debug.Log(Mathf.Atan2(worldY, worldX));
         PlayerObj.transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX), 0);
         transform.Translate(worldX * maxSpeed, 0, worldY * maxSpeed);
+
     }
 }
