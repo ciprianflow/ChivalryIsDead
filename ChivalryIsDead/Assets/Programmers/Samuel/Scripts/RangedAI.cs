@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RangedAI : MonsterAI {
 
+    [Header("Ranged Specific Values")]
     public GameObject projectile;
     public GameObject targetSprite;
 

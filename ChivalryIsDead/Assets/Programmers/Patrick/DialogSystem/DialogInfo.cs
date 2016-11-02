@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 //[CreateAssetMenu("Assets\Menu")]
 [CreateAssetMenu(fileName = "Dialog", menuName = "Dialog", order = 1)]
 public class DialogInfo : ScriptableObject

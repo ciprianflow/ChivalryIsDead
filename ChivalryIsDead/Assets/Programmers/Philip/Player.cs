@@ -20,8 +20,6 @@ public class Player : MonoBehaviour {
 
         float camRot = Mathf.Deg2Rad * Camera.main.transform.eulerAngles.y;
 
-        Debug.Log(Camera.main.transform.rotation.y);
-
         float worldX = (x * Mathf.Cos(camRot)) - (y * Mathf.Sin(camRot));
         float worldY = (x * Mathf.Sin(camRot)) + (y * Mathf.Cos(camRot));
 
