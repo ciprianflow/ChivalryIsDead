@@ -149,6 +149,15 @@ namespace CnControls
                 Hide(true);
             }
         }
+        void Update() {
+            if (Input.GetKeyDown(KeyCode.Z)) {
+                pushedUp();
+            }
+            else if (Input.GetKeyDown(KeyCode.X)) {
+                pushedDown();
+            }
+
+        }
 
         void LateUpdate() {
             //if (moving) {
@@ -284,16 +293,10 @@ namespace CnControls
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
 
             if (SY > 0.2) {
-                t.text = "Red";
-                t.color = new Color(1, 0, 0, 1);
-                Vibration.Vibrate(50);
-
+                pushedUp();
             }
             else if (SY < -0.2) {
-                t.text = "Blue";
-                t.color = new Color(0, 0, 1, 1);
-                Vibration.Vibrate(50);
-
+                pushedDown();
             }
             else {
                 t.text = "";
@@ -304,6 +307,18 @@ namespace CnControls
             {
                 Hide(true);
             }
+        }
+
+        void pushedUp() {
+            t.text = "Red";
+            t.color = new Color(1, 0, 0, 1);
+            Vibration.Vibrate(50);
+        }
+
+        void pushedDown() {
+            t.text = "Blue";
+            t.color = new Color(0, 0, 1, 1);
+            Vibration.Vibrate(50);
         }
 
         public void OnPointerDown(PointerEventData eventData) {

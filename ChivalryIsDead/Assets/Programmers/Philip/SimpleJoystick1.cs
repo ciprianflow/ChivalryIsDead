@@ -133,6 +133,9 @@ namespace CnControls
                 Hide(true);
             }
         }
+        //void Update() {
+        //    playerScript.move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //}
 
         void LateUpdate() {
             if (moving) {
