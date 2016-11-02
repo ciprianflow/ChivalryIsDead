@@ -19,11 +19,11 @@ public class AButton : MonoBehaviour {
 	
 	}
     public void dibado(String button) {
-        //t.text = "YOU PUSHED " + button;
+        t.text = "YOU PUSHED " + button;
 
-        if(button == "C") {
-            SettingsManager.setButtonPos();
-        }
+        //if (button == "C") {
+        //    SettingsManager.setButtonPos();
+        //}
 
 
 

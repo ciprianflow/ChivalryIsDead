@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace CnControls
 {
     [Flags]
-    public enum ControlMovementDirection
+    public enum ControlMovementDirectionAction
     {
         Horizontal = 0x1,
         Vertical = 0x2,
@@ -17,7 +17,7 @@ namespace CnControls
     /// Simple joystick class
     /// Contains logic for creating a simple joystick
     /// </summary>
-    public class SimpleJoystick1 : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
+    public class SimpleJoystickAction : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
         /// <summary>
         /// Current event camera reference. Needed for the sake of Unity Remote input
@@ -66,7 +66,7 @@ namespace CnControls
         /// Specifies the axis along which it can move
         /// </summary>
         [Tooltip("Constraints on the joystick movement axis")]
-        public ControlMovementDirection JoystickMoveAxis = ControlMovementDirection.Both;
+        public ControlMovementDirectionAction JoystickMoveAxis = ControlMovementDirectionAction.Both;
 
         /// <summary>
         /// Image of the joystick base
@@ -101,21 +101,12 @@ namespace CnControls
 
         public Text t;
 
-        private float SX;
-        private float SY;
-        private bool moving;
-
-        public GameObject player;
-        public Player playerScript;
+        
+        public GameObject Player;
+        
 
         private void Awake()
         {
-
-
-            moving = false;
-            SX = 0;
-            SY = 0;
-
             _stickTransform = Stick.GetComponent<RectTransform>();
             _baseTransform = JoystickBase.GetComponent<RectTransform>();
 
@@ -133,13 +124,6 @@ namespace CnControls
                 Hide(true);
             }
         }
-
-        void LateUpdate() {
-            if (moving) {
-                playerScript.move(SX, SY);
-            }
-        }
-        
 
         private void OnEnable()
         {
@@ -180,11 +164,11 @@ namespace CnControls
             var stickAnchoredPosition = _stickTransform.anchoredPosition;
             // Some bitwise logic for constraining the joystick along one of the axis
             // If the "Both" option was selected, non of these two checks will yield "true"
-            if ((JoystickMoveAxis & ControlMovementDirection.Horizontal) == 0)
+            if ((JoystickMoveAxis & ControlMovementDirectionAction.Horizontal) == 0)
             {
                 stickAnchoredPosition.x = _intermediateStickPosition.x;
             }
-            if ((JoystickMoveAxis & ControlMovementDirection.Vertical) == 0)
+            if ((JoystickMoveAxis & ControlMovementDirectionAction.Vertical) == 0)
             {
                 stickAnchoredPosition.y = _intermediateStickPosition.y;
             }
@@ -225,12 +209,9 @@ namespace CnControls
             //Debug.Log("Diff.x " + difference.x);
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
-
-            SX = Stick.rectTransform.localPosition.x/50;
-            SY = Stick.rectTransform.localPosition.y/50;
-            t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
-
-            moving = true;
+            float SX = Stick.rectTransform.localPosition.x/50;
+            float SY = Stick.rectTransform.localPosition.y/50;
+            //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
 
             // Finally, we update our virtual axis
             HorizintalAxis.Value = horizontalValue;
@@ -239,13 +220,14 @@ namespace CnControls
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            moving = false;
             // When we lift our finger, we reset everything to the initial state
             _baseTransform.anchoredPosition = _initialBasePosition;
             _stickTransform.anchoredPosition = _initialStickPosition;
             _intermediateStickPosition = _initialStickPosition;
 
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
+
+
 
             // We also hide it if we specified that behaviour
             if (HideOnRelease)
@@ -254,10 +236,10 @@ namespace CnControls
             }
         }
 
-        public void OnPointerDown(PointerEventData eventData) {
-            SX = SY = 0;
-            Vibration.Vibrate(50);
-            //Debug.Log("JFIDOAWJDIOWA");
+        public void OnPointerDown(PointerEventData eventData)
+        {
+
+            Debug.Log("JFIDOAWJDIOWA");
             // When we press, we first want to snap the joystick to the user's finger
             if (SnapsToFinger)
             {
