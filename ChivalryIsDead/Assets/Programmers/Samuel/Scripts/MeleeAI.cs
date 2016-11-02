@@ -49,7 +49,7 @@ public class MeleeAI : MonsterAI
                 {
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
-                        body.AddExplosionForce(5000, transform.position, attackLength);
+                        body.AddExplosionForce(2000, transform.position, attackLength);
                     Debug.Log("Hit player");
                 }
             }

@@ -94,6 +94,11 @@ namespace CnControls
         [Tooltip("Touch Zone transform")]
         //public RectTransform TouchZone;
 
+
+        //TEST THINGY
+        public MonsterAI m1;
+        public MonsterAI m2;
+
         // ---------------------------------------------------------------------------
 
         private Vector2 _initialStickPosition;
@@ -310,9 +315,11 @@ namespace CnControls
         }
 
         void pushedUp() {
-            t.text = "Red";
+            t.text = "Taunted";
             t.color = new Color(1, 0, 0, 1);
             Vibration.Vibrate(50);
+            m1.Taunt();
+            m2.Taunt();
         }
 
         void pushedDown() {
