@@ -97,4 +97,18 @@ public class CameraMovement : MonoBehaviour {
         Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
         transform.rotation = rotation;
     }
+
+    void CheckTargetInSight()
+    {
+        RaycastHit hit;
+        // Calculate Ray direction
+        Vector3 direction = Camera.main.transform.position - transform.position;
+        if (Physics.Raycast(transform.position, direction, out hit))
+        {
+            if (!hit.collider.CompareTag("Player"))
+            {
+                //do something here
+            }
+        }
+    }
 }
