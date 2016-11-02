@@ -40,10 +40,7 @@ public class RangedAI : MonsterAI {
             MoveToAttack();
     }
 
-    public override void Idle()
-    {
-        throw new NotImplementedException();
-    }
+    public override void Idle() { }
 
     void FireProjectTile()
     {

@@ -33,8 +33,8 @@ public abstract class MonsterAI : MonoBehaviour {
     void Awake()
     {
         InitNavMeshAgent();
-        //ToMove();
-        ToIdle();
+        ToMove(); //Comment in to make aggroed at start
+        //ToIdle(); //Comment in to Idle at start
         Init();
     }
 
