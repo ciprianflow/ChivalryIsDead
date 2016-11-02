@@ -4,13 +4,14 @@ using UnityEngine.UI;
 
 public class SettingsMngr : MonoBehaviour {
 
-    public GameObject joystick;
-    public Text buttonText;
-    public Text thisButtonText;
-    public Button butA;
-    public Button butB;
-    public Dragit DragA;
-    public Dragit DragB;
+    public GameObject joystick_move;
+    public GameObject joystick_action;
+    //public Text buttonText;
+    //public Text thisButtonText;
+    //public Button butA;
+    //public Button butB;
+    //public Dragit DragA;
+    //public Dragit DragB;
 
     bool settingButtons = false;
 
@@ -25,21 +26,28 @@ public class SettingsMngr : MonoBehaviour {
 	}
 
     public void setButtonPos() {
-        settingButtons = !settingButtons;
+        //settingButtons = !settingButtons;
 
-        Time.timeScale = 0f;
-        joystick.SetActive(!settingButtons);
-        butA.enabled = !settingButtons;
-        butB.enabled = !settingButtons;
-        DragA.canDrag = settingButtons;
-        DragB.canDrag = settingButtons;
-        if (settingButtons) { 
-            buttonText.text = "Please set the button positions";
-            thisButtonText.text = "Lock Buttons";
-        }
-        else {
-            buttonText.text = "";
-            thisButtonText.text = "Set Buttons";
-        }
+        //Time.timeScale = 0f;
+        //joystick.SetActive(!settingButtons);
+        //butA.enabled = !settingButtons;
+        //butB.enabled = !settingButtons;
+        //DragA.canDrag = settingButtons;
+        //DragB.canDrag = settingButtons;
+        //if (settingButtons) { 
+        //    buttonText.text = "Please set the button positions";
+        //    thisButtonText.text = "Lock Buttons";
+        //}
+        //else {
+        //    buttonText.text = "";
+        //    thisButtonText.text = "Set Buttons";
+        //}
+    }
+
+    public void swapSides() {
+        Vector3 tempX = joystick_move.transform.localPosition;
+        joystick_move.transform.localPosition = joystick_action.transform.localPosition;
+        joystick_action.transform.localPosition = tempX;
+
     }
 }
