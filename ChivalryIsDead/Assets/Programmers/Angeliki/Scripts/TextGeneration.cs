@@ -36,35 +36,21 @@ public class TextGeneration : MonoBehaviour {
         sentencesState = Resources.Load("txts/State") as TextAsset;
 
         shuffleBagHello = new ShuffleBag(sentencesHello.text.Length);
-        shuffleBagPal = new ShuffleBag(sentencesHello.text.Length);
+        shuffleBagPal = new ShuffleBag(sentencesPal.text.Length);
         shuffleBagState = new ShuffleBag(sentencesState.text.Length);
 
-        foreach (string sent in sentencesHello.text.Split('.'))
-        {
-            amount = 1;
-            shuffleBagHello.Add(sent, amount);
+        shuffleBagHello = LoadShuffleBag(shuffleBagHello, sentencesHello, 1);
+        shuffleBagPal = LoadShuffleBag(shuffleBagPal, sentencesPal, 1);
+        shuffleBagState = LoadShuffleBag(shuffleBagState, sentencesState, 1);
 
-        }
-        foreach (string sent in sentencesPal.text.Split('.'))
-        {
-            amount = 1;
-            shuffleBagPal.Add(sent, amount);
 
-        }
-        foreach (string sent in sentencesState.text.Split('.'))
-        {
-            amount = 1;
-            shuffleBagState.Add(sent, amount);
-
-        }
-
-        sb.Append(shuffleBagHello.Next());
-        sb.Append(shuffleBagPal.Next());
+        sb = TextGenerator(shuffleBagHello);
+        sb = TextGenerator(shuffleBagPal);
         for (int i = 0; i < 5; i++)
         {
-            sb.Append(shuffleBagHello.Next());
-            sb.Append(shuffleBagPal.Next());
-            sb.Append(shuffleBagState.Next());
+            sb = TextGenerator(shuffleBagHello);
+            sb = TextGenerator(shuffleBagPal);
+            sb = TextGenerator(shuffleBagState);
 
         }
         debugText.text = sb.ToString();
@@ -75,20 +61,38 @@ public class TextGeneration : MonoBehaviour {
     void Update () {
         if (Input.GetMouseButtonDown(0))
         {
+            
             sb = new StringBuilder();
-            sb.Append(shuffleBagHello.Next());
-            sb.Append(shuffleBagPal.Next());
+            sb = TextGenerator(shuffleBagHello);
+            sb = TextGenerator(shuffleBagPal);
             for (int i = 0; i < 5; i++)
             {
-                sb.Append(shuffleBagHello.Next());
-                sb.Append(shuffleBagPal.Next());
-                sb.Append(shuffleBagState.Next());
+                sb = TextGenerator(shuffleBagHello);
+                sb = TextGenerator(shuffleBagPal);
+                sb = TextGenerator(shuffleBagState);
 
             }
+
             debugText.text = sb.ToString();
         }
 
 
 
+    }
+
+    ShuffleBag LoadShuffleBag(ShuffleBag shuffleBag, TextAsset sentences, int amount)
+    {
+        foreach (string sent in sentences.text.Split('/'))
+        {
+            shuffleBag.Add(sent, amount);
+
+        }
+        return shuffleBag;
+    }
+
+    StringBuilder TextGenerator(ShuffleBag shuffleBag)
+    {
+        sb.Append(shuffleBag.Next());
+        return sb;
     }
 }
