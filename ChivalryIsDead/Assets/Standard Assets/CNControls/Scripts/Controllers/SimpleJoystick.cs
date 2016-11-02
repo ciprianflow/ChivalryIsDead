@@ -84,7 +84,7 @@ namespace CnControls
         /// Rect Transform of the touch zone
         /// </summary>
         [Tooltip("Touch Zone transform")]
-        public RectTransform TouchZone;
+        //public RectTransform TouchZone;
 
         // ---------------------------------------------------------------------------
 
@@ -98,6 +98,12 @@ namespace CnControls
 
         protected VirtualAxis HorizintalAxis;
         protected VirtualAxis VerticalAxis;
+
+        public Text t;
+
+        
+        public GameObject Player;
+        
 
         private void Awake()
         {
@@ -156,7 +162,6 @@ namespace CnControls
             _stickTransform.position = worldJoystickPosition;
             // We then query it's anchored position. It's calculated internally and quite tricky to do from scratch here in C#
             var stickAnchoredPosition = _stickTransform.anchoredPosition;
-
             // Some bitwise logic for constraining the joystick along one of the axis
             // If the "Both" option was selected, non of these two checks will yield "true"
             if ((JoystickMoveAxis & ControlMovementDirection.Horizontal) == 0)
@@ -167,6 +172,7 @@ namespace CnControls
             {
                 stickAnchoredPosition.y = _intermediateStickPosition.y;
             }
+
 
             _stickTransform.anchoredPosition = stickAnchoredPosition;
 
@@ -198,6 +204,15 @@ namespace CnControls
             var horizontalValue = Mathf.Clamp(difference.x * _oneOverMovementRange, -1f, 1f);
             var verticalValue = Mathf.Clamp(difference.y * _oneOverMovementRange, -1f, 1f);
 
+            //Debug.Log("HV " + horizontalValue);
+            //Debug.Log("stickAnchoredPosition.x " + stickAnchoredPosition.x);
+            //Debug.Log("Diff.x " + difference.x);
+            //Debug.Log("_intermediateStickPosition " + difference.x);
+
+            float SX = Stick.rectTransform.localPosition.x/50;
+            float SY = Stick.rectTransform.localPosition.y/50;
+            t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
+
             // Finally, we update our virtual axis
             HorizintalAxis.Value = horizontalValue;
             VerticalAxis.Value = verticalValue;
@@ -221,6 +236,8 @@ namespace CnControls
 
         public void OnPointerDown(PointerEventData eventData)
         {
+
+            Debug.Log("JFIDOAWJDIOWA");
             // When we press, we first want to snap the joystick to the user's finger
             if (SnapsToFinger)
             {
