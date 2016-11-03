@@ -6,33 +6,35 @@ using System.Collections.Generic;
 
 public static class DummyQuestGenerator {
     
-    public static TargetObjective GenerateTargetObjective()
+    // TODO: Update with objective generation logic.
+    public static IObjective GenerateObjective()
     {
-        return new TargetObjective();
+        return new DummyObjective();
+        //return new TargetObjective();
     }
 
     public static ProtectQuest GenerateProtectQuest(int objCount)
     {
         List<IObjective> objectives = new List<IObjective>();
         for (int i = 0; i < objCount; i++) {
-            objectives.Add(GenerateTargetObjective());
+            objectives.Add(GenerateObjective());
         }
 
-        var retQuest = new ProtectQuest();
+        var retQuest = new ProtectQuest(GenerateDummyTitle(), "", Difficulty.Easy);
         retQuest.Objectives.AddRange(objectives);
-        retQuest.Title = GenerateDummyTitle();
         return retQuest;
     }
 
-    public static List<IObjective> GenerateMultipleQuests(int count)
+    public static List<IQuest> GenerateMultipleQuests(int count)
     {
-        List<IObjective> quests = new List<IObjective>();
+        List<IQuest> quests = new List<IQuest>();
         for (int i = 0; i < count; i++) {
             quests.Add(GenerateProtectQuest(1));
         }
         return quests;
     }
 
+    // TODO: Replace with actual title generation.
     private static string GenerateDummyTitle()
     {
         var titleLength = UnityEngine.Random.Range(10, 20);

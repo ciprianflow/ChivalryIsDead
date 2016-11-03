@@ -6,7 +6,7 @@ public class HubData : ScriptableObject {
     public int DaysLeft;
     public int GlobalReputation;
     public int QueueLength { get { return Mathf.CeilToInt(GlobalReputation / 20); } }
-    public List<IObjective> AvailableQuests;
+    public List<IQuest> AvailableQuests;
 
     public HubData()
     {

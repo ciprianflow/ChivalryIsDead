@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
@@ -28,12 +28,12 @@ public class HubDataManager : MonoBehaviour {
             return currentHubData.DaysLeft;
         }
     }
-    public List<IObjective> AvailableQuests
+    public List<IQuest> AvailableQuests
     {
         get {
             if (currentHubData == null) {
                 Debug.LogWarning("Attempted to access HubData.AvailableQuests without a HubData object being present.");
-                return new List<IObjective>();
+                return new List<IQuest>();
             }
             return currentHubData.AvailableQuests;
         }
@@ -81,19 +81,58 @@ public class HubDataManager : MonoBehaviour {
         return hubData;
     }
 
+    private void ClearQuestUIElements()
+    {
+        foreach (Transform gObj in ContentPane.GetComponentsInChildren<Transform>()) {
+            if (gObj.name != ContentPane.name && gObj.name != QuestTitle.name)
+                GameObject.Destroy(gObj.gameObject);
+        }
+    }
+
     // TODO: Dummy method, shouldn't make it into the final game. Update to generic alternative.
     private void CreateQuestUIElements()
     {
         var curQIdx = 0;
         foreach (IObjective o in AvailableQuests) {
-            var oAsQuest = o as ProtectQuest; // Change so that there's an interface between Quests and IObjectives.
+            var oAsQuest = o as BaseQuest;
             Text newQuestText = Instantiate<Text>(QuestTitle);
             newQuestText.rectTransform.SetParent(ContentPane.transform);
-            newQuestText.text = oAsQuest.Title;
-            newQuestText.transform.localPosition += new Vector3(165, -28 * curQIdx++, 0);
+            newQuestText.rectTransform.anchoredPosition = new Vector2(95, 0);
+            newQuestText.text = oAsQuest.Description.Title;
+            newQuestText.transform.localPosition += new Vector3(0, -28 * curQIdx++, 0);
             newQuestText.gameObject.SetActive(true);
         }
         var contentTransform = ContentPane.transform as RectTransform;
         contentTransform.sizeDelta = new Vector2(contentTransform.sizeDelta.x, 29 * AvailableQuests.Count);
+    }
+
+    // TODO: Semi-Dummy, completes a quest. Should be refactored to enter "Quest Mode".
+    public void SelectQuest(Text questName)
+    {
+        var selectedQ = AvailableQuests.FirstOrDefault(q => q.GetDescription().Title == questName.text);
+        if (selectedQ != null) { 
+            Debug.Log("Found quest with title '" + selectedQ.GetDescription().Title + "'");
+            CompleteQuest(selectedQ);
+        }
+        else
+            Debug.LogWarning("Didn't find selected quest!");
+    }
+
+    // TODO: Dummy method, should be refactored or removed entirely.
+    private void CompleteQuest(IQuest quest)
+    {
+        var qSuccessRating = quest.GetSuccessRating();
+        int repChange;
+        if (qSuccessRating > 0.5f) {
+            repChange = (int)(qSuccessRating * (float)quest.GetDescription().Difficulty);
+        } else {
+            repChange = -1 * (int)((1 - qSuccessRating) * (float)quest.GetDescription().Difficulty);
+        }
+
+        // Save changes.
+        ClearQuestUIElements();
+        PushToHubData(repChange);
+        CreateQuestUIElements();
+        QueueText.text = currentHubData.QueueLength.ToString();
     }
 }
