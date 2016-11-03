@@ -2,9 +2,11 @@
 using UnityEngine;
 
 
-class AttackAction
+class AttackAction : MonoBehaviour
 {
 
+    public float AttackRange;
+    public float AttackAngle;
 
     public void NormalAttack(float radius, Transform transform)
     {
@@ -48,15 +50,37 @@ class AttackAction
 
     public void ConeAttack()
     {
+        //get enemies in range
+        List<Collider> colliders = getConeRange();
+        //Debug.Log("ENEMIES INSIDE: " + colliders.Count);
 
-        foreach(Collider collider in ConeCollider.CollidersInside)
+        foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Enemy"))
-            {
-                collider.GetComponent<MonsterAI>().Hit(1);
-            }
+            collider.GetComponent<MonsterAI>().Hit(1);
         }
 
     }
 
+
+    private List<Collider> getConeRange()
+    {
+
+        List<Collider> inRangeColliders = new List<Collider>();
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, AttackRange);
+        foreach(Collider collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                
+                Vector3 vectorToCollider = (collider.transform.position - transform.position).normalized;
+                if (Vector3.Dot(vectorToCollider, transform.forward) > AttackAngle)
+                {
+                    inRangeColliders.Add(collider);
+                }
+            }
+        }
+
+        return inRangeColliders;
+    }
 }
