@@ -28,8 +28,7 @@ public class SpeechBubbles : MonoBehaviour {
 
         bubblePadding.padding = tempPadding;
 
-        
-
+       
 
         // stuff for pausing
         //Time.timeScale = 0;

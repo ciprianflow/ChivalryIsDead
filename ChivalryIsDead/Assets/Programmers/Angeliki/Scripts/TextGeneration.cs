@@ -5,20 +5,22 @@ using System.Text;
 using System;
 public class TextGeneration : MonoBehaviour {
 
-    ShuffleBag shuffleBagHello;
-    ShuffleBag shuffleBagPal;
-    ShuffleBag shuffleBagState;
+    public ShuffleBag shuffleBagHello;
+    public ShuffleBag shuffleBagPal;
+    public ShuffleBag shuffleBagState;
 
-    StringBuilder sb = new StringBuilder();
+    public StringBuilder sb = new StringBuilder();
+
+    public bool isTest;
 
     int amount;
     //string sentencesHello;
     //string sentencesPal;
     //string sentencesState;
 
-    TextAsset sentencesHello;
-    TextAsset sentencesPal;
-    TextAsset sentencesState;
+    public TextAsset sentencesHello;
+    public TextAsset sentencesPal;
+    public TextAsset sentencesState;
 
     Text debugText;
 
@@ -61,7 +63,7 @@ public class TextGeneration : MonoBehaviour {
     void Update () {
         if (Input.GetMouseButtonDown(0))
         {
-            
+
             sb = new StringBuilder();
             sb = TextGenerator(shuffleBagHello);
             sb = TextGenerator(shuffleBagPal);
@@ -75,12 +77,14 @@ public class TextGeneration : MonoBehaviour {
 
             debugText.text = sb.ToString();
         }
+        //debugText.text = sb.ToString();
 
 
-
+        if (isTest)
+            Debug.Log("hi guys");
     }
 
-    ShuffleBag LoadShuffleBag(ShuffleBag shuffleBag, TextAsset sentences, int amount)
+    public ShuffleBag LoadShuffleBag(ShuffleBag shuffleBag, TextAsset sentences, int amount)
     {
         foreach (string sent in sentences.text.Split('/'))
         {
@@ -90,7 +94,7 @@ public class TextGeneration : MonoBehaviour {
         return shuffleBag;
     }
 
-    StringBuilder TextGenerator(ShuffleBag shuffleBag)
+    public StringBuilder TextGenerator(ShuffleBag shuffleBag)
     {
         sb.Append(shuffleBag.Next());
         return sb;
