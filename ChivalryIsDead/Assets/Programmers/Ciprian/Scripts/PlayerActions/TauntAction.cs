@@ -9,7 +9,7 @@ class TauntAction: MonoBehaviour
     public float TauntRadius;
 
     //used for cooldown i guess
-    private bool taunted = false;
+    private bool alreadyTaunting = false;
 
     private float currentTauntRadius;
     private float currentTauntDuration;
@@ -23,7 +23,7 @@ class TauntAction: MonoBehaviour
     void Update()
     {
         //Aggro
-        if (taunted)
+        if (alreadyTaunting)
         {
             startTaunt(currentTauntRadius, this.transform.position);
             shrinkTauntArea();
@@ -62,11 +62,11 @@ class TauntAction: MonoBehaviour
     public void Taunt()
     {
         //just change aggro radius 
-        if (!taunted)
+        if (!alreadyTaunting)
         {
             currentTauntDuration = TauntDuration;
             overTime = 0;
-            taunted = true;
+            alreadyTaunting = true;
         }
     }
 
@@ -80,7 +80,7 @@ class TauntAction: MonoBehaviour
 
         if (Mathf.Abs(currentTauntRadius - TauntRadius) < 0.1)
         {
-            taunted = false;
+            alreadyTaunting = false;
         }
 
     }
