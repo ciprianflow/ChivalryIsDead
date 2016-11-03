@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
+using System.Collections.Generic;
 
 public class MeleeAI : MonsterAI
 {
 
+    [Header("Melee Specific Values")]
     public float chargeSpeedMultiplier = 3f;
+
+    public float attackLength = 1f;
+    public float attackAngleWidth = 0.6f;
 
     private float normSpeed;
 
@@ -32,14 +36,35 @@ public class MeleeAI : MonsterAI
 
     public void MeleeAttack()
     {
+        Collider[] Colliders = new Collider[0];
+        Colliders = Physics.OverlapSphere(transform.position, attackLength);
+        for (int i = 0; i < Colliders.Length; i++)
+        {
+            if (Colliders[i].tag == "Player")
+            {
+                Debug.Log("UH WEE");
+                Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
+                Debug.Log(Vector3.Dot(vectorToCollider, transform.forward));
+                if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
+                {
+                    Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                    if (body)
+                        body.AddExplosionForce(1000, transform.position, attackLength);
 
+                    //@@HARDCODED
+                    base.targetObject.GetComponent<PlayerActionController>().Attacked();
+                    Debug.Log("Hit player");
+                }
+            }
+        }
+        
         Debug.Log("Attacking");
 
     }
 
     public void Charge()
     {
-        GotoNextPoint();
+        UpdateNavMeshPathDelayed();
     }
 
     public override void Idle()
@@ -54,9 +79,8 @@ public class MeleeAI : MonsterAI
 
     public override void Move()
     {
-        bool b = RangeCheckNavMesh();
-        if (b)
-            GotoNextPoint();
+        if (RangeCheckNavMesh())
+            UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
     }
@@ -69,6 +93,9 @@ public class MeleeAI : MonsterAI
 
     public void ToCharge()
     {
+        if (state == State.Charge)
+            return;
+
         Debug.Log("ToCharge");
         agent.speed = normSpeed * chargeSpeedMultiplier;
         state = State.Charge;
@@ -87,6 +114,7 @@ public class MeleeAI : MonsterAI
 
     void OnCollisionEnter()
     {
+        Debug.Log(name + "  Collided with something");
         if(state == State.Charge)
         {
             ChargeToAttack();

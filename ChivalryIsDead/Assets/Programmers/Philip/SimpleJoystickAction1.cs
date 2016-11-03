@@ -19,6 +19,7 @@ namespace CnControls
     /// </summary>
     public class SimpleJoystickAction1 : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
+
         /// <summary>
         /// Current event camera reference. Needed for the sake of Unity Remote input
         /// </summary>
@@ -91,8 +92,18 @@ namespace CnControls
         /// <summary>
         /// Rect Transform of the touch zone
         /// </summary>
-        [Tooltip("Touch Zone transform")]
+        //[Tooltip("Touch Zone transform")]
         //public RectTransform TouchZone;
+
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        [Header("TESTING VARIABLES")]
+        public MonsterAI monster1;
+        public MonsterAI monster2;
+        //TESTING VARIABLES
+        //TESTING VARIABLES
+        //TESTING VARIABLES
 
         // ---------------------------------------------------------------------------
 
@@ -120,7 +131,8 @@ namespace CnControls
         public GameObject player;
         public Player playerScript;
 
-        
+        private PlayerActionController playerActionController;
+
 
         private void Awake()
         {
@@ -148,7 +160,10 @@ namespace CnControls
             {
                 Hide(true);
             }
+
+            playerActionController = player.GetComponent<PlayerActionController>();
         }
+
 
         void LateUpdate() {
             //if (moving) {
@@ -288,12 +303,17 @@ namespace CnControls
                 t.color = new Color(1, 0, 0, 1);
                 Vibration.Vibrate(50);
 
+                redButtonPressed();
+
+
+                
             }
             else if (SY < -0.2) {
                 t.text = "Blue";
                 t.color = new Color(0, 0, 1, 1);
                 Vibration.Vibrate(50);
 
+                blueButtonPressed();
             }
             else {
                 t.text = "";
@@ -304,6 +324,16 @@ namespace CnControls
             {
                 Hide(true);
             }
+        }
+
+        private void redButtonPressed()
+        {
+            playerActionController.Attack();
+        }
+
+        private void blueButtonPressed()
+        {
+            playerActionController.HandleTaunt();
         }
 
         public void OnPointerDown(PointerEventData eventData) {

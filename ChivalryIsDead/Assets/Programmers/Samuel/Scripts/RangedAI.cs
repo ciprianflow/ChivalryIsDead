@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RangedAI : MonsterAI {
 
+    [Header("Ranged Specific Values")]
     public GameObject projectile;
     public GameObject targetSprite;
 
@@ -35,7 +36,7 @@ public class RangedAI : MonsterAI {
     {
         bool b = RangeCheckNavMesh();
         if (b)
-            GotoNextPoint();
+            UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
     }
@@ -54,16 +55,19 @@ public class RangedAI : MonsterAI {
         Vector3 random = new Vector3(UnityEngine.Random.Range(-randomRange, randomRange), 0, UnityEngine.Random.Range(-randomRange, randomRange));
         float randomAng = UnityEngine.Random.Range(-randomAngle, randomAngle);
 
-        Vector3 randTargetPos = target.position + random;
+        Vector3 randTargetPos = targetObject.position + random;
         Vector3 velocity = BallisticVel(randTargetPos, angle + randomAng) * force;
 
+        //Target point calc
         //Target point calc
         float peakTime = velocity.y / Physics.gravity.y;
         float height = -0.5f * Physics.gravity.y * Mathf.Pow(peakTime, 2);
 
-        Vector3 halfPoint = (randTargetPos - transform.position) / 2 + transform.position;
+        Vector3 halfPoint = (randTargetPos - transform.position) / 2 + randTargetPos;
         Vector3 maxPoint = halfPoint + new Vector3(0, height, 0);
-        Vector3 dir = (target.position - maxPoint).normalized;
+        Vector3 dir = (randTargetPos - maxPoint).normalized;
+        //Target point calc
+        //Target point calc
 
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = maxPoint;
@@ -75,8 +79,8 @@ public class RangedAI : MonsterAI {
         if (Physics.Raycast(maxPoint, dir, out hit))
         {
             targetObj = Instantiate(targetSprite).transform;
-            targetObj.position = hit.point + new Vector3(0, 0.1f, 0);
 
+            targetObj.position = hit.point + new Vector3(0, 0.5f, 0);
             targetObj.LookAt(hit.normal + targetObj.position);
             targetObj.Rotate(0, 0, 90);
 

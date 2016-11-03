@@ -9,8 +9,10 @@ public abstract class MonsterAI : MonoBehaviour {
     protected float t1 = 0;
     protected float t2 = 0;
 
+    [Header("Defense Values")]
     public float Health = 2f;
 
+    [Header("Attack Values")]
     public float attackTime = 3f;
     public float attackRange = 5f;
 
@@ -18,7 +20,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     private float pathUpdateTime = 0.1f;
 
-    public Transform target;
+    public Transform targetObject;
 
     protected State state;
     protected Action stateFunc;
@@ -42,8 +44,19 @@ public abstract class MonsterAI : MonoBehaviour {
     {
         stateFunc();
         updateTimer();
-        UpdateNavMeshPath();
+        UpdateNavMeshPathDelayed();
         
+    }
+
+    //implement this in the base class
+    public void Hit(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     #region Timers
@@ -127,27 +140,12 @@ public abstract class MonsterAI : MonoBehaviour {
     {
         agent = GetComponent<NavMeshAgent>();
         points = new Transform[0];
-        GotoNextPoint();
-        updateNavAgent();
+        updateNavMeshPath();
     }
 
-    void updateNavAgent()
+    void updateNavMeshPath()
     {
-        agent.SetDestination(target.position);
-    }
-
-    protected void GotoNextPoint()
-    {
-        // Returns if no points have been set up
-        if (points.Length == 0)
-            return;
-
-        // Set the agent to go to the currently selected destination.
-        agent.destination = points[destPoint].position;
-
-        // Choose the next point in the array as the destination,
-        // cycling to the start if necessary.
-        destPoint = (destPoint + 1) % points.Length;
+        agent.SetDestination(targetObject.position);
     }
 
     protected bool RangeCheckNavMesh()
@@ -159,7 +157,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     protected bool RangeCheck()
     {
-        float dist = Vector3.Distance(transform.position, target.position);
+        float dist = Vector3.Distance(transform.position, targetObject.position);
         if (dist > attackRange)
             return true;
         return false;
@@ -175,14 +173,14 @@ public abstract class MonsterAI : MonoBehaviour {
     protected void ResumeNavMeshAgent()
     {
         agent.Resume();
-        updateNavAgent();
+        updateNavMeshPath();
     }
 
-    private void UpdateNavMeshPath()
+    protected void UpdateNavMeshPathDelayed()
     {
         if(t2 > pathUpdateTime)
         {
-            updateNavAgent();
+            updateNavMeshPath();
             ResetPathUpdateTimer();
         }
     }
@@ -193,7 +191,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     protected void rotateTowardsTarget()
     {
-        Quaternion q = Quaternion.LookRotation(target.position - transform.position);
+        Quaternion q = Quaternion.LookRotation(targetObject.position - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
     }
 
@@ -212,6 +210,11 @@ public abstract class MonsterAI : MonoBehaviour {
             Debug.Log(transform.name + " : Has died");
             this.enabled = false;
         }
+    }
+
+    public State getState()
+    {
+        return state;
     }
 
     #endregion
