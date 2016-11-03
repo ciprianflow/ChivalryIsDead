@@ -336,6 +336,8 @@ namespace CnControls
         private void blueButtonPressed()
         {
             playerActionController.HandleTaunt();
+            monster1.Taunt();
+            monster2.Taunt();
         }
 
         public void OnPointerDown(PointerEventData eventData) {

@@ -24,12 +24,12 @@ class TauntAction: MonoBehaviour
     void Update()
     {
         //Aggro
-        StartTaunt(currentAggroRadius, this.transform.position);
+        //StartTaunt(currentAggroRadius, this.transform.position);
         
-        if (taunted)
+        /*if (taunted)
         {
             shrinkTauntArea();
-        }
+        }*/
     }
 
     public void StartTaunt(float radius, Vector3 position)
