@@ -27,7 +27,7 @@ public class GameMenu : MonoBehaviour {
 
     void Start () {
 
-        Invoke("Princess", 2);
+        //Invoke("Princess", 2);
 
     }
 	
@@ -36,7 +36,9 @@ public class GameMenu : MonoBehaviour {
 	
         if(Input.GetKeyDown(KeyCode.Y))
         {
-            Invoke("Princess", 2);
+            Princess();
+            Sword();
+            dialogSystem.StartCoroutine("DialogSystem", 0);
         }
 
 	}
@@ -69,7 +71,6 @@ public class GameMenu : MonoBehaviour {
     public void Princess()
     {
         princess.SetActive(true);
-        dialogSystem.StartCoroutine("DialogSystem", 0);
     }
 
     public void Sword()
