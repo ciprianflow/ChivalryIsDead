@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum PlayerState
+{
+    IDLE, HIT, ATTACKING, TAUNTING
+}
+
 public class PlayerActionController : MonoBehaviour {
 
+    private AggroAction aggroAction;
     private TauntAction tauntAction;
     private AttackAction attackAction;
     private OverreactAction overreactAction;
@@ -12,12 +18,16 @@ public class PlayerActionController : MonoBehaviour {
 
     public float AggroRadius = 4f;
 
+    //duration for the overreact mechanic
+    public float AttackedDuration = 1.5f;
+
 
     private float attackRange = 35f;
     private float attackRadius = 120f;
 
     //used for overreacting
-    private bool attacked = false;
+    private PlayerState playerState;
+
     
 
     void OnDrawGizmos()
@@ -41,23 +51,33 @@ public class PlayerActionController : MonoBehaviour {
     void Awake()
     {
 
-        //add taunt
+        //aggro taunt overreact
+        gameObject.AddComponent<AggroAction>();
         gameObject.AddComponent<TauntAction>();
+        gameObject.AddComponent<OverreactAction>();
+
+
+        aggroAction = gameObject.GetComponent<AggroAction>();
         tauntAction = this.gameObject.GetComponent<TauntAction>();
+        overreactAction = this.gameObject.GetComponent<OverreactAction>();
 
 
         attackAction = new AttackAction();
-        overreactAction = new OverreactAction();
+
         
     }
 
 	// Use this for initialization
 	void Start () {
 
+        playerState = PlayerState.IDLE;
+
         //init for taunt
-        tauntAction.AggroRadius = AggroRadius;
         tauntAction.TauntDuration = TauntDuration;
         tauntAction.TauntRadius = TauntRadius;
+
+        aggroAction.AggroRadius = AggroRadius;
+
     }
 
     /// <summary>
@@ -66,7 +86,7 @@ public class PlayerActionController : MonoBehaviour {
     public void HandleTaunt()
     {
         // if attacked the player can overreact
-        if (attacked)
+        if (playerState == PlayerState.HIT)
         {
             overreactAction.Overreact();
         }
@@ -75,8 +95,6 @@ public class PlayerActionController : MonoBehaviour {
             //otherwhise taunt
             tauntAction.Taunt();
         }
-
-
     }
 
     //Attacks
@@ -88,10 +106,19 @@ public class PlayerActionController : MonoBehaviour {
 
     public void Attacked()
     {
-        
+        //AttackedDuration second unlock overreact
+        StartCoroutine(releaseAttacked());
         //can overreact
+        playerState = PlayerState.HIT;
         Debug.Log("player hit");
     }
 
+
+    private IEnumerator releaseAttacked()
+    {
+        yield return new WaitForSeconds(AttackedDuration);
+
+        playerState = PlayerState.IDLE;
+    }
 
 }

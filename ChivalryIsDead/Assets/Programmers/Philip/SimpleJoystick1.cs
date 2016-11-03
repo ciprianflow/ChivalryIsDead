@@ -104,6 +104,7 @@ namespace CnControls
         private float SX;
         private float SY;
         private bool moving;
+        private bool held;
 
         public GameObject player;
         public Player playerScript;
@@ -111,7 +112,7 @@ namespace CnControls
         private void Awake()
         {
 
-
+            held = false;
             moving = false;
             SX = 0;
             SY = 0;
@@ -166,6 +167,9 @@ namespace CnControls
 
         public virtual void OnDrag(PointerEventData eventData)
         {
+            if (!held) {
+                return;
+            }
             // Unity remote multitouch related thing
             // When we feed fake PointerEventData we can't really provide a camera, 
             // it has a lot of private setters via not created objects, so even the Reflection magic won't help a lot here
@@ -242,6 +246,7 @@ namespace CnControls
 
         public void OnPointerUp(PointerEventData eventData)
         {
+            held = false;
             moving = false;
             // When we lift our finger, we reset everything to the initial state
             _baseTransform.anchoredPosition = _initialBasePosition;
@@ -258,34 +263,35 @@ namespace CnControls
         }
 
         public void OnPointerDown(PointerEventData eventData) {
-            SX = SY = 0;
-            Vibration.Vibrate(50);
-            //Debug.Log("JFIDOAWJDIOWA");
-            // When we press, we first want to snap the joystick to the user's finger
-            if (SnapsToFinger)
-            {
-                CurrentEventCamera = eventData.pressEventCamera ?? CurrentEventCamera;
+            if (!held) {
+                held = true;
+                SX = SY = 0;
+                Vibration.Vibrate(50);
+                //Debug.Log("JFIDOAWJDIOWA");
+                // When we press, we first want to snap the joystick to the user's finger
+                if (SnapsToFinger) {
+                    CurrentEventCamera = eventData.pressEventCamera ?? CurrentEventCamera;
 
-                Vector3 localStickPosition;
-                Vector3 localBasePosition;
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(_stickTransform, eventData.position,
-                    CurrentEventCamera, out localStickPosition);
-                RectTransformUtility.ScreenPointToWorldPointInRectangle(_baseTransform, eventData.position,
-                    CurrentEventCamera, out localBasePosition);
+                    Vector3 localStickPosition;
+                    Vector3 localBasePosition;
+                    RectTransformUtility.ScreenPointToWorldPointInRectangle(_stickTransform, eventData.position,
+                        CurrentEventCamera, out localStickPosition);
+                    RectTransformUtility.ScreenPointToWorldPointInRectangle(_baseTransform, eventData.position,
+                        CurrentEventCamera, out localBasePosition);
 
-                _baseTransform.position = localBasePosition;
-                _stickTransform.position = localStickPosition;
-                _intermediateStickPosition = _stickTransform.anchoredPosition;
+                    _baseTransform.position = localBasePosition;
+                    _stickTransform.position = localStickPosition;
+                    _intermediateStickPosition = _stickTransform.anchoredPosition;
+                }
+                else {
+                    OnDrag(eventData);
+                }
+                // We also want to show it if we specified that behaviour
+                if (HideOnRelease) {
+                    Hide(false);
+                }
             }
-            else
-            {
-                OnDrag(eventData);
-            }
-            // We also want to show it if we specified that behaviour
-            if (HideOnRelease)
-            {
-                Hide(false);
-            }
+
         }
 
         /// <summary>

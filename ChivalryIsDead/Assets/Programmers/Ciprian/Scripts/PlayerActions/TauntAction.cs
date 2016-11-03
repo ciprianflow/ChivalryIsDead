@@ -5,36 +5,35 @@ using UnityEngine;
 class TauntAction: MonoBehaviour
 {
 
-    public float AggroRadius;
     public float TauntDuration;
     public float TauntRadius;
 
     //used for cooldown i guess
-    private bool taunted = false;
+    private bool alreadyTaunting = false;
 
-    private float currentAggroRadius;
+    private float currentTauntRadius;
     private float currentTauntDuration;
     private float overTime;
 
     void Start()
     {
-        currentAggroRadius = AggroRadius;
+        currentTauntRadius = TauntRadius;
     }
 
     void Update()
     {
         //Aggro
-        //StartTaunt(currentAggroRadius, this.transform.position);
-        
-        /*if (taunted)
+        if (alreadyTaunting)
         {
+            startTaunt(currentTauntRadius, this.transform.position);
             shrinkTauntArea();
-        }*/
+        }
     }
 
-    public void StartTaunt(float radius, Vector3 position)
+    private void startTaunt(float radius, Vector3 position)
     {
 
+        //10 layer - Monster
         Collider[] hitColliders = Physics.OverlapSphere(position, radius);
         int i = 0;
         while (i < hitColliders.Length)
@@ -42,31 +41,32 @@ class TauntAction: MonoBehaviour
             
             if (hitColliders[i].CompareTag("Enemy"))
             {
-                hitColliders[i].GetComponent<MonsterAI>().Taunt();
+                checkStateAndTaunt(hitColliders[i].GetComponent<MonsterAI>());
             }
-            
-            //hitColliders[i].SendMessage("AddDamage");
-            //Debug.Log(hitColliders[i].name);
 
             i++;
         }
-
-
-
     }
 
+    private void checkStateAndTaunt(MonsterAI monster)
+    {
+        //everything but idle
+        if (monster.getState() != State.Idle)
+        {
+            monster.Taunt();
+        }
+    }
 
 
     //TAUNT Action
     public void Taunt()
     {
         //just change aggro radius 
-        if (!taunted)
+        if (!alreadyTaunting)
         {
-            currentAggroRadius = AggroRadius + TauntRadius;
             currentTauntDuration = TauntDuration;
             overTime = 0;
-            taunted = true;
+            alreadyTaunting = true;
         }
     }
 
@@ -76,11 +76,11 @@ class TauntAction: MonoBehaviour
 
         overTime += (0.01f / TauntDuration) * Time.deltaTime;
 
-        currentAggroRadius = Mathf.Lerp(currentAggroRadius, AggroRadius, overTime);
+        currentTauntRadius = Mathf.Lerp(currentTauntRadius, TauntRadius, overTime);
 
-        if (Mathf.Abs(currentAggroRadius - AggroRadius) < 0.1)
+        if (Mathf.Abs(currentTauntRadius - TauntRadius) < 0.1)
         {
-            taunted = false;
+            alreadyTaunting = false;
         }
 
     }
