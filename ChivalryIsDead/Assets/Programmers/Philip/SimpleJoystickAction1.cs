@@ -20,7 +20,6 @@ namespace CnControls
     public class SimpleJoystickAction1 : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
 
-
         /// <summary>
         /// Current event camera reference. Needed for the sake of Unity Remote input
         /// </summary>
@@ -131,8 +130,8 @@ namespace CnControls
 
         public GameObject player;
         public Player playerScript;
-        public PlayerActionController playerActionController;
 
+        private PlayerActionController playerActionController;
 
 
         private void Awake()
@@ -162,8 +161,7 @@ namespace CnControls
                 Hide(true);
             }
 
-            ////instantiate player
-            //playerActionController = GameObject.Find("PlayerMesh").GetComponent<PlayerActionController>();
+            playerActionController = player.GetComponent<PlayerActionController>();
         }
 
 
