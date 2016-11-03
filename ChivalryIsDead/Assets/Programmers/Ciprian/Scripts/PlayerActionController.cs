@@ -13,6 +13,11 @@ public class PlayerActionController : MonoBehaviour {
     private AttackAction attackAction;
     private OverreactAction overreactAction;
 
+
+    public float AttackRange = 2f;
+    public float AttackAngle = 0.6f;
+
+
     public float TauntRadius = 5f;
     public float TauntDuration = 3f;
 
@@ -39,7 +44,7 @@ public class PlayerActionController : MonoBehaviour {
 
         //cone attack radius
         Gizmos.color = Color.magenta;
-        //Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-30f, transform.up) * transform.forward * visibilityDistance);
+        //Gizmos.DrawRay(transform.position, transform.forward * 5);
         //Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(30f, transform.up) * transform.forward * visibilityDistance);
 
         //aggro radius
@@ -55,14 +60,13 @@ public class PlayerActionController : MonoBehaviour {
         gameObject.AddComponent<AggroAction>();
         gameObject.AddComponent<TauntAction>();
         gameObject.AddComponent<OverreactAction>();
+        gameObject.AddComponent<AttackAction>();
 
 
         aggroAction = gameObject.GetComponent<AggroAction>();
         tauntAction = this.gameObject.GetComponent<TauntAction>();
         overreactAction = this.gameObject.GetComponent<OverreactAction>();
-
-
-        attackAction = new AttackAction();
+        attackAction = gameObject.GetComponent<AttackAction>();
 
         
     }
@@ -70,15 +74,21 @@ public class PlayerActionController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        //player state
         playerState = PlayerState.IDLE;
 
         //init for taunt
         tauntAction.TauntDuration = TauntDuration;
         tauntAction.TauntRadius = TauntRadius;
 
+        //init aggro
         aggroAction.AggroRadius = AggroRadius;
 
-    }
+        //init for attack
+        attackAction.AttackAngle = AttackAngle;
+        attackAction.AttackRange = AttackRange;
+
+}
 
     /// <summary>
     /// Handle Taunt Button
@@ -110,7 +120,6 @@ public class PlayerActionController : MonoBehaviour {
         StartCoroutine(releaseAttacked());
         //can overreact
         playerState = PlayerState.HIT;
-        Debug.Log("player hit");
     }
 
 
