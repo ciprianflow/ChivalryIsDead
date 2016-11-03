@@ -27,7 +27,7 @@ GameObject:
   - 54: {fileID: 54000013281746766}
   m_Layer: 0
   m_Name: Melee
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012860691644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2735074, y: 13.268061, z: 25.205074}
+  m_LocalPosition: {x: -8.01, y: 13.268061, z: 22.77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -123,8 +123,10 @@ MonoBehaviour:
   attackTime: 3
   attackRange: 1.5
   attackRotateSpeed: 90
-  target: {fileID: 0}
+  targetObject: {fileID: 0}
   chargeSpeedMultiplier: 15
+  attackLength: 1
+  attackAngleWidth: 0
 --- !u!195 &195000010249325622
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -133,7 +135,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1000012860691644}
   m_Enabled: 1
   m_Radius: 1
-  m_Speed: 2.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

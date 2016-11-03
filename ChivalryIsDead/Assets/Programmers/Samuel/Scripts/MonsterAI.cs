@@ -44,8 +44,19 @@ public abstract class MonsterAI : MonoBehaviour {
     {
         stateFunc();
         updateTimer();
-        UpdateNavMeshPath();
+        UpdateNavMeshPathDelayed();
         
+    }
+
+    //implement this in the base class
+    public void Hit(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
     }
 
     #region Timers
@@ -129,27 +140,12 @@ public abstract class MonsterAI : MonoBehaviour {
     {
         agent = GetComponent<NavMeshAgent>();
         points = new Transform[0];
-        GotoNextPoint();
-        updateNavAgent();
+        updateNavMeshPath();
     }
 
-    void updateNavAgent()
+    void updateNavMeshPath()
     {
         agent.SetDestination(targetObject.position);
-    }
-
-    protected void GotoNextPoint()
-    {
-        // Returns if no points have been set up
-        if (points.Length == 0)
-            return;
-
-        // Set the agent to go to the currently selected destination.
-        agent.destination = points[destPoint].position;
-
-        // Choose the next point in the array as the destination,
-        // cycling to the start if necessary.
-        destPoint = (destPoint + 1) % points.Length;
     }
 
     protected bool RangeCheckNavMesh()
@@ -177,14 +173,14 @@ public abstract class MonsterAI : MonoBehaviour {
     protected void ResumeNavMeshAgent()
     {
         agent.Resume();
-        updateNavAgent();
+        updateNavMeshPath();
     }
 
-    private void UpdateNavMeshPath()
+    protected void UpdateNavMeshPathDelayed()
     {
         if(t2 > pathUpdateTime)
         {
-            updateNavAgent();
+            updateNavMeshPath();
             ResetPathUpdateTimer();
         }
     }
@@ -214,6 +210,11 @@ public abstract class MonsterAI : MonoBehaviour {
             Debug.Log(transform.name + " : Has died");
             this.enabled = false;
         }
+    }
+
+    public State getState()
+    {
+        return state;
     }
 
     #endregion
