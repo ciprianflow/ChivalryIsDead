@@ -36,7 +36,7 @@ public class RangedAI : MonsterAI {
     {
         bool b = RangeCheckNavMesh();
         if (b)
-            GotoNextPoint();
+            UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
     }
@@ -59,12 +59,15 @@ public class RangedAI : MonsterAI {
         Vector3 velocity = BallisticVel(randTargetPos, angle + randomAng) * force;
 
         //Target point calc
+        //Target point calc
         float peakTime = velocity.y / Physics.gravity.y;
         float height = -0.5f * Physics.gravity.y * Mathf.Pow(peakTime, 2);
 
-        Vector3 halfPoint = (randTargetPos - transform.position) / 2 + transform.position;
+        Vector3 halfPoint = (randTargetPos - transform.position) / 2 + randTargetPos;
         Vector3 maxPoint = halfPoint + new Vector3(0, height, 0);
-        Vector3 dir = (targetObject.position - maxPoint).normalized;
+        Vector3 dir = (randTargetPos - maxPoint).normalized;
+        //Target point calc
+        //Target point calc
 
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = maxPoint;
@@ -76,8 +79,8 @@ public class RangedAI : MonsterAI {
         if (Physics.Raycast(maxPoint, dir, out hit))
         {
             targetObj = Instantiate(targetSprite).transform;
-            targetObj.position = hit.point + new Vector3(0, 0.1f, 0);
 
+            targetObj.position = hit.point + new Vector3(0, 0.5f, 0);
             targetObj.LookAt(hit.normal + targetObj.position);
             targetObj.Rotate(0, 0, 90);
 

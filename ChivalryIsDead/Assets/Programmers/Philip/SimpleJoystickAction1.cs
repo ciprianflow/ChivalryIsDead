@@ -315,17 +315,18 @@ namespace CnControls
         }
 
         void pushedUp() {
-            t.text = "Taunted";
+            t.text = "Red";
             t.color = new Color(1, 0, 0, 1);
             Vibration.Vibrate(50);
-            m1.Taunt();
-            m2.Taunt();
+            
         }
 
         void pushedDown() {
-            t.text = "Blue";
+            t.text = "Taunted";
             t.color = new Color(0, 0, 1, 1);
             Vibration.Vibrate(50);
+            m1.Taunt();
+            m2.Taunt();
         }
 
         public void OnPointerDown(PointerEventData eventData) {

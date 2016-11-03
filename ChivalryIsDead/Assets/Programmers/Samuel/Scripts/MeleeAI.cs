@@ -61,7 +61,7 @@ public class MeleeAI : MonsterAI
 
     public void Charge()
     {
-        GotoNextPoint();
+        UpdateNavMeshPathDelayed();
     }
 
     public override void Idle()
@@ -76,9 +76,8 @@ public class MeleeAI : MonsterAI
 
     public override void Move()
     {
-        bool b = RangeCheckNavMesh();
-        if (b)
-            GotoNextPoint();
+        if (RangeCheckNavMesh())
+            UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
     }
