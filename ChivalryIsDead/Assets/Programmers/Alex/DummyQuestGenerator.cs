@@ -36,7 +36,7 @@ public static class DummyQuestGenerator {
     private static string GenerateDummyTitle()
     {
         var titleLength = UnityEngine.Random.Range(10, 20);
-        var hasSpace = Convert.ToBoolean(UnityEngine.Random.Range(0, 1));
+        var hasSpace = Convert.ToBoolean(UnityEngine.Random.Range(0, 2));
         var spaceLoc = UnityEngine.Random.Range(4, titleLength - 4);
 
         StringBuilder sBuilder = new StringBuilder();
