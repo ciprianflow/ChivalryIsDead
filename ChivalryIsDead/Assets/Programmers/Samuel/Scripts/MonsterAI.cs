@@ -4,7 +4,7 @@ using System;
 
 public enum State { Attack, Move, Charge, Idle }
 
-public abstract class MonsterAI : MonoBehaviour {
+public abstract class MonsterAI : MonoBehaviour, EnemyActions {
 
     protected float t1 = 0;
     protected float t2 = 0;
@@ -47,6 +47,24 @@ public abstract class MonsterAI : MonoBehaviour {
         UpdateNavMeshPathDelayed();
         
     }
+
+    public void Taunted(Vector3 playerPosition)
+    {
+        throw new NotImplementedException();
+    }
+
+    //implement this in the base class
+    public void Hit(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+
 
     #region Timers
 
