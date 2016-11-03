@@ -24,6 +24,9 @@ public class SettingsMngr : MonoBehaviour {
 	void Update () {
 	
 	}
+    public void restart() {
+        Application.LoadLevel(Application.loadedLevel);
+    }
 
     public void setButtonPos() {
         //settingButtons = !settingButtons;
