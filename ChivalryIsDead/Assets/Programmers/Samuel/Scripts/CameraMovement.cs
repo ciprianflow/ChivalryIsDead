@@ -21,10 +21,11 @@ public class CameraMovement : MonoBehaviour {
     [Tooltip("Target that the camera is going to focus on ")]
     public Transform target;
 
-    
-
 	void Awake ()
     {
+        if (!target)
+            target = GameObject.Find("Player").transform;
+
         setPos();
         setRot();
 
