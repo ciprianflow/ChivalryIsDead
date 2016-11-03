@@ -4,7 +4,7 @@ using UnityEditor;
 [CustomEditor(typeof(CameraMovement))]
 public class CameraEditor : Editor
 {
-
+    int index = 0;
     public override void OnInspectorGUI()
     {
 
@@ -22,11 +22,22 @@ public class CameraEditor : Editor
             EditorUtility.SetDirty(camera);
         }
 
+        GUILayout.BeginHorizontal();
+        index = EditorGUILayout.IntField( index );
+        if (GUILayout.Button("Delete Area"))
+        {
+            camera.RemoveArea(index);
+            EditorUtility.SetDirty(camera);
+        }
+
+        GUILayout.EndHorizontal();
+
         if (GUILayout.Button("Reset All Area"))
         {
             camera.ResetAll();
             EditorUtility.SetDirty(camera);
         }
+        
     }
 
     void OnSceneGUI()

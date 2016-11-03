@@ -55,6 +55,18 @@ public class CameraMovement : MonoBehaviour {
 
     }
 
+    public void RemoveArea(int index)
+    {
+        if (index > Areas.Count - 1)
+            return;
+
+        Areas.RemoveAt(index);
+        FocusPoints.RemoveAt(index);
+        CameraPoints.RemoveAt(index);
+        AreaColor.RemoveAt(index);
+
+    }
+
     public void ResetAll()
     {
         Areas = new List<Rect>();
