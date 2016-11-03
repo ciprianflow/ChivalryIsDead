@@ -133,12 +133,16 @@ namespace CnControls
                 Hide(true);
             }
         }
+        //void Update() {
+        //    playerScript.move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //}
 
         void LateUpdate() {
             if (moving) {
                 playerScript.move(SX, SY);
             }
         }
+        
 
         private void OnEnable()
         {
@@ -227,7 +231,7 @@ namespace CnControls
 
             SX = Stick.rectTransform.localPosition.x/50;
             SY = Stick.rectTransform.localPosition.y/50;
-            t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
+            //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
 
             moving = true;
 
@@ -255,6 +259,7 @@ namespace CnControls
 
         public void OnPointerDown(PointerEventData eventData) {
             SX = SY = 0;
+            Vibration.Vibrate(50);
             //Debug.Log("JFIDOAWJDIOWA");
             // When we press, we first want to snap the joystick to the user's finger
             if (SnapsToFinger)
