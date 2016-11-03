@@ -49,7 +49,7 @@ public class MeleeAI : MonsterAI
                 {
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
-                        body.AddExplosionForce(2000, transform.position, attackLength);
+                        body.AddExplosionForce(100000, transform.position, attackLength);
 
                     //@@HARDCODED
                     base.targetObject.GetComponent<PlayerActionController>().Attacked();
@@ -64,7 +64,7 @@ public class MeleeAI : MonsterAI
 
     public void Charge()
     {
-        GotoNextPoint();
+        UpdateNavMeshPathDelayed();
     }
 
     public override void Idle()
@@ -79,9 +79,8 @@ public class MeleeAI : MonsterAI
 
     public override void Move()
     {
-        bool b = RangeCheckNavMesh();
-        if (b)
-            GotoNextPoint();
+        if (RangeCheckNavMesh())
+            UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
     }
@@ -94,6 +93,9 @@ public class MeleeAI : MonsterAI
 
     public void ToCharge()
     {
+        if (state == State.Charge)
+            return;
+
         Debug.Log("ToCharge");
         agent.speed = normSpeed * chargeSpeedMultiplier;
         state = State.Charge;
@@ -112,6 +114,7 @@ public class MeleeAI : MonsterAI
 
     void OnCollisionEnter()
     {
+        Debug.Log(name + "  Collided with something");
         if(state == State.Charge)
         {
             ChargeToAttack();

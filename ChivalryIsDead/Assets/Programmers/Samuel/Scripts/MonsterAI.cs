@@ -4,7 +4,7 @@ using System;
 
 public enum State { Attack, Move, Charge, Idle }
 
-public abstract class MonsterAI : MonoBehaviour, EnemyActions {
+public abstract class MonsterAI : MonoBehaviour {
 
     protected float t1 = 0;
     protected float t2 = 0;
@@ -44,13 +44,8 @@ public abstract class MonsterAI : MonoBehaviour, EnemyActions {
     {
         stateFunc();
         updateTimer();
-        UpdateNavMeshPath();
+        UpdateNavMeshPathDelayed();
         
-    }
-
-    public void Taunted(Vector3 playerPosition)
-    {
-        throw new NotImplementedException();
     }
 
     //implement this in the base class
@@ -63,8 +58,6 @@ public abstract class MonsterAI : MonoBehaviour, EnemyActions {
             gameObject.SetActive(false);
         }
     }
-
-
 
     #region Timers
 
@@ -147,27 +140,12 @@ public abstract class MonsterAI : MonoBehaviour, EnemyActions {
     {
         agent = GetComponent<NavMeshAgent>();
         points = new Transform[0];
-        GotoNextPoint();
-        updateNavAgent();
+        updateNavMeshPath();
     }
 
-    void updateNavAgent()
+    void updateNavMeshPath()
     {
         agent.SetDestination(targetObject.position);
-    }
-
-    protected void GotoNextPoint()
-    {
-        // Returns if no points have been set up
-        if (points.Length == 0)
-            return;
-
-        // Set the agent to go to the currently selected destination.
-        agent.destination = points[destPoint].position;
-
-        // Choose the next point in the array as the destination,
-        // cycling to the start if necessary.
-        destPoint = (destPoint + 1) % points.Length;
     }
 
     protected bool RangeCheckNavMesh()
@@ -195,14 +173,14 @@ public abstract class MonsterAI : MonoBehaviour, EnemyActions {
     protected void ResumeNavMeshAgent()
     {
         agent.Resume();
-        updateNavAgent();
+        updateNavMeshPath();
     }
 
-    private void UpdateNavMeshPath()
+    protected void UpdateNavMeshPathDelayed()
     {
         if(t2 > pathUpdateTime)
         {
-            updateNavAgent();
+            updateNavMeshPath();
             ResetPathUpdateTimer();
         }
     }
@@ -232,6 +210,11 @@ public abstract class MonsterAI : MonoBehaviour, EnemyActions {
             Debug.Log(transform.name + " : Has died");
             this.enabled = false;
         }
+    }
+
+    public State getState()
+    {
+        return state;
     }
 
     #endregion
