@@ -8,27 +8,33 @@ public class SpeechBubbles : MonoBehaviour {
 
     HorizontalLayoutGroup bubblePadding;
     RectTransform BubbleRect;
+    RectTransform TextRect;
     // Use this for initialization
     void Start () {
         // change padding of the speech bubble image so text stays inside it
         bubblePadding = transform.GetComponent<HorizontalLayoutGroup>();
-        BubbleRect = this.transform as RectTransform;
-        int width = (int)BubbleRect.rect.width;
-        int height = (int)BubbleRect.rect.height;
-
+        BubbleRect = transform.GetComponent<RectTransform>();
+        
+        int imgWidth = (int)BubbleRect.rect.width;
+        int imgHeight = (int)BubbleRect.rect.height;
+        
         RectOffset tempPadding = new RectOffset(
                 bubblePadding.padding.left,
                 bubblePadding.padding.right,
                 bubblePadding.padding.top,
                 bubblePadding.padding.bottom);
-        tempPadding.left = width / 4;
-        tempPadding.right = width / 4;
-        tempPadding.top = height / 4;
-        tempPadding.bottom = height / 4;
+        
+        tempPadding.left = imgWidth  / 2;
+        tempPadding.right = imgWidth / 2;
+        tempPadding.top = imgHeight  / 2;
+        tempPadding.bottom = imgHeight / 2;
 
         bubblePadding.padding = tempPadding;
 
-        
+        bubblePadding.padding.left = 100;
+        bubblePadding.padding.right = 100;
+        bubblePadding.padding.top = 70;
+        bubblePadding.padding.bottom = 100;
 
 
         // stuff for pausing
