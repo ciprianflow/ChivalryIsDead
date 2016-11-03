@@ -219,6 +219,11 @@ public abstract class MonsterAI : MonoBehaviour, EnemyActions {
         }
     }
 
+    public State getState()
+    {
+        return state;
+    }
+
     #endregion
 
 }
