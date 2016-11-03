@@ -51,17 +51,19 @@ public class PlayerActionController : MonoBehaviour {
     void Awake()
     {
 
-        //aggro
+        //aggro taunt overreact
         gameObject.AddComponent<AggroAction>();
-        aggroAction = gameObject.GetComponent<AggroAction>();
-
-        //add taunt
         gameObject.AddComponent<TauntAction>();
+        gameObject.AddComponent<OverreactAction>();
+
+
+        aggroAction = gameObject.GetComponent<AggroAction>();
         tauntAction = this.gameObject.GetComponent<TauntAction>();
+        overreactAction = this.gameObject.GetComponent<OverreactAction>();
 
 
         attackAction = new AttackAction();
-        overreactAction = new OverreactAction();
+
         
     }
 
@@ -93,8 +95,6 @@ public class PlayerActionController : MonoBehaviour {
             //otherwhise taunt
             tauntAction.Taunt();
         }
-
-
     }
 
     //Attacks
