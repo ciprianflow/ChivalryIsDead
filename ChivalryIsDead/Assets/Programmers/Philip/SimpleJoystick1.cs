@@ -133,6 +133,9 @@ namespace CnControls
                 Hide(true);
             }
         }
+        //void Update() {
+        //    playerScript.move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        //}
 
         void LateUpdate() {
             if (moving) {
@@ -228,7 +231,7 @@ namespace CnControls
 
             SX = Stick.rectTransform.localPosition.x/50;
             SY = Stick.rectTransform.localPosition.y/50;
-            t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
+            //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
 
             moving = true;
 

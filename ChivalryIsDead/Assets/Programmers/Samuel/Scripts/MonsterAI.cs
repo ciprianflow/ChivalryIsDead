@@ -4,13 +4,15 @@ using System;
 
 public enum State { Attack, Move, Charge, Idle }
 
-public abstract class MonsterAI : MonoBehaviour {
+public abstract class MonsterAI : MonoBehaviour, EnemyActions {
 
     protected float t1 = 0;
     protected float t2 = 0;
 
+    [Header("Defense Values")]
     public float Health = 2f;
 
+    [Header("Attack Values")]
     public float attackTime = 3f;
     public float attackRange = 5f;
 
@@ -18,7 +20,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     private float pathUpdateTime = 0.1f;
 
-    public Transform target;
+    public Transform targetObject;
 
     protected State state;
     protected Action stateFunc;
@@ -45,6 +47,24 @@ public abstract class MonsterAI : MonoBehaviour {
         UpdateNavMeshPath();
         
     }
+
+    public void Taunted(Vector3 playerPosition)
+    {
+        throw new NotImplementedException();
+    }
+
+    //implement this in the base class
+    public void Hit(int damage)
+    {
+        Health -= damage;
+
+        if (Health <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+
 
     #region Timers
 
@@ -133,7 +153,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     void updateNavAgent()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(targetObject.position);
     }
 
     protected void GotoNextPoint()
@@ -159,7 +179,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     protected bool RangeCheck()
     {
-        float dist = Vector3.Distance(transform.position, target.position);
+        float dist = Vector3.Distance(transform.position, targetObject.position);
         if (dist > attackRange)
             return true;
         return false;
@@ -193,7 +213,7 @@ public abstract class MonsterAI : MonoBehaviour {
 
     protected void rotateTowardsTarget()
     {
-        Quaternion q = Quaternion.LookRotation(target.position - transform.position);
+        Quaternion q = Quaternion.LookRotation(targetObject.position - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
     }
 

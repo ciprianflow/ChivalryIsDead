@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class RangedAI : MonsterAI {
 
+    [Header("Ranged Specific Values")]
     public GameObject projectile;
     public GameObject targetSprite;
 
@@ -54,7 +55,7 @@ public class RangedAI : MonsterAI {
         Vector3 random = new Vector3(UnityEngine.Random.Range(-randomRange, randomRange), 0, UnityEngine.Random.Range(-randomRange, randomRange));
         float randomAng = UnityEngine.Random.Range(-randomAngle, randomAngle);
 
-        Vector3 randTargetPos = target.position + random;
+        Vector3 randTargetPos = targetObject.position + random;
         Vector3 velocity = BallisticVel(randTargetPos, angle + randomAng) * force;
 
         //Target point calc
@@ -63,7 +64,7 @@ public class RangedAI : MonsterAI {
 
         Vector3 halfPoint = (randTargetPos - transform.position) / 2 + transform.position;
         Vector3 maxPoint = halfPoint + new Vector3(0, height, 0);
-        Vector3 dir = (target.position - maxPoint).normalized;
+        Vector3 dir = (targetObject.position - maxPoint).normalized;
 
         //GameObject cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         //cube.transform.position = maxPoint;
