@@ -8,7 +8,6 @@ using UnityEngine;
 /// https://docs.google.com/document/d/1kywJ2Dgp2PWXsAsWruRTZ9UMfJE-9R39urLEXmOuQPo/edit
 ///
 /// All quests should respect the maximum reputation change limit.
-/// Easy quests should have many enemies.
 /// </summary>
 public class QuestGenerator
 {
@@ -57,16 +56,53 @@ public class QuestGenerator
 
     private IQuest GenerateEasyQuest()
     {
-        return null;
+        IQuest retQuest;
+        var questType = System.Convert.ToBoolean(Random.Range(0, 2));
+        if (questType) { // DestroyTargetQuest
+            retQuest = new BaseQuest("Destroy the enemies!", "Yalla Yalla, kabob 'dem fo' Dollah!", Difficulty.Easy);
+            var meleeCount = Random.Range(2, 5);
+            var rangedCount = Random.Range(0, 3);
+
+            for (int i = 0; i < meleeCount + rangedCount; i++) {
+                if (i <= meleeCount) {
+                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
+                } else {
+                    retQuest.Objectives.Add(new DestroyTargetObjective(12));
+                }
+            }
+        } else { // ProtectTargetQuest
+            retQuest = new BaseQuest("Defend the sheeple!", "Illuminati reptile people and shizz.", Difficulty.Easy);
+            var sheepCount = Random.Range(4, 9);
+            var meleeCount = Random.Range(3, sheepCount);
+
+            for (int i = 0; i < sheepCount + meleeCount; i++) {
+                if (i <= sheepCount)
+                    retQuest.Objectives.Add(new ProtectTargetObjective(21));
+                else
+                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
+            }
+        }
+
+        return retQuest;
     }
 
     private IQuest GenerateMediumQuest()
     {
+        var meleeCount = Random.Range(2, 5);
+        var rangedCount = Random.Range(0, 3);
+
+        throw new System.NotImplementedException();
+
         return null;
     }
 
     private IQuest GenerateHardQuest()
     {
+        var meleeCount = Random.Range(2, 5);
+        var rangedCount = Random.Range(0, 3);
+
+        throw new System.NotImplementedException();
+
         return null;
     }
 }
