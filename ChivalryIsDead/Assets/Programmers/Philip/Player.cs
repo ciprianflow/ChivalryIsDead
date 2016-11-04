@@ -22,7 +22,6 @@ public class Player : MonoBehaviour {
 
         //float angle = Vector3.Angle(fwd, Vector3.forward) * Mathf.Deg2Rad;
         float angle = CalculateAngle(fwd, Vector3.forward) * Mathf.Deg2Rad;
-
         //angle = Camera.main.transform.rotation.y * Mathf.Deg2Rad;
 
         float worldX = (x * Mathf.Cos(angle)) - (y * Mathf.Sin(angle));
