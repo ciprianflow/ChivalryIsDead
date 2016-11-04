@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 
 public enum PlayerState
@@ -8,19 +9,25 @@ public enum PlayerState
 
 public class PlayerActionController : MonoBehaviour {
 
-    private AggroAction aggroAction;
-    private TauntAction tauntAction;
-    private AttackAction attackAction;
-    private OverreactAction overreactAction;
+    
+    [Header("Attack values")]
+    public float AttackRange = 2f;
+    public float AttackAngle = 0.6f;
 
+    [Header("Taunt values")]
     public float TauntRadius = 5f;
     public float TauntDuration = 3f;
 
+    [Header("Aggro values")]
     public float AggroRadius = 4f;
 
+    [Header("Overreact values")]
     //duration for the overreact mechanic
     public float AttackedDuration = 1.5f;
+    public float OverreactCooldown = 2.5f;
 
+    [Header("Scare values")]
+    public float ScareRadius = 4f;
 
     private float attackRange = 35f;
     private float attackRadius = 120f;
@@ -28,7 +35,12 @@ public class PlayerActionController : MonoBehaviour {
     //used for overreacting
     private PlayerState playerState;
 
-    
+    private AggroAction aggroAction;
+    private TauntAction tauntAction;
+    private AttackAction attackAction;
+    private OverreactAction overreactAction;
+    private ScareAction scareAction;
+
 
     void OnDrawGizmos()
     {
@@ -39,7 +51,7 @@ public class PlayerActionController : MonoBehaviour {
 
         //cone attack radius
         Gizmos.color = Color.magenta;
-        //Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-30f, transform.up) * transform.forward * visibilityDistance);
+        //Gizmos.DrawRay(transform.position, transform.forward * 5);
         //Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(30f, transform.up) * transform.forward * visibilityDistance);
 
         //aggro radius
@@ -55,29 +67,37 @@ public class PlayerActionController : MonoBehaviour {
         gameObject.AddComponent<AggroAction>();
         gameObject.AddComponent<TauntAction>();
         gameObject.AddComponent<OverreactAction>();
+        gameObject.AddComponent<AttackAction>();
+        gameObject.AddComponent<ScareAction>();
 
 
         aggroAction = gameObject.GetComponent<AggroAction>();
-        tauntAction = this.gameObject.GetComponent<TauntAction>();
-        overreactAction = this.gameObject.GetComponent<OverreactAction>();
+        tauntAction = gameObject.GetComponent<TauntAction>();
+        overreactAction = gameObject.GetComponent<OverreactAction>();
+        attackAction = gameObject.GetComponent<AttackAction>();
+        scareAction = gameObject.GetComponent<ScareAction>();
 
-
-        attackAction = new AttackAction();
-
-        
     }
 
 	// Use this for initialization
 	void Start () {
 
+        //player state
         playerState = PlayerState.IDLE;
 
         //init for taunt
         tauntAction.TauntDuration = TauntDuration;
         tauntAction.TauntRadius = TauntRadius;
 
+        //init aggro
         aggroAction.AggroRadius = AggroRadius;
 
+        //init for attack
+        attackAction.AttackAngle = AttackAngle;
+        attackAction.AttackRange = AttackRange;
+
+        //init for overreact
+        overreactAction.OverreactCooldown = OverreactCooldown;
     }
 
     /// <summary>
@@ -97,11 +117,22 @@ public class PlayerActionController : MonoBehaviour {
         }
     }
 
+
     //Attacks
-    public void Attack()
+    //REMOVE LOGIC FROM THIS CLASS!!
+    public void HandleAttack()
     {
         //attackAction.NormalAttack(TauntRadius, this.transform);
-        attackAction.ConeAttack();
+        //if no enemies in range SCARE
+        List<Collider> enemiesInRange = attackAction.GetConeRange();
+        if (enemiesInRange.Count > 0)
+        {
+            attackAction.ConeAttack(enemiesInRange);
+        }
+        else
+        {
+            scareAction.Scare(ScareRadius);
+        }
     }
 
     public void Attacked()
@@ -110,7 +141,6 @@ public class PlayerActionController : MonoBehaviour {
         StartCoroutine(releaseAttacked());
         //can overreact
         playerState = PlayerState.HIT;
-        Debug.Log("player hit");
     }
 
 

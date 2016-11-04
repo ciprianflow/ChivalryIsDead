@@ -2,61 +2,52 @@
 using UnityEngine;
 
 
-class AttackAction
+class AttackAction : MonoBehaviour
 {
 
+    public float AttackRange;
+    public float AttackAngle;
 
-    public void NormalAttack(float radius, Transform transform)
+    public void NormalAttack(float radius)
     {
 
 
-        RaycastHit hit;
-        //loop all enemies...
-        Vector3 rayDirection = transform.position - transform.position;
-
-        float fieldOfViewDegrees = 180f;
-        float visibilityDistance = 10f;//attackRange;
-
-        //Debug.Log(Vector3.Angle(rayDirection, transform.forward));
-        //Debug.Log(fieldOfViewDegrees);
-        Debug.Log(Vector3.Angle(rayDirection, transform.forward));
+     
+    }
 
 
-        if ((Vector3.Angle(rayDirection, transform.forward)) <= fieldOfViewDegrees)
+    //receives enemies to attack
+    public void ConeAttack(List<Collider> colliders)
+    {
+        //Debug.Log("ENEMIES INSIDE: " + colliders.Count);
+
+        foreach (Collider collider in colliders)
         {
-
-            // Detect if player is within the field of view
-            if (Physics.Raycast(transform.position, rayDirection, out hit, visibilityDistance))
-            {
-
-                //if (hitColliders[i].CompareTag("Enemy"))
-                if(hit.transform.CompareTag("Enemy"))
-                {
-                    Debug.Log("HITTED");
-                    Debug.Log(hit.transform.name);
-                }
-                
-            }
+            collider.GetComponent<MonsterAI>().Hit(1);
         }
-
-
-        Debug.Log("Attack");
 
     }
 
 
-
-    public void ConeAttack()
+    public List<Collider> GetConeRange()
     {
 
-        foreach(Collider collider in ConeCollider.CollidersInside)
+        List<Collider> inRangeColliders = new List<Collider>();
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, AttackRange);
+        foreach(Collider collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
-                collider.GetComponent<MonsterAI>().Hit(1);
+                
+                Vector3 vectorToCollider = (collider.transform.position - transform.position).normalized;
+                if (Vector3.Dot(vectorToCollider, transform.forward) > AttackAngle)
+                {
+                    inRangeColliders.Add(collider);
+                }
             }
         }
 
+        return inRangeColliders;
     }
-
 }

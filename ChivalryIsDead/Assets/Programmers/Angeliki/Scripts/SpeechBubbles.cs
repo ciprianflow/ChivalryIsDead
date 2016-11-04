@@ -31,10 +31,10 @@ public class SpeechBubbles : MonoBehaviour {
 
         bubblePadding.padding = tempPadding;
 
-        bubblePadding.padding.left = 100;
-        bubblePadding.padding.right = 100;
-        bubblePadding.padding.top = 70;
-        bubblePadding.padding.bottom = 100;
+        bubblePadding.padding.left = 80;
+        bubblePadding.padding.right = 80;
+        bubblePadding.padding.top = 60;
+        bubblePadding.padding.bottom = 80;
 
 
         // stuff for pausing

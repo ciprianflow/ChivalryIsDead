@@ -5,38 +5,36 @@ using UnityEngine;
 class OverreactAction: MonoBehaviour
 {
 
-    public int OverreactCooldown;
-    private bool alreadyOverreact = false;
+    public float OverreactCooldown;
+
+    private float timeStamp;
 
     public void Overreact()
     {
-
-        //alreadyOverreact = true;
-        
-    }
-
-
-
-    public void Update()
-    {
-        if (alreadyOverreact)
+        //if not on cooldown do action
+        if (getCoolDown())
         {
             startOverreact();
         }
+    }
 
-        float coolDownPeriodInSeconds = 2.5f;
-
-        float timeStamp = Time.time + coolDownPeriodInSeconds;
-        Debug.Log(timeStamp + " - " + Time.time);
-
+    //cooldown
+    private bool getCoolDown()
+    {
+        if (timeStamp >= Time.time)
+        {
+            return false;
+        }
+        return true;
     }
 
 
     private void startOverreact()
     {
+        //reset cooldown   
+        timeStamp = Time.time + OverreactCooldown;
 
         Debug.Log("Overreact");
-
     }
 }
 

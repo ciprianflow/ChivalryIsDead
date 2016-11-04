@@ -148,7 +148,7 @@ public class DialogObject : MonoBehaviour {
                 if (d.Name[i] == "Player")
             {
                 playerBubble.SetActive(true);
-                player.GetComponent<Text>().text = "Player: " + d.Text[i];
+                player.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 playerBubble.SetActive(false);
             }
@@ -158,7 +158,7 @@ public class DialogObject : MonoBehaviour {
                 for (int j = 0; j < enemy.Length; ++j)
                 {
                     enemyBubble[j].SetActive(true);
-                    enemy[j].GetComponent<Text>().text = "Enemy: " + d.Text[i];
+                    enemy[j].GetComponent<Text>().text = d.Text[i];
 
                 }
 
@@ -201,7 +201,7 @@ public class DialogObject : MonoBehaviour {
             if (d.Name[i] == "Sword")
             {
                 swordBubble.SetActive(true);
-                sword.GetComponent<Text>().text = "Sword: " + d.Text[i];
+                sword.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 swordBubble.SetActive(false);
             }
@@ -209,7 +209,7 @@ public class DialogObject : MonoBehaviour {
             if (d.Name[i] == "Princess")
             {
                 princessBubble.SetActive(true);
-                princess.GetComponent<Text>().text = "Princess: " + d.Text[i];
+                princess.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 princessBubble.SetActive(false);
             }
@@ -217,7 +217,7 @@ public class DialogObject : MonoBehaviour {
             if (d.Name[i] == "King")
             {
                 kingBubble.SetActive(true);
-                king.GetComponent<Text>().text = "King: " + d.Text[i];
+                king.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 kingBubble.SetActive(false);
             }
