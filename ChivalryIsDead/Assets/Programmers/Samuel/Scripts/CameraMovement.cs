@@ -12,32 +12,38 @@ public class CameraMovement : MonoBehaviour {
         if (!target)
             target = GameObject.Find("Player").transform;
 
+        //Setting camera position
         setPos();
+        //Setting camera rotation
         setRot();
+        distToFP = CP - target.position;
 
-        if (target)
-            movePos();
     }
 
     void LateUpdate()
     {
         if (target)
         {
+
             updateAreaCamVaribles();
-            movePos();
-            moveRot();
+            Debug.Log(reachedDestination);
+            if (!reachedDestination)
+            {
+                if (FixedPosition)
+                    UpdateCameraMovementTimer();
+
+                movePos();
+                moveRot();
+            }   
         }
     }
 
     #region Camera Area Control
 
-    [HideInInspector]
     [SerializeField]
     public List<Rect> Areas = new List<Rect>();
-    [HideInInspector]
     [SerializeField]
     public List<Vector3> FocusPoints = new List<Vector3>();
-    [HideInInspector]
     [SerializeField]
     public List<Vector3> CameraPoints = new List<Vector3>();
     [SerializeField]
@@ -79,7 +85,12 @@ public class CameraMovement : MonoBehaviour {
     {
         UpdateRectsContainingPlayer();
         updatePoint(FocusPoints, out FP);
+        Vector3 oldCP = CP;
         updatePoint(CameraPoints, out CP);
+        if(oldCP != CP)
+        {
+            startTransistion();
+        }
     }
 
     void UpdateRectsContainingPlayer()
@@ -118,78 +129,106 @@ public class CameraMovement : MonoBehaviour {
     private Vector3 distToFP;
 
     [Header("Camera Variables")]
-    public float height = 1f;
+    [Tooltip("Camera Transition Time")]
+    public float cameraTransitionTime = 1f;
     [Tooltip("Determines the amount of damping on the rotation")]
     [Range(0.0f, 3.0f)]
     public float rotationDamping = 1.2f;
     [Tooltip("Determines the amount of damping on the Postion")]
     [Range(0.0f, 3.0f)]
-    public float postionDamping = 1.2f;
+    public float positionDamping = 1.2f;
 
     [Header("Camera Settings")]
-    public bool FixedPostion = true;
-    public bool FixedHeight = false;
+    public bool FixedPosition = true;
+    public bool InstantTransisition = false;
+
+
+    [Header("Transistion Curve")]
+    [Tooltip("Enabling this will smooth the transition To the curve beneath")]
+    public bool EnableTransistionCurve = false;
+    public AnimationCurve curve;
 
     [Header("GameObjects")]
     [Tooltip("Target that the camera is going to focus on ")]
     public Transform target;
 
+    //Area transition
+    private float cameraMovementT = 0f;
+    private bool reachedDestination = false;
+    private Vector3 oldPos = Vector3.zero;
+    private Quaternion oldRot = Quaternion.identity;
+
     void movePos()
     {
 
         //Set height and distance
-        if (!FixedPostion)
+        if (!FixedPosition)
         {
-            Vector3 pos = distToFP + target.position + new Vector3(0, height + target.position.y, 0);
-            transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * postionDamping);
+            Vector3 pos = distToFP + target.position + new Vector3(0, target.position.y, 0);
+            transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping);
         }
-        else
+        else // FOR FIXED POSITION
         {
-            transform.position = Vector3.Slerp(transform.position, CP, Time.deltaTime * postionDamping);
+            
+            transform.position = Vector3.Lerp(oldPos, CP, cameraMovementT * positionDamping);
         }
         
     }
 
     void moveRot()
     {
-        if (!FixedPostion)
+        if (!FixedPosition)
         {
-            Vector3 D = target.position - transform.position;
-            Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(D), rotationDamping * Time.deltaTime);
-            transform.rotation = rot;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, 0);
-            return;
-        }else
+            Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
+            transform.rotation = rotation;
+        }
+        else // FOR FIXED POSITION
         {
-            //Look at and dampen the rotation
+            
             Quaternion rotation = Quaternion.LookRotation(FP - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
+            transform.rotation = Quaternion.Lerp(oldRot, rotation, cameraMovementT * rotationDamping);
         }   
+    }
+
+    void UpdateCameraMovementTimer()
+    {
+        if (EnableTransistionCurve)
+            cameraMovementT += (Time.deltaTime / cameraTransitionTime) * curve.Evaluate(cameraMovementT);
+        else
+            cameraMovementT += Time.deltaTime / cameraTransitionTime;
+
+        Debug.Log(cameraMovementT);
+        if(cameraMovementT >= 1)
+        {
+            //cameraMovementT = 0f;
+            reachedDestination = true;
+        }
     }
 
     void setPos()
     {
+        Debug.Log("Setting camera position");
         //Set height and distance
-        if (!FixedPostion)
+        if (!FixedPosition)
         {
-            Vector3 pos = distToFP + target.position + new Vector3(0, height + target.position.y, 0);
+            Vector3 pos = distToFP + target.position + new Vector3(0, target.position.y, 0);
             transform.position = pos;
         }
         else
         {
-            Vector3 pos = CP;
+            transform.position = CP;
         }
     }
 
     void setRot()
     {
-        if (!FixedPostion)
+        Debug.Log("Setting camera rotation");
+        if (!FixedPosition)
         {
-            Vector3 D = target.position - transform.position;
-            Quaternion rot = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(D), rotationDamping * Time.deltaTime);
-            transform.rotation = rot;
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, 0);
-        }else
+            Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
+            transform.rotation = rotation;
+        }
+        else
         {
             Quaternion rotation = Quaternion.LookRotation(FP - transform.position);
             transform.rotation = rotation;
@@ -198,15 +237,25 @@ public class CameraMovement : MonoBehaviour {
         
     }
 
+    void startTransistion()
+    {
+        if (!InstantTransisition)
+            cameraMovementT = 0f;
+
+        oldPos = transform.position;
+        oldRot = transform.rotation;
+        reachedDestination = false;   
+    }
+
     #endregion
 
     #region Helper functions
 
     Vector3 RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles) {
-       Vector3 dir = point - pivot; // get point direction relative to pivot
-       dir = Quaternion.Euler(angles) * dir; // rotate it
-       point = dir + pivot; // calculate rotated point
-       return point; // return it
+        Vector3 dir = point - pivot; // get point direction relative to pivot
+        dir = Quaternion.Euler(angles) * dir; // rotate it
+        point = dir + pivot; // calculate rotated point
+        return point; // return it
     }
 
     Vector3 Interpolate(List<Vector3> list)
