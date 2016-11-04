@@ -6,7 +6,8 @@ using System.Text;
 public class BaseQuest : IQuest
 {
     public QuestDescription Description { get; private set; }
-    public List<IObjective> Objectives = new List<IObjective>();
+    private List<IObjective> objectives = new List<IObjective>();
+    public List<IObjective> Objectives { get { return objectives; } }
 
     public float SuccessRating { get { return Objectives.Average(o => o.SuccessRating); } }
     public bool IsCompleted { get { return SuccessRating > 0; } }
