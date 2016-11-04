@@ -105,8 +105,6 @@ public class PlayerActionController : MonoBehaviour {
     /// </summary>
     public void HandleTaunt()
     {
-        overreactAction.Overreact();
-        /*
         // if attacked the player can overreact
         if (playerState == PlayerState.HIT)
         {
@@ -117,7 +115,6 @@ public class PlayerActionController : MonoBehaviour {
             //otherwhise taunt
             tauntAction.Taunt();
         }
-        */
     }
 
 
