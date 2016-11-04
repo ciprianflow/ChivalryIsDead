@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class MeleeAI : MonsterAI
 {
@@ -119,5 +120,11 @@ public class MeleeAI : MonsterAI
         {
             ChargeToAttack();
         }
+    }
+
+    public override void KillThis()
+    {
+        Debug.Log(transform.name + " : Has died");
+        this.enabled = false;
     }
 }
