@@ -10,17 +10,16 @@ public static class DummyQuestGenerator {
     public static IObjective GenerateObjective()
     {
         return new DummyObjective();
-        //return new TargetObjective();
     }
 
-    public static ProtectQuest GenerateProtectQuest(int objCount)
+    public static BaseQuest GenerateProtectQuest(int objCount)
     {
         List<IObjective> objectives = new List<IObjective>();
         for (int i = 0; i < objCount; i++) {
             objectives.Add(GenerateObjective());
         }
 
-        var retQuest = new ProtectQuest(GenerateDummyTitle(), "", Difficulty.Easy);
+        var retQuest = new BaseQuest(GenerateDummyTitle(), "", Difficulty.Easy);
         retQuest.Objectives.AddRange(objectives);
         return retQuest;
     }

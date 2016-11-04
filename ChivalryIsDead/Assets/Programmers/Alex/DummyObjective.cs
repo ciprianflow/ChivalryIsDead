@@ -7,15 +7,15 @@ public class DummyObjective : IObjective
 {
     Random rGen = new Random();
 
-    public float GetSuccessRating()
+    public bool IsCompleted { get { return SuccessRating > 0; } }
+    public bool IsChecked { get; private set; }
+    public float SuccessRating
     {
-        if (IsCompleted())
-            return (float)rGen.NextDouble();
-        else return 0f;
+        get { return 1f; }
     }
 
-    public bool IsCompleted()
+    public bool CheckTarget(IObjectiveTarget gObj)
     {
-        return Convert.ToBoolean(rGen.Next(2));
+        return true;
     }
 }

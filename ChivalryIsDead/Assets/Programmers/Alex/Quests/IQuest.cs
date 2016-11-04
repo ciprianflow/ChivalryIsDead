@@ -5,5 +5,5 @@ using System.Text;
 
 public interface IQuest : IObjective
 {
-    QuestDescription GetDescription();
+    QuestDescription Description { get; }
 }

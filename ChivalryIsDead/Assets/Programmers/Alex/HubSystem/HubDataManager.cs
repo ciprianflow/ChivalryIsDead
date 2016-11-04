@@ -40,6 +40,9 @@ public class HubDataManager : MonoBehaviour {
     }
     #endregion
 
+    public int MaximumReputation = 2000;
+    public int TotalDays = 14;
+
     public Text QueueText;
     public GameObject ContentPane;
     public Text QuestTitle;
@@ -81,6 +84,11 @@ public class HubDataManager : MonoBehaviour {
         return hubData;
     }
 
+
+    /// <summary>
+    /// TODO: Delete and replace with correct UI data, preferably this should be removed entirely.
+    /// </summary>
+    #region UI Specific
     private void ClearQuestUIElements()
     {
         foreach (Transform gObj in ContentPane.GetComponentsInChildren<Transform>()) {
@@ -89,7 +97,7 @@ public class HubDataManager : MonoBehaviour {
         }
     }
 
-    // TODO: Dummy method, shouldn't make it into the final game. Update to generic alternative.
+    // TODO: Dummy method, shouldn't make it into the final game. Update to generic or UI specific alternative.
     private void CreateQuestUIElements()
     {
         var curQIdx = 0;
@@ -109,24 +117,25 @@ public class HubDataManager : MonoBehaviour {
     // TODO: Semi-Dummy, completes a quest. Should be refactored to enter "Quest Mode".
     public void SelectQuest(Text questName)
     {
-        var selectedQ = AvailableQuests.FirstOrDefault(q => q.GetDescription().Title == questName.text);
+        var selectedQ = AvailableQuests.FirstOrDefault(q => q.Description.Title == questName.text);
         if (selectedQ != null) { 
-            Debug.Log("Found quest with title '" + selectedQ.GetDescription().Title + "'");
+            Debug.Log("Found quest with title '" + selectedQ.Description.Title + "'");
             CompleteQuest(selectedQ);
         }
         else
             Debug.LogWarning("Didn't find selected quest!");
     }
+    #endregion
 
-    // TODO: Dummy method, should be refactored or removed entirely.
+    // TODO: Needs refactoring; Reputation change behaviour not specified properly.
     private void CompleteQuest(IQuest quest)
     {
-        var qSuccessRating = quest.GetSuccessRating();
+        var qSuccessRating = quest.SuccessRating;
         int repChange;
         if (qSuccessRating > 0.5f) {
-            repChange = (int)(qSuccessRating * (float)quest.GetDescription().Difficulty);
+            repChange = (int)(qSuccessRating * (float)quest.Description.Difficulty);
         } else {
-            repChange = -1 * (int)((1 - qSuccessRating) * (float)quest.GetDescription().Difficulty);
+            repChange = -1 * (int)((1 - qSuccessRating) * (float)quest.Description.Difficulty);
         }
 
         // Save changes.
