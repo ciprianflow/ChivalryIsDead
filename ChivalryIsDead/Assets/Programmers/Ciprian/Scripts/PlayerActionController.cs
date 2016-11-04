@@ -24,6 +24,7 @@ public class PlayerActionController : MonoBehaviour {
     [Header("Overreact values")]
     //duration for the overreact mechanic
     public float AttackedDuration = 1.5f;
+    public float OverreactCooldown = 2.5f;
 
     [Header("Scare values")]
     public float ScareRadius = 4f;
@@ -76,7 +77,6 @@ public class PlayerActionController : MonoBehaviour {
         attackAction = gameObject.GetComponent<AttackAction>();
         scareAction = gameObject.GetComponent<ScareAction>();
 
-
     }
 
 	// Use this for initialization
@@ -96,13 +96,17 @@ public class PlayerActionController : MonoBehaviour {
         attackAction.AttackAngle = AttackAngle;
         attackAction.AttackRange = AttackRange;
 
-}
+        //init for overreact
+        overreactAction.OverreactCooldown = OverreactCooldown;
+    }
 
     /// <summary>
     /// Handle Taunt Button
     /// </summary>
     public void HandleTaunt()
     {
+        overreactAction.Overreact();
+        /*
         // if attacked the player can overreact
         if (playerState == PlayerState.HIT)
         {
@@ -113,6 +117,7 @@ public class PlayerActionController : MonoBehaviour {
             //otherwhise taunt
             tauntAction.Taunt();
         }
+        */
     }
 
 
