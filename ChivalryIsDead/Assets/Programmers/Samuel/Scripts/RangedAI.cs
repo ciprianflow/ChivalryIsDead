@@ -104,4 +104,9 @@ public class RangedAI : MonsterAI {
 
     public override void Taunt() { }
 
+    public override void KillThis()
+    {
+        Debug.Log(transform.name + " : Has died");
+        this.enabled = false;
+    }
 }
