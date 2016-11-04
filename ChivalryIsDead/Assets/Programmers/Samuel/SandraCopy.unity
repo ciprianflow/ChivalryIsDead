@@ -3831,10 +3831,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076890307}
-  m_LocalRotation: {x: 0.03275744, y: -0, z: -0, w: 0.9994634}
-  m_LocalPosition: {x: 10.71, y: 10.46, z: 14.68}
+  m_LocalRotation: {x: 0.32220545, y: -0.49193087, z: 0.16345325, w: 0.79213053}
+  m_LocalPosition: {x: 8.6, y: 13.07, z: -25.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 3.7200003, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 42.162003, y: -65.598, z: -4.3640003}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -3849,15 +3849,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198a9de151d0cb44d8a4ab486535cfab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Areas: []
-  FocusPoints: []
-  CameraPoints: []
-  AreaColor: []
-  height: 12
-  rotationDamping: 1.2
-  postionDamping: 0.3
-  FixedPostion: 1
-  FixedHeight: 0
+  Areas:
+  - serializedVersion: 2
+    x: 0.36172485
+    y: -9.239736
+    width: 16.4373
+    height: 24.206442
+  - serializedVersion: 2
+    x: -15.597696
+    y: -10.393556
+    width: 16.005657
+    height: 25.950005
+  FocusPoints:
+  - {x: 3.862442, y: 0, z: 1.2896652}
+  - {x: -7.1582003, y: 0, z: 1.2835703}
+  CameraPoints:
+  - {x: 19.47232, y: 11.498193, z: -4.7728214}
+  - {x: 5.1265364, y: 10.498822, z: 6.414403}
+  AreaColor:
+  - {r: 0.2, g: 0.2, b: 0.9, a: 1}
+  - {r: 1, g: 0, b: 0.1862073, a: 1}
+  cameraTransitionTime: 4
+  rotationDamping: 1
+  positionDamping: 1
+  FixedPosition: 1
+  InstantTransisition: 0
+  EnableTransistionCurve: 1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0.8898428
+      inSlope: 0.016424775
+      outSlope: 0.016424775
+      tangentMode: 0
+    - time: 0.23868355
+      value: 0.9083787
+      inSlope: 0.19052008
+      outSlope: 0.19052008
+      tangentMode: 0
+    - time: 0.28792435
+      value: 0.9422116
+      inSlope: 0.13846813
+      outSlope: 0.13846813
+      tangentMode: 0
+    - time: 0.47969845
+      value: 0.9506696
+      inSlope: -0.0023841858
+      outSlope: -0.0023841858
+      tangentMode: 0
+    - time: 0.6631063
+      value: 0.942022
+      inSlope: -0.13967773
+      outSlope: -0.13967773
+      tangentMode: 0
+    - time: 0.7189021
+      value: 0.90872824
+      inSlope: -0.10366813
+      outSlope: -0.10366813
+      tangentMode: 0
+    - time: 1
+      value: 0.89399964
+      inSlope: -0.06035297
+      outSlope: -0.06035297
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
   target: {fileID: 969417774}
 --- !u!1001 &2133708562
 Prefab:

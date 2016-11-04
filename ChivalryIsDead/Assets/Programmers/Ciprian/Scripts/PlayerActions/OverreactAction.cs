@@ -27,7 +27,6 @@ class OverreactAction: MonoBehaviour
         float coolDownPeriodInSeconds = 2.5f;
 
         float timeStamp = Time.time + coolDownPeriodInSeconds;
-        Debug.Log(timeStamp + " - " + Time.time);
 
     }
 
