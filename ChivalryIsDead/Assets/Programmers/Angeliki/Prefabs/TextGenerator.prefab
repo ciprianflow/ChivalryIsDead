@@ -9,49 +9,49 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000012667964192}
+  m_RootGameObject: {fileID: 1000012536303932}
   m_IsPrefabParent: 1
---- !u!1 &1000012667964192
+--- !u!1 &1000012536303932
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000012280716634}
-  - 114: {fileID: 114000011799078378}
+  - 4: {fileID: 4000012059780288}
+  - 114: {fileID: 114000010039356122}
   m_Layer: 0
-  m_Name: DialogSystem
-  m_TagString: DialogSystem
+  m_Name: TextGenerator
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000012280716634
+--- !u!4 &4000012059780288
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012667964192}
+  m_GameObject: {fileID: 1000012536303932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1024, y: 768, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000011799078378
+--- !u!114 &114000010039356122
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012667964192}
+  m_GameObject: {fileID: 1000012536303932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0862bdf3b3caf2b40a9044881f613614, type: 3}
+  m_Script: {fileID: 11500000, guid: 78207b3ecc931654dbd5b61d0350a562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialog:
-  - {fileID: 11400000, guid: 8d7633d7ffd0807429e1419f2145922a, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  textSize: 10
+  numFiles: 4
+  NewBagInitializer: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  sentences: []

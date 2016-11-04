@@ -160,8 +160,7 @@ namespace CnControls
             {
                 Hide(true);
             }
-				
-            //instantiate player
+
             playerActionController = player.GetComponent<PlayerActionController>();
         }
 
