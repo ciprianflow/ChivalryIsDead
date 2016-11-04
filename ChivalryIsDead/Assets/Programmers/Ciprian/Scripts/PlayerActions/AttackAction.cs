@@ -8,50 +8,17 @@ class AttackAction : MonoBehaviour
     public float AttackRange;
     public float AttackAngle;
 
-    public void NormalAttack(float radius, Transform transform)
+    public void NormalAttack(float radius)
     {
 
 
-        RaycastHit hit;
-        //loop all enemies...
-        Vector3 rayDirection = transform.position - transform.position;
-
-        float fieldOfViewDegrees = 180f;
-        float visibilityDistance = 10f;//attackRange;
-
-        //Debug.Log(Vector3.Angle(rayDirection, transform.forward));
-        //Debug.Log(fieldOfViewDegrees);
-        Debug.Log(Vector3.Angle(rayDirection, transform.forward));
-
-
-        if ((Vector3.Angle(rayDirection, transform.forward)) <= fieldOfViewDegrees)
-        {
-
-            // Detect if player is within the field of view
-            if (Physics.Raycast(transform.position, rayDirection, out hit, visibilityDistance))
-            {
-
-                //if (hitColliders[i].CompareTag("Enemy"))
-                if(hit.transform.CompareTag("Enemy"))
-                {
-                    Debug.Log("HITTED");
-                    Debug.Log(hit.transform.name);
-                }
-                
-            }
-        }
-
-
-        Debug.Log("Attack");
-
+     
     }
 
 
-
-    public void ConeAttack()
+    //receives enemies to attack
+    public void ConeAttack(List<Collider> colliders)
     {
-        //get enemies in range
-        List<Collider> colliders = getConeRange();
         //Debug.Log("ENEMIES INSIDE: " + colliders.Count);
 
         foreach (Collider collider in colliders)
@@ -62,7 +29,7 @@ class AttackAction : MonoBehaviour
     }
 
 
-    private List<Collider> getConeRange()
+    public List<Collider> GetConeRange()
     {
 
         List<Collider> inRangeColliders = new List<Collider>();
