@@ -160,13 +160,9 @@ namespace CnControls
             {
                 Hide(true);
             }
-
-<<<<<<< HEAD
+				
             //instantiate player
-            playerActionController = GameObject.Find("Player").GetComponent<PlayerActionController>();
-=======
             playerActionController = player.GetComponent<PlayerActionController>();
->>>>>>> a134f775bceaf085d01da68fb7006e99bbdb3a19
         }
 
 
