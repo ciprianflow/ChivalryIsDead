@@ -24,8 +24,20 @@ public class DialogObject : MonoBehaviour {
     GameObject[] enemy;
     GameObject[] enemyBubble;
 
+    GameObject peasantA;
+    GameObject peasantABubble;
+    GameObject peasantAText;
+
+
+    GameObject peasantB;
+    GameObject peasantBBubble;
+    GameObject peasantBText;
+
     // Use this for initialization
     void Start () {
+
+        peasantA = GameObject.FindGameObjectWithTag("PeasantA");
+        peasantB = GameObject.FindGameObjectWithTag("PeasantB");
 
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
@@ -53,9 +65,28 @@ public class DialogObject : MonoBehaviour {
             }
         }
 
-
-
+        if (peasantA != null)
+        {
+            if (GameObject.FindGameObjectWithTag("PeasantABubble"))
+            {
+                peasantAText = GameObject.FindGameObjectWithTag("PeasantAText");
+                peasantABubble = GameObject.FindGameObjectWithTag("PeasantABubble");
+                peasantABubble.SetActive(false);
+            }
         }
+        if (peasantB != null)
+        {
+            if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
+            {
+                peasantBText = GameObject.FindGameObjectWithTag("PeasantBText");
+                peasantBBubble = GameObject.FindGameObjectWithTag("PeasantBBubble");
+                peasantBBubble.SetActive(false);
+            }
+        }
+
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -71,7 +102,6 @@ public class DialogObject : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StopCoroutine("DialogSystem");
-            
 
             if (GameObject.FindGameObjectWithTag("PlayerBubble"))
             {
@@ -101,8 +131,16 @@ public class DialogObject : MonoBehaviour {
                     arrayEnemyBubble.SetActive(false);
                 }
             }
+            if (GameObject.FindGameObjectWithTag("PeasantABubble"))
+            {
+                peasantABubble.SetActive(false);
+            }
+            if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
+            {
+                peasantBBubble.SetActive(false);
+            }
 
-            
+
         }
 
     }
@@ -114,11 +152,12 @@ public class DialogObject : MonoBehaviour {
     {
 
         DialogInfo d = dialog[v];
+        Debug.Log(v);
+
         d.Dialog = d.Name.Length;
 
         for(int i = 0; i < d.Dialog; i++)
         {
-
             if (GameObject.FindGameObjectWithTag("Player") != null)
             {
                 if (GameObject.FindGameObjectWithTag("PlayerBubble"))
@@ -144,8 +183,27 @@ public class DialogObject : MonoBehaviour {
                 }
 
             }
+            if (peasantA != null)
+            {
+                if (GameObject.FindGameObjectWithTag("PeasantABubble"))
+                {
+                    //player = GameObject.FindGameObjectWithTag("PlayerText");
+                    peasantABubble = GameObject.FindGameObjectWithTag("PeasantABubble");
+                    peasantABubble.SetActive(false);
+                }
+            }
+            if (peasantB != null)
+            {
+                if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
+                {
+                    //player = GameObject.FindGameObjectWithTag("PlayerText");
+                    peasantBBubble = GameObject.FindGameObjectWithTag("PeasantBBubble");
+                    peasantBBubble.SetActive(false);
+                }
+            }
 
-                if (d.Name[i] == "Player")
+
+            if (d.Name[i] == "Player")
             {
                 playerBubble.SetActive(true);
                 player.GetComponent<Text>().text = d.Text[i];
@@ -172,9 +230,24 @@ public class DialogObject : MonoBehaviour {
                 }
             }
 
+            if (d.Name[i] == "PeasantA")
+            {
+                peasantABubble.SetActive(true);
+                peasantAText.GetComponent<Text>().text = d.Text[i];
+                yield return new WaitForSeconds(d.Wait[i]);
+                peasantABubble.SetActive(false);
+            }
+            if (d.Name[i] == "PeasantB")
+            {
+                peasantBBubble.SetActive(true);
+                peasantBText.GetComponent<Text>().text = d.Text[i];
+                yield return new WaitForSeconds(d.Wait[i]);
+                peasantBBubble.SetActive(false);
+            }
 
 
-            if(GameObject.FindGameObjectWithTag("GameUI") != null)
+
+            if (GameObject.FindGameObjectWithTag("GameUI") != null)
             {
                 if (GameObject.FindGameObjectWithTag("SwordBubble"))
                 {

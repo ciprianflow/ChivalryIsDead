@@ -24,9 +24,7 @@ public class CameraMovement : MonoBehaviour {
     {
         if (target)
         {
-
             updateAreaCamVaribles();
-            Debug.Log(reachedDestination);
             if (!reachedDestination)
             {
                 if (FixedPosition)
@@ -142,7 +140,6 @@ public class CameraMovement : MonoBehaviour {
     public bool FixedPosition = true;
     public bool InstantTransisition = false;
 
-
     [Header("Transistion Curve")]
     [Tooltip("Enabling this will smooth the transition To the curve beneath")]
     public bool EnableTransistionCurve = false;
@@ -197,7 +194,6 @@ public class CameraMovement : MonoBehaviour {
         else
             cameraMovementT += Time.deltaTime / cameraTransitionTime;
 
-        Debug.Log(cameraMovementT);
         if(cameraMovementT >= 1)
         {
             //cameraMovementT = 0f;
@@ -218,6 +214,8 @@ public class CameraMovement : MonoBehaviour {
         {
             transform.position = CP;
         }
+
+        oldPos = transform.position;
     }
 
     void setRot()
@@ -234,6 +232,7 @@ public class CameraMovement : MonoBehaviour {
             transform.rotation = rotation;
         }
 
+        oldRot = transform.rotation;
         
     }
 

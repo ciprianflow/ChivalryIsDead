@@ -41,7 +41,16 @@ public class GameMenu : MonoBehaviour {
             dialogSystem.StartCoroutine("DialogSystem", 0);
         }
 
-	}
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            dialogSystem.StartCoroutine("DialogSystem", 1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            dialogSystem.StartCoroutine("DialogSystem", 2);
+        }
+
+    }
 
     public void Pause()
     {
