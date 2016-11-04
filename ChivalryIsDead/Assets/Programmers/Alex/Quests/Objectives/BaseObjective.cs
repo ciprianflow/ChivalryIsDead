@@ -10,7 +10,7 @@ public class BaseObjective : IObjective
     public bool IsCompleted { get { return SuccessRating > 0; } }
     public bool IsChecked { get; protected set; }
 
-    private int targetID { get; set; }
+    public int targetID { get; private set; }
 
     public BaseObjective(int targetID)
     {

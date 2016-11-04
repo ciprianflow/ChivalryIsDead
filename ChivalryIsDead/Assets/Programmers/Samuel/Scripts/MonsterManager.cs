@@ -4,13 +4,20 @@ using System.Collections.Generic;
 public class MonsterManager {
 
     List<MonsterAI> monsters = new List<MonsterAI>();
+    Dictionary<int, GameObject> monsterPrefabs = new Dictionary<int, GameObject>();
 
     /// <summary>
     /// Spawn a single monster at a certain location
     /// </summary>
-    public void SpawnMonsters(MonsterAI monster)
+    public void SpawnMonsters(int ID, Vector3 pos)
     {
+        GameObject obj = GameObject.Instantiate(monsterPrefabs[ID]);
 
+        MonsterAI Monster = obj.GetComponent<MonsterAI>();
+
+        monsters.Add(Monster);
+
+        //Init monsters
     }
 
     /// <summary>
@@ -23,6 +30,11 @@ public class MonsterManager {
         if(monsters.Count <= 0)
             return true;
         return false;
+    }
+
+    public void LoadAllMonsters()
+    {
+        //Load monsters
     }
 
 
