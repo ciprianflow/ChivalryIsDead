@@ -17,6 +17,9 @@ public class GameMenu : MonoBehaviour {
 
     bool paused;
 
+    float testRND;
+
+
     // Use this for initialization
 
     void Awake ()
@@ -27,19 +30,30 @@ public class GameMenu : MonoBehaviour {
 
     void Start () {
 
-        //Invoke("Princess", 2);
+        sword.SetActive(false);
+        princess.SetActive(false);
+
+        Princess();
+        Sword();
+        Invoke("Test1", 2);
+
+        testRND = Random.Range(12, 30);
+        Debug.Log(testRND);
+        Invoke("Test", testRND);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
-        if(Input.GetKeyDown(KeyCode.Y))
+
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             Princess();
             Sword();
-            dialogSystem.StartCoroutine("DialogSystem", 0);
+            Invoke("Test1", 2);
         }
+
+
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -87,5 +101,14 @@ public class GameMenu : MonoBehaviour {
         sword.SetActive(true);
     }
 
+    void Test()
+    {
+        dialogSystem.StartCoroutine("DialogSystem", 2);
+    }
+
+    void Test1()
+    {
+        dialogSystem.StartCoroutine("DialogSystem", 0);
+    }
 
 }
