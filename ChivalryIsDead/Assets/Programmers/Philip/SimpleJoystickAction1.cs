@@ -128,15 +128,16 @@ namespace CnControls
         private float SY;
         private bool moving;
 
-        public GameObject player;
-        public Player playerScript;
+        GameObject player;
+        Player playerScript;
 
         private PlayerActionController playerActionController;
 
 
         private void Awake()
         {
-
+            player = GameObject.FindGameObjectWithTag("Player").gameObject;
+            playerScript = player.GetComponent<Player>();
 
             moving = false;
             SX = 0;

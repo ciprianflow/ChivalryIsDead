@@ -24,10 +24,8 @@ public class CameraBillboard : MonoBehaviour
        
         worldPos = new Vector3(speaker.transform.position.x, speaker.transform.position.y, speaker.transform.position.z);
         screenPos = m_Camera.WorldToScreenPoint(worldPos);
-        Debug.Log(speaker.name + transform.position);
 
         transform.position = new Vector3(screenPos.x, screenPos.y, screenPos.z);
-        Debug.Log(speaker.name + transform.position);
 
         //transform.localRotation = Quaternion.Euler(-transform.parent.rotation.eulerAngles);
         //transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward, m_Camera.transform.rotation * Vector3.up);

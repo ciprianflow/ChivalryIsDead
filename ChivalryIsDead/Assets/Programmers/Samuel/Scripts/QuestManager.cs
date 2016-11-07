@@ -1,11 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class QuestManager {
+public static class QuestManager {
 
     //Current quest and objectives
-    BaseQuest currQuest;
-    List<IObjective> objectives;
+    public static BaseQuest currQuest;
+
+
+    public static List<IObjective> GetObjectives()
+    {
+        return currQuest.Objectives;
+    }
+
+
 
 
 }
