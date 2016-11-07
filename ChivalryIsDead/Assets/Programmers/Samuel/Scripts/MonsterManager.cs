@@ -23,7 +23,8 @@ public class MonsterManager {
         Monster.targetObject = target;
         Monster.InitMonster();
 
-        obj.transform.SetParent(monsterListObject);
+        //if(typeof(Monster) == RangedAI)
+            obj.transform.SetParent(monsterListObject);
 
         monsters.Add(Monster);
 
