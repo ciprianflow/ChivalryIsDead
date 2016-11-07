@@ -6,6 +6,8 @@ public class MonsterManager {
     List<MonsterAI> monsters = new List<MonsterAI>();
     Dictionary<int, GameObject> monsterPrefabs = new Dictionary<int, GameObject>();
 
+    Transform monsterListObject;
+
     /// <summary>
     /// Spawn a single monster at a certain location
     /// </summary>
@@ -14,6 +16,8 @@ public class MonsterManager {
         GameObject obj = GameObject.Instantiate(monsterPrefabs[ID]);
 
         MonsterAI Monster = obj.GetComponent<MonsterAI>();
+
+        obj.transform.SetParent(monsterListObject);
 
         monsters.Add(Monster);
 
@@ -35,6 +39,15 @@ public class MonsterManager {
     public void LoadAllMonsters()
     {
         //Load monsters
+        monsterListObject = new GameObject("MonsterList").transform;
+        GameObject[] monsterPrefabsList = Resources.LoadAll<GameObject>("Monsters/");
+
+        for(int i = 0; i < monsterPrefabsList.Length; i++)
+        {
+            monsterPrefabs.Add(monsterPrefabsList[i].GetComponent<MonsterAI>().ID, monsterPrefabsList[i]);
+        }
+
+        Debug.Log(monsterPrefabsList.Length);
     }
 
 

@@ -24,6 +24,7 @@ class AttackAction : MonoBehaviour
         foreach (Collider collider in colliders)
         {
             collider.GetComponent<MonsterAI>().Hit(1);
+
         }
 
     }

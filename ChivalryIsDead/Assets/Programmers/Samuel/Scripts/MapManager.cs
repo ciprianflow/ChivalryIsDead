@@ -6,10 +6,17 @@ public class MapManager : MonoBehaviour {
 
     MonsterManager MM;
 
+    //EDITOR VARIABLES
+    [SerializeField]
+    public List<Rect> SpawnAreas;
+    [SerializeField]
+    public List<Color> AreaColor = new List<Color>();
+
     void Awake()
     {
 
         MM = new MonsterManager();
+        MM.LoadAllMonsters();
         InitQuest();
 
     }
@@ -17,7 +24,10 @@ public class MapManager : MonoBehaviour {
     public void InitQuest()
     {
         if (QuestManager.currQuest == null)
-            return;
+        {
+            QuestGenerator QG = new QuestGenerator();
+            QuestManager.currQuest = (BaseQuest)QG.GetQuest(Difficulty.Easy);
+        }         
 
         List <IObjective> objectives = QuestManager.GetObjectives();
 
@@ -31,12 +41,26 @@ public class MapManager : MonoBehaviour {
 
     void TranslateQuest(IObjective objective)
     {
-
         var ID = (objective as BaseObjective).targetID;
         MM.SpawnMonsters(ID, Vector3.zero);
-
     }
 
+    public void RemoveArea(int index)
+    {
+        if (index > SpawnAreas.Count - 1)
+            return;
 
+        SpawnAreas.RemoveAt(index);
+    }
 
+    public void AddArea()
+    {
+        Debug.Log("Adding SpawnArea");
+        SpawnAreas.Add(new Rect(0, 0, 2f, 2f));
+    }
+
+    public void ResetAll()
+    {
+        SpawnAreas = new List<Rect>();
+    }
 }
