@@ -128,6 +128,8 @@ namespace CnControls
         private float SY;
         private bool moving;
 
+        private float Rotation = 0;
+
         GameObject player;
         Player playerScript;
 
@@ -289,8 +291,18 @@ namespace CnControls
             VerticalAxis.Value = verticalValue;
         }
 
+        public void rotateActionButton() {
+            Rotation += 90;
+            if(Rotation == 360) {
+                Rotation = 0;
+            }
+
+            ActionUI.transform.eulerAngles = new Vector3(0,0,Rotation);
+        }
+
         public void OnPointerUp(PointerEventData eventData)
         {
+
             moving = false;
             // When we lift our finger, we reset everything to the initial state
             _baseTransform.anchoredPosition = _initialBasePosition;

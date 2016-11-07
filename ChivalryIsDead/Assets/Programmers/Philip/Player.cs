@@ -2,9 +2,18 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
     [Header("Variables")]
-    public float maxSpeed = 0.5f;
+    float maxSpeed = 0.07f;
+    public float zVel = 0;
+    public float turnMag = 0;
+    public Animator anim;
+    float worldX = 0;
+    float worldY = 0;
+    Vector2 LastXY = new Vector2(0, 0);
+
+    private bool isSlowingDown = false;
+
+    private bool staticControls = true;
 
     void Awake()
     {
@@ -17,35 +26,156 @@ public class Player : MonoBehaviour {
 
     }
 
-    void FixedPosition(float x, float y)
-    {
+    void FixedPosition(float x, float y) {
+        if (x == 0 && y == 0) {
+            isSlowingDown = true;
+            return;
+        }
+        else {
+            isSlowingDown = false;
+        }
 
-        Vector3 dir = new Vector3(x, 0, y);
+        //float camRot = Mathf.Deg2Rad * Camera.main.transform.eulerAngles.y;
 
-        Vector3 fwd = Camera.main.transform.forward;
-        fwd.y = transform.position.y;
+        //float worldX = (x * Mathf.Cos(camRot)) - (y * Mathf.Sin(camRot));
+        //float worldY = (x * Mathf.Sin(camRot)) + (y * Mathf.Cos(camRot));
+        //worldX = (x * Mathf.Cos(Mathf.PI/4)) - (y * Mathf.Sin(Mathf.PI / 4));
+        //worldY = (x * Mathf.Sin(Mathf.PI / 4)) + (y * Mathf.Cos(Mathf.PI / 4));
 
-        //float angle = Vector3.Angle(fwd, Vector3.forward) * Mathf.Deg2Rad;
-        float angle = CalculateAngle(fwd, Vector3.forward) * Mathf.Deg2Rad;
-        //angle = Camera.main.transform.rotation.y * Mathf.Deg2Rad;
 
-        float worldX = (x * Mathf.Cos(angle)) - (y * Mathf.Sin(angle));
-        float worldY = (x * Mathf.Sin(angle)) + (y * Mathf.Cos(angle));
-
-        //dir = Quaternion.AngleAxis(angle, Vector3.up) * dir;
 
         //Debug.Log(Mathf.Atan2(worldY, worldX));
-        //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX), 0);
+        //Debug.Log("X: " + (Mathf.Rad2Deg * worldX) + " Y " + (Mathf.Rad2Deg * worldY));
 
-        transform.LookAt(transform.position - new Vector3(worldX * maxSpeed, 0, worldY * maxSpeed));
+        //float turnValue = SignedAngle(LastXY, new Vector2(x, y));
+        //turnMag += turnValue;
+        LastXY = new Vector2(x, y);
+        if (zVel < LastXY.magnitude) {
+            zVel += 0.06f;
+        }
 
-        transform.position -= new Vector3(worldX * maxSpeed, 0, worldY * maxSpeed);
+        //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX) + 90, 0);
 
-        //transform.position += dir * maxSpeed;
+
+        //float desiredFwd = (-Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX));
+        if (!staticControls) {
+            float desiredFwd = (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y;
+            if (desiredFwd < 0) {
+                desiredFwd += 360f;
+            }
+
+            float currentFwd = transform.eulerAngles.y;
+            float diffTurn = desiredFwd - currentFwd;
+
+            if (diffTurn > 180f) {
+                diffTurn -= 360f;
+            }
+            if (diffTurn < -180f) {
+                diffTurn += 360f;
+            }
+
+
+
+            Debug.Log("desiredFwd " + desiredFwd + " currentfwd " + currentFwd + " diffturn " + diffTurn);
+
+
+
+            //anim.SetFloat("Turn", turnMag);
+
+            //Debug.Log(turnValue);
+            //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
+            //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+            if (diffTurn > 0.001f || diffTurn < -0.001f) {
+                float turnAmount = diffTurn / 5;
+                transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
+                //anim.SetFloat("Turn", turnAmount / 1.5f);
+
+            }
+        }
+        else {
+            transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+        }
+        transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
+
+        //anim.SetFloat("Speed", zVel * 5.5f);
+
+        //Debug.Log( "CAMERA " + Camera.main.transform.eulerAngles.y);
     }
 
-    public static float CalculateAngle(Vector3 from, Vector3 to)
-    {
-        return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
+    float SignedAngle(Vector3 a, Vector3 b) {
+        float angle = Vector3.Angle(a, b); // calculate angle
+                                           // assume the sign of the cross product's Y component:
+        return -angle * Mathf.Sign(Vector3.Cross(a, b).z);
     }
+
+    void Update() {
+        if (isSlowingDown) {
+            if (zVel > 0) {
+                //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
+                zVel -= 0.06f;
+                anim.SetFloat("Speed", zVel * 5.5f);
+
+            }
+            else {
+                zVel = 0;
+                anim.SetFloat("Speed", zVel * 5.5f);
+                isSlowingDown = false;
+            }
+        }
+        if (turnMag > 0) {
+            turnMag -= 5f;
+            //anim.SetFloat("Turn", turnMag);
+
+        }
+        if (Input.GetButtonDown("Jump")) {
+            anim.Play("HeadTurn", 1, 0);
+        }
+    }
+
+    public void toggleControls() {
+        staticControls = !staticControls;
+    }
+    //[Header("Variables")]
+    //public float maxSpeed = 0.5f;
+
+    //public void move(float x, float y) {
+
+    //    FixedPosition(x, y);
+
+    //}
+
+    //void FixedPosition(float x, float y)
+    //{
+
+    //    Vector3 dir = new Vector3(x, 0, y);
+
+    //    Vector3 fwd = Camera.main.transform.forward;
+    //    fwd.y = transform.position.y;
+
+    //    //float angle = Vector3.Angle(fwd, Vector3.forward) * Mathf.Deg2Rad;
+    //    float angle = CalculateAngle(fwd, Vector3.forward) * Mathf.Deg2Rad;
+    //    //angle = Camera.main.transform.rotation.y * Mathf.Deg2Rad;
+
+    //    float worldX = (x * Mathf.Cos(angle)) - (y * Mathf.Sin(angle));
+    //    float worldY = (x * Mathf.Sin(angle)) + (y * Mathf.Cos(angle));
+
+    //    //dir = Quaternion.AngleAxis(angle, Vector3.up) * dir;
+
+    //    //Debug.Log(Mathf.Atan2(worldY, worldX));
+    //    //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX), 0);
+
+    //    transform.LookAt(transform.position - new Vector3(worldX * maxSpeed, 0, worldY * maxSpeed));
+
+    //    transform.position -= new Vector3(worldX * maxSpeed, 0, worldY * maxSpeed);
+
+    //    //transform.position += dir * maxSpeed;
+    //}
+
+    //public static float CalculateAngle(Vector3 from, Vector3 to)
+    //{
+    //    return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
+    //}
+
+
+
 }
