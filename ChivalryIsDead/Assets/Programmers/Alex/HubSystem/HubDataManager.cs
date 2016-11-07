@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor;
+//using UnityEditor;
 using System.Collections.Generic;
 
 public class HubDataManager : MonoBehaviour {
@@ -58,7 +58,7 @@ public class HubDataManager : MonoBehaviour {
     {
         var hubData = LoadHubData();
         hubData.AvailableQuests = DummyQuestGenerator.GenerateMultipleQuests(hubData.QueueLength);
-        AssetDatabase.SaveAssets();
+        //AssetDatabase.SaveAssets();
         currentHubData = hubData;
     }
 
@@ -70,16 +70,17 @@ public class HubDataManager : MonoBehaviour {
         hubData.GlobalReputation += repChange;
         hubData.DaysLeft += dayChange;
         hubData.AvailableQuests = DummyQuestGenerator.GenerateMultipleQuests(hubData.QueueLength);
-        AssetDatabase.SaveAssets();
+        //AssetDatabase.SaveAssets();
         currentHubData = hubData;
     }
 
     private HubData LoadHubData()
     {
-        var hubData = AssetDatabase.LoadAssetAtPath<HubData>(hubDataPath);
+        HubData hubData = null;
+        //var hubData = AssetDatabase.LoadAssetAtPath<HubData>(hubDataPath);
         if (hubData == null) {
             hubData = ScriptableObject.CreateInstance<HubData>();
-            AssetDatabase.CreateAsset(hubData, hubDataPath);
+           // AssetDatabase.CreateAsset(hubData, hubDataPath);
         }
         return hubData;
     }

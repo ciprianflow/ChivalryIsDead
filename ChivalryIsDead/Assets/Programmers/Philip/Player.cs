@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
     [Header("Variables")]
-    float maxSpeed = 0.07f;
+    public float maxSpeed = 0.03f;
     public float zVel = 0;
     public float turnMag = 0;
     public Animator anim;

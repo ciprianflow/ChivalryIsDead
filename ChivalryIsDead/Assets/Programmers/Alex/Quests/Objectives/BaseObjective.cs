@@ -20,7 +20,8 @@ public class BaseObjective : IObjective
     public virtual bool CheckTarget(IObjectiveTarget gObj)
     {
         if (IsChecked)
-            throw new Exception("Checked objective is being checked again! Undefined behaviour.");
+            return false;
+            //throw new Exception("Checked objective is being checked again! Undefined behaviour.");
 
         return IsChecked = gObj.ID == targetID;
     }

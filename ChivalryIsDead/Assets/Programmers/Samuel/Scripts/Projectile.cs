@@ -10,14 +10,20 @@ public class Projectile : MonoBehaviour {
         if (setToDestroy || col.transform.CompareTag("Projectile"))
             return;
 
-        ProjectileCollision();
+        ProjectileCollision(col.gameObject);
 
     }
 
-    void ProjectileCollision()
+    void ProjectileCollision(GameObject collision)
     {
         DestroyTarget();
         setToDestroy = true;
+
+        QuestObject questObj = collision.GetComponent<QuestObject>();
+        if(questObj != null)
+        {
+            questObj.takeDamage(1);
+        }
     }
 
     void DestroyTarget()
