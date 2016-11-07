@@ -28,24 +28,24 @@ public class SettingsMngr : MonoBehaviour {
         Application.LoadLevel(Application.loadedLevel);
     }
 
-    public void setButtonPos() {
-        //settingButtons = !settingButtons;
+    //public void setButtonPos() {
+    //    //settingButtons = !settingButtons;
 
-        //Time.timeScale = 0f;
-        //joystick.SetActive(!settingButtons);
-        //butA.enabled = !settingButtons;
-        //butB.enabled = !settingButtons;
-        //DragA.canDrag = settingButtons;
-        //DragB.canDrag = settingButtons;
-        //if (settingButtons) { 
-        //    buttonText.text = "Please set the button positions";
-        //    thisButtonText.text = "Lock Buttons";
-        //}
-        //else {
-        //    buttonText.text = "";
-        //    thisButtonText.text = "Set Buttons";
-        //}
-    }
+    //    //Time.timeScale = 0f;
+    //    //joystick.SetActive(!settingButtons);
+    //    //butA.enabled = !settingButtons;
+    //    //butB.enabled = !settingButtons;
+    //    //DragA.canDrag = settingButtons;
+    //    //DragB.canDrag = settingButtons;
+    //    //if (settingButtons) { 
+    //    //    buttonText.text = "Please set the button positions";
+    //    //    thisButtonText.text = "Lock Buttons";
+    //    //}
+    //    //else {
+    //    //    buttonText.text = "";
+    //    //    thisButtonText.text = "Set Buttons";
+    //    //}
+    //}
 
     public void swapSides() {
         Vector3 tempX = joystick_move.transform.localPosition;
