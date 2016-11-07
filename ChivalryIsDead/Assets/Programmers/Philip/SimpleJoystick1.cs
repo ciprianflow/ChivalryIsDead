@@ -106,11 +106,13 @@ namespace CnControls
         private bool moving;
         private bool held;
 
-        public GameObject player;
-        public Player playerScript;
+        GameObject player;
+        Player playerScript;
 
         private void Awake()
         {
+            player = GameObject.FindGameObjectWithTag("Player").gameObject;
+            playerScript = player.GetComponent<Player>();
 
             held = false;
             moving = false;
