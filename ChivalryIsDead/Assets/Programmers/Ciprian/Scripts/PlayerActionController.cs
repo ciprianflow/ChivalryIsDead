@@ -1,18 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public enum PlayerState
 {
     IDLE, HIT, ATTACKING, TAUNTING
 }
 
-public class PlayerActionController : MonoBehaviour {
+
+public class PlayerActionController : MonoBehaviour
+{
 
     
     [Header("Attack values")]
+    public float AttackDamage = 1f;
     public float AttackRange = 2f;
     public float AttackAngle = 0.6f;
+    
 
     [Header("Taunt values")]
     public float TauntRadius = 5f;
@@ -45,14 +50,14 @@ public class PlayerActionController : MonoBehaviour {
     void OnDrawGizmos()
     {
 
-        float visibilityDistance = 2f;
-
         Gizmos.color = Color.red;
 
         //cone attack radius
         Gizmos.color = Color.magenta;
-        //Gizmos.DrawRay(transform.position, transform.forward * 5);
-        //Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(30f, transform.up) * transform.forward * visibilityDistance);
+
+        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(35f, transform.up) * transform.forward * 2f );
+        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-35f, transform.up) * transform.forward * 2f);
+
 
         //aggro radius
         Gizmos.color = Color.cyan;
@@ -93,6 +98,8 @@ public class PlayerActionController : MonoBehaviour {
         aggroAction.AggroRadius = AggroRadius;
 
         //init for attack
+
+        attackAction.AttackDamage = AttackDamage;
         attackAction.AttackAngle = AttackAngle;
         attackAction.AttackRange = AttackRange;
 
@@ -150,5 +157,6 @@ public class PlayerActionController : MonoBehaviour {
 
         playerState = PlayerState.IDLE;
     }
+
 
 }

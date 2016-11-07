@@ -5,8 +5,48 @@ using UnityEngine;
 class AttackAction : MonoBehaviour
 {
 
-    public float AttackRange;
-    public float AttackAngle;
+    private float attackRange;
+    private float attackAngle;
+    private float attackDamage;
+
+    public float AttackAngle
+    {
+        get
+        {
+            return attackAngle;
+        }
+
+        set
+        {
+            attackAngle = value;
+        }
+    }
+
+    public float AttackRange
+    {
+        get
+        {
+            return attackRange;
+        }
+
+        set
+        {
+            attackRange = value;
+        }
+    }
+
+    public float AttackDamage
+    {
+        get
+        {
+            return attackDamage;
+        }
+
+        set
+        {
+            attackDamage = value;
+        }
+    }
 
     public void NormalAttack(float radius)
     {
@@ -23,7 +63,10 @@ class AttackAction : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            collider.GetComponent<MonsterAI>().Hit(1);
+            collider.GetComponent<MonsterAI>().Hit(attackDamage);
+            collider.GetComponent<Rigidbody>().AddExplosionForce(500000f, transform.position, 5000f);
+            Debug.Log(collider.GetComponent<Rigidbody>());
+            Debug.Log("EXPLOSION");
         }
 
     }
@@ -34,14 +77,14 @@ class AttackAction : MonoBehaviour
 
         List<Collider> inRangeColliders = new List<Collider>();
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, AttackRange);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange);
         foreach(Collider collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
                 
                 Vector3 vectorToCollider = (collider.transform.position - transform.position).normalized;
-                if (Vector3.Dot(vectorToCollider, transform.forward) > AttackAngle)
+                if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngle)
                 {
                     inRangeColliders.Add(collider);
                 }
