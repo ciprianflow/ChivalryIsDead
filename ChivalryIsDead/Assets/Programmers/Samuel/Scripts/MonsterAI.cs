@@ -51,7 +51,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     }
 
     //implement this in the base class
-    public void Hit(int damage)
+    public void Hit(float damage)
     {
         Health -= damage;
 
