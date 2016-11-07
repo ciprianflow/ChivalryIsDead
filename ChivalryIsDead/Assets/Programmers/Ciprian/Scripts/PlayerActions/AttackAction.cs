@@ -64,9 +64,8 @@ class AttackAction : MonoBehaviour
         foreach (Collider collider in colliders)
         {
             collider.GetComponent<MonsterAI>().Hit(attackDamage);
+            //attack force
             collider.GetComponent<Rigidbody>().AddExplosionForce(500000f, transform.position, 5000f);
-            Debug.Log(collider.GetComponent<Rigidbody>());
-            Debug.Log("EXPLOSION");
         }
 
     }
