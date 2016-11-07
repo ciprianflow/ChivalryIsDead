@@ -229,11 +229,19 @@ public class DialogObject : MonoBehaviour {
 
         }
 
-        UI.GetComponent<GameMenu>().sword.SetActive(false);
-        UI.GetComponent<GameMenu>().princess.SetActive(false);
-
+        
+        UI.GetComponent<GameMenu>().sword.GetComponent<Animator>().SetTrigger("Hide");
+        UI.GetComponent<GameMenu>().princess.GetComponent<Animator>().SetTrigger("Hide");
+        StartCoroutine(Hide());
     }
 
+    IEnumerator Hide()
+    {
+        // Remememememember :)
+        yield return new WaitForSeconds(4f);
+        UI.GetComponent<GameMenu>().sword.SetActive(false);
+        UI.GetComponent<GameMenu>().princess.SetActive(false);
+    }
 
     public void StopDialog()
     {
