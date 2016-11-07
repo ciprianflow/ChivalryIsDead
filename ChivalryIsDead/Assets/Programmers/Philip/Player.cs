@@ -15,6 +15,11 @@ public class Player : MonoBehaviour {
 
     private bool staticControls = true;
 
+    void Awake()
+    {
+        StaticData.player = this.transform;
+    }
+
     public void move(float x, float y) {
 
         FixedPosition(x, y);

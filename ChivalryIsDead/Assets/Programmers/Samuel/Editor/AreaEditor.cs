@@ -2,14 +2,14 @@
 using System.Collections;
 using UnityEditor;
 
-[CustomEditor(typeof(MapManager))]
-public class EditorMapManager : Editor {
+[CustomEditor(typeof(AreaScript))]
+public class AreaEditor : Editor {
 
     int index = 0;
     public override void OnInspectorGUI()
     {
 
-        MapManager mapManager = (MapManager)target;
+        AreaScript areaScript = (AreaScript)target;
 
         base.OnInspectorGUI();
 
@@ -19,49 +19,49 @@ public class EditorMapManager : Editor {
 
         if (GUILayout.Button("Create New Spawn Area"))
         {
-            mapManager.AddArea();
-            EditorUtility.SetDirty(mapManager);
+            areaScript.AddArea();
+            EditorUtility.SetDirty(areaScript);
         }
 
         GUILayout.BeginHorizontal();
         index = EditorGUILayout.IntField(index);
         if (GUILayout.Button("Delete Spawn Area"))
         {
-            mapManager.RemoveArea(index);
-            EditorUtility.SetDirty(mapManager);
+            areaScript.RemoveArea(index);
+            EditorUtility.SetDirty(areaScript);
         }
 
         GUILayout.EndHorizontal();
 
         if (GUILayout.Button("Clear All Spawn Area"))
         {
-            mapManager.ResetAll();
-            EditorUtility.SetDirty(mapManager);
+            areaScript.ResetAll();
+            EditorUtility.SetDirty(areaScript);
         }
     }
 
     void OnSceneGUI()
     {
 
-        MapManager mapManager = (MapManager)target;
+        AreaScript areaScript = (AreaScript)target;
 
-        for (int i = 0; i < mapManager.SpawnAreas.Count; i++)
+        for (int i = 0; i < areaScript.Areas.Count; i++)
         {
 
-            float width = mapManager.SpawnAreas[i].width;
-            float height = mapManager.SpawnAreas[i].height;
+            float width = areaScript.Areas[i].width;
+            float height = areaScript.Areas[i].height;
 
             GUIStyle style = new GUIStyle();
-            style.normal.textColor = mapManager.AreaColor[i];
+            style.normal.textColor = areaScript.AreaColor[i];
             style.fontSize = 24;
 
-            Handles.color = mapManager.AreaColor[i];
-            Vector3 pos = new Vector3(mapManager.SpawnAreas[i].x, 0, mapManager.SpawnAreas[i].y);
+            Handles.color = areaScript.AreaColor[i];
+            Vector3 pos = new Vector3(areaScript.Areas[i].x, 0, areaScript.Areas[i].y);
 
-            Vector3[] verts = new Vector3[] { new Vector3(mapManager.SpawnAreas[i].xMin, pos.y, mapManager.SpawnAreas[i].yMin),
-                                              new Vector3(mapManager.SpawnAreas[i].xMax, pos.y, mapManager.SpawnAreas[i].yMin),
-                                              new Vector3(mapManager.SpawnAreas[i].xMax, pos.y, mapManager.SpawnAreas[i].yMax),
-                                              new Vector3(mapManager.SpawnAreas[i].xMin, pos.y, mapManager.SpawnAreas[i].yMax)};
+            Vector3[] verts = new Vector3[] { new Vector3(areaScript.Areas[i].xMin, pos.y, areaScript.Areas[i].yMin),
+                                              new Vector3(areaScript.Areas[i].xMax, pos.y, areaScript.Areas[i].yMin),
+                                              new Vector3(areaScript.Areas[i].xMax, pos.y, areaScript.Areas[i].yMax),
+                                              new Vector3(areaScript.Areas[i].xMin, pos.y, areaScript.Areas[i].yMax)};
 
             Handles.DrawSolidRectangleWithOutline(verts, new Color(1, 1, 1, 0.2f), new Color(0, 0, 0, 1));
             Handles.color = Color.white;
@@ -80,7 +80,7 @@ public class EditorMapManager : Editor {
             Handles.Label(handlePos + Vector3.up * 4,
                                  "Spawn Area " + i + " : Width: " + width.ToString() + ", Height: " + height.ToString(), style);
 
-            mapManager.SpawnAreas[i] = new Rect(pos.x, pos.z, scale.x, scale.z);
+            areaScript.Areas[i] = new Rect(pos.x, pos.z, scale.x, scale.z);
 
         }
     }

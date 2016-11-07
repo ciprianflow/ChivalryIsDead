@@ -34,7 +34,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     public abstract void Init();
 
-    void Awake()
+    public void InitMonster()
     {
         InitNavMeshAgent();
         ToMove(); //Comment in to make aggroed at start
@@ -141,6 +141,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     void InitNavMeshAgent()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.enabled = true;
         points = new Transform[0];
         updateNavMeshPath();
     }
@@ -222,6 +223,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     #endregion
 
+    #region IObjective funtioncs
+
     public int ID
     {
         get
@@ -246,4 +249,5 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         }
     }
 
+    #endregion
 }
