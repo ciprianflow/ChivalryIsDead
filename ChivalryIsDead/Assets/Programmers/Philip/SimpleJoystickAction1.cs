@@ -259,8 +259,8 @@ namespace CnControls
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
 
-            SX = Stick.rectTransform.localPosition.x/50;
-            SY = Stick.rectTransform.localPosition.y/50;
+            SX = Stick.rectTransform.localPosition.x/125;
+            SY = Stick.rectTransform.localPosition.y/125;
 
             if (SY > 0.2f) {
                 ActionTop.color = new Color(1, 1, 1, 1);
@@ -312,7 +312,7 @@ namespace CnControls
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
 
             if (SY > 0.2) {
-                t.text = "Red";
+                t.text = "Attack";
                 t.color = new Color(1, 0, 0, 1);
                 Vibration.Vibrate(50);
 
@@ -322,7 +322,7 @@ namespace CnControls
                 
             }
             else if (SY < -0.2) {
-                t.text = "Blue";
+                t.text = "Taunt";
                 t.color = new Color(0, 0, 1, 1);
                 Vibration.Vibrate(50);
 
