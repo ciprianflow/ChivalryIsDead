@@ -1037,7 +1037,7 @@ Transform:
   - {fileID: 950502652}
   - {fileID: 1382650188}
   m_Father: {fileID: 790989659}
-  m_RootOrder: 20
+  m_RootOrder: 10
 --- !u!1 &329469756
 GameObject:
   m_ObjectHideFlags: 0
@@ -2780,6 +2780,7 @@ Transform:
   - {fileID: 1839280114}
   - {fileID: 265013377}
   - {fileID: 1294011184}
+  - {fileID: 299572143}
   - {fileID: 610865070}
   - {fileID: 1238826238}
   - {fileID: 1198124897}
@@ -2790,7 +2791,6 @@ Transform:
   - {fileID: 1201157809}
   - {fileID: 362508697}
   - {fileID: 1092901344}
-  - {fileID: 299572143}
   - {fileID: 858152718}
   - {fileID: 1496415264}
   - {fileID: 1681267641}
@@ -6922,8 +6922,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 7
   m_Type: 1
-  m_Color: {r: 0.75735295, g: 0.6617331, b: 0.40095156, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 0.9485294, g: 0.879295, b: 0.6904736, a: 1}
+  m_Intensity: 1.3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -8997,11 +8997,18 @@ MonoBehaviour:
   AreaColor:
   - {r: 0.2, g: 0.2, b: 0.9, a: 1}
   - {r: 1, g: 0.029411793, b: 0.49127787, a: 1}
-  height: 8
+  cameraTransitionTime: 1
   rotationDamping: 1.2
-  postionDamping: 1.2
-  FixedPostion: 1
-  FixedHeight: 0
+  positionDamping: 1.2
+  FixedPosition: 1
+  InstantTransisition: 0
+  EnableTransistionCurve: 0
+  curve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   target: {fileID: 1265736807}
 --- !u!1001 &2133708562
 Prefab:
