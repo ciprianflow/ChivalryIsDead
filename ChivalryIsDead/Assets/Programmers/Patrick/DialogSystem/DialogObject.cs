@@ -152,7 +152,6 @@ public class DialogObject : MonoBehaviour {
     {
 
         DialogInfo d = dialog[v];
-        Debug.Log(v);
 
         d.Dialog = d.Name.Length;
 
