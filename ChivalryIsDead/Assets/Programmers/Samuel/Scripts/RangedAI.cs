@@ -11,8 +11,8 @@ public class RangedAI : MonsterAI {
 
     float force = 1;
     float angle = 60;
-    float randomRange = 0f;
-    float randomAngle = 0f;
+    float randomRange = 4f;
+    float randomAngle = 20f;
 
     public override void Init() { }
 

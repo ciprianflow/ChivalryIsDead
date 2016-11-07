@@ -50,7 +50,23 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         stateFunc();
         updateTimer();
         UpdateNavMeshPathDelayed();
-        
+
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        if (!targetObject.gameObject.activeSelf)
+            targetObject = StaticData.player;
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
     }
 
     //implement this in the base class
