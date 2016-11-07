@@ -59,7 +59,7 @@ public class QuestGenerator
         IQuest retQuest;
         var questType = System.Convert.ToBoolean(Random.Range(0, 2));
         if (questType) { // DestroyTargetQuest
-            retQuest = new BaseQuest("Destroy the enemies!", "Yalla Yalla, kabob 'dem fo' Dollah!", Difficulty.Easy);
+            retQuest = new BaseQuest("Destroy the enemies!", "Yalla Yalla, kabob 'dem fo' Moolah!", Difficulty.Easy);
             var meleeCount = Random.Range(2, 5);
             var rangedCount = Random.Range(0, 3);
 
@@ -88,8 +88,41 @@ public class QuestGenerator
 
     private IQuest GenerateMediumQuest()
     {
-        var meleeCount = Random.Range(2, 5);
-        var rangedCount = Random.Range(0, 3);
+        IQuest retQuest;
+        var questType = System.Convert.ToBoolean(Random.Range(0, 2));
+        if (questType) {
+            retQuest = new BaseQuest("Destroy the enemies!", "Yalla Yalla, kabob 'dem fo' Moolah", Difficulty.Medium);
+            var meleeCount = Random.Range(1, 4);
+            var rangedCount = Random.Range(1, 4);
+            var suicideCount = Random.Range(0, 3);
+
+            for (int i = 0; i < meleeCount + rangedCount + suicideCount; i++) {
+                if (i <= meleeCount) {
+                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
+                } else if (i <= meleeCount + rangedCount) {
+                    retQuest.Objectives.Add(new DestroyTargetObjective(12));
+                } else {
+                    retQuest.Objectives.Add(new DestroyTargetObjective(13));
+                }
+            }
+        } else {
+            retQuest = new BaseQuest("Defend the sheeple!", "Illumnati retile people and shizz.", Difficulty.Easy);
+            var sheepCount = Random.Range(4, 9);
+            var meleeCount = Random.Range(3, sheepCount);
+            var rangedCount = Random.Range(1, 4);
+
+            for (int i = 0; i < sheepCount + meleeCount + rangedCount; i++) {
+                if (i <= meleeCount) {
+                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
+                }
+                else if (i <= meleeCount + rangedCount) {
+                    retQuest.Objectives.Add(new DestroyTargetObjective(12));
+                }
+                else {
+                    retQuest.Objectives.Add(new ProtectTargetObjective(21));
+                }
+            }
+        }
 
         throw new System.NotImplementedException();
 
