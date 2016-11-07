@@ -3,8 +3,9 @@ using UnityEngine;
 using System.Collections;
 
 public class ToggleSwap : MonoBehaviour {
+
+    public SettingsMngr SM;
     void Awake() {
-        SettingsMngr SM = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsMngr>();
         gameObject.GetComponent<Button>().onClick.AddListener(delegate { SM.swapSides(); });
     }
 }
