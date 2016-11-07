@@ -57,7 +57,7 @@ public class QuestGenerator
     private IQuest GenerateEasyQuest()
     {
         IQuest retQuest;
-        var questType = System.Convert.ToBoolean(Random.Range(0, 2));
+        var questType = System.Convert.ToBoolean(Random.Range(0, 1));
         if (questType) { // DestroyTargetQuest
             retQuest = new BaseQuest("Destroy the enemies!", "Yalla Yalla, kabob 'dem fo' Dollah!", Difficulty.Easy);
             var meleeCount = Random.Range(2, 5);
@@ -72,11 +72,11 @@ public class QuestGenerator
             }
         } else { // ProtectTargetQuest
             retQuest = new BaseQuest("Defend the sheeple!", "Illuminati reptile people and shizz.", Difficulty.Easy);
-            var sheepCount = Random.Range(4, 9);
-            var meleeCount = Random.Range(3, sheepCount);
+            var sheepCount = Random.Range(1, 1); // TODO: Use an actual range
+            var meleeCount = Random.Range(3, 3 + sheepCount); // TODO: Just fix...
 
             for (int i = 0; i < sheepCount + meleeCount; i++) {
-                if (i <= sheepCount)
+                if (i < sheepCount)
                     retQuest.Objectives.Add(new ProtectTargetObjective(21));
                 else
                     retQuest.Objectives.Add(new DestroyTargetObjective(11));

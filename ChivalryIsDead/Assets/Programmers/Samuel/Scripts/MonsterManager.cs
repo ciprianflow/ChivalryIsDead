@@ -20,12 +20,17 @@ public class MonsterManager {
 
         MonsterAI Monster = obj.GetComponent<MonsterAI>();
 
-        Monster.targetObject = target;
+        if (Monster.GetType() == typeof(RangedAI))
+        {
+            Monster.targetObject = target;
+        }
+        else
+        {
+            Monster.targetObject = StaticData.player;
+        }
+
         Monster.InitMonster();
-
-        //if(typeof(Monster) == RangedAI)
-            obj.transform.SetParent(monsterListObject);
-
+        obj.transform.SetParent(monsterListObject);     
         monsters.Add(Monster);
 
         //Init monsters

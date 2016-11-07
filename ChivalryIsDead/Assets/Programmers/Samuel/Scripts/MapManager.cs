@@ -13,12 +13,14 @@ public class MapManager : MonoBehaviour {
     internal void SetQuestObject(Transform transform)
     {
         QuestTarget = transform;
+        QuestTarget.gameObject.SetActive(false);
     }
 
     void Awake()
     {
         areas = transform.GetComponent<AreaScript>();
         MM = new MonsterManager();
+        StaticData.mapManager = this;
 
     }
 
@@ -48,7 +50,34 @@ public class MapManager : MonoBehaviour {
 
     void TranslateQuest(IObjective objective)
     {
+        
+
         var ID = (objective as BaseObjective).targetID;
+
+        if (ID == 21)
+        {
+            QuestTarget.gameObject.SetActive(true);
+            return;
+        }
+
         MM.SpawnMonsters(ID, Vector3.zero, QuestTarget);
+    }
+
+    internal void CheckObjectives(IObjectiveTarget IObj)
+    {
+
+        QuestManager.currQuest.CheckTarget(IObj);
+        if (QuestManager.currQuest.IsChecked)
+        {
+            Debug.LogWarning("Shits done!");
+        }
+        //foreach(IObjective iO in QuestManager.currQuest.Objectives)
+        //{
+        //    if (!iO.IsChecked && iO.CheckTarget(IObj))
+        //    {
+        //        return;
+        //    }
+        //}
+
     }
 }
