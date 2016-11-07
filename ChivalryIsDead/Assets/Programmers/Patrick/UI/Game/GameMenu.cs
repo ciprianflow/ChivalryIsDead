@@ -35,7 +35,7 @@ public class GameMenu : MonoBehaviour {
 
         Princess();
         Sword();
-        dialogSystem.StartCoroutine("DialogSystem", 0);
+        Invoke("Test1", 2);
 
         testRND = Random.Range(12, 30);
         Debug.Log(testRND);
@@ -45,13 +45,13 @@ public class GameMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-        //if(Input.GetKeyDown(KeyCode.Y))
-        //{
-        //    Princess();
-        //    Sword();
-        //    dialogSystem.StartCoroutine("DialogSystem", 0);
-        //}
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            Princess();
+            Sword();
+            Invoke("Test1", 2);
+        }
 
 
 
@@ -103,8 +103,12 @@ public class GameMenu : MonoBehaviour {
 
     void Test()
     {
-
         dialogSystem.StartCoroutine("DialogSystem", 2);
+    }
+
+    void Test1()
+    {
+        dialogSystem.StartCoroutine("DialogSystem", 0);
     }
 
 }
