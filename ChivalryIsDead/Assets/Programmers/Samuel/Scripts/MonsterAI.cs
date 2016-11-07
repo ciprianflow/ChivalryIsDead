@@ -4,10 +4,12 @@ using System;
 
 public enum State { Attack, Move, Charge, Idle }
 
-public abstract class MonsterAI : MonoBehaviour {
+public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected float t1 = 0;
     protected float t2 = 0;
+
+    public int id = 0;
 
     [Header("Defense Values")]
     public float Health = 2f;
@@ -207,10 +209,11 @@ public abstract class MonsterAI : MonoBehaviour {
         Health -= num;
         if(Health <= 0)
         {
-            Debug.Log(transform.name + " : Has died");
-            this.enabled = false;
+            KillThis();
         }
     }
+
+    public abstract void KillThis();
 
     public State getState()
     {
@@ -218,5 +221,29 @@ public abstract class MonsterAI : MonoBehaviour {
     }
 
     #endregion
+
+    public int ID
+    {
+        get
+        {
+            return id;
+        }
+    }
+
+    int IObjectiveTarget.Health
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public int MaxHealth
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 }
