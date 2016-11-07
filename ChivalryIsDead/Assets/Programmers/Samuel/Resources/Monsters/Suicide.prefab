@@ -9,48 +9,48 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000010519441102}
+  m_RootGameObject: {fileID: 1000013317938470}
   m_IsPrefabParent: 1
---- !u!1 &1000010519441102
+--- !u!1 &1000013317938470
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000012364192734}
-  - 33: {fileID: 33000014236662760}
-  - 65: {fileID: 65000011493005900}
-  - 23: {fileID: 23000010162226086}
-  - 114: {fileID: 114000013483877182}
-  - 195: {fileID: 195000010588756586}
-  - 54: {fileID: 54000014071647424}
+  - 4: {fileID: 4000010304692424}
+  - 33: {fileID: 33000012135572858}
+  - 65: {fileID: 65000011152622932}
+  - 23: {fileID: 23000010843168316}
+  - 195: {fileID: 195000013104909094}
+  - 54: {fileID: 54000012031474318}
+  - 114: {fileID: 114000013701481622}
   m_Layer: 0
-  m_Name: Ranged
+  m_Name: Suicide
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4000012364192734
+  m_IsActive: 1
+--- !u!4 &4000010304692424
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010519441102}
+  m_GameObject: {fileID: 1000013317938470}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.903507, y: 13.518061, z: 21.405073}
+  m_LocalPosition: {x: -6.58, y: 13.268061, z: 20.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &23000010162226086
+--- !u!23 &23000010843168316
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010519441102}
+  m_GameObject: {fileID: 1000013317938470}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -58,7 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1643c62e5f3168f46a61b154d0c47afe, type: 2}
+  - {fileID: 2100000, guid: bcaab0862d6d98c4aa093290b1a172d8, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -74,19 +74,19 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &33000014236662760
+--- !u!33 &33000012135572858
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010519441102}
+  m_GameObject: {fileID: 1000013317938470}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54000014071647424
+--- !u!54 &54000012031474318
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010519441102}
+  m_GameObject: {fileID: 1000013317938470}
   serializedVersion: 2
   m_Mass: 500
   m_Drag: 3
@@ -96,52 +96,50 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65000011493005900
+--- !u!65 &65000011152622932
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010519441102}
+  m_GameObject: {fileID: 1000013317938470}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114000013483877182
+--- !u!114 &114000013701481622
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010519441102}
+  m_GameObject: {fileID: 1000013317938470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63a01855c9a537d48adc4b8e658a775a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dc0f3f8ff6f6c045832f0d4c515bfb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 2
-  attackTime: 3
-  attackRange: 10
+  id: 13
+  Health: 1
+  attackTime: 2
+  attackRange: 1
   attackRotateSpeed: 90
   targetObject: {fileID: 0}
-  projectile: {fileID: 1000012329749918, guid: 95b10be1172ee3f4ba35e9b65b7b640f, type: 2}
-  targetSprite: {fileID: 1000012462670054, guid: e269677dd49090c4eadd4f9939a56116,
-    type: 2}
---- !u!195 &195000010588756586
+--- !u!195 &195000013104909094
 NavMeshAgent:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010519441102}
+  m_GameObject: {fileID: 1000013317938470}
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Speed: 5
+  m_Radius: 1
+  m_Speed: 6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1
   m_BaseOffset: 0.5
