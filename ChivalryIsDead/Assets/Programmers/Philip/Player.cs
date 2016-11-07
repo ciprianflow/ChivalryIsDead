@@ -6,6 +6,11 @@ public class Player : MonoBehaviour {
     [Header("Variables")]
     public float maxSpeed = 0.5f;
 
+    void Awake()
+    {
+        StaticData.player = this.transform;
+    }
+
     public void move(float x, float y) {
 
         FixedPosition(x, y);

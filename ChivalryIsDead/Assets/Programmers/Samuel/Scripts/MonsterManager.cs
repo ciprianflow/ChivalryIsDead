@@ -11,11 +11,17 @@ public class MonsterManager {
     /// <summary>
     /// Spawn a single monster at a certain location
     /// </summary>
-    public void SpawnMonsters(int ID, Vector3 pos)
+    public void SpawnMonsters(int ID, Vector3 pos, Transform target)
     {
+        Debug.Log(ID);
         GameObject obj = GameObject.Instantiate(monsterPrefabs[ID]);
 
+        obj.transform.position = pos;
+
         MonsterAI Monster = obj.GetComponent<MonsterAI>();
+
+        Monster.targetObject = target;
+        Monster.InitMonster();
 
         obj.transform.SetParent(monsterListObject);
 
@@ -46,8 +52,6 @@ public class MonsterManager {
         {
             monsterPrefabs.Add(monsterPrefabsList[i].GetComponent<MonsterAI>().ID, monsterPrefabsList[i]);
         }
-
-        Debug.Log(monsterPrefabsList.Length);
     }
 
 
