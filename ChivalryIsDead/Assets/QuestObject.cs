@@ -6,7 +6,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
 {
 
     HealthScript healthScript;
-
+    private PlayerBehaviour pb;
     // Use this for initialization
     void Awake()
     {
@@ -14,6 +14,8 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
         //healthScript = transform.GetComponent<HealthScript>();
         healthScript = new HealthScript(2);
         transform.parent.GetComponent<MapManager>().SetQuestObject(this.transform);
+
+        pb = new PlayerBehaviour("rep");
 
     }
 
@@ -41,15 +43,22 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
         }
     }
 
-    public bool IsChecked { get; set; } 
-
+    public bool IsChecked { get; set; }
+    //need monster state too
     public void takeDamage(int dmg)
     {
+        
         Debug.Log("IM hit ");
+
+
         if (healthScript.takeDamage(dmg))
-        {
+        {   
             gameObject.SetActive(false);
             StaticData.mapManager.CheckObjectives(this);
         }
+
+        //add reputation
+        pb.ScoreChange -= dmg;
+        pb.Invoke();
     }
 }
