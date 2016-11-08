@@ -2,9 +2,11 @@
 using System.Collections;
 using System;
 
-public enum State { Attack, Move, Charge, Idle }
+public enum State { Attack, Move, Charge, Idle, Scared }
 
 public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
+
+    #region fields
 
     protected float t1 = 0;
     protected float t2 = 0;
@@ -15,6 +17,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public float Health = 2f;
 
     [Header("Attack Values")]
+    public float attackDamage = 5f;
     public float attackTime = 3f;
     public float attackRange = 5f;
 
@@ -23,6 +26,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     private float pathUpdateTime = 0.1f;
 
     public Transform targetObject;
+    protected Vector3 targetPoint;
+    public bool patrolling = false;
+    
 
     protected State state;
     protected Action stateFunc;
@@ -31,17 +37,21 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Move();
     public abstract void Idle();
     public abstract void Taunt();
+    public abstract void Scare();
+    public abstract void Scared();
 
     public abstract void Init();
 
     HealthScript healthScript;
 
+    #endregion
+
     public void InitMonster()
     {
         healthScript = new HealthScript((int)Health);
         InitNavMeshAgent();
-        ToMove(); //Comment in to make aggroed at start
-        //ToIdle(); //Comment in to Idle at start
+        //ToMove(); //Comment in to make aggroed at start
+        ToIdle(); //Comment in to Idle at start
         Init();
     }
 
@@ -51,6 +61,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         updateTimer();
         UpdateNavMeshPathDelayed();
 
+        Debug.DrawLine(transform.position, targetPoint);
+
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
@@ -58,7 +70,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
-        if (!targetObject.gameObject.activeSelf)
+        if (targetObject != null && !targetObject.gameObject.activeSelf)
             targetObject = StaticData.player;
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
@@ -113,9 +125,18 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         ToMove();
     }
 
+    protected void ToScared()
+    {
+        Debug.Log("To Scared");
+        ResetTimer();
+        ResumeNavMeshAgent();
+        state = State.Scared;
+        stateFunc = Scared;
+    }
+
     protected void ToMove()
     {
-        Debug.Log("ToMove");
+        //Debug.Log("ToMove");
         ResumeNavMeshAgent();
         state = State.Move;
         stateFunc = Move;
@@ -123,7 +144,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void MoveToAttack()
     {
-        Debug.Log("MoveToAttack");
+        //Debug.Log("MoveToAttack");
         StopNavMeshAgent();
         state = State.Attack;
         stateFunc = Attack;
@@ -131,7 +152,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void AttackToMove()
     {
-        Debug.Log("AttackToMove");
+        //Debug.Log("AttackToMove");
         ResumeNavMeshAgent();
         agent.velocity = Vector3.zero;
         ToMove();
@@ -139,7 +160,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void IdleToMove()
     {
-        Debug.Log("IdleToMove");
+        //Debug.Log("IdleToMove");
         ToMove();
     }
 
@@ -164,9 +185,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         updateNavMeshPath();
     }
 
-    void updateNavMeshPath()
+    protected void updateNavMeshPath()
     {
-        agent.SetDestination(targetObject.position);
+        agent.SetDestination(GetTargetPosition());
     }
 
     protected bool RangeCheckNavMesh()
@@ -178,7 +199,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected bool RangeCheck()
     {
-        float dist = Vector3.Distance(transform.position, targetObject.position);
+        float dist = Vector3.Distance(transform.position, GetTargetPosition());
         if (dist > attackRange)
             return true;
         return false;
@@ -212,7 +233,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void rotateTowardsTarget()
     {
-        Quaternion q = Quaternion.LookRotation(targetObject.position - transform.position);
+        Quaternion q = Quaternion.LookRotation(GetTargetPosition() - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
     }
 
@@ -237,6 +258,14 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public State getState()
     {
         return state;
+    }
+
+    protected Vector3 GetTargetPosition()
+    {
+        Vector3 p = targetObject.position;
+        if (patrolling)
+            p = targetPoint;
+        return p;
     }
 
     #endregion
