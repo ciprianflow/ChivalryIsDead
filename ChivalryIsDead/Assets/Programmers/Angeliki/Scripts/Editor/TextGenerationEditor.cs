@@ -41,8 +41,10 @@ public class TextGenerationEditor : Editor
         //{ 
         GUILayout.Label("Hello", GUILayout.Width(45));
         GUILayout.Label("Pal", GUILayout.Width(45));
+        GUILayout.Label("Killing", GUILayout.Width(45));
+        GUILayout.Label("Number", GUILayout.Width(45));
+        GUILayout.Label("Creature", GUILayout.Width(45));
         GUILayout.Label("State", GUILayout.Width(45));
-        GUILayout.Label("Stuff", GUILayout.Width(45));
 
 
         //}
