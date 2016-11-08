@@ -42,6 +42,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget {
         }
     }
 
+    public bool IsChecked { get; set; }
     //need monster state too
     public void takeDamage(int dmg)
     {
