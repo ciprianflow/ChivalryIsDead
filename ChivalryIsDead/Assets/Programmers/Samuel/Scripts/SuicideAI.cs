@@ -4,9 +4,17 @@ using System;
 
 public class SuicideAI : MonsterAI
 {
+
+    public float attackDamage = 30f;
+
     public override void Attack()
     {
         KillThis();
+    }
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDamage;
     }
 
     public override void Idle()

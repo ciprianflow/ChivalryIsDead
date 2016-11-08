@@ -14,6 +14,14 @@ public class RangedAI : MonsterAI {
     float randomRange = 4f;
     float randomAngle = 20f;
 
+    public float attackDamage = 3f;
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDamage;
+    }
+
+
     public override void Init() { }
 
     public override void Attack()
