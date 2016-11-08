@@ -12,7 +12,14 @@ public class MeleeAI : MonsterAI
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
 
+    public float attackDamage = 5f;
+
     private float normSpeed;
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDamage;
+    }
 
     public override void Init()
     {
@@ -53,7 +60,7 @@ public class MeleeAI : MonsterAI
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
                     //@@HARDCODED
-                    base.targetObject.GetComponent<PlayerActionController>().Attacked();
+                    base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
                     Debug.Log("Hit player");
                 }
             }
