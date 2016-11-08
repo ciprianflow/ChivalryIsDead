@@ -36,6 +36,16 @@ public class SuicideAI : MonsterAI
             MoveToAttack();
     }
 
+    public override void Scare()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Scared()
+    {
+        throw new NotImplementedException();
+    }
+
     public override void Taunt()
     {
         Aggro();

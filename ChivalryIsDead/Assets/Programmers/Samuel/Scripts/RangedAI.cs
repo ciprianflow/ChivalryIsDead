@@ -112,4 +112,14 @@ public class RangedAI : MonsterAI {
         Debug.Log(transform.name + " : Has died");
         this.enabled = false;
     }
+
+    public override void Scared()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Scare()
+    {
+        throw new NotImplementedException();
+    }
 }
