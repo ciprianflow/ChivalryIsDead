@@ -10,6 +10,7 @@ public class SuicideAI : MonsterAI
     [Space]
     public float explosionForce = 6000000f;
     public float explosionRange = 25f;
+    public GameObject explosionObject;
     
     bool taunted = false;
 
@@ -64,6 +65,11 @@ public class SuicideAI : MonsterAI
 
     void Explode()
     {
+        if(explosionObject != null)
+        {
+            Instantiate(explosionObject, transform.position, Quaternion.identity);
+        }
+
         int multiplyer = 1;
         if (taunted)
             multiplyer = 2;
