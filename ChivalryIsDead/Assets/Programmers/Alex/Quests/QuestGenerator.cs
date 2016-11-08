@@ -138,4 +138,38 @@ public class QuestGenerator
 
         return null;
     }
+
+    // Actual protection quest generation. Polish and change the generator to follow this paradigm.
+    private IQuest GenerateProtectQuest()
+    {
+        var sheepCount = Random.Range(0, 3) + 1;
+        var protQuest = new BaseQuest("Protect the Sheep!", "Protect all of the sheep", Difficulty.Easy);
+        for (int i = 0; i < sheepCount; i++) {
+            protQuest.Objectives.Add(new ProtectTargetObjective(21));
+        }
+
+        return protQuest;
+    }
+
+    private IQuest GenerateDestroyQuest()
+    {
+        var meleeCount = Random.Range(0, 3) + 1;
+        var destQuest = new BaseQuest("Destroy the Fishmen!", "Destroy all of the fishmen", Difficulty.Easy);
+        for (int i = 0; i < meleeCount; i++) {
+            destQuest.Objectives.Add(new DestroyTargetObjective(11));
+        }
+
+        return destQuest;
+    }
+
+    // THIS IS NOT CORRECT IMPLEMENTATION, MAKE TOP-LEVEL METHOD AND USE IQUESTS FOR REMAINING WORK!!
+    public MultiQuest GenerateMultiQuest()
+    {
+        MultiQuest MQ = new MultiQuest("This Is Spartacunaticus", "Ohsnap dat front kick homes", Difficulty.Hard);
+
+        MQ.Objectives.Add(GenerateProtectQuest());
+        MQ.Objectives.Add(GenerateDestroyQuest());
+
+        return MQ;
+    }
 }
