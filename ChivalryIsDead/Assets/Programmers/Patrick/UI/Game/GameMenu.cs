@@ -16,6 +16,7 @@ public class GameMenu : MonoBehaviour {
     public GameObject princessBubble;
 
     bool paused;
+    bool letterActive;
 
     float testRND;
 
@@ -25,6 +26,7 @@ public class GameMenu : MonoBehaviour {
     void Awake ()
     {
         paused = false;
+        letterActive = false;
         dialogSystem = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<DialogObject>();
     } 
 
@@ -37,7 +39,7 @@ public class GameMenu : MonoBehaviour {
         Sword();
         Invoke("Test1", 2);
 
-        testRND = Random.Range(12, 30);
+        testRND = Random.Range(16, 30);
         Debug.Log(testRND);
         Invoke("Test", testRND);
 
@@ -53,6 +55,11 @@ public class GameMenu : MonoBehaviour {
             Invoke("Test1", 2);
         }
 
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Letter();
+        }
 
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -88,7 +95,17 @@ public class GameMenu : MonoBehaviour {
 
     public void Letter()
     {
-        letter.SetActive(true);
+        if(!letterActive)
+        {
+            letter.SetActive(true);           
+            letter.GetComponent<TextGeneration>().ClearText();
+            letter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
+            letterActive = true;
+        } else
+        {
+            letter.SetActive(false);
+            letterActive = false;   
+        }       
     }
 
     public void Princess()
@@ -100,6 +117,7 @@ public class GameMenu : MonoBehaviour {
     {
         sword.SetActive(true);
     }
+
 
     void Test()
     {

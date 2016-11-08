@@ -165,7 +165,7 @@ public class DialogObject : MonoBehaviour {
             }
 
 
-            if (d.Name[i] == "Enemy")
+            if (d.Name[i] == "Enemy" && enemyBubble != null && enemyText != null)
             {
                 for (int j = 0; j < enemyText.Length; ++j)
                 {
