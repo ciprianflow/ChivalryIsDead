@@ -32,6 +32,7 @@ public class GameMenu : MonoBehaviour {
 
     void Start () {
 
+        letter.SetActive(false);
         sword.SetActive(false);
         princess.SetActive(false);
 
@@ -43,11 +44,13 @@ public class GameMenu : MonoBehaviour {
         Debug.Log(testRND);
         Invoke("Test", testRND);
 
+       
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-
+        
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Princess();
@@ -59,6 +62,11 @@ public class GameMenu : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.O))
         {
             Letter();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            LetterUpdate();
         }
 
 
@@ -97,15 +105,26 @@ public class GameMenu : MonoBehaviour {
     {
         if(!letterActive)
         {
-            letter.SetActive(true);           
-            letter.GetComponent<TextGeneration>().ClearText();
-            letter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
+            letter.SetActive(true);
+            StartCoroutine(TextLoad());
             letterActive = true;
         } else
         {
             letter.SetActive(false);
             letterActive = false;   
-        }       
+        }     
+    }
+
+    public void LetterUpdate()
+    {
+        letter.GetComponent<TextGeneration>().ClearText();
+        letter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
+    }
+
+    IEnumerator TextLoad()
+    {
+        yield return new WaitForSeconds(0.01f);
+        LetterUpdate();
     }
 
     public void Princess()
