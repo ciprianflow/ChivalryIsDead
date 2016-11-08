@@ -128,6 +128,8 @@ namespace CnControls
         private float SY;
         private bool moving;
 
+        private float Rotation = 0;
+
         GameObject player;
         Player playerScript;
 
@@ -257,8 +259,8 @@ namespace CnControls
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
 
-            SX = Stick.rectTransform.localPosition.x/50;
-            SY = Stick.rectTransform.localPosition.y/50;
+            SX = Stick.rectTransform.localPosition.x/125;
+            SY = Stick.rectTransform.localPosition.y/125;
 
             if (SY > 0.2f) {
                 ActionTop.color = new Color(1, 1, 1, 1);
@@ -289,8 +291,18 @@ namespace CnControls
             VerticalAxis.Value = verticalValue;
         }
 
+        public void rotateActionButton() {
+            Rotation += 90;
+            if(Rotation == 360) {
+                Rotation = 0;
+            }
+
+            ActionUI.transform.eulerAngles = new Vector3(0,0,Rotation);
+        }
+
         public void OnPointerUp(PointerEventData eventData)
         {
+
             moving = false;
             // When we lift our finger, we reset everything to the initial state
             _baseTransform.anchoredPosition = _initialBasePosition;
@@ -300,7 +312,7 @@ namespace CnControls
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
 
             if (SY > 0.2) {
-                t.text = "Red";
+                t.text = "Attack";
                 t.color = new Color(1, 0, 0, 1);
                 Vibration.Vibrate(50);
 
@@ -310,7 +322,7 @@ namespace CnControls
                 
             }
             else if (SY < -0.2) {
-                t.text = "Blue";
+                t.text = "Taunt";
                 t.color = new Color(0, 0, 1, 1);
                 Vibration.Vibrate(50);
 

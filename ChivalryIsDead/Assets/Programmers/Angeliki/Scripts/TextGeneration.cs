@@ -14,7 +14,7 @@ public class TextGeneration : MonoBehaviour {
 
     [HideInInspector]
     public bool[] NewBagInitializer;
-
+   
     int amount;
 
     [HideInInspector]
@@ -27,7 +27,10 @@ public class TextGeneration : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
+        
+        //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
+        debugText = transform.GetChild(2).GetComponent<Text>();
+        //debugText = gameObject.GetComponent<Text>();
         debugText.text = "";
        
         foreach (TextAsset textFile in Resources.LoadAll("txts", typeof(TextAsset)))
@@ -86,7 +89,8 @@ public class TextGeneration : MonoBehaviour {
     public void ClearText()
     {
         sb = new StringBuilder();
-        debugText.text = sb.ToString();
+        //debugText = transform.GetChild(2).GetComponent<Text>();
+        //debugText.text = sb.ToString();
     }
 
     ShuffleBag LoadShuffleBag(ShuffleBag shuffleBag, TextAsset sentences, int amount)

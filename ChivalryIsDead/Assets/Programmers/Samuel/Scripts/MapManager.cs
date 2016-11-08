@@ -2,23 +2,32 @@
 using System.Collections.Generic;
 using System;
 
+[RequireComponent(typeof(AreaScript))]
 public class MapManager : MonoBehaviour {
 
     MonsterManager MM;
+    AreaScript areas;
 
-    //EDITOR VARIABLES
-    [SerializeField]
-    public List<Rect> SpawnAreas;
-    [SerializeField]
-    public List<Color> AreaColor = new List<Color>();
+    Transform QuestTarget;
+
+    internal void SetQuestObject(Transform transform)
+    {
+        QuestTarget = transform;
+        QuestTarget.gameObject.SetActive(false);
+    }
 
     void Awake()
     {
-
+        areas = transform.GetComponent<AreaScript>();
         MM = new MonsterManager();
+        StaticData.mapManager = this;
+
+    }
+
+    void Start()
+    {
         MM.LoadAllMonsters();
         InitQuest();
-
     }
 
     public void InitQuest()
@@ -41,26 +50,34 @@ public class MapManager : MonoBehaviour {
 
     void TranslateQuest(IObjective objective)
     {
+        
+
         var ID = (objective as BaseObjective).targetID;
-        MM.SpawnMonsters(ID, Vector3.zero);
-    }
 
-    public void RemoveArea(int index)
-    {
-        if (index > SpawnAreas.Count - 1)
+        if (ID == 21)
+        {
+            QuestTarget.gameObject.SetActive(true);
             return;
+        }
 
-        SpawnAreas.RemoveAt(index);
+        MM.SpawnMonsters(ID, Vector3.zero, QuestTarget);
     }
 
-    public void AddArea()
+    internal void CheckObjectives(IObjectiveTarget IObj)
     {
-        Debug.Log("Adding SpawnArea");
-        SpawnAreas.Add(new Rect(0, 0, 2f, 2f));
-    }
 
-    public void ResetAll()
-    {
-        SpawnAreas = new List<Rect>();
+        QuestManager.currQuest.CheckTarget(IObj);
+        if (QuestManager.currQuest.IsChecked)
+        {
+            Debug.LogWarning("Shits done!");
+        }
+        //foreach(IObjective iO in QuestManager.currQuest.Objectives)
+        //{
+        //    if (!iO.IsChecked && iO.CheckTarget(IObj))
+        //    {
+        //        return;
+        //    }
+        //}
+
     }
 }

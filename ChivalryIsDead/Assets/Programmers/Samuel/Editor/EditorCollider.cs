@@ -81,23 +81,39 @@ public class CameraEditor : Editor
             Handles.color = Color.green;
             pos = Handles.PositionHandle(pos, Quaternion.identity);
 
+            
+
             Handles.color = Color.blue;
             Handles.Label(handlePos + Vector3.up * 4,
                                  "Width: " + width.ToString() + ", Height: " + height.ToString(), style);
 
             camera.Areas[i] = new Rect(pos.x, pos.z, scale.x, scale.z);
 
+            
+            bool changed = false;
+            Vector3 p = camera.FocusPoints[i];
             Vector3 FP = camera.FocusPoints[i];
             FP = Handles.PositionHandle(FP, Quaternion.identity);
             camera.FocusPoints[i] = new Vector3(FP.x, 0, FP.z);         
             Handles.Label(FP + Vector3.up * 4,
                                  "Focus Point for Area " + i, style);
 
+            if (p != FP)
+                changed = true;
 
+            p = camera.CameraPoints[i];
             camera.CameraPoints[i] = Handles.PositionHandle(camera.CameraPoints[i], Quaternion.identity);
             Handles.Label(camera.CameraPoints[i] + Vector3.up * 4,
                                  "Camera Position For " + i, style);
 
+            if (p != camera.CameraPoints[i])
+                changed = true;
+
+            if (changed)
+            {
+                Camera.main.transform.position = camera.CameraPoints[i];
+                Camera.main.transform.LookAt(camera.FocusPoints[i]);
+            }
         }
     }
 }

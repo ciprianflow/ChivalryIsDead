@@ -11,8 +11,4 @@ public static class QuestManager {
     {
         return currQuest.Objectives;
     }
-
-
-
-
 }

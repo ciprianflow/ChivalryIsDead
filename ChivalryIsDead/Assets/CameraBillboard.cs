@@ -14,18 +14,21 @@ public class CameraBillboard : MonoBehaviour
     {
         //transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward, m_Camera.transform.rotation * Vector3.up);
         //rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
-
+        
 
     }
 
     void Update()
     {
 
-       
-        worldPos = new Vector3(speaker.transform.position.x, speaker.transform.position.y, speaker.transform.position.z);
-        screenPos = m_Camera.WorldToScreenPoint(worldPos);
+       if(speaker != null)
+        {
+            worldPos = new Vector3(speaker.transform.position.x, speaker.transform.position.y, speaker.transform.position.z);
+            screenPos = m_Camera.WorldToScreenPoint(worldPos);
 
-        transform.position = new Vector3(screenPos.x, screenPos.y, screenPos.z);
+            transform.position = new Vector3(screenPos.x, screenPos.y, screenPos.z);
+        }
+        
 
         //transform.localRotation = Quaternion.Euler(-transform.parent.rotation.eulerAngles);
         //transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward, m_Camera.transform.rotation * Vector3.up);

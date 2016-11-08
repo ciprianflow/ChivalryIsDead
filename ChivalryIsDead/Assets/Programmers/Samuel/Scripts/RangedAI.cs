@@ -11,8 +11,8 @@ public class RangedAI : MonsterAI {
 
     float force = 1;
     float angle = 60;
-    float randomRange = 5f;
-    float randomAngle = 5f;
+    float randomRange = 4f;
+    float randomAngle = 20f;
 
     public override void Init() { }
 
@@ -78,6 +78,9 @@ public class RangedAI : MonsterAI {
         //if (Physics.Raycast(target.position + random + new Vector3(0, 99, 0), Vector3.down, out hit))
         if (Physics.Raycast(maxPoint, dir, out hit))
         {
+            if (targetSprite == null)
+                return;
+
             targetObj = Instantiate(targetSprite).transform;
 
             targetObj.position = hit.point + new Vector3(0, 0.5f, 0);

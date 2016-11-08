@@ -5,45 +5,46 @@ using System.Collections.Generic;
 
 public class DialogObject : MonoBehaviour {
 
+    public GameObject UI;
+
     public DialogInfo[] dialog;
 
     GameObject[] container;
 
-    GameObject player;
-    GameObject playerBubble;
+    public GameObject playerText;
+    public GameObject playerBubble;
 
-    GameObject sword;
-    GameObject swordBubble;
+    public GameObject swordText;
+    public GameObject swordBubble;
 
-    GameObject princess;
-    GameObject princessBubble;
+    public GameObject princessText;
+    public GameObject princessBubble;
 
-    GameObject king;
+    GameObject kingText;
     GameObject kingBubble;
 
-    GameObject[] enemy;
+    GameObject[] enemyText;
     GameObject[] enemyBubble;
 
-    GameObject peasantA;
-    GameObject peasantABubble;
-    GameObject peasantAText;
+    public GameObject peasantABubble;
+    public GameObject peasantAText;
 
-
-    GameObject peasantB;
-    GameObject peasantBBubble;
-    GameObject peasantBText;
+    public GameObject peasantBBubble;
+    public GameObject peasantBText;
 
     // Use this for initialization
     void Start () {
 
-        peasantA = GameObject.FindGameObjectWithTag("PeasantA");
-        peasantB = GameObject.FindGameObjectWithTag("PeasantB");
+
+
+        //peasantA = GameObject.FindGameObjectWithTag("PeasantA");
+        //peasantB = GameObject.FindGameObjectWithTag("PeasantB");
 
         if (GameObject.FindGameObjectWithTag("Player") != null)
         {
             if (GameObject.FindGameObjectWithTag("PlayerBubble"))
             {
-                player = GameObject.FindGameObjectWithTag("PlayerText");
+                playerText = GameObject.FindGameObjectWithTag("PlayerText");
                 playerBubble = GameObject.FindGameObjectWithTag("PlayerBubble");
                 playerBubble.SetActive(false);
             }
@@ -54,7 +55,7 @@ public class DialogObject : MonoBehaviour {
 
             if (GameObject.FindGameObjectWithTag("EnemyBubble"))
             {
-                enemy = GameObject.FindGameObjectsWithTag("EnemyText");
+                enemyText = GameObject.FindGameObjectsWithTag("EnemyText");
                 enemyBubble = GameObject.FindGameObjectsWithTag("EnemyBubble");
 
                 foreach (GameObject arrayEnemyBubble in enemyBubble)
@@ -65,24 +66,49 @@ public class DialogObject : MonoBehaviour {
             }
         }
 
-        if (peasantA != null)
-        {
-            if (GameObject.FindGameObjectWithTag("PeasantABubble"))
-            {
-                peasantAText = GameObject.FindGameObjectWithTag("PeasantAText");
-                peasantABubble = GameObject.FindGameObjectWithTag("PeasantABubble");
-                peasantABubble.SetActive(false);
-            }
-        }
-        if (peasantB != null)
-        {
-            if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
-            {
-                peasantBText = GameObject.FindGameObjectWithTag("PeasantBText");
-                peasantBBubble = GameObject.FindGameObjectWithTag("PeasantBBubble");
-                peasantBBubble.SetActive(false);
-            }
-        }
+
+        //if (GameObject.FindGameObjectWithTag("SwordBubble") != null)
+        //{
+        //    sword = GameObject.FindGameObjectWithTag("SwordText");
+        //    swordBubble = GameObject.FindGameObjectWithTag("SwordBubble");
+        //    swordBubble.SetActive(false);
+        //    //UI.GetComponent<GameMenu>().sword.SetActive(false);
+        //}
+        
+        //if (GameObject.FindGameObjectWithTag("PrincessBubble") != null)
+        //{
+        //    princess = GameObject.FindGameObjectWithTag("PrincessText");
+        //    princessBubble = GameObject.FindGameObjectWithTag("PrincessBubble");
+        //    princessBubble.SetActive(false);
+        //    //UI.GetComponent<GameMenu>().princess.SetActive(false);
+        //}
+
+        //if (GameObject.FindGameObjectWithTag("KingBubble") != null)
+        //{
+        //    king = GameObject.FindGameObjectWithTag("KingText");
+        //    kingBubble = GameObject.FindGameObjectWithTag("KingBubble");
+        //    kingBubble.SetActive(false);
+        //}
+
+
+        //if (peasantA != null)
+        //{
+        //    if (GameObject.FindGameObjectWithTag("PeasantABubble"))
+        //    {
+        //        peasantAText = GameObject.FindGameObjectWithTag("PeasantAText");
+        //        peasantABubble = GameObject.FindGameObjectWithTag("PeasantABubble");
+        //        peasantABubble.SetActive(false);
+        //    }
+        //}
+        //if (peasantB != null)
+        //{
+        //    if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
+        //    {
+        //        peasantBText = GameObject.FindGameObjectWithTag("PeasantBText");
+        //        peasantBBubble = GameObject.FindGameObjectWithTag("PeasantBBubble");
+        //        peasantBBubble.SetActive(false);
+        //    }
+        //}
 
 
 
@@ -92,55 +118,9 @@ public class DialogObject : MonoBehaviour {
 	void Update () {
 
 
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            //StartCoroutine("DialogSystem", 0);
-            //DialogUpdate();
-        }
-
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            StopCoroutine("DialogSystem");
-
-            if (GameObject.FindGameObjectWithTag("PlayerBubble"))
-            {
-                playerBubble.SetActive(false);
-            }
-
-            if (GameObject.FindGameObjectWithTag("SwordBubble"))
-            {
-                swordBubble.SetActive(false);
-            }
-
-            if (GameObject.FindGameObjectWithTag("PrincessBubble"))
-            {
-                princessBubble.SetActive(false);
-            }
-
-            if (GameObject.FindGameObjectWithTag("KingBubble"))
-            {
-                kingBubble.SetActive(false);
-            }
-
-
-            if (GameObject.FindGameObjectWithTag("EnemyBubble"))
-            {
-                foreach (GameObject arrayEnemyBubble in enemyBubble)
-                {
-                    arrayEnemyBubble.SetActive(false);
-                }
-            }
-            if (GameObject.FindGameObjectWithTag("PeasantABubble"))
-            {
-                peasantABubble.SetActive(false);
-            }
-            if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
-            {
-                peasantBBubble.SetActive(false);
-            }
-
-
+            StopDialog();
         }
 
     }
@@ -157,21 +137,23 @@ public class DialogObject : MonoBehaviour {
 
         for(int i = 0; i < d.Dialog; i++)
         {
-            if (GameObject.FindGameObjectWithTag("Player") != null)
+           
+
+            if (d.Name[i] == "Player")
             {
-                if (GameObject.FindGameObjectWithTag("PlayerBubble"))
-                {
-                    player = GameObject.FindGameObjectWithTag("PlayerText");
-                    playerBubble = GameObject.FindGameObjectWithTag("PlayerBubble");
-                    playerBubble.SetActive(false);
-                }
+                playerBubble.SetActive(true);
+                playerText.GetComponent<Text>().text = d.Text[i];
+                yield return new WaitForSeconds(d.Wait[i]);
+                playerBubble.SetActive(false);
             }
-            
-            if(GameObject.FindGameObjectWithTag("Enemy") != null) { 
+
+
+            if (GameObject.FindGameObjectWithTag("Enemy") != null)
+            {
 
                 if (GameObject.FindGameObjectWithTag("EnemyBubble"))
                 {
-                    enemy = GameObject.FindGameObjectsWithTag("EnemyText");
+                    enemyText = GameObject.FindGameObjectsWithTag("EnemyText");
                     enemyBubble = GameObject.FindGameObjectsWithTag("EnemyBubble");
 
                     foreach (GameObject arrayEnemyBubble in enemyBubble)
@@ -180,49 +162,22 @@ public class DialogObject : MonoBehaviour {
                     }
 
                 }
-
-            }
-            if (peasantA != null)
-            {
-                if (GameObject.FindGameObjectWithTag("PeasantABubble"))
-                {
-                    //player = GameObject.FindGameObjectWithTag("PlayerText");
-                    peasantABubble = GameObject.FindGameObjectWithTag("PeasantABubble");
-                    peasantABubble.SetActive(false);
-                }
-            }
-            if (peasantB != null)
-            {
-                if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
-                {
-                    //player = GameObject.FindGameObjectWithTag("PlayerText");
-                    peasantBBubble = GameObject.FindGameObjectWithTag("PeasantBBubble");
-                    peasantBBubble.SetActive(false);
-                }
             }
 
 
-            if (d.Name[i] == "Player")
+            if (d.Name[i] == "Enemy" && enemyBubble != null && enemyText != null)
             {
-                playerBubble.SetActive(true);
-                player.GetComponent<Text>().text = d.Text[i];
-                yield return new WaitForSeconds(d.Wait[i]);
-                playerBubble.SetActive(false);
-            }
-
-            if (d.Name[i] == "Enemy")
-            {
-                for (int j = 0; j < enemy.Length; ++j)
+                for (int j = 0; j < enemyText.Length; ++j)
                 {
                     enemyBubble[j].SetActive(true);
-                    enemy[j].GetComponent<Text>().text = d.Text[i];
+                    enemyText[j].GetComponent<Text>().text = d.Text[i];
 
                 }
 
                 yield return new WaitForSeconds(d.Wait[i]);
 
 
-                for (int j = 0; j < enemy.Length; ++j)
+                for (int j = 0; j < enemyText.Length; ++j)
                 {
                     enemyBubble[j].SetActive(false);
 
@@ -245,35 +200,12 @@ public class DialogObject : MonoBehaviour {
             }
 
 
-
-            if (GameObject.FindGameObjectWithTag("GameUI") != null)
-            {
-                if (GameObject.FindGameObjectWithTag("SwordBubble"))
-                {
-                    sword = GameObject.FindGameObjectWithTag("SwordText");
-                    swordBubble = GameObject.FindGameObjectWithTag("SwordBubble");
-                    swordBubble.SetActive(false);
-                }
-
-                if (GameObject.FindGameObjectWithTag("PrincessBubble"))
-                {
-                    princess = GameObject.FindGameObjectWithTag("PrincessText");
-                    princessBubble = GameObject.FindGameObjectWithTag("PrincessBubble");
-                    princessBubble.SetActive(false);
-                }
-
-                if (GameObject.FindGameObjectWithTag("KingBubble"))
-                {
-                    king = GameObject.FindGameObjectWithTag("KingText");
-                    kingBubble = GameObject.FindGameObjectWithTag("KingBubble");
-                    kingBubble.SetActive(false);
-                }
-            } 
+ 
                 
             if (d.Name[i] == "Sword")
             {
                 swordBubble.SetActive(true);
-                sword.GetComponent<Text>().text = d.Text[i];
+                swordText.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 swordBubble.SetActive(false);
             }
@@ -281,7 +213,7 @@ public class DialogObject : MonoBehaviour {
             if (d.Name[i] == "Princess")
             {
                 princessBubble.SetActive(true);
-                princess.GetComponent<Text>().text = d.Text[i];
+                princessText.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 princessBubble.SetActive(false);
             }
@@ -289,25 +221,70 @@ public class DialogObject : MonoBehaviour {
             if (d.Name[i] == "King")
             {
                 kingBubble.SetActive(true);
-                king.GetComponent<Text>().text = d.Text[i];
+                kingText.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 kingBubble.SetActive(false);
             }
                 
 
-
-
-            
-
- 
-
-            
-            
-            
-
         }
 
         
+        UI.GetComponent<GameMenu>().sword.GetComponent<Animator>().SetTrigger("Hide");
+        UI.GetComponent<GameMenu>().princess.GetComponent<Animator>().SetTrigger("Hide");
+        StartCoroutine(Hide());
+    }
+
+    IEnumerator Hide()
+    {
+        // Remememememember :)
+        yield return new WaitForSeconds(4f);
+        UI.GetComponent<GameMenu>().sword.SetActive(false);
+        UI.GetComponent<GameMenu>().princess.SetActive(false);
+    }
+
+    public void StopDialog()
+    {
+        StopCoroutine("DialogSystem");
+
+        if (GameObject.FindGameObjectWithTag("PlayerBubble"))
+        {
+            playerBubble.SetActive(false);
+        }
+
+        if (GameObject.FindGameObjectWithTag("SwordBubble"))
+        {
+            swordBubble.SetActive(false);
+        }
+
+        if (GameObject.FindGameObjectWithTag("PrincessBubble"))
+        {
+            princessBubble.SetActive(false);
+        }
+
+        if (GameObject.FindGameObjectWithTag("KingBubble"))
+        {
+            kingBubble.SetActive(false);
+        }
+
+
+        if (GameObject.FindGameObjectWithTag("EnemyBubble"))
+        {
+            foreach (GameObject arrayEnemyBubble in enemyBubble)
+            {
+                arrayEnemyBubble.SetActive(false);
+            }
+        }
+        if (GameObject.FindGameObjectWithTag("PeasantABubble"))
+        {
+            peasantABubble.SetActive(false);
+        }
+        if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
+        {
+            peasantBBubble.SetActive(false);
+        }
 
     }
+
+
 }

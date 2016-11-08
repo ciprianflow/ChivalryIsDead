@@ -34,8 +34,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     public abstract void Init();
 
-    void Awake()
+    HealthScript healthScript;
+
+    public void InitMonster()
     {
+        healthScript = new HealthScript((int)Health);
         InitNavMeshAgent();
         ToMove(); //Comment in to make aggroed at start
         //ToIdle(); //Comment in to Idle at start
@@ -47,17 +50,32 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         stateFunc();
         updateTimer();
         UpdateNavMeshPathDelayed();
-        
+
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        if (!targetObject.gameObject.activeSelf)
+            targetObject = StaticData.player;
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
     }
 
     //implement this in the base class
     public void Hit(float damage)
     {
-        Health -= damage;
-
-        if (Health <= 0)
+        if (healthScript.takeDamage((int)damage))
         {
             gameObject.SetActive(false);
+            StaticData.mapManager.CheckObjectives(this);
         }
     }
 
@@ -141,6 +159,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     void InitNavMeshAgent()
     {
         agent = GetComponent<NavMeshAgent>();
+        agent.enabled = true;
         points = new Transform[0];
         updateNavMeshPath();
     }
@@ -222,6 +241,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     #endregion
 
+    #region IObjective funtioncs
+
     public int ID
     {
         get
@@ -234,7 +255,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         get
         {
-            throw new NotImplementedException();
+            return healthScript.getHealth();
         }
     }
 
@@ -242,9 +263,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         get
         {
-            throw new NotImplementedException();
+            return healthScript.getMaxhealth();
         }
     }
 
     public bool IsChecked { get; set; }
+    #endregion
 }

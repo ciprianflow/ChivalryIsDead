@@ -22,6 +22,7 @@ public class TextGenerationEditor : Editor
             textGenTarget.ClearText();
             GenerateText();
             textGenTarget.initTextBags(textGenTarget.NewBagInitializer);
+            //ReGenText();
         }
     }
 
@@ -66,7 +67,14 @@ public class TextGenerationEditor : Editor
             EditorGUILayout.EndHorizontal();
 
         }
-        
+     
+    }
+
+    public void ReGenText()
+    {
+        textGenTarget.ClearText();
+        GenerateText();
+        textGenTarget.initTextBags(textGenTarget.NewBagInitializer);
     }
 
     private int TranslateVector(int x, int y, int sideLength)

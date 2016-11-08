@@ -16,30 +16,51 @@ public class GameMenu : MonoBehaviour {
     public GameObject princessBubble;
 
     bool paused;
+    bool letterActive;
+
+    float testRND;
+
 
     // Use this for initialization
 
     void Awake ()
     {
         paused = false;
+        letterActive = false;
         dialogSystem = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<DialogObject>();
     } 
 
     void Start () {
 
-        //Invoke("Princess", 2);
+        sword.SetActive(false);
+        princess.SetActive(false);
+
+        Princess();
+        Sword();
+        Invoke("Test1", 2);
+
+        testRND = Random.Range(16, 30);
+        Debug.Log(testRND);
+        Invoke("Test", testRND);
 
     }
 	
 	// Update is called once per frame
 	void Update () {
-	
-        if(Input.GetKeyDown(KeyCode.Y))
+
+        if (Input.GetKeyDown(KeyCode.Y))
         {
             Princess();
             Sword();
-            dialogSystem.StartCoroutine("DialogSystem", 0);
+            Invoke("Test1", 2);
         }
+
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Letter();
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -74,7 +95,17 @@ public class GameMenu : MonoBehaviour {
 
     public void Letter()
     {
-        letter.SetActive(true);
+        if(!letterActive)
+        {
+            letter.SetActive(true);           
+            letter.GetComponent<TextGeneration>().ClearText();
+            letter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
+            letterActive = true;
+        } else
+        {
+            letter.SetActive(false);
+            letterActive = false;   
+        }       
     }
 
     public void Princess()
@@ -87,5 +118,15 @@ public class GameMenu : MonoBehaviour {
         sword.SetActive(true);
     }
 
+
+    void Test()
+    {
+        dialogSystem.StartCoroutine("DialogSystem", 2);
+    }
+
+    void Test1()
+    {
+        dialogSystem.StartCoroutine("DialogSystem", 0);
+    }
 
 }

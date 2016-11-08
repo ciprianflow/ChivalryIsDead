@@ -99,7 +99,6 @@ namespace CnControls
         protected VirtualAxis HorizintalAxis;
         protected VirtualAxis VerticalAxis;
 
-        public Text t;
 
         private float SX;
         private float SY;
@@ -235,8 +234,8 @@ namespace CnControls
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
 
-            SX = Stick.rectTransform.localPosition.x/50;
-            SY = Stick.rectTransform.localPosition.y/50;
+            SX = Stick.rectTransform.localPosition.x/125;
+            SY = Stick.rectTransform.localPosition.y/125;
             //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
 
             moving = true;
