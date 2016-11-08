@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public static class QuestManager {
 
     //Current quest and objectives
-    public static BaseQuest currQuest;
+    public static MultiQuest currQuest;
 
 
     public static List<IObjective> GetObjectives()
