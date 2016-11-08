@@ -4,6 +4,8 @@ using System;
 
 public class QuestObject : MonoBehaviour, IObjectiveTarget {
 
+    public int health = 2;
+
     HealthScript healthScript;
 
     // Use this for initialization
@@ -11,7 +13,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget {
     {
 
         //healthScript = transform.GetComponent<HealthScript>();
-        healthScript = new HealthScript(2);
+        healthScript = new HealthScript(health);
         transform.parent.GetComponent<MapManager>().SetQuestObject(this.transform);
 
     }
