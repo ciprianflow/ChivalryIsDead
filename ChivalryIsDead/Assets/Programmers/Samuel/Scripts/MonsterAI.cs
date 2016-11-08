@@ -25,6 +25,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     private float pathUpdateTime = 0.1f;
 
+    [Space]
     public Transform targetObject;
     protected Vector3 targetPoint;
     public bool patrolling = false;
