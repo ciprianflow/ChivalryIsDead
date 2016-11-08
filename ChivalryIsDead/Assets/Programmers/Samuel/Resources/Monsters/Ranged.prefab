@@ -25,6 +25,7 @@ GameObject:
   - 114: {fileID: 114000013483877182}
   - 195: {fileID: 195000010588756586}
   - 54: {fileID: 54000014071647424}
+  - 114: {fileID: 114000010456272666}
   m_Layer: 0
   m_Name: Ranged
   m_TagString: Enemy
@@ -39,8 +40,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010519441102}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.903507, y: 13.518061, z: 21.405073}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -7.36, y: 14.31, z: 21.405073}
+  m_LocalScale: {x: 2, y: 3, z: 2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -108,6 +109,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010456272666
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010519441102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 549e3827cd0604f4f82a54d5aaaf337f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013483877182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,11 +136,14 @@ MonoBehaviour:
   attackDamage: 5
   attackTime: 3
   attackRange: 10
-  attackRotateSpeed: 90
+  attackRotateSpeed: 35
   targetObject: {fileID: 0}
   patrolling: 0
   projectile: {fileID: 1000012329749918, guid: 95b10be1172ee3f4ba35e9b65b7b640f, type: 2}
   targetSprite: {fileID: 0}
+  shootAngle: 30
+  randomShootRange: 4
+  randomShootAngle: 20
 --- !u!195 &195000010588756586
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -136,8 +151,8 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010519441102}
   m_Enabled: 0
-  m_Radius: 0.5
-  m_Speed: 5
+  m_Radius: 0.7
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
