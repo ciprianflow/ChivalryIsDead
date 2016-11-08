@@ -137,6 +137,11 @@ public class Player : MonoBehaviour {
     public void toggleControls() {
         staticControls = !staticControls;
     }
+
+    public void attack()
+    {
+
+    }
     //[Header("Variables")]
     //public float maxSpeed = 0.5f;
 
