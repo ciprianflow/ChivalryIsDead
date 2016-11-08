@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-public class QuestObject : MonoBehaviour, IObjectiveTarget {
+public class QuestObject : MonoBehaviour, IObjectiveTarget
+{
 
     HealthScript healthScript;
 

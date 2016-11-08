@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class PlayerIsak : MonoBehaviour
+{
     [Header("Variables")]
     public float maxSpeed = 0.03f;
     public float zVel = 0;
@@ -22,18 +23,22 @@ public class Player : MonoBehaviour {
         StaticData.player = this.transform;
     }
 
-    public void move(float x, float y) {
+    public void move(float x, float y)
+    {
 
         FixedPosition(x, y);
 
     }
 
-    void FixedPosition(float x, float y) {
-        if (x == 0 && y == 0) {
+    void FixedPosition(float x, float y)
+    {
+        if (x == 0 && y == 0)
+        {
             isSlowingDown = true;
             return;
         }
-        else {
+        else
+        {
             isSlowingDown = false;
         }
 
@@ -52,7 +57,8 @@ public class Player : MonoBehaviour {
         //float turnValue = SignedAngle(LastXY, new Vector2(x, y));
         //turnMag += turnValue;
         LastXY = new Vector2(x, y);
-        if (zVel < LastXY.magnitude) {
+        if (zVel < LastXY.magnitude)
+        {
             zVel += speedAcc;
         }
 
@@ -60,19 +66,23 @@ public class Player : MonoBehaviour {
 
 
         //float desiredFwd = (-Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX));
-        if (!staticControls) {
+        if (!staticControls)
+        {
             float desiredFwd = (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y;
-            if (desiredFwd < 0) {
+            if (desiredFwd < 0)
+            {
                 desiredFwd += 360f;
             }
 
             float currentFwd = transform.eulerAngles.y;
             float diffTurn = desiredFwd - currentFwd;
 
-            if (diffTurn > 180f) {
+            if (diffTurn > 180f)
+            {
                 diffTurn -= 360f;
             }
-            if (diffTurn < -180f) {
+            if (diffTurn < -180f)
+            {
                 diffTurn += 360f;
             }
 
@@ -82,59 +92,81 @@ public class Player : MonoBehaviour {
 
 
 
-            ////anim.SetFloat("Turn", turnMag);
+            //anim.SetFloat("Turn", turnMag);
 
             //Debug.Log(turnValue);
             //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
             //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
-            if (diffTurn > 0.001f || diffTurn < -0.001f) {
+            if (diffTurn > 0.001f || diffTurn < -0.001f)
+            {
                 float turnAmount = diffTurn / 5;
                 transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
-                //anim.SetFloat("Turn", turnAmount / 1.5f);
+                anim.SetFloat("Turn", turnAmount / 1.5f);
 
             }
         }
-        else {
+        else
+        {
             transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
         }
         transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
 
-        //anim.SetFloat("Speed", zVel * 2f);
+        anim.SetFloat("Speed", zVel * 2f);
 
         //Debug.Log( "CAMERA " + Camera.main.transform.eulerAngles.y);
     }
 
-    float SignedAngle(Vector3 a, Vector3 b) {
+    float SignedAngle(Vector3 a, Vector3 b)
+    {
         float angle = Vector3.Angle(a, b); // calculate angle
                                            // assume the sign of the cross product's Y component:
         return -angle * Mathf.Sign(Vector3.Cross(a, b).z);
     }
 
-    void Update() {
-        if (isSlowingDown) {
-            if (zVel > 0) {
+    void Update()
+    {
+
+        float mag = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")).magnitude;
+        Debug.Log(mag);
+
+        //FixedPosition(Input.GetAxis("Horizontal") / mag, Input.GetAxis("Vertical") / mag);
+        if(mag > 1)
+            FixedPosition(Input.GetAxis("Horizontal") /mag , Input.GetAxis("Vertical") /mag);
+        else
+            FixedPosition(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+
+
+        if (isSlowingDown)
+        {
+            if (zVel > 0)
+            {
                 //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
                 zVel -= speedDec;
-                //anim.SetFloat("Speed", zVel * 2f);
+                anim.SetFloat("Speed", zVel * 2f);
 
             }
-            else {
+            else
+            {
                 zVel = 0;
-                //anim.SetFloat("Speed", zVel * 2f);
+                anim.SetFloat("Speed", zVel * 2f);
                 isSlowingDown = false;
             }
         }
-        if (turnMag > 0) {
+        if (turnMag > 0)
+        {
             turnMag -= 5f;
             //anim.SetFloat("Turn", turnMag);
 
         }
-        if (Input.GetButtonDown("Jump")) {
-            //anim.Play("HeadTurn", 1, 0);
+        if (Input.GetButtonDown("Jump"))
+        {
+            anim.Play("HeadTurn", 1, 0);
         }
     }
 
-    public void toggleControls() {
+    public void toggleControls()
+    {
         staticControls = !staticControls;
     }
     //[Header("Variables")]
