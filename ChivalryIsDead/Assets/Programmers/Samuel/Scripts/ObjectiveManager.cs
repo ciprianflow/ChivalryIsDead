@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class MonsterManager {
+public class ObjectiveManager {
 
-    List<MonsterAI> monsters = new List<MonsterAI>();
+    List<IObjectiveTarget> objectives = new List<IObjectiveTarget>();
     Dictionary<int, GameObject> monsterPrefabs = new Dictionary<int, GameObject>();
 
     Transform monsterListObject;
@@ -31,7 +31,7 @@ public class MonsterManager {
 
         Monster.InitMonster();
         obj.transform.SetParent(monsterListObject);     
-        monsters.Add(Monster);
+        objectives.Add(Monster);
 
         //Init monsters
     }
@@ -42,8 +42,8 @@ public class MonsterManager {
     /// <param name="i"></param>
     public bool RemoveMonster(int i)
     {
-        monsters.RemoveAt(i);
-        if(monsters.Count <= 0)
+        objectives.RemoveAt(i);
+        if(objectives.Count <= 0)
             return true;
         return false;
     }
@@ -58,6 +58,11 @@ public class MonsterManager {
         {
             monsterPrefabs.Add(monsterPrefabsList[i].GetComponent<MonsterAI>().ID, monsterPrefabsList[i]);
         }
+    }
+
+    public List<IObjectiveTarget> GetObjectives()
+    {
+        return objectives;
     }
 
 
