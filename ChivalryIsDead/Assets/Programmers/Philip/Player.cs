@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
     public float maxSpeed = 0.03f;
     public float zVel = 0;
     public float turnMag = 0;
+    public float speedAcc = 0.03f;
+    public float speedDec = 0.03f;
     public Animator anim;
     float worldX = 0;
     float worldY = 0;
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour {
         //turnMag += turnValue;
         LastXY = new Vector2(x, y);
         if (zVel < LastXY.magnitude) {
-            zVel += 0.06f;
+            zVel += speedAcc;
         }
 
         //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX) + 90, 0);
@@ -80,7 +82,7 @@ public class Player : MonoBehaviour {
 
 
 
-            //anim.SetFloat("Turn", turnMag);
+            ////anim.SetFloat("Turn", turnMag);
 
             //Debug.Log(turnValue);
             //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
@@ -97,7 +99,7 @@ public class Player : MonoBehaviour {
         }
         transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
 
-        //anim.SetFloat("Speed", zVel * 5.5f);
+        //anim.SetFloat("Speed", zVel * 2f);
 
         //Debug.Log( "CAMERA " + Camera.main.transform.eulerAngles.y);
     }
@@ -112,13 +114,13 @@ public class Player : MonoBehaviour {
         if (isSlowingDown) {
             if (zVel > 0) {
                 //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
-                zVel -= 0.06f;
-                anim.SetFloat("Speed", zVel * 5.5f);
+                zVel -= speedDec;
+                //anim.SetFloat("Speed", zVel * 2f);
 
             }
             else {
                 zVel = 0;
-                anim.SetFloat("Speed", zVel * 5.5f);
+                //anim.SetFloat("Speed", zVel * 2f);
                 isSlowingDown = false;
             }
         }
@@ -128,12 +130,17 @@ public class Player : MonoBehaviour {
 
         }
         if (Input.GetButtonDown("Jump")) {
-            anim.Play("HeadTurn", 1, 0);
+            //anim.Play("HeadTurn", 1, 0);
         }
     }
 
     public void toggleControls() {
         staticControls = !staticControls;
+    }
+
+    public void attack()
+    {
+
     }
     //[Header("Variables")]
     //public float maxSpeed = 0.5f;

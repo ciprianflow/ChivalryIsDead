@@ -342,6 +342,7 @@ namespace CnControls
         private void redButtonPressed()
         {
             playerActionController.HandleAttack();
+            //playerScript.attack();
         }
 
         private void blueButtonPressed()

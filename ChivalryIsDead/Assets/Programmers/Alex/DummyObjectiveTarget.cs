@@ -15,8 +15,29 @@ public class DummyObjectiveTarget : IObjectiveTarget
         get { return -666; }
     }
 
+    public bool IsChecked
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public int MaxHealth
     {
         get { return 100; }
+    }
+
+    bool IObjectiveTarget.IsChecked
+    {
+        get
+        {
+            throw new NotImplementedException();
+        }
+
+        set
+        {
+            throw new NotImplementedException();
+        }
     }
 }

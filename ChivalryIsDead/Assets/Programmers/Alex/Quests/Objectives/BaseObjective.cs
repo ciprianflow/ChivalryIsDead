@@ -9,6 +9,7 @@ public class BaseObjective : IObjective
     public float SuccessRating { get; protected set; }
     public bool IsCompleted { get { return SuccessRating > 0; } }
     public bool IsChecked { get; protected set; }
+    public bool IsInvalid { get; protected set; }
 
     public int targetID { get; private set; }
 
@@ -19,10 +20,25 @@ public class BaseObjective : IObjective
 
     public virtual bool CheckTarget(IObjectiveTarget gObj)
     {
-        if (IsChecked)
+        // As long as this is accessed through ForceCheck(), neither of the below can be true.
+        if (IsChecked || gObj.IsChecked)
             return false;
-            //throw new Exception("Checked objective is being checked again! Undefined behaviour.");
 
-        return IsChecked = gObj.ID == targetID;
+        // Flags the target and the objective as checked.
+        return IsChecked = gObj.IsChecked = gObj.ID == targetID;
+    }
+
+    public virtual void ForceCheck(IEnumerable<IObjectiveTarget> gObjs)
+    {
+        var objTargetEnum = gObjs.GetEnumerator();
+
+        while (!IsChecked && objTargetEnum.MoveNext() && !objTargetEnum.Current.IsChecked) {
+            CheckTarget(objTargetEnum.Current);
+        }
+        
+        if (!IsChecked) {
+            IsChecked = true;
+            IsInvalid = true;
+        }
     }
 }

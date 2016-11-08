@@ -4,6 +4,9 @@ using UnityEngine.UI;
 using System.Text;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEditor;
 
 public class TextGeneration : MonoBehaviour {
 
@@ -11,6 +14,7 @@ public class TextGeneration : MonoBehaviour {
 
     public int textSize;
     public int numFiles;
+    public string killString;
 
     [HideInInspector]
     public bool[] NewBagInitializer;
@@ -27,7 +31,9 @@ public class TextGeneration : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        
+
+       
+
         //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
         debugText = transform.GetChild(2).GetComponent<Text>();
         //debugText = gameObject.GetComponent<Text>();
@@ -52,6 +58,9 @@ public class TextGeneration : MonoBehaviour {
 
         initTextBags(NewBagInitializer);
 
+        // temporary place - Remember
+        killString = "58";
+        NumberTextUpdate(killString);
 
         //sb = TextGenerator(shuffleBagHello);
         //sb = TextGenerator(shuffleBagPal);
@@ -106,6 +115,7 @@ public class TextGeneration : MonoBehaviour {
     //public StringBuilder TextGenerator(ShuffleBag shuffleBag)
     void TextGenerator(ShuffleBag shuffleBag)
     {
+       
         sb.Append(shuffleBag.Next());
         debugText.text = sb.ToString();
         //return sb;
@@ -113,16 +123,31 @@ public class TextGeneration : MonoBehaviour {
 
     public void initTextBags(bool[] NewBagInitializer)
     {
+       
+
         for (int x = 0; x < textSize; x++)
         {
             for(int y = 0; y < numFiles; y++)
             {
                 if (NewBagInitializer[x + (y * textSize)])
                 {
-                    TextGenerator(shuffleBags[y]);
-
+                  
+                    TextGenerator(shuffleBags[y]);   
                 }
             }
         }
     }
+
+    public void NumberTextUpdate(string tempString)
+    {
+        StreamWriter sw = new StreamWriter(Application.dataPath + "/Resources/txts/3Numbers.txt");
+        sw.WriteLine(tempString);
+        sw.Close();
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+   
+        sentences[3] = Resources.Load("txts/3Numbers") as TextAsset;
+        shuffleBags[3] = LoadShuffleBag(shuffleBags[3], sentences[3], 1);
+       
+    } 
 }

@@ -13,7 +13,7 @@ using System;
 public class ScoreHandler : MonoBehaviour {
     public int Score;
 
-    public void Subscribe(ScorePublisher repPub)
+    public void Subscribe(IScorePublisher repPub)
     {
         repPub.ChangeScoreEvent += HandleScoreChange;
     }
