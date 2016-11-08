@@ -267,5 +267,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         }
     }
 
+    public bool IsChecked { get; set; }
     #endregion
 }

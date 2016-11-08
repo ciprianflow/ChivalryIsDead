@@ -13,9 +13,15 @@ public class DummyObjective : IObjective
     {
         get { return 1f; }
     }
+    public bool IsInvalid { get; set; }
 
     public bool CheckTarget(IObjectiveTarget gObj)
     {
         return true;
+    }
+
+    public void ForceCheck(IEnumerable<IObjectiveTarget> gObjs)
+    {
+        throw new NotImplementedException();
     }
 }
