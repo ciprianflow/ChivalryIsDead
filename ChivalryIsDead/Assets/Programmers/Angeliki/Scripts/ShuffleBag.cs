@@ -24,7 +24,7 @@ public class ShuffleBag
     {
         for (int i = 0; i < amount; i++)
             data.Add(item);
-
+       
         currentPosition = Size - 1;
     }
 

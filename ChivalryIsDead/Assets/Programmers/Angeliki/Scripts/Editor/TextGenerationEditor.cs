@@ -39,10 +39,13 @@ public class TextGenerationEditor : Editor
 
         //for (int i = 0; i < textGenTarget.filesNames.Count; i++)
         //{ 
-        GUILayout.Label("Hello", GUILayout.Width(45));
+        GUILayout.Label("Greetings", GUILayout.Width(45));
         GUILayout.Label("Pal", GUILayout.Width(45));
+        GUILayout.Label("Killing", GUILayout.Width(45));
+        GUILayout.Label("Number", GUILayout.Width(45));
+        GUILayout.Label("Creature", GUILayout.Width(45));
         GUILayout.Label("State", GUILayout.Width(45));
-        GUILayout.Label("Stuff", GUILayout.Width(45));
+        GUILayout.Label("Story", GUILayout.Width(45));
 
 
         //}
