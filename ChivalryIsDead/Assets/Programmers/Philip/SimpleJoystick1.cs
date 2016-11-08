@@ -234,8 +234,8 @@ namespace CnControls
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
 
-            SX = Stick.rectTransform.localPosition.x/125;
-            SY = Stick.rectTransform.localPosition.y/125;
+            SX = Stick.rectTransform.localPosition.x/MovementRange;
+            SY = Stick.rectTransform.localPosition.y/MovementRange;
             //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
 
             moving = true;

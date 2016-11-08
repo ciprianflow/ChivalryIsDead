@@ -40,6 +40,8 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget {
         }
     }
 
+    public bool IsChecked { get; set; } 
+
     public void takeDamage(int dmg)
     {
         Debug.Log("IM hit ");
