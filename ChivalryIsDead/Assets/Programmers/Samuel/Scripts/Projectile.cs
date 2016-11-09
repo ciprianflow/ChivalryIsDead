@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour {
         //monster should make daamge not the projectile??
         if (collObj.CompareTag("Player"))
         {
-            collObj.GetComponent<PlayerActionController>().PlayerAttacked(new RangedAI());
+            collObj.GetComponent<PlayerActionController>().PlayerAttacked(originMonster);
         }
     }
 

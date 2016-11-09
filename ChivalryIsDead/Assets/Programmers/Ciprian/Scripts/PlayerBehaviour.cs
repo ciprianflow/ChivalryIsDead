@@ -23,10 +23,37 @@ class PlayerBehaviour : ScorePublisher
         }
     }
 
+    public void ChangeRepScore(int score)
+    {
+        if (score < 0)
+        {
+            ScoreChange = score * DummyManager.dummyManager.Combo;
+            DummyManager.dummyManager.Combo++;
+            Debug.Log("Combo increased: " + DummyManager.dummyManager.Combo);
+
+
+            DummyManager.dummyManager.comboTimeStamp = Time.time + DummyManager.dummyManager.ComboCooldown;
+        }
+        else
+        {
+            ScoreChange = score;
+            Reset();
+        }
+    }
+
+    
+    //reset combo
+    public void Reset()
+    {
+        DummyManager.dummyManager.Combo = 1;
+    }
+
     public void Invoke()
     {
+
         OnChangeScoreEvent(new ScoreEventArgs(ScoreChange));
     }
+
 
 
 
