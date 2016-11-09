@@ -107,11 +107,12 @@ namespace CnControls
 
         GameObject player;
         Player playerScript;
+        //PlayerAnim playerScript;
 
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
-            playerScript = player.GetComponent<Player>();
+            playerScript = player.GetComponent<PlayerAnim>();
 
             held = false;
             moving = false;
