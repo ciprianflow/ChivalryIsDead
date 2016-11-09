@@ -21,7 +21,9 @@ public class BaseObjective : IObjective
     public virtual bool CheckTarget(IObjectiveTarget gObj)
     {
         // As long as this is accessed through ForceCheck(), neither of the below can be true.
-        if (IsChecked || gObj.IsChecked)
+        if (IsChecked)
+            return true;
+        if (gObj.IsChecked)
             return false;
 
         // Flags the target and the objective as checked.

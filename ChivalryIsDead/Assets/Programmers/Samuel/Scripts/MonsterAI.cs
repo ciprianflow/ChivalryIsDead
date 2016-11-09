@@ -8,9 +8,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     #region fields
 
-    protected float t1 = 0;
-    protected float t2 = 0;
-
     public int id = 0;
 
     [Header("Defense Values")]
@@ -29,6 +26,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     private float pathUpdateTime = 0.1f;
 
     HealthScript healthScript;
+
+    //Timers
+    protected float t1 = 0;
+    protected float t2 = 0;
 
     #endregion
 
@@ -58,15 +59,14 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         updateTimer();
         UpdateNavMeshPathDelayed();
 
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
+        //HARD CODED REMOVE LATER
         Debug.DrawLine(transform.position, targetPoint);
-
-        //HARD CODED REMOVE LATER
-        //HARD CODED REMOVE LATER
-        //HARD CODED REMOVE LATER
-        //HARD CODED REMOVE LATER
-        //HARD CODED REMOVE LATER
-        //HARD CODED REMOVE LATER
-        //HARD CODED REMOVE LATER
         if (targetObject != null && !targetObject.gameObject.activeSelf)
             targetObject = StaticData.player;
         //HARD CODED REMOVE LATER
@@ -76,16 +76,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
-    }
-
-    //implement this in the base class
-    public void Hit(float damage)
-    {
-        if (healthScript.takeDamage((int)damage))
-        {
-            gameObject.SetActive(false);
-            StaticData.mapManager.CheckObjectives(this);
-        }
     }
 
     #region Timers
@@ -226,7 +216,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     #endregion
 
-    #region Helpers
+    #region Misc Functions
 
     protected void rotateTowardsTarget()
     {
@@ -266,6 +256,16 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     }
 
     public abstract float GetBaseAttackDamage();
+
+    //implement this in the base class
+    public void Hit(float damage)
+    {
+        if (healthScript.takeDamage((int)damage))
+        {
+            gameObject.SetActive(false);
+            StaticData.mapManager.CheckObjectives(this);
+        }
+    }
 
     #endregion
 
