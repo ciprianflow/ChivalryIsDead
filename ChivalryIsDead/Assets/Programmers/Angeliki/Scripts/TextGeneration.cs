@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-
 public class TextGeneration : MonoBehaviour {
 
     public StringBuilder sb = new StringBuilder();
