@@ -5,7 +5,7 @@ using System;
 [RequireComponent(typeof(AreaScript))]
 public class MapManager : MonoBehaviour {
 
-    MonsterManager MM;
+    ObjectiveManager OM;
     AreaScript areas;
 
     Transform QuestTarget;
@@ -19,14 +19,14 @@ public class MapManager : MonoBehaviour {
     void Awake()
     {
         areas = transform.GetComponent<AreaScript>();
-        MM = new MonsterManager();
+        OM = new ObjectiveManager();
         StaticData.mapManager = this;
 
     }
 
     void Start()
     {
-        MM.LoadAllMonsters();
+        OM.LoadAllMonsters();
         InitQuest();
     }
 
@@ -35,7 +35,7 @@ public class MapManager : MonoBehaviour {
         if (QuestManager.currQuest == null)
         {
             QuestGenerator QG = new QuestGenerator();
-            QuestManager.currQuest = (BaseQuest)QG.GetQuest(Difficulty.Easy);
+            QuestManager.currQuest = (MultiQuest)QG.GenerateMultiQuest();
         }         
 
         List <IObjective> objectives = QuestManager.GetObjectives();
@@ -50,23 +50,35 @@ public class MapManager : MonoBehaviour {
 
     void TranslateQuest(IObjective objective)
     {
-        
+        var ID = 0;
+        if (objective.GetType() == typeof(BaseQuest))
+        {
+            foreach (IObjective io in (objective as BaseQuest).Objectives)
+            {
+                TranslateQuest(io);
+            }
+        } else
+        {
+            ID = (objective as BaseObjective).targetID;
+        }
 
-        var ID = (objective as BaseObjective).targetID;
+        if (ID == 0) return;
 
+        //NEED TO CHANGE THIS APROACH
         if (ID == 21)
         {
+            OM.GetObjectives().Add(QuestTarget.GetComponent<QuestObject>());
             QuestTarget.gameObject.SetActive(true);
             return;
         }
 
-        MM.SpawnMonsters(ID, Vector3.zero, QuestTarget);
+        OM.SpawnMonsters(ID, Vector3.zero, QuestTarget);
     }
 
     internal void CheckObjectives(IObjectiveTarget IObj)
     {
 
-        QuestManager.currQuest.CheckTarget(IObj);
+        QuestManager.currQuest.CheckTarget(OM.GetObjectives());
         if (QuestManager.currQuest.IsChecked)
         {
             Debug.LogWarning("Shits done!");
