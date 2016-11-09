@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using UnityEditor;
 
 public class TextGeneration : MonoBehaviour {
 
@@ -52,14 +51,14 @@ public class TextGeneration : MonoBehaviour {
      
         for (int i = 0; i < shuffleBags.Count; i++)
         {
-            shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i], 1);
+            shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i].text, 1);
         }
 
 
         initTextBags(NewBagInitializer);
 
         // temporary place - Remember
-        killString = "58";
+        killString = "12" + " ";
         NumberTextUpdate(killString);
 
         //sb = TextGenerator(shuffleBagHello);
@@ -102,9 +101,10 @@ public class TextGeneration : MonoBehaviour {
         //debugText.text = sb.ToString();
     }
 
-    ShuffleBag LoadShuffleBag(ShuffleBag shuffleBag, TextAsset sentences, int amount)
+    //ShuffleBag LoadShuffleBag(ShuffleBag shuffleBag, TextAsset sentences, int amount)
+    ShuffleBag LoadShuffleBag(ShuffleBag shuffleBag, string sentStr, int amount)
     {
-        foreach (string sent in sentences.text.Split('/'))
+        foreach (string sent in sentStr.Split('/'))
         {
             shuffleBag.Add(sent, amount);
 
@@ -140,14 +140,7 @@ public class TextGeneration : MonoBehaviour {
 
     public void NumberTextUpdate(string tempString)
     {
-        StreamWriter sw = new StreamWriter(Application.dataPath + "/Resources/txts/3Numbers.txt");
-        sw.WriteLine(tempString);
-        sw.Close();
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-   
-        sentences[3] = Resources.Load("txts/3Numbers") as TextAsset;
-        shuffleBags[3] = LoadShuffleBag(shuffleBags[3], sentences[3], 1);
-       
+        shuffleBags[3] = new ShuffleBag(1);
+        shuffleBags[3] = LoadShuffleBag(shuffleBags[3], tempString, 1);
     } 
 }

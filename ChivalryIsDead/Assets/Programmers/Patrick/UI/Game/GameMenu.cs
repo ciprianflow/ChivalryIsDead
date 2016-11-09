@@ -7,7 +7,9 @@ public class GameMenu : MonoBehaviour {
 
     public GameObject pause;
     public GameObject quest;
-    public GameObject letter;
+    public GameObject endLetter;
+    public GameObject introLetter;
+
 
     public GameObject sword;
     public GameObject swordBubble;
@@ -16,7 +18,8 @@ public class GameMenu : MonoBehaviour {
     public GameObject princessBubble;
 
     bool paused;
-    bool letterActive;
+    bool endletterActive;
+    bool introletterActive;
 
     float testRND;
 
@@ -26,13 +29,17 @@ public class GameMenu : MonoBehaviour {
     void Awake ()
     {
         paused = false;
-        letterActive = false;
+        endletterActive = false;
+        introletterActive = false;
+
         dialogSystem = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<DialogObject>();
     } 
 
     void Start () {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        letter.SetActive(false);
+        endLetter.SetActive(false);
+        introLetter.SetActive(false);
         sword.SetActive(false);
         princess.SetActive(false);
 
@@ -41,7 +48,7 @@ public class GameMenu : MonoBehaviour {
         Invoke("Test1", 2);
 
         testRND = Random.Range(16, 30);
-        Debug.Log(testRND);
+        Debug.Log("peasants dialog starts in " + testRND);
         Invoke("Test", testRND);
 
        
@@ -58,17 +65,18 @@ public class GameMenu : MonoBehaviour {
             Invoke("Test1", 2);
         }
 
-
+        // this means quest is over
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Letter();
+            EndLetter();
+          
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        // this means start of quest
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            LetterUpdate();
+            IntroLetter();
         }
-
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -101,30 +109,48 @@ public class GameMenu : MonoBehaviour {
         quest.SetActive(true);
     }
 
-    public void Letter()
+    public void EndLetter()
     {
-        if(!letterActive)
+        
+        if(!endletterActive)
         {
-            letter.SetActive(true);
-            StartCoroutine(TextLoad());
-            letterActive = true;
-        } else
+            endLetter.SetActive(true);
+            StartCoroutine(TextLoad(endLetter));
+            endletterActive = true;
+        }
+        else
         {
-            letter.SetActive(false);
-            letterActive = false;   
+            endLetter.SetActive(false);
+            endletterActive = false;
         }     
     }
 
-    public void LetterUpdate()
+    public void IntroLetter()
+    {
+
+        if (!introletterActive)
+        {
+            introLetter.SetActive(true);
+            StartCoroutine(TextLoad(introLetter));
+            introletterActive = true;
+        }
+        else
+        {
+            introLetter.SetActive(false);
+            introletterActive = false;
+        }
+    }
+
+    IEnumerator TextLoad(GameObject letter)
+    {
+        yield return new WaitForSeconds(0.01f);
+        LetterUpdate(letter);
+    }
+
+    public void LetterUpdate(GameObject letter)
     {
         letter.GetComponent<TextGeneration>().ClearText();
         letter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
-    }
-
-    IEnumerator TextLoad()
-    {
-        yield return new WaitForSeconds(0.01f);
-        LetterUpdate();
     }
 
     public void Princess()

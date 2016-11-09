@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 /// <summary>
 /// Used to create quests in which one of multiple quests can be completed.
@@ -19,12 +20,30 @@ public class MultiQuest : BaseQuest
     {
         var innerObjIsChecked = base.CheckTarget(gObj);
 
-        if (innerObjIsChecked && IsChecked) {
-            ForceCheck(new List<IObjectiveTarget>()); // TODO: URGENT: Should be the actual in-game list of IObjectiveTargets.
+        if (innerObjIsChecked && IsChecked)
+        {
+            Debug.LogWarning("CheckTarget with only 1 object was called on MultiQuest object! All remaining objectives will be marked invalid.");
+            // TODO: URGENT: Should be the actual in-game list of IObjectiveTargets.
+            ForceCheck(new List<IObjectiveTarget>()); 
         }
 
         // Consider the return logic.
         // Should maybe return whether the quest itself is checked.
+        return innerObjIsChecked;
+    }
+
+    public bool CheckTarget(IEnumerable<IObjectiveTarget> gObjs)
+    {
+        var innerObjIsChecked = false;
+        foreach (IObjectiveTarget ot in gObjs)
+        {
+            innerObjIsChecked = base.CheckTarget(ot);
+            if (innerObjIsChecked && IsChecked)
+            {
+                ForceCheck(gObjs);
+            }
+        }
+
         return innerObjIsChecked;
     }
 }
