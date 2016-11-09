@@ -14,12 +14,16 @@ public class RangedAI : MonsterAI {
     public float shootAngle = 60;
     public float randomShootRange = 4f;
     public float randomShootAngle = 20f;
+    [Space]
+    public float attackDmg = 20f;
 
     [Space]
     private bool taunted = false;
 
 
-    public override void Init() { }
+    public override void Init()
+    {
+    }
 
     public override void Attack()
     {
@@ -141,5 +145,10 @@ public class RangedAI : MonsterAI {
     public override void Scare()
     {
         throw new NotImplementedException();
+    }
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDmg;
     }
 }

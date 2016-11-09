@@ -36,6 +36,7 @@ public class GameMenu : MonoBehaviour {
     } 
 
     void Start () {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         endLetter.SetActive(false);
         introLetter.SetActive(false);

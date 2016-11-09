@@ -11,7 +11,13 @@ public class AreaEditor : Editor {
 
         AreaScript areaScript = (AreaScript)target;
 
-        base.OnInspectorGUI();
+        //base.OnInspectorGUI();
+
+        serializedObject.Update();
+
+        EditorList.Show(serializedObject.FindProperty("AreaColor"), serializedObject.FindProperty("SpawnType"));
+
+        serializedObject.ApplyModifiedProperties();
 
         GUILayout.Space(10);
 
@@ -52,10 +58,10 @@ public class AreaEditor : Editor {
             float height = areaScript.Areas[i].height;
 
             GUIStyle style = new GUIStyle();
-            style.normal.textColor = areaScript.AreaColor[i];
+            style.normal.textColor = areaScript.properties[i].AreaColor;
             style.fontSize = 24;
 
-            Handles.color = areaScript.AreaColor[i];
+            Handles.color = areaScript.properties[i].AreaColor;
             Vector3 pos = new Vector3(areaScript.Areas[i].x, 0, areaScript.Areas[i].y);
 
             Vector3[] verts = new Vector3[] { new Vector3(areaScript.Areas[i].xMin, pos.y, areaScript.Areas[i].yMin),
@@ -78,7 +84,7 @@ public class AreaEditor : Editor {
 
             Handles.color = Color.blue;
             Handles.Label(handlePos + Vector3.up * 4,
-                                 "Spawn Area " + i + " : Width: " + width.ToString() + ", Height: " + height.ToString(), style);
+                                 "Spawn Area " + i, style);
 
             areaScript.Areas[i] = new Rect(pos.x, pos.z, scale.x, scale.z);
 
