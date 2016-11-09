@@ -247,6 +247,8 @@ namespace CnControls
 
         public void OnPointerUp(PointerEventData eventData)
         {
+
+            playerScript.move(0, 0);
             held = false;
             moving = false;
             // When we lift our finger, we reset everything to the initial state
