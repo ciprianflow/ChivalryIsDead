@@ -92,7 +92,7 @@ public class Player : MonoBehaviour {
             if (diffTurn > 0.001f || diffTurn < -0.001f) {
                 float turnAmount = diffTurn / 5;
                 transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
-                anim.SetFloat("Turn", turnAmount / 1.5f);
+                //anim.SetFloat("Turn", turnAmount / 1.5f);
 
             }
         }
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour {
         }
         transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
 
-        anim.SetFloat("Speed", zVel * 2f);
+        //anim.SetFloat("Speed", zVel * 2f);
 
         //Debug.Log( "CAMERA " + Camera.main.transform.eulerAngles.y);
     }
@@ -117,23 +117,23 @@ public class Player : MonoBehaviour {
             if (zVel > 0) {
                 transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
                 zVel -= speedDec;
-                anim.SetFloat("Speed", zVel * 2f);
+                //anim.SetFloat("Speed", zVel * 2f);
 
             }
             else {
                 zVel = 0;
-                anim.SetFloat("Speed", zVel * 2f);
+                //anim.SetFloat("Speed", zVel * 2f);
                 isSlowingDown = false;
             }
         }
         if (turnMag > 0) {
             turnMag -= 5f;
-            anim.SetFloat("Turn", turnMag);
+            //anim.SetFloat("Turn", turnMag);
 
         }
         if (Input.GetButtonDown("Jump"))
         {
-            attack();
+            //attack();
         }
 
 
@@ -144,13 +144,13 @@ public class Player : MonoBehaviour {
                 if (LowerWeight < 1)
                 {
                     LowerWeight += 0.05f;
-                    anim.SetLayerWeight(2, LowerWeight);
+                    //anim.SetLayerWeight(2, LowerWeight);
                 }
             }
             else if (LowerWeight > 0)
             {
                 LowerWeight -= 0.05f;
-                anim.SetLayerWeight(2, LowerWeight);
+                //anim.SetLayerWeight(2, LowerWeight);
             }
 
 
