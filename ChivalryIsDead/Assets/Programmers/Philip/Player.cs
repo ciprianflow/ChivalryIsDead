@@ -11,11 +11,13 @@ public class Player : MonoBehaviour {
     public Animator anim;
     float worldX = 0;
     float worldY = 0;
+    public bool attacking = false;
     Vector2 LastXY = new Vector2(0, 0);
 
     private bool isSlowingDown = false;
 
     private bool staticControls = true;
+    public float LowerWeight = 0;
 
     void Awake()
     {
@@ -113,7 +115,7 @@ public class Player : MonoBehaviour {
     void Update() {
         if (isSlowingDown) {
             if (zVel > 0) {
-                //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
+                transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
                 zVel -= speedDec;
                 //anim.SetFloat("Speed", zVel * 2f);
 
@@ -129,8 +131,33 @@ public class Player : MonoBehaviour {
             //anim.SetFloat("Turn", turnMag);
 
         }
-        if (Input.GetButtonDown("Jump")) {
-            //anim.Play("HeadTurn", 1, 0);
+        if (Input.GetButtonDown("Jump"))
+        {
+            //attack();
+        }
+
+
+        if (attacking)
+        {
+            if (zVel == 0)
+            {
+                if (LowerWeight < 1)
+                {
+                    LowerWeight += 0.05f;
+                    //anim.SetLayerWeight(2, LowerWeight);
+                }
+            }
+            else if (LowerWeight > 0)
+            {
+                LowerWeight -= 0.05f;
+                //anim.SetLayerWeight(2, LowerWeight);
+            }
+
+
+
+
+
+
         }
     }
 
@@ -141,6 +168,27 @@ public class Player : MonoBehaviour {
     public void attack()
     {
 
+        if (!attacking)
+        {
+            anim.Play("Attack Transition", 1, 0);
+            attacking = true;
+        }
+        anim.Play("Hero_Attack1", 2, 0);
+
+        AnimatorStateInfo ASI = anim.GetCurrentAnimatorStateInfo(1);
+        
+
+        Debug.Log(ASI.normalizedTime / ASI.length);
+
+        if (ASI.IsName("Attack1") || (ASI.IsName("Attack 1 exit tran") && (ASI.normalizedTime / ASI.length > 0.5f)))
+        {
+            anim.SetTrigger("Attack2");
+        }
+        else
+        {
+            anim.SetTrigger("Attack1");
+        }
+        anim.SetLayerWeight(1, 1);
     }
     //[Header("Variables")]
     //public float maxSpeed = 0.5f;
