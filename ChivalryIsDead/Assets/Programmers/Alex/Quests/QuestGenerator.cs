@@ -147,6 +147,7 @@ public class QuestGenerator
         for (int i = 0; i < sheepCount; i++) {
             protQuest.Objectives.Add(new ProtectTargetObjective(21));
         }
+        protQuest.Objectives.Add(new TimerObjective(31));
 
         return protQuest;
     }
