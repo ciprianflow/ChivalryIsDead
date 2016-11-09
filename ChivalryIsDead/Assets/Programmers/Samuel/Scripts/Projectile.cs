@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Projectile : MonoBehaviour {
 
+    public MonsterAI originMonster;
     bool setToDestroy = false;
 
 	void OnCollisionEnter(Collision col)
@@ -14,12 +15,12 @@ public class Projectile : MonoBehaviour {
 
     }
 
-    void ProjectileCollision(GameObject collision)
+    void ProjectileCollision(GameObject collObj)
     {
         DestroyTarget();
         setToDestroy = true;
 
-        QuestObject questObj = collision.GetComponent<QuestObject>();
+        QuestObject questObj = collObj.GetComponent<QuestObject>();
         if(questObj != null)
         {
             questObj.takeDamage(1);

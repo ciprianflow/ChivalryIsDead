@@ -10,9 +10,14 @@ public class RangedAI : MonsterAI {
     Transform targetObj;
 
     float force = 1;
-    float angle = 60;
-    float randomRange = 4f;
-    float randomAngle = 20f;
+    [Space]
+    public float shootAngle = 60;
+    public float randomShootRange = 4f;
+    public float randomShootAngle = 20f;
+
+    [Space]
+    private bool taunted = false;
+
 
     public float attackDamage = 3f;
 
@@ -56,15 +61,30 @@ public class RangedAI : MonsterAI {
 
         GameObject obj = Instantiate(projectile);
 
-        obj.transform.position = transform.position + new Vector3(0, 2f, 0);
+        Projectile p = projectile.GetComponent<Projectile>();
+        if (p != null)
+            p.originMonster = this;
+
+        obj.transform.position = transform.position + new Vector3(0, 3f, 0);
 
         Rigidbody objRigidBody = obj.GetComponent<Rigidbody>();
 
-        Vector3 random = new Vector3(UnityEngine.Random.Range(-randomRange, randomRange), 0, UnityEngine.Random.Range(-randomRange, randomRange));
-        float randomAng = UnityEngine.Random.Range(-randomAngle, randomAngle);
+        Vector3 random = new Vector3(UnityEngine.Random.Range(-randomShootRange, randomShootRange), 0, UnityEngine.Random.Range(-randomShootRange, randomShootRange));
+        float randomAng = UnityEngine.Random.Range(-randomShootAngle, randomShootAngle);
 
-        Vector3 randTargetPos = targetObject.position + random;
-        Vector3 velocity = BallisticVel(randTargetPos, angle + randomAng) * force;
+        Vector3 randTargetPos = Vector3.zero;
+        Vector3 velocity = Vector3.zero;
+        if (taunted)
+        {
+            velocity = BallisticVel(targetObject.position, shootAngle) * force;
+            taunted = false;
+        }
+        else
+        {
+            randTargetPos = targetObject.position + random;
+            velocity = BallisticVel(randTargetPos, shootAngle + randomAng) * force;
+        }
+       
 
         //Target point calc
         //Target point calc
@@ -113,11 +133,21 @@ public class RangedAI : MonsterAI {
         return vel* dir.normalized;
     }
 
-    public override void Taunt() { }
+    public override void Taunt( ) { taunted = true; }
 
     public override void KillThis()
     {
         Debug.Log(transform.name + " : Has died");
         this.enabled = false;
+    }
+
+    public override void Scared()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void Scare()
+    {
+        throw new NotImplementedException();
     }
 }

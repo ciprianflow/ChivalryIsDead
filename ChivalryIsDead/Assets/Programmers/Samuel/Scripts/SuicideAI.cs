@@ -5,25 +5,20 @@ using System;
 public class SuicideAI : MonsterAI
 {
 
-    public float attackDamage = 30f;
+    [Header("Suicide Specific Variables")]
+    public float scaredTimer = 5f;
+    [Space]
+    public float explosionForce = 6000000f;
+    public float explosionRange = 25f;
+    
+    bool taunted = false;
 
     public override void Attack()
     {
         KillThis();
     }
 
-    public override float GetBaseAttackDamage()
-    {
-        return attackDamage;
-    }
-
-    public override void Idle()
-    {
-        if (agent.hasPath)
-        {
-            IdleToMove();
-        }
-    }
+    public override void Idle() { }
 
     public override void Init() { }
 
@@ -44,16 +39,40 @@ public class SuicideAI : MonsterAI
             MoveToAttack();
     }
 
+    public override void Scare()
+    {
+        ToScared();
+        StopNavMeshAgent();
+        ResetTimer();
+    }
+
+    public override void Scared()
+    {
+        if(t1 > scaredTimer)
+        {
+            ResumeNavMeshAgent();
+            ToMove();
+        }
+    }
+
     public override void Taunt()
     {
         Aggro();
+        agent.speed *= 2;
+        taunted = true;
     }
 
     void Explode()
     {
+        int multiplyer = 1;
+        if (taunted)
+            multiplyer = 2;
+
+        float range = explosionRange * multiplyer;
+
         Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
         if (body)
-            body.AddExplosionForce(6000000, transform.position - new Vector3(0, -5, 0), 25);
+            body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
         Destroy(this.gameObject);
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
     }
