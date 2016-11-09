@@ -11,11 +11,13 @@ public class Player : MonoBehaviour {
     public Animator anim;
     float worldX = 0;
     float worldY = 0;
+    public bool attacking = false;
     Vector2 LastXY = new Vector2(0, 0);
 
     private bool isSlowingDown = false;
 
     private bool staticControls = true;
+    public float LowerWeight = 0;
 
     void Awake()
     {
@@ -89,17 +91,17 @@ public class Player : MonoBehaviour {
             //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
             if (diffTurn > 0.001f || diffTurn < -0.001f) {
                 float turnAmount = diffTurn / 5;
-                transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
+                //transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
                 //anim.SetFloat("Turn", turnAmount / 1.5f);
 
             }
         }
         else {
-            transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+            //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
         }
-        transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
+        //transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
 
-        //anim.SetFloat("Speed", zVel * 2f);
+       //anim.SetFloat("Speed", zVel * 2f);
 
         //Debug.Log( "CAMERA " + Camera.main.transform.eulerAngles.y);
     }
@@ -129,9 +131,33 @@ public class Player : MonoBehaviour {
             //anim.SetFloat("Turn", turnMag);
 
         }
-        if (Input.GetButtonDown("Jump")) {
-            //anim.Play("HeadTurn", 1, 0);
-        }
+        //if (Input.GetButtonDown("Jump")) {
+        //    attack();
+        //}
+
+
+        //if (attacking)
+        //{
+        //    if(zVel == 0)
+        //    {
+        //        if(LowerWeight < 1)
+        //        {
+        //            LowerWeight += 0.05f;
+        //            anim.SetLayerWeight(2,LowerWeight);
+        //        }
+        //    }
+        //    else if(LowerWeight > 0)
+        //    {
+        //        LowerWeight -= 0.05f;
+        //        anim.SetLayerWeight(2, LowerWeight);
+        //    }
+
+
+
+
+
+
+        //}
     }
 
     public void toggleControls() {
@@ -141,6 +167,27 @@ public class Player : MonoBehaviour {
     public void attack()
     {
 
+        if (!attacking)
+        {
+            anim.Play("Attack Transition", 1, 0);
+            attacking = true;
+        }
+        //anim.Play("Hero_Attack1", 2, 0);
+
+        AnimatorStateInfo ASI = anim.GetCurrentAnimatorStateInfo(1);
+        
+
+        Debug.Log(ASI.normalizedTime / ASI.length);
+
+        if (ASI.IsName("Attack1") || (ASI.IsName("Attack 1 exit tran") && (ASI.normalizedTime / ASI.length > 0.5f)))
+        {
+            //anim.SetTrigger("Attack2");
+        }
+        else
+        {
+            //anim.SetTrigger("Attack1");
+        }
+        //anim.SetLayerWeight(1,1);
     }
     //[Header("Variables")]
     //public float maxSpeed = 0.5f;
