@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
-public enum monsterType {Ranged, Melee, Suicide, Sheep}
+[Flags]
+public enum monsterType {Ranged = 12, Melee = 11, Suicide = 13, Sheep = 21}
 
 [System.Serializable]
 public class AreaProperty
@@ -54,6 +56,34 @@ public class AreaScript : MonoBehaviour {
     {
         Areas = new List<Rect>();
         properties = new List<AreaProperty>();
+    }
+
+    public Dictionary<int, List<Rect>> GetSortedAreas()
+    {
+        Dictionary<int, List<Rect>> sortedAreas = new Dictionary<int, List<Rect>>();
+        int[] monsterIDs = (int[])Enum.GetValues(typeof(monsterType));
+
+        for (int i = 0; i < monsterIDs.Length; i++)
+        {
+            sortedAreas.Add(monsterIDs[i], new List<Rect>());
+        }
+
+        for(int i = 0; i < Areas.Count; i++)
+        {
+            int ID = (int)properties[i].SpawnType;
+            if (sortedAreas.ContainsKey(ID))
+                sortedAreas[ID].Add(Areas[i]);
+        }
+        return sortedAreas;
+    }
+
+    public Vector3 GetRandomPointOnRect(Rect r)
+    {
+
+        float x = UnityEngine.Random.Range(0, r.width);
+        float y = UnityEngine.Random.Range(0, r.height);
+        return new Vector3(x + r.position.x, 0, y + r.position.y);
+
     }
 
 }
