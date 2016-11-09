@@ -135,11 +135,6 @@ public class RangedAI : MonsterAI {
         this.enabled = false;
     }
 
-    public override float GetBaseAttackDamage()
-    {
-        return attackDamage;
-    }
-
     public override void Scared()
     {
         throw new NotImplementedException();

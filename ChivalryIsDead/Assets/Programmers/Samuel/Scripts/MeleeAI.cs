@@ -18,8 +18,6 @@ public class MeleeAI : MonsterAI
 
     private float normSpeed;
 
-    private float attackDamage = 10f;
-
     public override void Init()
     {
         normSpeed = agent.speed;
@@ -192,10 +190,5 @@ public class MeleeAI : MonsterAI
         {
             ChargeToAttack();
         }
-    }
-
-    public override float GetBaseAttackDamage()
-    {
-        return attackDamage;
     }
 }
