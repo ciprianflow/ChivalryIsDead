@@ -18,6 +18,8 @@ public class MeleeAI : MonsterAI
 
     private float normSpeed;
 
+    private float attackDamage = 10f;
+
     public override void Init()
     {
         normSpeed = agent.speed;
@@ -28,6 +30,7 @@ public class MeleeAI : MonsterAI
         rotateTowardsTarget();
         if (t1 > attackTime)
         {
+
             if (RangeCheck() || patrolling)
             {
                 if (patrolling)
@@ -41,6 +44,7 @@ public class MeleeAI : MonsterAI
             MeleeAttack();
             ResetTimer();
         }
+       
     }
 
     public void MeleeAttack()
@@ -60,7 +64,7 @@ public class MeleeAI : MonsterAI
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
                     //@@HARDCODED
-                    base.targetObject.GetComponent<PlayerActionController>().Attacked();
+                    base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
                     Debug.Log("Hit player");
                 }
             }
@@ -188,5 +192,10 @@ public class MeleeAI : MonsterAI
         {
             ChargeToAttack();
         }
+    }
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDamage;
     }
 }
