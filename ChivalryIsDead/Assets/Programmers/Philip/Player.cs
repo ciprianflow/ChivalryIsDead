@@ -91,17 +91,17 @@ public class Player : MonoBehaviour {
             //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
             if (diffTurn > 0.001f || diffTurn < -0.001f) {
                 float turnAmount = diffTurn / 5;
-                //transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
+                transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
                 //anim.SetFloat("Turn", turnAmount / 1.5f);
 
             }
         }
         else {
-            //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+            transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
         }
-        //transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
+        transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
 
-       //anim.SetFloat("Speed", zVel * 2f);
+        //anim.SetFloat("Speed", zVel * 2f);
 
         //Debug.Log( "CAMERA " + Camera.main.transform.eulerAngles.y);
     }
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour {
     void Update() {
         if (isSlowingDown) {
             if (zVel > 0) {
-                //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
+                transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
                 zVel -= speedDec;
                 //anim.SetFloat("Speed", zVel * 2f);
 
@@ -131,33 +131,34 @@ public class Player : MonoBehaviour {
             //anim.SetFloat("Turn", turnMag);
 
         }
-        //if (Input.GetButtonDown("Jump")) {
-        //    attack();
-        //}
+        if (Input.GetButtonDown("Jump"))
+        {
+            attack();
+        }
 
 
-        //if (attacking)
-        //{
-        //    if(zVel == 0)
-        //    {
-        //        if(LowerWeight < 1)
-        //        {
-        //            LowerWeight += 0.05f;
-        //            anim.SetLayerWeight(2,LowerWeight);
-        //        }
-        //    }
-        //    else if(LowerWeight > 0)
-        //    {
-        //        LowerWeight -= 0.05f;
-        //        anim.SetLayerWeight(2, LowerWeight);
-        //    }
+        if (attacking)
+        {
+            if (zVel == 0)
+            {
+                if (LowerWeight < 1)
+                {
+                    LowerWeight += 0.05f;
+                    //anim.SetLayerWeight(2, LowerWeight);
+                }
+            }
+            else if (LowerWeight > 0)
+            {
+                LowerWeight -= 0.05f;
+                //anim.SetLayerWeight(2, LowerWeight);
+            }
 
 
 
 
 
 
-        //}
+        }
     }
 
     public void toggleControls() {
@@ -169,7 +170,7 @@ public class Player : MonoBehaviour {
 
         if (!attacking)
         {
-            anim.Play("Attack Transition", 1, 0);
+            //anim.Play("Attack Transition", 1, 0);
             attacking = true;
         }
         //anim.Play("Hero_Attack1", 2, 0);
