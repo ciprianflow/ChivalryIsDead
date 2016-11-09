@@ -21,15 +21,17 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public float attackTime = 3f;
     public float attackRange = 5f;
 
-    public float attackRotateSpeed = 90f;
-
-    private float pathUpdateTime = 0.1f;
-
     [Space]
     public Transform targetObject;
     protected Vector3 targetPoint;
     public bool patrolling = false;
-    
+
+    public float attackRotateSpeed = 90f;
+    private float pathUpdateTime = 0.1f;
+
+    HealthScript healthScript;
+
+    #endregion
 
     protected State state;
     protected Action stateFunc;
@@ -40,12 +42,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Taunt();
     public abstract void Scare();
     public abstract void Scared();
-
     public abstract void Init();
-
-    HealthScript healthScript;
-
-    #endregion
 
     public void InitMonster()
     {
