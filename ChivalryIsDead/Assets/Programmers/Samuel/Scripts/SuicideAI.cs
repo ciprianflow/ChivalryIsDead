@@ -91,9 +91,4 @@ public class SuicideAI : MonsterAI
     {
         return attackDamage;
     }
-
-    public override float GetBaseAttackDamage()
-    {
-        throw new NotImplementedException();
-    }
 }
