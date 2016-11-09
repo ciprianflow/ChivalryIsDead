@@ -9,6 +9,7 @@ public class MapManager : MonoBehaviour {
     AreaScript areas;
 
     Transform QuestTarget;
+    GameObject UI;
 
     internal void SetQuestObject(Transform transform)
     {
@@ -26,6 +27,7 @@ public class MapManager : MonoBehaviour {
 
     void Start()
     {
+        UI = GameObject.FindGameObjectWithTag("GameUI");
         OM.LoadAllMonsters();
         InitQuest();
     }
@@ -46,6 +48,8 @@ public class MapManager : MonoBehaviour {
             TranslateQuest(objectives[i]);
 
         }
+        UpdateQuestLog();
+
     }
 
     void TranslateQuest(IObjective objective)
@@ -82,6 +86,7 @@ public class MapManager : MonoBehaviour {
         if (QuestManager.currQuest.IsChecked)
         {
             Debug.LogWarning("Shits done!");
+            UpdateKingLog();
         }
         //foreach(IObjective iO in QuestManager.currQuest.Objectives)
         //{
@@ -90,6 +95,17 @@ public class MapManager : MonoBehaviour {
         //        return;
         //    }
         //}
+
+    }
+
+    void UpdateQuestLog()
+    {
+        UI.GetComponent<GameMenu>().IntroLetter();
+
+    }
+    void UpdateKingLog()
+    {
+        UI.GetComponent<GameMenu>().EndLetter();
 
     }
 }
