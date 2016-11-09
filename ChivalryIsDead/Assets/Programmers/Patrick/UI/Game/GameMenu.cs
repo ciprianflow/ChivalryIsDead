@@ -1,11 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour {
 
     DialogObject dialogSystem;
 
+    SettingsMngr settingManager;
     public GameObject pause;
+    public GameObject muteSound;
+    public GameObject soundVolume;
+
     public GameObject quest;
     public GameObject endLetter;
     public GameObject introLetter;
@@ -33,6 +39,7 @@ public class GameMenu : MonoBehaviour {
         introletterActive = false;
 
         dialogSystem = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<DialogObject>();
+        settingManager = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsMngr>();
     } 
 
     void Start () {
@@ -51,7 +58,23 @@ public class GameMenu : MonoBehaviour {
         Debug.Log("peasants dialog starts in " + testRND);
         Invoke("Test", testRND);
 
-       
+
+
+        // Check Volume Slider
+        soundVolume.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundVolume");
+
+        // Check Mute
+
+        if (PlayerPrefs.GetInt("Sound") == 0)
+        {
+            muteSound.GetComponent<Image>().color = Color.red;
+        }
+        else if (PlayerPrefs.GetInt("Sound") == 1)
+        {
+            muteSound.GetComponent<Image>().color = Color.white;
+
+        }
+
 
     }
 	
@@ -173,5 +196,47 @@ public class GameMenu : MonoBehaviour {
     {
         dialogSystem.StartCoroutine("DialogSystem", 0);
     }
+
+    //Options
+
+    public void SoundVolume()
+    {
+        PlayerPrefs.SetFloat("SoundVolume", soundVolume.GetComponent<Slider>().value);
+    }
+
+    public void SoundMute()
+    {
+        if (PlayerPrefs.GetInt("Sound") == 1)
+        {
+            PlayerPrefs.SetInt("Sound", 0);
+            Debug.Log("Off");
+        }
+        else if (PlayerPrefs.GetInt("Sound") == 0)
+        {
+            PlayerPrefs.SetInt("Sound", 1);
+            Debug.Log("On");
+        }
+
+        if (PlayerPrefs.GetInt("Sound") == 0)
+        {
+            muteSound.GetComponent<Image>().color = Color.red;
+        }
+        else if (PlayerPrefs.GetInt("Sound") == 1)
+        {
+            muteSound.GetComponent<Image>().color = Color.white;
+
+        }
+    }
+
+    public void SwapControl()
+    {
+        settingManager.swapSides();
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 
 }
