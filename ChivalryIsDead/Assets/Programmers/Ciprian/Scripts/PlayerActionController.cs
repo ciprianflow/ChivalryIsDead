@@ -9,7 +9,7 @@ public enum PlayerState
 }
 
 
-public class PlayerActionController : MonoBehaviour
+public class PlayerActionController : MonoBehaviour, ItemEquip
 {
 
     
@@ -46,6 +46,8 @@ public class PlayerActionController : MonoBehaviour
     private OverreactAction overreactAction;
     private ScareAction scareAction;
 
+    private PlayerBehaviour pb;
+    private MonsterAI lastMonsterAttacked;
 
     void OnDrawGizmos()
     {
@@ -105,6 +107,9 @@ public class PlayerActionController : MonoBehaviour
 
         //init for overreact
         overreactAction.OverreactCooldown = OverreactCooldown;
+
+        //subscribe to the reputation system
+        pb = new PlayerBehaviour("rep");
     }
 
     /// <summary>
@@ -116,6 +121,14 @@ public class PlayerActionController : MonoBehaviour
         if (playerState == PlayerState.HIT)
         {
             overreactAction.Overreact();
+
+            //Player overreacted add reputation
+            if (lastMonsterAttacked != null)
+            {
+                pb.ScoreChange = (int)-lastMonsterAttacked.GetBaseAttackDamage();
+                pb.Invoke();
+            }
+
         }
         else
         {
@@ -135,6 +148,7 @@ public class PlayerActionController : MonoBehaviour
         if (enemiesInRange.Count > 0)
         {
             attackAction.ConeAttack(enemiesInRange);
+
         }
         else
         {
@@ -142,12 +156,24 @@ public class PlayerActionController : MonoBehaviour
         }
     }
 
-    public void Attacked()
+    public void PlayerAttacked(MonsterAI monster)
     {
         //AttackedDuration second unlock overreact
         StartCoroutine(releaseAttacked());
         //can overreact
         playerState = PlayerState.HIT;
+
+        //Player attacked add reputation according to monster base damage
+        //suicideAI doesn't make damage to player
+        if (monster.GetType() !=  typeof(SuicideAI))
+        {
+            pb.ScoreChange = (int)-monster.GetBaseAttackDamage();
+        }
+        
+        pb.Invoke();
+
+        //save last monster attacked
+        lastMonsterAttacked = monster;
     }
 
 
@@ -156,6 +182,14 @@ public class PlayerActionController : MonoBehaviour
         yield return new WaitForSeconds(AttackedDuration);
 
         playerState = PlayerState.IDLE;
+    }
+
+
+    //implemented in player action
+    public void WeaponEquip(float damageMul)
+    {
+        //damage multiplier
+        attackAction.AttackDamage = AttackDamage * damageMul;
     }
 
 

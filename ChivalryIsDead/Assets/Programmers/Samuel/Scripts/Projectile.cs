@@ -27,9 +27,9 @@ public class Projectile : MonoBehaviour {
         }
 
         //monster should make daamge not the projectile??
-        if (collision.CompareTag("Player"))
+        if (collObj.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerActionController>().PlayerAttacked(new RangedAI());
+            collObj.GetComponent<PlayerActionController>().PlayerAttacked(new RangedAI());
         }
     }
 

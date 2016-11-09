@@ -14,17 +14,11 @@ public class RangedAI : MonsterAI {
     public float shootAngle = 60;
     public float randomShootRange = 4f;
     public float randomShootAngle = 20f;
+    [Space]
+    private float attackDamage = 20f;
 
     [Space]
     private bool taunted = false;
-
-
-    public float attackDamage = 3f;
-
-    public override float GetBaseAttackDamage()
-    {
-        return attackDamage;
-    }
 
 
     public override void Init() { }
@@ -139,6 +133,11 @@ public class RangedAI : MonsterAI {
     {
         Debug.Log(transform.name + " : Has died");
         this.enabled = false;
+    }
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDamage;
     }
 
     public override void Scared()
