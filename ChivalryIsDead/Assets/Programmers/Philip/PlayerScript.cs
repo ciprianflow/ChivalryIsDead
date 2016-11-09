@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerAnim : MonoBehaviour {
+public class PlayerScript : MonoBehaviour {
     [Header("Variables")]
     public float maxSpeed = 0.03f;
     public float zVel = 0;
@@ -57,6 +57,10 @@ public class PlayerAnim : MonoBehaviour {
         if (zVel < LastXY.magnitude) {
             zVel += speedAcc;
         }
+        else if (zVel > LastXY.magnitude)
+        {
+            zVel -= speedAcc;
+        }
 
         //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX) + 90, 0);
 
@@ -91,15 +95,15 @@ public class PlayerAnim : MonoBehaviour {
             //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
             if (diffTurn > 0.001f || diffTurn < -0.001f) {
                 float turnAmount = diffTurn / 5;
-                //transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
+                transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
                 //anim.SetFloat("Turn", turnAmount / 1.5f);
 
             }
         }
         else {
-            //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+            transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
         }
-        //transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
+        transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
 
         anim.SetFloat("Speed", zVel * 2f);
 
@@ -115,7 +119,7 @@ public class PlayerAnim : MonoBehaviour {
     void Update() {
         if (isSlowingDown) {
             if (zVel > 0) {
-                //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
+                transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
                 zVel -= speedDec;
                 anim.SetFloat("Speed", zVel * 2f);
 
@@ -133,7 +137,7 @@ public class PlayerAnim : MonoBehaviour {
         }
         if (Input.GetButtonDown("Jump"))
         {
-            //attack();
+            attack();
         }
 
 
@@ -144,13 +148,13 @@ public class PlayerAnim : MonoBehaviour {
                 if (LowerWeight < 1)
                 {
                     LowerWeight += 0.05f;
-                    //anim.SetLayerWeight(2, LowerWeight);
+                    anim.SetLayerWeight(2, LowerWeight);
                 }
             }
             else if (LowerWeight > 0)
             {
                 LowerWeight -= 0.05f;
-                //anim.SetLayerWeight(2, LowerWeight);
+                anim.SetLayerWeight(2, LowerWeight);
             }
 
 
