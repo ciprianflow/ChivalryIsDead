@@ -13,6 +13,8 @@ public class MeleeAI : MonsterAI
 
     public float chargeForce = 250f;
 
+    public float attackDamage = 10f;
+
     private float accelTimer = 0;
     private float accelTime = 0.2f;
 
@@ -20,6 +22,7 @@ public class MeleeAI : MonsterAI
 
     public override void Init()
     {
+
         normSpeed = agent.speed;
     }
 
@@ -28,6 +31,7 @@ public class MeleeAI : MonsterAI
         rotateTowardsTarget();
         if (t1 > attackTime)
         {
+
             if (RangeCheck() || patrolling)
             {
                 if (patrolling)
@@ -41,6 +45,7 @@ public class MeleeAI : MonsterAI
             MeleeAttack();
             ResetTimer();
         }
+
     }
 
     public void MeleeAttack()
@@ -60,12 +65,12 @@ public class MeleeAI : MonsterAI
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
                     //@@HARDCODED
-                    base.targetObject.GetComponent<PlayerActionController>().Attacked();
+                    base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
                     Debug.Log("Hit player");
                 }
             }
         }
-        
+
         Debug.Log("Attacking");
 
     }
@@ -103,7 +108,7 @@ public class MeleeAI : MonsterAI
     }
 
     public override void Taunt()
-    {           
+    {
         ToCharge();
     }
 
@@ -117,7 +122,7 @@ public class MeleeAI : MonsterAI
             accelTimer = 0;
             StopNavMeshAgent();
         }
-            
+
 
         Debug.Log("ToCharge");
         agent.speed = normSpeed * chargeSpeedMultiplier;
@@ -146,7 +151,7 @@ public class MeleeAI : MonsterAI
         t1 += Time.deltaTime;
         Vector3 p = transform.position - GetTargetPosition().normalized;
         targetPoint = p + transform.position;
-        if(t1 > scaredTime)
+        if (t1 > scaredTime)
         {
             ToMove();
         }
@@ -188,5 +193,10 @@ public class MeleeAI : MonsterAI
         {
             ChargeToAttack();
         }
+    }
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDamage;
     }
 }

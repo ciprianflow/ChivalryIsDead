@@ -9,4 +9,11 @@ public class INITMONSTERTESTSCRIPT : MonoBehaviour {
 
         m.InitMonster();
     }
+
+    void Start()
+    {
+        MonsterAI m = transform.GetComponent<MonsterAI>();
+
+        m.targetObject = StaticData.player;
+    }
 }
