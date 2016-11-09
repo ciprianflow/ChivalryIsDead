@@ -9,7 +9,8 @@ public class MapManager : MonoBehaviour {
     AreaScript areas;
 
     Transform QuestTarget;
-    GameObject UI;
+
+    Dictionary<int, List<Rect>> sortedAreas;
 
     internal void SetQuestObject(Transform transform)
     {
@@ -23,12 +24,14 @@ public class MapManager : MonoBehaviour {
         OM = new ObjectiveManager();
         StaticData.mapManager = this;
 
+        //This functions gets all spawn areas in the map in a dictionary sorted based on monster ID
+        sortedAreas = areas.GetSortedAreas();
+
     }
 
     void Start()
     {
-        UI = GameObject.FindGameObjectWithTag("GameUI");
-        OM.LoadAllMonsters();
+        OM.LoadAllObjectives();
         InitQuest();
     }
 
@@ -48,8 +51,6 @@ public class MapManager : MonoBehaviour {
             TranslateQuest(objectives[i]);
 
         }
-        UpdateQuestLog();
-
     }
 
     void TranslateQuest(IObjective objective)
@@ -76,7 +77,22 @@ public class MapManager : MonoBehaviour {
             return;
         }
 
-        OM.SpawnMonsters(ID, Vector3.zero, QuestTarget);
+        OM.SpawnMonsters(ID, GetSpawnPoint(ID), QuestTarget);
+
+    }
+
+    Vector3 GetSpawnPoint(int ID)
+    {
+        if (sortedAreas.ContainsKey(ID) && sortedAreas[ID].Count > 0)
+        {
+            int index = (int)UnityEngine.Random.Range(0, sortedAreas[ID].Count);
+            Debug.Log(sortedAreas[ID].Count);
+            return areas.GetRandomPointOnRect(sortedAreas[ID][index]);
+        }
+        else
+
+        Debug.Log("There does not seem to be an area for monster : " + ((monsterType)ID).ToString());
+        return Vector3.zero;
     }
 
     internal void CheckObjectives(IObjectiveTarget IObj)
@@ -86,26 +102,7 @@ public class MapManager : MonoBehaviour {
         if (QuestManager.currQuest.IsChecked)
         {
             Debug.LogWarning("Shits done!");
-            UpdateKingLog();
         }
-        //foreach(IObjective iO in QuestManager.currQuest.Objectives)
-        //{
-        //    if (!iO.IsChecked && iO.CheckTarget(IObj))
-        //    {
-        //        return;
-        //    }
-        //}
-
-    }
-
-    void UpdateQuestLog()
-    {
-        UI.GetComponent<GameMenu>().IntroLetter();
-
-    }
-    void UpdateKingLog()
-    {
-        UI.GetComponent<GameMenu>().EndLetter();
 
     }
 }

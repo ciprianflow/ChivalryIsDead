@@ -11,8 +11,6 @@ public class SuicideAI : MonsterAI
     public float explosionForce = 6000000f;
     public float explosionRange = 25f;
     public GameObject explosionObject;
-
-    public float attackDamage = 30f;
     
     bool taunted = false;
 
@@ -23,9 +21,7 @@ public class SuicideAI : MonsterAI
 
     public override void Idle() { }
 
-    public override void Init()
-    {
-    }
+    public override void Init() { }
 
     public override void KillThis()
     {
@@ -84,16 +80,11 @@ public class SuicideAI : MonsterAI
         if (body)
             body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
         Destroy(this.gameObject);
-        //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
+        Debug.LogError("ALLUH AKHBAR INFIDEL!!");
     }
 
     public override float GetBaseAttackDamage()
     {
-        return attackDamage;
+        throw new NotImplementedException();
     }
-
-    //public override float GetBaseAttackDamage()
-    //{
-    //    throw new NotImplementedException();
-    //}
 }
