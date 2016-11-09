@@ -93,4 +93,5 @@ public class SuicideAI : MonsterAI
     {
         return attackDamage;
     }
+
 }
