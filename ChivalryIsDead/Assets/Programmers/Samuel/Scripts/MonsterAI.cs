@@ -17,7 +17,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public float Health = 2f;
 
     [Header("Attack Values")]
-    public float attackDamage = 1f;
     public float attackTime = 3f;
     public float attackRange = 5f;
 
@@ -266,10 +265,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         return p;
     }
 
-    public float GetBaseAttackDamage()
-    {
-        return attackDamage;
-    }
+    public abstract float GetBaseAttackDamage();
 
     #endregion
 
