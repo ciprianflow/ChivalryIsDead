@@ -25,6 +25,12 @@ public class Projectile : MonoBehaviour {
         {
             questObj.takeDamage(1);
         }
+
+        //monster should make daamge not the projectile??
+        if (collObj.CompareTag("Player"))
+        {
+            collObj.GetComponent<PlayerActionController>().PlayerAttacked(new RangedAI());
+        }
     }
 
     void DestroyTarget()

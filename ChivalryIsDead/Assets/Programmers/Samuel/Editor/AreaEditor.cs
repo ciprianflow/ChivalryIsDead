@@ -11,7 +11,13 @@ public class AreaEditor : Editor {
 
         AreaScript areaScript = (AreaScript)target;
 
-        base.OnInspectorGUI();
+        //base.OnInspectorGUI();
+
+        serializedObject.Update();
+
+
+
+        serializedObject.ApplyModifiedProperties();
 
         GUILayout.Space(10);
 
@@ -78,7 +84,7 @@ public class AreaEditor : Editor {
 
             Handles.color = Color.blue;
             Handles.Label(handlePos + Vector3.up * 4,
-                                 "Spawn Area " + i + " : Width: " + width.ToString() + ", Height: " + height.ToString(), style);
+                                 "Spawn Area " + i, style);
 
             areaScript.Areas[i] = new Rect(pos.x, pos.z, scale.x, scale.z);
 

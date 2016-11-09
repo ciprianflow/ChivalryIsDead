@@ -35,7 +35,7 @@ public class MapManager : MonoBehaviour {
         if (QuestManager.currQuest == null)
         {
             QuestGenerator QG = new QuestGenerator();
-            QuestManager.currQuest = (MultiQuest)QG.GetQuest(Difficulty.Easy);
+            QuestManager.currQuest = (MultiQuest)QG.GenerateMultiQuest();
         }         
 
         List <IObjective> objectives = QuestManager.GetObjectives();
@@ -50,9 +50,19 @@ public class MapManager : MonoBehaviour {
 
     void TranslateQuest(IObjective objective)
     {
-        
+        var ID = 0;
+        if (objective.GetType() == typeof(BaseQuest))
+        {
+            foreach (IObjective io in (objective as BaseQuest).Objectives)
+            {
+                TranslateQuest(io);
+            }
+        } else
+        {
+            ID = (objective as BaseObjective).targetID;
+        }
 
-        var ID = (objective as BaseObjective).targetID;
+        if (ID == 0) return;
 
         //NEED TO CHANGE THIS APROACH
         if (ID == 21)
