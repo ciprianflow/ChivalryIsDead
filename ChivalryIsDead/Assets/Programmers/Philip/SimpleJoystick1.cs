@@ -113,6 +113,7 @@ namespace CnControls
         {
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
             playerScript = player.GetComponent<Player>();
+            //playerScript = player.GetComponent<PlayerAnim>();
 
             held = false;
             moving = false;
