@@ -15,7 +15,7 @@ public class AreaEditor : Editor {
 
         serializedObject.Update();
 
-
+        EditorList.Show(serializedObject.FindProperty("AreaColor"), serializedObject.FindProperty("SpawnType"));
 
         serializedObject.ApplyModifiedProperties();
 
@@ -58,10 +58,10 @@ public class AreaEditor : Editor {
             float height = areaScript.Areas[i].height;
 
             GUIStyle style = new GUIStyle();
-            style.normal.textColor = areaScript.AreaColor[i];
+            style.normal.textColor = areaScript.properties[i].AreaColor;
             style.fontSize = 24;
 
-            Handles.color = areaScript.AreaColor[i];
+            Handles.color = areaScript.properties[i].AreaColor;
             Vector3 pos = new Vector3(areaScript.Areas[i].x, 0, areaScript.Areas[i].y);
 
             Vector3[] verts = new Vector3[] { new Vector3(areaScript.Areas[i].xMin, pos.y, areaScript.Areas[i].yMin),
