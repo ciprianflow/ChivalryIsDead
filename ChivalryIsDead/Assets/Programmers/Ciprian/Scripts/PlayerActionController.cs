@@ -46,7 +46,7 @@ public class PlayerActionController : MonoBehaviour
     private OverreactAction overreactAction;
     private ScareAction scareAction;
 
-    private PlayerBehaviour pb;
+    //private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
 
     void OnDrawGizmos()
@@ -109,7 +109,7 @@ public class PlayerActionController : MonoBehaviour
         overreactAction.OverreactCooldown = OverreactCooldown;
 
         //subscribe to the reputation system
-        pb = new PlayerBehaviour("rep");
+        //pb = new PlayerBehaviour("rep");
     }
 
     /// <summary>
@@ -125,8 +125,8 @@ public class PlayerActionController : MonoBehaviour
             //Player overreacted add reputation
             if (lastMonsterAttacked != null)
             {
-                pb.ScoreChange = (int)-lastMonsterAttacked.GetBaseAttackDamage();
-                pb.Invoke();
+                //pb.ScoreChange = (int)-lastMonsterAttacked.GetBaseAttackDamage();
+                //pb.Invoke();
             }
 
         }
@@ -167,10 +167,10 @@ public class PlayerActionController : MonoBehaviour
         //suicideAI doesn't make damage to player
         if (monster.GetType() !=  typeof(SuicideAI))
         {
-            pb.ScoreChange = (int)-monster.GetBaseAttackDamage();
+            //pb.ScoreChange = (int)-monster.GetBaseAttackDamage();
         }
         
-        pb.Invoke();
+        //pb.Invoke();
 
         //save last monster attacked
         lastMonsterAttacked = monster;
