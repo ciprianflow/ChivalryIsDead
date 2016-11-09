@@ -249,10 +249,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected Vector3 GetTargetPosition()
     {
-        Vector3 p = targetObject.position;
         if (patrolling)
-            p = targetPoint;
-        return p;
+            return targetPoint;
+        else
+            return targetObject.position;
     }
 
     public abstract float GetBaseAttackDamage();
