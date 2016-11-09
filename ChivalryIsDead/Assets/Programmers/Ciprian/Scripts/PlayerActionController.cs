@@ -9,7 +9,7 @@ public enum PlayerState
 }
 
 
-public class PlayerActionController : MonoBehaviour, ItemEquip
+public class PlayerActionController : MonoBehaviour
 {
 
     
@@ -182,14 +182,6 @@ public class PlayerActionController : MonoBehaviour, ItemEquip
         yield return new WaitForSeconds(AttackedDuration);
 
         playerState = PlayerState.IDLE;
-    }
-
-
-    //implemented in player action
-    public void WeaponEquip(float damageMul)
-    {
-        //damage multiplier
-        attackAction.AttackDamage = AttackDamage * damageMul;
     }
 
 
