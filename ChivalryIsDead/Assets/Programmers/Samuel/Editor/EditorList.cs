@@ -3,7 +3,7 @@ using UnityEditor;
 
 public static class EditorList {
 
-	public static void Show (SerializedProperty list, SerializedProperty list2)
+	public static void Show (SerializedProperty list)
     {
         
         EditorGUILayout.PropertyField(list);
@@ -12,8 +12,8 @@ public static class EditorList {
         {
             for (int i = 0; i < list.arraySize; i++)
             {
+                EditorGUILayout.LabelField("Area " + i);
                 EditorGUILayout.PropertyField(list.GetArrayElementAtIndex(i));
-                EditorGUILayout.PropertyField(list2.GetArrayElementAtIndex(i));
             }
         }
         EditorGUI.indentLevel -= 1;

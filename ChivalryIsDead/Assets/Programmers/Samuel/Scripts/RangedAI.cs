@@ -15,7 +15,7 @@ public class RangedAI : MonsterAI {
     public float randomShootRange = 4f;
     public float randomShootAngle = 20f;
     [Space]
-    public float attackDmg = 20f;
+    public float attackDamage = 20f;
 
     [Space]
     private bool taunted = false;
@@ -149,6 +149,6 @@ public class RangedAI : MonsterAI {
 
     public override float GetBaseAttackDamage()
     {
-        return attackDmg;
+        return attackDamage;
     }
 }
