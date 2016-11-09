@@ -25,17 +25,20 @@ public class AreaScript : MonoBehaviour {
             return;
 
         Areas.RemoveAt(index);
+        AreaColor.RemoveAt(index);
     }
 
     public void AddArea()
     {
         Debug.Log("Adding SpawnArea");
         Areas.Add(new Rect(0, 0, 2f, 2f));
+        AreaColor.Add(new Color(0.4f, 0.9f, 0.1f, 1f));
     }
 
     public void ResetAll()
     {
         Areas = new List<Rect>();
+        AreaColor = new List<Color>();
     }
 
 }
