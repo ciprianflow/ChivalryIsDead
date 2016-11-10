@@ -131,15 +131,17 @@ namespace CnControls
         private float Rotation = 0;
 
         GameObject player;
-        Player playerScript;
+
 
         private PlayerActionController playerActionController;
-
+        //Player playerScript;
+        PlayerScript playerScript;
 
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
-            playerScript = player.GetComponent<Player>();
+            //playerScript = player.GetComponent<Player>();
+            playerScript = player.GetComponent<PlayerScript>();
 
             moving = false;
             SX = 0;
@@ -314,6 +316,7 @@ namespace CnControls
             if (SY > 0.2) {
                 t.text = "Attack";
                 t.color = new Color(1, 0, 0, 1);
+                playerScript.attack();
                 Vibration.Vibrate(50);
 
                 redButtonPressed();

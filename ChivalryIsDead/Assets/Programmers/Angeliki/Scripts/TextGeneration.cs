@@ -27,17 +27,20 @@ public class TextGeneration : MonoBehaviour {
     //public List<string> filesNames = new List<string>();
 
     Text debugText;
+    
+    // temporary until we get Alex's stuff - Remember!!
+    String quest = "Protect";
+
+    List<int> logSequenceStart = new List<int>();
+    List<int> logSequenceEnd = new List<int>();
 
     // Use this for initialization
     void Start() {
-
-       
-
         //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
         debugText = transform.GetChild(2).GetComponent<Text>();
         //debugText = gameObject.GetComponent<Text>();
         debugText.text = "";
-       
+
         foreach (TextAsset textFile in Resources.LoadAll("txts", typeof(TextAsset)))
         {
             sentences.Add(textFile);
@@ -54,10 +57,11 @@ public class TextGeneration : MonoBehaviour {
             shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i].text, 1);
         }
 
-
         initTextBags(NewBagInitializer);
 
-        // temporary place - Remember
+        CallTxtChooserStartQuest();
+
+        // temporary - Remember!!!!
         killString = "12" + " ";
         NumberTextUpdate(killString);
 
@@ -122,9 +126,7 @@ public class TextGeneration : MonoBehaviour {
     }
 
     public void initTextBags(bool[] NewBagInitializer)
-    {
-       
-
+    {     
         for (int x = 0; x < textSize; x++)
         {
             for(int y = 0; y < numFiles; y++)
@@ -136,6 +138,62 @@ public class TextGeneration : MonoBehaviour {
                 }
             }
         }
+    }
+    
+    public void CallTxtChooserStartQuest()
+    {
+        logSequenceStart = TxtChooserStartQuest(quest);
+        foreach (int seq in logSequenceStart)
+        {
+            TextGenerator(shuffleBags[seq]);
+
+        }
+    }
+
+    List<int> TxtChooserStartQuest(String quest)
+    {
+        List<int> sequence = new List<int>();
+        sequence.Add(0);
+
+        if (quest == "Protect")
+        {
+            sequence.Add(7);
+        }
+        else if (quest == "Kill")
+        {
+            sequence.Add(8);
+        }
+
+        sequence.Add(1);
+        sequence.Add(9);
+
+        return sequence;
+    }
+
+    //public void CallTxtChooserEndQuest()
+    //{
+    //    logSequenceEnd = TxtChooserEndQuest(quest);
+    //    foreach (int seq in logSequenceEnd)
+    //    {
+    //        TextGenerator(shuffleBags[seq]);
+
+    //    }
+    //}
+
+    //List<int> TxtChooserEndQuest(String quest)
+    //{
+    //    List<int> sequence = new List<int>();
+    //    sequence.Add(0);
+
+    //    sequence.Add(1);
+    //    sequence.Add(9);
+
+    //    return sequence;
+    //}
+
+    private int TranslateVector(int x, int y, int sideLength)
+    {
+        return x + (y * sideLength);
     }
 
     public void NumberTextUpdate(string tempString)
