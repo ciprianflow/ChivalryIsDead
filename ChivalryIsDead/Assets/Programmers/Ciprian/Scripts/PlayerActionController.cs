@@ -126,17 +126,21 @@ public class PlayerActionController : MonoBehaviour
             overreactAction.Overreact();
 
             //Player overreacted add reputation
-            if (lastMonsterAttacked != null && lastMonsterAttacked.GetType() != typeof(SuicideAI))
+            if (lastMonsterAttacked != null)
             {
-                pb.ChangeRepScore((int)-lastMonsterAttacked.GetBaseAttackDamage());
+                if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
+                {
+                    pb.ChangeRepScore((int)-lastMonsterAttacked.GetBaseAttackDamage());
+
+                }
+                else
+                {
+                    //suicide ai doesnt change reputation
+                    pb.ChangeRepScore(0);
+                }
+
                 pb.Invoke();
             }
-            else if (lastMonsterAttacked != null)
-            {
-                //suicide ai doesnt change reputation
-                pb.ChangeRepScore(0);
-            }
-
         }
         else
         {
@@ -172,6 +176,7 @@ public class PlayerActionController : MonoBehaviour
 
         //Player attacked add reputation according to monster base damage
         //suicideAI doesn't make damage to player
+        
         if (monster.GetType() !=  typeof(SuicideAI))
         {
             pb.ChangeRepScore((int) -monster.GetBaseAttackDamage());

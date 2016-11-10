@@ -76,6 +76,8 @@ public class SuicideAI : MonsterAI
 
         float range = explosionRange * multiplyer;
 
+        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+
         Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
         if (body)
             body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
@@ -83,8 +85,4 @@ public class SuicideAI : MonsterAI
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
     }
 
-    public override float GetBaseAttackDamage()
-    {
-        throw new NotImplementedException();
-    }
 }
