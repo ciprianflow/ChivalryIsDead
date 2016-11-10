@@ -60,7 +60,7 @@ public class HubDataManager : MonoBehaviour {
         hubData.AvailableQuests = new List<IQuest>();
 
         // TODO : New quest spawning system??
-        QuestGenerator QG = new QuestGenerator();
+        QuestGenerator QG = new QuestGenerator(TotalDays - DaysLeft, 80);
         QuestData QD = new QuestData();
         MultiQuest MQ = QG.GenerateMultiQuest(out QD);
         //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);

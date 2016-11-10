@@ -37,13 +37,10 @@ public class MapManager : MonoBehaviour {
 
     public void InitQuest()
     {
-        // Find a way to pass QuestData to description generation.
-        QuestData QD;
 
         if (QuestManager.currQuest == null)
         {
-            QuestGenerator QG = new QuestGenerator();
-            QuestManager.currQuest = (MultiQuest)QG.GenerateMultiQuest(out QD);
+            Debug.LogError("No current quest exists");
         }         
 
         List <IObjective> objectives = QuestManager.GetObjectives();
