@@ -16,7 +16,6 @@ public class GameMenu : MonoBehaviour {
     public GameObject endLetter;
     public GameObject introLetter;
 
-
     public GameObject sword;
     public GameObject swordBubble;
 
@@ -177,6 +176,16 @@ public class GameMenu : MonoBehaviour {
         endLetter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
     }
 
+    public void SkipOneBubble()
+    {
+        dialogSystem.SkipDialog();
+    }
+
+    public void SkipDialog()
+    {
+        dialogSystem.StopDialog();
+    }
+
     public void Princess()
     {
         princess.SetActive(true);
@@ -190,12 +199,12 @@ public class GameMenu : MonoBehaviour {
 
     void Test()
     {
-        dialogSystem.StartCoroutine("DialogSystem", 2);
+        //dialogSystem.StartCoroutine("DialogSystem", 2);
     }
 
     void Test1()
     {
-        dialogSystem.StartCoroutine("DialogSystem", 0);
+        StartCoroutine(dialogSystem.DialogSystem(0));
     }
 
     //Options

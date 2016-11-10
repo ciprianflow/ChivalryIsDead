@@ -212,6 +212,7 @@ public class MeleeAI : MonsterAI
             coll.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             Rigidbody r = coll.gameObject.GetComponent<Rigidbody>();
             r.drag = 0;
+            r.mass = 1;
             r.AddExplosionForce(chargeForce * (accelTimer / accelTime), coll.transform.position, 100f, 1);
         }
         else if (state == State.Charge)
