@@ -34,6 +34,10 @@ public class PlayerActionController : MonoBehaviour
     [Header("Scare values")]
     public float ScareRadius = 4f;
 
+    [Space]
+    public PlayerScript playerBase;
+    
+
     private float attackRange = 35f;
     private float attackRadius = 120f;
 
@@ -46,6 +50,7 @@ public class PlayerActionController : MonoBehaviour
     private OverreactAction overreactAction;
     private ScareAction scareAction;
 
+   
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
 

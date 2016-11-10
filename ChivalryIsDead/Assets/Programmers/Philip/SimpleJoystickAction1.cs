@@ -314,6 +314,7 @@ namespace CnControls
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
 
             if (SY > 0.2) {
+
                 t.text = "Attack";
                 t.color = new Color(1, 0, 0, 1);
                 playerScript.attack();

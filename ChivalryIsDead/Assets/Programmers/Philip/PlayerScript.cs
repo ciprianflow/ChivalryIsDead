@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class PlayerScript : MonoBehaviour {
     [Header("Variables")]
@@ -12,16 +14,30 @@ public class PlayerScript : MonoBehaviour {
     float worldX = 0;
     float worldY = 0;
     public bool attacking = false;
+    public bool taunting = false;
+    public bool scaring = false;
     Vector2 LastXY = new Vector2(0, 0);
 
     private bool isSlowingDown = false;
 
     private bool staticControls = true;
+    public float UpperWeight = 0;
     public float LowerWeight = 0;
+
+    Dictionary<String, int> AnimDic = new Dictionary<String, int>();
+
 
     void Awake()
     {
+
+        //Time.timeScale = 0.1f;
+        StaticData.player = this.transform;
+        AnimDic.Add("attacking", 1);
+        AnimDic.Add("taunting", 3);
+        AnimDic.Add("scaring", 5);
+
         StaticIngameData.player = this.transform;
+
     }
 
     public void move(float x, float y) {
@@ -141,28 +157,94 @@ public class PlayerScript : MonoBehaviour {
         }
 
 
+
         if (attacking)
         {
-            if (zVel == 0)
+            animate( ref attacking, "attacking");
+        }
+        if (taunting)
+        {
+            animate( ref taunting, "taunting");
+        }
+        if (scaring)
+        {
+            animate(ref scaring, "scaring");
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            taunt();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            scare();
+        }
+    }
+
+    public void animate(ref bool animState, String animName)
+    {
+        if (animName != "attacking" && anim.GetCurrentAnimatorStateInfo(AnimDic[animName]).normalizedTime > 0.8f)
+        {
+            if (UpperWeight > 0)
             {
-                if (LowerWeight < 1)
-                {
-                    LowerWeight += 0.05f;
-                    anim.SetLayerWeight(2, LowerWeight);
-                }
+                UpperWeight -= 0.05f;
+                anim.SetLayerWeight(AnimDic[animName], UpperWeight);
             }
-            else if (LowerWeight > 0)
+            if (LowerWeight > 0)
             {
                 LowerWeight -= 0.05f;
-                anim.SetLayerWeight(2, LowerWeight);
+                anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
             }
-
-
-
-
-
-
+            if(UpperWeight < 0 && LowerWeight < 0)
+            {
+                animState = false;
+            }
+            return;
         }
+        else if (anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit"))
+        {
+            if (UpperWeight > 0)
+            {
+                UpperWeight -= 0.025f;
+                anim.SetLayerWeight(AnimDic[animName], UpperWeight);
+            }
+            if (LowerWeight > 0)
+            {
+                LowerWeight -= 0.025f;
+                anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
+            }
+            if (UpperWeight < 0 && LowerWeight < 0)
+            {
+                animState = false;
+            }
+            return;
+        }
+        
+        if (zVel == 0)
+        {
+            if (LowerWeight < 1)
+            {
+                LowerWeight += 0.05f;
+                anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
+            }
+        }
+        else if (LowerWeight > 0)
+        {
+            LowerWeight -= 0.05f;
+            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
+        }
+
+        if (UpperWeight < 1)
+        {
+            UpperWeight += 0.1f;
+            anim.SetLayerWeight(AnimDic[animName], UpperWeight);
+        }
+        //else if (UpperWeight > 0)
+        //{
+        //    UpperWeight -= 0.1f;
+        //    anim.SetLayerWeight(layer-1, UpperWeight);
+        //}
+
+       
     }
 
     public void toggleControls() {
@@ -171,18 +253,26 @@ public class PlayerScript : MonoBehaviour {
 
     public void attack()
     {
+        anim.Play("Hero_Attack1", 2, 0);
+
 
         if (!attacking)
         {
             anim.Play("Attack Transition", 1, 0);
+            cancelAnim(ref taunting, "taunting");
+            cancelAnim(ref scaring, "scaring");
             attacking = true;
+            return;
         }
-        anim.Play("Hero_Attack1", 2, 0);
+
+
 
         AnimatorStateInfo ASI = anim.GetCurrentAnimatorStateInfo(1);
-        
+        //AnimatorStateInfo ASI = anim.GetNextAnimatorStateInfo(1);
+        Debug.Log(anim.GetCurrentAnimatorStateInfo(1).ToString());
+        Debug.Log(   anim.GetNextAnimatorStateInfo(1).ToString());
 
-        Debug.Log(ASI.normalizedTime / ASI.length);
+        //Debug.Log(ASI.normalizedTime / ASI.length);
 
         if (ASI.IsName("Attack1") || (ASI.IsName("Attack 1 exit tran") && (ASI.normalizedTime / ASI.length > 0.5f)))
         {
@@ -192,7 +282,36 @@ public class PlayerScript : MonoBehaviour {
         {
             anim.SetTrigger("Attack1");
         }
-        anim.SetLayerWeight(1, 1);
+    }
+
+    public void taunt()
+    {
+
+        //anim.Play("Taunt", 3, 0);
+        anim.SetTrigger("TauntTrig");
+        cancelAnim(ref attacking, "attacking");
+        cancelAnim(ref scaring, "scaring");
+        taunting = true;
+    }
+    public void scare()
+    {
+
+        //anim.Play("Scare", 5, 0);
+        anim.SetTrigger("ScareTrig");
+        cancelAnim(ref attacking, "attacking");
+        cancelAnim(ref taunting, "taunting");
+        scaring = true;
+
+    }
+
+    void cancelAnim(ref bool animState, String animName)
+    {
+        
+        UpperWeight = 0;
+        LowerWeight = 0;
+        animState = false;
+        anim.SetLayerWeight(AnimDic[animName], 0);
+        anim.SetLayerWeight(AnimDic[animName] + 1, 0);
     }
     //[Header("Variables")]
     //public float maxSpeed = 0.5f;
