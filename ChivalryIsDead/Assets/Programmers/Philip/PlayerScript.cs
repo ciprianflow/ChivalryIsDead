@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour {
     {
 
         //Time.timeScale = 0.1f;
-        StaticData.player = this.transform;
+        StaticIngameData.player = this.transform;
         AnimDic.Add("attacking", 1);
         AnimDic.Add("taunting", 3);
         AnimDic.Add("scaring", 5);
