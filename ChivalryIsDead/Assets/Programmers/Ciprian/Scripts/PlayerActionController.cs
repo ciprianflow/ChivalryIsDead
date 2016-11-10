@@ -128,8 +128,8 @@ public class PlayerActionController : MonoBehaviour
             {
                 if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
                 {
-                    pb.ChangeRepScore((int)-lastMonsterAttacked.GetBaseAttackDamage());
 
+                    pb.ChangeRepScore((int) - lastMonsterAttacked.GetBaseAttackDamage());
                 }
                 else
                 {
@@ -184,7 +184,7 @@ public class PlayerActionController : MonoBehaviour
             //suicide ai doesnt change reputation
             pb.ChangeRepScore(0);
         }
-        
+
         pb.Invoke();
 
         //save last monster attacked
@@ -197,6 +197,8 @@ public class PlayerActionController : MonoBehaviour
     {
         yield return new WaitForSeconds(AttackedDuration);
 
+        //wait for all attacks to submit change in reputation
+        //pb.Invoke();
         playerState = PlayerState.IDLE;
     }
 

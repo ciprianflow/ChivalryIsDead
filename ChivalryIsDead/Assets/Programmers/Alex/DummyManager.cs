@@ -74,7 +74,7 @@ public class DummyManager : MonoBehaviour
     public void ResetCombo()
     {
         combo = 0;
-        Debug.Log("Combo reset");
+
     }
     
     //cooldown
