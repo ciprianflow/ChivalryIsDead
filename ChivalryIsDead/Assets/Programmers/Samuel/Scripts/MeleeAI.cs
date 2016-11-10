@@ -13,7 +13,6 @@ public class MeleeAI : MonsterAI
 
     public float chargeForce = 250f;
 
-    public float attackDamage = 10f;
 
     private float accelTimer = 0;
     private float accelTime = 0.2f;
@@ -195,8 +194,4 @@ public class MeleeAI : MonsterAI
         }
     }
 
-    public override float GetBaseAttackDamage()
-    {
-        return attackDamage;
-    }
 }

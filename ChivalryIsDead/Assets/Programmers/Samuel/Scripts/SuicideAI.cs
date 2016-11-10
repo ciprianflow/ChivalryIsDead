@@ -83,8 +83,4 @@ public class SuicideAI : MonsterAI
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
     }
 
-    public override float GetBaseAttackDamage()
-    {
-        throw new NotImplementedException();
-    }
 }
