@@ -100,8 +100,7 @@ public class MapManager : MonoBehaviour {
 
     internal void CheckObjectives(IObjectiveTarget IObj)
     {
-
-        QuestManager.currQuest.CheckTarget(OM.GetObjectives());
+        QuestManager.currQuest.CheckTarget(IObj, OM.GetObjectives());
         if (QuestManager.currQuest.IsChecked)
         {
             Debug.LogWarning("Shits done!");
