@@ -155,11 +155,11 @@ public class QuestGenerator
     {
         MultiQuest MQ;
 
-        var questType = Random.Range(0, 2);
+        var questType = currentReputation > 60 ? QuestType.Protect : (QuestType)Random.Range(1, 3);
         switch (questType) {
-            case 0:
+            case QuestType.Protect:
                 MQ = GenerateMultiProtectQuest(out questData); break;
-            case 1:
+            case QuestType.Destroy:
                 MQ = GenerateMultiDestroyQuest(out questData); break;
             default:
                 throw new System.Exception("Random int out of switch range.");
