@@ -5,7 +5,7 @@ using UnityEngine;
 class AttackAction : MonoBehaviour
 {
 
-    public float AttackCooldown = 1f;
+    public float AttackCooldown = 0.3f;
     private float cooldownTimeStamp;
 
     private float attackRange;
@@ -53,6 +53,11 @@ class AttackAction : MonoBehaviour
         }
     }
 
+    void Awake()
+    {
+        playerBase = GetComponent<PlayerScript>();
+    }
+
     public void NormalAttack(float radius)
     {
 
@@ -64,13 +69,15 @@ class AttackAction : MonoBehaviour
     //receives enemies to attack
     public void ConeAttack(List<Collider> colliders)
     {
-        /*
-        if(checkCooldown())
+        Debug.Log("DAWEUHDAWUIOH");
+
+
+        if (!checkCooldown())
         {
             return;
         }
-        */
 
+        Debug.Log("DAWEUHDAWUIOH");
         playerBase.attack();
 
         cooldownTimeStamp = Time.time + AttackCooldown;
