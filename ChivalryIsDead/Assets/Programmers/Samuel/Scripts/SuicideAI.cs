@@ -82,4 +82,5 @@ public class SuicideAI : MonsterAI
         Destroy(this.gameObject);
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
     }
+
 }
