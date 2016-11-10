@@ -80,7 +80,11 @@ public class MapManager : MonoBehaviour {
             return;
         }
 
-        OM.SpawnMonsters(ID, GetSpawnPoint(ID), QuestTarget);
+        Transform target = QuestTarget;
+        if (target == null)
+            target = StaticData.player;
+
+        OM.SpawnMonsters(ID, GetSpawnPoint(ID), target);
 
     }
 
