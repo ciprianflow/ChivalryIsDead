@@ -43,15 +43,17 @@ public class HubDataManager : MonoBehaviour {
     public int MaximumReputation = 2000;
     public int TotalDays = 14;
 
-    public Text QueueText;
     public GameObject ContentPane;
-    public Text QuestTitle;
+    public GameObject QuestButton;
     public Text RepText;
+    public Text QueueText;
+    public Text DaysLeftText;
 
     void Start () {
         UpdateQuests();
         QueueText.text = currentHubData.QueueLength.ToString();
         RepText.text = StaticData.Reputation.ToString();
+        DaysLeftText.text = StaticData.daysLeft.ToString();
         CreateQuestUIElements();
 	}
 	
@@ -65,6 +67,12 @@ public class HubDataManager : MonoBehaviour {
         QuestGenerator QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
         QuestData QD = new QuestData();
         MultiQuest MQ = QG.GenerateMultiQuest(out QD);
+        //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
+        hubData.AvailableQuests.Add(MQ);
+
+        QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
+        QD = new QuestData();
+        MQ = QG.GenerateMultiQuest(out QD);
         //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
         hubData.AvailableQuests.Add(MQ);
 
@@ -103,7 +111,7 @@ public class HubDataManager : MonoBehaviour {
     private void ClearQuestUIElements()
     {
         foreach (Transform gObj in ContentPane.GetComponentsInChildren<Transform>()) {
-            if (gObj.name != ContentPane.name && gObj.name != QuestTitle.name)
+            if (gObj.name != ContentPane.name && gObj.name != QuestButton.name)
                 GameObject.Destroy(gObj.gameObject);
         }
     }
@@ -111,24 +119,30 @@ public class HubDataManager : MonoBehaviour {
     // TODO: Dummy method, shouldn't make it into the final game. Update to generic or UI specific alternative.
     private void CreateQuestUIElements()
     {
-        var curQIdx = 0;
-        foreach (IObjective o in AvailableQuests) {
-            var oAsQuest = o as BaseQuest;
-            Text newQuestText = Instantiate<Text>(QuestTitle);
-            newQuestText.rectTransform.SetParent(ContentPane.transform);
-            newQuestText.rectTransform.anchoredPosition = new Vector2(95, 0);
-            newQuestText.text = oAsQuest.Description.Title;
-            newQuestText.transform.localPosition += new Vector3(0, -28 * curQIdx++, 0);
-            newQuestText.gameObject.SetActive(true);
+        for(int i = 0; i < AvailableQuests.Count; i++) { 
+        //foreach (IObjective o in AvailableQuests) {
+            BaseQuest oAsQuest = (BaseQuest)AvailableQuests[i];
+            GameObject QuestButtonObj = Instantiate(QuestButton);
+            QuestButtonObj.transform.SetParent(ContentPane.transform);
+
+            Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
+            // TODO : Name doesnt load from quest description
+            //newQuestText.text = oAsQuest.Description.Title;
+            newQuestText.text = "Quest SOMETINGSOMTEGINF";
+            Debug.Log("Quest name " + newQuestText.text);
+
+            Button b = newQuestText.transform.parent.GetComponent<Button>();
+            int newI = i;
+            b.onClick.AddListener(() => SelectQuest(newI));
+
         }
-        var contentTransform = ContentPane.transform as RectTransform;
-        contentTransform.sizeDelta = new Vector2(contentTransform.sizeDelta.x, 29 * AvailableQuests.Count);
     }
 
     // TODO: Semi-Dummy, completes a quest. Should be refactored to enter "Quest Mode".
-    public void SelectQuest(Text questName)
+    public void SelectQuest(int index)
     {
-        var selectedQ = AvailableQuests.FirstOrDefault(q => q.Description.Title == questName.text);
+        Debug.Log(index);
+        var selectedQ = AvailableQuests[index];
         if (selectedQ != null) { 
             Debug.Log("Found quest with title '" + selectedQ.Description.Title + "'");
             //CompleteQuest(selectedQ);
