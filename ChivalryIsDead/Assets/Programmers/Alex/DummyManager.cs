@@ -29,6 +29,7 @@ public class DummyManager : MonoBehaviour
 
     void Awake()
     {
+        StaticIngameData.dummyManager = this;
         DummyManager.dummyManager = this;
     }
 
@@ -90,5 +91,14 @@ public class DummyManager : MonoBehaviour
     public void resetCooldown()
     {
         comboTimeStamp = Time.time + ComboCooldown;
+    }
+
+    internal float GetGlobalScore()
+    {
+
+        float repGain = ReputationHandler.Score;
+        float repGainDivision = 50;
+        return repGain  / repGainDivision;
+
     }
 }

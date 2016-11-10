@@ -56,7 +56,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
         if (healthScript.takeDamage(dmg))
         {   
             gameObject.SetActive(false);
-            StaticData.mapManager.CheckObjectives(this);
+            StaticIngameData.mapManager.CheckObjectives(this);
         }
 
         //add reputation

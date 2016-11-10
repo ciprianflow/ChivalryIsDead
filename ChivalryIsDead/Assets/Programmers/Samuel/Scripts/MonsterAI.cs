@@ -69,7 +69,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         Debug.DrawLine(transform.position, targetPoint);
         if (targetObject != null && !targetObject.gameObject.activeSelf)
-            targetObject = StaticData.player;
+            targetObject = StaticIngameData.player;
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
@@ -267,7 +267,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (healthScript.takeDamage((int)damage))
         {
             gameObject.SetActive(false);
-            StaticData.mapManager.CheckObjectives(this);
+            StaticIngameData.mapManager.CheckObjectives(this);
         }
     }
 

@@ -46,10 +46,12 @@ public class HubDataManager : MonoBehaviour {
     public Text QueueText;
     public GameObject ContentPane;
     public Text QuestTitle;
+    public Text RepText;
 
     void Start () {
         UpdateQuests();
         QueueText.text = currentHubData.QueueLength.ToString();
+        RepText.text = StaticData.Reputation.ToString();
         CreateQuestUIElements();
 	}
 	
@@ -60,7 +62,7 @@ public class HubDataManager : MonoBehaviour {
         hubData.AvailableQuests = new List<IQuest>();
 
         // TODO : New quest spawning system??
-        QuestGenerator QG = new QuestGenerator(TotalDays - DaysLeft, 80);
+        QuestGenerator QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
         QuestData QD = new QuestData();
         MultiQuest MQ = QG.GenerateMultiQuest(out QD);
         //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
@@ -140,7 +142,7 @@ public class HubDataManager : MonoBehaviour {
     private void LoadQuest(IQuest quest)
     {
 
-        QuestManager.currQuest = (MultiQuest)quest;
+        StaticData.currQuest = (MultiQuest)quest;
         UnityEngine.SceneManagement.SceneManager.LoadScene("SandraCopy");
 
     }
@@ -160,6 +162,6 @@ public class HubDataManager : MonoBehaviour {
         ClearQuestUIElements();
         PushToHubData(repChange);
         CreateQuestUIElements();
-        QueueText.text = currentHubData.QueueLength.ToString();
+        QueueText.text = AvailableQuests.Count.ToString();
     }
 }

@@ -143,7 +143,7 @@ public class MeleeAI : MonsterAI
         if (patrolling)
         {
             //Point that the melee charges towards, checks for rotation is needed
-            targetPoint = StaticData.player.transform.position;
+            targetPoint = StaticIngameData.player.transform.position;
             rotated = false;
             accelTimer = 0;
             StopNavMeshAgent();
@@ -187,7 +187,7 @@ public class MeleeAI : MonsterAI
     {
         float walkRadius = UnityEngine.Random.Range(8, 16);
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
-        randomDirection += StaticData.player.transform.position;
+        randomDirection += StaticIngameData.player.transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
         if (hit.hit)

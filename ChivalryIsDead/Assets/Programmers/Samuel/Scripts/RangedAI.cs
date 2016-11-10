@@ -137,11 +137,9 @@ public class RangedAI : MonsterAI {
 
     public override void Scared()
     {
-        throw new NotImplementedException();
     }
 
     public override void Scare()
     {
-        throw new NotImplementedException();
     }
 }

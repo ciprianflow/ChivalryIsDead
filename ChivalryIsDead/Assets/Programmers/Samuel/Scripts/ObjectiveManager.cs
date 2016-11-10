@@ -37,7 +37,7 @@ public class ObjectiveManager {
         }
         else
         {
-            Monster.targetObject = StaticData.player;
+            Monster.targetObject = StaticIngameData.player;
         }
         Monster.InitMonster();
     }
