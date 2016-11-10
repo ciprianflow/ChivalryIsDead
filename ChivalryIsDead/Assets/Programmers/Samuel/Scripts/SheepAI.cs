@@ -46,4 +46,9 @@ public class SheepAI : MonsterAI {
 
     public override void Scare() {}
 
+    //sheep doesnt attack
+    public override float GetBaseAttackDamage()
+    {
+        throw new NotImplementedException();
+    }
 }
