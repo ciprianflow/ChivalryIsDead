@@ -246,6 +246,9 @@ public class DialogObject : MonoBehaviour {
     public void StopDialog()
     {
         StopCoroutine("DialogSystem");
+        UI.GetComponent<GameMenu>().sword.GetComponent<Animator>().SetTrigger("Hide");
+        UI.GetComponent<GameMenu>().princess.GetComponent<Animator>().SetTrigger("Hide");
+        StartCoroutine(Hide());
 
         if (GameObject.FindGameObjectWithTag("PlayerBubble"))
         {
@@ -268,7 +271,7 @@ public class DialogObject : MonoBehaviour {
         }
 
 
-        if (GameObject.FindGameObjectWithTag("EnemyBubble"))
+        if (GameObject.FindGameObjectWithTag("EnemyBubble") && GameObject.FindGameObjectWithTag("Enemy") != null)
         {
             foreach (GameObject arrayEnemyBubble in enemyBubble)
             {
