@@ -146,4 +146,9 @@ public class RangedAI : MonsterAI {
     {
         throw new NotImplementedException();
     }
+
+    public override float GetBaseAttackDamage()
+    {
+        return attackDamage;
+    }
 }
