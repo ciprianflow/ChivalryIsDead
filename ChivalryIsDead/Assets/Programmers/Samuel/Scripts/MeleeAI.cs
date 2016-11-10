@@ -13,12 +13,12 @@ public class MeleeAI : MonsterAI
 
     public float chargeForce = 250f;
 
-    public float attackDamage = 10f;
-
     private float accelTimer = 0;
     private float accelTime = 0.2f;
 
     private float normSpeed;
+
+    private bool rotated = false;
 
     public override void Init()
     {
@@ -80,6 +80,10 @@ public class MeleeAI : MonsterAI
     {
         if (patrolling)
         {
+            if(!rotated)
+                if (!chargeRotate())
+                    return;
+
             accelTimer += Time.deltaTime;
             float accel = accelTimer / accelTime;
             transform.Translate(Vector3.forward * chargeSpeedMultiplier * accel * Time.deltaTime);
@@ -88,6 +92,24 @@ public class MeleeAI : MonsterAI
         {
             UpdateNavMeshPathDelayed();
         }
+    }
+
+    bool chargeRotate()
+    {
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPoint;
+        v.y = 0;
+        v2.y = 0;
+        v3.y = 0;
+        Debug.Log(Vector3.Angle(v, v3 - v2));
+        if (Vector3.Angle(v, v3 - v2) > 1f)
+        {
+            rotateTowardsTarget();
+            return false;
+        }
+        rotated = true;
+        return true;
     }
 
     public override void Idle()
@@ -120,6 +142,9 @@ public class MeleeAI : MonsterAI
 
         if (patrolling)
         {
+            //Point that the melee charges towards, checks for rotation is needed
+            targetPoint = StaticIngameData.player.transform.position;
+            rotated = false;
             accelTimer = 0;
             StopNavMeshAgent();
         }
@@ -162,7 +187,7 @@ public class MeleeAI : MonsterAI
     {
         float walkRadius = UnityEngine.Random.Range(8, 16);
         Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
-        randomDirection += StaticData.player.transform.position;
+        randomDirection += StaticIngameData.player.transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
         if (hit.hit)

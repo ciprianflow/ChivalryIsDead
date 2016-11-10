@@ -46,10 +46,12 @@ public class HubDataManager : MonoBehaviour {
     public Text QueueText;
     public GameObject ContentPane;
     public Text QuestTitle;
+    public Text RepText;
 
     void Start () {
         UpdateQuests();
         QueueText.text = currentHubData.QueueLength.ToString();
+        RepText.text = StaticData.Reputation.ToString();
         CreateQuestUIElements();
 	}
 	
@@ -57,7 +59,15 @@ public class HubDataManager : MonoBehaviour {
     public void UpdateQuests()
     {
         var hubData = LoadHubData();
-        hubData.AvailableQuests = DummyQuestGenerator.GenerateMultipleQuests(hubData.QueueLength);
+        hubData.AvailableQuests = new List<IQuest>();
+
+        // TODO : New quest spawning system??
+        QuestGenerator QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
+        QuestData QD = new QuestData();
+        MultiQuest MQ = QG.GenerateMultiQuest(out QD);
+        //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
+        hubData.AvailableQuests.Add(MQ);
+
         //AssetDatabase.SaveAssets();
         currentHubData = hubData;
     }
@@ -121,12 +131,21 @@ public class HubDataManager : MonoBehaviour {
         var selectedQ = AvailableQuests.FirstOrDefault(q => q.Description.Title == questName.text);
         if (selectedQ != null) { 
             Debug.Log("Found quest with title '" + selectedQ.Description.Title + "'");
-            CompleteQuest(selectedQ);
+            //CompleteQuest(selectedQ);
+            LoadQuest(selectedQ);
         }
         else
             Debug.LogWarning("Didn't find selected quest!");
     }
     #endregion
+
+    private void LoadQuest(IQuest quest)
+    {
+
+        StaticData.currQuest = (MultiQuest)quest;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("SandraCopy");
+
+    }
 
     // TODO: Needs refactoring; Reputation change behaviour not specified properly.
     private void CompleteQuest(IQuest quest)
@@ -143,6 +162,6 @@ public class HubDataManager : MonoBehaviour {
         ClearQuestUIElements();
         PushToHubData(repChange);
         CreateQuestUIElements();
-        QueueText.text = currentHubData.QueueLength.ToString();
+        QueueText.text = AvailableQuests.Count.ToString();
     }
 }

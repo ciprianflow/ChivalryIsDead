@@ -14,7 +14,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public float Health = 2f;
 
     [Header("Attack Values")]
-    public float attackDamage = 5f;
+    public float attackDamage = 2f;
     public float attackTime = 3f;
     public float attackRange = 5f;
 
@@ -69,7 +69,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         Debug.DrawLine(transform.position, targetPoint);
         if (targetObject != null && !targetObject.gameObject.activeSelf)
-            targetObject = StaticData.player;
+            targetObject = StaticIngameData.player;
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
@@ -267,7 +267,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (healthScript.takeDamage((int)damage))
         {
             gameObject.SetActive(false);
-            StaticData.mapManager.CheckObjectives(this);
+            StaticIngameData.mapManager.CheckObjectives(this);
         }
     }
 

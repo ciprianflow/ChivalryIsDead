@@ -9,22 +9,27 @@ public class DummyManager : MonoBehaviour
 {
     public static DummyManager dummyManager;
 
-    public int Combo = 1;
+    [Header("Combo values")]
+
     public float ComboCooldown = 10f;
+    public int[] ComboMultiplier;
 
-    public float comboTimeStamp = 0;
-
-    
-    public ScoreHandler ReputationHandler;
 
     public Text ComboHandler;
 
-
+    public ScoreHandler ReputationHandler;
+    
     public ScoreHandler SuspicionHandler;
     public ScoreHandler DaysRemaining;
 
+    private float comboTimeStamp = 0;
+
+    private int combo = 0;
+
+
     void Awake()
     {
+        StaticIngameData.dummyManager = this;
         DummyManager.dummyManager = this;
     }
 
@@ -34,14 +39,45 @@ public class DummyManager : MonoBehaviour
         //reset combo on cooldown
         if (getCoolDown())
         {
-            Combo = 1;  
+            ResetCombo();
         }
 
-        ComboHandler.text = Combo.ToString();
+        ComboHandler.text = combo.ToString();
     }
 
+    public int GetComboMultiplier(int score)
+    {
+        //combo multiplier
+        return score * (ComboMultiplier[combo] / 100 + 1);
+    }
 
+    public void IncreaseCombo()
+    {
+        if (combo < ComboMultiplier.Length - 1)
+        {
+            combo++;
+            Debug.Log("Combo increased: " + combo);
+        }
+        
+    }
 
+    public void DecreaseCombo()
+    {
+        if ( combo == 0)
+        {
+            return;
+        }
+
+        combo--;
+        Debug.Log("Combo decreased " + combo);
+    }
+
+    public void ResetCombo()
+    {
+        combo = 0;
+
+    }
+    
     //cooldown
     private bool getCoolDown()
     {
@@ -50,5 +86,19 @@ public class DummyManager : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public void resetCooldown()
+    {
+        comboTimeStamp = Time.time + ComboCooldown;
+    }
+
+    internal float GetGlobalScore()
+    {
+
+        float repGain = ReputationHandler.Score;
+        float repGainDivision = 50;
+        return repGain  / repGainDivision;
+
     }
 }

@@ -29,11 +29,15 @@ public class PlayerScript : MonoBehaviour {
 
     void Awake()
     {
+
         //Time.timeScale = 0.1f;
         StaticData.player = this.transform;
         AnimDic.Add("attacking", 1);
         AnimDic.Add("taunting", 3);
         AnimDic.Add("scaring", 5);
+
+        StaticIngameData.player = this.transform;
+
     }
 
     public void move(float x, float y) {

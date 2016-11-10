@@ -8,12 +8,16 @@ class PlayerBehaviour : ScorePublisher
     public int ScoreChange { get; set; }
     public string ScoreHandle { get; set; }
 
+    private DummyManager dummyManager;
+
     public PlayerBehaviour(string handle)
     {
+        dummyManager = DummyManager.dummyManager;
+
         switch (handle)
         {
             case "rep":
-                DummyManager.dummyManager.ReputationHandler.Subscribe(this); break;
+                dummyManager.ReputationHandler.Subscribe(this); break;
             case "susp":
                 Debug.Log("NOT SUPPORTED"); break;
             case "days":
@@ -27,30 +31,28 @@ class PlayerBehaviour : ScorePublisher
     {
         if (score < 0)
         {
-            ScoreChange = score * DummyManager.dummyManager.Combo;
-            DummyManager.dummyManager.Combo++;
-            Debug.Log("Combo increased: " + DummyManager.dummyManager.Combo);
-
-
-            DummyManager.dummyManager.comboTimeStamp = Time.time + DummyManager.dummyManager.ComboCooldown;
+            ScoreChange = dummyManager.GetComboMultiplier(score);
+            
+            //increase combo
+            dummyManager.IncreaseCombo();
+            //reset cooldown
+            dummyManager.resetCooldown();
         }
         else
-        {
-            ScoreChange = score;
+        {      
             Reset();
+            ScoreChange = dummyManager.GetComboMultiplier(score);
         }
     }
-
     
     //reset combo
     public void Reset()
     {
-        DummyManager.dummyManager.Combo = 1;
+        dummyManager.ResetCombo();
     }
 
     public void Invoke()
     {
-
         OnChangeScoreEvent(new ScoreEventArgs(ScoreChange));
     }
 
