@@ -5,9 +5,14 @@ using UnityEngine;
 class AttackAction : MonoBehaviour
 {
 
+    public float AttackCooldown = 1f;
+    private float cooldownTimeStamp;
+
     private float attackRange;
     private float attackAngle;
     private float attackDamage;
+
+    private PlayerScript playerBase;
 
     public float AttackAngle
     {
@@ -59,7 +64,16 @@ class AttackAction : MonoBehaviour
     //receives enemies to attack
     public void ConeAttack(List<Collider> colliders)
     {
-        //Debug.Log("ENEMIES INSIDE: " + colliders.Count);
+        /*
+        if(checkCooldown())
+        {
+            return;
+        }
+        */
+
+        playerBase.attack();
+
+        cooldownTimeStamp = Time.time + AttackCooldown;
 
         foreach (Collider collider in colliders)
         {
@@ -91,5 +105,26 @@ class AttackAction : MonoBehaviour
         }
 
         return inRangeColliders;
+    }
+
+    private bool checkCooldown()
+    {
+
+        if (!getCoolDown())
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    //cooldown
+    private bool getCoolDown()
+    {
+        if (cooldownTimeStamp >= Time.time)
+        {
+            return false;
+        }
+        return true;
     }
 }

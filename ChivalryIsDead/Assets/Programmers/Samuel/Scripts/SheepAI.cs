@@ -14,10 +14,7 @@ public class SheepAI : MonsterAI {
         }
     }
 
-    public override void Init()
-    {
-        Debug.Log("NOthing in Sheep Init");
-    }
+    public override void Init() { }
 
     public override void KillThis()
     {
@@ -32,7 +29,10 @@ public class SheepAI : MonsterAI {
             MoveToIdle();
     }
 
-    public override void Taunt() { }
+    public override void Taunt()
+    {
+        ToMove();
+    }
 
     public void MoveToIdle()
     {
@@ -44,6 +44,8 @@ public class SheepAI : MonsterAI {
 
     public override void Scared() {}
 
-    public override void Scare() {}
-
+    public override void Scare()
+    {
+        ToIdle();
+    }
 }

@@ -27,7 +27,6 @@ public class SuicideAI : MonsterAI
     {
 
         Debug.Log(transform.name + " : Has died");
-        this.enabled = false;
         Explode();
 
     }
@@ -76,15 +75,14 @@ public class SuicideAI : MonsterAI
 
         float range = explosionRange * multiplyer;
 
+        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+
         Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
         if (body)
             body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
-        Destroy(this.gameObject);
+
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
+        Destroy(this.gameObject);
     }
 
-    public override float GetBaseAttackDamage()
-    {
-        throw new NotImplementedException();
-    }
 }
