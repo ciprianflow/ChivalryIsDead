@@ -317,7 +317,6 @@ namespace CnControls
 
                 t.text = "Attack";
                 t.color = new Color(1, 0, 0, 1);
-                playerScript.attack();
                 Vibration.Vibrate(50);
 
                 redButtonPressed();
@@ -329,7 +328,7 @@ namespace CnControls
                 t.text = "Taunt";
                 t.color = new Color(0, 0, 1, 1);
                 Vibration.Vibrate(50);
-
+                playerScript.taunt();
                 blueButtonPressed();
             }
             else {

@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour {
     {
 
         //Time.timeScale = 0.1f;
-        StaticIngameData.player = this.transform;
+
         AnimDic.Add("attacking", 1);
         AnimDic.Add("taunting", 3);
         AnimDic.Add("scaring", 5);
@@ -200,7 +200,7 @@ public class PlayerScript : MonoBehaviour {
             }
             return;
         }
-        else if (anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit"))
+        else if (animName == "attacking" && anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit"))
         {
             if (UpperWeight > 0)
             {

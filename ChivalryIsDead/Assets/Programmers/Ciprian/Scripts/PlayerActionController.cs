@@ -33,9 +33,6 @@ public class PlayerActionController : MonoBehaviour
 
     [Header("Scare values")]
     public float ScareRadius = 4f;
-
-    [Space]
-    public PlayerScript playerBase;
     
 
     private float attackRange = 35f;
@@ -160,14 +157,14 @@ public class PlayerActionController : MonoBehaviour
         //attackAction.NormalAttack(TauntRadius, this.transform);
         //if no enemies in range SCARE
         List<Collider> enemiesInRange = attackAction.GetConeRange();
-        if (enemiesInRange.Count > 0)
+        //if (enemiesInRange.Count > 0)
         {
             attackAction.ConeAttack(enemiesInRange);
         }
-        else
-        {
-            scareAction.Scare(ScareRadius);
-        }
+        //else
+        //{
+        //    scareAction.Scare(ScareRadius);
+        //}
     }
 
     public void PlayerAttacked(MonsterAI monster)

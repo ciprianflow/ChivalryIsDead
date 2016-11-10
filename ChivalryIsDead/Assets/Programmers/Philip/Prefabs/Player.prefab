@@ -4779,7 +4779,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013612086222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.68, y: 0.844, z: 1.84}
+  m_LocalPosition: {x: 6.68, y: 0.66, z: 1.84}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -8273,7 +8273,6 @@ MonoBehaviour:
   AttackedDuration: 1.5
   OverreactCooldown: 2.5
   ScareRadius: 4
-  playerBase: {fileID: 114000013840228130}
 --- !u!114 &114000013840228130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8292,6 +8291,9 @@ MonoBehaviour:
   speedDec: 0.03
   anim: {fileID: 95000013070685046}
   attacking: 0
+  taunting: 0
+  scaring: 0
+  UpperWeight: 0
   LowerWeight: 0
 --- !u!137 &137000010650576000
 SkinnedMeshRenderer:
