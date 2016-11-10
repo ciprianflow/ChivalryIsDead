@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AreaScript))]
 public class MapManager : MonoBehaviour {
@@ -22,7 +23,7 @@ public class MapManager : MonoBehaviour {
     {
         areas = transform.GetComponent<AreaScript>();
         OM = new ObjectiveManager();
-        StaticData.mapManager = this;
+        StaticIngameData.mapManager = this;
 
         //This functions gets all spawn areas in the map in a dictionary sorted based on monster ID
         sortedAreas = areas.GetSortedAreas();
@@ -37,16 +38,13 @@ public class MapManager : MonoBehaviour {
 
     public void InitQuest()
     {
-        // Find a way to pass QuestData to description generation.
-        QuestData QD;
 
-        if (QuestManager.currQuest == null)
+        if (StaticData.currQuest == null)
         {
-            QuestGenerator QG = new QuestGenerator();
-            QuestManager.currQuest = (MultiQuest)QG.GenerateMultiQuest(out QD);
+            Debug.LogError("No current quest exists");
         }         
 
-        List <IObjective> objectives = QuestManager.GetObjectives();
+        List <IObjective> objectives = StaticData.GetObjectives();
 
         for(int i = 0; i < objectives.Count; i++)
         {
@@ -73,14 +71,18 @@ public class MapManager : MonoBehaviour {
         if (ID == 0) return;
 
         //NEED TO CHANGE THIS APROACH
-        if (ID == 21)
+        if (ID == 22)
         {
             OM.GetObjectives().Add(QuestTarget.GetComponent<QuestObject>());
             QuestTarget.gameObject.SetActive(true);
             return;
         }
 
-        OM.SpawnMonsters(ID, GetSpawnPoint(ID), QuestTarget);
+        Transform target = QuestTarget;
+        if (target == null)
+            target = StaticIngameData.player;
+
+        OM.SpawnMonsters(ID, GetSpawnPoint(ID), target);
 
     }
 
@@ -100,11 +102,25 @@ public class MapManager : MonoBehaviour {
 
     internal void CheckObjectives(IObjectiveTarget IObj)
     {
-        QuestManager.currQuest.CheckTarget(IObj, OM.GetObjectives());
-        if (QuestManager.currQuest.IsChecked)
+        StaticData.currQuest.CheckTarget(IObj, OM.GetObjectives());
+        if (StaticData.currQuest.IsChecked)
         {
             Debug.LogWarning("Shits done!");
+            EndQuest();
         }
 
+    }
+
+    private void EndQuest()
+    {
+        //SET THE DAYS LEFT
+        StaticData.daysLeft--;
+
+        //CALC SCORE
+        float localRepGain = StaticIngameData.dummyManager.GetGlobalScore();
+        StaticData.Reputation += localRepGain;
+
+        //Load Quest Hub Manager
+        SceneManager.LoadScene("ProtoHubWorld 1");
     }
 }

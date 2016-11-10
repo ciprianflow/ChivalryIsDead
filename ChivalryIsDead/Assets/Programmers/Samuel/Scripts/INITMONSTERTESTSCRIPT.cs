@@ -14,6 +14,6 @@ public class INITMONSTERTESTSCRIPT : MonoBehaviour {
     {
         MonsterAI m = transform.GetComponent<MonsterAI>();
 
-        m.targetObject = StaticData.player;
+        m.targetObject = StaticIngameData.player;
     }
 }

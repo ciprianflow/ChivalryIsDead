@@ -13,7 +13,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     {
         timer += Time.deltaTime;
         if (timer >= maxTime)
-            StaticData.mapManager.CheckObjectives(this);
+            StaticIngameData.mapManager.CheckObjectives(this);
     }
 
     public int ID
