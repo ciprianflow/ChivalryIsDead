@@ -194,9 +194,4 @@ public class MeleeAI : MonsterAI
             ChargeToAttack();
         }
     }
-
-    public override float GetBaseAttackDamage()
-    {
-        return attackDamage;
-    }
 }
