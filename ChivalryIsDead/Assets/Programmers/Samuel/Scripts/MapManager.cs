@@ -10,6 +10,8 @@ public class MapManager : MonoBehaviour {
 
     Transform QuestTarget;
 
+    Dictionary<int, List<Rect>> sortedAreas;
+
     internal void SetQuestObject(Transform transform)
     {
         QuestTarget = transform;
@@ -22,20 +24,26 @@ public class MapManager : MonoBehaviour {
         OM = new ObjectiveManager();
         StaticData.mapManager = this;
 
+        //This functions gets all spawn areas in the map in a dictionary sorted based on monster ID
+        sortedAreas = areas.GetSortedAreas();
+
     }
 
     void Start()
     {
-        OM.LoadAllMonsters();
+        OM.LoadAllObjectives();
         InitQuest();
     }
 
     public void InitQuest()
     {
+        // Find a way to pass QuestData to description generation.
+        QuestData QD;
+
         if (QuestManager.currQuest == null)
         {
             QuestGenerator QG = new QuestGenerator();
-            QuestManager.currQuest = (MultiQuest)QG.GenerateMultiQuest();
+            QuestManager.currQuest = (MultiQuest)QG.GenerateMultiQuest(out QD);
         }         
 
         List <IObjective> objectives = QuestManager.GetObjectives();
@@ -72,7 +80,22 @@ public class MapManager : MonoBehaviour {
             return;
         }
 
-        OM.SpawnMonsters(ID, Vector3.zero, QuestTarget);
+        OM.SpawnMonsters(ID, GetSpawnPoint(ID), QuestTarget);
+
+    }
+
+    Vector3 GetSpawnPoint(int ID)
+    {
+        if (sortedAreas.ContainsKey(ID) && sortedAreas[ID].Count > 0)
+        {
+            int index = (int)UnityEngine.Random.Range(0, sortedAreas[ID].Count);
+            Debug.Log(sortedAreas[ID].Count);
+            return areas.GetRandomPointOnRect(sortedAreas[ID][index]);
+        }
+        else
+
+        Debug.Log("There does not seem to be an area for monster : " + ((monsterType)ID).ToString());
+        return Vector3.zero;
     }
 
     internal void CheckObjectives(IObjectiveTarget IObj)
@@ -83,13 +106,6 @@ public class MapManager : MonoBehaviour {
         {
             Debug.LogWarning("Shits done!");
         }
-        //foreach(IObjective iO in QuestManager.currQuest.Objectives)
-        //{
-        //    if (!iO.IsChecked && iO.CheckTarget(IObj))
-        //    {
-        //        return;
-        //    }
-        //}
 
     }
 }

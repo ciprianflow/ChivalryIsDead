@@ -173,7 +173,8 @@ public class GameMenu : MonoBehaviour {
     public void LetterUpdate(GameObject letter)
     {
         letter.GetComponent<TextGeneration>().ClearText();
-        letter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
+        introLetter.GetComponent<TextGeneration>().CallTxtChooserStartQuest();
+        endLetter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
     }
 
     public void Princess()

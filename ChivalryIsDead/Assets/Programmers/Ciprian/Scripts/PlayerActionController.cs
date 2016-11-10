@@ -110,6 +110,9 @@ public class PlayerActionController : MonoBehaviour
 
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
+
+        pb.Reset();
+        
     }
 
     /// <summary>
@@ -123,13 +126,21 @@ public class PlayerActionController : MonoBehaviour
             overreactAction.Overreact();
 
             //Player overreacted add reputation
-            Debug.Log(lastMonsterAttacked);
-            if (lastMonsterAttacked != null && lastMonsterAttacked.GetType() != typeof(SuicideAI))
+            if (lastMonsterAttacked != null)
             {
-                pb.ScoreChange = (int) -lastMonsterAttacked.GetBaseAttackDamage();
+                if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
+                {
+                    pb.ChangeRepScore((int)-lastMonsterAttacked.GetBaseAttackDamage());
+
+                }
+                else
+                {
+                    //suicide ai doesnt change reputation
+                    pb.ChangeRepScore(0);
+                }
+
                 pb.Invoke();
             }
-
         }
         else
         {
@@ -165,10 +176,15 @@ public class PlayerActionController : MonoBehaviour
 
         //Player attacked add reputation according to monster base damage
         //suicideAI doesn't make damage to player
+        
         if (monster.GetType() !=  typeof(SuicideAI))
         {
-            pb.ScoreChange = (int) -monster.GetBaseAttackDamage();
-            
+            pb.ChangeRepScore((int) -monster.GetBaseAttackDamage());
+        }
+        else
+        {
+            //suicide ai doesnt change reputation
+            pb.ChangeRepScore(0);
         }
         
         pb.Invoke();
