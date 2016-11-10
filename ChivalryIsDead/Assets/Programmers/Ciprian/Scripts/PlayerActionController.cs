@@ -123,10 +123,8 @@ public class PlayerActionController : MonoBehaviour
         // if attacked the player can overreact
         if (playerState == PlayerState.HIT)
         {
-            overreactAction.Overreact();
-
             //Player overreacted add reputation
-            if (lastMonsterAttacked != null)
+            if (overreactAction.Overreact() && lastMonsterAttacked != null)
             {
                 if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
                 {
