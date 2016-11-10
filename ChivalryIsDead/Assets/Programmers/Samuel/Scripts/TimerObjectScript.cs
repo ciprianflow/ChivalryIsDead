@@ -7,13 +7,13 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     int id = 31;
 
     float timer = 0;
-    float maxTime = 10;
+    float maxTime = 150;
 
     void Update()
     {
         timer += Time.deltaTime;
         if (timer >= maxTime)
-            StaticData.mapManager.CheckObjectives(this);
+            StaticIngameData.mapManager.CheckObjectives(this);
     }
 
     public int ID

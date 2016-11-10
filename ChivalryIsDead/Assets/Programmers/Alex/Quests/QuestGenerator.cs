@@ -11,140 +11,48 @@ using UnityEngine;
 /// </summary>
 public class QuestGenerator
 {
-    #region Quest getters
-    public IQuest GetRandomQuest()
+    private int currentDay;
+    private int currentReputation;
+
+    public Difficulty CurrentDifficulty
     {
-        var difficulty = Random.Range(0, 3);
-        switch (difficulty) {
-            case 0:
-                return GenerateEasyQuest();
-            case 1:
-                return GenerateMediumQuest();
-            case 2:
-                return GenerateHardQuest();
-            default:
-                throw new System.Exception("Random int isn't in the range [0..2].");
-        }
-    }
-
-    public IQuest GetQuest(Difficulty difficulty)
-    {
-        switch (difficulty) {
-            case Difficulty.Easy:
-                return GenerateEasyQuest();
-            case Difficulty.Medium:
-                return GenerateMediumQuest();
-            case Difficulty.Hard:
-                return GenerateHardQuest();
-            default:
-                Debug.LogWarning("Difficulty not specified, returning quest of random difficulty");
-                return GetRandomQuest();
-        }
-    }
-
-    public IQuest GetQuest(float repRatio)
-    {
-        if (repRatio > 0.6f) {
-            return GenerateEasyQuest();
-        } else if (repRatio > 0.2) {
-            return GenerateMediumQuest();
-        } else {
-            return GenerateHardQuest();
-        }
-    }
-    #endregion
-
-    private IQuest GenerateEasyQuest()
-    {
-        IQuest retQuest;
-        var questType = System.Convert.ToBoolean(Random.Range(0, 1));
-        if (questType) { // DestroyTargetQuest
-            retQuest = new BaseQuest("Destroy the enemies!", "Yalla Yalla, kabob 'dem fo' Moolah!", Difficulty.Easy);
-            var meleeCount = Random.Range(2, 5);
-            var rangedCount = Random.Range(0, 3);
-
-            for (int i = 0; i < meleeCount + rangedCount; i++) {
-                if (i <= meleeCount) {
-                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
-                } else {
-                    retQuest.Objectives.Add(new DestroyTargetObjective(12));
-                }
-            }
-        } else { // ProtectTargetQuest
-            retQuest = new BaseQuest("Defend the sheeple!", "Illuminati reptile people and shizz.", Difficulty.Easy);
-            var sheepCount = Random.Range(1, 1); // TODO: Use an actual range
-            var meleeCount = Random.Range(3, 3 + sheepCount); // TODO: Just fix...
-
-            for (int i = 0; i < sheepCount + meleeCount; i++) {
-                if (i < sheepCount)
-                    retQuest.Objectives.Add(new ProtectTargetObjective(21));
-                else
-                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
+        get
+        {
+            if (currentReputation > 60) {
+                return Difficulty.Easy;
+            } else if (currentReputation > 20) {
+                return Difficulty.Medium;
+            } else {
+                return Difficulty.Hard;
             }
         }
-
-        return retQuest;
     }
 
-    private IQuest GenerateMediumQuest()
+    public EnemyTypes AvailableEnemies
     {
-        IQuest retQuest;
-        var questType = System.Convert.ToBoolean(Random.Range(0, 2));
-        if (questType) {
-            retQuest = new BaseQuest("Destroy the enemies!", "Yalla Yalla, kabob 'dem fo' Moolah", Difficulty.Medium);
-            var meleeCount = Random.Range(1, 4);
-            var rangedCount = Random.Range(1, 4);
-            var suicideCount = Random.Range(0, 3);
-
-            for (int i = 0; i < meleeCount + rangedCount + suicideCount; i++) {
-                if (i <= meleeCount) {
-                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
-                } else if (i <= meleeCount + rangedCount) {
-                    retQuest.Objectives.Add(new DestroyTargetObjective(12));
-                } else {
-                    retQuest.Objectives.Add(new DestroyTargetObjective(13));
-                }
-            }
-        } else {
-            retQuest = new BaseQuest("Defend the sheeple!", "Illumnati retile people and shizz.", Difficulty.Easy);
-            var sheepCount = Random.Range(4, 9);
-            var meleeCount = Random.Range(3, sheepCount);
-            var rangedCount = Random.Range(1, 4);
-
-            for (int i = 0; i < sheepCount + meleeCount + rangedCount; i++) {
-                if (i <= meleeCount) {
-                    retQuest.Objectives.Add(new DestroyTargetObjective(11));
-                }
-                else if (i <= meleeCount + rangedCount) {
-                    retQuest.Objectives.Add(new DestroyTargetObjective(12));
-                }
-                else {
-                    retQuest.Objectives.Add(new ProtectTargetObjective(21));
-                }
+        get
+        {
+            if (currentDay < 1) {
+                return EnemyTypes.HasRanged;
+            } else if (currentDay < 4) {
+                return EnemyTypes.HasMelee | EnemyTypes.HasRanged;
+            } else {
+                return EnemyTypes.HasMelee | EnemyTypes.HasRanged | EnemyTypes.HasSuicide;
             }
         }
-
-        throw new System.NotImplementedException();
-
-        return null;
     }
 
-    private IQuest GenerateHardQuest()
+    public QuestGenerator(int currentDay, int currentReputation)
     {
-        var meleeCount = Random.Range(2, 5);
-        var rangedCount = Random.Range(0, 3);
-
-        throw new System.NotImplementedException();
-
-        return null;
+        this.currentDay = currentDay;
+        this.currentReputation = currentReputation;
     }
 
     // Actual protection quest generation. Polish and change the generator to follow this paradigm.
-    private IQuest GenerateProtectQuest()
+    private IQuest GenerateProtectQuest(int numFriendlies)
     {
-        var sheepCount = Random.Range(0, 3) + 1;
-        var protQuest = new BaseQuest("Protect the Sheep!", "Protect all of the sheep", Difficulty.Easy);
-        for (int i = 0; i < sheepCount; i++) {
+        var protQuest = new BaseQuest();
+        for (int i = 0; i < numFriendlies; i++) {
             protQuest.Objectives.Add(new ProtectTargetObjective(21));
         }
         protQuest.Objectives.Add(new TimerObjective(31));
@@ -152,24 +60,110 @@ public class QuestGenerator
         return protQuest;
     }
 
-    private IQuest GenerateDestroyQuest()
+    private IQuest GenerateDestroyQuest(int numNonSuicide, int numSuicide)
     {
-        var meleeCount = Random.Range(0, 3) + 1;
-        var destQuest = new BaseQuest("Destroy the Fishmen!", "Destroy all of the fishmen", Difficulty.Easy);
-        for (int i = 0; i < meleeCount; i++) {
-            destQuest.Objectives.Add(new DestroyTargetObjective(11));
+        var destQuest = new BaseQuest();
+        var meleeAvailable = (AvailableEnemies & EnemyTypes.HasMelee) == EnemyTypes.HasMelee;
+
+        for (int i = 0; i < numNonSuicide; i++) {
+            if (i % 2 == 0 && meleeAvailable)
+                destQuest.Objectives.Add(new DestroyTargetObjective(11));
+            else
+                destQuest.Objectives.Add(new DestroyTargetObjective(12));
+        }
+        for (int i = 0; i < numSuicide; i++) {
+            destQuest.Objectives.Add(new DestroyTargetObjective(13)); 
         }
 
         return destQuest;
     }
-
-    // THIS IS NOT CORRECT IMPLEMENTATION, MAKE TOP-LEVEL METHOD AND USE IQUESTS FOR REMAINING WORK!!
-    public MultiQuest GenerateMultiQuest()
+    
+    public MultiQuest GenerateMultiProtectQuest(out QuestData questData)
     {
-        MultiQuest MQ = new MultiQuest("This Is Spartacunaticus", "Ohsnap dat front kick homes", Difficulty.Hard);
+        MultiQuest MQ = new MultiQuest();
+        QuestType questType = QuestType.Protect;
 
-        MQ.Objectives.Add(GenerateProtectQuest());
-        MQ.Objectives.Add(GenerateDestroyQuest());
+        var numFriendlies = CurrentDifficulty != Difficulty.Hard ? Random.Range(1, 4) : Random.Range(5, 11);
+        int minNonSuicide = 0, maxNonSuicide = 0;
+        int minSuicide = 0, maxSuicide = 0;
+        switch (CurrentDifficulty) {
+            case Difficulty.Easy:
+                minNonSuicide = 4;
+                maxNonSuicide = 7;
+                break;
+            case Difficulty.Medium:
+                minNonSuicide = 2;
+                maxNonSuicide = 5;
+                minSuicide = 1;
+                maxSuicide = 3;
+                break;
+            case Difficulty.Hard:
+                minNonSuicide = 1;
+                maxNonSuicide = 3;
+                minSuicide = 3;
+                maxSuicide = 7;
+                break;
+        }
+
+        var numNonSuicide = Random.Range(minNonSuicide, maxNonSuicide + 1); // Max is +1 because random generator max is exclusive.
+        var numSuicide = Random.Range(minSuicide, maxSuicide + 1);
+
+        questData = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies);
+
+        MQ.Objectives.Add(GenerateProtectQuest(numFriendlies));
+        MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
+
+        return MQ;
+    }
+
+    public MultiQuest GenerateMultiDestroyQuest(out QuestData questData)
+    {
+        MultiQuest MQ = new MultiQuest();
+        QuestType questType = QuestType.Destroy;
+        int minNonSuicide = 0, maxNonSuicide = 0;
+        int minSuicide = 0, maxSuicide = 0;
+        switch (CurrentDifficulty) {
+            case Difficulty.Easy:
+                minNonSuicide = 4;
+                maxNonSuicide = 7;
+                break;
+            case Difficulty.Medium:
+                minNonSuicide = 2;
+                maxNonSuicide = 5;
+                minSuicide = 1;
+                maxSuicide = 3;
+                break;
+            case Difficulty.Hard:
+                minNonSuicide = 1;
+                maxNonSuicide = 3;
+                minSuicide = 3;
+                maxSuicide = 7;
+                break;
+        }
+
+        var numNonSuicide = Random.Range(minNonSuicide, maxNonSuicide + 1); // Max is +1 because random generator max is exclusive.
+        var numSuicide = Random.Range(minSuicide, maxSuicide + 1);
+
+        questData = new QuestData(questType, numNonSuicide + numSuicide, 0, AvailableEnemies);
+
+        MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
+
+        return MQ;
+    }
+
+    public MultiQuest GenerateMultiQuest(out QuestData questData)
+    {
+        MultiQuest MQ;
+
+        var questType = currentReputation > 60 ? QuestType.Protect : (QuestType)Random.Range(1, 3);
+        switch (questType) {
+            case QuestType.Protect:
+                MQ = GenerateMultiProtectQuest(out questData); break;
+            case QuestType.Destroy:
+                MQ = GenerateMultiDestroyQuest(out questData); break;
+            default:
+                throw new System.Exception("Random int out of switch range.");
+        }
 
         return MQ;
     }

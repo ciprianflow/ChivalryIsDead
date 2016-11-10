@@ -9,13 +9,17 @@ class OverreactAction: MonoBehaviour
 
     private float timeStamp;
 
-    public void Overreact()
+    public bool Overreact()
     {
         //if not on cooldown do action
         if (getCoolDown())
         {
             startOverreact();
+
+            return true;
         }
+
+        return false;
     }
 
     //cooldown

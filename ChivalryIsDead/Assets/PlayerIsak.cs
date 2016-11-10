@@ -20,7 +20,7 @@ public class PlayerIsak : MonoBehaviour
 
     void Awake()
     {
-        StaticData.player = this.transform;
+        StaticIngameData.player = this.transform;
     }
 
     public void move(float x, float y)
