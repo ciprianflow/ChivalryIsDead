@@ -24,6 +24,7 @@ public class MeleeAI : MonsterAI
     {
 
         normSpeed = agent.speed;
+        targetPoint = GetRandomPointOnNavMesh();
     }
 
     public override void Attack()
@@ -178,7 +179,6 @@ public class MeleeAI : MonsterAI
     //Charging collision
     void OnCollisionEnter(Collision coll)
     {
-        Debug.Log(name + "  Collided with something");
         MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
         if (m != null && m.GetType() == typeof(SheepAI) && state == State.Charge)
         {
@@ -193,10 +193,5 @@ public class MeleeAI : MonsterAI
         {
             ChargeToAttack();
         }
-    }
-
-    public override float GetBaseAttackDamage()
-    {
-        return attackDamage;
     }
 }
