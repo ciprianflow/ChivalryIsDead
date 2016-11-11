@@ -27,7 +27,13 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public float attackRotateSpeed = 90f;
     private float pathUpdateTime = 0.1f;
 
-    [Header("Reputation")]
+    [Header("Reputation values")]
+    //MONSTER ATTACk REP
+    public int AttackRep = -20;
+    public int OverreactRep = -60;
+    public int ObjectiveAttackRep = -20;
+    public int ObjectiveSheepRep = -100;
+    //KNIGHT ATTACk REP
     public int PlayerAttackRep = 30;
 
     HealthScript healthScript;
@@ -262,6 +268,22 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         return PlayerAttackRep;
     }
+
+    public abstract int GetObjectiveAttackReputation();
+
+
+    public abstract int GetAttackReputation();
+
+    public int GetOverreactReputation()
+    {
+        return OverreactRep;
+    }
+
+    public int GetSheepAttackReputation()
+    {
+        return ObjectiveSheepRep;
+    }
+
     //implement this in the base class
     public void Hit(int damage)
     {

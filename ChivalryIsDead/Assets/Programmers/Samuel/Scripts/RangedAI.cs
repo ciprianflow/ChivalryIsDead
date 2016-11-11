@@ -1,7 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class RangedAI : MonsterAI {
+public class RangedAI : MonsterAI
+{
 
     [Header("Ranged Specific Values")]
     public GameObject projectile;
@@ -78,7 +79,7 @@ public class RangedAI : MonsterAI {
             randTargetPos = targetObject.position + random;
             velocity = BallisticVel(randTargetPos, shootAngle + randomAng) * force;
         }
-       
+
 
         //Target point calc
         //Target point calc
@@ -110,17 +111,18 @@ public class RangedAI : MonsterAI {
             targetObj.Rotate(0, 0, 90);
 
             obj.transform.SetParent(targetObj);
-            
+
         }
     }
 
-    Vector3 BallisticVel(Vector3 target, float angle){
+    Vector3 BallisticVel(Vector3 target, float angle)
+    {
         Vector3 dir = target - transform.position;  // get target direction
         float h = dir.y;  // get height difference
         dir.y = 0;  // retain only the horizontal direction
         float dist = dir.magnitude;  // get horizontal distance
         float a = angle * Mathf.Deg2Rad;  // convert angle to radians
-        dir.y = dist* Mathf.Tan(a);  // set dir to the elevation angle
+        dir.y = dist * Mathf.Tan(a);  // set dir to the elevation angle
         float tanA = Mathf.Tan(a);
         if (tanA == 0)
             tanA = 0.01f;
@@ -129,10 +131,10 @@ public class RangedAI : MonsterAI {
         float vel = Mathf.Sqrt(Mathf.Abs(dist) * Physics.gravity.magnitude / Mathf.Sin(2 * a));
         Debug.Log(vel + " = " + Mathf.Abs(dist) * Physics.gravity.magnitude + " / " + Mathf.Sin(2 * a));
         Debug.Log(Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a)));
-        return vel* dir.normalized;
+        return vel * dir.normalized;
     }
 
-    public override void Taunt( ) { taunted = true; }
+    public override void Taunt() { taunted = true; }
 
     public override void KillThis()
     {
@@ -147,4 +149,29 @@ public class RangedAI : MonsterAI {
     public override void Scare()
     {
     }
+
+    public override int GetAttackReputation()
+    {
+        int rep = AttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        int rep = ObjectiveAttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
 }
