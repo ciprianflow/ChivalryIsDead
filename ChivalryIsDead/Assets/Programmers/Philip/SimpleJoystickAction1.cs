@@ -84,6 +84,24 @@ namespace CnControls
         public Image ActionBottom;
 
         /// <summary>
+        /// Image of the joystick base
+        /// </summary>
+        [Tooltip("Image of the joystick base")]
+        public Image ActionLeft;
+
+        /// <summary>
+        /// Image of the joystick base
+        /// </summary>
+        [Tooltip("Image of the joystick base")]
+        public Image ActionRight;
+
+        /// <summary>
+        /// Image of the joystick base
+        /// </summary>
+        [Tooltip("Image of the joystick base")]
+        public Image ActionCenter;
+
+        /// <summary>
         /// Image of the stick itself
         /// </summary>
         [Tooltip("Image of the stick itself")]
