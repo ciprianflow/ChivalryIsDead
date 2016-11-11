@@ -94,4 +94,13 @@ public class SuicideAI : MonsterAI
         KillThis();
     }
 
+    public override int GetObjectiveAttackReputation()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override int GetAttackReputation()
+    {
+        throw new NotImplementedException();
+    }
 }
