@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 [RequireComponent(typeof(AreaScript))]
 public class MapManager : MonoBehaviour {
@@ -12,6 +13,7 @@ public class MapManager : MonoBehaviour {
     Transform QuestTarget;
 
     Dictionary<int, List<Rect>> sortedAreas;
+    Dictionary<int, List<int>> sortedMaxSpawn;
 
     internal void SetQuestObject(Transform transform)
     {
@@ -27,6 +29,7 @@ public class MapManager : MonoBehaviour {
 
         //This functions gets all spawn areas in the map in a dictionary sorted based on monster ID
         sortedAreas = areas.GetSortedAreas();
+        sortedMaxSpawn = areas.GetSortedMaxSpawn();
 
     }
 
@@ -90,12 +93,24 @@ public class MapManager : MonoBehaviour {
     {
         if (sortedAreas.ContainsKey(ID) && sortedAreas[ID].Count > 0)
         {
-            int index = (int)UnityEngine.Random.Range(0, sortedAreas[ID].Count);
-            Debug.Log(sortedAreas[ID].Count);
-            return areas.GetRandomPointOnRect(sortedAreas[ID][index]);
+            //Loops through the spawn areas for that particular monster type at random
+            System.Random r = new System.Random();
+            foreach (int index in Enumerable.Range(0, sortedAreas[ID].Count).OrderBy(x => r.Next()))
+            {
+                Debug.Log(index + " INDEX");
+                Debug.Log(sortedMaxSpawn[ID][index] + " COUNT");
+                //If the amount of spawns left is above zero it-sa go (Why dont you like me?, i'ma sorrie green mario)'
+                //If the amount of spawns is below zero its unlimited spawna timaeee.....
+                if(sortedMaxSpawn[ID][index] != 0)
+                {
+                    Debug.Log("SPAWNING OBJECTIVE");
+                    sortedMaxSpawn[ID][index]--; //Subtracts one from the amount of monsters able to spawn
+                    return areas.GetRandomPointOnRect(sortedAreas[ID][index]); //Return a random point inside the spawn rect
+                }          
+            }
         }
-        else
 
+        //If no suitable spawn area for a monster was found spawn in 0,0
         Debug.Log("There does not seem to be an area for monster : " + ((monsterType)ID).ToString());
         return Vector3.zero;
     }
