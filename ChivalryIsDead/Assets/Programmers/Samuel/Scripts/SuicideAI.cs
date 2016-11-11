@@ -75,7 +75,7 @@ public class SuicideAI : MonsterAI
 
         float range = explosionRange * multiplyer;
 
-        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+        base.player.PlayerAttacked(this);
 
         Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
         if (body)
@@ -85,4 +85,29 @@ public class SuicideAI : MonsterAI
         Destroy(this.gameObject);
     }
 
+    public override int GetAttackReputation()
+    {
+
+        int rep = AttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        int rep = ObjectiveAttackRep;
+
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+
+    }
 }

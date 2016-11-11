@@ -140,7 +140,7 @@ public class DialogObject : MonoBehaviour {
 
         d.Dialog = d.Name.Length;
 
-        for(int i = 0; i < d.Dialog; i++)
+        for (int i = 0; i < d.Dialog; i++)
         {
             if (d.Name[i] == "Player")
             {
@@ -276,9 +276,10 @@ public class DialogObject : MonoBehaviour {
     IEnumerator Hide()
     {
         // Remember :)
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(1f);
         UI.GetComponent<GameMenu>().sword.SetActive(false);
         UI.GetComponent<GameMenu>().princess.SetActive(false);
+        UI.GetComponent<GameMenu>().speaking = false;
     }
 
     IEnumerator SkipTest()

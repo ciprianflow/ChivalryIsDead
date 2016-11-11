@@ -14,17 +14,27 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public float Health = 2f;
 
     [Header("Attack Values")]
-    public float attackDamage = 2f;
+    public int attackDamage = 2;
     public float attackTime = 3f;
     public float attackRange = 5f;
 
     [Space]
+    public PlayerActionController player;
     public Transform targetObject;
     protected Vector3 targetPoint;
     public bool patrolling = false;
 
     public float attackRotateSpeed = 90f;
     private float pathUpdateTime = 0.1f;
+
+    [Header("Reputation values")]
+    //MONSTER ATTACk REP
+    public int AttackRep = -20;
+    public int OverreactRep = -60;
+    public int ObjectiveAttackRep = -20;
+    public int ObjectiveSheepRep = -100;
+    //KNIGHT ATTACk REP
+    public int PlayerAttackRep = 30;
 
     HealthScript healthScript;
 
@@ -234,15 +244,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             body.angularVelocity = Vector3.zero;
     }
 
-    public void TakeDamage(float num)
-    {
-        Health -= num;
-        if(Health <= 0)
-        {
-            KillThis();
-        }
-    }
-
     public abstract void KillThis();
 
     public State getState()
@@ -258,15 +259,35 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             return targetObject.position;
     }
 
-    public float GetBaseAttackDamage()
+    public int GetBaseAttackDamage()
     {
         return attackDamage;
     }
 
-    //implement this in the base class
-    public void Hit(float damage)
+    public int PlayerAttackReputation()
     {
-        if (healthScript.takeDamage((int)damage))
+        return PlayerAttackRep;
+    }
+
+    public abstract int GetObjectiveAttackReputation();
+
+
+    public abstract int GetAttackReputation();
+
+    public int GetOverreactReputation()
+    {
+        return OverreactRep;
+    }
+
+    public int GetSheepAttackReputation()
+    {
+        return ObjectiveSheepRep;
+    }
+
+    //implement this in the base class
+    public void Hit(int damage)
+    {
+        if (healthScript.takeDamage(damage))
         {
             gameObject.SetActive(false);
             StaticIngameData.mapManager.CheckObjectives(this);
