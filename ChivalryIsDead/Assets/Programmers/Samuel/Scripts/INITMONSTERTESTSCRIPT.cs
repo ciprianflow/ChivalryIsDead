@@ -6,7 +6,7 @@ public class INITMONSTERTESTSCRIPT : MonoBehaviour {
 	void Awake()
     {
         MonsterAI m = transform.GetComponent<MonsterAI>();
-        
+           
     }
 
     void Start()
@@ -14,5 +14,6 @@ public class INITMONSTERTESTSCRIPT : MonoBehaviour {
         MonsterAI m = transform.GetComponent<MonsterAI>();
         m.InitMonster();
         m.targetObject = StaticIngameData.player;
+        m.playerAction = StaticIngameData.playerAction;
     }
 }
