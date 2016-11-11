@@ -14,7 +14,7 @@ public class PlayerActionController : MonoBehaviour
 
     
     [Header("Attack values")]
-    public float AttackDamage = 1f;
+    public int AttackDamage = 1;
     public float AttackRange = 2f;
     public float AttackAngle = 0.6f;
     
@@ -122,30 +122,23 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
+
+        //otherwhise taunt
+        tauntAction.Taunt();
+    }
+
+    public void HandleOverreact()
+    {
         // if attacked the player can overreact
         if (playerState == PlayerState.HIT)
         {
             //Player overreacted add reputation
             if (overreactAction.Overreact() && lastMonsterAttacked != null)
             {
-                if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
-                {
 
-                    pb.ChangeRepScore((int) - lastMonsterAttacked.GetBaseAttackDamage());
-                }
-                else
-                {
-                    //suicide ai doesnt change reputation
-                    pb.ChangeRepScore(0);
-                }
-
-                pb.Invoke();
+                pb.ChangeRepScore(lastMonsterAttacked.GetOverreactReputation());
+                //pb.Invoke();
             }
-        }
-        else
-        {
-            //otherwhise taunt
-            tauntAction.Taunt();
         }
     }
 
@@ -157,16 +150,43 @@ public class PlayerActionController : MonoBehaviour
         //attackAction.NormalAttack(TauntRadius, this.transform);
         //if no enemies in range SCARE
         List<Collider> enemiesInRange = attackAction.GetConeRange();
-        //if (enemiesInRange.Count > 0)
+
+        attackAction.ConeAttack(enemiesInRange);
+
+        //add reputation
+        foreach (Collider enemy in enemiesInRange)
         {
-            attackAction.ConeAttack(enemiesInRange);
+            MonsterAI monster = enemy.GetComponent<MonsterAI>();
+
+            pb.ChangeRepScore(monster.PlayerAttackReputation());
+            pb.Invoke();
+
         }
-        //else
-        //{
-        //    scareAction.Scare(ScareRadius);
-        //}
+
     }
 
+    //objective attacked by monsters
+    public void ObjectiveAttacked(MonsterAI monster)
+    {
+        Debug.Log("Objective attacked" + monster.name);
+
+        pb.ChangeRepScore(monster.GetObjectiveAttackReputation());
+        pb.Invoke();
+
+    }
+
+    //sheep attacked by monsters
+    public void SheepAttacked(MonsterAI monster)
+    {
+        Debug.Log("Sheep attacked" + monster.name);
+
+        pb.ChangeRepScore(monster.GetSheepAttackReputation());
+        pb.Invoke();
+
+    }
+
+    
+    //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
     {
         //AttackedDuration second unlock overreact
@@ -175,22 +195,16 @@ public class PlayerActionController : MonoBehaviour
         playerState = PlayerState.HIT;
 
         //Player attacked add reputation according to monster base damage
-        //suicideAI doesn't make damage to player
-        
-        if (monster.GetType() !=  typeof(SuicideAI))
+        if (monster)
         {
-            pb.ChangeRepScore((int) -monster.GetBaseAttackDamage());
-        }
-        else
-        {
-            //suicide ai doesnt change reputation
-            pb.ChangeRepScore(0);
+            pb.ChangeRepScore(monster.GetAttackReputation());
+
+            //save last monster attacked
+            lastMonsterAttacked = monster;
+
+            //pb.Invoke();
         }
 
-        pb.Invoke();
-
-        //save last monster attacked
-        lastMonsterAttacked = monster;
 
     }
 
@@ -200,7 +214,7 @@ public class PlayerActionController : MonoBehaviour
         yield return new WaitForSeconds(AttackedDuration);
 
         //wait for all attacks to submit change in reputation
-        //pb.Invoke();
+        pb.Invoke();
         playerState = PlayerState.IDLE;
     }
 

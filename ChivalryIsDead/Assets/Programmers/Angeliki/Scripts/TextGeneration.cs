@@ -9,7 +9,9 @@ using System.Linq;
 
 public class TextGeneration : MonoBehaviour {
 
-    public StringBuilder sb = new StringBuilder();
+    public StringBuilder sbTitle = new StringBuilder();
+    public StringBuilder sbText = new StringBuilder();
+    public StringBuilder sbEndTitle = new StringBuilder();
 
     public int textSize;
     public int numFiles;
@@ -26,20 +28,30 @@ public class TextGeneration : MonoBehaviour {
     public List<ShuffleBag> shuffleBags = new List<ShuffleBag>();
     //public List<string> filesNames = new List<string>();
 
-    Text debugText;
-    
-    // temporary until we get Alex's stuff - Remember!!
-    String quest = "Protect";
+    Text title;
+    Text mainText;
+    Text endTitle;
 
     List<int> logSequenceStart = new List<int>();
     List<int> logSequenceEnd = new List<int>();
 
+    GameObject HubDataMan;
+    int QuestNum;
+
     // Use this for initialization
     void Start() {
+        if (gameObject.tag == "IntroLetter")
+        {
+            HubDataMan = GameObject.FindGameObjectWithTag("HubDataManager");
+            QuestNum = HubDataMan.GetComponent<AngHubDataManager>().tempSelectedQuest;
+        }
         //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
-        debugText = transform.GetChild(2).GetComponent<Text>();
+        title = transform.GetChild(1).GetComponent<Text>();
+        mainText = transform.GetChild(2).GetComponent<Text>();
+        endTitle = transform.GetChild(3).GetComponent<Text>();
+
         //debugText = gameObject.GetComponent<Text>();
-        debugText.text = "";
+        mainText.text = "";
 
         foreach (TextAsset textFile in Resources.LoadAll("txts", typeof(TextAsset)))
         {
@@ -57,9 +69,13 @@ public class TextGeneration : MonoBehaviour {
             shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i].text, 1);
         }
 
-        initTextBags(NewBagInitializer);
+        TitleGenerator(shuffleBags[0]);
+        EndTitleGenerator(shuffleBags[shuffleBags.Count-1]);
 
-        CallTxtChooserStartQuest();
+        if (gameObject.tag == "EndLetter")
+            initTextBags(NewBagInitializer);
+        else
+            CallTxtChooserStartQuest();
 
         // temporary - Remember!!!!
         killString = "12" + " ";
@@ -100,7 +116,10 @@ public class TextGeneration : MonoBehaviour {
 
     public void ClearText()
     {
-        sb = new StringBuilder();
+        sbTitle = new StringBuilder();
+        sbText = new StringBuilder();
+        sbEndTitle = new StringBuilder();
+
         //debugText = transform.GetChild(2).GetComponent<Text>();
         //debugText.text = sb.ToString();
     }
@@ -115,13 +134,26 @@ public class TextGeneration : MonoBehaviour {
         }
         return shuffleBag;
     }
+    void TitleGenerator(ShuffleBag shuffleBag)
+    {
 
+        sbTitle.Append(shuffleBag.Next());
+        title.text = sbTitle.ToString();
+        //return sb;
+    }
     //public StringBuilder TextGenerator(ShuffleBag shuffleBag)
     void TextGenerator(ShuffleBag shuffleBag)
     {
-       
-        sb.Append(shuffleBag.Next());
-        debugText.text = sb.ToString();
+
+        sbText.Append(shuffleBag.Next());
+        mainText.text = sbText.ToString();
+        //return sb;
+    }
+    void EndTitleGenerator(ShuffleBag shuffleBag)
+    {
+
+        sbEndTitle.Append(shuffleBag.Next());
+        endTitle.text = sbEndTitle.ToString();
         //return sb;
     }
 
@@ -133,7 +165,6 @@ public class TextGeneration : MonoBehaviour {
             {
                 if (NewBagInitializer[x + (y * textSize)])
                 {
-                  
                     TextGenerator(shuffleBags[y]);   
                 }
             }
@@ -142,7 +173,7 @@ public class TextGeneration : MonoBehaviour {
     
     public void CallTxtChooserStartQuest()
     {
-        logSequenceStart = TxtChooserStartQuest(quest);
+        logSequenceStart = TxtChooserStartQuest(QuestNum);
         foreach (int seq in logSequenceStart)
         {
             TextGenerator(shuffleBags[seq]);
@@ -150,22 +181,22 @@ public class TextGeneration : MonoBehaviour {
         }
     }
 
-    List<int> TxtChooserStartQuest(String quest)
+    List<int> TxtChooserStartQuest(int quest)
     {
         List<int> sequence = new List<int>();
-        sequence.Add(0);
+        sequence.Add(1);
+        sequence.Add(2);
 
-        if (quest == "Protect")
-        {
-            sequence.Add(7);
-        }
-        else if (quest == "Kill")
+        if (quest == 0)
         {
             sequence.Add(8);
         }
+        else if (quest == 1)
+        {
+            sequence.Add(9);
+        }
 
-        sequence.Add(1);
-        sequence.Add(9);
+        sequence.Add(10);
 
         return sequence;
     }
@@ -198,7 +229,7 @@ public class TextGeneration : MonoBehaviour {
 
     public void NumberTextUpdate(string tempString)
     {
-        shuffleBags[3] = new ShuffleBag(1);
-        shuffleBags[3] = LoadShuffleBag(shuffleBags[3], tempString, 1);
+        shuffleBags[4] = new ShuffleBag(1);
+        shuffleBags[4] = LoadShuffleBag(shuffleBags[4], tempString, 1);
     } 
 }

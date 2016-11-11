@@ -51,7 +51,6 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
         
         Debug.Log("IM hit ");
 
-
         if (healthScript.takeDamage(dmg))
         {   
             if(destroy)
