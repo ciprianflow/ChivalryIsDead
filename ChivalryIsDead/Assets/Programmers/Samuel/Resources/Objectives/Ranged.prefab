@@ -32,7 +32,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4000012364192734
 Transform:
   m_ObjectHideFlags: 1
@@ -136,9 +136,15 @@ MonoBehaviour:
   attackDamage: 5
   attackTime: 3
   attackRange: 10
+  player: {fileID: 0}
   targetObject: {fileID: 0}
   patrolling: 0
   attackRotateSpeed: 35
+  AttackRep: -20
+  OverreactRep: -60
+  ObjectiveAttackRep: -20
+  ObjectiveSheepRep: -100
+  PlayerAttackRep: 30
   projectile: {fileID: 1000012329749918, guid: 95b10be1172ee3f4ba35e9b65b7b640f, type: 2}
   targetSprite: {fileID: 0}
   shootAngle: 30

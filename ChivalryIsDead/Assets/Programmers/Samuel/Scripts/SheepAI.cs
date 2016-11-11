@@ -45,4 +45,14 @@ public class SheepAI : MonsterAI {
     {
         ToIdle();
     }
+
+    public override int GetAttackReputation()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        throw new NotImplementedException();
+    }
 }

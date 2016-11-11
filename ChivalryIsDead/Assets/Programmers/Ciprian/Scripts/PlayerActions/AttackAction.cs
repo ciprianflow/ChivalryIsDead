@@ -6,11 +6,11 @@ class AttackAction : MonoBehaviour
 {
 
     public float AttackCooldown = 0.3f;
-    private float cooldownTimeStamp;
+    private float cooldownTimeStamp = 0;
 
     private float attackRange;
     private float attackAngle;
-    private float attackDamage;
+    private int attackDamage;
 
     private PlayerScript playerBase;
 
@@ -40,7 +40,7 @@ class AttackAction : MonoBehaviour
         }
     }
 
-    public float AttackDamage
+    public int AttackDamage
     {
         get
         {
@@ -62,7 +62,7 @@ class AttackAction : MonoBehaviour
     {
 
 
-     
+
     }
 
 
@@ -70,7 +70,7 @@ class AttackAction : MonoBehaviour
     public void ConeAttack(List<Collider> colliders)
     {
 
-        if (!checkCooldown())
+        if (!getCoolDown())
         {
             return;
         }
@@ -95,11 +95,11 @@ class AttackAction : MonoBehaviour
         List<Collider> inRangeColliders = new List<Collider>();
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, attackRange);
-        foreach(Collider collider in colliders)
+        foreach (Collider collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
             {
-                
+
                 Vector3 vectorToCollider = (collider.transform.position - transform.position).normalized;
                 if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngle)
                 {
@@ -111,20 +111,10 @@ class AttackAction : MonoBehaviour
         return inRangeColliders;
     }
 
-    private bool checkCooldown()
-    {
-
-        if (!getCoolDown())
-        {
-            return false;
-        }
-
-        return true;
-    }
-
     //cooldown
     private bool getCoolDown()
     {
+
         if (cooldownTimeStamp >= Time.time)
         {
             return false;
