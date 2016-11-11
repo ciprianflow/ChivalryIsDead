@@ -30,11 +30,15 @@ public class Projectile : MonoBehaviour {
             if (m != null && m.GetType() == typeof(SheepAI))
             {
                 //let player know objective is attacked
-                originMonster.player.SheepAttacked(originMonster);
+                originMonster.playerAction.SheepAttacked(originMonster);
+            }
+            else
+            {
+
+                //let player know objective is attacked
+                originMonster.playerAction.ObjectiveAttacked(originMonster);
             }
 
-            //let player know objective is attacked
-            originMonster.player.ObjectiveAttacked(originMonster);
 
         }
 

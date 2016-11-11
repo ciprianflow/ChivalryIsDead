@@ -65,7 +65,7 @@ public class MeleeAI : MonsterAI
                     if (body)
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
-                    base.player.PlayerAttacked(this);
+                    base.playerAction.PlayerAttacked(this);
                     Debug.Log("Hit player");
                 }
             }
@@ -216,15 +216,18 @@ public class MeleeAI : MonsterAI
             {
                 Debug.Log("I HIT A SHEEP");
                 HitSheep(QO, m, coll.gameObject);
+
                 coll.gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Flying");
-                base.player.SheepAttacked(this);
+
+		base.playerAction.SheepAttacked(this);
+
             }
             //If its not a sheep it must be a static questObjective
             else
             {
                 Debug.Log("Hit static quest object");
                 QO.takeDamage(GetBaseAttackDamage(), true);
-                base.player.ObjectiveAttacked(this);
+                base.playerAction.ObjectiveAttacked(this);
                 ChargeToAttack();
             }
         }   
@@ -239,7 +242,7 @@ public class MeleeAI : MonsterAI
         if (QO != null)
         {
             QO.takeDamage(999, false);
-            base.player.ObjectiveAttacked(this);
+            base.playerAction.ObjectiveAttacked(this);
         }
             
         m.enabled = false;

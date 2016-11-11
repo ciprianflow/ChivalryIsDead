@@ -5,7 +5,7 @@ using System;
 
 public class PlayerScript : MonoBehaviour {
     [Header("Variables")]
-    public float maxSpeed = 0.06f;
+    public float maxSpeed = 6f;
     public float zVel = 0;
     public float turnMag = 0;
     public float speedAcc = 0.03f;
@@ -121,7 +121,7 @@ public class PlayerScript : MonoBehaviour {
         else {
             transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
         }
-        transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed);
+        transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
 
         anim.SetFloat("Speed", zVel * 2f);
 
