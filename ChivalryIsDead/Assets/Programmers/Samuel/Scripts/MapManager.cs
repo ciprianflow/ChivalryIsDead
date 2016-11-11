@@ -44,10 +44,13 @@ public class MapManager : MonoBehaviour {
 
         if (StaticData.currQuest == null)
         {
-            Debug.LogError("No current quest exists");
+            Debug.LogWarning("No current quest exists");
         }         
 
         List <IObjective> objectives = StaticData.GetObjectives();
+
+        if (objectives == null)
+            return;
 
         for(int i = 0; i < objectives.Count; i++)
         {
@@ -117,6 +120,12 @@ public class MapManager : MonoBehaviour {
 
     internal void CheckObjectives(IObjectiveTarget IObj)
     {
+        if (StaticData.currQuest == null)
+        {
+            Debug.LogWarning("No quest could be found");
+            return;
+        }
+
         StaticData.currQuest.CheckTarget(IObj, OM.GetObjectives());
         if (StaticData.currQuest.IsChecked)
         {
