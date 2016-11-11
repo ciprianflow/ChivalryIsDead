@@ -86,6 +86,7 @@ public class PlayerActionController : MonoBehaviour
         attackAction = gameObject.GetComponent<AttackAction>();
         scareAction = gameObject.GetComponent<ScareAction>();
 
+        StaticIngameData.playerAction = this;
     }
 
 	// Use this for initialization
