@@ -26,15 +26,14 @@ public class MainMenu : MonoBehaviour {
 
     public void Continue()
     {
-        //StartCoroutine("LoadLevel");
         Application.OpenURL("https://www.youtube.com/watch?v=AuRXVMSG3po");
     }
 
 
     public void Play()
     {
-        //StartCoroutine("LoadLevel");
-        Application.OpenURL("https://www.youtube.com/watch?v=AuRXVMSG3po");
+        StartCoroutine("LoadLevel");
+        
     }
 
     public void Options()
@@ -46,7 +45,7 @@ public class MainMenu : MonoBehaviour {
 
     IEnumerator LoadLevel()
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync("TestLoad");
+        AsyncOperation async = SceneManager.LoadSceneAsync(1);
         loading.SetActive(true);
         yield return async;
         Debug.Log("Loading complete");

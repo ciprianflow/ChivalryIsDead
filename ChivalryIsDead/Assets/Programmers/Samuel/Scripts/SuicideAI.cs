@@ -94,13 +94,28 @@ public class SuicideAI : MonsterAI
         KillThis();
     }
 
-    public override int GetObjectiveAttackReputation()
-    {
-        throw new NotImplementedException();
-    }
-
     public override int GetAttackReputation()
     {
-        throw new NotImplementedException();
+        int rep = AttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
     }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        int rep = ObjectiveAttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
 }
