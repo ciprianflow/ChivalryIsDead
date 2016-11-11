@@ -55,6 +55,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Scared();
     public abstract void Init();
 
+    public abstract int GetObjectiveAttackReputation();
+    public abstract int GetAttackReputation();
+
     public void InitMonster()
     {
         healthScript = new HealthScript((int)Health);
@@ -268,11 +271,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         return PlayerAttackRep;
     }
-
-    public abstract int GetObjectiveAttackReputation();
-
-
-    public abstract int GetAttackReputation();
 
     public int GetOverreactReputation()
     {
