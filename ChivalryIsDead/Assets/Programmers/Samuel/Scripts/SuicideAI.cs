@@ -94,4 +94,28 @@ public class SuicideAI : MonsterAI
         KillThis();
     }
 
+    public override int GetAttackReputation()
+    {
+        int rep = AttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        int rep = ObjectiveAttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
 }
