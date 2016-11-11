@@ -216,6 +216,7 @@ public class MeleeAI : MonsterAI
             {
                 Debug.Log("I HIT A SHEEP");
                 HitSheep(QO, m, coll.gameObject);
+                coll.gameObject.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Flying");
                 base.player.SheepAttacked(this);
             }
             //If its not a sheep it must be a static questObjective

@@ -24,6 +24,8 @@ public class PlayerScript : MonoBehaviour {
     public float UpperWeight = 0;
     public float LowerWeight = 0;
 
+    public GameObject SwordTrail;
+
     Dictionary<String, int> AnimDic = new Dictionary<String, int>();
 
 
@@ -196,6 +198,8 @@ public class PlayerScript : MonoBehaviour {
             }
             if(UpperWeight < 0 && LowerWeight < 0)
             {
+
+
                 animState = false;
             }
             return;
@@ -214,6 +218,7 @@ public class PlayerScript : MonoBehaviour {
             }
             if (UpperWeight < 0 && LowerWeight < 0)
             {
+                SwordTrail.SetActive(false);
                 animState = false;
             }
             return;
@@ -255,6 +260,8 @@ public class PlayerScript : MonoBehaviour {
     {
         anim.Play("Hero_Attack1", 2, 0);
 
+            SwordTrail.SetActive(true);
+        
 
         if (!attacking)
         {
@@ -265,6 +272,7 @@ public class PlayerScript : MonoBehaviour {
             return;
         }
 
+        attacking = true;
 
 
         AnimatorStateInfo ASI = anim.GetCurrentAnimatorStateInfo(1);
@@ -286,6 +294,7 @@ public class PlayerScript : MonoBehaviour {
 
     public void taunt()
     {
+        SwordTrail.SetActive(false);
 
         //anim.Play("Taunt", 3, 0);
         anim.SetTrigger("TauntTrig");
@@ -295,7 +304,7 @@ public class PlayerScript : MonoBehaviour {
     }
     public void scare()
     {
-
+        SwordTrail.SetActive(false);
         //anim.Play("Scare", 5, 0);
         anim.SetTrigger("ScareTrig");
         cancelAnim(ref attacking, "attacking");
@@ -312,6 +321,7 @@ public class PlayerScript : MonoBehaviour {
         animState = false;
         anim.SetLayerWeight(AnimDic[animName], 0);
         anim.SetLayerWeight(AnimDic[animName] + 1, 0);
+
     }
     //[Header("Variables")]
     //public float maxSpeed = 0.5f;

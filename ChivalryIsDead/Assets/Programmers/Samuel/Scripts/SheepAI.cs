@@ -2,7 +2,14 @@
 using System.Collections;
 using System;
 
-public class SheepAI : MonsterAI { 
+public class SheepAI : MonsterAI {
+
+    public Animator anim;
+
+    void Update()
+    {
+        anim.SetFloat("Speed", agent.speed);
+    }
 
     public override void Attack() { }
 
