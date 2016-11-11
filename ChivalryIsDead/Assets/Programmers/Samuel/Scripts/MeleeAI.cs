@@ -1,22 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using System;
 
 public class MeleeAI : MonsterAI
 {
 
     [Header("Melee Specific Values")]
+    public float scaredTime = 2f;
     public float chargeSpeedMultiplier = 3f;
 
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
 
+    public float chargeForce = 250f;
+
+    private float accelTimer = 0;
+    private float accelTime = 0.2f;
+
     private float normSpeed;
+
+    private bool rotated = false;
 
     public override void Init()
     {
+
         normSpeed = agent.speed;
+        targetPoint = GetRandomPointOnNavMesh();
     }
 
     public override void Attack()
@@ -24,8 +32,13 @@ public class MeleeAI : MonsterAI
         rotateTowardsTarget();
         if (t1 > attackTime)
         {
-            if (RangeCheck())
+
+            if (RangeCheck() || patrolling)
             {
+                if (patrolling)
+                    targetPoint = GetRandomPointOnNavMesh();
+
+                ResetTimer();
                 AttackToMove();
                 return;
             }
@@ -33,6 +46,7 @@ public class MeleeAI : MonsterAI
             MeleeAttack();
             ResetTimer();
         }
+
     }
 
     public void MeleeAttack()
@@ -43,7 +57,6 @@ public class MeleeAI : MonsterAI
         {
             if (Colliders[i].tag == "Player")
             {
-                Debug.Log("UH WEE");
                 Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
                 Debug.Log(Vector3.Dot(vectorToCollider, transform.forward));
                 if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
@@ -53,19 +66,50 @@ public class MeleeAI : MonsterAI
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
                     //@@HARDCODED
-                    base.targetObject.GetComponent<PlayerActionController>().Attacked();
+                    base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
                     Debug.Log("Hit player");
                 }
             }
         }
-        
+
         Debug.Log("Attacking");
 
     }
 
     public void Charge()
     {
-        UpdateNavMeshPathDelayed();
+        if (patrolling)
+        {
+            if(!rotated)
+                if (!chargeRotate())
+                    return;
+
+            accelTimer += Time.deltaTime;
+            float accel = accelTimer / accelTime;
+            transform.Translate(Vector3.forward * chargeSpeedMultiplier * accel * Time.deltaTime);
+        }
+        else
+        {
+            UpdateNavMeshPathDelayed();
+        }
+    }
+
+    bool chargeRotate()
+    {
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPoint;
+        v.y = 0;
+        v2.y = 0;
+        v3.y = 0;
+        Debug.Log(Vector3.Angle(v, v3 - v2));
+        if (Vector3.Angle(v, v3 - v2) > 1f)
+        {
+            rotateTowardsTarget();
+            return false;
+        }
+        rotated = true;
+        return true;
     }
 
     public override void Idle()
@@ -88,7 +132,6 @@ public class MeleeAI : MonsterAI
 
     public override void Taunt()
     {
-        Debug.Log("TAUNT");
         ToCharge();
     }
 
@@ -96,6 +139,16 @@ public class MeleeAI : MonsterAI
     {
         if (state == State.Charge)
             return;
+
+        if (patrolling)
+        {
+            //Point that the melee charges towards, checks for rotation is needed
+            targetPoint = StaticIngameData.player.transform.position;
+            rotated = false;
+            accelTimer = 0;
+            StopNavMeshAgent();
+        }
+
 
         Debug.Log("ToCharge");
         agent.speed = normSpeed * chargeSpeedMultiplier;
@@ -113,18 +166,58 @@ public class MeleeAI : MonsterAI
         stateFunc = Attack;
     }
 
-    void OnCollisionEnter()
-    {
-        Debug.Log(name + "  Collided with something");
-        if(state == State.Charge)
-        {
-            ChargeToAttack();
-        }
-    }
-
     public override void KillThis()
     {
         Debug.Log(transform.name + " : Has died");
         this.enabled = false;
+    }
+
+    public override void Scared()
+    {
+        t1 += Time.deltaTime;
+        Vector3 p = transform.position - GetTargetPosition().normalized;
+        targetPoint = p + transform.position;
+        if (t1 > scaredTime)
+        {
+            ToMove();
+        }
+    }
+
+    public Vector3 GetRandomPointOnNavMesh()
+    {
+        float walkRadius = UnityEngine.Random.Range(8, 16);
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
+        randomDirection += StaticIngameData.player.transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+        if (hit.hit)
+            return hit.position;
+        else
+            return GetRandomPointOnNavMesh();
+    }
+
+    public override void Scare()
+    {
+        ToScared();
+    }
+
+    //Charging collision
+    void OnCollisionEnter(Collision coll)
+    {
+        MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
+        if (m != null && m.GetType() == typeof(SheepAI) && state == State.Charge)
+        {
+            Debug.Log("I HIT A SHEEP");
+            m.enabled = false;
+            coll.gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            Rigidbody r = coll.gameObject.GetComponent<Rigidbody>();
+            r.drag = 0;
+            r.mass = 1;
+            r.AddExplosionForce(chargeForce * (accelTimer / accelTime), coll.transform.position, 100f, 1);
+        }
+        else if (state == State.Charge)
+        {
+            ChargeToAttack();
+        }
     }
 }

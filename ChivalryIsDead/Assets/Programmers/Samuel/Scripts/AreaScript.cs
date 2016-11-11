@@ -1,5 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
+
+[Flags]
+public enum monsterType {Ranged = 12, Melee = 11, Suicide = 13, Sheep = 21}
+
+[System.Serializable]
+public class AreaProperty
+{
+    [SerializeField] public Color AreaColor;
+    [SerializeField] public monsterType SpawnType;
+
+    public AreaProperty(Color c, monsterType t)
+    {
+        AreaColor = c;
+        SpawnType = t;
+    }
+}
 
 public class AreaScript : MonoBehaviour {
 
@@ -7,7 +24,7 @@ public class AreaScript : MonoBehaviour {
     [SerializeField]
     public List<Rect> Areas;
     [SerializeField]
-    public List<Color> AreaColor = new List<Color>();
+    public List<AreaProperty> properties = new List<AreaProperty>();
 
     public List<Rect> GetAllAreas()
     {
@@ -25,17 +42,48 @@ public class AreaScript : MonoBehaviour {
             return;
 
         Areas.RemoveAt(index);
+        properties.RemoveAt(index);
     }
 
     public void AddArea()
     {
         Debug.Log("Adding SpawnArea");
         Areas.Add(new Rect(0, 0, 2f, 2f));
+        properties.Add(new AreaProperty(new Color(0.4f, 0.9f, 0.1f, 1f), monsterType.Melee));
     }
 
     public void ResetAll()
     {
         Areas = new List<Rect>();
+        properties = new List<AreaProperty>();
+    }
+
+    public Dictionary<int, List<Rect>> GetSortedAreas()
+    {
+        Dictionary<int, List<Rect>> sortedAreas = new Dictionary<int, List<Rect>>();
+        int[] monsterIDs = (int[])Enum.GetValues(typeof(monsterType));
+
+        for (int i = 0; i < monsterIDs.Length; i++)
+        {
+            sortedAreas.Add(monsterIDs[i], new List<Rect>());
+        }
+
+        for(int i = 0; i < Areas.Count; i++)
+        {
+            int ID = (int)properties[i].SpawnType;
+            if (sortedAreas.ContainsKey(ID))
+                sortedAreas[ID].Add(Areas[i]);
+        }
+        return sortedAreas;
+    }
+
+    public Vector3 GetRandomPointOnRect(Rect r)
+    {
+
+        float x = UnityEngine.Random.Range(0, r.width);
+        float y = UnityEngine.Random.Range(0, r.height);
+        return new Vector3(x + r.position.x, 0, y + r.position.y);
+
     }
 
 }

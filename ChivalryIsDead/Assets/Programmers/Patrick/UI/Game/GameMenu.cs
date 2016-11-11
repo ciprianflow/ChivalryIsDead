@@ -1,13 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour {
 
     DialogObject dialogSystem;
 
+    SettingsMngr settingManager;
     public GameObject pause;
+    public GameObject muteSound;
+    public GameObject soundVolume;
+
     public GameObject quest;
-    public GameObject letter;
+    public GameObject endLetter;
+    public GameObject introLetter;
 
     public GameObject sword;
     public GameObject swordBubble;
@@ -16,7 +23,8 @@ public class GameMenu : MonoBehaviour {
     public GameObject princessBubble;
 
     bool paused;
-    bool letterActive;
+    bool endletterActive;
+    bool introletterActive;
 
     float testRND;
 
@@ -26,13 +34,18 @@ public class GameMenu : MonoBehaviour {
     void Awake ()
     {
         paused = false;
-        letterActive = false;
+        endletterActive = false;
+        introletterActive = false;
+
         dialogSystem = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<DialogObject>();
+        settingManager = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsMngr>();
     } 
 
     void Start () {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
-        letter.SetActive(false);
+        endLetter.SetActive(false);
+        introLetter.SetActive(false);
         sword.SetActive(false);
         princess.SetActive(false);
 
@@ -41,10 +54,26 @@ public class GameMenu : MonoBehaviour {
         Invoke("Test1", 2);
 
         testRND = Random.Range(16, 30);
-        Debug.Log(testRND);
+        Debug.Log("peasants dialog starts in " + testRND);
         Invoke("Test", testRND);
 
-       
+
+
+        // Check Volume Slider
+        soundVolume.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundVolume");
+
+        // Check Mute
+
+        if (PlayerPrefs.GetInt("Sound") == 0)
+        {
+            muteSound.GetComponent<Image>().color = Color.red;
+        }
+        else if (PlayerPrefs.GetInt("Sound") == 1)
+        {
+            muteSound.GetComponent<Image>().color = Color.white;
+
+        }
+
 
     }
 	
@@ -58,17 +87,18 @@ public class GameMenu : MonoBehaviour {
             Invoke("Test1", 2);
         }
 
-
+        // this means quest is over
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Letter();
+            EndLetter();
+          
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
+        // this means start of quest
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            LetterUpdate();
+            IntroLetter();
         }
-
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -101,30 +131,59 @@ public class GameMenu : MonoBehaviour {
         quest.SetActive(true);
     }
 
-    public void Letter()
+    public void EndLetter()
     {
-        if(!letterActive)
+        
+        if(!endletterActive)
         {
-            letter.SetActive(true);
-            StartCoroutine(TextLoad());
-            letterActive = true;
-        } else
+            endLetter.SetActive(true);
+            StartCoroutine(TextLoad(endLetter));
+            endletterActive = true;
+        }
+        else
         {
-            letter.SetActive(false);
-            letterActive = false;   
+            endLetter.SetActive(false);
+            endletterActive = false;
         }     
     }
 
-    public void LetterUpdate()
+    public void IntroLetter()
     {
-        letter.GetComponent<TextGeneration>().ClearText();
-        letter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
+
+        if (!introletterActive)
+        {
+            introLetter.SetActive(true);
+            StartCoroutine(TextLoad(introLetter));
+            introletterActive = true;
+        }
+        else
+        {
+            introLetter.SetActive(false);
+            introletterActive = false;
+        }
     }
 
-    IEnumerator TextLoad()
+    IEnumerator TextLoad(GameObject letter)
     {
         yield return new WaitForSeconds(0.01f);
-        LetterUpdate();
+        LetterUpdate(letter);
+    }
+
+    public void LetterUpdate(GameObject letter)
+    {
+        letter.GetComponent<TextGeneration>().ClearText();
+        introLetter.GetComponent<TextGeneration>().CallTxtChooserStartQuest();
+        endLetter.GetComponent<TextGeneration>().initTextBags(letter.GetComponent<TextGeneration>().NewBagInitializer);
+    }
+
+    public void SkipOneBubble()
+    {
+        dialogSystem.SkipDialog();
+    }
+
+    public void SkipDialog()
+    {
+        dialogSystem.StopDialog();
     }
 
     public void Princess()
@@ -140,12 +199,54 @@ public class GameMenu : MonoBehaviour {
 
     void Test()
     {
-        dialogSystem.StartCoroutine("DialogSystem", 2);
+        //dialogSystem.StartCoroutine("DialogSystem", 2);
     }
 
     void Test1()
     {
-        dialogSystem.StartCoroutine("DialogSystem", 0);
+        StartCoroutine(dialogSystem.DialogSystem(0));
     }
+
+    //Options
+
+    public void SoundVolume()
+    {
+        PlayerPrefs.SetFloat("SoundVolume", soundVolume.GetComponent<Slider>().value);
+    }
+
+    public void SoundMute()
+    {
+        if (PlayerPrefs.GetInt("Sound") == 1)
+        {
+            PlayerPrefs.SetInt("Sound", 0);
+            Debug.Log("Off");
+        }
+        else if (PlayerPrefs.GetInt("Sound") == 0)
+        {
+            PlayerPrefs.SetInt("Sound", 1);
+            Debug.Log("On");
+        }
+
+        if (PlayerPrefs.GetInt("Sound") == 0)
+        {
+            muteSound.GetComponent<Image>().color = Color.red;
+        }
+        else if (PlayerPrefs.GetInt("Sound") == 1)
+        {
+            muteSound.GetComponent<Image>().color = Color.white;
+
+        }
+    }
+
+    public void SwapControl()
+    {
+        settingManager.swapSides();
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
 
 }

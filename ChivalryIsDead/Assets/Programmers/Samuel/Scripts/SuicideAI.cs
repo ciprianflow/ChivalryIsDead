@@ -4,18 +4,22 @@ using System;
 
 public class SuicideAI : MonsterAI
 {
+
+    [Header("Suicide Specific Variables")]
+    public float scaredTimer = 5f;
+    [Space]
+    public float explosionForce = 6000000f;
+    public float explosionRange = 25f;
+    public GameObject explosionObject;
+    
+    bool taunted = false;
+
     public override void Attack()
     {
         KillThis();
     }
 
-    public override void Idle()
-    {
-        if (agent.hasPath)
-        {
-            IdleToMove();
-        }
-    }
+    public override void Idle() { }
 
     public override void Init() { }
 
@@ -23,7 +27,6 @@ public class SuicideAI : MonsterAI
     {
 
         Debug.Log(transform.name + " : Has died");
-        this.enabled = false;
         Explode();
 
     }
@@ -36,17 +39,50 @@ public class SuicideAI : MonsterAI
             MoveToAttack();
     }
 
+    public override void Scare()
+    {
+        ToScared();
+        StopNavMeshAgent();
+        ResetTimer();
+    }
+
+    public override void Scared()
+    {
+        if(t1 > scaredTimer)
+        {
+            ResumeNavMeshAgent();
+            ToMove();
+        }
+    }
+
     public override void Taunt()
     {
         Aggro();
+        agent.speed *= 2;
+        taunted = true;
     }
 
     void Explode()
     {
+        if(explosionObject != null)
+        {
+            Instantiate(explosionObject, transform.position, Quaternion.identity);
+        }
+
+        int multiplyer = 1;
+        if (taunted)
+            multiplyer = 2;
+
+        float range = explosionRange * multiplyer;
+
+        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+
         Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
         if (body)
-            body.AddExplosionForce(6000000, transform.position - new Vector3(0, -5, 0), 25);
-        Destroy(this.gameObject);
+            body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
+
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
+        Destroy(this.gameObject);
     }
+
 }

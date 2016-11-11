@@ -2,17 +2,22 @@
 using System.Collections;
 using System;
 
-public class QuestObject : MonoBehaviour, IObjectiveTarget {
+public class QuestObject : MonoBehaviour, IObjectiveTarget
+{
+
+    public int health = 2;
 
     HealthScript healthScript;
-
+    //private PlayerBehaviour pb;
     // Use this for initialization
     void Awake()
     {
 
         //healthScript = transform.GetComponent<HealthScript>();
-        healthScript = new HealthScript(2);
+        healthScript = new HealthScript(health);
         transform.parent.GetComponent<MapManager>().SetQuestObject(this.transform);
+
+        //pb = new PlayerBehaviour("rep");
 
     }
 
@@ -40,15 +45,22 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget {
         }
     }
 
-    public bool IsChecked { get; set; } 
-
+    public bool IsChecked { get; set; }
+    //need monster state too
     public void takeDamage(int dmg)
     {
+        
         Debug.Log("IM hit ");
+
+
         if (healthScript.takeDamage(dmg))
-        {
+        {   
             gameObject.SetActive(false);
-            StaticData.mapManager.CheckObjectives(this);
+            StaticIngameData.mapManager.CheckObjectives(this);
         }
+
+        //add reputation
+        //pb.ScoreChange -= dmg;
+        //pb.Invoke();
     }
 }

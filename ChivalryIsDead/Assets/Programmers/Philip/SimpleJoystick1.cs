@@ -106,12 +106,14 @@ namespace CnControls
         private bool held;
 
         GameObject player;
-        Player playerScript;
+        //Player playerScript;
+        PlayerScript playerScript;
 
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
-            playerScript = player.GetComponent<Player>();
+            //playerScript = player.GetComponent<Player>();
+            playerScript = player.GetComponent<PlayerScript>();
 
             held = false;
             moving = false;
@@ -247,6 +249,8 @@ namespace CnControls
 
         public void OnPointerUp(PointerEventData eventData)
         {
+
+            playerScript.move(0, 0);
             held = false;
             moving = false;
             // When we lift our finger, we reset everything to the initial state

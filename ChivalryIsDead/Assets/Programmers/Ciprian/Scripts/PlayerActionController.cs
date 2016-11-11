@@ -33,6 +33,7 @@ public class PlayerActionController : MonoBehaviour
 
     [Header("Scare values")]
     public float ScareRadius = 4f;
+    
 
     private float attackRange = 35f;
     private float attackRadius = 120f;
@@ -46,6 +47,9 @@ public class PlayerActionController : MonoBehaviour
     private OverreactAction overreactAction;
     private ScareAction scareAction;
 
+   
+    private PlayerBehaviour pb;
+    private MonsterAI lastMonsterAttacked;
 
     void OnDrawGizmos()
     {
@@ -105,6 +109,12 @@ public class PlayerActionController : MonoBehaviour
 
         //init for overreact
         overreactAction.OverreactCooldown = OverreactCooldown;
+
+        //subscribe to the reputation system
+        pb = new PlayerBehaviour("rep");
+
+        pb.Reset();
+        
     }
 
     /// <summary>
@@ -115,7 +125,22 @@ public class PlayerActionController : MonoBehaviour
         // if attacked the player can overreact
         if (playerState == PlayerState.HIT)
         {
-            overreactAction.Overreact();
+            //Player overreacted add reputation
+            if (overreactAction.Overreact() && lastMonsterAttacked != null)
+            {
+                if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
+                {
+
+                    pb.ChangeRepScore((int) - lastMonsterAttacked.GetBaseAttackDamage());
+                }
+                else
+                {
+                    //suicide ai doesnt change reputation
+                    pb.ChangeRepScore(0);
+                }
+
+                pb.Invoke();
+            }
         }
         else
         {
@@ -132,22 +157,41 @@ public class PlayerActionController : MonoBehaviour
         //attackAction.NormalAttack(TauntRadius, this.transform);
         //if no enemies in range SCARE
         List<Collider> enemiesInRange = attackAction.GetConeRange();
-        if (enemiesInRange.Count > 0)
+        //if (enemiesInRange.Count > 0)
         {
             attackAction.ConeAttack(enemiesInRange);
         }
-        else
-        {
-            scareAction.Scare(ScareRadius);
-        }
+        //else
+        //{
+        //    scareAction.Scare(ScareRadius);
+        //}
     }
 
-    public void Attacked()
+    public void PlayerAttacked(MonsterAI monster)
     {
         //AttackedDuration second unlock overreact
         StartCoroutine(releaseAttacked());
         //can overreact
         playerState = PlayerState.HIT;
+
+        //Player attacked add reputation according to monster base damage
+        //suicideAI doesn't make damage to player
+        
+        if (monster.GetType() !=  typeof(SuicideAI))
+        {
+            pb.ChangeRepScore((int) -monster.GetBaseAttackDamage());
+        }
+        else
+        {
+            //suicide ai doesnt change reputation
+            pb.ChangeRepScore(0);
+        }
+
+        pb.Invoke();
+
+        //save last monster attacked
+        lastMonsterAttacked = monster;
+
     }
 
 
@@ -155,6 +199,8 @@ public class PlayerActionController : MonoBehaviour
     {
         yield return new WaitForSeconds(AttackedDuration);
 
+        //wait for all attacks to submit change in reputation
+        //pb.Invoke();
         playerState = PlayerState.IDLE;
     }
 

@@ -20,8 +20,8 @@ public class DialogObject : MonoBehaviour {
     public GameObject princessText;
     public GameObject princessBubble;
 
-    GameObject kingText;
-    GameObject kingBubble;
+    public GameObject kingText;
+    public GameObject kingBubble;
 
     GameObject[] enemyText;
     GameObject[] enemyBubble;
@@ -32,23 +32,29 @@ public class DialogObject : MonoBehaviour {
     public GameObject peasantBBubble;
     public GameObject peasantBText;
 
+    GameObject targetBubble;
+    int indexCount;
+
+    float test;
+    bool isSkipped;
+    float SpeakingTime;
+
     // Use this for initialization
     void Start () {
-
-
-
+        indexCount = 0;
+        isSkipped = false;
         //peasantA = GameObject.FindGameObjectWithTag("PeasantA");
         //peasantB = GameObject.FindGameObjectWithTag("PeasantB");
 
-        if (GameObject.FindGameObjectWithTag("Player") != null)
-        {
-            if (GameObject.FindGameObjectWithTag("PlayerBubble"))
-            {
-                playerText = GameObject.FindGameObjectWithTag("PlayerText");
-                playerBubble = GameObject.FindGameObjectWithTag("PlayerBubble");
-                playerBubble.SetActive(false);
-            }
-        }
+        //if (GameObject.FindGameObjectWithTag("Player") != null)
+        //{
+        //    if (GameObject.FindGameObjectWithTag("PlayerBubble"))
+        //    {
+        //        playerText = GameObject.FindGameObjectWithTag("PlayerText");
+        //        playerBubble = GameObject.FindGameObjectWithTag("PlayerBubble");
+        //        playerBubble.SetActive(false);
+        //    }
+        //}
 
         if (GameObject.FindGameObjectWithTag("Enemy") != null)
         {
@@ -126,24 +132,32 @@ public class DialogObject : MonoBehaviour {
     }
 
 
+   
 
-
-    IEnumerator DialogSystem(int v)
+    public IEnumerator DialogSystem(int v)
     {
-
         DialogInfo d = dialog[v];
 
         d.Dialog = d.Name.Length;
 
         for(int i = 0; i < d.Dialog; i++)
         {
-           
-
             if (d.Name[i] == "Player")
             {
+                indexCount = i;
                 playerBubble.SetActive(true);
                 playerText.GetComponent<Text>().text = d.Text[i];
-                yield return new WaitForSeconds(d.Wait[i]);
+                //yield return new WaitForSeconds(d.Wait[i]);
+                SpeakingTime = d.Wait[i];
+
+                while (!isSkipped && SpeakingTime > 0)
+                {
+                    SpeakingTime -= Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+
+
+                isSkipped = false;
                 playerBubble.SetActive(false);
             }
 
@@ -204,17 +218,42 @@ public class DialogObject : MonoBehaviour {
                 
             if (d.Name[i] == "Sword")
             {
+                indexCount = i;
                 swordBubble.SetActive(true);
                 swordText.GetComponent<Text>().text = d.Text[i];
-                yield return new WaitForSeconds(d.Wait[i]);
+                //yield return new WaitForSeconds(d.Wait[i]);
+                SpeakingTime = d.Wait[i];
+
+                while (!isSkipped && SpeakingTime > 0)
+                {
+                    SpeakingTime -= Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+
+                }
+                isSkipped = false;
+                //test = d.Wait[i];
+                //yield return StartCoroutine("SkipTest");
                 swordBubble.SetActive(false);
             }
 
             if (d.Name[i] == "Princess")
             {
+                indexCount = i;
                 princessBubble.SetActive(true);
                 princessText.GetComponent<Text>().text = d.Text[i];
-                yield return new WaitForSeconds(d.Wait[i]);
+                ////yield return new WaitForSeconds(d.Wait[i]);
+                SpeakingTime = d.Wait[i];
+
+                while (!isSkipped && SpeakingTime > 0)
+                {
+                    SpeakingTime -= Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+                    
+
+                isSkipped = false;
+                //test = d.Wait[i];
+                //yield return StartCoroutine("SkipTest");
                 princessBubble.SetActive(false);
             }
 
@@ -225,11 +264,10 @@ public class DialogObject : MonoBehaviour {
                 yield return new WaitForSeconds(d.Wait[i]);
                 kingBubble.SetActive(false);
             }
-                
 
+           
         }
 
-        
         UI.GetComponent<GameMenu>().sword.GetComponent<Animator>().SetTrigger("Hide");
         UI.GetComponent<GameMenu>().princess.GetComponent<Animator>().SetTrigger("Hide");
         StartCoroutine(Hide());
@@ -237,52 +275,59 @@ public class DialogObject : MonoBehaviour {
 
     IEnumerator Hide()
     {
-        // Remememememember :)
+        // Remember :)
         yield return new WaitForSeconds(4f);
         UI.GetComponent<GameMenu>().sword.SetActive(false);
         UI.GetComponent<GameMenu>().princess.SetActive(false);
     }
 
+    IEnumerator SkipTest()
+    {
+        yield return new WaitForSeconds(1);
+        isSkipped = true;
+    }
+
+    public void SkipDialog()
+    {
+        //StopCoroutine("SkipTest");
+        //test = 0.5f;
+        //StartCoroutine("SkipTest");
+
+        swordBubble.SetActive(false);
+        princessBubble.SetActive(false);
+        playerBubble.SetActive(false);
+        isSkipped = true;
+        //StopAllCoroutines();
+        //StartCoroutine(DialogSystem(0, indexCount+1));
+        //DialogSystem(0).MoveNext();
+    }
+
     public void StopDialog()
     {
         StopCoroutine("DialogSystem");
+        UI.GetComponent<GameMenu>().sword.GetComponent<Animator>().SetTrigger("Hide");
+        UI.GetComponent<GameMenu>().princess.GetComponent<Animator>().SetTrigger("Hide");
+        StartCoroutine(Hide());
 
-        if (GameObject.FindGameObjectWithTag("PlayerBubble"))
-        {
-            playerBubble.SetActive(false);
-        }
-
-        if (GameObject.FindGameObjectWithTag("SwordBubble"))
-        {
-            swordBubble.SetActive(false);
-        }
-
-        if (GameObject.FindGameObjectWithTag("PrincessBubble"))
-        {
-            princessBubble.SetActive(false);
-        }
-
-        if (GameObject.FindGameObjectWithTag("KingBubble"))
-        {
-            kingBubble.SetActive(false);
-        }
+        
+        playerBubble.SetActive(false);
+        swordBubble.SetActive(false);
+        princessBubble.SetActive(false);
+        kingBubble.SetActive(false);
+        peasantABubble.SetActive(false);
+        peasantBBubble.SetActive(false);
 
 
-        if (GameObject.FindGameObjectWithTag("EnemyBubble"))
+        if (GameObject.FindGameObjectWithTag("EnemyBubble") && GameObject.FindGameObjectWithTag("Enemy") != null)
         {
             foreach (GameObject arrayEnemyBubble in enemyBubble)
             {
                 arrayEnemyBubble.SetActive(false);
             }
         }
-        if (GameObject.FindGameObjectWithTag("PeasantABubble"))
-        {
-            peasantABubble.SetActive(false);
-        }
-        if (GameObject.FindGameObjectWithTag("PeasantBBubble"))
-        {
-            peasantBBubble.SetActive(false);
-        }
+        
+        
+        
 
     }
 

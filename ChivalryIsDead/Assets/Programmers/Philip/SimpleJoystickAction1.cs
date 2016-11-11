@@ -131,15 +131,17 @@ namespace CnControls
         private float Rotation = 0;
 
         GameObject player;
-        Player playerScript;
+
 
         private PlayerActionController playerActionController;
-
+        //Player playerScript;
+        PlayerScript playerScript;
 
         private void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
-            playerScript = player.GetComponent<Player>();
+            //playerScript = player.GetComponent<Player>();
+            playerScript = player.GetComponent<PlayerScript>();
 
             moving = false;
             SX = 0;
@@ -312,6 +314,7 @@ namespace CnControls
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
 
             if (SY > 0.2) {
+
                 t.text = "Attack";
                 t.color = new Color(1, 0, 0, 1);
                 Vibration.Vibrate(50);
@@ -325,7 +328,7 @@ namespace CnControls
                 t.text = "Taunt";
                 t.color = new Color(0, 0, 1, 1);
                 Vibration.Vibrate(50);
-
+                playerScript.taunt();
                 blueButtonPressed();
             }
             else {
@@ -342,6 +345,7 @@ namespace CnControls
         private void redButtonPressed()
         {
             playerActionController.HandleAttack();
+            //playerScript.attack();
         }
 
         private void blueButtonPressed()

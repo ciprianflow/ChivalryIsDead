@@ -22,13 +22,12 @@ public class BaseQuest : IQuest
 
     public virtual bool CheckTarget(IObjectiveTarget gObj)
     {
-        var objIsChecked = false;
         var objEnumerator = Objectives.GetEnumerator();
 
-        while (!objIsChecked && objEnumerator.MoveNext())
-            objIsChecked = objEnumerator.Current.CheckTarget(gObj);
+        while (objEnumerator.MoveNext())
+            objEnumerator.Current.CheckTarget(gObj);
 
-        return objIsChecked;
+        return IsChecked;
     }
 
     public virtual void ForceCheck(IEnumerable<IObjectiveTarget> gObjs)
