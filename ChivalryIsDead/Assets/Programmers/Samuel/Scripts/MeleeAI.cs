@@ -216,6 +216,7 @@ public class MeleeAI : MonsterAI
             {
                 Debug.Log("I HIT A SHEEP");
                 HitSheep(QO, m, coll.gameObject);
+                base.player.SheepAttacked(this);
             }
             //If its not a sheep it must be a static questObjective
             else
@@ -246,5 +247,29 @@ public class MeleeAI : MonsterAI
         r.drag = 0;
         r.mass = 1;
         r.AddExplosionForce(chargeForce * (accelTimer / accelTime), g.transform.position, 100f, 1);
+    }
+
+    public override int GetAttackReputation()
+    {
+        int rep = AttackRep;
+        //this means taunted..
+        if (state == State.Charge)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        int rep = ObjectiveAttackRep;
+        //this means taunted..
+        if (state == State.Charge)
+        {
+            rep *= 2;
+        }
+
+        return rep;
     }
 }
