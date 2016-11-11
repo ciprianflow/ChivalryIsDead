@@ -89,7 +89,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: 0.16666667
     manualCellSize: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4f8369e4a5cbbe34087e5ea16bd72fb8, type: 2}
 --- !u!1001 &3480448
 Prefab:
   m_ObjectHideFlags: 0
@@ -3009,6 +3009,11 @@ Transform:
   m_PrefabParentObject: {fileID: 4000012228525706, guid: 8694bc8da7587f7499c430bfcfda1f57,
     type: 2}
   m_PrefabInternal: {fileID: 756522370}
+--- !u!1 &445637484 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013612086222, guid: 2d5405dfae1646047a431fc12876b6d5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1324340883}
 --- !u!4 &460798203 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000014076657810, guid: 9da847dc0f06603468eda5562a7bd653,
@@ -3693,8 +3698,8 @@ GameObject:
   m_Name: InvisWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &555635885
 Transform:
@@ -3703,7 +3708,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555635884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.75, y: 4.2, z: 7.4}
+  m_LocalPosition: {x: 5.75, y: 4.68, z: 7.4}
   m_LocalScale: {x: 2, y: 10, z: 46.39}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -8701,7 +8706,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000013431275162, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_RootOrder
@@ -11319,7 +11324,7 @@ Prefab:
     - target: {fileID: 224000011264579868, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 254.31921
       objectReference: {fileID: 0}
     - target: {fileID: 114000010913354426, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
@@ -11339,6 +11344,16 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 5cf45854d0aadf6408851de58c5c1f3d,
         type: 2}
+    - target: {fileID: 114000012123787126, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: speaker
+      value: 
+      objectReference: {fileID: 445637484}
+    - target: {fileID: 114000012123787126, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2076890311}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98f8ff744a171b846b1188deab12c9be, type: 2}
   m_IsPrefabParent: 0
@@ -12336,8 +12351,8 @@ GameObject:
   m_Name: InvisWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &1750431404
 MeshRenderer:
@@ -12394,7 +12409,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1750431403}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6, y: 4.2, z: 7.4}
+  m_LocalPosition: {x: 0.6, y: 4.68, z: 7.4}
   m_LocalScale: {x: 2, y: 10, z: 46.39}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -13500,7 +13515,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1907932222
 MeshRenderer:
