@@ -24,6 +24,8 @@ public class Projectile : MonoBehaviour {
         if(questObj != null)
         {
             questObj.takeDamage(1, true);
+            //let player know objective is attacked
+            originMonster.player.ObjectiveAttacked(originMonster);
         }
 
         //monster should make daamge not the projectile??

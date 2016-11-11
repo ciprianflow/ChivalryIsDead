@@ -32,7 +32,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4000010304692424
 Transform:
   m_ObjectHideFlags: 1
@@ -133,12 +133,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 13
   Health: 2
-  attackDamage: 5
+  attackDamage: 2
   attackTime: 3
   attackRange: 0.8
-  attackRotateSpeed: 90
+  player: {fileID: 0}
   targetObject: {fileID: 0}
   patrolling: 0
+  attackRotateSpeed: 90
+  PlayerAttackRep: -30
   scaredTimer: 5
   explosionForce: 6000000
   explosionRange: 25

@@ -75,7 +75,7 @@ public class SuicideAI : MonsterAI
 
         float range = explosionRange * multiplyer;
 
-        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+        base.player.PlayerAttacked(this);
 
         Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
         if (body)
