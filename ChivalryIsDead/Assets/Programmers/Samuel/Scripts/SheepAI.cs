@@ -16,10 +16,7 @@ public class SheepAI : MonsterAI {
 
     public override void Init() { }
 
-    public override void KillThis()
-    {
-        throw new NotImplementedException();
-    }
+    public override void KillThis() { }
 
     public override void Move()
     {

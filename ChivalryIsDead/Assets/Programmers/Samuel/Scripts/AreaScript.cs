@@ -10,11 +10,13 @@ public class AreaProperty
 {
     [SerializeField] public Color AreaColor;
     [SerializeField] public monsterType SpawnType;
+    [SerializeField] public int MaxSpawn;
 
-    public AreaProperty(Color c, monsterType t)
+    public AreaProperty(Color c, monsterType t, int n)
     {
         AreaColor = c;
         SpawnType = t;
+        MaxSpawn = n;
     }
 }
 
@@ -49,7 +51,7 @@ public class AreaScript : MonoBehaviour {
     {
         Debug.Log("Adding SpawnArea");
         Areas.Add(new Rect(0, 0, 2f, 2f));
-        properties.Add(new AreaProperty(new Color(0.4f, 0.9f, 0.1f, 1f), monsterType.Melee));
+        properties.Add(new AreaProperty(new Color(0.4f, 0.9f, 0.1f, 1f), monsterType.Melee, 0));
     }
 
     public void ResetAll()
@@ -75,6 +77,25 @@ public class AreaScript : MonoBehaviour {
                 sortedAreas[ID].Add(Areas[i]);
         }
         return sortedAreas;
+    }
+
+    internal Dictionary<int, List<int>> GetSortedMaxSpawn()
+    {
+        Dictionary<int, List<int>> sortedMaxSpawn = new Dictionary<int, List<int>>();
+        int[] monsterIDs = (int[])Enum.GetValues(typeof(monsterType));
+
+        for (int i = 0; i < monsterIDs.Length; i++)
+        {
+            sortedMaxSpawn.Add(monsterIDs[i], new List<int>());
+        }
+
+        for (int i = 0; i < Areas.Count; i++)
+        {
+            int ID = (int)properties[i].SpawnType;
+            if (sortedMaxSpawn.ContainsKey(ID))
+                sortedMaxSpawn[ID].Add(properties[i].MaxSpawn);
+        }
+        return sortedMaxSpawn;
     }
 
     public Vector3 GetRandomPointOnRect(Rect r)

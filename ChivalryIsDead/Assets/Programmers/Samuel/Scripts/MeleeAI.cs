@@ -204,20 +204,43 @@ public class MeleeAI : MonsterAI
     //Charging collision
     void OnCollisionEnter(Collision coll)
     {
-        MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
-        if (m != null && m.GetType() == typeof(SheepAI) && state == State.Charge)
+        if (state != State.Charge)
+            return;
+
+        QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
+        
+        if(QO != null)
         {
-            Debug.Log("I HIT A SHEEP");
-            m.enabled = false;
-            coll.gameObject.GetComponent<NavMeshAgent>().enabled = false;
-            Rigidbody r = coll.gameObject.GetComponent<Rigidbody>();
-            r.drag = 0;
-            r.mass = 1;
-            r.AddExplosionForce(chargeForce * (accelTimer / accelTime), coll.transform.position, 100f, 1);
-        }
+            //If thing hit is a sheep invoke the sheep hit function
+            MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
+            if (m != null && m.GetType() == typeof(SheepAI))
+            {
+                Debug.Log("I HIT A SHEEP");
+                HitSheep(QO, m, coll.gameObject);
+            }
+            //If its not a sheep it must be a static questObjective
+            else
+            {
+                Debug.Log("Hit static quest object");
+                QO.takeDamage((int)GetBaseAttackDamage(), true);
+                ChargeToAttack();
+            }
+        }   
         else if (state == State.Charge)
         {
             ChargeToAttack();
         }
+    }
+
+    void HitSheep(QuestObject QO, MonsterAI m, GameObject g)
+    {
+        if (QO != null)
+            QO.takeDamage(999, false);
+        m.enabled = false;
+        g.GetComponent<NavMeshAgent>().enabled = false;
+        Rigidbody r = g.GetComponent<Rigidbody>();
+        r.drag = 0;
+        r.mass = 1;
+        r.AddExplosionForce(chargeForce * (accelTimer / accelTime), g.transform.position, 100f, 1);
     }
 }

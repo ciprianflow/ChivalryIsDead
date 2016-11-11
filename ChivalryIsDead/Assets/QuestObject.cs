@@ -15,7 +15,6 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
 
         //healthScript = transform.GetComponent<HealthScript>();
         healthScript = new HealthScript(health);
-        transform.parent.GetComponent<MapManager>().SetQuestObject(this.transform);
 
         //pb = new PlayerBehaviour("rep");
 
@@ -47,15 +46,15 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
 
     public bool IsChecked { get; set; }
     //need monster state too
-    public void takeDamage(int dmg)
+    public void takeDamage(int dmg, bool destroy)
     {
         
         Debug.Log("IM hit ");
 
-
         if (healthScript.takeDamage(dmg))
         {   
-            gameObject.SetActive(false);
+            if(destroy)
+                gameObject.SetActive(false);
             StaticIngameData.mapManager.CheckObjectives(this);
         }
 

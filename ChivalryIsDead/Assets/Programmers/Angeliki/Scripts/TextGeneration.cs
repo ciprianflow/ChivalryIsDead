@@ -34,6 +34,8 @@ public class TextGeneration : MonoBehaviour {
     List<int> logSequenceStart = new List<int>();
     List<int> logSequenceEnd = new List<int>();
 
+    
+
     // Use this for initialization
     void Start() {
         //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();

@@ -15,6 +15,9 @@ public static class StaticData {
     //Helper functions
     public static List<IObjective> GetObjectives()
     {
+        if (currQuest == null)
+            return null;
+
         return currQuest.Objectives;
     }
 
