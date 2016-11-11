@@ -65,8 +65,7 @@ public class MeleeAI : MonsterAI
                     if (body)
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
-                    //@@HARDCODED
-                    base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+                    base.player.PlayerAttacked(this);
                     Debug.Log("Hit player");
                 }
             }
@@ -102,7 +101,7 @@ public class MeleeAI : MonsterAI
         v.y = 0;
         v2.y = 0;
         v3.y = 0;
-        Debug.Log(Vector3.Angle(v, v3 - v2));
+       // Debug.Log(Vector3.Angle(v, v3 - v2));
         if (Vector3.Angle(v, v3 - v2) > 1f)
         {
             rotateTowardsTarget();
@@ -222,7 +221,8 @@ public class MeleeAI : MonsterAI
             else
             {
                 Debug.Log("Hit static quest object");
-                QO.takeDamage((int)GetBaseAttackDamage(), true);
+                QO.takeDamage(GetBaseAttackDamage(), true);
+                base.player.ObjectiveAttacked(this);
                 ChargeToAttack();
             }
         }   
@@ -235,7 +235,11 @@ public class MeleeAI : MonsterAI
     void HitSheep(QuestObject QO, MonsterAI m, GameObject g)
     {
         if (QO != null)
+        {
             QO.takeDamage(999, false);
+            base.player.ObjectiveAttacked(this);
+        }
+            
         m.enabled = false;
         g.GetComponent<NavMeshAgent>().enabled = false;
         Rigidbody r = g.GetComponent<Rigidbody>();
