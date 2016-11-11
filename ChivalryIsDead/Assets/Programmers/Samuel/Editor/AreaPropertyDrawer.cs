@@ -15,9 +15,13 @@ public class AreaPropertyDrawer : PropertyDrawer {
 
         Rect newPos = position;
 
-        EditorGUI.PropertyField(new Rect(position.x, position.y, position.width /2, position.height), property.FindPropertyRelative("AreaColor"), GUIContent.none);
+        int offset = 20;
+        position.width = position.width - 25;
+        EditorGUI.PropertyField(new Rect(position.x - offset, position.y, position.width /2, position.height), property.FindPropertyRelative("AreaColor"), GUIContent.none);
         position.width = position.width / 2;
-        EditorGUI.PropertyField(new Rect(position.x + position.width - 5, position.y, position.width, position.height), property.FindPropertyRelative("SpawnType"), GUIContent.none);
+        EditorGUI.PropertyField(new Rect(position.x + position.width - 25 - offset, position.y, position.width, position.height), property.FindPropertyRelative("SpawnType"), GUIContent.none);
+        position.width = position.width / 2;
+        EditorGUI.PropertyField(new Rect(position.x + position.width + offset + 85, position.y, position.width, position.height), property.FindPropertyRelative("MaxSpawn"), GUIContent.none);
 
     }
 }
