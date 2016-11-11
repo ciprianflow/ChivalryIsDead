@@ -14,7 +14,7 @@ public class PlayerActionController : MonoBehaviour
 
     
     [Header("Attack values")]
-    public float AttackDamage = 1f;
+    public int AttackDamage = 1;
     public float AttackRange = 2f;
     public float AttackAngle = 0.6f;
     
@@ -122,6 +122,13 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
+
+        //otherwhise taunt
+        tauntAction.Taunt();
+    }
+
+    public void HandleOverreact()
+    {
         // if attacked the player can overreact
         if (playerState == PlayerState.HIT)
         {
@@ -131,7 +138,7 @@ public class PlayerActionController : MonoBehaviour
                 if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
                 {
 
-                    pb.ChangeRepScore((int) - lastMonsterAttacked.GetBaseAttackDamage());
+                    pb.ChangeRepScore(-lastMonsterAttacked.GetBaseAttackDamage());
                 }
                 else
                 {
@@ -141,11 +148,6 @@ public class PlayerActionController : MonoBehaviour
 
                 pb.Invoke();
             }
-        }
-        else
-        {
-            //otherwhise taunt
-            tauntAction.Taunt();
         }
     }
 
@@ -157,14 +159,36 @@ public class PlayerActionController : MonoBehaviour
         //attackAction.NormalAttack(TauntRadius, this.transform);
         //if no enemies in range SCARE
         List<Collider> enemiesInRange = attackAction.GetConeRange();
-        //if (enemiesInRange.Count > 0)
+
+        attackAction.ConeAttack(enemiesInRange);
+
+        //add reputation
+        foreach (Collider enemy in enemiesInRange)
         {
-            attackAction.ConeAttack(enemiesInRange);
+            MonsterAI monster = enemy.GetComponent<MonsterAI>();
+
+            pb.ChangeRepScore(monster.PlayerAttackReputation());
+            pb.Invoke();
+
         }
-        //else
-        //{
-        //    scareAction.Scare(ScareRadius);
-        //}
+
+    }
+
+    //objective attacked by monsters
+    public void ObjectiveAttacked(MonsterAI monster)
+    {
+        Debug.Log("Objective attacked" + monster.name);
+
+        if ( monster.GetType() != typeof(SuicideAI))
+        {
+            pb.ChangeRepScore(-monster.GetBaseAttackDamage());
+        } else
+        {
+            pb.ChangeRepScore(0);
+        }
+
+        pb.Invoke();
+        
     }
 
     public void PlayerAttacked(MonsterAI monster)
@@ -179,7 +203,7 @@ public class PlayerActionController : MonoBehaviour
         
         if (monster.GetType() !=  typeof(SuicideAI))
         {
-            pb.ChangeRepScore((int) -monster.GetBaseAttackDamage());
+            pb.ChangeRepScore( -monster.GetBaseAttackDamage());
         }
         else
         {
