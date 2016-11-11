@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour {
         QuestObject questObj = collObj.GetComponent<QuestObject>();
         if(questObj != null)
         {
-            questObj.takeDamage(1);
+            questObj.takeDamage(1, true);
         }
 
         //monster should make daamge not the projectile??
