@@ -361,30 +361,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Areas:
   - serializedVersion: 2
-    x: -12.475494
-    y: -2.658228
+    x: -12.464801
+    y: -1.3503256
     width: 2.726654
     height: 2.7256107
   - serializedVersion: 2
-    x: -9.709401
-    y: 3.615468
+    x: -10.081724
+    y: 2.2507582
     width: 2.7085798
     height: 3.086403
   - serializedVersion: 2
-    x: 10.665807
-    y: 3.4136171
+    x: 9.013228
+    y: 1.766531
     width: 2.648461
     height: 2.991254
+  - serializedVersion: 2
+    x: 7.649645
+    y: -4.001129
+    width: 2
+    height: 2
   properties:
   - AreaColor: {r: 0.4, g: 0.9, b: 0.1, a: 1}
     SpawnType: 11
-    MaxSpawn: 1
+    MaxSpawn: -1
   - AreaColor: {r: 0.4, g: 0.9, b: 0.1, a: 1}
-    SpawnType: 11
-    MaxSpawn: 1
+    SpawnType: 12
+    MaxSpawn: -1
   - AreaColor: {r: 0.4, g: 0.9, b: 0.1, a: 1}
-    SpawnType: 11
-    MaxSpawn: 1
+    SpawnType: 13
+    MaxSpawn: -1
+  - AreaColor: {r: 0.4, g: 0.9, b: 0.1, a: 1}
+    SpawnType: 21
+    MaxSpawn: -1
 --- !u!1001 &161506735
 Prefab:
   m_ObjectHideFlags: 0
@@ -3311,6 +3319,10 @@ Prefab:
       propertyPath: targetObject
       value: 
       objectReference: {fileID: 969417774}
+    - target: {fileID: 1000013317938470, guid: 8e416516cba371e4c8304dc2eb1dca99, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e416516cba371e4c8304dc2eb1dca99, type: 2}
   m_IsPrefabParent: 0
