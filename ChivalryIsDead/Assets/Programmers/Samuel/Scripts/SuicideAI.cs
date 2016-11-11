@@ -75,7 +75,7 @@ public class SuicideAI : MonsterAI
 
         float range = explosionRange * multiplyer;
 
-        base.player.PlayerAttacked(this);
+        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
 
         Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
         if (body)
@@ -83,6 +83,39 @@ public class SuicideAI : MonsterAI
 
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
         Destroy(this.gameObject);
+    }
+
+    void OnCollisionEnter(Collision coll)
+    {
+        Debug.Log("OK");
+        if (state == State.Idle)
+            return;
+
+        KillThis();
+    }
+
+    public override int GetAttackReputation()
+    {
+        int rep = AttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        int rep = ObjectiveAttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
     }
 
 }
