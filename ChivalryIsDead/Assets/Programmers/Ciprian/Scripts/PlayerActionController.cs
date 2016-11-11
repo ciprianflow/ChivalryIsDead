@@ -122,6 +122,14 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
+
+        //otherwhise taunt
+        tauntAction.Taunt();
+
+    }
+
+    public void HandleOverreact()
+    {
         // if attacked the player can overreact
         if (playerState == PlayerState.HIT)
         {
@@ -131,7 +139,7 @@ public class PlayerActionController : MonoBehaviour
                 if (lastMonsterAttacked.GetType() != typeof(SuicideAI))
                 {
 
-                    pb.ChangeRepScore((int) - lastMonsterAttacked.GetBaseAttackDamage());
+                    pb.ChangeRepScore((int)-lastMonsterAttacked.GetBaseAttackDamage());
                 }
                 else
                 {
@@ -141,11 +149,6 @@ public class PlayerActionController : MonoBehaviour
 
                 pb.Invoke();
             }
-        }
-        else
-        {
-            //otherwhise taunt
-            tauntAction.Taunt();
         }
     }
 
