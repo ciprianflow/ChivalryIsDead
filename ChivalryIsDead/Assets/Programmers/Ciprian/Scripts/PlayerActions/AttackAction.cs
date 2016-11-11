@@ -69,15 +69,12 @@ class AttackAction : MonoBehaviour
     //receives enemies to attack
     public void ConeAttack(List<Collider> colliders)
     {
-        Debug.Log("DAWEUHDAWUIOH");
-
 
         if (!checkCooldown())
         {
             return;
         }
 
-        Debug.Log("DAWEUHDAWUIOH");
         playerBase.attack();
 
         cooldownTimeStamp = Time.time + AttackCooldown;

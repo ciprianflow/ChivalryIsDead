@@ -85,4 +85,13 @@ public class SuicideAI : MonsterAI
         Destroy(this.gameObject);
     }
 
+    void OnCollisionEnter(Collision coll)
+    {
+        Debug.Log("OK");
+        if (state == State.Idle)
+            return;
+
+        KillThis();
+    }
+
 }
