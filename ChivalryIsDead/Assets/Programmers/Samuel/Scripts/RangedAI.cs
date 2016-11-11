@@ -121,9 +121,14 @@ public class RangedAI : MonsterAI {
         float dist = dir.magnitude;  // get horizontal distance
         float a = angle * Mathf.Deg2Rad;  // convert angle to radians
         dir.y = dist* Mathf.Tan(a);  // set dir to the elevation angle
-        dist += h / Mathf.Tan(a);  // correct for small height differences
+        float tanA = Mathf.Tan(a);
+        if (tanA == 0)
+            tanA = 0.01f;
+        dist += h / tanA;  // correct for small height differences
         // calculate the velocity magnitude
-        float vel = Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a));
+        float vel = Mathf.Sqrt(Mathf.Abs(dist) * Physics.gravity.magnitude / Mathf.Sin(2 * a));
+        Debug.Log(vel + " = " + Mathf.Abs(dist) * Physics.gravity.magnitude + " / " + Mathf.Sin(2 * a));
+        Debug.Log(Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a)));
         return vel* dir.normalized;
     }
 

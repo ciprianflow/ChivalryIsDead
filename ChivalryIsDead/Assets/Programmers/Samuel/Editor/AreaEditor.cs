@@ -108,8 +108,16 @@ public class AreaEditor : Editor {
             pos = Handles.PositionHandle(pos, Quaternion.identity);
 
             Handles.color = Color.blue;
-            Handles.Label(pos + Vector3.up * 4 + new Vector3(1, 0, 1),
-                                 i + " : " + areaScript.properties[i].SpawnType.ToString(), style);
+            if(areaScript.properties[i].MaxSpawn < 0)
+                Handles.Label(pos + Vector3.up * 4 + new Vector3(1, 0, 1),
+                                     "Area  : " + i + "\n "  +
+                                     "Type : "+ areaScript.properties[i].SpawnType.ToString() + "\n" +
+                                     "Max Spawn : no limit", style);
+            else
+                Handles.Label(pos + Vector3.up * 4 + new Vector3(1, 0, 1),
+                                     "Area  : " + i + "\n"+
+                                     "Type : " + areaScript.properties[i].SpawnType.ToString() + "\n" +
+                                     "Max Spawn : " + areaScript.properties[i].MaxSpawn, style);
 
             areaScript.Areas[i] = new Rect(pos.x, pos.z, scale.x, scale.z);
 

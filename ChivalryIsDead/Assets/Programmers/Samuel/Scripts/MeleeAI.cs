@@ -208,6 +208,9 @@ public class MeleeAI : MonsterAI
         if (m != null && m.GetType() == typeof(SheepAI) && state == State.Charge)
         {
             Debug.Log("I HIT A SHEEP");
+            QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
+            if (QO != null)
+                QO.takeDamage(999, false);
             m.enabled = false;
             coll.gameObject.GetComponent<NavMeshAgent>().enabled = false;
             Rigidbody r = coll.gameObject.GetComponent<Rigidbody>();

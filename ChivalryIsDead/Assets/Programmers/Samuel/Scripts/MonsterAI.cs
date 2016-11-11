@@ -167,6 +167,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     void InitNavMeshAgent()
     {
+        if (targetObject == null)
+            targetObject = StaticIngameData.player;
         agent = GetComponent<NavMeshAgent>();
         agent.enabled = true;
         points = new Transform[0];
