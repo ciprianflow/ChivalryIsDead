@@ -19,7 +19,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public float attackRange = 5f;
 
     [Space]
-    public PlayerActionController player;
+    public PlayerActionController playerAction;
     public Transform targetObject;
     protected Vector3 targetPoint;
     public bool patrolling = false;
@@ -54,6 +54,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Scare();
     public abstract void Scared();
     public abstract void Init();
+
+    public abstract int GetObjectiveAttackReputation();
+    public abstract int GetAttackReputation();
+
+
 
     public void InitMonster()
     {
@@ -268,11 +273,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         return PlayerAttackRep;
     }
-
-    public abstract int GetObjectiveAttackReputation();
-
-
-    public abstract int GetAttackReputation();
 
     public int GetOverreactReputation()
     {
