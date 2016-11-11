@@ -26,6 +26,8 @@ public class GameMenu : MonoBehaviour {
     bool endletterActive;
     bool introletterActive;
 
+    public bool speaking;
+
     float testRND;
 
 
@@ -33,6 +35,7 @@ public class GameMenu : MonoBehaviour {
 
     void Awake ()
     {
+        speaking = false;
         paused = false;
         endletterActive = false;
         introletterActive = false;
@@ -49,13 +52,13 @@ public class GameMenu : MonoBehaviour {
         sword.SetActive(false);
         princess.SetActive(false);
 
-        Princess();
-        Sword();
-        Invoke("Test1", 2);
+        //Princess();
+        //Sword();
+        //Invoke("Test1", 2);
 
-        testRND = Random.Range(16, 30);
-        Debug.Log("peasants dialog starts in " + testRND);
-        Invoke("Test", testRND);
+        //testRND = Random.Range(16, 30);
+        //Debug.Log("peasants dialog starts in " + testRND);
+        //Invoke("Test", testRND);
 
 
 
@@ -197,15 +200,7 @@ public class GameMenu : MonoBehaviour {
     }
 
 
-    void Test()
-    {
-        //dialogSystem.StartCoroutine("DialogSystem", 2);
-    }
-
-    void Test1()
-    {
-        StartCoroutine(dialogSystem.DialogSystem(0));
-    }
+    
 
     //Options
 
