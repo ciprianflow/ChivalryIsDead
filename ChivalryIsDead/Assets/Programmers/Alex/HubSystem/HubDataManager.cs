@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 //using UnityEditor;
 using System.Collections.Generic;
+using System;
 
 public class HubDataManager : MonoBehaviour {
 
@@ -43,6 +44,7 @@ public class HubDataManager : MonoBehaviour {
     public int MaximumReputation = 2000;
     public int TotalDays = 14;
 
+    public GameObject DLCPane;
     public GameObject ContentPane;
     public GameObject QuestButton;
     public Text RepText;
@@ -116,6 +118,7 @@ public class HubDataManager : MonoBehaviour {
         }
     }
 
+
     // TODO: Dummy method, shouldn't make it into the final game. Update to generic or UI specific alternative.
     private void CreateQuestUIElements()
     {
@@ -136,6 +139,26 @@ public class HubDataManager : MonoBehaviour {
             b.onClick.AddListener(() => SelectQuest(newI));
 
         }
+
+
+        GenerateDummyQuest();
+    }
+
+    private void GenerateDummyQuest()
+    {
+        GameObject QuestButtonObj = Instantiate(QuestButton);
+        QuestButtonObj.transform.SetParent(ContentPane.transform);
+        Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
+        newQuestText.text = "Most awesome quest ever!";
+        Debug.Log("Quest name " + newQuestText.text);
+
+        Button b = newQuestText.transform.parent.GetComponent<Button>();
+        b.onClick.AddListener(() => SetDLCPopUp(true));
+    }
+
+    public void SetDLCPopUp(bool b)
+    {
+        DLCPane.SetActive(b);
     }
 
     // TODO: Semi-Dummy, completes a quest. Should be refactored to enter "Quest Mode".
