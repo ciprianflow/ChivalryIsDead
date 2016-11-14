@@ -118,6 +118,7 @@ public class HubDataManager : MonoBehaviour {
         }
     }
 
+
     // TODO: Dummy method, shouldn't make it into the final game. Update to generic or UI specific alternative.
     private void CreateQuestUIElements()
     {
