@@ -24,8 +24,8 @@ GameObject:
   - 195: {fileID: 195000010249325622}
   - 54: {fileID: 54000013281746766}
   - 114: {fileID: 114000014104116408}
-  - 136: {fileID: 136000012436992560}
   - 114: {fileID: 114000012670265610}
+  - 65: {fileID: 65000010367349222}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Enemy
@@ -97,6 +97,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65000010367349222
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012860691644}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2, y: 1, z: 1.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114000012670265610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,7 +136,7 @@ MonoBehaviour:
   attackDamage: 5
   attackTime: 3
   attackRange: 1.5
-  player: {fileID: 0}
+  playerAction: {fileID: 0}
   targetObject: {fileID: 0}
   patrolling: 1
   attackRotateSpeed: 90
@@ -138,19 +150,6 @@ MonoBehaviour:
   attackLength: 1
   attackAngleWidth: 0.6
   chargeForce: 250
---- !u!136 &136000012436992560
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012860691644}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.8
-  m_Height: 1.2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &195000010249325622
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -158,7 +157,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012860691644}
   m_Enabled: 0
-  m_Radius: 0.7
+  m_Radius: 0.6
   m_Speed: 2
   m_Acceleration: 30
   avoidancePriority: 50
@@ -168,6 +167,6 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 1
-  m_BaseOffset: 0.5
+  m_BaseOffset: 0.42
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

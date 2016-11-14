@@ -57,7 +57,7 @@ class TauntAction: MonoBehaviour
     private void checkStateAndTaunt(MonsterAI monster)
     {
         //everything but idle
-        if (monster.getState() != State.Idle || monster.GetType() == typeof(SuicideAI))
+        if (monster.getState() != State.Idle || monster.GetType() == typeof(SuicideAI) || monster.GetType() == typeof(SheepAI))
         {
             monster.Taunt();
         }

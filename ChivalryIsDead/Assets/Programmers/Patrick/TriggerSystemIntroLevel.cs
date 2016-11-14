@@ -27,6 +27,11 @@ public class TriggerSystemIntroLevel : MonoBehaviour {
         {
             Dialog.GetComponent<IntroLevelDialog>().StartCoroutine("DialogFour");
         }
+
+        if (dialogNumber == 5)
+        {
+            Dialog.GetComponent<IntroLevelDialog>().StartCoroutine("DialogFive");
+        }
     }
 
   
