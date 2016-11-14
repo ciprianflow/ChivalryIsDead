@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Continue()
     {
-        Application.OpenURL("https://www.youtube.com/watch?v=AuRXVMSG3po");
+        //Application.OpenURL("https://www.youtube.com/watch?v=AuRXVMSG3po");
     }
 
 
