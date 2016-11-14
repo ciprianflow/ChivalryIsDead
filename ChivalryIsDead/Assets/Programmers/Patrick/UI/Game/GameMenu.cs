@@ -128,7 +128,7 @@ public class GameMenu : MonoBehaviour {
         {
             pause.SetActive(true);
             paused = true;
-            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.pressedSprite;
+            //pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.pressedSprite;
             //pauseBtn.SetActive(false);
             Time.timeScale = 0f;
         } else
@@ -136,7 +136,7 @@ public class GameMenu : MonoBehaviour {
             pause.SetActive(false);
             paused = false;
             //pauseBtn.SetActive(true);
-            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
+            //pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
             Time.timeScale = 1f;
         }
     }
