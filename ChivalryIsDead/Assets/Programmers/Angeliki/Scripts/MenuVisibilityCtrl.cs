@@ -8,6 +8,7 @@ public class MenuVisibilityCtrl : MonoBehaviour
 
     GameObject _myGameObj;
     GameObject _invisibleBG;
+    public GameObject menu;
 
     void Awake()
     {
@@ -33,7 +34,7 @@ public class MenuVisibilityCtrl : MonoBehaviour
         tempTransform.offsetMin = new Vector2(0f, 0f);
         tempTransform.offsetMax = new Vector2(0f, 0f);
         tempTransform.SetParent(GetComponentsInParent<Transform>()[1], false);
-        tempTransform.SetSiblingIndex(transform.GetSiblingIndex()); // put it right beind this panel in the hierarchy
+        tempTransform.SetSiblingIndex(transform.GetSiblingIndex()); // put it right behind this panel in the hierarchy
     }
 
     void OnEnable()
@@ -43,7 +44,17 @@ public class MenuVisibilityCtrl : MonoBehaviour
 
     public void hide()
     {
-        _myGameObj.SetActive(false);
+        if(menu == null)
+        {
+            _myGameObj.SetActive(false);
+        }
+        else
+        {
+            menu.GetComponent<GameMenu>().Pause();
+        }
+        
         _invisibleBG.SetActive(false);
+
+
     }
 }
