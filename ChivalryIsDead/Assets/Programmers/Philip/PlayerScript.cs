@@ -51,6 +51,40 @@ public class PlayerScript : MonoBehaviour {
 
     }
 
+    public bool canDoAction(PlayerActions action)
+    {
+
+        switch(action)
+        {
+            case PlayerActions.ATTACK:
+                if (taunting || overreacting)
+                {
+                    return false;
+                }
+                break;
+
+            case PlayerActions.TAUNT:
+                if (attacking || overreacting)
+                {
+                    return false;
+                }
+                break;
+
+            case PlayerActions.OVERREACT:
+                if (attacking || taunting)
+                {
+                    return false;
+                }
+                break;
+                
+            default:
+                return true;
+        }
+        //Debug.Log(taunting + " - " + attacking + " - " + overreacting);
+
+        return true;
+    }
+
     void FixedPosition(float x, float y) {
         if (overreacting)
             return;
