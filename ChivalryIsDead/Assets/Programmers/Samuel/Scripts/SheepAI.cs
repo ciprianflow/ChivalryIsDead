@@ -7,11 +7,6 @@ public class SheepAI : MonsterAI {
 
     public Animator anim;
 
-    void Update()
-    {
-        anim.SetFloat("Speed", agent.speed);
-    }
-
     [Header("Sheep Specific Variables")]
     public float aggroTime = 10;
 
@@ -57,6 +52,8 @@ public class SheepAI : MonsterAI {
 
     public override void Move()
     {
+        anim.SetFloat("Speed", agent.speed);
+
         targetPoint = -targetObject.forward * 2 + targetObject.position;
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed();
