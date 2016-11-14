@@ -9,6 +9,7 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public GameObject InvisWallOne;
     public GameObject InvisWallTwo;
+    public GameObject InvisWallThree;
 
     // Use this for initialization
     void Start () {
@@ -55,6 +56,14 @@ public class IntroLevelDialog : MonoBehaviour {
         UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(1);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        yield return new WaitForSeconds(2);
+        InvisWallThree.SetActive(false);
+    }
+
+    public IEnumerator DialogFive()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
+        yield return null;
     }
 
 
