@@ -8,6 +8,8 @@ public class RangedAI : MonsterAI
     public GameObject projectile;
     public GameObject targetSprite;
 
+    public Animator anim;
+
     Transform targetObj;
 
     float force = 1;
