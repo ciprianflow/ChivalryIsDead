@@ -84,6 +84,30 @@ namespace CnControls
         public Image ActionBottom;
 
         /// <summary>
+        /// Image of the joystick base
+        /// </summary>
+        [Tooltip("Image of the joystick base")]
+        public Image ActionLeft;
+
+        /// <summary>
+        /// Image of the joystick base
+        /// </summary>
+        [Tooltip("Image of the joystick base")]
+        public Image ActionRight;
+
+        /// <summary>
+        /// Image of the joystick base
+        /// </summary>
+        [Tooltip("Image of the joystick base")]
+        public Image ActionCenter;
+
+        /// <summary>
+        /// Image of the joystick base
+        /// </summary>
+        [Tooltip("Image of the joystick base")]
+        public Image ActionCenterPushed;
+
+        /// <summary>
         /// Image of the stick itself
         /// </summary>
         [Tooltip("Image of the stick itself")]
@@ -130,6 +154,13 @@ namespace CnControls
 
         private float Rotation = 0;
 
+        private bool attack;
+        private bool taunt;
+        private bool overreact;
+        private bool cancel;
+        private bool question;
+
+
         GameObject player;
 
 
@@ -139,6 +170,8 @@ namespace CnControls
 
         private void Awake()
         {
+            
+
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
             //playerScript = player.GetComponent<Player>();
             playerScript = player.GetComponent<PlayerScript>();
@@ -261,36 +294,88 @@ namespace CnControls
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
 
-            SX = Stick.rectTransform.localPosition.x/125;
-            SY = Stick.rectTransform.localPosition.y/125;
+            SX = Stick.rectTransform.localPosition.x/MovementRange;
+            SY = Stick.rectTransform.localPosition.y/MovementRange;
 
-            if (SY > 0.2f) {
-                ActionTop.color = new Color(1, 1, 1, 1);
-                ActionBottom.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            }
-            else if (SY < -0.2f) {
-                    ActionBottom.color = new Color(1, 1, 1, 1);
-                    ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            }
-            else {
-                ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
-                ActionBottom.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            }
-             
-                //if (SY > 0) {
-                //    Stick.color = new Color(1- SY/2, 1-SY, 1, 1);
-                //}
-                //else if(SY < 0) {
-                //    Stick.color = new Color(1, 1+SY/2 , 1+SY/2, 1);
-                //}
+            float SXX = Vector2.ClampMagnitude(new Vector2(SX, SY), 1).x;
+            float SYY = Vector2.ClampMagnitude(new Vector2(SX, SY), 1).y;
+            float angle = Mathf.Rad2Deg * Mathf.Atan2(SY, SX);
+            if (angle < 0)
+                angle += 360;
 
-                //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
+            Debug.Log("SX " + SX + " SY " + SY);
+            Debug.Log("SXX " + SXX + " SYY " + SYY);
 
-                moving = true;
+
+            resetOptions();
+
+            if (new Vector2(SX, SY).magnitude < 0.5) {
+                attack = true;
+                //ActionCenter.color = new Color(1, 1, 1, 1);
+                ActionCenterPushed.enabled = true;
+            }
+            else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) {
+                overreact = true;
+                ActionRight.color = new Color(1, 1, 1, 1);
+            }
+            else if ((angle >= 126 && angle < 270)) {
+                taunt = true;
+                ActionLeft.color = new Color(1, 1, 1, 1);
+            }
+            else if((angle >= 54 && angle < 126)) {
+                cancel = true;
+                ActionBottom.color = new Color(1, 1, 1, 1);
+            }
+            //else if (SX < 0 && -SX > Mathf.Abs(SY)) {
+            //    taunt = true;
+            //    ActionLeft.color = new Color(1, 1, 1, 1);
+            //}
+            //else if (SY > 0 && SY > Mathf.Abs(SX)) {
+            //    //question = true;
+            //    //ActionTop.color = new Color(1, 1, 1, 1);
+            //    resetOptions();
+            //}
+            //else if (SY < 0 && -SY > Mathf.Abs(SX)) {
+            //    cancel = true;
+            //    ActionBottom.color = new Color(1, 1, 1, 1);
+            //}
+            //else if (SY < -0.2f) {
+            //        ActionBottom.color = new Color(1, 1, 1, 1);
+            //        ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            //}
+            //else {
+            //    ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            //    ActionBottom.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            //}
+
+            //if (SY > 0) {
+            //    Stick.color = new Color(1- SY/2, 1-SY, 1, 1);
+            //}
+            //else if(SY < 0) {
+            //    Stick.color = new Color(1, 1+SY/2 , 1+SY/2, 1);
+            //}
+
+            //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
+
+            moving = true;
 
             // Finally, we update our virtual axis
             HorizintalAxis.Value = horizontalValue;
             VerticalAxis.Value = verticalValue;
+        }
+
+        public void resetOptions() {
+            attack = false;
+            taunt = false;
+            overreact = false;
+            cancel = false;
+            //question = false;
+            //ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            ActionBottom.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            ActionLeft.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            ActionRight.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            ActionCenterPushed.enabled = false;
+
         }
 
         public void rotateActionButton() {
@@ -313,27 +398,23 @@ namespace CnControls
 
             HorizintalAxis.Value = VerticalAxis.Value = 0f;
 
-            if (SY > 0.2) {
-
-                t.text = "Attack";
-                t.color = new Color(1, 0, 0, 1);
-                Vibration.Vibrate(50);
-
-                redButtonPressed();
-
-
-                
+            if (attack) {
+                action_attack();
             }
-            else if (SY < -0.2) {
-                t.text = "Taunt";
-                t.color = new Color(0, 0, 1, 1);
-                Vibration.Vibrate(50);
-                playerScript.taunt();
-                blueButtonPressed();
+            else if (taunt) {
+                action_taunt();
             }
-            else {
-                t.text = "";
+            else if (overreact) {
+                action_overreact();
             }
+            else if (question) {
+                action_question();
+            }
+            else if (cancel) {
+                action_cancel();
+            }
+            resetOptions();
+
 
             // We also hide it if we specified that behaviour
             if (HideOnRelease)
@@ -342,15 +423,34 @@ namespace CnControls
             }
         }
 
-        private void redButtonPressed()
+        private void action_attack()
         {
+            t.text = "Attack";
+            t.color = new Color(1, 0, 0, 1);
+            Vibration.Vibrate(50);
             playerActionController.HandleAttack();
             //playerScript.attack();
         }
 
-        private void blueButtonPressed()
+        private void action_taunt()
         {
+            t.text = "Taunt";
+            t.color = new Color(0, 0, 1, 1);
+            Vibration.Vibrate(50);
+            playerScript.taunt();
             playerActionController.HandleTaunt();
+        }
+        private void action_overreact() {
+            t.text = "overreact";
+            t.color = new Color(0, 1, 0, 1);
+        }
+        private void action_question() {
+            t.text = "question";
+            t.color = new Color(1, 1, 0, 1);
+        }
+        private void action_cancel() {
+            t.text = "cancelled";
+            t.color = new Color(0, 1, 1, 1);
         }
 
         public void OnPointerDown(PointerEventData eventData) {
@@ -376,10 +476,12 @@ namespace CnControls
                 _stickTransform.position = localStickPosition;
                 _intermediateStickPosition = _stickTransform.anchoredPosition;
             }
-            else
-            {
-                OnDrag(eventData);
-            }
+            //else
+            //{
+            //    OnDrag(eventData);
+            //}
+            OnDrag(eventData);
+
             // We also want to show it if we specified that behaviour
             if (HideOnRelease)
             {
