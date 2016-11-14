@@ -5,6 +5,30 @@ public class TriggerSystemIntroLevel : MonoBehaviour {
 
     public GameObject Dialog;
 
+    public int introKill;
+    public int endKill;
+
+    void Start()
+    {
+        introKill = 0;
+        endKill = 0;
+    }
+
+    void Update()
+    {
+        if(introKill == 1)
+        {
+            Dialog.GetComponent<IntroLevelDialog>().EventOne();
+            ++introKill;
+        }
+
+        if (endKill == 3)
+        {
+            Dialog.GetComponent<IntroLevelDialog>().StartCoroutine("DialogFour");
+            ++endKill;
+        }
+    }
+
 
     public void TiggerCheck(int dialogNumber)
     {
@@ -28,10 +52,7 @@ public class TriggerSystemIntroLevel : MonoBehaviour {
             Dialog.GetComponent<IntroLevelDialog>().StartCoroutine("DialogFour");
         }
 
-        if (dialogNumber == 5)
-        {
-            Dialog.GetComponent<IntroLevelDialog>().StartCoroutine("DialogFive");
-        }
+
     }
 
   

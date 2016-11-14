@@ -131,7 +131,7 @@ public class PlayerActionController : MonoBehaviour
     public void HandleOverreact()
     {
         // if attacked the player can overreact
-        if (playerState == PlayerState.HIT)
+        if (playerState != PlayerState.HIT)
         {
             //Player overreacted add reputation
             if (overreactAction.Overreact() && lastMonsterAttacked != null)

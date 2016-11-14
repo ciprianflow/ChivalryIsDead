@@ -16,6 +16,8 @@ public class PlayerScript : MonoBehaviour {
     public bool attacking = false;
     public bool taunting = false;
     public bool scaring = false;
+    public bool attackReachedFull = false;
+    public bool overreacting = false;
     Vector2 LastXY = new Vector2(0, 0);
 
     private bool isSlowingDown = false;
@@ -23,6 +25,8 @@ public class PlayerScript : MonoBehaviour {
     private bool staticControls = true;
     public float UpperWeight = 0;
     public float LowerWeight = 0;
+
+    public GameObject SwordTrail;
 
     Dictionary<String, int> AnimDic = new Dictionary<String, int>();
 
@@ -35,6 +39,7 @@ public class PlayerScript : MonoBehaviour {
         AnimDic.Add("attacking", 1);
         AnimDic.Add("taunting", 3);
         AnimDic.Add("scaring", 5);
+        AnimDic.Add("overreacting", 7);
 
         StaticIngameData.player = this.transform;
 
@@ -47,6 +52,9 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void FixedPosition(float x, float y) {
+        if (overreacting)
+            return;
+
         if (x == 0 && y == 0) {
             isSlowingDown = true;
             return;
@@ -170,6 +178,10 @@ public class PlayerScript : MonoBehaviour {
         {
             animate(ref scaring, "scaring");
         }
+        if (overreacting)
+        {
+            animate(ref overreacting, "overreacting");
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             taunt();
@@ -196,12 +208,15 @@ public class PlayerScript : MonoBehaviour {
             }
             if(UpperWeight < 0 && LowerWeight < 0)
             {
+
+                Debug.Log("ENDEDANIM");
                 animState = false;
             }
             return;
         }
-        else if (animName == "attacking" && anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit"))
+        else if (animName == "attacking" && anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit") && attackReachedFull)
         {
+            
             if (UpperWeight > 0)
             {
                 UpperWeight -= 0.025f;
@@ -214,6 +229,7 @@ public class PlayerScript : MonoBehaviour {
             }
             if (UpperWeight < 0 && LowerWeight < 0)
             {
+                SwordTrail.SetActive(false);
                 animState = false;
             }
             return;
@@ -238,6 +254,8 @@ public class PlayerScript : MonoBehaviour {
             UpperWeight += 0.1f;
             anim.SetLayerWeight(AnimDic[animName], UpperWeight);
         }
+        else
+            attackReachedFull = true;
         //else if (UpperWeight > 0)
         //{
         //    UpperWeight -= 0.1f;
@@ -253,8 +271,12 @@ public class PlayerScript : MonoBehaviour {
 
     public void attack()
     {
+        if (overreacting)
+            return;
         anim.Play("Hero_Attack1", 2, 0);
 
+            SwordTrail.SetActive(true);
+        
 
         if (!attacking)
         {
@@ -265,12 +287,11 @@ public class PlayerScript : MonoBehaviour {
             return;
         }
 
+        attacking = true;
 
 
         AnimatorStateInfo ASI = anim.GetCurrentAnimatorStateInfo(1);
         //AnimatorStateInfo ASI = anim.GetNextAnimatorStateInfo(1);
-        Debug.Log(anim.GetCurrentAnimatorStateInfo(1).ToString());
-        Debug.Log(   anim.GetNextAnimatorStateInfo(1).ToString());
 
         //Debug.Log(ASI.normalizedTime / ASI.length);
 
@@ -282,10 +303,15 @@ public class PlayerScript : MonoBehaviour {
         {
             anim.SetTrigger("Attack1");
         }
+        attackReachedFull = false;
     }
 
     public void taunt()
     {
+        if (overreacting)
+            return;
+
+        SwordTrail.SetActive(false);
 
         //anim.Play("Taunt", 3, 0);
         anim.SetTrigger("TauntTrig");
@@ -295,12 +321,26 @@ public class PlayerScript : MonoBehaviour {
     }
     public void scare()
     {
+        if (overreacting)
+            return;
 
+        SwordTrail.SetActive(false);
         //anim.Play("Scare", 5, 0);
         anim.SetTrigger("ScareTrig");
         cancelAnim(ref attacking, "attacking");
         cancelAnim(ref taunting, "taunting");
         scaring = true;
+
+    }
+    public void overreact()
+    {
+        SwordTrail.SetActive(false);
+        //anim.Play("Scare", 5, 0);
+        anim.SetTrigger("OverreactTrig");
+        cancelAnim(ref attacking, "attacking");
+        cancelAnim(ref taunting, "taunting");
+        cancelAnim(ref scaring, "scaring");
+        overreacting = true;
 
     }
 
@@ -312,6 +352,7 @@ public class PlayerScript : MonoBehaviour {
         animState = false;
         anim.SetLayerWeight(AnimDic[animName], 0);
         anim.SetLayerWeight(AnimDic[animName] + 1, 0);
+
     }
     //[Header("Variables")]
     //public float maxSpeed = 0.5f;
