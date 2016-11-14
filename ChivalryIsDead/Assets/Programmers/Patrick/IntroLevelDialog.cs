@@ -26,19 +26,21 @@ public class IntroLevelDialog : MonoBehaviour {
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
         UI.GetComponent<GameMenu>().Sword();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.3f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+        yield return new WaitForSeconds(10);
         ControlMove.SetActive(true);
 
     }
 
     public IEnumerator DialogTwo()
     {
-        UI.GetComponent<GameMenu>().Sword();
-        yield return new WaitForSeconds(1);
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        yield return new WaitForSeconds(2);
+        //UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(1);
+        //this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
+        //yield return new WaitForSeconds(2);
         InvisWallOne.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
     }
 
     public IEnumerator DialogThree()
