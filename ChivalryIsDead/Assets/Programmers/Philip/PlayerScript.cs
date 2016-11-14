@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour {
                 break;
 
             case PlayerActions.TAUNT:
-                if (attacking || overreacting)
+                if (attacking || overreacting || taunting)
                 {
                     return false;
                 }

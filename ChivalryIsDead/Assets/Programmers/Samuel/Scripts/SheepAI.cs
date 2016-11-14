@@ -12,8 +12,6 @@ public class SheepAI : MonsterAI {
         anim.SetFloat("Speed", agent.speed);
     }
 
-    bool aggroed = false;
-
     [Header("Sheep Specific Variables")]
     public float aggroTime = 10;
 
@@ -71,6 +69,7 @@ public class SheepAI : MonsterAI {
 
     public override void Taunt()
     {
+        Debug.Log("Sheep taunted");
         if(state != State.Move)
             ToMove();
 
