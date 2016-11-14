@@ -6,7 +6,10 @@ public class MeleeAI : MonsterAI
 
     [Header("Melee Specific Values")]
     public float PreChargeTime = 1f;
+    public float ChargeTurnTime = 0.5f;
     public float chargeSpeedMultiplier = 3f;
+
+    public Animator anim;
 
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
@@ -15,6 +18,7 @@ public class MeleeAI : MonsterAI
 
     private float accelTimer = 0;
     private float accelTime = 0.2f;
+    private float zVel = 0f;
 
     /// <summary>
     /// Storing the normal speed to change it back after charge is done
@@ -37,19 +41,27 @@ public class MeleeAI : MonsterAI
     //Called every frame in the attack state
     public override void Attack()
     {
+        /* OBSOLETE CODE FOR TURNING
         //Rotate the AI towards its target
         rotateTowardsTarget();
+        */
+
+        if (!rotated && !ControlledRotation())
+        {
+            //If rotation is ongoing
+            //chargeRotate resets timer so rotated makes sure that it does not enter the function again
+            //if it has rotated
+            return;
+        }
+
         //If time is above attack time
-        if (t1 > attackTime)
+        if (t1 > attackTime || patrolling)
         {
             //If the AI is in attack range of its target or it is in patrolling so it does not have a target
             if (RangeCheck() || patrolling)
-            {
-                //If in patrolling get a new point on the navmesh and set it as the next destination
-                if (patrolling)
-                    targetPoint = GetRandomPointOnNavMesh();
-
-                // TODO : do a melee attack here??? (ASK SAMUEL IF IN DOUBT IF YOU ARE, BCS HE IS??? BibleThump)
+           { 
+                // TODO : do a melee attack here??? 
+                // (ASK SAMUEL IF IN DOUBT IF YOU ARE, BCS HE IS??? BibleThump into SwiftRage)
                 //Reset timers and go to move state
                 ResetTimer();
                 AttackToMove();
@@ -96,9 +108,8 @@ public class MeleeAI : MonsterAI
         if (patrolling)
         {
             //Checks if rotation is the same as the target
-            if(!rotated)
-                if (!chargeRotate())
-                    return;
+            if (!rotated && !TimedControlledRotation(t1 / ChargeTurnTime))
+                return;
 
             //Checks if PreChargeTime has been waited for
             if (t1 < PreChargeTime)
@@ -117,7 +128,7 @@ public class MeleeAI : MonsterAI
     }
 
     //Rotates the AI towards a point
-    bool chargeRotate()
+    bool ControlledRotation()
     {
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
@@ -128,7 +139,27 @@ public class MeleeAI : MonsterAI
        //If the rotation is not done yet the function returns false
         if (Vector3.Angle(v, v3 - v2) > 1f)
         {
-            rotateTowardsTarget();
+            RotateTowardsTarget();
+            return false;
+        }
+
+        //If the rotation is done the function ruturns true
+        ChargeRotDone();
+        return true;
+    }
+
+    bool TimedControlledRotation(float t)
+    {
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPoint;
+        v.y = 0;
+        v2.y = 0;
+        v3.y = 0;
+        //If the rotation is not done yet the function returns false
+        if (Vector3.Angle(v, v3 - v2) > 1f)
+        {
+            RotateTowardsTargetTimed(t);
             return false;
         }
 
@@ -148,6 +179,7 @@ public class MeleeAI : MonsterAI
     //Called every frame in the Idle state
     public override void Idle()
     {
+        Debug.Log("IS IDLE");
         //If the agent has a path go to the Move state again
         if (agent.hasPath)
         {
@@ -156,14 +188,48 @@ public class MeleeAI : MonsterAI
 
     }
 
+    void FixedUpdate()
+    {
+        //Debug.Log(agent.velocity.magnitude);
+
+
+        if(Mathf.Abs(zVel - (agent.velocity.magnitude)) < 0.05f){
+            return;
+        }
+        else if (zVel < (agent.velocity.magnitude))
+        {
+            zVel += 0.1f;
+        }
+        else
+        {
+            zVel -= 0.1f;
+        }
+        anim.SetFloat("Speed", zVel);
+    }
+
     //Called every frame in the Move state
     public override void Move()
     {
+
+
         //Checks if the monster is in range of its target, returns true if it is not
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed(); //If the monster is not in range of his target yet update its path
-        else
-            MoveToAttack(); // If the monster is in range of its target go to the Attack state
+        else //From move to Attack
+        {
+            MeleeMoveToAttack();
+        }    
+    }
+
+    private void MeleeMoveToAttack()
+    {
+        MoveToAttack(); //If the monster is in range of its target go to the Attack state
+        ResetTimer(); //Resets the attack timer
+        rotated = false;
+
+        //If in patrolling get a new point on the navmesh and set it as the next destination
+        if (patrolling)
+            targetPoint = GetRandomPointOnNavMesh();
     }
 
     //Called every time the monster is getting taunted
@@ -190,6 +256,9 @@ public class MeleeAI : MonsterAI
         }
 
         Debug.Log("ToCharge");
+        initTimedRotation();
+        ResetTimer();
+        anim.SetTrigger("StartCharge");
         agent.speed = normSpeed * chargeSpeedMultiplier; //Set speed of monster to charge speed
         state = State.Charge;
         stateFunc = Charge;
@@ -198,18 +267,21 @@ public class MeleeAI : MonsterAI
     //Transistion from Charge to Attack satte
     public void ChargeToAttack()
     {
+
         Debug.Log("ChargeToAttack");
         StopNavMeshAgent();
         agent.speed = normSpeed;
         agent.velocity = Vector3.zero;
         state = State.Attack;
         stateFunc = Attack;
+        rotated = true;
     }
 
     //Called every time AI goes into move state
     public override void MoveEvent()
     {
         //Phillip do your animation stuff here
+
     }
 
     //This is not used any more
@@ -331,5 +403,6 @@ public class MeleeAI : MonsterAI
         {
             ChargeToAttack();
         }
+        anim.SetTrigger("HitObject");
     }
 }
