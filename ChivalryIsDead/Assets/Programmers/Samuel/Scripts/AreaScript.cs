@@ -51,7 +51,7 @@ public class AreaScript : MonoBehaviour {
     {
         Debug.Log("Adding SpawnArea");
         Areas.Add(new Rect(0, 0, 2f, 2f));
-        properties.Add(new AreaProperty(new Color(0.4f, 0.9f, 0.1f, 1f), monsterType.Melee, 0));
+        properties.Add(new AreaProperty(new Color(0.4f, 0.9f, 0.1f, 1f), monsterType.Melee, -1));
     }
 
     public void ResetAll()
