@@ -303,8 +303,7 @@ namespace CnControls
             if (angle < 0)
                 angle += 360;
 
-            Debug.Log("SX " + SX + " SY " + SY);
-            Debug.Log("SXX " + SXX + " SYY " + SYY);
+
 
 
             resetOptions();
@@ -437,12 +436,14 @@ namespace CnControls
             t.text = "Taunt";
             t.color = new Color(0, 0, 1, 1);
             Vibration.Vibrate(50);
-            playerScript.taunt();
+            //playerScript.taunt();
             playerActionController.HandleTaunt();
         }
         private void action_overreact() {
             t.text = "overreact";
             t.color = new Color(0, 1, 0, 1);
+            playerActionController.HandleOverreact();
+
         }
         private void action_question() {
             t.text = "question";

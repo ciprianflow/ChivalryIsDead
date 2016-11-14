@@ -114,11 +114,16 @@ class AttackAction : MonoBehaviour
     //cooldown
     private bool getCoolDown()
     {
+        //Debug.Log("cooldown " + cooldownTimeStamp);
+        //Debug.Log("Time " + Time.time);
+        //Debug.Log("");
 
         if (cooldownTimeStamp >= Time.time)
         {
+            Debug.Log("COOLDOWN");
             return false;
         }
+
         return true;
     }
 }

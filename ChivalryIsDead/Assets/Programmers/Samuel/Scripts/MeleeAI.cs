@@ -11,6 +11,8 @@ public class MeleeAI : MonsterAI
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
 
+    public Animator anim;
+
     public float chargeForce = 250f;
 
     private float accelTimer = 0;
@@ -126,7 +128,10 @@ public class MeleeAI : MonsterAI
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed();
         else
+        {
+            anim.SetFloat("Speed", normSpeed);
             MoveToAttack();
+        }
     }
 
     public override void Taunt()

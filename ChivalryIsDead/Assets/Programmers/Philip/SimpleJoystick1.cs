@@ -287,7 +287,6 @@ namespace CnControls
                     float newX = localBasePosition.x;
                     float newY = localBasePosition.y;
 
-                    Debug.Log(localBasePosition);
                     float xClamp = (JoystickBase.GetComponent<RectTransform>().rect.width / 2) + (Stick.GetComponent<RectTransform>().rect.width / 2) - 50;
                     float yBotClamp = (JoystickBase.GetComponent<RectTransform>().rect.height / 2) + (Stick.GetComponent<RectTransform>().rect.height / 2) - 50;
                     float yTopClamp = GetComponent<RectTransform>().rect.height - yBotClamp;

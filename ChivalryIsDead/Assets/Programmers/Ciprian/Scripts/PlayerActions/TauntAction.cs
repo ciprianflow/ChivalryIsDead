@@ -15,6 +15,13 @@ class TauntAction: MonoBehaviour
     private float currentTauntDuration;
     private float overTime;
 
+    private PlayerScript playerBase;
+
+    void Awake()
+    {
+        playerBase = GetComponent<PlayerScript>();
+    }
+
     void Start()
     {
         currentTauntRadius = TauntRadius;
@@ -64,6 +71,8 @@ class TauntAction: MonoBehaviour
         //just change aggro radius 
         if (!alreadyTaunting)
         {
+            Debug.Log("dwjaio");
+            playerBase.taunt();
             currentTauntDuration = TauntDuration;
             overTime = 0;
             alreadyTaunting = true;
