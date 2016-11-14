@@ -309,20 +309,28 @@ namespace CnControls
             resetOptions();
 
             if (new Vector2(SX, SY).magnitude < 0.5) {
-                attack = true;
+                //attack = true; // angeliki commented out this
                 //ActionCenter.color = new Color(1, 1, 1, 1);
                 ActionCenterPushed.enabled = true;
             }
-            else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) {
+            //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
+            else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
+            {
                 overreact = true;
                 ActionRight.color = new Color(1, 1, 1, 1);
             }
-            else if ((angle >= 126 && angle < 270)) {
+            //else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
+            else if ((angle >= 147 && angle < 265)) // angeliki added this
+            {
                 taunt = true;
                 ActionLeft.color = new Color(1, 1, 1, 1);
             }
-            else if((angle >= 54 && angle < 126)) {
-                cancel = true;
+            //else if((angle >= 54 && angle < 126)) { // angeliki commented out this
+            else if ((angle >= 34 && angle < 147)) // angeliki added this
+            {
+                //cancel = true;// angeliki commented out this
+                attack = true; // angeliki added this
+
                 ActionBottom.color = new Color(1, 1, 1, 1);
             }
             //else if (SX < 0 && -SX > Mathf.Abs(SY)) {
