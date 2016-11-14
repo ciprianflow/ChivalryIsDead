@@ -85,4 +85,42 @@ public class SuicideAI : MonsterAI
         Destroy(this.gameObject);
     }
 
+    void OnCollisionEnter(Collision coll)
+    {
+        Debug.Log("OK");
+        if (state == State.Idle)
+            return;
+
+        KillThis();
+    }
+
+    public override int GetAttackReputation()
+    {
+        int rep = AttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
+    public override int GetObjectiveAttackReputation()
+    {
+        int rep = ObjectiveAttackRep;
+        //this means taunted..
+        if (taunted)
+        {
+            rep *= 2;
+        }
+
+        return rep;
+    }
+
+    public override void MoveEvent()
+    {
+        //Called every time AI goes into move state
+    }
+
 }

@@ -23,7 +23,23 @@ public class Projectile : MonoBehaviour {
         QuestObject questObj = collObj.GetComponent<QuestObject>();
         if(questObj != null)
         {
+
             questObj.takeDamage(1, true);
+
+            MonsterAI m = questObj.gameObject.GetComponent<MonsterAI>();
+            if (m != null && m.GetType() == typeof(SheepAI))
+            {
+                //let player know objective is attacked
+                originMonster.playerAction.SheepAttacked(originMonster);
+            }
+            else
+            {
+
+                //let player know objective is attacked
+                originMonster.playerAction.ObjectiveAttacked(originMonster);
+            }
+
+
         }
 
         //monster should make daamge not the projectile??

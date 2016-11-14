@@ -284,9 +284,34 @@ namespace CnControls
                     RectTransformUtility.ScreenPointToWorldPointInRectangle(_baseTransform, eventData.position,
                         CurrentEventCamera, out localBasePosition);
 
-                    _baseTransform.position = localBasePosition;
-                    _stickTransform.position = localStickPosition;
+                    float newX = localBasePosition.x;
+                    float newY = localBasePosition.y;
+
+                    float xClamp = (JoystickBase.GetComponent<RectTransform>().rect.width / 2) + (Stick.GetComponent<RectTransform>().rect.width / 2) - 50;
+                    float yBotClamp = (JoystickBase.GetComponent<RectTransform>().rect.height / 2) + (Stick.GetComponent<RectTransform>().rect.height / 2) - 50;
+                    float yTopClamp = GetComponent<RectTransform>().rect.height - yBotClamp;
+                    if (localBasePosition.x < xClamp) {
+                        newX = xClamp;
+                        //Debug.Log("CLAMPED");
+                    }
+                    if (localBasePosition.y > yTopClamp) {
+                        newY = yTopClamp;
+                        //Debug.Log("CLAMPED");
+                    }
+                    if (localBasePosition.y < yBotClamp) {
+                        newY = yBotClamp;
+                        //Debug.Log("CLAMPED");
+                    }
+                    //Debug.Log(GetComponent<RectTransform>().rect.height);
+
+                    _baseTransform.position = new Vector3(newX,newY,0);
+                    _stickTransform.position = new Vector3(newX, newY, 0);
                     _intermediateStickPosition = _stickTransform.anchoredPosition;
+
+                    OnDrag(eventData);
+
+
+
                 }
                 else {
                     OnDrag(eventData);

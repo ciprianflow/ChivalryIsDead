@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class DialogObject : MonoBehaviour {
 
     public GameObject UI;
+    GameMenu gameMenu;
 
     public DialogInfo[] dialog;
 
@@ -43,6 +44,7 @@ public class DialogObject : MonoBehaviour {
     void Start () {
         indexCount = 0;
         isSkipped = false;
+        gameMenu = UI.GetComponent<GameMenu>();
         //peasantA = GameObject.FindGameObjectWithTag("PeasantA");
         //peasantB = GameObject.FindGameObjectWithTag("PeasantB");
 
@@ -140,7 +142,7 @@ public class DialogObject : MonoBehaviour {
 
         d.Dialog = d.Name.Length;
 
-        for(int i = 0; i < d.Dialog; i++)
+        for (int i = 0; i < d.Dialog; i++)
         {
             if (d.Name[i] == "Player")
             {
@@ -268,17 +270,21 @@ public class DialogObject : MonoBehaviour {
            
         }
 
-        UI.GetComponent<GameMenu>().sword.GetComponent<Animator>().SetTrigger("Hide");
-        UI.GetComponent<GameMenu>().princess.GetComponent<Animator>().SetTrigger("Hide");
+        gameMenu.skipAllBtn.SetActive(false);
+        gameMenu.skipBtn.SetActive(false);
+        gameMenu.sword.GetComponent<Animator>().SetTrigger("Hide");
+        gameMenu.princess.GetComponent<Animator>().SetTrigger("Hide");
         StartCoroutine(Hide());
     }
 
     IEnumerator Hide()
     {
         // Remember :)
-        yield return new WaitForSeconds(4f);
-        UI.GetComponent<GameMenu>().sword.SetActive(false);
-        UI.GetComponent<GameMenu>().princess.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        gameMenu.sword.SetActive(false);
+        gameMenu.princess.SetActive(false);
+        gameMenu.skipBtn.SetActive(false);
+        gameMenu.speaking = false;
     }
 
     IEnumerator SkipTest()
@@ -305,8 +311,8 @@ public class DialogObject : MonoBehaviour {
     public void StopDialog()
     {
         StopCoroutine("DialogSystem");
-        UI.GetComponent<GameMenu>().sword.GetComponent<Animator>().SetTrigger("Hide");
-        UI.GetComponent<GameMenu>().princess.GetComponent<Animator>().SetTrigger("Hide");
+        gameMenu.sword.GetComponent<Animator>().SetTrigger("Hide");
+        gameMenu.princess.GetComponent<Animator>().SetTrigger("Hide");
         StartCoroutine(Hide());
 
         

@@ -600,7 +600,7 @@ GameObject:
   - 114: {fileID: 114000010412746762}
   m_Layer: 5
   m_Name: EndLetter
-  m_TagString: Untagged
+  m_TagString: EndLetter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -757,7 +757,7 @@ GameObject:
   - 114: {fileID: 114000010914925728}
   m_Layer: 5
   m_Name: Skip
-  m_TagString: Untagged
+  m_TagString: SkipBtn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -876,7 +876,7 @@ GameObject:
   - 114: {fileID: 114000013316341000}
   m_Layer: 5
   m_Name: IntroLetter
-  m_TagString: Untagged
+  m_TagString: IntroLetter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,7 +894,7 @@ GameObject:
   - 114: {fileID: 114000011534361990}
   m_Layer: 5
   m_Name: PauseButton
-  m_TagString: Untagged
+  m_TagString: PauseBtn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1947,6 +1947,8 @@ MonoBehaviour:
   swordBubble: {fileID: 1000014043647032}
   princess: {fileID: 1000012072510608}
   princessBubble: {fileID: 1000012707504074}
+  speaking: 0
+  skipBtn: {fileID: 0}
 --- !u!114 &114000011309266588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1966,7 +1968,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ee736fbc3bee88143b51285597a71c45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dffb7142f1ce05344b1e579ba96ce4bb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2090,8 +2092,8 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: dffb7142f1ce05344b1e579ba96ce4bb, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: ee736fbc3bee88143b51285597a71c45, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted

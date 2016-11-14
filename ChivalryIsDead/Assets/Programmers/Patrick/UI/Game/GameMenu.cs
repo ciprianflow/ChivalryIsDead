@@ -26,13 +26,19 @@ public class GameMenu : MonoBehaviour {
     bool endletterActive;
     bool introletterActive;
 
+    public bool speaking;
+
     float testRND;
 
+    public GameObject skipBtn;
+    public GameObject skipAllBtn;
+    GameObject pauseBtn;
 
     // Use this for initialization
 
     void Awake ()
     {
+        speaking = false;
         paused = false;
         endletterActive = false;
         introletterActive = false;
@@ -48,15 +54,19 @@ public class GameMenu : MonoBehaviour {
         introLetter.SetActive(false);
         sword.SetActive(false);
         princess.SetActive(false);
+        skipBtn.SetActive(false);
+        skipAllBtn.SetActive(false);
 
-        Princess();
-        Sword();
-        Invoke("Test1", 2);
+        //Princess();
+        //Sword();
+        //Invoke("Test1", 2);
 
-        testRND = Random.Range(16, 30);
-        Debug.Log("peasants dialog starts in " + testRND);
-        Invoke("Test", testRND);
+        //testRND = Random.Range(16, 30);
+        //Debug.Log("peasants dialog starts in " + testRND);
+        //Invoke("Test", testRND);
 
+        //skipBtn = GameObject.FindGameObjectWithTag("SkipBtn");
+        pauseBtn = GameObject.FindGameObjectWithTag("PauseBtn");
 
 
         // Check Volume Slider
@@ -84,7 +94,8 @@ public class GameMenu : MonoBehaviour {
         {
             Princess();
             Sword();
-            Invoke("Test1", 2);
+            dialogSystem.StartCoroutine("DialogSystem", 0);
+            //Invoke("Test1", 2);
         }
 
         // this means quest is over
@@ -113,15 +124,19 @@ public class GameMenu : MonoBehaviour {
 
     public void Pause()
     {
-        if(!paused)
+        if (!paused)
         {
             pause.SetActive(true);
             paused = true;
+            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.pressedSprite;
+            //pauseBtn.SetActive(false);
             Time.timeScale = 0f;
         } else
         {
             pause.SetActive(false);
             paused = false;
+            //pauseBtn.SetActive(true);
+            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
             Time.timeScale = 1f;
         }
     }
@@ -183,29 +198,26 @@ public class GameMenu : MonoBehaviour {
 
     public void SkipDialog()
     {
+        skipAllBtn.SetActive(false);
         dialogSystem.StopDialog();
     }
 
     public void Princess()
     {
+        skipAllBtn.SetActive(true);
+        skipBtn.SetActive(true);
         princess.SetActive(true);
     }
 
     public void Sword()
     {
+        skipAllBtn.SetActive(true);
+        skipBtn.SetActive(true);
         sword.SetActive(true);
     }
 
 
-    void Test()
-    {
-        //dialogSystem.StartCoroutine("DialogSystem", 2);
-    }
-
-    void Test1()
-    {
-        StartCoroutine(dialogSystem.DialogSystem(0));
-    }
+    
 
     //Options
 
