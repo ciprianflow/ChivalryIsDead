@@ -303,10 +303,6 @@ namespace CnControls
             if (angle < 0)
                 angle += 360;
 
-            Debug.Log("SX " + SX + " SY " + SY);
-            Debug.Log("SXX " + SXX + " SYY " + SYY);
-            Debug.Log("angle " + angle);
-
             resetOptions();
 
             if (new Vector2(SX, SY).magnitude < 0.5) {
