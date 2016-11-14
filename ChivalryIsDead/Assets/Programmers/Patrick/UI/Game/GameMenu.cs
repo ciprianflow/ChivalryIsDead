@@ -30,6 +30,9 @@ public class GameMenu : MonoBehaviour {
 
     float testRND;
 
+    [HideInInspector]
+    public GameObject skipBtn;
+    GameObject pauseBtn;
 
     // Use this for initialization
 
@@ -60,7 +63,9 @@ public class GameMenu : MonoBehaviour {
         //Debug.Log("peasants dialog starts in " + testRND);
         //Invoke("Test", testRND);
 
-
+        skipBtn = GameObject.FindGameObjectWithTag("SkipBtn");
+        pauseBtn = GameObject.FindGameObjectWithTag("PauseBtn");
+        skipBtn.SetActive(false);
 
         // Check Volume Slider
         soundVolume.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundVolume");
@@ -87,7 +92,8 @@ public class GameMenu : MonoBehaviour {
         {
             Princess();
             Sword();
-            Invoke("Test1", 2);
+            dialogSystem.StartCoroutine("DialogSystem", 0);
+            //Invoke("Test1", 2);
         }
 
         // this means quest is over
@@ -116,15 +122,19 @@ public class GameMenu : MonoBehaviour {
 
     public void Pause()
     {
-        if(!paused)
+        if (!paused)
         {
             pause.SetActive(true);
             paused = true;
+            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.pressedSprite;
+            //pauseBtn.SetActive(false);
             Time.timeScale = 0f;
         } else
         {
             pause.SetActive(false);
             paused = false;
+            //pauseBtn.SetActive(true);
+            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
             Time.timeScale = 1f;
         }
     }
@@ -186,16 +196,19 @@ public class GameMenu : MonoBehaviour {
 
     public void SkipDialog()
     {
+        skipBtn.SetActive(false);
         dialogSystem.StopDialog();
     }
 
     public void Princess()
     {
+        skipBtn.SetActive(true);
         princess.SetActive(true);
     }
 
     public void Sword()
     {
+        skipBtn.SetActive(true);
         sword.SetActive(true);
     }
 
