@@ -23,6 +23,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public Transform targetObject;
     protected Vector3 targetPoint;
     public bool patrolling = false;
+    protected bool aggro = true;
 
     public float attackRotateSpeed = 90f;
     private float pathUpdateTime = 0.1f;
@@ -54,11 +55,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Scare();
     public abstract void Scared();
     public abstract void Init();
+    public abstract void MoveEvent();
 
     public abstract int GetObjectiveAttackReputation();
     public abstract int GetAttackReputation();
-
-
 
     public void InitMonster()
     {
@@ -125,7 +125,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     public void Aggro()
     {
-        ToMove();
+        if(aggro)
+            ToMove();
     }
 
     protected void ToScared()
@@ -140,6 +141,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     protected void ToMove()
     {
         //Debug.Log("ToMove");
+        MoveEvent();
         ResumeNavMeshAgent();
         state = State.Move;
         stateFunc = Move;
@@ -239,6 +241,12 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     protected void rotateTowardsTarget()
     {
         Quaternion q = Quaternion.LookRotation(GetTargetPosition() - transform.position);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
+    }
+
+    protected void rotateTowardsTarget(Vector3 pos)
+    {
+        Quaternion q = Quaternion.LookRotation(pos - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
     }
 
