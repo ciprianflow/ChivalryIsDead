@@ -30,8 +30,8 @@ public class GameMenu : MonoBehaviour {
 
     float testRND;
 
-    [HideInInspector]
     public GameObject skipBtn;
+    public GameObject skipAllBtn;
     GameObject pauseBtn;
 
     // Use this for initialization
@@ -54,6 +54,8 @@ public class GameMenu : MonoBehaviour {
         introLetter.SetActive(false);
         sword.SetActive(false);
         princess.SetActive(false);
+        skipBtn.SetActive(false);
+        skipAllBtn.SetActive(false);
 
         //Princess();
         //Sword();
@@ -63,9 +65,9 @@ public class GameMenu : MonoBehaviour {
         //Debug.Log("peasants dialog starts in " + testRND);
         //Invoke("Test", testRND);
 
-        skipBtn = GameObject.FindGameObjectWithTag("SkipBtn");
+        //skipBtn = GameObject.FindGameObjectWithTag("SkipBtn");
         pauseBtn = GameObject.FindGameObjectWithTag("PauseBtn");
-        skipBtn.SetActive(false);
+
 
         // Check Volume Slider
         soundVolume.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundVolume");
@@ -196,18 +198,20 @@ public class GameMenu : MonoBehaviour {
 
     public void SkipDialog()
     {
-        skipBtn.SetActive(false);
+        skipAllBtn.SetActive(false);
         dialogSystem.StopDialog();
     }
 
     public void Princess()
     {
+        skipAllBtn.SetActive(true);
         skipBtn.SetActive(true);
         princess.SetActive(true);
     }
 
     public void Sword()
     {
+        skipAllBtn.SetActive(true);
         skipBtn.SetActive(true);
         sword.SetActive(true);
     }
