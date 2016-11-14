@@ -4,8 +4,6 @@ using System;
 
 public class SheepAI : MonsterAI {
 
-    bool aggroed = false;
-
     [Header("Sheep Specific Variables")]
     public float aggroTime = 10;
 

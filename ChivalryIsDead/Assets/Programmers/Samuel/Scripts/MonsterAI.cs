@@ -24,6 +24,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     protected Vector3 targetPoint;
     public bool patrolling = false;
     protected bool aggro = true;
+    protected bool aggroed = false;
 
     public float attackRotateSpeed = 90f;
     private float pathUpdateTime = 0.1f;
@@ -42,6 +43,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     //Timers
     protected float t1 = 0;
     protected float t2 = 0;
+
+    private Quaternion endRot;
+    private Quaternion startRot;
 
     #endregion
 
@@ -125,8 +129,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     public void Aggro()
     {
-        if(aggro)
+        if (aggro && !aggroed)
+        {
             ToMove();
+            aggroed = true;
+        }
     }
 
     protected void ToScared()
@@ -238,7 +245,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     #region Misc Functions
 
-    protected void rotateTowardsTarget()
+    protected void RotateTowardsTarget()
     {
         Quaternion q = Quaternion.LookRotation(GetTargetPosition() - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
@@ -248,6 +255,23 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         Quaternion q = Quaternion.LookRotation(pos - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
+    }
+
+    protected void RotateTowardsTargetTimed(float t)
+    {
+        Debug.Log(startRot + " -> " + endRot);
+        //transform.rotation = Quaternion.RotateTowards(startRot, endRot, t);
+        transform.rotation = Quaternion.Slerp(startRot, endRot, t);
+    }
+
+    protected void initTimedRotation()
+    {
+        Vector3 v1 = GetTargetPosition();
+        Vector3 v2 = transform.position;
+        v1.y = 0;
+        v2.y = 0;
+        endRot = Quaternion.LookRotation(v1 - v2);
+        startRot = transform.rotation;
     }
 
     private void KillRigidBodyRotation()

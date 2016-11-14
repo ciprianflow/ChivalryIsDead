@@ -6,7 +6,7 @@ public class SuicideAI : MonsterAI
 {
 
     [Header("Suicide Specific Variables")]
-    public float scaredTimer = 5f;
+    public float tauntTime = 5f;
     [Space]
     public float explosionForce = 6000000f;
     public float explosionRange = 25f;
@@ -19,7 +19,19 @@ public class SuicideAI : MonsterAI
         KillThis();
     }
 
-    public override void Idle() { }
+    public override void Idle()
+    {
+        if (taunted)
+        {
+            Debug.Log(t1 + " > " + tauntTime);
+            if(t1 > tauntTime)
+            {
+                Debug.Log("Un-taunt");
+                ToMove();
+                taunted = false;
+            }
+        }
+    }
 
     public override void Init() { }
 
@@ -39,27 +51,15 @@ public class SuicideAI : MonsterAI
             MoveToAttack();
     }
 
-    public override void Scare()
-    {
-        ToScared();
-        StopNavMeshAgent();
-        ResetTimer();
-    }
-
-    public override void Scared()
-    {
-        if(t1 > scaredTimer)
-        {
-            ResumeNavMeshAgent();
-            ToMove();
-        }
-    }
+    public override void Scare() {}
+    public override void Scared() {}
 
     public override void Taunt()
     {
-        Aggro();
-        agent.speed *= 2;
+
         taunted = true;
+        ResetTimer();
+        ToIdle();
     }
 
     void Explode()
@@ -87,7 +87,7 @@ public class SuicideAI : MonsterAI
 
     void OnCollisionEnter(Collision coll)
     {
-        Debug.Log("OK");
+        Debug.Log("Collided with something exploding");
         if (state == State.Idle)
             return;
 
