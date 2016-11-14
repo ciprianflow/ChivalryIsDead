@@ -8,6 +8,10 @@ public enum PlayerState
     IDLE, HIT, ATTACKING, TAUNTING
 }
 
+public enum PlayerActions
+{
+    ATTACK, OVERREACT, TAUNT
+};
 
 public class PlayerActionController : MonoBehaviour
 {
@@ -50,6 +54,7 @@ public class PlayerActionController : MonoBehaviour
    
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
+
 
     void OnDrawGizmos()
     {
@@ -131,10 +136,10 @@ public class PlayerActionController : MonoBehaviour
     public void HandleOverreact()
     {
         // if attacked the player can overreact
-        if (playerState != PlayerState.HIT)
+        if (playerState != PlayerState.HIT && lastMonsterAttacked != null)
         {
             //Player overreacted add reputation
-            if (overreactAction.Overreact() && lastMonsterAttacked != null)
+            if (overreactAction.Overreact())
             {
 
                 pb.ChangeRepScore(lastMonsterAttacked.GetOverreactReputation());

@@ -26,7 +26,7 @@ public class RangedAI : MonsterAI
 
     public override void Attack()
     {
-        rotateTowardsTarget();
+        RotateTowardsTarget();
         if (t1 > attackTime)
         {
             if (RangeCheck())
