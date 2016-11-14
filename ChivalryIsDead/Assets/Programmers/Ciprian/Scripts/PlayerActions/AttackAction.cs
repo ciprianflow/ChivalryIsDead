@@ -69,9 +69,11 @@ class AttackAction : MonoBehaviour
     //receives enemies to attack
     public void ConeAttack(List<Collider> colliders)
     {
-
-        if (!getCoolDown())
+        //Debug.Log("ATTACK CAN: " + playerBase.canDoAction(PlayerActions.ATTACK));
+        if (!getCoolDown() || !playerBase.canDoAction(PlayerActions.ATTACK))
         {
+            //clear colliders if attack doesnt go through
+            colliders.Clear();
             return;
         }
 
@@ -114,10 +116,6 @@ class AttackAction : MonoBehaviour
     //cooldown
     private bool getCoolDown()
     {
-        //Debug.Log("cooldown " + cooldownTimeStamp);
-        //Debug.Log("Time " + Time.time);
-        //Debug.Log("");
-
         if (cooldownTimeStamp >= Time.time)
         {
             Debug.Log("COOLDOWN");
