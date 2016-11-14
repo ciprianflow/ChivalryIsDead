@@ -310,7 +310,7 @@ namespace CnControls
             resetOptions();
 
             if (new Vector2(SX, SY).magnitude < 0.5) {
-                attack = true;
+                //attack = true; // ang changed this
                 //ActionCenter.color = new Color(1, 1, 1, 1);
                 ActionCenterPushed.enabled = true;
             }
@@ -323,7 +323,9 @@ namespace CnControls
                 ActionLeft.color = new Color(1, 1, 1, 1);
             }
             else if((angle >= 54 && angle < 126)) {
-                cancel = true;
+                //cancel = true;// ang changed this
+                attack = true; // ang changed this
+
                 ActionBottom.color = new Color(1, 1, 1, 1);
             }
             //else if (SX < 0 && -SX > Mathf.Abs(SY)) {
