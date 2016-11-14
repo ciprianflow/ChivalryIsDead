@@ -4,6 +4,16 @@ using System;
 
 public class SheepAI : MonsterAI {
 
+
+    public Animator anim;
+
+    void Update()
+    {
+        anim.SetFloat("Speed", agent.speed);
+    }
+
+    bool aggroed = false;
+
     [Header("Sheep Specific Variables")]
     public float aggroTime = 10;
 

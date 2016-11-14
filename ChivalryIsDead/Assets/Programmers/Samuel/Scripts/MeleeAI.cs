@@ -9,6 +9,8 @@ public class MeleeAI : MonsterAI
     public float ChargeTurnTime = 0.5f;
     public float chargeSpeedMultiplier = 3f;
 
+    public Animator anim;
+
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
 
@@ -16,6 +18,7 @@ public class MeleeAI : MonsterAI
 
     private float accelTimer = 0;
     private float accelTime = 0.2f;
+    private float zVel = 0f;
 
     /// <summary>
     /// Storing the normal speed to change it back after charge is done
@@ -176,6 +179,7 @@ public class MeleeAI : MonsterAI
     //Called every frame in the Idle state
     public override void Idle()
     {
+        Debug.Log("IS IDLE");
         //If the agent has a path go to the Move state again
         if (agent.hasPath)
         {
@@ -184,9 +188,30 @@ public class MeleeAI : MonsterAI
 
     }
 
+    void FixedUpdate()
+    {
+        //Debug.Log(agent.velocity.magnitude);
+
+
+        if(Mathf.Abs(zVel - (agent.velocity.magnitude)) < 0.05f){
+            return;
+        }
+        else if (zVel < (agent.velocity.magnitude))
+        {
+            zVel += 0.1f;
+        }
+        else
+        {
+            zVel -= 0.1f;
+        }
+        anim.SetFloat("Speed", zVel);
+    }
+
     //Called every frame in the Move state
     public override void Move()
     {
+
+
         //Checks if the monster is in range of its target, returns true if it is not
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed(); //If the monster is not in range of his target yet update its path
@@ -233,6 +258,7 @@ public class MeleeAI : MonsterAI
         Debug.Log("ToCharge");
         initTimedRotation();
         ResetTimer();
+        anim.SetTrigger("StartCharge");
         agent.speed = normSpeed * chargeSpeedMultiplier; //Set speed of monster to charge speed
         state = State.Charge;
         stateFunc = Charge;
@@ -241,6 +267,7 @@ public class MeleeAI : MonsterAI
     //Transistion from Charge to Attack satte
     public void ChargeToAttack()
     {
+
         Debug.Log("ChargeToAttack");
         StopNavMeshAgent();
         agent.speed = normSpeed;
@@ -254,6 +281,7 @@ public class MeleeAI : MonsterAI
     public override void MoveEvent()
     {
         //Phillip do your animation stuff here
+
     }
 
     //This is not used any more
@@ -375,5 +403,6 @@ public class MeleeAI : MonsterAI
         {
             ChargeToAttack();
         }
+        anim.SetTrigger("HitObject");
     }
 }
