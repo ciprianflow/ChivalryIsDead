@@ -320,7 +320,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (healthScript.takeDamage(damage))
         {
             gameObject.SetActive(false);
-            StaticIngameData.mapManager.CheckObjectives(this);
+
+            if(StaticIngameData.mapManager != null)
+                StaticIngameData.mapManager.CheckObjectives(this);
         }
     }
 
