@@ -34,6 +34,9 @@ public class GameMenu : MonoBehaviour {
     public GameObject skipAllBtn;
     GameObject pauseBtn;
 
+
+    private bool tauntCD = true;
+
     // Use this for initialization
 
     void Awake ()
@@ -138,6 +141,26 @@ public class GameMenu : MonoBehaviour {
             //pauseBtn.SetActive(true);
             pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
             Time.timeScale = 1f;
+        }
+    }
+
+    public void TauntCooldown()
+    {
+        PlayerActionController pAction = GameObject.Find("Player").GetComponent<PlayerActionController>();
+        if(!tauntCD)
+        {
+            tauntCD = true;
+            pAction.SetTauntCooldown(5f);
+           // pAction.taun
+            Debug.Log(" TRUE");
+
+        } 
+        else
+        {
+            tauntCD = false;
+            pAction.SetTauntCooldown(0f);
+           // pAction.TauntCooldown = 0f;
+            Debug.Log(" FALSe");
         }
     }
 
