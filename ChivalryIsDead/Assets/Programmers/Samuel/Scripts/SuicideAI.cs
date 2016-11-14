@@ -118,4 +118,9 @@ public class SuicideAI : MonsterAI
         return rep;
     }
 
+    public override void MoveEvent()
+    {
+        //Called every time AI goes into move state
+    }
+
 }
