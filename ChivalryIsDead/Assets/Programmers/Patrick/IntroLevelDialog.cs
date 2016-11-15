@@ -10,10 +10,10 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public GameObject InvisWallOne;
     public GameObject InvisWallTwo;
-
+    bool procceed;
     // Use this for initialization
     void Start () {
-
+        procceed = false;
 	}
 	
 	// Update is called once per frame
@@ -28,11 +28,23 @@ public class IntroLevelDialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(0.3f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-        yield return new WaitForSeconds(10);
+        
+        yield return new WaitUntil(SkipAndPlay);
+        procceed = false;
         ControlMove.SetActive(true);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         InvisWallOne.SetActive(false);
 
+    }
+
+    public bool SkipAndPlay()
+    {
+        return procceed;
+    }
+
+    public void CallableSkip()
+    {
+        procceed = true;
     }
 
     public void ActivateMove()
