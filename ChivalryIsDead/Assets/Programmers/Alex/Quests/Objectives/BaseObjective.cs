@@ -34,7 +34,7 @@ public class BaseObjective : IObjective
     {
         var objTargetEnum = gObjs.GetEnumerator();
 
-        while (!IsChecked && objTargetEnum.MoveNext() && !objTargetEnum.Current.IsChecked) {
+        while (!IsChecked && objTargetEnum.MoveNext()) {
             CheckTarget(objTargetEnum.Current);
         }
         
