@@ -245,6 +245,15 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     #region Misc Functions
 
+    protected float GetAngle(Vector3 targetPos)
+    {
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPos;
+        v.y = 0; v2.y = 0; v3.y = 0;
+        return Vector3.Angle(v, v3 - v2);
+    }
+
     protected void RotateTowardsTarget()
     {
         Quaternion q = Quaternion.LookRotation(GetTargetPosition() - transform.position);

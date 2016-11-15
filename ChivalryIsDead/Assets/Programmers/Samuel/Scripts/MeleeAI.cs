@@ -130,6 +130,9 @@ public class MeleeAI : MonsterAI
     //Rotates the AI towards a point
     bool ControlledRotation()
     {
+        if (t1 < 0.25f)
+            return false;
+
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
         Vector3 v3 = targetPoint;
@@ -145,6 +148,7 @@ public class MeleeAI : MonsterAI
 
         //If the rotation is done the function ruturns true
         ChargeRotDone();
+        anim.speed = 1f;
         return true;
     }
 
@@ -211,7 +215,6 @@ public class MeleeAI : MonsterAI
     public override void Move()
     {
 
-
         //Checks if the monster is in range of its target, returns true if it is not
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed(); //If the monster is not in range of his target yet update its path
@@ -219,6 +222,7 @@ public class MeleeAI : MonsterAI
         {
             MeleeMoveToAttack();
         }    
+
     }
 
     private void MeleeMoveToAttack()
@@ -230,6 +234,12 @@ public class MeleeAI : MonsterAI
         //If in patrolling get a new point on the navmesh and set it as the next destination
         if (patrolling)
             targetPoint = GetRandomPointOnNavMesh();
+
+        anim.SetTrigger("Turn");
+
+        float angle = GetAngle(GetTargetPosition());
+        Debug.Log(angle);
+        anim.speed = (1/angle) * 200f;
     }
 
     //Called every time the monster is getting taunted
@@ -280,6 +290,7 @@ public class MeleeAI : MonsterAI
     //Called every time AI goes into move state
     public override void MoveEvent()
     {
+
         //Phillip do your animation stuff here
 
     }
