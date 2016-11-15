@@ -16,7 +16,6 @@ public enum PlayerActions
 public class PlayerActionController : MonoBehaviour
 {
 
-    
     [Header("Attack values")]
     public int AttackDamage = 1;
     public float AttackRange = 2f;
@@ -120,7 +119,6 @@ public class PlayerActionController : MonoBehaviour
 
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
-
         pb.Reset();
         
     }
@@ -150,16 +148,11 @@ public class PlayerActionController : MonoBehaviour
         }
     }
 
-
     //Attacks
-    //REMOVE LOGIC FROM THIS CLASS!!
     public void HandleAttack()
     {
         //attackAction.NormalAttack(TauntRadius, this.transform);
-        //if no enemies in range SCARE
-        List<Collider> enemiesInRange = attackAction.GetConeRange();
-
-        attackAction.ConeAttack(enemiesInRange);
+        List<Collider> enemiesInRange = attackAction.ConeAttack();
 
         //add reputation
         foreach (Collider enemy in enemiesInRange)
@@ -168,7 +161,6 @@ public class PlayerActionController : MonoBehaviour
 
             pb.ChangeRepScore(monster.PlayerAttackReputation());
             pb.Invoke();
-
         }
 
     }
@@ -216,7 +208,6 @@ public class PlayerActionController : MonoBehaviour
 
     }
 
-
     private IEnumerator releaseAttacked()
     {
         yield return new WaitForSeconds(AttackedDuration);
@@ -226,10 +217,33 @@ public class PlayerActionController : MonoBehaviour
         playerState = PlayerState.IDLE;
     }
 
+    /* used for cooldown feedback */
+
+    public float GetAttackActionCooldown()
+    {
+        return attackAction.elapsedCooldown();
+    }
+
+    public float GetOverreactActionCooldown()
+    {
+
+        return overreactAction.elapsedCooldown();
+    }
+
+
+    public float GetTauntActionCooldown()
+    {
+
+        return tauntAction.elapsedCooldown();
+    }
+
     /* used for testing only */
 
     public void SetTauntCooldown(float val)
     {
         tauntAction.TauntCooldown = val;
     }
+
+
+
 }

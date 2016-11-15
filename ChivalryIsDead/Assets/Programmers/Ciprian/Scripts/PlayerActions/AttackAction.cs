@@ -67,19 +67,21 @@ class AttackAction : MonoBehaviour
 
 
     //receives enemies to attack
-    public void ConeAttack(List<Collider> colliders)
+    public List<Collider> ConeAttack()
     {
+        List<Collider> colliders = new List<Collider>();
         //Debug.Log("ATTACK CAN: " + playerBase.canDoAction(PlayerActions.ATTACK));
         if (!getCoolDown() || !playerBase.canDoAction(PlayerActions.ATTACK))
         {
             //clear colliders if attack doesnt go through
-            colliders.Clear();
-            return;
+            return colliders;
         }
 
         playerBase.attack();
 
         cooldownTimeStamp = Time.time + AttackCooldown;
+
+        colliders = GetConeRange();
 
         foreach (Collider collider in colliders)
         {
@@ -87,6 +89,8 @@ class AttackAction : MonoBehaviour
             //attack force
             collider.GetComponent<Rigidbody>().AddExplosionForce(100000f, transform.position, 5000f);
         }
+
+        return colliders;
 
     }
 
@@ -123,5 +127,15 @@ class AttackAction : MonoBehaviour
         }
 
         return true;
+    }
+
+    public float elapsedCooldown()
+    {
+        if ( cooldownTimeStamp < Time.time)
+        {
+            return 1;
+        }
+
+        return 1 - Mathf.Abs(((Time.time - cooldownTimeStamp)) /AttackCooldown) ;
     }
 }

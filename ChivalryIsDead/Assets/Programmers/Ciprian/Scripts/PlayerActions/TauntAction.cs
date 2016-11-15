@@ -124,4 +124,14 @@ class TauntAction: MonoBehaviour
         return true;
     }
 
+    public float elapsedCooldown()
+    {
+        if (cooldownTimeStamp < Time.time)
+        {
+            return 1;
+        }
+
+        return 1 - Mathf.Abs(((Time.time - cooldownTimeStamp)) / TauntCooldown);
+    }
+
 }
