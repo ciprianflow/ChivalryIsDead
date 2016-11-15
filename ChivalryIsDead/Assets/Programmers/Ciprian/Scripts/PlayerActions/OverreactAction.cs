@@ -9,10 +9,19 @@ class OverreactAction: MonoBehaviour
 
     private float timeStamp;
 
+    private PlayerScript playerBase;
+
+    void Awake()
+    {
+        playerBase = GetComponent<PlayerScript>();
+    }
+
     public bool Overreact()
     {
+
+       // Debug.Log("Overreact CAN: " + playerBase.canDoAction(PlayerActions.OVERREACT));
         //if not on cooldown do action
-        if (getCoolDown())
+        if (getCoolDown() && playerBase.canDoAction(PlayerActions.OVERREACT))
         {
             startOverreact();
 
@@ -35,9 +44,9 @@ class OverreactAction: MonoBehaviour
 
     private void startOverreact()
     {
-        //reset cooldown   
+        //reset cooldown 
+        playerBase.overreact();
         timeStamp = Time.time + OverreactCooldown;
-
         Debug.Log("Overreact");
     }
 }

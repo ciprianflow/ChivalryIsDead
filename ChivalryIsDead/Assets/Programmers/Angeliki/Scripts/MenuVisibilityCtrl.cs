@@ -8,6 +8,7 @@ public class MenuVisibilityCtrl : MonoBehaviour
 
     GameObject _myGameObj;
     GameObject _invisibleBG;
+    public GameObject menu;
 
     void Awake()
     {
@@ -43,7 +44,17 @@ public class MenuVisibilityCtrl : MonoBehaviour
 
     public void hide()
     {
-        _myGameObj.SetActive(false);
+        if(menu == null)
+        {
+            _myGameObj.SetActive(false);
+        }
+        else
+        {
+            menu.GetComponent<GameMenu>().Pause();
+        }
+        
         _invisibleBG.SetActive(false);
+
+
     }
 }

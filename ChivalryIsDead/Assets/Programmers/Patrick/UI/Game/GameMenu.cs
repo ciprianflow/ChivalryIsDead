@@ -30,9 +30,12 @@ public class GameMenu : MonoBehaviour {
 
     float testRND;
 
-    [HideInInspector]
     public GameObject skipBtn;
+    public GameObject skipAllBtn;
     GameObject pauseBtn;
+
+
+    private bool tauntCD = true;
 
     // Use this for initialization
 
@@ -54,6 +57,8 @@ public class GameMenu : MonoBehaviour {
         introLetter.SetActive(false);
         sword.SetActive(false);
         princess.SetActive(false);
+        skipBtn.SetActive(false);
+        skipAllBtn.SetActive(false);
 
         //Princess();
         //Sword();
@@ -63,9 +68,9 @@ public class GameMenu : MonoBehaviour {
         //Debug.Log("peasants dialog starts in " + testRND);
         //Invoke("Test", testRND);
 
-        skipBtn = GameObject.FindGameObjectWithTag("SkipBtn");
+        //skipBtn = GameObject.FindGameObjectWithTag("SkipBtn");
         pauseBtn = GameObject.FindGameObjectWithTag("PauseBtn");
-        skipBtn.SetActive(false);
+
 
         // Check Volume Slider
         soundVolume.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundVolume");
@@ -126,7 +131,7 @@ public class GameMenu : MonoBehaviour {
         {
             pause.SetActive(true);
             paused = true;
-            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.pressedSprite;
+            //pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.pressedSprite;
             //pauseBtn.SetActive(false);
             Time.timeScale = 0f;
         } else
@@ -134,8 +139,28 @@ public class GameMenu : MonoBehaviour {
             pause.SetActive(false);
             paused = false;
             //pauseBtn.SetActive(true);
-            pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
+            //pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
             Time.timeScale = 1f;
+        }
+    }
+
+    public void TauntCooldown()
+    {
+        PlayerActionController pAction = GameObject.Find("Player").GetComponent<PlayerActionController>();
+        if(!tauntCD)
+        {
+            tauntCD = true;
+            pAction.SetTauntCooldown(5f);
+           // pAction.taun
+            Debug.Log(" TRUE");
+
+        } 
+        else
+        {
+            tauntCD = false;
+            pAction.SetTauntCooldown(0f);
+           // pAction.TauntCooldown = 0f;
+            Debug.Log(" FALSe");
         }
     }
 
@@ -196,18 +221,20 @@ public class GameMenu : MonoBehaviour {
 
     public void SkipDialog()
     {
-        skipBtn.SetActive(false);
+        skipAllBtn.SetActive(false);
         dialogSystem.StopDialog();
     }
 
     public void Princess()
     {
+        skipAllBtn.SetActive(true);
         skipBtn.SetActive(true);
         princess.SetActive(true);
     }
 
     public void Sword()
     {
+        skipAllBtn.SetActive(true);
         skipBtn.SetActive(true);
         sword.SetActive(true);
     }

@@ -7,6 +7,7 @@ class TauntAction: MonoBehaviour
 
     public float TauntDuration;
     public float TauntRadius;
+    public float TauntCooldown = 5f;
 
     //used for cooldown i guess
     private bool alreadyTaunting = false;
@@ -14,6 +15,17 @@ class TauntAction: MonoBehaviour
     private float currentTauntRadius;
     private float currentTauntDuration;
     private float overTime;
+
+
+    private PlayerScript playerBase;
+
+    void Awake()
+    {
+        playerBase = GetComponent<PlayerScript>();
+    }
+
+    private float cooldownTimeStamp;
+
 
     void Start()
     {
@@ -23,15 +35,19 @@ class TauntAction: MonoBehaviour
     void Update()
     {
         //Aggro
-        if (alreadyTaunting)
+        /*
+        if (getCoolDown())
         {
             startTaunt(currentTauntRadius, this.transform.position);
-            shrinkTauntArea();
+            //shrinkTauntArea();
         }
+        */
     }
 
     private void startTaunt(float radius, Vector3 position)
     {
+
+        cooldownTimeStamp = Time.time + TauntCooldown;
 
         //10 layer - Monster
         Collider[] hitColliders = Physics.OverlapSphere(position, radius);
@@ -51,7 +67,7 @@ class TauntAction: MonoBehaviour
     private void checkStateAndTaunt(MonsterAI monster)
     {
         //everything but idle
-        if (monster.getState() != State.Idle || monster.GetType() == typeof(SuicideAI) || monster.GetType() == typeof(SheepAI))
+        if (monster.getState() != State.Idle || monster.GetType() == typeof(SheepAI))
         {
             monster.Taunt();
         }
@@ -61,13 +77,26 @@ class TauntAction: MonoBehaviour
     //TAUNT Action
     public void Taunt()
     {
+
+        //Debug.Log("TAUNT CAN: " + playerBase.canDoAction(PlayerActions.TAUNT));
+        if (getCoolDown() && playerBase.canDoAction(PlayerActions.TAUNT))
+        {
+            startTaunt(currentTauntRadius, this.transform.position);
+
+            playerBase.taunt();
+            //shrinkTauntArea();
+        }
+        /*
         //just change aggro radius 
         if (!alreadyTaunting)
         {
+            Debug.Log("dwjaio");
+            playerBase.taunt();
             currentTauntDuration = TauntDuration;
             overTime = 0;
             alreadyTaunting = true;
         }
+        */
     }
 
     //shrinkTauntArea
@@ -83,6 +112,16 @@ class TauntAction: MonoBehaviour
             alreadyTaunting = false;
         }
 
+    }
+
+    //cooldown
+    private bool getCoolDown()
+    {
+        if (cooldownTimeStamp >= Time.time)
+        {
+            return false;
+        }
+        return true;
     }
 
 }

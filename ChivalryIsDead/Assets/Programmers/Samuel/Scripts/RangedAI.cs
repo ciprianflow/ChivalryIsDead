@@ -8,6 +8,8 @@ public class RangedAI : MonsterAI
     public GameObject projectile;
     public GameObject targetSprite;
 
+    public Animator anim;
+
     Transform targetObj;
 
     float force = 1;
@@ -26,7 +28,7 @@ public class RangedAI : MonsterAI
 
     public override void Attack()
     {
-        rotateTowardsTarget();
+        RotateTowardsTarget();
         if (t1 > attackTime)
         {
             if (RangeCheck())

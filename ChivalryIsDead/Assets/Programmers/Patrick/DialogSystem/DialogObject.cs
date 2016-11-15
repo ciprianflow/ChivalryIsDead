@@ -270,6 +270,8 @@ public class DialogObject : MonoBehaviour {
            
         }
 
+        gameMenu.skipAllBtn.SetActive(false);
+        gameMenu.skipBtn.SetActive(false);
         gameMenu.sword.GetComponent<Animator>().SetTrigger("Hide");
         gameMenu.princess.GetComponent<Animator>().SetTrigger("Hide");
         StartCoroutine(Hide());

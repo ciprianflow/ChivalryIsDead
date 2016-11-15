@@ -8,6 +8,10 @@ public enum PlayerState
     IDLE, HIT, ATTACKING, TAUNTING
 }
 
+public enum PlayerActions
+{
+    ATTACK, OVERREACT, TAUNT
+};
 
 public class PlayerActionController : MonoBehaviour
 {
@@ -23,17 +27,20 @@ public class PlayerActionController : MonoBehaviour
     public float TauntRadius = 5f;
     public float TauntDuration = 3f;
 
+
     [Header("Aggro values")]
     public float AggroRadius = 4f;
 
     [Header("Overreact values")]
     //duration for the overreact mechanic
     public float AttackedDuration = 1.5f;
-    public float OverreactCooldown = 2.5f;
 
-    [Header("Scare values")]
-    public float ScareRadius = 4f;
-    
+
+    [Header("Cooldown values")]
+    public float AttackCooldown = 0.3f;
+    public float OverreactCooldown = 2.5f;
+    public float TauntCooldown = 5f;
+
 
     private float attackRange = 35f;
     private float attackRadius = 120f;
@@ -45,11 +52,11 @@ public class PlayerActionController : MonoBehaviour
     private TauntAction tauntAction;
     private AttackAction attackAction;
     private OverreactAction overreactAction;
-    private ScareAction scareAction;
 
    
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
+
 
     void OnDrawGizmos()
     {
@@ -77,14 +84,12 @@ public class PlayerActionController : MonoBehaviour
         gameObject.AddComponent<TauntAction>();
         gameObject.AddComponent<OverreactAction>();
         gameObject.AddComponent<AttackAction>();
-        gameObject.AddComponent<ScareAction>();
 
 
         aggroAction = gameObject.GetComponent<AggroAction>();
         tauntAction = gameObject.GetComponent<TauntAction>();
         overreactAction = gameObject.GetComponent<OverreactAction>();
         attackAction = gameObject.GetComponent<AttackAction>();
-        scareAction = gameObject.GetComponent<ScareAction>();
 
         StaticIngameData.playerAction = this;
     }
@@ -98,6 +103,7 @@ public class PlayerActionController : MonoBehaviour
         //init for taunt
         tauntAction.TauntDuration = TauntDuration;
         tauntAction.TauntRadius = TauntRadius;
+        tauntAction.TauntCooldown = TauntCooldown;
 
         //init aggro
         aggroAction.AggroRadius = AggroRadius;
@@ -107,6 +113,7 @@ public class PlayerActionController : MonoBehaviour
         attackAction.AttackDamage = AttackDamage;
         attackAction.AttackAngle = AttackAngle;
         attackAction.AttackRange = AttackRange;
+        attackAction.AttackCooldown = AttackCooldown;
 
         //init for overreact
         overreactAction.OverreactCooldown = OverreactCooldown;
@@ -131,10 +138,10 @@ public class PlayerActionController : MonoBehaviour
     public void HandleOverreact()
     {
         // if attacked the player can overreact
-        if (playerState == PlayerState.HIT)
+        if (playerState != PlayerState.HIT && lastMonsterAttacked != null)
         {
             //Player overreacted add reputation
-            if (overreactAction.Overreact() && lastMonsterAttacked != null)
+            if (overreactAction.Overreact())
             {
 
                 pb.ChangeRepScore(lastMonsterAttacked.GetOverreactReputation());
@@ -219,5 +226,10 @@ public class PlayerActionController : MonoBehaviour
         playerState = PlayerState.IDLE;
     }
 
+    /* used for testing only */
 
+    public void SetTauntCooldown(float val)
+    {
+        tauntAction.TauntCooldown = val;
+    }
 }

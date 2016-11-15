@@ -4,7 +4,8 @@ using System;
 
 public class SheepAI : MonsterAI {
 
-    bool aggroed = false;
+
+    public Animator anim;
 
     [Header("Sheep Specific Variables")]
     public float aggroTime = 10;
@@ -51,6 +52,8 @@ public class SheepAI : MonsterAI {
 
     public override void Move()
     {
+        anim.SetFloat("Speed", agent.speed);
+
         targetPoint = -targetObject.forward * 2 + targetObject.position;
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed();
@@ -63,6 +66,7 @@ public class SheepAI : MonsterAI {
 
     public override void Taunt()
     {
+        Debug.Log("Sheep taunted");
         if(state != State.Move)
             ToMove();
 
