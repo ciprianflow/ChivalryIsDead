@@ -47,6 +47,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     private Quaternion endRot;
     private Quaternion startRot;
 
+    protected Animator anim;
+
     #endregion
 
     protected State state;
@@ -71,6 +73,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //ToMove(); //Comment in to make aggroed at start
         ToIdle(); //Comment in to Idle at start
         Init();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -288,6 +291,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             body.angularVelocity = Vector3.zero;
     }
 
+
+
     public abstract void KillThis();
 
     public State getState()
@@ -326,6 +331,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     //implement this in the base class
     public void Hit(int damage)
     {
+
         if (healthScript.takeDamage(damage))
         {
             gameObject.SetActive(false);
@@ -333,6 +339,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             if(StaticIngameData.mapManager != null)
                 StaticIngameData.mapManager.CheckObjectives(this);
         }
+
+        anim.Play("TakeDamage");
     }
 
     #endregion

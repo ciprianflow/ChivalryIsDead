@@ -9,8 +9,6 @@ public class MeleeAI : MonsterAI
     public float ChargeTurnTime = 0.5f;
     public float chargeSpeedMultiplier = 3f;
 
-    public Animator anim;
-
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
 
@@ -130,8 +128,9 @@ public class MeleeAI : MonsterAI
     //Rotates the AI towards a point
     bool ControlledRotation()
     {
-        if (t1 < 0.25f)
+        if (t1 < 1f)
             return false               ;
+
 
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
@@ -148,7 +147,8 @@ public class MeleeAI : MonsterAI
 
         //If the rotation is done the function ruturns true
         ChargeRotDone();
-        anim.speed = 1f;
+        anim.SetTrigger("Rotate");
+        //anim.speed = 1f;
         return true;
     }
 
@@ -235,11 +235,11 @@ public class MeleeAI : MonsterAI
         if (patrolling)
             targetPoint = GetRandomPointOnNavMesh();
 
-        anim.SetTrigger("Turn");
+        anim.SetTrigger("StartTurn");
 
         float angle = GetAngle(GetTargetPosition());
         Debug.Log(angle);
-        anim.speed = (1/angle) * 200f;
+        //anim.speed = (1/angle) * 200f;
     }
 
     //Called every time the monster is getting taunted
