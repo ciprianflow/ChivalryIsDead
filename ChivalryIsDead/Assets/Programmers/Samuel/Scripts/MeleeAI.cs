@@ -131,7 +131,7 @@ public class MeleeAI : MonsterAI
     bool ControlledRotation()
     {
         if (t1 < 0.25f)
-            return false;
+            return false               ;
 
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
@@ -332,6 +332,8 @@ public class MeleeAI : MonsterAI
         r.drag = 0;
         r.mass = 1;
         r.AddExplosionForce(chargeForce * (accelTimer / accelTime), g.transform.position, 100f, 1);
+
+        g.GetComponentInChildren<Animator>().SetTrigger("Flying");
     }
 
     //This is some rep stuff
