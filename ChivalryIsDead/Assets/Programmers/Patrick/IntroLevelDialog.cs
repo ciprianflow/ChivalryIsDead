@@ -11,9 +11,13 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject InvisWallOne;
     public GameObject InvisWallTwo;
     bool procceed;
+
+    public GameObject HandCanvas;
+    Animator handAnimator;
     // Use this for initialization
     void Start () {
         procceed = false;
+        handAnimator = HandCanvas.GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -28,11 +32,13 @@ public class IntroLevelDialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(0.3f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-        
+        Invoke("CallableSkip", 5);
         yield return new WaitUntil(SkipAndPlay);
         procceed = false;
+        handAnimator.SetBool("playLeftJoy", true);
+        yield return new WaitForSeconds(5);
+        handAnimator.SetBool("playLeftJoy", false);
         ControlMove.SetActive(true);
-        yield return new WaitForSeconds(4);
         InvisWallOne.SetActive(false);
 
     }
@@ -59,10 +65,12 @@ public class IntroLevelDialog : MonoBehaviour {
         yield return new WaitForSeconds(0.3f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         ControlHit.SetActive(true);
+        handAnimator.SetBool("playRightJoy", true);
     }
 
     public void EventOne()
     {
+        handAnimator.SetBool("playRightJoy", false);
         InvisWallTwo.SetActive(false);
     }
 
