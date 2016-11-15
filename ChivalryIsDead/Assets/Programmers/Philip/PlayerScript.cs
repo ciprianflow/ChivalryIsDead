@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour {
 
     public bool canDoAction(PlayerActions action)
     {
-
+        return true;
         switch(action)
         {
             case PlayerActions.ATTACK:
@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour {
                 break;
 
             case PlayerActions.TAUNT:
-                if (attacking || overreacting || taunting)
+                if (attacking || overreacting )
                 {
                     return false;
                 }
@@ -112,7 +112,7 @@ public class PlayerScript : MonoBehaviour {
         //float turnValue = SignedAngle(LastXY, new Vector2(x, y));
         //turnMag += turnValue;
         LastXY = new Vector2(x, y);
-        if (zVel < LastXY.magnitude) {
+        if (zVel < LastXY.magnitude - 0.05f) {
             zVel += speedAcc;
         }
         else if (zVel > LastXY.magnitude)
