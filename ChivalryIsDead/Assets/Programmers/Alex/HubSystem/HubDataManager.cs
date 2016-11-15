@@ -131,7 +131,7 @@ public class HubDataManager : MonoBehaviour {
             Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
             // TODO : Name doesnt load from quest description
             //newQuestText.text = oAsQuest.Description.Title;
-            newQuestText.text = "Quest SOMETINGSOMTEGINF";
+            newQuestText.text = "Quest";
             Debug.Log("Quest name " + newQuestText.text);
 
             Button b = newQuestText.transform.parent.GetComponent<Button>();

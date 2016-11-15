@@ -68,7 +68,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 
    
