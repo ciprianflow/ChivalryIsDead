@@ -216,6 +216,7 @@ public class GameMenu : MonoBehaviour {
 
     public void SkipOneBubble()
     {
+        
         dialogSystem.SkipDialog();
     }
 
@@ -280,6 +281,7 @@ public class GameMenu : MonoBehaviour {
 
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
