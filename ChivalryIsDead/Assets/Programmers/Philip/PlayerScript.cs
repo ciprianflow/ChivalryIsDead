@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour {
 
     public bool canDoAction(PlayerActions action)
     {
-
+        return true;
         switch(action)
         {
             case PlayerActions.ATTACK:
@@ -64,7 +64,7 @@ public class PlayerScript : MonoBehaviour {
                 break;
 
             case PlayerActions.TAUNT:
-                if (attacking || overreacting)
+                if (attacking || overreacting )
                 {
                     return false;
                 }

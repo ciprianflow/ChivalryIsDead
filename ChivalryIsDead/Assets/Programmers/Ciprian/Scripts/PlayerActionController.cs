@@ -226,5 +226,10 @@ public class PlayerActionController : MonoBehaviour
         playerState = PlayerState.IDLE;
     }
 
+    /* used for testing only */
 
+    public void SetTauntCooldown(float val)
+    {
+        tauntAction.TauntCooldown = val;
+    }
 }

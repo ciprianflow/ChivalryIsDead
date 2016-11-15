@@ -86,7 +86,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
-        Debug.DrawLine(transform.position, targetPoint);
+        Debug.DrawLine(transform.position, GetTargetPosition() + new Vector3(0, 0.5f, 0));
         if (targetObject != null && !targetObject.gameObject.activeSelf)
             targetObject = StaticIngameData.player;
         //HARD CODED REMOVE LATER
@@ -259,8 +259,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void RotateTowardsTargetTimed(float t)
     {
-        Debug.Log(startRot + " -> " + endRot);
-        //transform.rotation = Quaternion.RotateTowards(startRot, endRot, t);
         transform.rotation = Quaternion.Slerp(startRot, endRot, t);
     }
 
@@ -322,7 +320,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (healthScript.takeDamage(damage))
         {
             gameObject.SetActive(false);
-            StaticIngameData.mapManager.CheckObjectives(this);
+
+            if(StaticIngameData.mapManager != null)
+                StaticIngameData.mapManager.CheckObjectives(this);
         }
     }
 
