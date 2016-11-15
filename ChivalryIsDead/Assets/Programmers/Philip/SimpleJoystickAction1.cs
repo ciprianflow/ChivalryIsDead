@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Threading;
 
 namespace CnControls
 {
@@ -207,6 +208,7 @@ namespace CnControls
             //if (moving) {
             //    playerScript.move(SX, SY);
             //}
+
         }
 
         private void OnEnable()
@@ -231,6 +233,8 @@ namespace CnControls
 
         public virtual void OnDrag(PointerEventData eventData)
         {
+
+
             // Unity remote multitouch related thing
             // When we feed fake PointerEventData we can't really provide a camera, 
             // it has a lot of private setters via not created objects, so even the Reflection magic won't help a lot here
@@ -317,21 +321,31 @@ namespace CnControls
             else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
             {
                 overreact = true;
-                ActionRight.color = new Color(1, 1, 1, 1);
+
+                if (overreactCooldownFill == 1)
+                {
+                    ActionRight.color = new Color(1, 1, 1, 1);
+                }
             }
             //else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
             else if ((angle >= 147 && angle < 265)) // angeliki added this
             {
                 taunt = true;
-                ActionLeft.color = new Color(1, 1, 1, 1);
+                if (tauntCooldownfill == 1)
+                {
+                    ActionLeft.color = new Color(1, 1, 1, 1);
+                }
+                    
             }
             //else if((angle >= 54 && angle < 126)) { // angeliki commented out this
             else if ((angle >= 34 && angle < 147)) // angeliki added this
             {
                 //cancel = true;// angeliki commented out this
                 attack = true; // angeliki added this
-
-                ActionBottom.color = new Color(1, 1, 1, 1);
+                if (attackCooldownFill == 1)
+                {
+                    ActionBottom.color = new Color(1, 1, 1, 1);
+                }
             }
             //else if (SX < 0 && -SX > Mathf.Abs(SY)) {
             //    taunt = true;
@@ -370,8 +384,38 @@ namespace CnControls
             HorizintalAxis.Value = horizontalValue;
             VerticalAxis.Value = verticalValue;
         }
+        private float attackCooldownFill = 1;
+        private float tauntCooldownfill = 1;
+        private float overreactCooldownFill = 1;
+
+
+        void Update()
+        {
+
+            attackCooldownFill = playerActionController.GetAttackActionCooldown();
+            tauntCooldownfill = playerActionController.GetTauntActionCooldown();
+            overreactCooldownFill = playerActionController.GetOverreactActionCooldown();
+
+            if (attackCooldownFill < 1)
+            {
+                ActionBottom.fillAmount = attackCooldownFill;
+            }
+
+            if (tauntCooldownfill < 1)
+            {
+                ActionLeft.fillAmount = tauntCooldownfill;
+            }
+
+
+            if (overreactCooldownFill < 1)
+            {
+                ActionRight.fillAmount = overreactCooldownFill;
+            }
+
+        }
 
         public void resetOptions() {
+
             attack = false;
             taunt = false;
             overreact = false;
@@ -396,7 +440,7 @@ namespace CnControls
 
         public void OnPointerUp(PointerEventData eventData)
         {
-
+            
             moving = false;
             // When we lift our finger, we reset everything to the initial state
             _baseTransform.anchoredPosition = _initialBasePosition;
@@ -436,6 +480,9 @@ namespace CnControls
             t.color = new Color(1, 0, 0, 1);
             Vibration.Vibrate(50);
             playerActionController.HandleAttack();
+
+
+            
             //playerScript.attack();
         }
 
