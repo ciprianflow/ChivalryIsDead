@@ -17,7 +17,7 @@ public class SheepAI : MonsterAI {
         if (aggroed)
         {
             targetPoint = -targetObject.forward * 2 + targetObject.position;
-            Debug.Log(RangeCheck());
+            //Debug.Log(RangeCheck());
             if (RangeCheck())
                 IdleToMove();
 
