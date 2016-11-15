@@ -7,7 +7,7 @@ class OverreactAction: MonoBehaviour
 
     public float OverreactCooldown;
 
-    private float timeStamp;
+    private float cooldownTimeStamp;
 
     private PlayerScript playerBase;
 
@@ -34,7 +34,7 @@ class OverreactAction: MonoBehaviour
     //cooldown
     private bool getCoolDown()
     {
-        if (timeStamp >= Time.time)
+        if (cooldownTimeStamp >= Time.time)
         {
             return false;
         }
@@ -46,8 +46,18 @@ class OverreactAction: MonoBehaviour
     {
         //reset cooldown 
         playerBase.overreact();
-        timeStamp = Time.time + OverreactCooldown;
+        cooldownTimeStamp = Time.time + OverreactCooldown;
         Debug.Log("Overreact");
+    }
+
+    public float elapsedCooldown()
+    {
+        if (cooldownTimeStamp < Time.time)
+        {
+            return 1;
+        }
+
+        return 1 - Mathf.Abs(((Time.time - cooldownTimeStamp)) / OverreactCooldown);
     }
 }
 
