@@ -16,7 +16,7 @@ public class TempCinematic : MonoBehaviour {
 
     void nextScene()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
 }
