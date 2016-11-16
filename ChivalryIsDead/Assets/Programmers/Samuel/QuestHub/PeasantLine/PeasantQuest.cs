@@ -14,7 +14,7 @@ public class PeasantQuest : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        delegateOnClickEvent(1);
         delegateOnClickEvent2(QuestIndex);
+        delegateOnClickEvent(1);
     }
 }
