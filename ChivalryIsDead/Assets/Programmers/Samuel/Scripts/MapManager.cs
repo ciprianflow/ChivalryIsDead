@@ -15,6 +15,8 @@ public class MapManager : MonoBehaviour {
     Dictionary<int, List<Rect>> sortedAreas;
     Dictionary<int, List<int>> sortedMaxSpawn;
 
+    public GameObject endLetter;
+
     internal void SetQuestObject(Transform transform)
     {
         QuestTarget = transform;
@@ -145,6 +147,18 @@ public class MapManager : MonoBehaviour {
         StaticData.Reputation += localRepGain;
 
         //Load Quest Hub Manager
+        if (endLetter != null)
+        {
+            endLetter.SetActive(true);
+            Time.timeScale = 0.1f;
+        }
+        else
+            LoadHubArea();
+    }
+
+    public void LoadHubArea()
+    {
+        Time.timeScale = 1;
         SceneManager.LoadScene("ProtoHubWorld 1");
     }
 }

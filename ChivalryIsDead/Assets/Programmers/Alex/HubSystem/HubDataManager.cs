@@ -10,7 +10,7 @@ public class HubDataManager : MonoBehaviour {
     private const string hubDataPath = "Assets/HubData.asset";
     private HubData currentHubData;
 
-    int currSelectedQuestIndex = 0;
+    int currSelectedQuestIndex = -1;
 
     #region HubData properties
     public int CurrentReputation {
@@ -134,13 +134,12 @@ public class HubDataManager : MonoBehaviour {
             // TODO : Name doesnt load from quest description
             //newQuestText.text = oAsQuest.Description.Title;
             newQuestText.text = "Quest";
-            Debug.Log("Quest name " + newQuestText.text);
 
             Button b = newQuestText.transform.parent.GetComponent<Button>();
             int newI = i;
             b.onClick.AddListener(() => SelectQuest(newI));
 
-            peasantLineScript.GivePeasantQuest(i, newI);
+            peasantLineScript.GivePeasantQuest(i, newI, oAsQuest);
 
         }
         GenerateDLCQuest();
@@ -152,7 +151,6 @@ public class HubDataManager : MonoBehaviour {
         QuestButtonObj.transform.SetParent(ContentPane.transform);
         Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
         newQuestText.text = "Most awesome quest ever!";
-        Debug.Log("Quest name " + newQuestText.text);
 
         Button b = newQuestText.transform.parent.GetComponent<Button>();
         b.onClick.AddListener(() => SetDLCPopUp(true));
@@ -160,6 +158,9 @@ public class HubDataManager : MonoBehaviour {
 
     public void SelectQuest()
     {
+        if (currSelectedQuestIndex == -1)
+            return;
+
         int index = currSelectedQuestIndex;
         var selectedQ = AvailableQuests[index];
         if (selectedQ != null)
@@ -229,12 +230,20 @@ public class HubDataManager : MonoBehaviour {
 
     public void SetQuestLetter(int i)
     {
+        BaseQuest quest = (BaseQuest)AvailableQuests[currSelectedQuestIndex];
+        QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
         QuestLetter.SetActive(Convert.ToBoolean(i));
+
     }
 
     public void setCurrSelectedQuest(int i)
     {
         currSelectedQuestIndex = i;
+    }
+
+    public BaseQuest GetQuest(int i)
+    {
+        return (BaseQuest)AvailableQuests[i];
     }
 
     #endregion
