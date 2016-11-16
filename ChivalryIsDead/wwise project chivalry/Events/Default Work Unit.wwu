@@ -109,8 +109,46 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="dialogue_a_speech_bubble_pop" ID="{AC3E3FCA-C098-44F3-9077-3C05B782F7C7}"/>
-						<Event Name="dialogue_b_icon_pop" ID="{B0A8E7FA-1407-4854-9555-B104B4B18D9A}"/>
+						<Event Name="dialogue_a_speech_bubble_pop" ID="{AC3E3FCA-C098-44F3-9077-3C05B782F7C7}">
+							<ChildrenList>
+								<Action Name="Play" ID="{0BCB200D-4DBB-48A9-BFD1-D712C33CC1FE}" ShortID="401051144" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{7B7AACBE-9D35-48D7-B1BD-5B948A66A638}" Global="false">
+											<ObjectRef Name="speech bubble pop" ID="{1D370051-F0BD-4A71-B8CB-23B9B68265B9}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="dialogue_b_icon_pop" ID="{B0A8E7FA-1407-4854-9555-B104B4B18D9A}">
+							<ChildrenList>
+								<Action Name="Set Voice Pitch" ID="{F6FA1359-E8DE-40F4-A0D2-FDF1B2674F18}" ShortID="1021841513" Type="ChangePitch" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{284D70AA-E2D0-4B21-B8A4-8EB813075A16}" Global="false">
+											<ObjectRef Name="speech bubble pop" ID="{1D370051-F0BD-4A71-B8CB-23B9B68265B9}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{8240C50E-EB96-45BC-A38A-4B40D9683E97}" ShortID="770303878" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{9DC210D1-D84E-45F7-8746-A2A197CECB68}" Global="false">
+											<ObjectRef Name="speech bubble pop" ID="{1D370051-F0BD-4A71-B8CB-23B9B68265B9}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Set Voice Pitch" ID="{6C234CF9-B147-4FFE-B5BF-B9537C77AE67}" ShortID="264273559" Type="ChangePitch" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="0.3"/>
+										<Property Name="Pitch" Type="int32" Value="400"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{C4E5A4C1-DA46-4EB5-AC58-548E12003233}" Global="false">
+											<ObjectRef Name="speech bubble pop" ID="{1D370051-F0BD-4A71-B8CB-23B9B68265B9}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
 						<Event Name="quest_initiated" ID="{3D97BABB-2DA8-46AA-8257-ADC8EA6B258C}"/>
 						<Event Name="quests_finished_negative_rep" ID="{C480ACB2-C2CF-418F-B112-F14BB89173D7}"/>
 						<Event Name="quest_finished_positive_rep" ID="{33E7D9DA-2152-4573-9B8E-6E34A1E36E8C}"/>
@@ -583,10 +621,10 @@
 										</Event>
 										<Event Name="knight_walk" ID="{69E4AB49-DFB9-4E12-BF72-CA8AE43F2127}">
 											<ChildrenList>
-												<Action Name="Play" ID="{628DC90F-5A3A-4C5F-9854-DCCA92DA6DFE}" ShortID="14878397" Type="Play" Scope="One" Global="false">
+												<Action Name="Play" ID="{729295E9-676A-464C-A3CB-1E1AD46E4FFF}" ShortID="395550026" Type="Play" Scope="One" Global="false">
 													<ElementList>
-														<Element ID="{026EB62E-F6F1-4558-90C8-7B8A30FB8BC4}" Global="false">
-															<ObjectRef Name="knight_footsteps" ID="{DDE5099E-098D-4F70-B50A-851DC5D1873C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														<Element ID="{939B8AAA-14DB-4BE6-A8E8-DC325B331090}" Global="false">
+															<ObjectRef Name="footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
