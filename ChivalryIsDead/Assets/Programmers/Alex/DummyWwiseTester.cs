@@ -15,8 +15,12 @@ public class DummyWwiseTester : MonoBehaviour {
             innerTimer -= Time.deltaTime;
             yield return null;
         }
-        Debug.Log("Playing random sound.");
-        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+        if (WwiseInterface.Instance != null) { 
+            Debug.Log("Playing test sound.");
+            WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+        } else {
+            Debug.LogWarning("Attach a WwiseInterface to a class (e.g. WwiseGlobal) to use the WwiseInterface!");
+        }
         StartCoroutine(CoTestSound());
     }
 }
