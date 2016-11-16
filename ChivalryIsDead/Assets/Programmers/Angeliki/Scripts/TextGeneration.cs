@@ -43,7 +43,7 @@ public class TextGeneration : MonoBehaviour {
         if (gameObject.tag == "IntroLetter")
         {
             HubDataMan = GameObject.FindGameObjectWithTag("HubDataManager");
-            QuestNum = HubDataMan.GetComponent<AngHubDataManager>().selectedQuest;
+            //QuestNum = HubDataMan.GetComponent<AngHubDataManager>().tempSelectedQuest;
         }
         //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
         title = transform.GetChild(1).GetComponent<Text>();
@@ -139,6 +139,7 @@ public class TextGeneration : MonoBehaviour {
 
         sbTitle.Append(shuffleBag.Next());
         title.text = sbTitle.ToString();
+        //return sb;
     }
     //public StringBuilder TextGenerator(ShuffleBag shuffleBag)
     void TextGenerator(ShuffleBag shuffleBag)
@@ -146,12 +147,14 @@ public class TextGeneration : MonoBehaviour {
 
         sbText.Append(shuffleBag.Next());
         mainText.text = sbText.ToString();
+        //return sb;
     }
     void EndTitleGenerator(ShuffleBag shuffleBag)
     {
 
         sbEndTitle.Append(shuffleBag.Next());
         endTitle.text = sbEndTitle.ToString();
+        //return sb;
     }
 
     public void initTextBags(bool[] NewBagInitializer)
