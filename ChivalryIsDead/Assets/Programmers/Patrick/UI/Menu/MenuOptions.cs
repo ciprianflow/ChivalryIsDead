@@ -7,6 +7,7 @@ public class MenuOptions : MonoBehaviour {
 
     public GameObject menu;
     public GameObject options;
+    public GameObject areYouSure;
 
     public GameObject muteSound;
     public GameObject soundVolume;
@@ -81,6 +82,16 @@ public class MenuOptions : MonoBehaviour {
     public void Credits()
     {
         
+    }
+
+    public void AreYouSure()
+    {
+        areYouSure.SetActive(true);
+    }
+
+    public void IAmNotSure()
+    {
+        areYouSure.SetActive(false);
     }
 
     public void ResetData()
