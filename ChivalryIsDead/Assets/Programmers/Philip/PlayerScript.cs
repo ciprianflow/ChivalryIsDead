@@ -35,6 +35,7 @@ public class PlayerScript : MonoBehaviour {
     public float LowerWeight = 0;
 
     public GameObject SwordTrail;
+    public GameObject DustParticle;
 
     Dictionary<String, int> AnimDic = new Dictionary<String, int>();
 
@@ -99,10 +100,12 @@ public class PlayerScript : MonoBehaviour {
 
         if (x == 0 && y == 0) {
             isSlowingDown = true;
+            DustParticle.SetActive(false);
             return;
         }
         else {
             isSlowingDown = false;
+            DustParticle.SetActive(true);
         }
 
         //float camRot = Mathf.Deg2Rad * Camera.main.transform.eulerAngles.y;

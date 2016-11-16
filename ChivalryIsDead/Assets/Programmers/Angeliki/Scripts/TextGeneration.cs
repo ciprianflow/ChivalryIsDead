@@ -28,8 +28,10 @@ public class TextGeneration : MonoBehaviour {
     public List<ShuffleBag> shuffleBags = new List<ShuffleBag>();
     //public List<string> filesNames = new List<string>();
 
+    Text QuestTitleText;
     Text title;
     Text mainText;
+    Text Description;
     Text endTitle;
 
     List<int> logSequenceStart = new List<int>();
@@ -38,17 +40,34 @@ public class TextGeneration : MonoBehaviour {
     GameObject HubDataMan;
     int QuestNum;
 
+    private string QuestTitle = "";
+    private string QuestDifficulty = "";
+    private string QuestText = "";
+
+    public void SetQuestText(string description, string title, string difficulty)
+    {
+        QuestText = description;
+        QuestTitle = title;
+        QuestDifficulty = difficulty;
+        Debug.Log(QuestText + " " +  QuestTitle + " " +  QuestDifficulty);
+    }
+
     // Use this for initialization
     void Start() {
         if (gameObject.tag == "IntroLetter")
         {
             HubDataMan = GameObject.FindGameObjectWithTag("HubDataManager");
-            QuestNum = HubDataMan.GetComponent<AngHubDataManager>().tempSelectedQuest;
+            //QuestNum = HubDataMan.GetComponent<AngHubDataManager>().tempSelectedQuest;
         }
         //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
-        title = transform.GetChild(1).GetComponent<Text>();
-        mainText = transform.GetChild(2).GetComponent<Text>();
-        endTitle = transform.GetChild(3).GetComponent<Text>();
+        QuestTitleText = transform.FindChild("QuestName").GetComponent<Text>();
+        title = transform.FindChild("Title").GetComponent<Text>();
+        mainText = transform.FindChild("Info").GetComponent<Text>();
+        Description = transform.FindChild("QuestDescription").GetComponent<Text>();
+        endTitle = transform.FindChild("EndTitle").GetComponent<Text>();
+
+        QuestTitleText.text = QuestTitle;
+        Description.text = QuestText;
 
         //debugText = gameObject.GetComponent<Text>();
         mainText.text = "";

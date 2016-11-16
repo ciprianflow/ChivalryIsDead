@@ -16,6 +16,7 @@ public enum EnemyTypes
 
 public struct QuestData
 {
+    public string TypeString { get { return Enum.GetName(typeof(QuestType), Type); } }
     public QuestType Type;
     public int EnemyCount;
     public int FriendlyCount;
@@ -27,5 +28,18 @@ public struct QuestData
         EnemyCount = enemyCount;
         FriendlyCount = friendlyCount;
         PresentEnemies = presentEnemies;
+    }
+
+    public IEnumerable<string> GetEnemies()
+    {
+        List<string> enemyTypes = new List<string>();
+        if ((PresentEnemies & EnemyTypes.HasMelee) == EnemyTypes.HasMelee)
+            enemyTypes.Add("Melee");
+        if ((PresentEnemies & EnemyTypes.HasRanged) == EnemyTypes.HasRanged)
+            enemyTypes.Add("Ranged");
+        if ((PresentEnemies & EnemyTypes.HasSuicide) == EnemyTypes.HasSuicide)
+            enemyTypes.Add("Suicide");
+
+        return enemyTypes;
     }
 }
