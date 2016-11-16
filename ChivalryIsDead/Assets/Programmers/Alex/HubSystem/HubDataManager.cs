@@ -10,6 +10,8 @@ public class HubDataManager : MonoBehaviour {
     private const string hubDataPath = "Assets/HubData.asset";
     private HubData currentHubData;
 
+    int currSelectedQuestIndex = -1;
+
     #region HubData properties
     public int CurrentReputation {
         get {
@@ -41,23 +43,27 @@ public class HubDataManager : MonoBehaviour {
     }
     #endregion
 
+    public PeasantLineScript peasantLineScript;
+
     public int MaximumReputation = 2000;
     public int TotalDays = 14;
 
     public GameObject DLCPane;
     public GameObject ContentPane;
     public GameObject QuestButton;
+    public GameObject QuestLetter;
     public Text RepText;
     public Text QueueText;
     public Text DaysLeftText;
 
     void Start () {
+
+        peasantLineScript.FillPeasantLine();
         UpdateQuests();
-        QueueText.text = currentHubData.QueueLength.ToString();
-        RepText.text = StaticData.Reputation.ToString();
-        DaysLeftText.text = StaticData.daysLeft.ToString();
+        UpdateUIText();
         CreateQuestUIElements();
-	}
+
+    }
 	
     // Should be used when game is restarted or booted.
     public void UpdateQuests()
@@ -105,11 +111,7 @@ public class HubDataManager : MonoBehaviour {
         return hubData;
     }
 
-
-    /// <summary>
-    /// TODO: Delete and replace with correct UI data, preferably this should be removed entirely.
-    /// </summary>
-    #region UI Specific
+    #region Quest Generation
     private void ClearQuestUIElements()
     {
         foreach (Transform gObj in ContentPane.GetComponentsInChildren<Transform>()) {
@@ -132,33 +134,43 @@ public class HubDataManager : MonoBehaviour {
             // TODO : Name doesnt load from quest description
             //newQuestText.text = oAsQuest.Description.Title;
             newQuestText.text = "Quest";
-            Debug.Log("Quest name " + newQuestText.text);
 
             Button b = newQuestText.transform.parent.GetComponent<Button>();
             int newI = i;
             b.onClick.AddListener(() => SelectQuest(newI));
 
+            peasantLineScript.GivePeasantQuest(i, newI, oAsQuest);
+
         }
-
-
-        GenerateDummyQuest();
+        GenerateDLCQuest();
     }
 
-    private void GenerateDummyQuest()
+    private void GenerateDLCQuest()
     {
         GameObject QuestButtonObj = Instantiate(QuestButton);
         QuestButtonObj.transform.SetParent(ContentPane.transform);
         Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
         newQuestText.text = "Most awesome quest ever!";
-        Debug.Log("Quest name " + newQuestText.text);
 
         Button b = newQuestText.transform.parent.GetComponent<Button>();
         b.onClick.AddListener(() => SetDLCPopUp(true));
     }
 
-    public void SetDLCPopUp(bool b)
+    public void SelectQuest()
     {
-        DLCPane.SetActive(b);
+        if (currSelectedQuestIndex == -1)
+            return;
+
+        int index = currSelectedQuestIndex;
+        var selectedQ = AvailableQuests[index];
+        if (selectedQ != null)
+        {
+            Debug.Log("Found quest with title '" + selectedQ.Description.Title + "'");
+            //CompleteQuest(selectedQ);
+            LoadQuest(selectedQ);
+        }
+        else
+            Debug.LogWarning("Didn't find selected quest!");
     }
 
     // TODO: Semi-Dummy, completes a quest. Should be refactored to enter "Quest Mode".
@@ -201,4 +213,38 @@ public class HubDataManager : MonoBehaviour {
         CreateQuestUIElements();
         QueueText.text = AvailableQuests.Count.ToString();
     }
+
+    #region UI
+
+    void UpdateUIText()
+    {
+        QueueText.text = currentHubData.QueueLength.ToString();
+        RepText.text = StaticData.Reputation.ToString();
+        DaysLeftText.text = StaticData.daysLeft.ToString();
+    }
+
+    public void SetDLCPopUp(bool b)
+    {
+        DLCPane.SetActive(b);
+    }
+
+    public void SetQuestLetter(int i)
+    {
+        BaseQuest quest = (BaseQuest)AvailableQuests[currSelectedQuestIndex];
+        QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
+        QuestLetter.SetActive(Convert.ToBoolean(i));
+
+    }
+
+    public void setCurrSelectedQuest(int i)
+    {
+        currSelectedQuestIndex = i;
+    }
+
+    public BaseQuest GetQuest(int i)
+    {
+        return (BaseQuest)AvailableQuests[i];
+    }
+
+    #endregion
 }
