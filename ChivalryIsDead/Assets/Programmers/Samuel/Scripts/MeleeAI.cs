@@ -129,8 +129,7 @@ public class MeleeAI : MonsterAI
     bool ControlledRotation()
     {
         if (t1 < 1f)
-            return false               ;
-
+            return false;
 
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;

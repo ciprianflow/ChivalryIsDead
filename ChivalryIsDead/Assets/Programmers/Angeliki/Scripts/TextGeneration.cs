@@ -43,7 +43,7 @@ public class TextGeneration : MonoBehaviour {
         if (gameObject.tag == "IntroLetter")
         {
             HubDataMan = GameObject.FindGameObjectWithTag("HubDataManager");
-            QuestNum = HubDataMan.GetComponent<AngHubDataManager>().tempSelectedQuest;
+            //QuestNum = HubDataMan.GetComponent<AngHubDataManager>().tempSelectedQuest;
         }
         //debugText = GameObject.FindWithTag("DebugText").GetComponent<Text>();
         title = transform.GetChild(1).GetComponent<Text>();
