@@ -233,6 +233,7 @@ public class HubDataManager : MonoBehaviour {
         BaseQuest quest = (BaseQuest)AvailableQuests[currSelectedQuestIndex];
         QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
         QuestLetter.SetActive(Convert.ToBoolean(i));
+        GameObject.FindGameObjectWithTag("HandCanvas").GetComponent<Animator>().SetTrigger("handhub");
 
     }
 

@@ -18,11 +18,19 @@ public class PlayerScript : MonoBehaviour {
     public bool scaring = false;
     public bool attackReachedFull = false;
     public bool overreacting = false;
+    public bool Attackended = false;
+    public int currentAttack = 1;
     Vector2 LastXY = new Vector2(0, 0);
+
+    private Coroutine attackCR;
+    private Coroutine tauntCR;
+    private Coroutine overreactCR;
 
     private bool isSlowingDown = false;
 
     private bool staticControls = true;
+    public float attackUpperWeight = 0;
+    public float attackLowerWeight = 0;
     public float UpperWeight = 0;
     public float LowerWeight = 0;
 
@@ -35,7 +43,7 @@ public class PlayerScript : MonoBehaviour {
     void Awake()
     {
 
-        //Time.timeScale = 0.1f;
+        Time.timeScale = 1f;
 
         AnimDic.Add("attacking", 1);
         AnimDic.Add("taunting", 3);
@@ -201,31 +209,152 @@ public class PlayerScript : MonoBehaviour {
             attack();
         }
 
+        //Debug.Log(anim.GetCurrentAnimatorStateInfo(1).normalizedTime);
 
 
-        if (attacking)
-        {
-            animate( ref attacking, "attacking");
-        }
-        if (taunting)
-        {
-            animate( ref taunting, "taunting");
-        }
+        //if (attacking)
+        //{
+        //    animate( ref attacking, "attacking");
+        //}
+        //if (taunting)
+        //{
+        //    animate( ref taunting, "taunting");
+        //}
         if (scaring)
         {
             animate(ref scaring, "scaring");
         }
-        if (overreacting)
-        {
-            animate(ref overreacting, "overreacting");
-        }
+        //if (overreacting)
+        //{
+        //    animate(ref overreacting, "overreacting");
+        //}
         if (Input.GetKeyDown(KeyCode.M))
         {
             taunt();
         }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            scare();
+
+    }
+
+    IEnumerator animateTaunt() {
+        bool reachedFullWeight = false;
+        float upperWeight = 0;
+        float lowerWeight = 0;
+
+        while(reachedFullWeight == false) {
+            upperWeight += 0.05f;
+            if(zVel == 0 && lowerWeight < 1) {
+                lowerWeight += 0.05f;
+            }
+            else if (zVel != 0 && lowerWeight > 0) {
+                lowerWeight -= 0.05f;
+            }
+            if(upperWeight >= 1) {
+                reachedFullWeight = true;
+            }
+            anim.SetLayerWeight(3, upperWeight);
+            anim.SetLayerWeight(4, lowerWeight);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (reachedFullWeight && anim.GetCurrentAnimatorStateInfo(3).normalizedTime < 0.8f) {
+            if (zVel == 0 && lowerWeight < 1) {
+                lowerWeight += 0.05f;
+            }
+            else if (zVel != 0 && lowerWeight > 0) {
+                lowerWeight -= 0.05f;
+            }
+            anim.SetLayerWeight(4, lowerWeight);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (reachedFullWeight && anim.GetCurrentAnimatorStateInfo(3).normalizedTime >= 0.8f) {
+            upperWeight -= 0.05f;
+            lowerWeight -= 0.05f;
+            anim.SetLayerWeight(3, upperWeight);
+            anim.SetLayerWeight(4, lowerWeight);
+            if(lowerWeight < 0 && upperWeight < 0) {
+                break;
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        taunting = false;
+    }
+
+    IEnumerator animateOverreact() {
+        bool reachedFullWeight = false;
+        float upperWeight = 0;
+
+        while (reachedFullWeight == false) {
+            upperWeight += 0.05f;
+
+            if (upperWeight >= 1) {
+                reachedFullWeight = true;
+            }
+            anim.SetLayerWeight(7, upperWeight);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (reachedFullWeight && anim.GetCurrentAnimatorStateInfo(7).normalizedTime < 0.8f) {
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (reachedFullWeight && anim.GetCurrentAnimatorStateInfo(7).normalizedTime >= 0.8f) {
+            upperWeight -= 0.05f;
+            anim.SetLayerWeight(7, upperWeight);
+            if (upperWeight < 0) {
+                break;
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        overreacting = false;
+    }
+
+    IEnumerator animateAttack() {
+        bool reachedFullWeight = false;
+
+        while (reachedFullWeight == false) {
+            attackUpperWeight += 0.05f;
+            if (zVel == 0 && attackLowerWeight < 1) {
+                attackLowerWeight += 0.05f;
+            }
+            else if (zVel != 0 && attackLowerWeight > 0) {
+                attackLowerWeight -= 0.05f;
+            }
+            if (attackUpperWeight >= 1) {
+                reachedFullWeight = true;
+            }
+            anim.SetLayerWeight(1, attackUpperWeight);
+            anim.SetLayerWeight(2, attackLowerWeight);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (reachedFullWeight && !Attackended) {
+            //Debug.Log("does this even happen");
+            if (zVel == 0 && attackLowerWeight < 1) {
+                attackLowerWeight += 0.05f;
+            }
+            else if (zVel != 0 && attackLowerWeight > 0) {
+                attackLowerWeight -= 0.05f;
+            }
+            anim.SetLayerWeight(2, attackLowerWeight);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (!Attackended) {
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        while ((attackLowerWeight > 0 || attackUpperWeight > 0) && Attackended) {
+            SwordTrail.SetActive(false);
+            attackUpperWeight -= 0.05f;
+            attackLowerWeight -= 0.05f;
+            anim.SetLayerWeight(1, attackUpperWeight);
+            anim.SetLayerWeight(2, attackLowerWeight);
+            yield return new WaitForSeconds(0.01f);
+        }
+        attacking = false;
+        Attackended = false;
+
+    }
+
+    public void EndState(int a) {
+        if (a == currentAttack) {
+            Attackended = true;
+            Debug.Log("STATE ENDED");
         }
     }
 
@@ -246,7 +375,7 @@ public class PlayerScript : MonoBehaviour {
             if(UpperWeight < 0 && LowerWeight < 0)
             {
 
-                Debug.Log("ENDEDANIM");
+                //Debug.Log("ENDEDANIM");
                 animState = false;
             }
             return;
@@ -308,8 +437,22 @@ public class PlayerScript : MonoBehaviour {
 
     public void attack()
     {
+        anim.SetLayerWeight(3, 0);
+        anim.SetLayerWeight(4, 0);
+        anim.SetLayerWeight(7, 0);
+        cancelCoroutines();
+
+        Attackended = false;
+
+        Debug.Log("isattacking = " + attacking);
         if (overreacting)
             return;
+
+        if(attackCR != null)
+            StopCoroutine(attackCR);
+
+        attackCR = StartCoroutine(animateAttack());
+
         anim.Play("Hero_Attack1", 2, 0);
 
             SwordTrail.SetActive(true);
@@ -317,6 +460,8 @@ public class PlayerScript : MonoBehaviour {
 
         if (!attacking)
         {
+            currentAttack = 1;
+
             anim.Play("Attack Transition", 1, 0);
             cancelAnim(ref taunting, "taunting");
             cancelAnim(ref scaring, "scaring");
@@ -324,7 +469,6 @@ public class PlayerScript : MonoBehaviour {
             return;
         }
 
-        attacking = true;
 
 
         AnimatorStateInfo ASI = anim.GetCurrentAnimatorStateInfo(1);
@@ -332,14 +476,17 @@ public class PlayerScript : MonoBehaviour {
 
         //Debug.Log(ASI.normalizedTime / ASI.length);
 
-        if (ASI.IsName("Attack1") || (ASI.IsName("Attack 1 exit tran") && (ASI.normalizedTime / ASI.length > 0.5f)))
+        if (ASI.IsName("Attack1 0") || (ASI.IsName("Attack 1 exit tran") && (ASI.normalizedTime / ASI.length > 0.5f)))
         {
+            currentAttack = 2;
             anim.SetTrigger("Attack2");
         }
         else
         {
+            currentAttack = 1;
             anim.SetTrigger("Attack1");
         }
+
         attackReachedFull = false;
     }
 
@@ -354,23 +501,37 @@ public class PlayerScript : MonoBehaviour {
         anim.SetTrigger("TauntTrig");
         cancelAnim(ref attacking, "attacking");
         cancelAnim(ref scaring, "scaring");
+        if (tauntCR != null)
+            StopCoroutine(tauntCR);
+        if (attackCR != null)
+            StopCoroutine(attackCR);
+        if (overreactCR != null)
+            StopCoroutine(overreactCR);
+        cancelCoroutines();
+
+        anim.SetLayerWeight(1, 0);
+        anim.SetLayerWeight(2, 0);
+        anim.SetLayerWeight(7, 0);
+
+        tauntCR = StartCoroutine(animateTaunt());
+
         taunting = true;
     }
-    public void scare()
-    {
-        if (overreacting)
-            return;
-
-        SwordTrail.SetActive(false);
-        //anim.Play("Scare", 5, 0);
-        anim.SetTrigger("ScareTrig");
-        cancelAnim(ref attacking, "attacking");
-        cancelAnim(ref taunting, "taunting");
-        scaring = true;
-
+    public void cancelCoroutines() {
+        if (tauntCR != null)
+            StopCoroutine(tauntCR);
+        if (attackCR != null)
+            StopCoroutine(attackCR);
+        if (overreactCR != null)
+            StopCoroutine(overreactCR);
     }
-    public void overreact()
-    {
+    public void overreact() {
+        cancelCoroutines();
+
+        anim.SetLayerWeight(3, 0);
+        anim.SetLayerWeight(4, 0);
+        anim.SetLayerWeight(7, 0);
+
         SwordTrail.SetActive(false);
         //anim.Play("Scare", 5, 0);
         anim.SetTrigger("OverreactTrig");
@@ -378,6 +539,7 @@ public class PlayerScript : MonoBehaviour {
         cancelAnim(ref taunting, "taunting");
         cancelAnim(ref scaring, "scaring");
         overreacting = true;
+        overreactCR = StartCoroutine(animateOverreact());
 
     }
 
