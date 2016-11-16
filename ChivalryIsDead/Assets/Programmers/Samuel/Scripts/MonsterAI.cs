@@ -47,6 +47,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     private Quaternion endRot;
     private Quaternion startRot;
 
+    protected Animator anim;
+
     #endregion
 
     protected State state;
@@ -71,6 +73,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //ToMove(); //Comment in to make aggroed at start
         ToIdle(); //Comment in to Idle at start
         Init();
+        anim = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -86,7 +89,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
-        Debug.DrawLine(transform.position, GetTargetPosition() + new Vector3(0, 0.5f, 0));
+        Debug.DrawLine(transform.position, GetTargetPosition());
         if (targetObject != null && !targetObject.gameObject.activeSelf)
             targetObject = StaticIngameData.player;
         //HARD CODED REMOVE LATER
@@ -245,6 +248,15 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     #region Misc Functions
 
+    protected float GetAngle(Vector3 targetPos)
+    {
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPos;
+        v.y = 0; v2.y = 0; v3.y = 0;
+        return Vector3.Angle(v, v3 - v2);
+    }
+
     protected void RotateTowardsTarget()
     {
         Quaternion q = Quaternion.LookRotation(GetTargetPosition() - transform.position);
@@ -278,6 +290,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (body != null)
             body.angularVelocity = Vector3.zero;
     }
+
+
 
     public abstract void KillThis();
 
@@ -317,11 +331,16 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     //implement this in the base class
     public void Hit(int damage)
     {
+
         if (healthScript.takeDamage(damage))
         {
             gameObject.SetActive(false);
-            StaticIngameData.mapManager.CheckObjectives(this);
+
+            if(StaticIngameData.mapManager != null)
+                StaticIngameData.mapManager.CheckObjectives(this);
         }
+
+        anim.Play("TakeDamage");
     }
 
     #endregion

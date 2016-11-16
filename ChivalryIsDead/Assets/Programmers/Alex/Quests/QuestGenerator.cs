@@ -55,7 +55,6 @@ public class QuestGenerator
         for (int i = 0; i < numFriendlies; i++) {
             protQuest.Objectives.Add(new ProtectTargetObjective(21));
         }
-        protQuest.Objectives.Add(new TimerObjective(31));
 
         return protQuest;
     }
@@ -112,6 +111,7 @@ public class QuestGenerator
 
         MQ.Objectives.Add(GenerateProtectQuest(numFriendlies));
         MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
+        MQ.Objectives.Add(new TimerObjective(31));
 
         return MQ;
     }
