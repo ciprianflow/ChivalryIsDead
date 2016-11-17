@@ -56,7 +56,6 @@ public class DummyManager : MonoBehaviour
         if (combo < ComboMultiplier.Length - 1)
         {
             combo++;
-            Debug.Log("Combo increased: " + combo);
         }
         
     }
