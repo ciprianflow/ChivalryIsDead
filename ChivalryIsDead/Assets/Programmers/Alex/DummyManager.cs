@@ -14,6 +14,9 @@ public class DummyManager : MonoBehaviour
     public float ComboCooldown = 10f;
     public int[] ComboMultiplier;
 
+    [Header("Anti AFK")]
+    public int StartAFKSeconds = 1;
+    public int AFKPointsDec = 10;
 
     public Text ComboHandler;
 
@@ -26,11 +29,16 @@ public class DummyManager : MonoBehaviour
 
     private int combo = 0;
 
+    private float antiAfkTimestamp;
+    private int antiAfkPoints = 10;
+    private int antiAFKTime;
 
     void Awake()
     {
         StaticIngameData.dummyManager = this;
         DummyManager.dummyManager = this;
+
+        antiAfkPoints = AFKPointsDec;
     }
 
 
@@ -43,6 +51,26 @@ public class DummyManager : MonoBehaviour
         }
 
         ComboHandler.text = combo.ToString();
+
+        antiAfkTimestamp += Time.deltaTime;
+        handleAFK(antiAfkTimestamp);
+
+
+
+    }
+
+    private void handleAFK(float timestamp)
+    {
+        int secondsAFK = (int) Math.Floor(timestamp);
+
+        if (antiAFKTime < secondsAFK && secondsAFK > StartAFKSeconds)
+        {
+            antiAFKTime = secondsAFK;
+
+            ReputationHandler.Score += antiAfkPoints;
+        
+        }
+
     }
 
     public int GetComboMultiplier(int score)
@@ -91,6 +119,14 @@ public class DummyManager : MonoBehaviour
     {
         comboTimeStamp = Time.time + ComboCooldown;
     }
+
+    public void ActionPerformed()
+    {
+        antiAFKTime = 0;
+        antiAfkTimestamp = 0;
+        antiAfkPoints = AFKPointsDec;
+    }
+
 
     internal float GetGlobalScore()
     {
