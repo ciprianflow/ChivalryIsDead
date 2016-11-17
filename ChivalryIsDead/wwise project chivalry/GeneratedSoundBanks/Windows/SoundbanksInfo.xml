@@ -35,7 +35,6 @@
 				<Event Id="4105479982" Name="knight_overreact_great" ObjectPath="\Events\Default Work Unit\characters\knight\combat\knight_overreact_great"/>
 				<Event Id="2718181953" Name="knight_overreact_ok" ObjectPath="\Events\Default Work Unit\characters\knight\combat\knight_overreact_ok"/>
 				<Event Id="347213686" Name="knight_overreact_perfect" ObjectPath="\Events\Default Work Unit\characters\knight\combat\knight_overreact_perfect"/>
-				<Event Id="2665117031" Name="knight_scare" ObjectPath="\Events\Default Work Unit\characters\knight\combat\knight_scare"/>
 				<Event Id="1211663631" Name="knight_taunt" ObjectPath="\Events\Default Work Unit\characters\knight\combat\knight_taunt"/>
 				<Event Id="858763478" Name="knight_walk" ObjectPath="\Events\Default Work Unit\characters\knight\combat\knight_walk"/>
 				<Event Id="2871045976" Name="melee_aggro" ObjectPath="\Events\Default Work Unit\characters\enemies\melee (merman type)\melee_aggro"/>
@@ -43,7 +42,6 @@
 				<Event Id="2766539005" Name="melee_attacked" ObjectPath="\Events\Default Work Unit\characters\enemies\melee (merman type)\melee_attacked"/>
 				<Event Id="3435211054" Name="melee_charge" ObjectPath="\Events\Default Work Unit\characters\enemies\melee (merman type)\melee_charge"/>
 				<Event Id="1302570184" Name="melee_death" ObjectPath="\Events\Default Work Unit\characters\enemies\melee (merman type)\melee_death"/>
-				<Event Id="3809310526" Name="melee_scared" ObjectPath="\Events\Default Work Unit\characters\enemies\melee (merman type)\melee_scared"/>
 				<Event Id="2622170653" Name="melee_taunted" ObjectPath="\Events\Default Work Unit\characters\enemies\melee (merman type)\melee_taunted"/>
 				<Event Id="1126582737" Name="melee_walk" ObjectPath="\Events\Default Work Unit\characters\enemies\melee (merman type)\melee_walk"/>
 				<Event Id="3149292963" Name="normal_button_backwards_pressed" ObjectPath="\Events\Default Work Unit\ui\normal_button_backwards_pressed"/>
@@ -70,7 +68,6 @@
 				<Event Id="712766695" Name="ranged_aggro" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_aggro"/>
 				<Event Id="927120996" Name="ranged_attacked" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_attacked"/>
 				<Event Id="808353447" Name="ranged_death" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_death"/>
-				<Event Id="3163163607" Name="ranged_scared" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_scared"/>
 				<Event Id="1109250972" Name="ranged_take_out_throwing_object" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_take_out_throwing_object"/>
 				<Event Id="3232260158" Name="ranged_taunted" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_taunted"/>
 				<Event Id="808206829" Name="ranged_throw" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_throw"/>
@@ -91,25 +88,29 @@
 				<Event Id="4198655567" Name="world_transition" ObjectPath="\Events\Default Work Unit\ui\world_transition"/>
 			</IncludedEvents>
 			<IncludedMemoryFiles>
-				<File Id="1517962" Language="SFX">
-					<ShortName>ranged mob attacked.wav</ShortName>
-					<Path>SFX\ranged mob attacked_9E69E797.wem</Path>
+				<File Id="3420249" Language="SFX">
+					<ShortName>fishman_death-03.wav</ShortName>
+					<Path>SFX\fishman_death-03_9E69E797.wem</Path>
 				</File>
-				<File Id="6992417" Language="SFX">
-					<ShortName>melee mob attacked.wav</ShortName>
-					<Path>SFX\melee mob attacked_9E69E797.wem</Path>
+				<File Id="39019231" Language="SFX">
+					<ShortName>fishman_getting_hit-02.wav</ShortName>
+					<Path>SFX\fishman_getting_hit-02_9E69E797.wem</Path>
+				</File>
+				<File Id="47195038" Language="SFX">
+					<ShortName>knight_taunt-05.wav</ShortName>
+					<Path>SFX\knight_taunt-05_9E69E797.wem</Path>
 				</File>
 				<File Id="51556018" Language="SFX">
 					<ShortName>footsteps dirt.wav</ShortName>
 					<Path>SFX\footsteps dirt_9E69E797.wem</Path>
 				</File>
+				<File Id="64086600" Language="SFX">
+					<ShortName>troll_aggro-04.wav</ShortName>
+					<Path>SFX\troll_aggro-04_9E69E797.wem</Path>
+				</File>
 				<File Id="77698730" Language="SFX">
 					<ShortName>pallet_boots_3.wav</ShortName>
 					<Path>SFX\pallet_boots_3_9E69E797.wem</Path>
-				</File>
-				<File Id="78574698" Language="SFX">
-					<ShortName>ranged mob throw object.wav</ShortName>
-					<Path>SFX\ranged mob throw object_9E69E797.wem</Path>
 				</File>
 				<File Id="85623998" Language="SFX">
 					<ShortName>pop_1.wav</ShortName>
@@ -123,6 +124,10 @@
 					<ShortName>grass_boots_9.wav</ShortName>
 					<Path>SFX\grass_boots_9_BC348562.wem</Path>
 				</File>
+				<File Id="104969870" Language="SFX">
+					<ShortName>troll_taunted-02.wav</ShortName>
+					<Path>SFX\troll_taunted-02_9E69E797.wem</Path>
+				</File>
 				<File Id="104982338" Language="SFX">
 					<ShortName>stone_boots_3.wav</ShortName>
 					<Path>SFX\stone_boots_3_9E69E797.wem</Path>
@@ -131,9 +136,9 @@
 					<ShortName>suicide mob attacked.wav</ShortName>
 					<Path>SFX\suicide mob attacked_9E69E797.wem</Path>
 				</File>
-				<File Id="115738325" Language="SFX">
-					<ShortName>knight overreact perfect.wav</ShortName>
-					<Path>SFX\knight overreact perfect_9E69E797.wem</Path>
+				<File Id="110540297" Language="SFX">
+					<ShortName>troll_getting_hit-01.wav</ShortName>
+					<Path>SFX\troll_getting_hit-01_9E69E797.wem</Path>
 				</File>
 				<File Id="128203552" Language="SFX">
 					<ShortName>suicide mob death.wav</ShortName>
@@ -147,6 +152,10 @@
 					<ShortName>footsteps stone.wav</ShortName>
 					<Path>SFX\footsteps stone_9E69E797.wem</Path>
 				</File>
+				<File Id="139371646" Language="SFX">
+					<ShortName>knight_taunt-01.wav</ShortName>
+					<Path>SFX\knight_taunt-01_9E69E797.wem</Path>
+				</File>
 				<File Id="140349901" Language="SFX">
 					<ShortName>pallet_boots_2.wav</ShortName>
 					<Path>SFX\pallet_boots_2_9E69E797.wem</Path>
@@ -155,21 +164,37 @@
 					<ShortName>wooden_floor_boots_2.wav</ShortName>
 					<Path>SFX\wooden_floor_boots_2_9E69E797.wem</Path>
 				</File>
+				<File Id="145846941" Language="SFX">
+					<ShortName>knight_attack_9.wav</ShortName>
+					<Path>SFX\knight_attack_9_9E69E797.wem</Path>
+				</File>
 				<File Id="148996419" Language="SFX">
 					<ShortName>grass_boots_6.wav</ShortName>
 					<Path>SFX\grass_boots_6_47374749.wem</Path>
 				</File>
-				<File Id="166000714" Language="SFX">
-					<ShortName>melee mob attack.wav</ShortName>
-					<Path>SFX\melee mob attack_9E69E797.wem</Path>
+				<File Id="153497248" Language="SFX">
+					<ShortName>knight_overreact_perfect-02.wav</ShortName>
+					<Path>SFX\knight_overreact_perfect-02_9E69E797.wem</Path>
+				</File>
+				<File Id="169376198" Language="SFX">
+					<ShortName>troll_aggro-03.wav</ShortName>
+					<Path>SFX\troll_aggro-03_9E69E797.wem</Path>
 				</File>
 				<File Id="173355335" Language="SFX">
 					<ShortName>pallet_boots_6.wav</ShortName>
 					<Path>SFX\pallet_boots_6_9E69E797.wem</Path>
 				</File>
-				<File Id="201311651" Language="SFX">
-					<ShortName>melee mob death.wav</ShortName>
-					<Path>SFX\melee mob death_9E69E797.wem</Path>
+				<File Id="191124188" Language="SFX">
+					<ShortName>troll_getting_hit-11.wav</ShortName>
+					<Path>SFX\troll_getting_hit-11_9E69E797.wem</Path>
+				</File>
+				<File Id="196586325" Language="SFX">
+					<ShortName>troll_aggro-01.wav</ShortName>
+					<Path>SFX\troll_aggro-01_9E69E797.wem</Path>
+				</File>
+				<File Id="205121476" Language="SFX">
+					<ShortName>knight_attack_3.wav</ShortName>
+					<Path>SFX\knight_attack_3_9E69E797.wem</Path>
 				</File>
 				<File Id="210853535" Language="SFX">
 					<ShortName>dirt_boots_2.wav</ShortName>
@@ -179,6 +204,14 @@
 					<ShortName>armor_rustle_9.wav</ShortName>
 					<Path>SFX\armor_rustle_9_9E69E797.wem</Path>
 				</File>
+				<File Id="219368919" Language="SFX">
+					<ShortName>troll_taunted-03.wav</ShortName>
+					<Path>SFX\troll_taunted-03_9E69E797.wem</Path>
+				</File>
+				<File Id="223699654" Language="SFX">
+					<ShortName>fishman_getting_hit-03.wav</ShortName>
+					<Path>SFX\fishman_getting_hit-03_9E69E797.wem</Path>
+				</File>
 				<File Id="226492207" Language="SFX">
 					<ShortName>dirt_boots_9.wav</ShortName>
 					<Path>SFX\dirt_boots_9_C17293E9.wem</Path>
@@ -187,25 +220,29 @@
 					<ShortName>stone_boots_10.wav</ShortName>
 					<Path>SFX\stone_boots_10_9E69E797.wem</Path>
 				</File>
-				<File Id="233723048" Language="SFX">
-					<ShortName>ranged mob take throwing.wav</ShortName>
-					<Path>SFX\ranged mob take throwing_9E69E797.wem</Path>
-				</File>
 				<File Id="233833866" Language="SFX">
 					<ShortName>metal_hammer_1.wav</ShortName>
 					<Path>SFX\metal_hammer_1_57E20F25.wem</Path>
+				</File>
+				<File Id="239591749" Language="SFX">
+					<ShortName>troll_taking_throwing-06.wav</ShortName>
+					<Path>SFX\troll_taking_throwing-06_9E69E797.wem</Path>
 				</File>
 				<File Id="244515646" Language="SFX">
 					<ShortName>knight grumpy.wav</ShortName>
 					<Path>SFX\knight grumpy_9E69E797.wem</Path>
 				</File>
+				<File Id="249071239" Language="SFX">
+					<ShortName>knight_overreact_ok-05.wav</ShortName>
+					<Path>SFX\knight_overreact_ok-05_9E69E797.wem</Path>
+				</File>
+				<File Id="253011173" Language="SFX">
+					<ShortName>knight_attack_14.wav</ShortName>
+					<Path>SFX\knight_attack_14_9E69E797.wem</Path>
+				</File>
 				<File Id="254174458" Language="SFX">
 					<ShortName>knight gain rep.wav</ShortName>
 					<Path>SFX\knight gain rep_9E69E797.wem</Path>
-				</File>
-				<File Id="258395900" Language="SFX">
-					<ShortName>ranged mob taunted.wav</ShortName>
-					<Path>SFX\ranged mob taunted_9E69E797.wem</Path>
 				</File>
 				<File Id="258796612" Language="SFX">
 					<ShortName>glass_breaking_1.wav</ShortName>
@@ -247,6 +284,14 @@
 					<ShortName>melee mob charge.wav</ShortName>
 					<Path>SFX\melee mob charge_9E69E797.wem</Path>
 				</File>
+				<File Id="327612636" Language="SFX">
+					<ShortName>troll_taunted-04.wav</ShortName>
+					<Path>SFX\troll_taunted-04_9E69E797.wem</Path>
+				</File>
+				<File Id="327786233" Language="SFX">
+					<ShortName>knight_overreact_ok-03.wav</ShortName>
+					<Path>SFX\knight_overreact_ok-03_9E69E797.wem</Path>
+				</File>
 				<File Id="331649889" Language="SFX">
 					<ShortName>knight happy.wav</ShortName>
 					<Path>SFX\knight happy_9E69E797.wem</Path>
@@ -255,29 +300,37 @@
 					<ShortName>knight loose rep small.wav</ShortName>
 					<Path>SFX\knight loose rep small_9E69E797.wem</Path>
 				</File>
+				<File Id="342691530" Language="SFX">
+					<ShortName>troll_getting_hit-09.wav</ShortName>
+					<Path>SFX\troll_getting_hit-09_9E69E797.wem</Path>
+				</File>
 				<File Id="343360110" Language="SFX">
 					<ShortName>sword_clang_5.wav</ShortName>
 					<Path>SFX\sword_clang_5_23977203.wem</Path>
-				</File>
-				<File Id="354659533" Language="SFX">
-					<ShortName>knight overreact great.wav</ShortName>
-					<Path>SFX\knight overreact great_9E69E797.wem</Path>
 				</File>
 				<File Id="358081842" Language="SFX">
 					<ShortName>grass_boots_5.wav</ShortName>
 					<Path>SFX\grass_boots_5_6D469EA2.wem</Path>
 				</File>
+				<File Id="360766684" Language="SFX">
+					<ShortName>knight_overreact_great-04.wav</ShortName>
+					<Path>SFX\knight_overreact_great-04_9E69E797.wem</Path>
+				</File>
 				<File Id="363355368" Language="SFX">
 					<ShortName>sword_clang_3.wav</ShortName>
 					<Path>SFX\sword_clang_3_34727E2F.wem</Path>
 				</File>
-				<File Id="373078849" Language="SFX">
-					<ShortName>knight taunt.wav</ShortName>
-					<Path>SFX\knight taunt_9E69E797.wem</Path>
-				</File>
 				<File Id="373366684" Language="SFX">
 					<ShortName>chicken_2.wav</ShortName>
 					<Path>SFX\chicken_2_9E69E797.wem</Path>
+				</File>
+				<File Id="390459741" Language="SFX">
+					<ShortName>knight_taunt-02.wav</ShortName>
+					<Path>SFX\knight_taunt-02_9E69E797.wem</Path>
+				</File>
+				<File Id="392112213" Language="SFX">
+					<ShortName>troll_taunted-01.wav</ShortName>
+					<Path>SFX\troll_taunted-01_9E69E797.wem</Path>
 				</File>
 				<File Id="398039627" Language="SFX">
 					<ShortName>chicken_1.wav</ShortName>
@@ -303,9 +356,17 @@
 					<ShortName>suicide mob aggro.wav</ShortName>
 					<Path>SFX\suicide mob aggro_9E69E797.wem</Path>
 				</File>
+				<File Id="414694016" Language="SFX">
+					<ShortName>knight_taunt-03.wav</ShortName>
+					<Path>SFX\knight_taunt-03_9E69E797.wem</Path>
+				</File>
 				<File Id="421621819" Language="SFX">
 					<ShortName>chicken_6.wav</ShortName>
 					<Path>SFX\chicken_6_727245D8.wem</Path>
+				</File>
+				<File Id="422809059" Language="SFX">
+					<ShortName>knight_attack_1.wav</ShortName>
+					<Path>SFX\knight_attack_1_83F04277.wem</Path>
 				</File>
 				<File Id="430189029" Language="SFX">
 					<ShortName>wooden_floor_boots_1.wav</ShortName>
@@ -319,17 +380,45 @@
 					<ShortName>dirt_boots_4.wav</ShortName>
 					<Path>SFX\dirt_boots_4_C87B43A4.wem</Path>
 				</File>
-				<File Id="442195338" Language="SFX">
-					<ShortName>knight attack.wav</ShortName>
-					<Path>SFX\knight attack_9E69E797.wem</Path>
+				<File Id="438156437" Language="SFX">
+					<ShortName>knight_overreact_great-03.wav</ShortName>
+					<Path>SFX\knight_overreact_great-03_EF6B5D25.wem</Path>
+				</File>
+				<File Id="439182982" Language="SFX">
+					<ShortName>knight_attack_15.wav</ShortName>
+					<Path>SFX\knight_attack_15_9E69E797.wem</Path>
+				</File>
+				<File Id="441655860" Language="SFX">
+					<ShortName>troll_getting_hit-04.wav</ShortName>
+					<Path>SFX\troll_getting_hit-04_9E69E797.wem</Path>
+				</File>
+				<File Id="444131568" Language="SFX">
+					<ShortName>troll_throwing_object-03.wav</ShortName>
+					<Path>SFX\troll_throwing_object-03_9E69E797.wem</Path>
+				</File>
+				<File Id="449085477" Language="SFX">
+					<ShortName>troll_aggro-02.wav</ShortName>
+					<Path>SFX\troll_aggro-02_9E69E797.wem</Path>
 				</File>
 				<File Id="451790132" Language="SFX">
 					<ShortName>stone_boots_8.wav</ShortName>
 					<Path>SFX\stone_boots_8_9E69E797.wem</Path>
 				</File>
+				<File Id="457846459" Language="SFX">
+					<ShortName>fishman_aggro-04.wav</ShortName>
+					<Path>SFX\fishman_aggro-04_9E69E797.wem</Path>
+				</File>
+				<File Id="465233404" Language="SFX">
+					<ShortName>fishman_death-02.wav</ShortName>
+					<Path>SFX\fishman_death-02_9E69E797.wem</Path>
+				</File>
 				<File Id="470132707" Language="SFX">
 					<ShortName>bird sound forest loop.wav</ShortName>
 					<Path>SFX\bird sound forest loop_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="479303446" Language="SFX">
+					<ShortName>knight_attack_4.wav</ShortName>
+					<Path>SFX\knight_attack_4_9E69E797.wem</Path>
 				</File>
 				<File Id="490641647" Language="SFX">
 					<ShortName>armor_rustle_2.wav</ShortName>
@@ -338,6 +427,10 @@
 				<File Id="495090269" Language="SFX">
 					<ShortName>armor_rustle_6.wav</ShortName>
 					<Path>SFX\armor_rustle_6_9E69E797.wem</Path>
+				</File>
+				<File Id="498212599" Language="SFX">
+					<ShortName>fishman_attack-01.wav</ShortName>
+					<Path>SFX\fishman_attack-01_9E69E797.wem</Path>
 				</File>
 				<File Id="512767770" Language="SFX">
 					<ShortName>knight loose rep big.wav</ShortName>
@@ -359,6 +452,10 @@
 					<ShortName>grass_boots_8.wav</ShortName>
 					<Path>SFX\grass_boots_8_335E2D45.wem</Path>
 				</File>
+				<File Id="568087625" Language="SFX">
+					<ShortName>knight_attack_12.wav</ShortName>
+					<Path>SFX\knight_attack_12_9E69E797.wem</Path>
+				</File>
 				<File Id="568414374" Language="SFX">
 					<ShortName>wooden_floor_boots_6.wav</ShortName>
 					<Path>SFX\wooden_floor_boots_6_9E69E797.wem</Path>
@@ -367,13 +464,17 @@
 					<ShortName>knight loose rep combo.wav</ShortName>
 					<Path>SFX\knight loose rep combo_9E69E797.wem</Path>
 				</File>
+				<File Id="577411855" Language="SFX">
+					<ShortName>fishman_attack-05.wav</ShortName>
+					<Path>SFX\fishman_attack-05_9E69E797.wem</Path>
+				</File>
 				<File Id="582887910" Language="SFX">
 					<ShortName>grass_boots_2.wav</ShortName>
 					<Path>SFX\grass_boots_2_1B2A7C4F.wem</Path>
 				</File>
-				<File Id="583713289" Language="SFX">
-					<ShortName>ranged mob death.wav</ShortName>
-					<Path>SFX\ranged mob death_9E69E797.wem</Path>
+				<File Id="597281457" Language="SFX">
+					<ShortName>troll_getting_hit-03.wav</ShortName>
+					<Path>SFX\troll_getting_hit-03_9E69E797.wem</Path>
 				</File>
 				<File Id="603034145" Language="SFX">
 					<ShortName>armor_rustle_3.wav</ShortName>
@@ -382,6 +483,14 @@
 				<File Id="612491121" Language="SFX">
 					<ShortName>horse_whine_1.wav</ShortName>
 					<Path>SFX\horse_whine_1_9E69E797.wem</Path>
+				</File>
+				<File Id="613801491" Language="SFX">
+					<ShortName>knight_attack_11.wav</ShortName>
+					<Path>SFX\knight_attack_11_9E69E797.wem</Path>
+				</File>
+				<File Id="628738359" Language="SFX">
+					<ShortName>fishman_attack-02.wav</ShortName>
+					<Path>SFX\fishman_attack-02_9E69E797.wem</Path>
 				</File>
 				<File Id="644530306" Language="SFX">
 					<ShortName>grass_boots_10.wav</ShortName>
@@ -395,9 +504,21 @@
 					<ShortName>grass_boots_7.wav</ShortName>
 					<Path>SFX\grass_boots_7_AD05E00B.wem</Path>
 				</File>
+				<File Id="652171083" Language="SFX">
+					<ShortName>troll_taking_throwing-07.wav</ShortName>
+					<Path>SFX\troll_taking_throwing-07_9E69E797.wem</Path>
+				</File>
+				<File Id="652798770" Language="SFX">
+					<ShortName>knight_attack_8.wav</ShortName>
+					<Path>SFX\knight_attack_8_9E69E797.wem</Path>
+				</File>
 				<File Id="654972831" Language="SFX">
 					<ShortName>stone_boots_4.wav</ShortName>
 					<Path>SFX\stone_boots_4_9E69E797.wem</Path>
+				</File>
+				<File Id="659171208" Language="SFX">
+					<ShortName>knight_attack_10.wav</ShortName>
+					<Path>SFX\knight_attack_10_9E69E797.wem</Path>
 				</File>
 				<File Id="659784663" Language="SFX">
 					<ShortName>pallet_boots_4.wav</ShortName>
@@ -406,6 +527,10 @@
 				<File Id="666533575" Language="SFX">
 					<ShortName>dirt_boots_5.wav</ShortName>
 					<Path>SFX\dirt_boots_5_0085E664.wem</Path>
+				</File>
+				<File Id="670256923" Language="SFX">
+					<ShortName>troll_death-04.wav</ShortName>
+					<Path>SFX\troll_death-04_9E69E797.wem</Path>
 				</File>
 				<File Id="671123052" Language="SFX">
 					<ShortName>crowd_loop_1.wav</ShortName>
@@ -419,13 +544,17 @@
 					<ShortName>armor_rustle_8.wav</ShortName>
 					<Path>SFX\armor_rustle_8_9E69E797.wem</Path>
 				</File>
+				<File Id="681234476" Language="SFX">
+					<ShortName>knight_overreact_ok-01.wav</ShortName>
+					<Path>SFX\knight_overreact_ok-01_9E69E797.wem</Path>
+				</File>
+				<File Id="697759909" Language="SFX">
+					<ShortName>fishman_getting_hit-04.wav</ShortName>
+					<Path>SFX\fishman_getting_hit-04_9E69E797.wem</Path>
+				</File>
 				<File Id="700765041" Language="SFX">
 					<ShortName>stone_boots_5.wav</ShortName>
 					<Path>SFX\stone_boots_5_9E69E797.wem</Path>
-				</File>
-				<File Id="706324571" Language="SFX">
-					<ShortName>melee mob scared.wav</ShortName>
-					<Path>SFX\melee mob scared_9E69E797.wem</Path>
 				</File>
 				<File Id="708918412" Language="SFX">
 					<ShortName>metal_hammer_3.wav</ShortName>
@@ -439,9 +568,13 @@
 					<ShortName>sword_cling_3.wav</ShortName>
 					<Path>SFX\sword_cling_3_C618264F.wem</Path>
 				</File>
-				<File Id="722584982" Language="SFX">
-					<ShortName>ranged mob scared.wav</ShortName>
-					<Path>SFX\ranged mob scared_9E69E797.wem</Path>
+				<File Id="720225849" Language="SFX">
+					<ShortName>troll_throwing_object-02.wav</ShortName>
+					<Path>SFX\troll_throwing_object-02_9E69E797.wem</Path>
+				</File>
+				<File Id="723072889" Language="SFX">
+					<ShortName>knight_overreact_ok-02.wav</ShortName>
+					<Path>SFX\knight_overreact_ok-02_9E69E797.wem</Path>
 				</File>
 				<File Id="724098718" Language="SFX">
 					<ShortName>wooden_floor_boots_10.wav</ShortName>
@@ -459,6 +592,10 @@
 					<ShortName>horse_whine_2.wav</ShortName>
 					<Path>SFX\horse_whine_2_9E69E797.wem</Path>
 				</File>
+				<File Id="747636023" Language="SFX">
+					<ShortName>fishman_attack-03.wav</ShortName>
+					<Path>SFX\fishman_attack-03_9E69E797.wem</Path>
+				</File>
 				<File Id="764475197" Language="SFX">
 					<ShortName>suicide mob scared.wav</ShortName>
 					<Path>SFX\suicide mob scared_9E69E797.wem</Path>
@@ -467,45 +604,109 @@
 					<ShortName>footsteps wood.wav</ShortName>
 					<Path>SFX\footsteps wood_9E69E797.wem</Path>
 				</File>
+				<File Id="777286132" Language="SFX">
+					<ShortName>knight_attack_2.wav</ShortName>
+					<Path>SFX\knight_attack_2_9E69E797.wem</Path>
+				</File>
 				<File Id="778336257" Language="SFX">
 					<ShortName>wooden_floor_boots_7.wav</ShortName>
 					<Path>SFX\wooden_floor_boots_7_9E69E797.wem</Path>
+				</File>
+				<File Id="779880706" Language="SFX">
+					<ShortName>troll_getting_hit-10.wav</ShortName>
+					<Path>SFX\troll_getting_hit-10_9E69E797.wem</Path>
+				</File>
+				<File Id="782418436" Language="SFX">
+					<ShortName>troll_death-01.wav</ShortName>
+					<Path>SFX\troll_death-01_9E69E797.wem</Path>
+				</File>
+				<File Id="794950502" Language="SFX">
+					<ShortName>troll_throwing_object-01.wav</ShortName>
+					<Path>SFX\troll_throwing_object-01_9E69E797.wem</Path>
+				</File>
+				<File Id="804165838" Language="SFX">
+					<ShortName>fishman_getting_hit-05.wav</ShortName>
+					<Path>SFX\fishman_getting_hit-05_9E69E797.wem</Path>
+				</File>
+				<File Id="804438637" Language="SFX">
+					<ShortName>knight_attack_6.wav</ShortName>
+					<Path>SFX\knight_attack_6_9E69E797.wem</Path>
 				</File>
 				<File Id="805141022" Language="SFX">
 					<ShortName>sword_hit_clang_1.wav</ShortName>
 					<Path>SFX\sword_hit_clang_1_9E69E797.wem</Path>
 				</File>
-				<File Id="811307058" Language="SFX">
-					<ShortName>melee mob aggro.wav</ShortName>
-					<Path>SFX\melee mob aggro_9E69E797.wem</Path>
-				</File>
 				<File Id="815649799" Language="SFX">
 					<ShortName>forest_wind_loop_1.wav</ShortName>
 					<Path>SFX\forest_wind_loop_1_4B8CC0C5.wem</Path>
+				</File>
+				<File Id="818333248" Language="SFX">
+					<ShortName>knight_overreact_perfect-01.wav</ShortName>
+					<Path>SFX\knight_overreact_perfect-01_9E69E797.wem</Path>
+				</File>
+				<File Id="821816661" Language="SFX">
+					<ShortName>troll_throwing_object-04.wav</ShortName>
+					<Path>SFX\troll_throwing_object-04_9E69E797.wem</Path>
 				</File>
 				<File Id="827507368" Language="SFX">
 					<ShortName>sword_clang_2.wav</ShortName>
 					<Path>SFX\sword_clang_2_99F9370D.wem</Path>
 				</File>
+				<File Id="835368960" Language="SFX">
+					<ShortName>troll_taking_throwing-03.wav</ShortName>
+					<Path>SFX\troll_taking_throwing-03_9E69E797.wem</Path>
+				</File>
 				<File Id="837078039" Language="SFX">
 					<ShortName>armor_rustle_10.wav</ShortName>
 					<Path>SFX\armor_rustle_10_9E69E797.wem</Path>
+				</File>
+				<File Id="841381621" Language="SFX">
+					<ShortName>fishman_aggro-03.wav</ShortName>
+					<Path>SFX\fishman_aggro-03_9E69E797.wem</Path>
 				</File>
 				<File Id="842839459" Language="SFX">
 					<ShortName>armor_rustle_14.wav</ShortName>
 					<Path>SFX\armor_rustle_14_9E69E797.wem</Path>
 				</File>
+				<File Id="846407342" Language="SFX">
+					<ShortName>knight_overreact_great-06.wav</ShortName>
+					<Path>SFX\knight_overreact_great-06_9E69E797.wem</Path>
+				</File>
+				<File Id="865953537" Language="SFX">
+					<ShortName>fishman_getting_hit-06.wav</ShortName>
+					<Path>SFX\fishman_getting_hit-06_9E69E797.wem</Path>
+				</File>
 				<File Id="867562747" Language="SFX">
 					<ShortName>chicken_4.wav</ShortName>
 					<Path>SFX\chicken_4_9E69E797.wem</Path>
+				</File>
+				<File Id="870326261" Language="SFX">
+					<ShortName>knight_overreact_perfect-04.wav</ShortName>
+					<Path>SFX\knight_overreact_perfect-04_9E69E797.wem</Path>
+				</File>
+				<File Id="875745377" Language="SFX">
+					<ShortName>troll_getting_hit-06.wav</ShortName>
+					<Path>SFX\troll_getting_hit-06_9E69E797.wem</Path>
+				</File>
+				<File Id="889092405" Language="SFX">
+					<ShortName>fishman_getting_hit-01.wav</ShortName>
+					<Path>SFX\fishman_getting_hit-01_9E69E797.wem</Path>
 				</File>
 				<File Id="889183341" Language="SFX">
 					<ShortName>wooden_floor_boots_8.wav</ShortName>
 					<Path>SFX\wooden_floor_boots_8_9E69E797.wem</Path>
 				</File>
+				<File Id="895113341" Language="SFX">
+					<ShortName>troll_getting_hit-05.wav</ShortName>
+					<Path>SFX\troll_getting_hit-05_9E69E797.wem</Path>
+				</File>
 				<File Id="896627342" Language="SFX">
 					<ShortName>wooden_floor_boots_9.wav</ShortName>
 					<Path>SFX\wooden_floor_boots_9_9E69E797.wem</Path>
+				</File>
+				<File Id="904550957" Language="SFX">
+					<ShortName>fishman_death-01.wav</ShortName>
+					<Path>SFX\fishman_death-01_9E69E797.wem</Path>
 				</File>
 				<File Id="907310886" Language="SFX">
 					<ShortName>pallet_boots_8.wav</ShortName>
@@ -515,17 +716,37 @@
 					<ShortName>armor_rustle_13.wav</ShortName>
 					<Path>SFX\armor_rustle_13_9E69E797.wem</Path>
 				</File>
-				<File Id="946459451" Language="SFX">
-					<ShortName>ranged mob aggro.wav</ShortName>
-					<Path>SFX\ranged mob aggro_9E69E797.wem</Path>
+				<File Id="924663840" Language="SFX">
+					<ShortName>fishman_aggro-01.wav</ShortName>
+					<Path>SFX\fishman_aggro-01_9E69E797.wem</Path>
+				</File>
+				<File Id="926157107" Language="SFX">
+					<ShortName>fishman_attack-04.wav</ShortName>
+					<Path>SFX\fishman_attack-04_9E69E797.wem</Path>
+				</File>
+				<File Id="937138020" Language="SFX">
+					<ShortName>troll_taking_throwing-04.wav</ShortName>
+					<Path>SFX\troll_taking_throwing-04_9E69E797.wem</Path>
+				</File>
+				<File Id="941613171" Language="SFX">
+					<ShortName>knight_attack_13.wav</ShortName>
+					<Path>SFX\knight_attack_13_9E69E797.wem</Path>
 				</File>
 				<File Id="946785412" Language="SFX">
 					<ShortName>wooden_floor_boots_5.wav</ShortName>
 					<Path>SFX\wooden_floor_boots_5_9E69E797.wem</Path>
 				</File>
-				<File Id="950677676" Language="SFX">
-					<ShortName>knight overreact ok.wav</ShortName>
-					<Path>SFX\knight overreact ok_9E69E797.wem</Path>
+				<File Id="955845334" Language="SFX">
+					<ShortName>troll_getting_hit-07.wav</ShortName>
+					<Path>SFX\troll_getting_hit-07_9E69E797.wem</Path>
+				</File>
+				<File Id="966606078" Language="SFX">
+					<ShortName>troll_taking_throwing-05.wav</ShortName>
+					<Path>SFX\troll_taking_throwing-05_9E69E797.wem</Path>
+				</File>
+				<File Id="973660912" Language="SFX">
+					<ShortName>fishman_death-04.wav</ShortName>
+					<Path>SFX\fishman_death-04_9E69E797.wem</Path>
 				</File>
 				<File Id="978513837" Language="SFX">
 					<ShortName>melee mob taunted.wav</ShortName>
@@ -542,6 +763,14 @@
 				<File Id="981959804" Language="SFX">
 					<ShortName>chicken_7.wav</ShortName>
 					<Path>SFX\chicken_7_9E69E797.wem</Path>
+				</File>
+				<File Id="982551673" Language="SFX">
+					<ShortName>knight_attack_5.wav</ShortName>
+					<Path>SFX\knight_attack_5_9E69E797.wem</Path>
+				</File>
+				<File Id="989300188" Language="SFX">
+					<ShortName>knight_overreact_ok-04.wav</ShortName>
+					<Path>SFX\knight_overreact_ok-04_9E69E797.wem</Path>
 				</File>
 				<File Id="989836143" Language="SFX">
 					<ShortName>suicide mob taunted.wav</ShortName>
@@ -571,21 +800,65 @@
 					<ShortName>stone_boots_1.wav</ShortName>
 					<Path>SFX\stone_boots_1_8A33CEB9.wem</Path>
 				</File>
+				<File Id="1023187476" Language="SFX">
+					<ShortName>knight_overreact_great-05.wav</ShortName>
+					<Path>SFX\knight_overreact_great-05_9E69E797.wem</Path>
+				</File>
+				<File Id="1026582749" Language="SFX">
+					<ShortName>troll_death-03.wav</ShortName>
+					<Path>SFX\troll_death-03_9E69E797.wem</Path>
+				</File>
+				<File Id="1030303746" Language="SFX">
+					<ShortName>knight_attack_7.wav</ShortName>
+					<Path>SFX\knight_attack_7_9E69E797.wem</Path>
+				</File>
 				<File Id="1030574682" Language="SFX">
 					<ShortName>armor_rustle_11.wav</ShortName>
 					<Path>SFX\armor_rustle_11_9E69E797.wem</Path>
 				</File>
-				<File Id="1049526290" Language="SFX">
-					<ShortName>knight scare.wav</ShortName>
-					<Path>SFX\knight scare_9E69E797.wem</Path>
+				<File Id="1034742657" Language="SFX">
+					<ShortName>troll_getting_hit-08.wav</ShortName>
+					<Path>SFX\troll_getting_hit-08_9E69E797.wem</Path>
+				</File>
+				<File Id="1038364352" Language="SFX">
+					<ShortName>knight_overreact_perfect-03.wav</ShortName>
+					<Path>SFX\knight_overreact_perfect-03_9E69E797.wem</Path>
+				</File>
+				<File Id="1038765366" Language="SFX">
+					<ShortName>troll_taking_throwing-02.wav</ShortName>
+					<Path>SFX\troll_taking_throwing-02_9E69E797.wem</Path>
+				</File>
+				<File Id="1043218904" Language="SFX">
+					<ShortName>troll_taking_throwing-01.wav</ShortName>
+					<Path>SFX\troll_taking_throwing-01_9E69E797.wem</Path>
+				</File>
+				<File Id="1045094303" Language="SFX">
+					<ShortName>knight_overreact_great-02.wav</ShortName>
+					<Path>SFX\knight_overreact_great-02_9E69E797.wem</Path>
+				</File>
+				<File Id="1051313377" Language="SFX">
+					<ShortName>troll_getting_hit-02.wav</ShortName>
+					<Path>SFX\troll_getting_hit-02_9E69E797.wem</Path>
 				</File>
 				<File Id="1054030477" Language="SFX">
 					<ShortName>pallet_boots_10.wav</ShortName>
 					<Path>SFX\pallet_boots_10_6AA29F2C.wem</Path>
 				</File>
+				<File Id="1058674495" Language="SFX">
+					<ShortName>troll_death-02.wav</ShortName>
+					<Path>SFX\troll_death-02_9E69E797.wem</Path>
+				</File>
 				<File Id="1065255310" Language="SFX">
 					<ShortName>sword_clang_4.wav</ShortName>
 					<Path>SFX\sword_clang_4_9498442B.wem</Path>
+				</File>
+				<File Id="1068350267" Language="SFX">
+					<ShortName>knight_taunt-04.wav</ShortName>
+					<Path>SFX\knight_taunt-04_9E69E797.wem</Path>
+				</File>
+				<File Id="1068872106" Language="SFX">
+					<ShortName>fishman_aggro-02.wav</ShortName>
+					<Path>SFX\fishman_aggro-02_9E69E797.wem</Path>
 				</File>
 				<File Id="1071414210" Language="SFX">
 					<ShortName>knight angry.wav</ShortName>
