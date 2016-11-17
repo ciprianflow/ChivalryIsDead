@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 //using UnityEditor;
 using System.Collections.Generic;
 using System;
@@ -192,7 +193,11 @@ public class HubDataManager : MonoBehaviour {
     {
 
         StaticData.currQuest = (MultiQuest)quest;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("SandraCopy");
+
+        //
+
+        SceneManager.LoadScene(UnityEngine.Random.Range(4, 8));
+        //SceneManager.LoadScene(7);
 
     }
 
