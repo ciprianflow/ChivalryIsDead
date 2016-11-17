@@ -5,6 +5,7 @@ using System;
 public class QuestObject : MonoBehaviour, IObjectiveTarget
 {
 
+    public int id = 22;
     public int health = 2;
 
     HealthScript healthScript;
@@ -32,7 +33,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
     {
         get
         {
-            return 21;
+            return id;
         }
     }
 
