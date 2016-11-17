@@ -43,7 +43,7 @@ public class PlayerScript : MonoBehaviour {
     void Awake()
     {
 
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
 
         AnimDic.Add("attacking", 1);
         AnimDic.Add("taunting", 3);
@@ -62,7 +62,6 @@ public class PlayerScript : MonoBehaviour {
 
     public bool canDoAction(PlayerActions action)
     {
-        return true;
         switch(action)
         {
             case PlayerActions.ATTACK:
@@ -220,10 +219,7 @@ public class PlayerScript : MonoBehaviour {
         //{
         //    animate( ref taunting, "taunting");
         //}
-        if (scaring)
-        {
-            animate(ref scaring, "scaring");
-        }
+
         //if (overreacting)
         //{
         //    animate(ref overreacting, "overreacting");
@@ -358,78 +354,78 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    public void animate(ref bool animState, String animName)
-    {
-        if (animName != "attacking" && anim.GetCurrentAnimatorStateInfo(AnimDic[animName]).normalizedTime > 0.8f)
-        {
-            if (UpperWeight > 0)
-            {
-                UpperWeight -= 0.05f;
-                anim.SetLayerWeight(AnimDic[animName], UpperWeight);
-            }
-            if (LowerWeight > 0)
-            {
-                LowerWeight -= 0.05f;
-                anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-            }
-            if(UpperWeight < 0 && LowerWeight < 0)
-            {
+    //public void animate(ref bool animState, String animName)
+    //{
+    //    if (animName != "attacking" && anim.GetCurrentAnimatorStateInfo(AnimDic[animName]).normalizedTime > 0.8f)
+    //    {
+    //        if (UpperWeight > 0)
+    //        {
+    //            UpperWeight -= 0.05f;
+    //            anim.SetLayerWeight(AnimDic[animName], UpperWeight);
+    //        }
+    //        if (LowerWeight > 0)
+    //        {
+    //            LowerWeight -= 0.05f;
+    //            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
+    //        }
+    //        if(UpperWeight < 0 && LowerWeight < 0)
+    //        {
 
-                //Debug.Log("ENDEDANIM");
-                animState = false;
-            }
-            return;
-        }
-        else if (animName == "attacking" && anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit") && attackReachedFull)
-        {
+    //            //Debug.Log("ENDEDANIM");
+    //            animState = false;
+    //        }
+    //        return;
+    //    }
+    //    else if (animName == "attacking" && anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit") && attackReachedFull)
+    //    {
             
-            if (UpperWeight > 0)
-            {
-                UpperWeight -= 0.025f;
-                anim.SetLayerWeight(AnimDic[animName], UpperWeight);
-            }
-            if (LowerWeight > 0)
-            {
-                LowerWeight -= 0.025f;
-                anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-            }
-            if (UpperWeight < 0 && LowerWeight < 0)
-            {
-                SwordTrail.SetActive(false);
-                animState = false;
-            }
-            return;
-        }
+    //        if (UpperWeight > 0)
+    //        {
+    //            UpperWeight -= 0.025f;
+    //            anim.SetLayerWeight(AnimDic[animName], UpperWeight);
+    //        }
+    //        if (LowerWeight > 0)
+    //        {
+    //            LowerWeight -= 0.025f;
+    //            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
+    //        }
+    //        if (UpperWeight < 0 && LowerWeight < 0)
+    //        {
+    //            SwordTrail.SetActive(false);
+    //            animState = false;
+    //        }
+    //        return;
+    //    }
         
-        if (zVel == 0)
-        {
-            if (LowerWeight < 1)
-            {
-                LowerWeight += 0.05f;
-                anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-            }
-        }
-        else if (LowerWeight > 0)
-        {
-            LowerWeight -= 0.05f;
-            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-        }
+    //    if (zVel == 0)
+    //    {
+    //        if (LowerWeight < 1)
+    //        {
+    //            LowerWeight += 0.05f;
+    //            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
+    //        }
+    //    }
+    //    else if (LowerWeight > 0)
+    //    {
+    //        LowerWeight -= 0.05f;
+    //        anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
+    //    }
 
-        if (UpperWeight < 1)
-        {
-            UpperWeight += 0.1f;
-            anim.SetLayerWeight(AnimDic[animName], UpperWeight);
-        }
-        else
-            attackReachedFull = true;
-        //else if (UpperWeight > 0)
-        //{
-        //    UpperWeight -= 0.1f;
-        //    anim.SetLayerWeight(layer-1, UpperWeight);
-        //}
+    //    if (UpperWeight < 1)
+    //    {
+    //        UpperWeight += 0.1f;
+    //        anim.SetLayerWeight(AnimDic[animName], UpperWeight);
+    //    }
+    //    else
+    //        attackReachedFull = true;
+    //    //else if (UpperWeight > 0)
+    //    //{
+    //    //    UpperWeight -= 0.1f;
+    //    //    anim.SetLayerWeight(layer-1, UpperWeight);
+    //    //}
 
        
-    }
+    //}
 
     public void toggleControls() {
         staticControls = !staticControls;

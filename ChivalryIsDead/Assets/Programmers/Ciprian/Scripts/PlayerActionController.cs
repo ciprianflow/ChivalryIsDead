@@ -46,6 +46,7 @@ public class PlayerActionController : MonoBehaviour
 
     //used for overreacting
     private PlayerState playerState;
+    private float overreactTimestamp;
 
     private AggroAction aggroAction;
     private TauntAction tauntAction;
@@ -65,8 +66,8 @@ public class PlayerActionController : MonoBehaviour
         //cone attack radius
         Gizmos.color = Color.magenta;
 
-        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(35f, transform.up) * transform.forward * 2f );
-        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-35f, transform.up) * transform.forward * 2f);
+        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(52.5f, transform.up) * transform.forward * 3f );
+        Gizmos.DrawRay(transform.position, Quaternion.AngleAxis(-52.5f, transform.up) * transform.forward * 3f);
 
 
         //aggro radius
@@ -123,6 +124,14 @@ public class PlayerActionController : MonoBehaviour
         
     }
 
+    void Update()
+    {
+
+        overreactTimestamp += Time.deltaTime;
+
+    }
+
+
     /// <summary>
     /// Handle Taunt Button
     /// </summary>
@@ -133,18 +142,30 @@ public class PlayerActionController : MonoBehaviour
         tauntAction.Taunt();
     }
 
+    //REFACTOR ACTIONS
     public void HandleOverreact()
     {
-        // if attacked the player can overreact
-        if (playerState != PlayerState.HIT && lastMonsterAttacked != null)
-        {
-            //Player overreacted add reputation
-            if (overreactAction.Overreact())
-            {
+        
+        //Player overreacted checks cooldown from the action
+        if (overreactAction.Overreact()) {
 
-                pb.ChangeRepScore(lastMonsterAttacked.GetOverreactReputation());
+            // if attacked the player can receive points based on time
+            if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
+                Debug.Log("Overreact points:" + (AttackedDuration - overreactTimestamp) * -10);
+                pb.ChangeRepScore((int)((AttackedDuration - overreactTimestamp) * -10));
+                playerState = PlayerState.IDLE;
+                //pb.ChangeRepScore(lastMonsterAttacked.GetOverreactReputation());
                 //pb.Invoke();
             }
+            //if overreacts without reason
+            else
+            {
+                //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
+                Debug.Log("Overreact points: 0");
+                pb.ChangeRepScore(0);
+                pb.Invoke();
+            }
+
         }
     }
 
@@ -191,6 +212,9 @@ public class PlayerActionController : MonoBehaviour
     {
         //AttackedDuration second unlock overreact
         StartCoroutine(releaseAttacked());
+
+        overreactTimestamp = 0;
+
         //can overreact
         playerState = PlayerState.HIT;
 
@@ -211,6 +235,7 @@ public class PlayerActionController : MonoBehaviour
     private IEnumerator releaseAttacked()
     {
         yield return new WaitForSeconds(AttackedDuration);
+        
 
         //wait for all attacks to submit change in reputation
         pb.Invoke();
