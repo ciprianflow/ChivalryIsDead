@@ -10,6 +10,7 @@ public class MeleeAI : MonsterAI
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
     public float chargeForce = 250f;
+    public float normalAttackColddown = 3f;
 
     private float accelTimer = 0;
     private float accelTime = 0.2f;
@@ -17,6 +18,7 @@ public class MeleeAI : MonsterAI
     private float normSpeed;
     private float attackDuration = 1f;
     private float ChargeTurnTime = 0.5f;
+    private float normalAttackTimer = 0f;
 
     private bool rotated = false;
     private bool normalAttack = false;
@@ -33,7 +35,6 @@ public class MeleeAI : MonsterAI
     //Called every frame in the attack state
     public override void Attack()
     {
-        Debug.Log("ATTACKING");
         //Decides which attack to use
         if (normalAttack)
             NormalAttack(); //Normal attacks trigger when normalAttack == true
@@ -54,21 +55,21 @@ public class MeleeAI : MonsterAI
             }
             //Rotation done
         }
-
-        MeleeAttack();
         if (t1 >= attackDuration)
         {
             //If the palyer is not in range any more go back to moving
+            MeleeAttack();
             normalAttack = false;
             AttackToMove();
             ResetTimer();
-            
         }
 
     }
 
     void TurnAttack()
     {
+
+        Debug.Log("TURN ATTACK");
         if (!rotated)
         {
             if (!ControlledRotation())
@@ -89,16 +90,12 @@ public class MeleeAI : MonsterAI
         //If time is above attack time
         if (t1 > attackTime)// || patrolling)
         {
-            //If the AI is in attack range of its target or it is in patrolling so it does not have a target
-            if (RangeCheck())// || patrolling)
-            {
-                // TODO : do a melee attack here??? 
-                // (ASK SAMUEL IF IN DOUBT IF YOU ARE, BCS HE IS??? BibleThump into SwiftRage)
-                //Reset timers and go to move state
-                ResetTimer();
-                AttackToMove();
-                return;
-            }
+            // TODO : do a melee attack here??? 
+            // (ASK SAMUEL IF IN DOUBT IF YOU ARE, BCS HE IS??? BibleThump into SwiftRage)
+            //Reset timers and go to move state
+            ResetTimer();
+            AttackToMove();
+            return;
         }
     }
 
@@ -139,6 +136,7 @@ public class MeleeAI : MonsterAI
         rotated = false;
         initTimedRotation();
         ResetTimer();
+        normalAttackTimer = 0;
         MoveToAttack();
     }
 
@@ -262,7 +260,8 @@ public class MeleeAI : MonsterAI
     //Called every frame in the Move state
     public override void Move()
     {
-        if (playerInRange)
+        normalAttackTimer += Time.deltaTime;
+        if (playerInRange && normalAttackTimer > normalAttackColddown)
         {
             InitNormalAttack(targetObject.position);
             return;
@@ -383,8 +382,8 @@ public class MeleeAI : MonsterAI
     //Gets a random point on the navmesh
     public Vector3 GetRandomPointOnNavMesh()
     {
-        float walkRadius = UnityEngine.Random.Range(4, 6);
-        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
+        float walkRadius = UnityEngine.Random.Range(6, 8);
+        Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized * walkRadius;
         randomDirection += StaticIngameData.player.transform.position;
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
