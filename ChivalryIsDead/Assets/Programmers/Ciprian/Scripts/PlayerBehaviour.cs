@@ -10,6 +10,9 @@ class PlayerBehaviour : ScorePublisher
 
     private DummyManager dummyManager;
 
+    public GameObject RepGainParticle;
+    public GameObject RepLossParticle;
+
     public PlayerBehaviour(string handle)
     {
         dummyManager = DummyManager.dummyManager;
@@ -29,17 +32,26 @@ class PlayerBehaviour : ScorePublisher
 
     public void ChangeRepScore(int score)
     {
+        
         if (score < 0)
         {
+            RepLossParticle.SetActive(false);
+
             ScoreChange = dummyManager.GetComboMultiplier(score);
             
             //increase combo
             dummyManager.IncreaseCombo();
             //reset cooldown
             dummyManager.resetCooldown();
+
+            //particle effect
+            RepLossParticle.SetActive(true);
         }
         else
-        {      
+        {
+            RepGainParticle.SetActive(false);
+            //particle effect
+            RepGainParticle.SetActive(true);
             Reset();
             ScoreChange = dummyManager.GetComboMultiplier(score);
         }
@@ -51,8 +63,12 @@ class PlayerBehaviour : ScorePublisher
         dummyManager.ResetCombo();
     }
 
+
+
     public void Invoke()
     {
+        dummyManager.ActionPerformed();
+
         OnChangeScoreEvent(new ScoreEventArgs(ScoreChange));
     }
 
