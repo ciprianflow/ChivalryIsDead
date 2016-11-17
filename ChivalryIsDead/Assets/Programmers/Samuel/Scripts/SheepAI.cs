@@ -17,7 +17,6 @@ public class SheepAI : MonsterAI {
         if (aggroed)
         {
             targetPoint = -targetObject.forward * 2 + targetObject.position;
-            Debug.Log(RangeCheck());
             if (RangeCheck())
                 IdleToMove();
 
@@ -52,7 +51,7 @@ public class SheepAI : MonsterAI {
 
     public override void Move()
     {
-        anim.SetFloat("Speed", agent.speed);
+        anim.SetFloat("Speed", agent.velocity.magnitude);
 
         targetPoint = -targetObject.forward * 2 + targetObject.position;
         if (RangeCheckNavMesh())
@@ -80,6 +79,7 @@ public class SheepAI : MonsterAI {
         StopNavMeshAgent();
         state = State.Idle;
         stateFunc = Idle;
+        anim.SetFloat("Speed", 0);
     }
 
     public override void Scared() {}
