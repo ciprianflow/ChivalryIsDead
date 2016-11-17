@@ -269,18 +269,21 @@ public class DialogObject : MonoBehaviour {
 
            
         }
+        swordText.GetComponent<Text>().text = "";
+        princessText.GetComponent<Text>().text = "";
+        kingText.GetComponent<Text>().text = "";
 
         gameMenu.skipAllBtn.SetActive(false);
         gameMenu.skipBtn.SetActive(false);
-        gameMenu.sword.GetComponent<Animator>().SetTrigger("Hide");
-        gameMenu.princess.GetComponent<Animator>().SetTrigger("Hide");
+        gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
+        gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
         StartCoroutine(Hide());
     }
 
     IEnumerator Hide()
     {
         // Remember :)
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
         gameMenu.sword.SetActive(false);
         gameMenu.princess.SetActive(false);
         gameMenu.skipBtn.SetActive(false);
@@ -311,8 +314,8 @@ public class DialogObject : MonoBehaviour {
     public void StopDialog()
     {
         StopCoroutine("DialogSystem");
-        gameMenu.sword.GetComponent<Animator>().SetTrigger("Hide");
-        gameMenu.princess.GetComponent<Animator>().SetTrigger("Hide");
+        gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
+        gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
         StartCoroutine(Hide());
 
         
