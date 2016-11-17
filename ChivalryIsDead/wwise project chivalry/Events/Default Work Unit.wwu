@@ -615,6 +615,83 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="world objects" ID="{16AEF2AE-1961-4B25-AFC9-7789BC54E7B2}" ShortID="1052548698"/>
+				<Folder Name="reward" ID="{F04112FB-F7FD-49A6-8D76-4777D0E18176}" ShortID="466188359">
+					<ChildrenList>
+						<Event Name="comboStart" ID="{FE890FBE-A4B6-4B80-9828-33F66A2448BE}">
+							<ChildrenList>
+								<Action Name="Play" ID="{529F84EC-9388-40C7-93BD-374FD6358C44}" ShortID="842284671" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{5002CAD1-7223-40D0-9ED5-9304A4C19493}" Global="false">
+											<ObjectRef Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{6C4F6142-A9B8-4377-85DA-D436E8CA0860}" ShortID="244043455" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{5E7401F3-FE40-49E5-9D2E-4D0EB1B3498A}" Global="false">
+											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{4E146F1F-E386-47F0-99ED-685CEF9EA9C1}" ShortID="628361538" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="4"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{4ADA95B9-979B-45C1-86D7-54B056B11FEC}" Global="false">
+											<ObjectRef Name="combo fire" ID="{9362D158-E088-423C-8506-10932F0479E0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="comboBoost" ID="{3808E535-C6C7-4E89-8DE0-5C48985E62E9}">
+							<ChildrenList>
+								<Action Name="Play" ID="{7A60B7C8-26CA-4730-A38F-7E1D9C684317}" ShortID="613308233" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{3B2DCE9C-2525-49D9-BAD3-6AF5ED220E95}" Global="false">
+											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{31781AF4-DBF9-4F54-A5F9-47CFD9D7E226}" ShortID="507390822" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{49FA85DE-F203-4426-AA3E-2DE4A3DCF022}" Global="false">
+											<ObjectRef Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="smallReward" ID="{5AF229BD-0245-4A96-A6A0-D0C259EED3DF}">
+							<ChildrenList>
+								<Action Name="Play" ID="{6AE3215C-49F0-4ABA-8A70-CFA418D391B7}" ShortID="600431779" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{FA3DD162-2672-4965-B47B-671B8D0BFAFA}" Global="false">
+											<ObjectRef Name="small reward" ID="{971A2097-909D-4B4A-AD17-048E6268D440}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="comboEnd" ID="{D658531B-C58E-40E3-8197-78C48FF8FC4D}">
+							<ChildrenList>
+								<Action Name="Stop" ID="{4A42AC64-1680-4853-81EB-D37521C8C33A}" ShortID="332819943" Type="Stop" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="4"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{25C751CE-796A-4BFB-8424-42DD71F92D03}" Global="false">
+											<ObjectRef Name="combo fire" ID="{9362D158-E088-423C-8506-10932F0479E0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
