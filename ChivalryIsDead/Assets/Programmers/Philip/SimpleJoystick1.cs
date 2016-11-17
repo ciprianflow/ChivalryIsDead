@@ -2,6 +2,8 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
+
 
 namespace CnControls
 {
@@ -141,12 +143,14 @@ namespace CnControls
         //    playerScript.move(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         //}
 
-        void LateUpdate() {
-            if (moving) {
+        void LateUpdate()
+        {
+            if (moving)
+            {
                 playerScript.move(SX, SY);
             }
         }
-        
+
 
         private void OnEnable()
         {
@@ -162,6 +166,21 @@ namespace CnControls
 
         private void OnDisable()
         {
+            playerScript.move(0, 0);
+            held = false;
+            moving = false;
+            // When we lift our finger, we reset everything to the initial state
+            _baseTransform.anchoredPosition = _initialBasePosition;
+            _stickTransform.anchoredPosition = _initialStickPosition;
+            _intermediateStickPosition = _initialStickPosition;
+
+            HorizintalAxis.Value = VerticalAxis.Value = 0f;
+
+            // We also hide it if we specified that behaviour
+            if (HideOnRelease)
+            {
+                Hide(true);
+            }
             // When we disable, we just unregister our axis
             // It also happens before the game object is Destroyed
             CnInputManager.UnregisterVirtualAxis(HorizintalAxis);
@@ -170,7 +189,8 @@ namespace CnControls
 
         public virtual void OnDrag(PointerEventData eventData)
         {
-            if (!held) {
+            if (!held)
+            {
                 return;
             }
             // Unity remote multitouch related thing
@@ -236,8 +256,8 @@ namespace CnControls
             //Debug.Log("_intermediateStickPosition " + difference.x);
 
 
-            SX = Stick.rectTransform.localPosition.x/MovementRange;
-            SY = Stick.rectTransform.localPosition.y/MovementRange;
+            SX = Stick.rectTransform.localPosition.x / MovementRange;
+            SY = Stick.rectTransform.localPosition.y / MovementRange;
             //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
 
             moving = true;
@@ -267,14 +287,17 @@ namespace CnControls
             }
         }
 
-        public void OnPointerDown(PointerEventData eventData) {
-            if (!held) {
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            if (!held)
+            {
                 held = true;
                 SX = SY = 0;
                 Vibration.Vibrate(50);
                 //Debug.Log("JFIDOAWJDIOWA");
                 // When we press, we first want to snap the joystick to the user's finger
-                if (SnapsToFinger) {
+                if (SnapsToFinger)
+                {
                     CurrentEventCamera = eventData.pressEventCamera ?? CurrentEventCamera;
 
                     Vector3 localStickPosition;
@@ -290,21 +313,24 @@ namespace CnControls
                     float xClamp = (JoystickBase.GetComponent<RectTransform>().rect.width / 2) + (Stick.GetComponent<RectTransform>().rect.width / 2) - 50;
                     float yBotClamp = (JoystickBase.GetComponent<RectTransform>().rect.height / 2) + (Stick.GetComponent<RectTransform>().rect.height / 2) - 50;
                     float yTopClamp = GetComponent<RectTransform>().rect.height - yBotClamp;
-                    if (localBasePosition.x < xClamp) {
+                    if (localBasePosition.x < xClamp)
+                    {
                         newX = xClamp;
                         //Debug.Log("CLAMPED");
                     }
-                    if (localBasePosition.y > yTopClamp) {
+                    if (localBasePosition.y > yTopClamp)
+                    {
                         newY = yTopClamp;
                         //Debug.Log("CLAMPED");
                     }
-                    if (localBasePosition.y < yBotClamp) {
+                    if (localBasePosition.y < yBotClamp)
+                    {
                         newY = yBotClamp;
                         //Debug.Log("CLAMPED");
                     }
                     //Debug.Log(GetComponent<RectTransform>().rect.height);
 
-                    _baseTransform.position = new Vector3(newX,newY,0);
+                    _baseTransform.position = new Vector3(newX, newY, 0);
                     _stickTransform.position = new Vector3(newX, newY, 0);
                     _intermediateStickPosition = _stickTransform.anchoredPosition;
 
@@ -313,11 +339,13 @@ namespace CnControls
 
 
                 }
-                else {
+                else
+                {
                     OnDrag(eventData);
                 }
                 // We also want to show it if we specified that behaviour
-                if (HideOnRelease) {
+                if (HideOnRelease)
+                {
                     Hide(false);
                 }
             }
@@ -333,5 +361,6 @@ namespace CnControls
             JoystickBase.gameObject.SetActive(!isHidden);
             Stick.gameObject.SetActive(!isHidden);
         }
+  
     }
 }
