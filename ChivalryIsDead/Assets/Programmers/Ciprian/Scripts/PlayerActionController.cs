@@ -83,13 +83,6 @@ public class PlayerActionController : MonoBehaviour
 
     void Awake()
     {
-        //subscribe to the reputation system
-        pb = new PlayerBehaviour("rep");
-
-        pb.RepGainParticle = RepGainParticle;
-        pb.RepLossParticle = RepLossParticle;
-
-        pb.Reset();
 
         //aggro taunt overreact
         gameObject.AddComponent<AggroAction>();
@@ -108,6 +101,15 @@ public class PlayerActionController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
+
+        //subscribe to the reputation system
+        pb = new PlayerBehaviour("rep");
+
+        pb.RepGainParticle = RepGainParticle;
+        pb.RepLossParticle = RepLossParticle;
+
+        pb.Reset();
+
 
         //player state
         playerState = PlayerState.IDLE;
