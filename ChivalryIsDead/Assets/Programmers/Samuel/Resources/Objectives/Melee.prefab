@@ -2752,8 +2752,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011892179278}
-  - 33: {fileID: 33000012800194704}
-  - 23: {fileID: 23000011989626926}
   - 195: {fileID: 195000010249325622}
   - 54: {fileID: 54000013281746766}
   - 114: {fileID: 114000014104116408}
@@ -2987,6 +2985,22 @@ GameObject:
   - 4: {fileID: 4000013751684200}
   m_Layer: 0
   m_Name: anim_backMid_tabard_b_01
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013159273906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013490539254}
+  - 135: {fileID: 135000010798248606}
+  m_Layer: 0
+  m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6029,12 +6043,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012860691644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.759892, y: 0.615, z: 1.8410032}
+  m_LocalPosition: {x: -4.67, y: 13.72, z: 21.267412}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000011211410962}
   - {fileID: 4000011953133470}
+  - {fileID: 4000013490539254}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000011896194718
@@ -7343,6 +7358,19 @@ Transform:
   - {fileID: 4000011784643702}
   m_Father: {fileID: 4000011953133470}
   m_RootOrder: 1
+--- !u!4 &4000013490539254
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013159273906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011892179278}
+  m_RootOrder: 2
 --- !u!4 &4000013491184396
 Transform:
   m_ObjectHideFlags: 1
@@ -8055,42 +8083,6 @@ Transform:
   - {fileID: 4000010964739760}
   m_Father: {fileID: 4000013701799952}
   m_RootOrder: 0
---- !u!23 &23000011989626926
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012860691644}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 8d405c4d96e25be4ab03c29053dbd9a4, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &33000012800194704
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012860691644}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54000013281746766
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -8116,8 +8108,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1, z: 1.2}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.2, y: 2, z: 1.2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!95 &95000011273024630
 Animator:
   serializedVersion: 3
@@ -8210,23 +8202,34 @@ MonoBehaviour:
   id: 11
   Health: 2
   attackDamage: 5
-  attackTime: 3
+  attackTime: 1
   attackRange: 1.5
   playerAction: {fileID: 0}
   targetObject: {fileID: 0}
   patrolling: 1
-  attackRotateSpeed: 90
+  attackRotateSpeed: 400
   AttackRep: -20
   OverreactRep: -60
   ObjectiveAttackRep: -20
   ObjectiveSheepRep: -100
   PlayerAttackRep: 30
   PreChargeTime: 1
-  ChargeTurnTime: 0.5
   chargeSpeedMultiplier: 3
   attackLength: 1
   attackAngleWidth: 0.6
   chargeForce: 250
+--- !u!135 &135000010798248606
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013159273906}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!137 &137000012139396152
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -8420,7 +8423,7 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012860691644}
   m_Enabled: 0
-  m_Radius: 0.6
+  m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 30
   avoidancePriority: 50
@@ -8429,7 +8432,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: 0.42
+  m_Height: 1.5
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

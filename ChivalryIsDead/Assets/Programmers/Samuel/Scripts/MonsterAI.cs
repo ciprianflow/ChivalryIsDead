@@ -91,6 +91,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         Debug.DrawLine(transform.position, GetTargetPosition());
+        Debug.DrawLine(transform.position, transform.position + transform.forward * attackRange, Color.blue);
         if (targetObject != null && !targetObject.gameObject.activeSelf)
             targetObject = StaticIngameData.player;
         //HARD CODED REMOVE LATER
@@ -127,6 +128,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     protected void ToIdle()
     {
         state = State.Idle;
+        agent.velocity = Vector3.zero;
         StopNavMeshAgent();
         stateFunc = Idle;
     }

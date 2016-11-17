@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class DummyWwiseTester : MonoBehaviour {
-
 	// Use this for initialization
 	void Start () {
+
         StartCoroutine(CoTestSound());
 	}
 
@@ -15,10 +15,15 @@ public class DummyWwiseTester : MonoBehaviour {
             innerTimer -= Time.deltaTime;
             yield return null;
         }
-        if (WwiseInterface.Instance != null) { 
+        if (WwiseInterface.Instance != null)
+        {
             Debug.Log("Playing test sound.");
             WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
-        } else {
+            WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Attack, gameObject);
+
+        }
+        else
+        {
             Debug.LogWarning("Attach a WwiseInterface to a class (e.g. WwiseGlobal) to use the WwiseInterface!");
         }
         StartCoroutine(CoTestSound());
