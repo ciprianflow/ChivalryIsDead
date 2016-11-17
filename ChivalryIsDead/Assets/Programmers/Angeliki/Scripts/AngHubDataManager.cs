@@ -52,8 +52,9 @@ public class AngHubDataManager : MonoBehaviour {
     public Text QueueText;
     public Text DaysLeftText;
 
-    int newI;
-    public int tempSelectedQuest;
+    [HideInInspector]
+    public int newI;
+    public int selectedQuest;
 
     void Start () {
         newI = -1;
@@ -150,8 +151,8 @@ public class AngHubDataManager : MonoBehaviour {
 
         Button b = newQuestText.transform.parent.GetComponent<Button>();
 
-        tempSelectedQuest = Random.Range(0, newI+1);
-        Debug.Log("quest selected is: " + tempSelectedQuest);
+        selectedQuest = Random.Range(0, newI+1);
+        Debug.Log("quest selected is: " + selectedQuest);
         b.onClick.AddListener(() => SelectQuest(newI));
 
     }
