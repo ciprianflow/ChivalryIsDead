@@ -288,7 +288,7 @@ public class MeleeAI : MonsterAI
         if (patrolling)
             targetPoint = GetRandomPointOnNavMesh();
 
-        anim.SetTrigger("StartTurn");
+        anim.SetTrigger("StartTurnLeft");
     }
 
     //Called every time the monster is getting taunted
