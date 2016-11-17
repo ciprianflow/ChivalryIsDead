@@ -39,11 +39,13 @@ public class DialogObject : MonoBehaviour {
     float test;
     bool isSkipped;
     float SpeakingTime;
+    bool isSpeaking;
 
     // Use this for initialization
     void Start () {
         indexCount = 0;
         isSkipped = false;
+        isSpeaking = false;
         gameMenu = UI.GetComponent<GameMenu>();
         //peasantA = GameObject.FindGameObjectWithTag("PeasantA");
         //peasantB = GameObject.FindGameObjectWithTag("PeasantB");
@@ -141,6 +143,8 @@ public class DialogObject : MonoBehaviour {
         DialogInfo d = dialog[v];
 
         d.Dialog = d.Name.Length;
+
+        isSpeaking = true;
 
         for (int i = 0; i < d.Dialog; i++)
         {
@@ -273,21 +277,42 @@ public class DialogObject : MonoBehaviour {
         princessText.GetComponent<Text>().text = "";
         kingText.GetComponent<Text>().text = "";
 
+        isSpeaking = false;
         gameMenu.skipAllBtn.SetActive(false);
         gameMenu.skipBtn.SetActive(false);
         gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
         gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
-        StartCoroutine(Hide());
+        float duration = gameMenu.princess.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("current clip length = " + duration);
+
+        StartCoroutine(Hide(duration));
     }
 
-    IEnumerator Hide()
+    IEnumerator Hide(float dur)
     {
+        SpeakingTime = dur;
+        while (isSpeaking && SpeakingTime > 0)
+        {
+            SpeakingTime -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+
+        }
+        isSpeaking = false;
         // Remember :)
-        yield return new WaitForSeconds(2f);
-        gameMenu.sword.SetActive(false);
-        gameMenu.princess.SetActive(false);
-        gameMenu.skipBtn.SetActive(false);
+        //yield return new WaitForSeconds(dur);
+
+        if(!isSpeaking)
+        {
+            gameMenu.sword.SetActive(false);
+            gameMenu.princess.SetActive(false);
+            gameMenu.skipBtn.SetActive(false);
+            
+        }
+
+      
+
         gameMenu.speaking = false;
+
     }
 
     IEnumerator SkipTest()
@@ -316,7 +341,7 @@ public class DialogObject : MonoBehaviour {
         StopCoroutine("DialogSystem");
         gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
         gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
-        StartCoroutine(Hide());
+        StartCoroutine(Hide(gameMenu.princess.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
 
         
         playerBubble.SetActive(false);
