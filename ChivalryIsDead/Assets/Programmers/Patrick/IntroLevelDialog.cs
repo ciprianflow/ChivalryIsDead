@@ -29,8 +29,8 @@ public class IntroLevelDialog : MonoBehaviour {
     {
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
-        //UI.GetComponent<GameMenu>().Sword();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1f);
+        UI.GetComponent<GameMenu>().Princess();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
         Invoke("CallableSkip", 5);
         yield return new WaitUntil(SkipAndPlay);
@@ -61,11 +61,11 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogTwo()
     {
-        //UI.GetComponent<GameMenu>().Sword();
-        yield return new WaitForSeconds(0.3f);
+        UI.GetComponent<GameMenu>().Princess();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         ControlHit.SetActive(true);
         handAnimator.SetBool("playRightJoy", true);
+        return null;
     }
 
     public void EventOne()
@@ -76,8 +76,7 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogThree()
     {
-        //UI.GetComponent<GameMenu>().Sword();
-        yield return new WaitForSeconds(0.3f);
+        UI.GetComponent<GameMenu>().Princess();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
         yield return new WaitForSeconds(2);
     }
@@ -85,7 +84,7 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogFour()
     {
-        //UI.GetComponent<GameMenu>().Sword();
+        UI.GetComponent<GameMenu>().Princess();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(2);

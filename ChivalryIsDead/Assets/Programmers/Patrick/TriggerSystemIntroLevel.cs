@@ -22,7 +22,7 @@ public class TriggerSystemIntroLevel : MonoBehaviour {
             ++introKill;
         }
 
-        if (endKill == 3)
+        if (endKill == 1)
         {
             Dialog.GetComponent<IntroLevelDialog>().StartCoroutine("DialogFour");
             ++endKill;
