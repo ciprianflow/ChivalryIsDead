@@ -2119,6 +2119,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011543556612}
   - 95: {fileID: 95000013319298942}
+  - 114: {fileID: 114000012071197000}
   m_Layer: 0
   m_Name: knight_rig
   m_TagString: Untagged
@@ -9981,6 +9982,18 @@ MonoBehaviour:
   densityCachedScale: {x: 1, y: 1, z: 1}
   densityCachedScaleVolume: 0
   effectDensities: []
+--- !u!114 &114000012071197000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011951752316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f32f82959d9904c92603724f809ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 114000013840228130}
 --- !u!114 &114000012388516940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10130,6 +10143,10 @@ MonoBehaviour:
   scaring: 0
   attackReachedFull: 0
   overreacting: 0
+  Attackended: 0
+  currentAttack: 1
+  attackUpperWeight: 0
+  attackLowerWeight: 0
   UpperWeight: 0
   LowerWeight: 0
   SwordTrail: {fileID: 1000010980034914}
