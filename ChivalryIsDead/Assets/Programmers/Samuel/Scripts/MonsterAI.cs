@@ -295,8 +295,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             body.angularVelocity = Vector3.zero;
     }
 
-
-
     public abstract void KillThis();
 
     public State getState()
