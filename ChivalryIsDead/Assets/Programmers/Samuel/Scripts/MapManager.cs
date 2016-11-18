@@ -81,12 +81,8 @@ public class MapManager : MonoBehaviour {
         //NEED TO CHANGE THIS APROACH
         if (ID == 22)
         {
-            if (QuestTarget != null) { 
-                OM.GetObjectives().Add(QuestTarget.GetComponent<QuestObject>());
-                QuestTarget.gameObject.SetActive(true);
-            } else
-                objective.ForceCheck(new List<IObjectiveTarget>());
-
+            OM.GetObjectives().Add(QuestTarget.GetComponent<QuestObject>());
+            QuestTarget.gameObject.SetActive(true);
             return;
         }
 
@@ -148,8 +144,7 @@ public class MapManager : MonoBehaviour {
 
         //CALC SCORE
         float localRepGain = StaticIngameData.dummyManager.GetGlobalScore();
-        //StaticData.Reputation += localRepGain;
-        StaticData.currQuest.ReputationChange = localRepGain;
+        StaticData.Reputation += localRepGain;
 
         //Load Quest Hub Manager
         if (endLetter != null)

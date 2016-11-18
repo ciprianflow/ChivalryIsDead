@@ -5,7 +5,7 @@ using System.Text;
 
 public enum Difficulty
 {
-    Easy, Medium, Hard
+    Easy = 100, Medium = 200, Hard = 400
 }
 
 public struct QuestDescription
