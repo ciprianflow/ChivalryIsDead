@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum State { Attack, Move, Charge, Idle, Scared }
+public enum State { Attack, Move, Charge, Idle, Utility }
 
 public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
@@ -58,10 +58,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Move();
     public abstract void Idle();
     public abstract void Taunt();
-    public abstract void Scare();
-    public abstract void Scared();
+    public abstract void EnterUtilityState();
+    public abstract void Utility();
     public abstract void Init();
     public abstract void MoveEvent();
+    public abstract void HitThis();
 
     public abstract int GetObjectiveAttackReputation();
     public abstract int GetAttackReputation();
@@ -147,8 +148,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         Debug.Log("To Scared");
         ResetTimer();
         ResumeNavMeshAgent();
-        state = State.Scared;
-        stateFunc = Scared;
+        state = State.Utility;
+        stateFunc = Utility;
     }
 
     protected void ToMove()
@@ -330,7 +331,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         return ObjectiveSheepRep;
     }
 
-    //implement this in the base class
     public void Hit(int damage)
     {
 
@@ -342,7 +342,34 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 StaticIngameData.mapManager.CheckObjectives(this);
         }
 
+        HitThis();
+
         anim.Play("TakeDamage");
+    }
+
+    //This is the function that makes the sheep go fly
+    protected void HitSheep(QuestObject QO, MonsterAI m, GameObject g, float force, bool useMosnsterOrigin)
+    {
+        //Check the Quest Objective for nullpointer and if not make the sheep deed
+        if (QO != null)
+        {
+            QO.takeDamage(999, false);
+            playerAction.ObjectiveAttacked(this);
+        }
+
+        //sheep goes fly
+        m.enabled = false;
+        g.GetComponent<NavMeshAgent>().enabled = false;
+        Rigidbody r = g.GetComponent<Rigidbody>();
+        r.drag = 0;
+        r.mass = 1;
+        if(useMosnsterOrigin)
+            r.AddExplosionForce(force, this.transform.position, 100f, 3);
+        else
+            r.AddExplosionForce(force, g.transform.position, 100f, 1);
+        r.AddTorque((this.transform.position - g.transform.position) * 10);
+
+        g.GetComponentInChildren<Animator>().SetTrigger("Flying");
     }
 
     #endregion

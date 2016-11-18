@@ -8,8 +8,6 @@ public class RangedAI : MonsterAI
     public GameObject projectile;
     public GameObject targetSprite;
 
-    public Animator anim;
-
     Transform targetObj;
 
     float force = 1;
@@ -124,11 +122,11 @@ public class RangedAI : MonsterAI
         this.enabled = false;
     }
 
-    public override void Scared()
+    public override void Utility()
     {
     }
 
-    public override void Scare()
+    public override void EnterUtilityState()
     {
     }
 
@@ -161,4 +159,6 @@ public class RangedAI : MonsterAI
     {
         //Called every time AI goes into move state
     }
+
+    public override void HitThis() { }
 }
