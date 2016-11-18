@@ -12,8 +12,6 @@ public class SuicideAI : MonsterAI
     public float explosionRange = 25f;
     public GameObject explosionObject;
 
-    public Animator animObj;
-
     bool taunted = false;
 
     public override void Attack()
@@ -61,7 +59,7 @@ public class SuicideAI : MonsterAI
 
     public override void Taunt()
     {
-        animObj.SetTrigger("Taunted");
+        anim.SetTrigger("Taunted");
         taunted = true;
         ResetTimer();
         ToIdle();
@@ -74,17 +72,30 @@ public class SuicideAI : MonsterAI
             Instantiate(explosionObject, transform.position, Quaternion.identity);
         }
 
-        int multiplyer = 1;
-        if (taunted)
-            multiplyer = 2;
+        Collider[] Colliders = new Collider[0];
+        Colliders = Physics.OverlapSphere(transform.position, explosionRange);
+        for (int i = 0; i < Colliders.Length; i++)
+        {
+            Debug.Log("One in range");
+            if (Colliders[i].tag == "Player")
+            {
+                Debug.Log("This on is a player");
+                Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
 
-        float range = explosionRange * multiplyer;
+                Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                if (body)
+                    body.AddExplosionForce(explosionForce, transform.position - new Vector3(0, -5, 0), explosionRange);
 
-        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+                base.playerAction.PlayerAttacked(this);
+                Debug.Log("Hit player");
 
-        Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
-        if (body)
-            body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
+            }else if(Colliders[i].tag == "Monster")
+            {
+
+
+
+            }
+        }     
 
         //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
         Destroy(this.gameObject);
