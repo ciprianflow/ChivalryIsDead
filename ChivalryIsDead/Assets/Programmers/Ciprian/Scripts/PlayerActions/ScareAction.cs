@@ -31,7 +31,7 @@ class ScareAction : MonoBehaviour
         //{
         //monster.Scare();
         //}
-        monster.Scare();
+        monster.EnterUtilityState();
         Debug.Log("SCARE MONSTER: " + monster.name);
     }
 
