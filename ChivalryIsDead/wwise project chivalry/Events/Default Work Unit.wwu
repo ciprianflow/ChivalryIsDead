@@ -247,17 +247,6 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="ranged_scared" ID="{11281000-1771-4460-90D4-C1F5EFD09FAB}">
-											<ChildrenList>
-												<Action Name="Play" ID="{90A4930D-4239-4400-8034-089AF538047C}" ShortID="151989646" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{4EB393F4-A184-401C-9790-1206E2CB67D7}" Global="false">
-															<ObjectRef Name="ranged_scared" ID="{10AA265D-F585-4FA8-9360-4017F2923A13}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="ranged_take_out_throwing_object" ID="{3912C298-CD0A-47AC-8646-9E1CA8642A19}">
 											<ChildrenList>
 												<Action Name="Play" ID="{BED3D92F-0C50-4429-93AD-079252087DEE}" ShortID="952438460" Type="Play" Scope="One" Global="false">
@@ -323,17 +312,6 @@
 													<ElementList>
 														<Element ID="{F100901A-F26B-419E-B14F-6EEDFF420732}" Global="false">
 															<ObjectRef Name="suicide_taunted" ID="{30F40420-0C75-488B-840F-0757EABC913B}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
-										<Event Name="suicide_scared" ID="{0E8E3686-9371-46B1-BBF6-1F440AF2A68B}">
-											<ChildrenList>
-												<Action Name="Play" ID="{331F45B2-3E3C-48F6-A1B6-9FE689143873}" ShortID="630668271" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{D6C20FC3-CF7E-4567-80F2-6C991BEF062B}" Global="false">
-															<ObjectRef Name="suicide_scared" ID="{8DB86202-4442-4CDB-864A-E5559B450FE3}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -415,17 +393,6 @@
 													<ElementList>
 														<Element ID="{F25C91D7-7DD9-423D-B644-1657D226A1E7}" Global="false">
 															<ObjectRef Name="melee_attack" ID="{3DB34CB4-D4B8-439B-8016-74CDEFF3821E}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
-										<Event Name="melee_scared" ID="{858052DE-35E1-4029-AABD-2A4A243733E5}">
-											<ChildrenList>
-												<Action Name="Play" ID="{99229853-EDDF-4214-B7CB-B69AFDF1B46E}" ShortID="208147719" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{3BEEBDD6-0286-4732-985A-A76F0DC3CFEC}" Global="false">
-															<ObjectRef Name="melee_scared" ID="{6105C39F-55F0-4A5E-A859-C2BA05BEEF58}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -531,17 +498,6 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="knight_scare" ID="{FC96D495-004E-4F9C-B0D5-C94739D3F79D}">
-											<ChildrenList>
-												<Action Name="Play" ID="{EBA29C07-D1E7-4509-AD19-8FBE53CA7A6A}" ShortID="683168262" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{495BB975-6DA8-46E4-802E-1CC9AFDBB8D7}" Global="false">
-															<ObjectRef Name="knight_scare" ID="{4E28B419-C3E2-4AB8-B16A-C65D1DDD6F65}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="knight_overreact_perfect" ID="{48F38630-C7B4-4816-8DE6-2D4B29728D29}">
 											<ChildrenList>
 												<Action Name="Play" ID="{3B44E1E6-A332-4639-9CEF-BDAC00896366}" ShortID="517289416" Type="Play" Scope="One" Global="false">
@@ -624,7 +580,7 @@
 												<Action Name="Play" ID="{729295E9-676A-464C-A3CB-1E1AD46E4FFF}" ShortID="395550026" Type="Play" Scope="One" Global="false">
 													<ElementList>
 														<Element ID="{939B8AAA-14DB-4BE6-A8E8-DC325B331090}" Global="false">
-															<ObjectRef Name="footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+															<ObjectRef Name="knight_footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -659,6 +615,83 @@
 					</ChildrenList>
 				</Folder>
 				<Folder Name="world objects" ID="{16AEF2AE-1961-4B25-AFC9-7789BC54E7B2}" ShortID="1052548698"/>
+				<Folder Name="reward" ID="{F04112FB-F7FD-49A6-8D76-4777D0E18176}" ShortID="466188359">
+					<ChildrenList>
+						<Event Name="comboStart" ID="{FE890FBE-A4B6-4B80-9828-33F66A2448BE}">
+							<ChildrenList>
+								<Action Name="Play" ID="{529F84EC-9388-40C7-93BD-374FD6358C44}" ShortID="842284671" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{5002CAD1-7223-40D0-9ED5-9304A4C19493}" Global="false">
+											<ObjectRef Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{6C4F6142-A9B8-4377-85DA-D436E8CA0860}" ShortID="244043455" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{5E7401F3-FE40-49E5-9D2E-4D0EB1B3498A}" Global="false">
+											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{4E146F1F-E386-47F0-99ED-685CEF9EA9C1}" ShortID="628361538" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="4"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{4ADA95B9-979B-45C1-86D7-54B056B11FEC}" Global="false">
+											<ObjectRef Name="combo fire" ID="{9362D158-E088-423C-8506-10932F0479E0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="comboBoost" ID="{3808E535-C6C7-4E89-8DE0-5C48985E62E9}">
+							<ChildrenList>
+								<Action Name="Play" ID="{7A60B7C8-26CA-4730-A38F-7E1D9C684317}" ShortID="613308233" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{3B2DCE9C-2525-49D9-BAD3-6AF5ED220E95}" Global="false">
+											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{31781AF4-DBF9-4F54-A5F9-47CFD9D7E226}" ShortID="507390822" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{49FA85DE-F203-4426-AA3E-2DE4A3DCF022}" Global="false">
+											<ObjectRef Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="smallReward" ID="{5AF229BD-0245-4A96-A6A0-D0C259EED3DF}">
+							<ChildrenList>
+								<Action Name="Play" ID="{6AE3215C-49F0-4ABA-8A70-CFA418D391B7}" ShortID="600431779" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{FA3DD162-2672-4965-B47B-671B8D0BFAFA}" Global="false">
+											<ObjectRef Name="small reward" ID="{971A2097-909D-4B4A-AD17-048E6268D440}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="comboEnd" ID="{D658531B-C58E-40E3-8197-78C48FF8FC4D}">
+							<ChildrenList>
+								<Action Name="Stop" ID="{4A42AC64-1680-4853-81EB-D37521C8C33A}" ShortID="332819943" Type="Stop" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeCurve" Type="int16" Value="5"/>
+										<Property Name="FadeTime" Type="Real64" Value="4"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{25C751CE-796A-4BFB-8424-42DD71F92D03}" Global="false">
+											<ObjectRef Name="combo fire" ID="{9362D158-E088-423C-8506-10932F0479E0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 			</ChildrenList>
 		</WorkUnit>
 	</Events>
