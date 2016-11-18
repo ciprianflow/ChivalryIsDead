@@ -307,14 +307,14 @@ public class MeleeAI : MonsterAI
 
     //This is not used any more
     //But we're still saving the function it, dont question it! k?
-    public override void Scare()
+    public override void EnterUtilityState()
     {
         ToScared();
     }
 
     //This is not used any more
     //But we're still saving the function it, dont question it! k?
-    public override void Scared()
+    public override void Utility()
     {
         t1 += Time.deltaTime;
         Vector3 p = transform.position - GetTargetPosition().normalized;

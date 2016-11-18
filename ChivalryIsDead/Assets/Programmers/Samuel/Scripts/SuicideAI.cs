@@ -60,8 +60,14 @@ public class SuicideAI : MonsterAI
         }
     }
 
-    public override void Scare() {}
-    public override void Scared() {}
+    public override void EnterUtilityState()
+    {
+        stateFunc = Utility;
+        state = State.Utility;
+        StopNavMeshAgent();    
+    }
+
+    public override void Utility() {}
 
     public override void Taunt()
     {
@@ -111,19 +117,18 @@ public class SuicideAI : MonsterAI
                     }
                 }
             }
-        }     
+        }
 
         //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
-        Destroy(this.gameObject);
+        base.Hit(99);
     }
 
-    void OnCollisionEnter(Collision coll)
+    void OnTriggerEnter(Collider coll)
     {
         //Debug.Log("Collided with something exploding");
-        if (state == State.Idle)
-            return;
+        if (state == State.Utility)
+            Explode();
 
-        KillThis();
     }
 
     public override int GetAttackReputation()
@@ -157,6 +162,18 @@ public class SuicideAI : MonsterAI
 
     public override void HitThis()
     {
-        //Called when monster is hit but not killed
+        if (this.gameObject.activeSelf)
+        {
+            EnterUtilityState();
+            StartCoroutine(DelayedExplosion());
+        }
+    }
+
+    IEnumerator DelayedExplosion()
+    {
+
+        yield return new WaitForSeconds(1f);
+        Explode();
+
     }
 }
