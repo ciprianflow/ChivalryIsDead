@@ -16,7 +16,7 @@ public class AngHubDataManager : MonoBehaviour {
                 Debug.LogWarning("Attempted to access HubData.CurrentReputation without a HubData object being present.");
                 return 0;
             }
-            return currentHubData.GlobalReputation;
+            return (int)currentHubData.GlobalReputation;
         }
     }
     public int DaysLeft {
@@ -105,7 +105,7 @@ public class AngHubDataManager : MonoBehaviour {
         HubData hubData = null;
         //var hubData = AssetDatabase.LoadAssetAtPath<HubData>(hubDataPath);
         if (hubData == null) {
-            hubData = ScriptableObject.CreateInstance<HubData>();
+            //hubData = ScriptableObject.CreateInstance<HubData>();
            // AssetDatabase.CreateAsset(hubData, hubDataPath);
         }
         return hubData;

@@ -133,7 +133,7 @@ public class DummyManager : MonoBehaviour
 
         float repGain = ReputationHandler.Score;
         float repGainDivision = 50;
-        return repGain  / repGainDivision;
+        return repGain / repGainDivision;
 
     }
 }

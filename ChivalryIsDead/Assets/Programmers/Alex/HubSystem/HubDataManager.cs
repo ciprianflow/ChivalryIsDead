@@ -9,7 +9,7 @@ using System;
 
 public class HubDataManager : MonoBehaviour {
 
-    private const string hubDataPath = "Assets/HubData.json";
+    private static string hubDataPath;
     private HubData currentHubData;
 
     int currSelectedQuestIndex = -1;
@@ -58,10 +58,19 @@ public class HubDataManager : MonoBehaviour {
     public Text QueueText;
     public Text DaysLeftText;
 
+    void Awake()
+    {
+        hubDataPath = Application.persistentDataPath + "/HubData.json";
+
+        if (StaticData.currQuest == null)
+            UpdateQuests();
+        else
+            PushToHubData(StaticData.currQuest.ReputationChange);
+    }
+
     void Start () {
 
         peasantLineScript.FillPeasantLine();
-        UpdateQuests();
         UpdateUIText();
         CreateQuestUIElements();
 
@@ -75,9 +84,7 @@ public class HubDataManager : MonoBehaviour {
     public void UpdateQuests()
     {
         var hubData = LoadHubData();
-        hubData.GenerateQuests();
-        currentHubData = hubData;
-        SaveHubData(hubData);
+        RefreshData(hubData);
     }
 
     /// <summary>
@@ -86,34 +93,31 @@ public class HubDataManager : MonoBehaviour {
     /// Should be used when player returns from a quest.
     /// </summary>
     /// <param name="repChange"></param>
-    public void PushToHubData(int repChange) { PushToHubData(repChange, -1); }
-    public void PushToHubData(int repChange, int dayChange)
+    public void PushToHubData(float repChange) { PushToHubData(repChange, -1); }
+    public void PushToHubData(float repChange, int dayChange)
     {
         var hubData = LoadHubData();
         hubData.GlobalReputation += repChange;
         hubData.DaysLeft += dayChange;
         hubData.RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
-        hubData.GenerateQuests();
 
-        currentHubData = hubData;
+        RefreshData(hubData);
     }
 
-    public void ResetHubData()
+    public void RefreshData(HubData hubData)
     {
-        var hubData = new HubData();
+        currentHubData = hubData;
+        StaticData.Reputation = CurrentReputation;
+        StaticData.daysLeft = DaysLeft;
+        hubData.GenerateQuests();
+
         SaveHubData(hubData);
     }
 
-    private void SaveHubData(HubData hubData) { SaveJson(JsonUtility.ToJson(hubData)); }
-
-    private HubData LoadHubData()
+    public static void ResetHubData()
     {
-        HubData hubData = LoadJson();
-
-        if (hubData == null)
-            hubData = new HubData();
-
-        return hubData;
+        var hubData = new HubData();
+        SaveHubData(hubData);
     }
 
     #region Quest Generation
@@ -197,9 +201,6 @@ public class HubDataManager : MonoBehaviour {
     {
 
         StaticData.currQuest = (MultiQuest)quest;
-
-        //
-
         SceneManager.LoadScene(UnityEngine.Random.Range(4, 8));
         //SceneManager.LoadScene(7);
 
@@ -223,7 +224,20 @@ public class HubDataManager : MonoBehaviour {
         QueueText.text = AvailableQuests.Count.ToString();
     }
 
-    private HubData LoadJson()
+    #region Static methods
+    private static void SaveHubData(HubData hubData) { SaveJson(JsonUtility.ToJson(hubData)); }
+
+    private static HubData LoadHubData()
+    {
+        HubData hubData = LoadJson();
+
+        if (hubData == null)
+            hubData = new HubData();
+
+        return hubData;
+    }
+
+    private static HubData LoadJson()
     {
         if (!File.Exists(hubDataPath))
             return null;
@@ -237,7 +251,7 @@ public class HubDataManager : MonoBehaviour {
         return retData;
     }
 
-    private void SaveJson(string jsonObject)
+    private static void SaveJson(string jsonObject)
     {
         using (StreamWriter writer = new StreamWriter(hubDataPath)) {
             writer.Write(jsonObject);
@@ -245,6 +259,7 @@ public class HubDataManager : MonoBehaviour {
             writer.Close();
         }
     }
+    #endregion
 
     #region UI
 

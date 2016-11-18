@@ -7,4 +7,5 @@ public interface IQuest : IObjective
 {
     QuestDescription Description { get; }
     List<IObjective> Objectives { get; }
+    float ReputationChange { get; }
 }
