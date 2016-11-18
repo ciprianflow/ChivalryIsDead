@@ -413,7 +413,7 @@ public class MeleeAI : MonsterAI
         Debug.Log("ToCharge");
         initTimedRotation();
         ResetTimer();
-        anim.SetTrigger("StartCharge");
+        anim.SetTrigger("StartChargeMelee");
         agent.speed = normSpeed * chargeSpeedMultiplier; //Set speed of monster to charge speed
         state = State.Charge;
         stateFunc = Charge;
