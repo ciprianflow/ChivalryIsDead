@@ -170,7 +170,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void MoveToAttack()
     {
-        Debug.Log("MoveToAttack");
+        //Debug.Log("MoveToAttack");
         StopNavMeshAgent();
         state = State.Attack;
         stateFunc = Attack;
@@ -230,14 +230,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         float dist = Vector3.Distance(transform.position, GetTargetPosition());
         if (dist > attackRange)
-            return true;
-        return false;
-    }
-
-    protected bool RangeCheck(float range)
-    {
-        float dist = Vector3.Distance(transform.position, GetTargetPosition());
-        if (dist > range)
             return true;
         return false;
     }

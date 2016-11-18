@@ -77,8 +77,6 @@ class AttackAction : MonoBehaviour
             return colliders;
         }
 
-        WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Attack, this.gameObject);
-
         playerBase.attack();
 
         cooldownTimeStamp = Time.time + AttackCooldown;

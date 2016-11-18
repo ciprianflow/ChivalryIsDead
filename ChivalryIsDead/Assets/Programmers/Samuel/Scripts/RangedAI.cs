@@ -15,7 +15,6 @@ public class RangedAI : MonsterAI
     public float shootAngle = 60;
     public float randomShootRange = 4f;
     public float randomShootAngle = 20f;
-    public float softAttackRangeBreak = 12;
 
     [Space]
     private bool taunted = false;
@@ -30,7 +29,7 @@ public class RangedAI : MonsterAI
         RotateTowardsTarget();
         if (t1 > attackTime)
         {
-            if (RangeCheck(softAttackRangeBreak))
+            if (RangeCheck())
             {
                 AttackToMove();
                 return;
@@ -43,7 +42,8 @@ public class RangedAI : MonsterAI
 
     public override void Move()
     {
-        if (RangeCheckNavMesh())
+        bool b = RangeCheckNavMesh();
+        if (b)
             UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
