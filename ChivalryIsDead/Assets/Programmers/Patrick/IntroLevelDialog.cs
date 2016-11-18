@@ -25,8 +25,6 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject HandCanvas;
     Animator handAnimator;
     public Animator swordAnimator;
-    float time = 0;
-    bool test = false;
     // Use this for initialization
     void Start () {
         procceed = false;
@@ -37,11 +35,7 @@ public class IntroLevelDialog : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (test)
-        {
-            time += Time.deltaTime;
-            Debug.Log(time);
-        }
+       
             
         if (!learnedToMove)
         {
@@ -126,7 +120,6 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogTwo()
     {
-        test = true;
         
         UI.GetComponent<GameMenu>().Sword();
 
@@ -152,7 +145,6 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogThree()
     {
-        test = false;
         ControlMove.SetActive(false);
         //JoyCanvas.transform.FindChild("Joystick_Move").gameObject.GetComponent<SimpleJoystick1>().StopMoving();
 
