@@ -325,27 +325,6 @@ public class MeleeAI : MonsterAI
         }
     }
 
-    //This is the function that makes the sheep go fly
-    void HitSheep(QuestObject QO, MonsterAI m, GameObject g)
-    {
-        //Check the Quest Objective for nullpointer and if not make the sheep deed
-        if (QO != null)
-        {
-            QO.takeDamage(999, false);
-            base.playerAction.ObjectiveAttacked(this);
-        }
-
-        //sheep goes fly
-        m.enabled = false;
-        g.GetComponent<NavMeshAgent>().enabled = false;
-        Rigidbody r = g.GetComponent<Rigidbody>();
-        r.drag = 0;
-        r.mass = 1;
-        r.AddExplosionForce(chargeForce * (accelTimer / accelTime), g.transform.position, 100f, 1);
-
-        g.GetComponentInChildren<Animator>().SetTrigger("Flying");
-    }
-
     //This is some rep stuff
     public override int GetAttackReputation()
     {
@@ -447,7 +426,7 @@ public class MeleeAI : MonsterAI
             if (m != null && m.GetType() == typeof(SheepAI))
             {
                 Debug.Log("I HIT A SHEEP");
-                HitSheep(QO, m, coll.gameObject);
+                HitSheep(QO, m, coll.gameObject, chargeForce * (accelTimer / accelTime), false);
                 base.playerAction.SheepAttacked(this);
             }
             //If its not a sheep it must be a static questObjective
@@ -491,4 +470,6 @@ public class MeleeAI : MonsterAI
             playerInRange = false;
         }
     }
+
+    public override void HitThis() { }
 }

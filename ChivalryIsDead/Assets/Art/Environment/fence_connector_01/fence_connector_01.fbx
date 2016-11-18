@@ -11,10 +11,10 @@ FBXHeaderExtension:  {
 		Year: 2016
 		Month: 11
 		Day: 18
-		Hour: 10
-		Minute: 8
-		Second: 2
-		Millisecond: 18
+		Hour: 9
+		Minute: 48
+		Second: 22
+		Millisecond: 540
 	}
 	Creator: "FBX SDK/FBX Plugins version 2016.1.2"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -30,21 +30,21 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\wall_b_01\wall_b_01.fbx"
-			P: "SrcDocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\wall_b_01\wall_b_01.fbx"
+			P: "DocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\fence_connector_01\fence_connector_01.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\fence_connector_01\fence_connector_01.fbx"
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "2016"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "18/11/2016 09:08:02.017"
-			P: "Original|FileName", "KString", "", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\wall_b_01\wall_b_01.fbx"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "18/11/2016 08:48:22.537"
+			P: "Original|FileName", "KString", "", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\fence_connector_01\fence_connector_01.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2016"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "18/11/2016 09:08:02.017"
-			P: "Original|ApplicationActiveProject", "KString", "", "", "Z:\team4\Art department\EliasTextureOpgaver\wall"
-			P: "Original|ApplicationNativeFile", "KString", "", "", "Z:\team4\Art department\EliasTextureOpgaver\wall\wall_b_01.ma"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "18/11/2016 08:48:22.537"
+			P: "Original|ApplicationActiveProject", "KString", "", "", "Z:\team4\Art department\EliasTextureOpgaver\fence"
+			P: "Original|ApplicationNativeFile", "KString", "", "", "Z:\team4\Art department\EliasTextureOpgaver\fence\fence_connector_01.ma"
 		}
 	}
 }
@@ -79,10 +79,10 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1411191888, "", "Scene" {
+	Document: 1137145408, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
-			P: "ActiveAnimStackName", "KString", "", "", "wall_b_01"
+			P: "ActiveAnimStackName", "KString", "", "", "fence_connector_01"
 		}
 		RootNode: 0
 	}
@@ -262,21 +262,21 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 1410629056, "NodeAttribute::", "Null" {
+	NodeAttribute: 1419993136, "NodeAttribute::", "Null" {
 		Properties70:  {
 			P: "Look", "enum", "", "",0
 		}
 		TypeFlags: "Null"
 	}
-	Geometry: 1405673264, "Geometry::", "Mesh" {
-		Vertices: *36 {
-			a: -324.860015869141,2000,1000,-6.66133814775094e-013,0,1000,-324.860015869141,2000,-1000,-2.22044604925031e-013,0,-1000,-341.918731689453,2000,318.496124267578,216.395248413086,0,318.496124267578,-664.556213378906,2000,-97.0924530029297,-251.380508422852,0,-27.3815155029297,-628.698547363281,2000,-292.670562744141,-164.919479370117,0,-199.999572753906,-333.539520263672,2000,-476.029724121094,139.661087036133,0,-148.719451904297
+	Geometry: 1423747760, "Geometry::", "Mesh" {
+		Vertices: *24 {
+			a: -3.52512741088867,0,3.52512741088867,3.52512741088867,0,3.52512741088867,-6.65275001525879,78.4815521240234,6.40932846069336,3.37682199478149,78.4815521240234,6.40932846069336,-6.65275001525879,78.4815521240234,-6.40932846069336,3.37682199478149,78.4815521240234,-6.40932846069336,-3.52512741088867,0,-3.52512741088867,3.52512741088867,0,-3.52512741088867
 		} 
 		PolygonVertexIndex: *20 {
-			a: 10,11,3,-3,0,1,5,-5,4,5,7,-7,6,7,9,-9,8,9,11,-11
+			a: 0,1,3,-3,2,3,5,-5,4,5,7,-7,1,7,5,-4,6,0,2,-5
 		} 
-		Edges: *16 {
-			a: 4,7,5,2,11,9,6,15,13,10,19,17,14,3,1,0
+		Edges: *12 {
+			a: 0,2,6,10,3,1,7,5,11,9,16,12
 		} 
 		GeometryVersion: 124
 		LayerElementNormal: 0 {
@@ -285,7 +285,7 @@ Objects:  {
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "Direct"
 			Normals: *60 {
-				a: 0.977844476699829,0.187474027276039,-0.0931318327784538,0.977844476699829,0.1874740421772,-0.0931318327784538,0.977844655513763,0.187474071979523,-0.093131847679615,0.977844536304474,0.1874740421772,-0.0931318402290344,0.966674149036407,0.213435351848602,0.141373664140701,0.966674089431763,0.213435366749763,0.14137364923954,0.966674149036407,0.213435366749763,0.141373664140701,0.966674089431763,0.213435336947441,0.14137364923954,0.685510396957397,0.154090523719788,-0.711569905281067,0.685510396957397,0.154090508818626,-0.711569845676422,0.685510337352753,0.154090508818626,-0.711569845676422,0.685510396957397,0.154090508818626,-0.711569845676422,0.926671087741852,0.215659514069557,0.30784997344017,0.926671147346497,0.215659514069557,0.30784997344017,0.926671147346497,0.215659514069557,0.307850003242493,0.926671087741852,0.215659514069557,0.30784997344017,0.212602093815804,0.151160910725594,0.965375959873199,0.212602108716965,0.151160925626755,0.965375959873199,0.212602064013481,0.151160910725594,0.965375900268555,0.212602093815804,0.151160910725594,0.965375900268555
+				a: 0,-0.0367252640426159,0.999325454235077,0,-0.0367252603173256,0.999325394630432,0,-0.0367252603173256,0.999325394630432,0,-0.0367252603173256,0.999325335025787,0,1,0,0,1,0,0,1,0,0,1,0,0,-0.0367252603173256,-0.999325335025787,0,-0.0367252603173256,-0.999325394630432,0,-0.0367252603173256,-0.999325394630432,0,-0.0367252640426159,-0.999325454235077,0.999998211860657,0.0018896801630035,0,0.999998211860657,0.0018896801630035,0,0.999998152256012,0.00188968004658818,0,0.999998152256012,0.00188968004658818,0,-0.999206840991974,-0.0398200787603855,0,-0.999206840991974,-0.0398200787603855,0,-0.999206781387329,-0.0398200750350952,0,-0.999206781387329,-0.0398200750350952,0
 			} 
 			NormalsW: *20 {
 				a: 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
@@ -297,10 +297,10 @@ Objects:  {
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "IndexToDirect"
 			UV: *24 {
-				a: 0.774303436279297,0.901894152164459,0.63310045003891,0.0390859916806221,0.995338976383209,0.0503150895237923,0.994449317455292,0.901528120040894,0.049424946308136,0.996460914611816,0.0161876454949379,0.105349011719227,0.307722240686417,0.0329542905092239,0.331531226634979,0.954888820648193,0.434902280569077,0.107643939554691,0.552537202835083,0.9579958319664,0.514370977878571,0.0914315059781075,0.635248243808746,0.946308553218842
+				a: 0.145303949713707,0.0134179014712572,0.224139377474785,0.0134178483858705,0.256384760141373,0.890479505062103,0.113081909716129,0.890487194061279,0.302895247936249,0.0107392380014062,0.381206482648849,0.00199203263036907,0.510812163352966,0.870603442192078,0.368421405553818,0.88657021522522,0.523324906826019,0.982037603855133,0.380900055170059,0.998008072376251,0.0665673539042473,0.0106515502557158,0.00104457268025726,0.886622130870819
 			} 
 			UVIndex: *20 {
-				a: 0,1,2,3,4,5,6,7,7,6,8,9,9,8,10,11,11,10,1,0
+				a: 10,0,3,11,6,8,9,7,7,2,1,4,0,1,2,3,4,5,6,7
 			} 
 		}
 		LayerElementSmoothing: 0 {
@@ -308,8 +308,8 @@ Objects:  {
 			Name: ""
 			MappingInformationType: "ByEdge"
 			ReferenceInformationType: "Direct"
-			Smoothing: *16 {
-				a: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+			Smoothing: *12 {
+				a: 0,0,0,0,0,0,0,0,0,0,0,0
 			} 
 		}
 		LayerElementMaterial: 0 {
@@ -341,7 +341,7 @@ Objects:  {
 			}
 		}
 	}
-	Model: 1414932512, "Model::wall_b_01", "Null" {
+	Model: 1419800960, "Model::fence_connector_01", "Null" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -352,7 +352,7 @@ Objects:  {
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	Model: 1411338944, "Model::pPlane5", "Mesh" {
+	Model: 1127980368, "Model::fence_connector_01", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
@@ -364,7 +364,7 @@ Objects:  {
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 1056362448, "Material::lambert1", "" {
+	Material: 1028228768, "Material::lambert1", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -379,7 +379,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	AnimationStack: 1411230960, "AnimStack::wall_b_01", "" {
+	AnimationStack: 1418715824, "AnimStack::fence_connector_01", "" {
 		Properties70:  {
 			P: "LocalStart", "KTime", "Time", "",1924423250
 			P: "LocalStop", "KTime", "Time", "",230930790000
@@ -387,7 +387,7 @@ Objects:  {
 			P: "ReferenceStop", "KTime", "Time", "",230930790000
 		}
 	}
-	AnimationLayer: 1198169536, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 1416911312, "AnimLayer::BaseLayer", "" {
 	}
 }
 
@@ -396,31 +396,31 @@ Objects:  {
 
 Connections:  {
 	
-	;Model::wall_b_01, Model::RootNode
-	C: "OO",1414932512,0
+	;Model::fence_connector_01, Model::RootNode
+	C: "OO",1419800960,0
 	
-	;AnimLayer::BaseLayer, AnimStack::wall_b_01
-	C: "OO",1198169536,1411230960
+	;AnimLayer::BaseLayer, AnimStack::fence_connector_01
+	C: "OO",1416911312,1418715824
 	
-	;NodeAttribute::, Model::wall_b_01
-	C: "OO",1410629056,1414932512
+	;NodeAttribute::, Model::fence_connector_01
+	C: "OO",1419993136,1419800960
 	
-	;Model::pPlane5, Model::wall_b_01
-	C: "OO",1411338944,1414932512
+	;Model::fence_connector_01, Model::fence_connector_01
+	C: "OO",1127980368,1419800960
 	
-	;Geometry::, Model::pPlane5
-	C: "OO",1405673264,1411338944
+	;Geometry::, Model::fence_connector_01
+	C: "OO",1423747760,1127980368
 	
-	;Material::lambert1, Model::pPlane5
-	C: "OO",1056362448,1411338944
+	;Material::lambert1, Model::fence_connector_01
+	C: "OO",1028228768,1127980368
 }
 ;Takes section
 ;----------------------------------------------------
 
 Takes:  {
-	Current: "wall_b_01"
-	Take: "wall_b_01" {
-		FileName: "wall_b_01.tak"
+	Current: "fence_connector_01"
+	Take: "fence_connector_01" {
+		FileName: "fence_connector_01.tak"
 		LocalTime: 1924423250,230930790000
 		ReferenceTime: 1924423250,230930790000
 	}
