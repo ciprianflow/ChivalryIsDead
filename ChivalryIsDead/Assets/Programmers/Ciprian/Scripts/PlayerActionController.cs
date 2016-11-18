@@ -16,6 +16,7 @@ public enum PlayerActions
 public class PlayerActionController : MonoBehaviour
 {
 
+
     [Header("Attack values")]
     public int AttackDamage = 1;
     public float AttackRange = 2f;
@@ -84,6 +85,8 @@ public class PlayerActionController : MonoBehaviour
     void Awake()
     {
 
+        
+
         //aggro taunt overreact
         gameObject.AddComponent<AggroAction>();
         gameObject.AddComponent<TauntAction>();
@@ -149,6 +152,7 @@ public class PlayerActionController : MonoBehaviour
     public void HandleTaunt()
     {
 
+
         //otherwhise taunt
         tauntAction.Taunt();
     }
@@ -159,14 +163,22 @@ public class PlayerActionController : MonoBehaviour
         
         //Player overreacted checks cooldown from the action
         if (overreactAction.Overreact()) {
-
+            
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
 
                 Debug.Log("Overreact points:" + (AttackedDuration - overreactTimestamp) * -10);
-                pb.ChangeRepScore((int)((AttackedDuration - overreactTimestamp) * -10));
 
-                //pb.ChangeRepScore(lastMonsterAttacked.GetOverreactReputation());
+                int points = (int)((AttackedDuration - overreactTimestamp) * -10);
+                pb.ChangeRepScore(points);
+
+                //@@HARDCODED!! Jonahtan probavly will change this
+                if (points > 30)
+                    WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.OverreactPerfect, this.gameObject);
+                else
+                    WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.OverreactGreat, this.gameObject);
+
+
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
                 playerState = PlayerState.IDLE;
@@ -174,6 +186,7 @@ public class PlayerActionController : MonoBehaviour
             //if overreacts without reason
             else
             {
+                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.OverreactOk, this.gameObject);
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
@@ -186,9 +199,10 @@ public class PlayerActionController : MonoBehaviour
     //Attacks
     public void HandleAttack()
     {
+
         //attackAction.NormalAttack(TauntRadius, this.transform);
         List<Collider> enemiesInRange = attackAction.ConeAttack();
-
+        
         //add reputation
         foreach (Collider enemy in enemiesInRange)
         {
@@ -224,6 +238,7 @@ public class PlayerActionController : MonoBehaviour
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
     {
+        
         //AttackedDuration second unlock overreact
         StartCoroutine(releaseAttacked());
 
