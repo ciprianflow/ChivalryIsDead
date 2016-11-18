@@ -10,6 +10,7 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject AnimCam;
 
     public GameObject UI;
+    public GameObject ScreenFreeze;
     public GameObject ControlMove;
     public GameObject ControlHit;
 
@@ -24,7 +25,8 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject HandCanvas;
     Animator handAnimator;
     public Animator swordAnimator;
-    
+    float time = 0;
+    bool test = false;
     // Use this for initialization
     void Start () {
         procceed = false;
@@ -35,11 +37,24 @@ public class IntroLevelDialog : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (test)
+        {
+            time += Time.deltaTime;
+            Debug.Log(time);
+        }
+            
         if (!learnedToMove)
         {
             if (Vector3.Distance(startingPos, Player.transform.position) > 0.01f)
             {
-                StartCoroutine("DialogTwo");
+                gameObject.GetComponent<DialogObject>().StopDialog();
+
+                handAnimator.speed = 1f;
+                swordAnimator.speed = 1f;
+                Time.timeScale = 1f;
+                handAnimator.SetBool("playLeftJoy", false);
+                ScreenFreeze.SetActive(false);
+
                 learnedToMove = true;
 
             }
@@ -49,7 +64,8 @@ public class IntroLevelDialog : MonoBehaviour {
         {
             if (Player.GetComponent<PlayerScript>().attacking)
             {
-                DialogFour();
+                gameObject.GetComponent<DialogObject>().StopDialog();
+                AttackEvent();
                 learnedToAttack = true;
             }
         }
@@ -63,24 +79,29 @@ public class IntroLevelDialog : MonoBehaviour {
         AnimCam.SetActive(true);
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(2f);
+        UI.GetComponent<GameMenu>().Sword();
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+        yield return new WaitForSeconds(15f);
         MainCam.SetActive(true);
         AnimCam.SetActive(false);
         Time.timeScale = 0.1f;
+        ScreenFreeze.SetActive(true);
         swordAnimator.speed = 10f;
-        UI.GetComponent<GameMenu>().Princess();
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+        UI.GetComponent<GameMenu>().Sword();
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         startingPos = Player.transform.position;
         learnedToMove = false;
 
 
 
-        Invoke("CallableSkip", 0.9f);
-        //WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Attack, gameObject);
-      
-        yield return new WaitUntil(SkipAndPlay);
-        
-        procceed = false;
+        //Invoke("CallableSkip", 1.3f);
+
+        //yield return new WaitUntil(SkipAndPlay);
+
+        //procceed = false;
+
+
         handAnimator.speed = 10f;
         handAnimator.SetBool("playLeftJoy", true);
         ControlMove.SetActive(true);
@@ -103,15 +124,22 @@ public class IntroLevelDialog : MonoBehaviour {
         StopCoroutine("DialogOne");
     }
 
-
     public IEnumerator DialogTwo()
     {
-        UI.GetComponent<GameMenu>().Princess();
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        handAnimator.SetBool("playLeftJoy", false);
-        handAnimator.speed = 1f;
-        swordAnimator.speed = 1f;
-        Time.timeScale = 1f;
+        test = true;
+        
+        UI.GetComponent<GameMenu>().Sword();
+
+        //handAnimator.speed = 1f;
+        //swordAnimator.speed = 1f;
+        //Time.timeScale = 1f;
+        //handAnimator.SetBool("playLeftJoy", false);
+
+
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+        
+       
+        
         InvisWallOne.SetActive(false);
         yield return null;
     }
@@ -124,14 +152,16 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogThree()
     {
+        test = false;
         ControlMove.SetActive(false);
         //JoyCanvas.transform.FindChild("Joystick_Move").gameObject.GetComponent<SimpleJoystick1>().StopMoving();
 
         Time.timeScale = 0.1f;
+        ScreenFreeze.SetActive(true);
         handAnimator.speed = 10f;
         swordAnimator.speed = 10f;
-        UI.GetComponent<GameMenu>().Princess();
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+        UI.GetComponent<GameMenu>().Sword();
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         handAnimator.SetBool("playRightJoy", true);
         ControlHit.SetActive(true);
         learnedToAttack = false;
@@ -141,27 +171,38 @@ public class IntroLevelDialog : MonoBehaviour {
     }
 
 
-    void DialogFour()
+    void AttackEvent()
     {
         handAnimator.SetBool("playRightJoy", false);
         handAnimator.speed = 1f;
         swordAnimator.speed = 1f;
         Time.timeScale = 1f;
+        ScreenFreeze.SetActive(false);
         ControlMove.SetActive(true);
+        StartCoroutine("DialogFour");
+    }
+
+    public IEnumerator DialogFour()
+    {
+        yield return new WaitForSeconds(2);
+
+        UI.GetComponent<GameMenu>().Sword();
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
+        yield return null;
     }
 
     public IEnumerator DialogFive()
     {
-        UI.GetComponent<GameMenu>().Princess();
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        UI.GetComponent<GameMenu>().Sword();
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(2);
     }
 
-   
 
-    
 
-    
+
+
+
 
 }
