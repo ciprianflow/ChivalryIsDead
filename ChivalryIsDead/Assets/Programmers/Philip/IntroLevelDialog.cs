@@ -63,7 +63,7 @@ public class IntroLevelDialog : MonoBehaviour {
         AnimCam.SetActive(true);
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
-        yield return new WaitForSeconds(11);
+        yield return new WaitForSeconds(8f);
         MainCam.SetActive(true);
         AnimCam.SetActive(false);
         Time.timeScale = 0.1f;

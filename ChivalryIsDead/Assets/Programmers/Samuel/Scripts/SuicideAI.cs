@@ -8,11 +8,17 @@ public class SuicideAI : MonsterAI
     [Header("Suicide Specific Variables")]
     public float tauntTime = 5f;
     [Space]
-    public float explosionForce = 6000000f;
-    public float explosionRange = 25f;
+    public float explosionForce = 750f;
+    public float explosionRange = 4f;
     public GameObject explosionObject;
 
     bool taunted = false;
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, explosionRange);
+    }
 
     public override void Attack()
     {
@@ -54,8 +60,14 @@ public class SuicideAI : MonsterAI
         }
     }
 
-    public override void Scare() {}
-    public override void Scared() {}
+    public override void EnterUtilityState()
+    {
+        stateFunc = Utility;
+        state = State.Utility;
+        StopNavMeshAgent();    
+    }
+
+    public override void Utility() {}
 
     public override void Taunt()
     {
@@ -76,7 +88,6 @@ public class SuicideAI : MonsterAI
         Colliders = Physics.OverlapSphere(transform.position, explosionRange);
         for (int i = 0; i < Colliders.Length; i++)
         {
-            Debug.Log("One in range");
             if (Colliders[i].tag == "Player")
             {
                 Debug.Log("This on is a player");
@@ -89,25 +100,35 @@ public class SuicideAI : MonsterAI
                 base.playerAction.PlayerAttacked(this);
                 Debug.Log("Hit player");
 
-            }else if(Colliders[i].tag == "Monster")
+            }else if(Colliders[i].tag == "Enemy")
             {
+                MonsterAI m = Colliders[i].gameObject.GetComponent<MonsterAI>();
 
+                if(m != null)
+                {
+                    if(m.GetType().Equals(typeof(SheepAI)))
+                    {
 
+                        Debug.Log("I HIT A SHEEP");
+                        QuestObject QO = Colliders[i].gameObject.GetComponent<QuestObject>();
+                        HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true);
+                        base.playerAction.SheepAttacked(this);
 
+                    }
+                }
             }
-        }     
+        }
 
         //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
-        Destroy(this.gameObject);
+        base.Hit(99);
     }
 
-    void OnCollisionEnter(Collision coll)
+    void OnTriggerEnter(Collider coll)
     {
         //Debug.Log("Collided with something exploding");
-        if (state == State.Idle)
-            return;
+        if (state == State.Utility)
+            Explode();
 
-        KillThis();
     }
 
     public override int GetAttackReputation()
@@ -139,4 +160,20 @@ public class SuicideAI : MonsterAI
         //Called every time AI goes into move state
     }
 
+    public override void HitThis()
+    {
+        if (this.gameObject.activeSelf)
+        {
+            EnterUtilityState();
+            StartCoroutine(DelayedExplosion());
+        }
+    }
+
+    IEnumerator DelayedExplosion()
+    {
+
+        yield return new WaitForSeconds(1f);
+        Explode();
+
+    }
 }

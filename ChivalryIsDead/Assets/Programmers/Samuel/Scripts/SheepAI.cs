@@ -4,9 +4,6 @@ using System;
 
 public class SheepAI : MonsterAI {
 
-
-    public Animator anim;
-
     [Header("Sheep Specific Variables")]
     public float aggroTime = 10;
 
@@ -82,9 +79,9 @@ public class SheepAI : MonsterAI {
         anim.SetFloat("Speed", 0);
     }
 
-    public override void Scared() {}
+    public override void Utility() {}
 
-    public override void Scare()
+    public override void EnterUtilityState()
     {
         ToIdle();
     }
@@ -103,4 +100,6 @@ public class SheepAI : MonsterAI {
     {
         //Called every time AI goes into move state
     }
+
+    public override void HitThis() { }
 }
