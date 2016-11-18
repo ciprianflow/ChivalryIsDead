@@ -113,7 +113,7 @@ public class AkBasePathGetter
     public static string GetFullSoundBankPath()
     {
         // Get full path of base path
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR_WIN
  		string fullBasePath = AkInitializer.GetBasePath();
 #else
         string fullBasePath = Path.Combine(Application.streamingAssetsPath, AkInitializer.GetBasePath());
@@ -200,7 +200,7 @@ public class AkBasePathGetter
     {
         string basePathToSet = GetPlatformBasePath();
         bool InitBnkFound = true;
-#if !(UNITY_ANDROID && !UNITY_EDITOR) // Can't use File.Exists on Android, assume banks are there
+#if !(UNITY_ANDROID && !UNITY_EDITOR_WIN) // Can't use File.Exists on Android, assume banks are there
         string InitBankPath = Path.Combine(basePathToSet, "Init.bnk");
         if (!File.Exists(InitBankPath))
         {

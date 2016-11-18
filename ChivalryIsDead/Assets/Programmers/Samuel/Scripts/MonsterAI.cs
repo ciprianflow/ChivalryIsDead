@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum State { Attack, Move, Charge, Idle, Scared }
+public enum State { Attack, Move, Charge, Idle, Utility }
 
 public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
@@ -58,8 +58,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Move();
     public abstract void Idle();
     public abstract void Taunt();
-    public abstract void Scare();
-    public abstract void Scared();
+    public abstract void EnterUtilityState();
+    public abstract void Utility();
     public abstract void Init();
     public abstract void MoveEvent();
     public abstract void HitThis();
@@ -152,8 +152,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         Debug.Log("To Scared");
         ResetTimer();
         ResumeNavMeshAgent();
-        state = State.Scared;
-        stateFunc = Scared;
+        state = State.Utility;
+        stateFunc = Utility;
     }
 
     protected void ToMove()
@@ -230,6 +230,14 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         float dist = Vector3.Distance(transform.position, GetTargetPosition());
         if (dist > attackRange)
+            return true;
+        return false;
+    }
+
+    protected bool RangeCheck(float range)
+    {
+        float dist = Vector3.Distance(transform.position, GetTargetPosition());
+        if (dist > range)
             return true;
         return false;
     }
@@ -371,7 +379,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         r.drag = 0;
         r.mass = 1;
         if(useMosnsterOrigin)
-            r.AddExplosionForce(force, this.transform.position, 100f, 1);
+            r.AddExplosionForce(force, this.transform.position, 100f, 3);
         else
             r.AddExplosionForce(force, g.transform.position, 100f, 1);
         r.AddTorque((this.transform.position - g.transform.position) * 10);

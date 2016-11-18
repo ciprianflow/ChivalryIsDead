@@ -10,6 +10,7 @@ public class SuicideAI : MonsterAI
     [Space]
     public float explosionForce = 750f;
     public float explosionRange = 4f;
+    public float deAggroRange = 8f;
     public GameObject explosionObject;
 
     bool taunted = false;
@@ -58,10 +59,20 @@ public class SuicideAI : MonsterAI
         else {
             MoveToAttack();
         }
+
+        if(Vector3.Distance(transform.position, GetTargetPosition()) > deAggroRange){
+            MoveToIdle();
+        }
     }
 
-    public override void Scare() {}
-    public override void Scared() {}
+    public override void EnterUtilityState()
+    {
+        stateFunc = Utility;
+        state = State.Utility;
+        StopNavMeshAgent();    
+    }
+
+    public override void Utility() {}
 
     public override void Taunt()
     {
@@ -69,6 +80,16 @@ public class SuicideAI : MonsterAI
         taunted = true;
         ResetTimer();
         ToIdle();
+    }
+
+    public void MoveToIdle()
+    {
+        //Debug.Log("MoveToIdle");
+        StopNavMeshAgent();
+        state = State.Idle;
+        stateFunc = Idle;
+        anim.SetTrigger("Taunted");
+        aggroed = false;
     }
 
     void Explode()
@@ -111,19 +132,19 @@ public class SuicideAI : MonsterAI
                     }
                 }
             }
-        }     
+        }
 
         //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
-        Destroy(this.gameObject);
+        base.Hit(99);
     }
 
-    void OnCollisionEnter(Collision coll)
+    void OnTriggerEnter(Collider coll)
     {
+        Debug.Log("Collided with somehthing");
         //Debug.Log("Collided with something exploding");
-        if (state == State.Idle)
-            return;
+        if (state == State.Utility)
+            Explode();
 
-        KillThis();
     }
 
     public override int GetAttackReputation()
@@ -157,8 +178,24 @@ public class SuicideAI : MonsterAI
 
     public override void HitThis()
     {
+
         //Called when monster is hit but not killed
-        Debug.Log("SHOULD BE FLYING");
+
         anim.Play("Suicide_Flying");
+
+        if (this.gameObject.activeSelf)
+        {
+            EnterUtilityState();
+            StartCoroutine(DelayedExplosion());
+        }
+    }
+
+    IEnumerator DelayedExplosion()
+    {
+
+        yield return new WaitForSeconds(1f);
+        Explode();
+
+
     }
 }
