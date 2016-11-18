@@ -62,6 +62,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Scared();
     public abstract void Init();
     public abstract void MoveEvent();
+    public abstract void HitThis();
 
     public abstract int GetObjectiveAttackReputation();
     public abstract int GetAttackReputation();
@@ -78,6 +79,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     void Update()
     {
+        
         stateFunc();
         updateTimer();
         UpdateNavMeshPathDelayed();
@@ -90,6 +92,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         Debug.DrawLine(transform.position, GetTargetPosition());
+        Debug.DrawLine(transform.position, transform.position + transform.forward * attackRange, Color.blue);
         if (targetObject != null && !targetObject.gameObject.activeSelf)
             targetObject = StaticIngameData.player;
         //HARD CODED REMOVE LATER
@@ -126,6 +129,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     protected void ToIdle()
     {
         state = State.Idle;
+        agent.velocity = Vector3.zero;
         StopNavMeshAgent();
         stateFunc = Idle;
     }
@@ -155,6 +159,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         ResumeNavMeshAgent();
         state = State.Move;
         stateFunc = Move;
+        anim.SetTrigger("StartCharge");
     }
 
     protected void MoveToAttack()
@@ -291,8 +296,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             body.angularVelocity = Vector3.zero;
     }
 
-
-
     public abstract void KillThis();
 
     public State getState()
@@ -328,7 +331,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         return ObjectiveSheepRep;
     }
 
-    //implement this in the base class
     public void Hit(int damage)
     {
 
@@ -340,7 +342,34 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 StaticIngameData.mapManager.CheckObjectives(this);
         }
 
+        HitThis();
+
         anim.Play("TakeDamage");
+    }
+
+    //This is the function that makes the sheep go fly
+    protected void HitSheep(QuestObject QO, MonsterAI m, GameObject g, float force, bool useMosnsterOrigin)
+    {
+        //Check the Quest Objective for nullpointer and if not make the sheep deed
+        if (QO != null)
+        {
+            QO.takeDamage(999, false);
+            playerAction.ObjectiveAttacked(this);
+        }
+
+        //sheep goes fly
+        m.enabled = false;
+        g.GetComponent<NavMeshAgent>().enabled = false;
+        Rigidbody r = g.GetComponent<Rigidbody>();
+        r.drag = 0;
+        r.mass = 1;
+        if(useMosnsterOrigin)
+            r.AddExplosionForce(force, this.transform.position, 100f, 1);
+        else
+            r.AddExplosionForce(force, g.transform.position, 100f, 1);
+        r.AddTorque((this.transform.position - g.transform.position) * 10);
+
+        g.GetComponentInChildren<Animator>().SetTrigger("Flying");
     }
 
     #endregion

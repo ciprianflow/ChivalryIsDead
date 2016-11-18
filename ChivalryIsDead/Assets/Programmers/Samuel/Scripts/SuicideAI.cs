@@ -8,11 +8,17 @@ public class SuicideAI : MonsterAI
     [Header("Suicide Specific Variables")]
     public float tauntTime = 5f;
     [Space]
-    public float explosionForce = 6000000f;
-    public float explosionRange = 25f;
+    public float explosionForce = 750f;
+    public float explosionRange = 4f;
     public GameObject explosionObject;
-    
+
     bool taunted = false;
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(this.transform.position, explosionRange);
+    }
 
     public override void Attack()
     {
@@ -21,9 +27,10 @@ public class SuicideAI : MonsterAI
 
     public override void Idle()
     {
+        
         if (taunted)
         {
-            Debug.Log(t1 + " > " + tauntTime);
+            //Debug.Log(t1 + " > " + tauntTime);
             if(t1 > tauntTime)
             {
                 Debug.Log("Un-taunt");
@@ -43,12 +50,14 @@ public class SuicideAI : MonsterAI
 
     }
 
-    public override void Move()
-    {
-        if (RangeCheckNavMesh())
+    public override void Move() {
+
+        if (RangeCheckNavMesh()) {
             UpdateNavMeshPathDelayed();
-        else
+        }
+        else {
             MoveToAttack();
+        }
     }
 
     public override void Scare() {}
@@ -56,7 +65,7 @@ public class SuicideAI : MonsterAI
 
     public override void Taunt()
     {
-
+        anim.SetTrigger("Taunted");
         taunted = true;
         ResetTimer();
         ToIdle();
@@ -69,25 +78,48 @@ public class SuicideAI : MonsterAI
             Instantiate(explosionObject, transform.position, Quaternion.identity);
         }
 
-        int multiplyer = 1;
-        if (taunted)
-            multiplyer = 2;
+        Collider[] Colliders = new Collider[0];
+        Colliders = Physics.OverlapSphere(transform.position, explosionRange);
+        for (int i = 0; i < Colliders.Length; i++)
+        {
+            if (Colliders[i].tag == "Player")
+            {
+                Debug.Log("This on is a player");
+                Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
 
-        float range = explosionRange * multiplyer;
+                Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                if (body)
+                    body.AddExplosionForce(explosionForce, transform.position - new Vector3(0, -5, 0), explosionRange);
 
-        base.targetObject.GetComponent<PlayerActionController>().PlayerAttacked(this);
+                base.playerAction.PlayerAttacked(this);
+                Debug.Log("Hit player");
 
-        Rigidbody body = targetObject.transform.GetComponent<Rigidbody>();
-        if (body)
-            body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
+            }else if(Colliders[i].tag == "Enemy")
+            {
+                MonsterAI m = Colliders[i].gameObject.GetComponent<MonsterAI>();
 
-        Debug.LogError("ALLUH AKHBAR INFIDEL!!");
+                if(m != null)
+                {
+                    if(m.GetType().Equals(typeof(SheepAI)))
+                    {
+
+                        Debug.Log("I HIT A SHEEP");
+                        QuestObject QO = Colliders[i].gameObject.GetComponent<QuestObject>();
+                        HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true);
+                        base.playerAction.SheepAttacked(this);
+
+                    }
+                }
+            }
+        }     
+
+        //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
         Destroy(this.gameObject);
     }
 
     void OnCollisionEnter(Collision coll)
     {
-        Debug.Log("Collided with something exploding");
+        //Debug.Log("Collided with something exploding");
         if (state == State.Idle)
             return;
 
@@ -123,4 +155,8 @@ public class SuicideAI : MonsterAI
         //Called every time AI goes into move state
     }
 
+    public override void HitThis()
+    {
+        //Called when monster is hit but not killed
+    }
 }

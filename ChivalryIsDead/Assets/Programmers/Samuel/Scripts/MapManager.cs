@@ -159,6 +159,6 @@ public class MapManager : MonoBehaviour {
     public void LoadHubArea()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("ProtoHubWorld 1");
+        SceneManager.LoadScene(3);
     }
 }
