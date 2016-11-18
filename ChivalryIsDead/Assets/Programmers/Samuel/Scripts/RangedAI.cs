@@ -43,6 +43,7 @@ public class RangedAI : MonsterAI
 
     public override void Move()
     {
+
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed();
         else
@@ -93,6 +94,9 @@ public class RangedAI : MonsterAI
         targetObj.Rotate(0, 0, 90);
 
         obj.transform.SetParent(targetObj);
+
+        //Plays attack sound
+        //WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Attack, this.gameObject);
     }
 
     Vector3 BallisticVel(Vector3 target, float angle)
@@ -114,7 +118,12 @@ public class RangedAI : MonsterAI
         return vel * dir.normalized;
     }
 
-    public override void Taunt() { taunted = true; }
+    public override void Taunt() {
+        //Plays Taunt sound
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Taunted, this.gameObject);
+
+        taunted = true;
+    }
 
     public override void KillThis()
     {

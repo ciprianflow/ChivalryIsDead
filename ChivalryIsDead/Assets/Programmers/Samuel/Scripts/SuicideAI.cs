@@ -76,6 +76,9 @@ public class SuicideAI : MonsterAI
 
     public override void Taunt()
     {
+        //Plays Taunt sound
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Suicide, MonsterAudioHandle.Taunted, this.gameObject);
+
         anim.SetTrigger("Taunted");
         taunted = true;
         ResetTimer();
@@ -134,7 +137,9 @@ public class SuicideAI : MonsterAI
             }
         }
 
-        //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
+        //Plays attack sound
+        Debug.LogError("ALLUH AKHBAR INFIDEL!!");
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Suicide, MonsterAudioHandle.Attack, this.gameObject);
         base.Hit(99);
     }
 
