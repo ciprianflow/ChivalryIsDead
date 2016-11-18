@@ -158,5 +158,7 @@ public class SuicideAI : MonsterAI
     public override void HitThis()
     {
         //Called when monster is hit but not killed
+        Debug.Log("SHOULD BE FLYING");
+        anim.Play("Suicide_Flying");
     }
 }

@@ -35,7 +35,7 @@ public class RangedAI : MonsterAI
                 return;
             }
 
-            FireProjectTile();
+            anim.SetTrigger("PickUpRock");
             ResetTimer();
         }
     }
@@ -51,16 +51,17 @@ public class RangedAI : MonsterAI
 
     public override void Idle() { }
 
-    void FireProjectTile()
+    public void FireProjectTile(GameObject obj)
     {
 
-        GameObject obj = Instantiate(projectile);
+
+        //GameObject obj = Instantiate(projectile);
 
         Projectile p = projectile.GetComponent<Projectile>();
         if (p != null)
             p.originMonster = this;
 
-        obj.transform.position = transform.position + new Vector3(0, 3f, 0);
+        //obj.transform.position = transform.position + new Vector3(0, 3f, 0);
 
         Rigidbody objRigidBody = obj.GetComponent<Rigidbody>();
 
@@ -84,10 +85,15 @@ public class RangedAI : MonsterAI
         objRigidBody.velocity = velocity;
         objRigidBody.AddTorque(velocity);
 
-        if (targetSprite == null)
-                return;
+        if (targetSprite == null) {
+            return;
+        }
 
         targetObj = Instantiate(targetSprite).transform;
+        //GameObject vrsdagrse = Instantiate(projectile);
+
+        targetObj.name = "ROCKTARGET";
+
 
         targetObj.position = randTargetPos;//hit.point + new Vector3(0, 0.5f, 0);
         targetObj.Rotate(0, 0, 90);

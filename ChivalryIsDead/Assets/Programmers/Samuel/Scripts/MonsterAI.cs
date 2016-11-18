@@ -132,6 +132,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         agent.velocity = Vector3.zero;
         StopNavMeshAgent();
         stateFunc = Idle;
+        //if(anim != null)
+        //anim.SetFloat("Speed", 0);
+        Debug.Log("TOIDLE");
+
     }
 
     public void Aggro()
@@ -159,15 +163,18 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         ResumeNavMeshAgent();
         state = State.Move;
         stateFunc = Move;
-        anim.SetTrigger("StartCharge");
+        if(this.name!="Ranged")
+            anim.SetTrigger("StartCharge");
+        anim.SetFloat("Speed", 1);
     }
 
     protected void MoveToAttack()
     {
-        //Debug.Log("MoveToAttack");
+        Debug.Log("MoveToAttack");
         StopNavMeshAgent();
         state = State.Attack;
         stateFunc = Attack;
+        anim.SetFloat("Speed", 0);
     }
 
     protected void AttackToMove()
