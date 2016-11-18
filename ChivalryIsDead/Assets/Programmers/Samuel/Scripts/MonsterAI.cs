@@ -78,6 +78,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     void Update()
     {
+        
         stateFunc();
         updateTimer();
         UpdateNavMeshPathDelayed();
@@ -157,6 +158,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         ResumeNavMeshAgent();
         state = State.Move;
         stateFunc = Move;
+        anim.SetTrigger("StartCharge");
     }
 
     protected void MoveToAttack()

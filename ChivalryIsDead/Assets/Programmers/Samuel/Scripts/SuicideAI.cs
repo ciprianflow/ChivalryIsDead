@@ -11,7 +11,9 @@ public class SuicideAI : MonsterAI
     public float explosionForce = 6000000f;
     public float explosionRange = 25f;
     public GameObject explosionObject;
-    
+
+    public Animator animObj;
+
     bool taunted = false;
 
     public override void Attack()
@@ -21,9 +23,10 @@ public class SuicideAI : MonsterAI
 
     public override void Idle()
     {
+        
         if (taunted)
         {
-            Debug.Log(t1 + " > " + tauntTime);
+            //Debug.Log(t1 + " > " + tauntTime);
             if(t1 > tauntTime)
             {
                 Debug.Log("Un-taunt");
@@ -43,12 +46,14 @@ public class SuicideAI : MonsterAI
 
     }
 
-    public override void Move()
-    {
-        if (RangeCheckNavMesh())
+    public override void Move() {
+
+        if (RangeCheckNavMesh()) {
             UpdateNavMeshPathDelayed();
-        else
+        }
+        else {
             MoveToAttack();
+        }
     }
 
     public override void Scare() {}
@@ -56,7 +61,7 @@ public class SuicideAI : MonsterAI
 
     public override void Taunt()
     {
-
+        animObj.SetTrigger("Taunted");
         taunted = true;
         ResetTimer();
         ToIdle();
@@ -81,13 +86,13 @@ public class SuicideAI : MonsterAI
         if (body)
             body.AddExplosionForce(explosionForce * multiplyer, transform.position - new Vector3(0, -5, 0), range);
 
-        Debug.LogError("ALLUH AKHBAR INFIDEL!!");
+        //Debug.LogError("ALLUH AKHBAR INFIDEL!!");
         Destroy(this.gameObject);
     }
 
     void OnCollisionEnter(Collision coll)
     {
-        Debug.Log("Collided with something exploding");
+        //Debug.Log("Collided with something exploding");
         if (state == State.Idle)
             return;
 

@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour {
     public GameObject DustParticle;
 
     Dictionary<String, int> AnimDic = new Dictionary<String, int>();
-
+    
 
     void Awake()
     {
@@ -89,7 +89,7 @@ public class PlayerScript : MonoBehaviour {
                 return true;
         }
         //Debug.Log(taunting + " - " + attacking + " - " + overreacting);
-
+        
         return true;
     }
 
@@ -125,7 +125,7 @@ public class PlayerScript : MonoBehaviour {
         if (zVel < LastXY.magnitude - 0.05f) {
             zVel += speedAcc;
         }
-        else if (zVel > LastXY.magnitude)
+        else if (zVel > LastXY.magnitude) //TODO: sqrmagnitude
         {
             zVel -= speedAcc;
         }
