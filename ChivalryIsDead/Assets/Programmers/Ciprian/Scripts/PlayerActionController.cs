@@ -203,7 +203,7 @@ public class PlayerActionController : MonoBehaviour
     //objective attacked by monsters
     public void ObjectiveAttacked(MonsterAI monster)
     {
-        Debug.Log("Objective attacked" + monster.name);
+        Debug.Log("Objective attacked " + monster.name);
 
         pb.ChangeRepScore(monster.GetObjectiveAttackReputation());
         pb.Invoke();
@@ -213,7 +213,7 @@ public class PlayerActionController : MonoBehaviour
     //sheep attacked by monsters
     public void SheepAttacked(MonsterAI monster)
     {
-        Debug.Log("Sheep attacked" + monster.name);
+        Debug.Log("Sheep attacked " + monster.name);
 
         pb.ChangeRepScore(monster.GetSheepAttackReputation());
         pb.Invoke();
@@ -253,6 +253,12 @@ public class PlayerActionController : MonoBehaviour
         pb.Invoke();
         playerState = PlayerState.IDLE;
     }
+
+    public PlayerState GetPlayerState()
+    {
+        return playerState;
+    }
+        
 
     /* used for cooldown feedback */
 

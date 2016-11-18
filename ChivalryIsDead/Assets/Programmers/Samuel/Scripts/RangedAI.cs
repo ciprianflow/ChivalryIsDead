@@ -122,11 +122,11 @@ public class RangedAI : MonsterAI
         this.enabled = false;
     }
 
-    public override void Scared()
+    public override void Utility()
     {
     }
 
-    public override void Scare()
+    public override void EnterUtilityState()
     {
     }
 

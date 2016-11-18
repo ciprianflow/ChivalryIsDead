@@ -79,9 +79,9 @@ public class SheepAI : MonsterAI {
         anim.SetFloat("Speed", 0);
     }
 
-    public override void Scared() {}
+    public override void Utility() {}
 
-    public override void Scare()
+    public override void EnterUtilityState()
     {
         ToIdle();
     }
