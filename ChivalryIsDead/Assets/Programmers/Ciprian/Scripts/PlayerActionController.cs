@@ -254,6 +254,12 @@ public class PlayerActionController : MonoBehaviour
         playerState = PlayerState.IDLE;
     }
 
+    public PlayerState GetPlayerState()
+    {
+        return playerState;
+    }
+        
+
     /* used for cooldown feedback */
 
     public float GetAttackActionCooldown()
