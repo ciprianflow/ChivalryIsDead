@@ -11,6 +11,8 @@ using UnityEngine;
 /// </summary>
 public class QuestGenerator
 {
+    private System.Random rGen;
+
     private int currentDay;
     private int currentReputation;
 
@@ -42,16 +44,30 @@ public class QuestGenerator
         }
     }
 
-    public QuestGenerator(int currentDay, int currentReputation)
+    private IQuest GenerateProtectQuest(int numFriendlies)
+    {
+        var protQuest = GenerateProtectQuest(numFriendlies, System.Convert.ToBoolean(rGen.Next(0, 2)));
+        return protQuest;
+    }
+
+    public QuestGenerator(int currentDay, int currentReputation) : this(currentDay, currentReputation, Random.Range(0, int.MaxValue))
+    { }
+    public QuestGenerator(int currentDay, int currentReputation, int randomSeed)
     {
         this.currentDay = currentDay;
         this.currentReputation = currentReputation;
+        rGen = new System.Random(randomSeed);
     }
 
-    // Actual protection quest generation. Polish and change the generator to follow this paradigm.
-    private IQuest GenerateProtectQuest(int numFriendlies)
+    private IQuest GenerateProtectQuest(int numFriendlies, bool hasHouse)
     {
         var protQuest = new BaseQuest();
+
+        if (hasHouse) { 
+            protQuest.Objectives.Add(new ProtectTargetObjective(22));
+            numFriendlies--;
+        }
+
         for (int i = 0; i < numFriendlies; i++) {
             protQuest.Objectives.Add(new ProtectTargetObjective(21));
         }
@@ -82,7 +98,7 @@ public class QuestGenerator
         MultiQuest MQ = new MultiQuest();
         QuestType questType = QuestType.Protect;
 
-        var numFriendlies = CurrentDifficulty != Difficulty.Hard ? Random.Range(1, 4) : Random.Range(5, 11);
+        var numFriendlies = CurrentDifficulty != Difficulty.Hard ? rGen.Next(1, 4) : rGen.Next(5, 11);
         int minNonSuicide = 0, maxNonSuicide = 0;
         int minSuicide = 0, maxSuicide = 0;
         switch (CurrentDifficulty) {
@@ -104,8 +120,8 @@ public class QuestGenerator
                 break;
         }
 
-        var numNonSuicide = Random.Range(minNonSuicide, maxNonSuicide + 1); // Max is +1 because random generator max is exclusive.
-        var numSuicide = Random.Range(minSuicide, maxSuicide + 1);
+        var numNonSuicide = rGen.Next(minNonSuicide, maxNonSuicide + 1); // Max is +1 because random generator max is exclusive.
+        var numSuicide = rGen.Next(minSuicide, maxSuicide + 1);
 
         questData = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies);
 
@@ -141,8 +157,8 @@ public class QuestGenerator
                 break;
         }
 
-        var numNonSuicide = Random.Range(minNonSuicide, maxNonSuicide + 1); // Max is +1 because random generator max is exclusive.
-        var numSuicide = Random.Range(minSuicide, maxSuicide + 1);
+        var numNonSuicide = rGen.Next(minNonSuicide, maxNonSuicide + 1); // Max is +1 because random generator max is exclusive.
+        var numSuicide = rGen.Next(minSuicide, maxSuicide + 1);
 
         questData = new QuestData(questType, numNonSuicide + numSuicide, 0, AvailableEnemies);
 
@@ -155,7 +171,7 @@ public class QuestGenerator
     {
         MultiQuest MQ;
 
-        var questType = currentReputation > 60 ? QuestType.Protect : (QuestType)Random.Range(1, 3);
+        var questType = currentReputation > 60 ? QuestType.Protect : (QuestType)rGen.Next(1, 3);
         switch (questType) {
             case QuestType.Protect:
                 MQ = GenerateMultiProtectQuest(out questData); break;

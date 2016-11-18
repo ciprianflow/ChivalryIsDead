@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 //using UnityEditor;
@@ -7,13 +8,13 @@ using System;
 
 public class HubDataManager : MonoBehaviour {
 
-    private const string hubDataPath = "Assets/HubData.asset";
+    private const string hubDataPath = "Assets/HubData.json";
     private HubData currentHubData;
 
     int currSelectedQuestIndex = -1;
 
     #region HubData properties
-    public int CurrentReputation {
+    public float CurrentReputation {
         get {
             if (currentHubData == null) {
                 Debug.LogWarning("Attempted to access HubData.CurrentReputation without a HubData object being present.");
@@ -45,8 +46,8 @@ public class HubDataManager : MonoBehaviour {
 
     public PeasantLineScript peasantLineScript;
 
-    public int MaximumReputation = 2000;
-    public int TotalDays = 14;
+    //public int MaximumReputation = 2000;
+    //public int TotalDays = 14;
 
     public GameObject DLCPane;
     public GameObject ContentPane;
@@ -64,50 +65,53 @@ public class HubDataManager : MonoBehaviour {
         CreateQuestUIElements();
 
     }
-	
-    // Should be used when game is restarted or booted.
+
+    /// <summary>
+    /// Updates the HubData instance in the HubDataManager.
+    /// This will expose available quests, but not change the quest generation seed of the HubData.
+    /// Should be used when game is restarted or booted.
+    /// </summary> 
     public void UpdateQuests()
     {
         var hubData = LoadHubData();
-        hubData.AvailableQuests = new List<IQuest>();
-
-        // TODO : New quest spawning system??
-        QuestGenerator QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
-        QuestData QD = new QuestData();
-        MultiQuest MQ = QG.GenerateMultiQuest(out QD);
-        //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
-        hubData.AvailableQuests.Add(MQ);
-
-        QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
-        QD = new QuestData();
-        MQ = QG.GenerateMultiQuest(out QD);
-        //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
-        hubData.AvailableQuests.Add(MQ);
-
-        //AssetDatabase.SaveAssets();
+        hubData.GenerateQuests();
         currentHubData = hubData;
+        SaveHubData(hubData);
     }
 
-    // Should be used when player returns from a quest.
+    /// <summary>
+    /// Updates the HubData instance in the HubDataManager.
+    /// This will expose available quests, and change the quest generation seed of the HubData.
+    /// Should be used when player returns from a quest.
+    /// </summary>
+    /// <param name="repChange"></param>
     public void PushToHubData(int repChange) { PushToHubData(repChange, -1); }
     public void PushToHubData(int repChange, int dayChange)
     {
         var hubData = LoadHubData();
         hubData.GlobalReputation += repChange;
         hubData.DaysLeft += dayChange;
-        hubData.AvailableQuests = DummyQuestGenerator.GenerateMultipleQuests(hubData.QueueLength);
-        //AssetDatabase.SaveAssets();
+        hubData.RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
+        hubData.GenerateQuests();
+
         currentHubData = hubData;
     }
 
+    public void ResetHubData()
+    {
+        var hubData = new HubData();
+        SaveHubData(hubData);
+    }
+
+    private void SaveHubData(HubData hubData) { SaveJson(JsonUtility.ToJson(hubData)); }
+
     private HubData LoadHubData()
     {
-        HubData hubData = null;
-        //var hubData = AssetDatabase.LoadAssetAtPath<HubData>(hubDataPath);
-        if (hubData == null) {
-            hubData = ScriptableObject.CreateInstance<HubData>();
-           // AssetDatabase.CreateAsset(hubData, hubDataPath);
-        }
+        HubData hubData = LoadJson();
+
+        if (hubData == null)
+            hubData = new HubData();
+
         return hubData;
     }
 
@@ -212,6 +216,29 @@ public class HubDataManager : MonoBehaviour {
         PushToHubData(repChange);
         CreateQuestUIElements();
         QueueText.text = AvailableQuests.Count.ToString();
+    }
+
+    private HubData LoadJson()
+    {
+        if (!File.Exists(hubDataPath))
+            return null;
+
+        HubData retData;
+        using (StreamReader reader = new StreamReader(hubDataPath)) {
+            var jsonObject = reader.ReadToEnd();
+            retData = JsonUtility.FromJson<HubData>(jsonObject);
+            reader.Close();
+        }
+        return retData;
+    }
+
+    private void SaveJson(string jsonObject)
+    {
+        using (StreamWriter writer = new StreamWriter(hubDataPath)) {
+            writer.Write(jsonObject);
+            writer.Flush();
+            writer.Close();
+        }
     }
 
     #region UI
