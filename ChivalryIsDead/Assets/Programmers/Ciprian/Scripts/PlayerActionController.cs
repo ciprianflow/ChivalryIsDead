@@ -169,8 +169,7 @@ public class PlayerActionController : MonoBehaviour
 
                 Debug.Log("Overreact points:" + (AttackedDuration - overreactTimestamp) * -10);
 
-                int points = (int)((AttackedDuration - overreactTimestamp) * -10);
-                pb.ChangeRepScore(points);
+                int points = (int)((AttackedDuration - overreactTimestamp) * 10);
 
                 //@@HARDCODED!! Jonahtan probavly will change this
                 if (points > 30)
@@ -178,6 +177,7 @@ public class PlayerActionController : MonoBehaviour
                 else
                     WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.OverreactGreat, this.gameObject);
 
+                pb.ChangeRepScore(-points);
 
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
@@ -192,7 +192,6 @@ public class PlayerActionController : MonoBehaviour
                 pb.ChangeRepScore(0);
                 pb.Invoke();
             }
-
         }
     }
 
