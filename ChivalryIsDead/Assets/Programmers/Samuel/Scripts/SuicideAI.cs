@@ -10,7 +10,6 @@ public class SuicideAI : MonsterAI
     [Space]
     public float explosionForce = 750f;
     public float explosionRange = 4f;
-    public float deAggroRange = 8f;
     public GameObject explosionObject;
 
     bool taunted = false;
@@ -59,10 +58,6 @@ public class SuicideAI : MonsterAI
         else {
             MoveToAttack();
         }
-
-        if(Vector3.Distance(transform.position, GetTargetPosition()) > deAggroRange){
-            MoveToIdle();
-        }
     }
 
     public override void EnterUtilityState()
@@ -83,16 +78,6 @@ public class SuicideAI : MonsterAI
         taunted = true;
         ResetTimer();
         ToIdle();
-    }
-
-    public void MoveToIdle()
-    {
-        //Debug.Log("MoveToIdle");
-        StopNavMeshAgent();
-        state = State.Idle;
-        stateFunc = Idle;
-        anim.SetTrigger("Taunted");
-        aggroed = false;
     }
 
     void Explode()
@@ -145,7 +130,6 @@ public class SuicideAI : MonsterAI
 
     void OnTriggerEnter(Collider coll)
     {
-        Debug.Log("Collided with somehthing");
         //Debug.Log("Collided with something exploding");
         if (state == State.Utility)
             Explode();

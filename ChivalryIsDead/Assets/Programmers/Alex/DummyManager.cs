@@ -73,11 +73,6 @@ public class DummyManager : MonoBehaviour
 
     }
 
-    public int GetComboValue()
-    {
-        return combo;
-    }
-
     public int GetComboMultiplier(int score)
     {
         //combo multiplier

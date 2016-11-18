@@ -196,7 +196,7 @@ public class HubDataManager : MonoBehaviour {
 
         //
 
-        SceneManager.LoadScene(UnityEngine.Random.Range(4, 8));
+        SceneManager.LoadScene(UnityEngine.Random.Range(4, 10));
         //SceneManager.LoadScene(7);
 
     }
