@@ -6,6 +6,9 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public GameObject Player;
 
+    public GameObject MainCam;
+    public GameObject AnimCam;
+
     public GameObject UI;
     public GameObject ControlMove;
     public GameObject ControlHit;
@@ -57,9 +60,12 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogOne()
     {
+        AnimCam.SetActive(true);
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(11);
+        MainCam.SetActive(true);
+        AnimCam.SetActive(false);
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
         UI.GetComponent<GameMenu>().Princess();
