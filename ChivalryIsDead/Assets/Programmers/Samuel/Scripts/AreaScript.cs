@@ -11,12 +11,14 @@ public class AreaProperty
     [SerializeField] public Color AreaColor;
     [SerializeField] public monsterType SpawnType;
     [SerializeField] public int MaxSpawn;
+    [SerializeField] public QuestType QuestType;
 
-    public AreaProperty(Color c, monsterType t, int n)
+    public AreaProperty(Color c, monsterType t, int n, QuestType qt)
     {
         AreaColor = c;
         SpawnType = t;
         MaxSpawn = n;
+        QuestType = qt;
     }
 }
 
@@ -51,7 +53,7 @@ public class AreaScript : MonoBehaviour {
     {
         Debug.Log("Adding SpawnArea");
         Areas.Add(new Rect(0, 0, 2f, 2f));
-        properties.Add(new AreaProperty(new Color(0.4f, 0.9f, 0.1f, 1f), monsterType.Melee, -1));
+        properties.Add(new AreaProperty(new Color(0.4f, 0.9f, 0.1f, 1f), monsterType.Melee, -1, QuestType.Protect));
     }
 
     public void ResetAll()

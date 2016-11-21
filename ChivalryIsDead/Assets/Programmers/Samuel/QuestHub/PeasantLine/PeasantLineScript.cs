@@ -52,7 +52,7 @@ public class PeasantLineScript : MonoBehaviour {
         Peasants.Add(PeasantObj);
     }
 
-    public void GivePeasantQuest(int PeasantIndex, int QuestIndex, BaseQuest quest)
+    public void PushQuestToPeasant(int PeasantIndex, int QuestIndex, BaseQuest quest)
     {
 
         Vector3 pos = Peasants[PeasantIndex].transform.position;
