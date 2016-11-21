@@ -18,8 +18,8 @@ public class DummyWwiseTester : MonoBehaviour {
         if (WwiseInterface.Instance != null)
         {
             Debug.Log("Playing test sound.");
-            WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
-            WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Attack, gameObject);
+            //WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+            //WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Attack, gameObject);
 
         }
         else
