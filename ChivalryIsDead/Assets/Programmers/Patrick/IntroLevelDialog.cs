@@ -26,13 +26,17 @@ public class IntroLevelDialog : MonoBehaviour {
     Animator handAnimator;
     public Animator swordAnimator;
 
+
     // Use this for initialization
-    void Start () {
+    void Awake () {
         procceed = false;
         learnedToMove = true;
         learnedToAttack = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
-	}
+
+
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -69,7 +73,7 @@ public class IntroLevelDialog : MonoBehaviour {
 
 	}
 
-    public IEnumerator DialogOne()
+    public IEnumerator Start()
     {
         AnimCam.SetActive(true);
         ControlMove.SetActive(false);
@@ -82,18 +86,24 @@ public class IntroLevelDialog : MonoBehaviour {
         UI.GetComponent<GameMenu>().Sword();
         //Invoke("CallableSkip", 1.3f);
 
+        
+         
+    }
+
+    public IEnumerator DialogOne()
+    {
         yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
-
-        yield return new WaitForSeconds(13f);
+        //yield return new WaitForSeconds(13f);
         MainCam.SetActive(true);
         AnimCam.SetActive(false);
+
         Time.timeScale = 0.1f;
         ScreenFreeze.SetActive(true);
         swordAnimator.speed = 10f;
 
-        
+
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         yield return new WaitForSeconds(0.2f);
         UI.GetComponent<GameMenu>().Sword();
@@ -114,8 +124,8 @@ public class IntroLevelDialog : MonoBehaviour {
         handAnimator.speed = 10f;
         handAnimator.SetBool("playLeftJoy", true);
         ControlMove.SetActive(true);
-
     }
+
 
     public bool SkipAndPlay()
     {
