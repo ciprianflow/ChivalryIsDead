@@ -16,12 +16,14 @@ public class AreaPropertyDrawer : PropertyDrawer {
         Rect newPos = position;
 
         int offset = 20;
-        position.width = position.width - 25;
-        EditorGUI.PropertyField(new Rect(position.x - offset, position.y, position.width /2, position.height), property.FindPropertyRelative("AreaColor"), GUIContent.none);
-        position.width = position.width / 2;
+        float widthThird = position.width / 3;
+        position.width = widthThird - 25;
+        EditorGUI.PropertyField(new Rect(position.x - offset, position.y, position.width + offset, position.height), property.FindPropertyRelative("AreaColor"), GUIContent.none);
+        position.width = widthThird;
         EditorGUI.PropertyField(new Rect(position.x + position.width - 25 - offset, position.y, position.width, position.height), property.FindPropertyRelative("SpawnType"), GUIContent.none);
-        position.width = position.width / 2;
-        EditorGUI.PropertyField(new Rect(position.x + position.width + offset + 85, position.y, position.width, position.height), property.FindPropertyRelative("MaxSpawn"), GUIContent.none);
-
+        position.width = widthThird;
+        EditorGUI.PropertyField(new Rect(position.x + position.width + 25, position.y, position.width, position.height), property.FindPropertyRelative("MaxSpawn"), GUIContent.none);
+        position.width = widthThird;
+        EditorGUI.PropertyField(new Rect(position.x + position.width * 2, position.y, position.width, position.height), property.FindPropertyRelative("QuestType"), GUIContent.none);
     }
 }

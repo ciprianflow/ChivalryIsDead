@@ -52,7 +52,7 @@ public class MeleeAI : MonsterAI
 
     void NormalAttack()
     {
-        Debug.Log("I am in a normal attack state now");
+        //Debug.Log("I am in a normal attack state now");
         if (!rotated)
         {
             if (!TimedControlledRotation(t1 / ChargeTurnTime))
@@ -117,10 +117,10 @@ public class MeleeAI : MonsterAI
         Colliders = Physics.OverlapSphere(transform.position, attackLength);
         for (int i = 0; i < Colliders.Length; i++)
         {
-            Debug.Log("One in range");
+            //Debug.Log("One in range");
             if (Colliders[i].tag == "Player")
             {
-                Debug.Log("This on is a player");
+                //Debug.Log("This on is a player");
                 Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
                 if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
                 {
@@ -129,12 +129,12 @@ public class MeleeAI : MonsterAI
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
                     base.playerAction.PlayerAttacked(this);
-                    Debug.Log("Hit player");
+                    //Debug.Log("Hit player");
                 }
             }
         }
 
-        Debug.Log("Attacking");
+        //Debug.Log("Attacking");
 
     }
 

@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum State { Attack, Move, Charge, Idle, Utility }
+public enum State { Attack, Move, Charge, Idle, Utility, Death }
 
 public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
@@ -65,6 +65,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Init();
     public abstract void MoveEvent();
     public abstract void HitThis();
+    void Death() {}
 
     public abstract int GetObjectiveAttackReputation();
     public abstract int GetAttackReputation();
@@ -104,6 +105,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
+
+        //if (agent.angularSpeed > 3) {
+
+        //}
+
     }
 
     #region Timers
@@ -134,6 +140,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         agent.velocity = Vector3.zero;
         StopNavMeshAgent();
         stateFunc = Idle;
+        //if(anim != null)
+        //anim.SetFloat("Speed", 0);
+        Debug.Log("TOIDLE");
+
     }
 
     public void Aggro()
@@ -159,23 +169,31 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void ToMove()
     {
+        
         //Debug.Log("ToMove");
         MoveEvent();
         ResumeNavMeshAgent();
         state = State.Move;
         stateFunc = Move;
-        anim.SetTrigger("StartCharge");
+
+        if(this.name!="Ranged")
+            anim.SetTrigger("StartCharge");
+        anim.SetFloat("Speed", 1);
+
 
         //Plays move sound
-        WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Walk, this.gameObject);
+        //WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Walk, this.gameObject);
+
     }
 
     protected void MoveToAttack()
     {
         Debug.Log("MoveToAttack");
+
         StopNavMeshAgent();
         state = State.Attack;
         stateFunc = Attack;
+        anim.SetFloat("Speed", 0);
     }
 
     protected void AttackToMove()
@@ -190,6 +208,13 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         //Debug.Log("IdleToMove");
         ToMove();
+    }
+
+    void ToDeath()
+    {
+        state = State.Death;
+        stateFunc = Death;
+        StopNavMeshAgent();
     }
 
     #endregion
@@ -282,6 +307,21 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         Quaternion q = Quaternion.LookRotation(GetTargetPosition() - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
+        if (this.name == "Ranged") {
+            if((q.eulerAngles.y - transform.eulerAngles.y) > 5) {
+                anim.SetBool("turnright", true);
+                anim.SetBool("turnleft", false);
+            }
+            else if ((q.eulerAngles.y - transform.eulerAngles.y) < -5) {
+                anim.SetBool("turnright", false);
+                anim.SetBool("turnleft", true);
+            }
+            else {
+                anim.SetBool("turnright", false);
+                anim.SetBool("turnleft", false);
+            }
+        }
+
     }
 
     protected void rotateTowardsTarget(Vector3 pos)
@@ -358,17 +398,27 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             //Updates the objective
             if (StaticIngameData.mapManager != null)
                 StaticIngameData.mapManager.CheckObjectives(this);
-
-            gameObject.SetActive(false);
+            ToDeath();
+            Debug.Log("DED");
+            anim.Play("Death", 0, 0);
+            //anim.SetTrigger("DIE");
+            StartCoroutine(death());
 
             
+        }
+        else {
+            anim.Play("TakeDamage");
         }
 
         //Plays attacked sound
         WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Attacked, this.gameObject);
         HitThis();
 
-        anim.Play("TakeDamage");
+    }
+
+    IEnumerator death() {
+        yield return new WaitForSeconds(5);
+        gameObject.SetActive(false);
     }
 
     //This is the function that makes the sheep go fly

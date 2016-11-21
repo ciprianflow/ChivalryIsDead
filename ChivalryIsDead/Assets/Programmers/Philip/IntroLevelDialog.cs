@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class IntroLevelDialog : MonoBehaviour {
+public class IntroLevelDialosg : MonoBehaviour {
 
     public GameObject Player;
 

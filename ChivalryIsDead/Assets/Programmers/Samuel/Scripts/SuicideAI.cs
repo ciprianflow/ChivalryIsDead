@@ -167,6 +167,11 @@ public class SuicideAI : MonsterAI
 
     public override void HitThis()
     {
+
+        //Called when monster is hit but not killed
+
+        anim.Play("Suicide_Flying");
+
         if (this.gameObject.activeSelf)
         {
             EnterUtilityState();
@@ -179,6 +184,7 @@ public class SuicideAI : MonsterAI
 
         yield return new WaitForSeconds(1f);
         Explode();
+
 
     }
 }

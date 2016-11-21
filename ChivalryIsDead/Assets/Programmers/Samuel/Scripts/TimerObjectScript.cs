@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System;
 
@@ -7,13 +8,23 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     int id = 31;
 
     float timer = 0;
-    float maxTime = 150;
+    float maxTime = 120;
+
+    Image timerImage;
+
+    void Awake()
+    {
+        timerImage = GameObject.Find("Canvas").transform.FindChild("Timer").GetComponent<Image>();
+    }
 
     void Update()
     {
         timer += Time.deltaTime;
         if (timer >= maxTime)
             StaticIngameData.mapManager.CheckObjectives(this);
+
+        if (timerImage != null)
+            timerImage.fillAmount = 1 - timer / maxTime;
     }
 
     public int ID

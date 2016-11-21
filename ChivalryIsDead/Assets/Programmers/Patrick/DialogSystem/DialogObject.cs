@@ -42,6 +42,7 @@ public class DialogObject : MonoBehaviour {
     bool isSkipped;
     float SpeakingTime;
     bool isSpeaking;
+    bool callBlink;
 
     // Use this for initialization
     void Start () {
@@ -147,6 +148,7 @@ public class DialogObject : MonoBehaviour {
         d.Dialog = d.Name.Length;
 
         isSpeaking = true;
+        callBlink = true;
 
         for (int i = 0; i < d.Dialog; i++)
         {
@@ -226,13 +228,24 @@ public class DialogObject : MonoBehaviour {
                 
             if (d.Name[i] == "Sword")
             {
+                if (callBlink)
+                {
+                    StartCoroutine(SwordBlink());
+                    if (Time.timeScale == 1)
+                        yield return new WaitForSeconds(2f);
+                    else
+                        yield return new WaitForSeconds(0.2f);
+                    callBlink = false;
+                }
+
+                SwordParticle.SetActive(true);
                 indexCount = i;
                 swordBubble.SetActive(true);
-                SwordParticle.SetActive(true);
+                
                 swordText.GetComponent<Text>().text = d.Text[i];
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
-                StartCoroutine(SwordBlink(d.Wait[i]));
+                
                 while (!isSkipped && SpeakingTime > 0)
                 {
                     SpeakingTime -= Time.deltaTime;
@@ -360,21 +373,24 @@ public class DialogObject : MonoBehaviour {
         }
     }
 
-    IEnumerator SwordBlink(float time)
+    IEnumerator SwordBlink()
     {
-        //if(Time.timeScale)
-        while (time > 0)
-        {
-            SwordParticle.SetActive(true);
-            yield return new WaitForSeconds(Random.Range(0.06f, 0.16f));
-            SwordParticle.SetActive(false);
-            //yield return new WaitForSeconds(Random.Range(0.01f, 0.03f));
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
+        ////if(Time.timeScale)
+        //while (time > 0)
+        //{
+        //    SwordParticle.SetActive(true);
+        //    yield return new WaitForSeconds(Random.Range(0.06f, 0.16f));
+        //    SwordParticle.SetActive(false);
+        //    //yield return new WaitForSeconds(Random.Range(0.01f, 0.03f));
+        //    yield return new WaitForEndOfFrame();
+        //    yield return new WaitForEndOfFrame();
+        //    yield return new WaitForEndOfFrame();
 
-            time -= Time.deltaTime;
-        }
-   
+        //    time -= Time.deltaTime;
+        //}
+
+        SwordParticle.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        SwordParticle.transform.GetChild(1).gameObject.SetActive(false);
     }
 }

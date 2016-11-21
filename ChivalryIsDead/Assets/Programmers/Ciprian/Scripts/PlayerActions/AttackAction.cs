@@ -76,6 +76,7 @@ class AttackAction : MonoBehaviour
             //clear colliders if attack doesnt go through
             return colliders;
         }
+        WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Attack, this.gameObject);
 
         playerBase.attack();
 
@@ -89,6 +90,7 @@ class AttackAction : MonoBehaviour
             //attack force
             collider.GetComponent<Rigidbody>().AddExplosionForce(100000f, transform.position, 5000f);
         }
+
 
         return colliders;
 
