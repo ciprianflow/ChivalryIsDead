@@ -32,6 +32,15 @@ public class ThrowRock : MonoBehaviour {
 
         rock.GetComponent<Rigidbody>().useGravity = true;
         rock.GetComponent<BoxCollider>().enabled = true;
-        rangedScript.FireProjectTile(rock);
+        rangedScript.FireProjectTile(ref rock);
+    }
+
+    public void dropRock() {
+        if (rock.transform.parent == hand.transform) {
+            rock.GetComponent<Rigidbody>().useGravity = true;
+            rock.GetComponent<BoxCollider>().enabled = true;
+            rock.transform.parent = null;
+        }
+
     }
 }

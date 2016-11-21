@@ -313,7 +313,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 anim.SetBool("turnleft", false);
             }
         }
-        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
+
     }
 
     protected void rotateTowardsTarget(Vector3 pos)
@@ -391,7 +391,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             if (StaticIngameData.mapManager != null)
                 StaticIngameData.mapManager.CheckObjectives(this);
 
-            gameObject.SetActive(false);
+            anim.Play("Death");
+            //anim.SetTrigger("DIE");
+            StartCoroutine(death());
 
             
         }
@@ -401,6 +403,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         HitThis();
 
         anim.Play("TakeDamage");
+    }
+
+    IEnumerator death() {
+        yield return new WaitForSeconds(5);
+        gameObject.SetActive(false);
     }
 
     //This is the function that makes the sheep go fly
