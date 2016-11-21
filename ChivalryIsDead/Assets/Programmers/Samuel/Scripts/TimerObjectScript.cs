@@ -7,7 +7,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     int id = 31;
 
     float timer = 0;
-    float maxTime = 150;
+    float maxTime = 120;
 
     void Update()
     {

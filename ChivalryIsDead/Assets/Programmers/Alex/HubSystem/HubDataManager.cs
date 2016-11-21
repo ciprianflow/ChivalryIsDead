@@ -79,11 +79,11 @@ public class HubDataManager : MonoBehaviour {
         //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
         hubData.AvailableQuests.Add(MQ);
 
-        QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
-        QD = new QuestData();
-        MQ = QG.GenerateMultiQuest(out QD);
+        //QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
+        //QD = new QuestData();
+        //MQ = QG.GenerateMultiQuest(out QD);
         //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
-        hubData.AvailableQuests.Add(MQ);
+        //hubData.AvailableQuests.Add(MQ);
 
         //AssetDatabase.SaveAssets();
         currentHubData = hubData;
@@ -140,9 +140,9 @@ public class HubDataManager : MonoBehaviour {
             int newI = i;
             b.onClick.AddListener(() => SelectQuest(newI));
 
-            peasantLineScript.GivePeasantQuest(i, newI, oAsQuest);
-
+            peasantLineScript.PushQuestToPeasant(i, newI, oAsQuest);
         }
+
         GenerateDLCQuest();
     }
 
