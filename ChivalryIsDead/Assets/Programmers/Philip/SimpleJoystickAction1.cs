@@ -159,7 +159,7 @@ namespace CnControls
         private bool taunt;
         private bool overreact;
         private bool cancel;
-        private bool question;
+        //private bool question;
 
 
         GameObject player;
@@ -301,8 +301,6 @@ namespace CnControls
             SX = Stick.rectTransform.localPosition.x/MovementRange;
             SY = Stick.rectTransform.localPosition.y/MovementRange;
 
-            float SXX = Vector2.ClampMagnitude(new Vector2(SX, SY), 1).x;
-            float SYY = Vector2.ClampMagnitude(new Vector2(SX, SY), 1).y;
             float angle = Mathf.Rad2Deg * Mathf.Atan2(SY, SX);
             if (angle < 0)
                 angle += 360;
@@ -458,9 +456,7 @@ namespace CnControls
             else if (overreact) {
                 action_overreact();
             }
-            else if (question) {
-                action_question();
-            }
+
             else if (cancel) {
                 action_cancel();
             }
@@ -500,10 +496,7 @@ namespace CnControls
             playerActionController.HandleOverreact();
 
         }
-        private void action_question() {
-            t.text = "question";
-            t.color = new Color(1, 1, 0, 1);
-        }
+
         private void action_cancel() {
             t.text = "cancelled";
             t.color = new Color(0, 1, 1, 1);
