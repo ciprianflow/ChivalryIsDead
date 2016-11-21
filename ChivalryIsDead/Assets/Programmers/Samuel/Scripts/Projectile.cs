@@ -8,8 +8,11 @@ public class Projectile : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
     {
-        if (setToDestroy || col.transform.CompareTag("Projectile"))
+
+
+        if (setToDestroy || col.transform.CompareTag("Projectile") || originMonster == null  || col.gameObject == originMonster.transform.gameObject)
             return;
+
 
         ProjectileCollision(col.gameObject);
 
