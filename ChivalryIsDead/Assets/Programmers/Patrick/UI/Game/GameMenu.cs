@@ -228,7 +228,7 @@ public class GameMenu : MonoBehaviour {
     {
         skipBtn.SetActive(true);
         sword.SetActive(true);
-
+        
     }
 
 

@@ -17,7 +17,7 @@ public class SuicideAI : MonsterAI
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(this.transform.position, explosionRange);
+        Gizmos.DrawWireSphere(this.transform.position, explosionRange * 0.5f);
     }
 
     public override void Attack()
@@ -40,7 +40,15 @@ public class SuicideAI : MonsterAI
         }
     }
 
-    public override void Init() { }
+    public override void Init()
+    {
+        GameObject obj = new GameObject("ExplosionTrigger");
+        obj.transform.SetParent(this.transform, false);
+        SphereCollider col = obj.AddComponent<SphereCollider>();
+        col.center = new Vector3(0, 0);
+        col.radius = explosionRange;
+        col.isTrigger = true;
+    }
 
     public override void KillThis()
     {
