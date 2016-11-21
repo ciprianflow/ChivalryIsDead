@@ -4,16 +4,6 @@ using System.Collections;
 public class VibrationExample : MonoBehaviour
 {
     // Test text
-    public GUIText guiText;
-
-    void Start()
-    {
-        // Check the vibrator on existence
-        if (Vibration.HasVibrator())
-            guiText.text = "Vibration.HasVibrator() = true";
-        else
-            guiText.text = "Vibration.HasVibrator() = false";
-    }
 
     void OnGUI()
     {
