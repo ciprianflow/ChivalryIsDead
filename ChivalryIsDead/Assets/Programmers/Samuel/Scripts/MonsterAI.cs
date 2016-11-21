@@ -181,7 +181,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
 
         //Plays move sound
-        WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Walk, this.gameObject);
+        //WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Walk, this.gameObject);
 
     }
 
@@ -311,8 +311,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             else {
                 anim.SetBool("turnright", false);
                 anim.SetBool("turnleft", false);
-
-                anim.SetTrigger("StopTurning");
             }
         }
         Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
