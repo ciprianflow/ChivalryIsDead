@@ -25,6 +25,8 @@ public class RangedAI : MonsterAI
     {
     }
 
+    
+
     public override void Attack()
     {
         RotateTowardsTarget();
@@ -36,7 +38,7 @@ public class RangedAI : MonsterAI
                 return;
             }
 
-            FireProjectTile();
+            anim.SetTrigger("PickUpRock");
             ResetTimer();
         }
     }
@@ -52,27 +54,32 @@ public class RangedAI : MonsterAI
 
     public override void Idle() { }
 
-    void FireProjectTile()
+    public void FireProjectTile(ref GameObject obj)
     {
 
-        GameObject obj = Instantiate(projectile);
 
-        Projectile p = projectile.GetComponent<Projectile>();
-        if (p != null)
-            p.originMonster = this;
+        //GameObject obj = Instantiate(projectile);
 
-        obj.transform.position = transform.position + new Vector3(0, 3f, 0);
+        //Projectile p = projectile.GetComponent<Projectile>();
+        //if (p != null)
+        //    p.originMonster = this;
+        //else
+        //    Debug.Log("p doesnt exist");
+
+        obj.GetComponent<Projectile>().originMonster = this;
+
+        //obj.transform.position = transform.position + new Vector3(0, 3f, 0);
 
         Rigidbody objRigidBody = obj.GetComponent<Rigidbody>();
 
         Vector3 random = new Vector3(UnityEngine.Random.Range(-randomShootRange, randomShootRange), 0, UnityEngine.Random.Range(-randomShootRange, randomShootRange));
         float randomAng = UnityEngine.Random.Range(-randomShootAngle, randomShootAngle);
 
-        Vector3 randTargetPos = targetObject.position;
+        Vector3 randTargetPos = targetObject.position + random;
         Vector3 velocity = Vector3.zero;
         if (taunted)
         {
-            velocity = BallisticVel(targetObject.position, shootAngle) * force;
+            velocity = BallisticVel(targetObject.position, 30) * force;
             taunted = false;
         }
         else
@@ -85,10 +92,16 @@ public class RangedAI : MonsterAI
         objRigidBody.velocity = velocity;
         objRigidBody.AddTorque(velocity);
 
-        if (targetSprite == null)
-                return;
+        if (targetSprite == null) {
+            return;
+        }
 
         targetObj = Instantiate(targetSprite).transform;
+        //GameObject vrsdagrse = Instantiate(projectile);
+
+        targetObj.name = "ROCKTARGET";
+
+        anim.SetBool("Taunted", false);
 
         targetObj.position = randTargetPos;//hit.point + new Vector3(0, 0.5f, 0);
         targetObj.Rotate(0, 0, 90);
@@ -96,7 +109,7 @@ public class RangedAI : MonsterAI
         obj.transform.SetParent(targetObj);
 
         //Plays attack sound
-        //WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Attack, this.gameObject);
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Attack, this.gameObject);
     }
 
     Vector3 BallisticVel(Vector3 target, float angle)
@@ -121,8 +134,9 @@ public class RangedAI : MonsterAI
     public override void Taunt() {
         //Plays Taunt sound
         WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Taunted, this.gameObject);
-
+        
         taunted = true;
+        anim.SetBool("Taunted", true);
     }
 
     public override void KillThis()
