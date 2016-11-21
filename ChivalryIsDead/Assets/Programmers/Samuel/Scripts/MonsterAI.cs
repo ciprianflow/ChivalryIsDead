@@ -102,6 +102,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
         //HARD CODED REMOVE LATER
+
+        //if (agent.angularSpeed > 3) {
+
+        //}
+
     }
 
     #region Timers
@@ -158,6 +163,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void ToMove()
     {
+        
         //Debug.Log("ToMove");
         MoveEvent();
         ResumeNavMeshAgent();
@@ -170,7 +176,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void MoveToAttack()
     {
-        //Debug.Log("MoveToAttack");
+        Debug.Log("MoveToAttack");
+
         StopNavMeshAgent();
         state = State.Attack;
         stateFunc = Attack;
@@ -273,6 +280,23 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         Quaternion q = Quaternion.LookRotation(GetTargetPosition() - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
+        if (this.name == "Ranged") {
+            if((q.eulerAngles.y - transform.eulerAngles.y) > 5) {
+                anim.SetBool("turnright", true);
+                anim.SetBool("turnleft", false);
+            }
+            else if ((q.eulerAngles.y - transform.eulerAngles.y) < -5) {
+                anim.SetBool("turnright", false);
+                anim.SetBool("turnleft", true);
+            }
+            else {
+                anim.SetBool("turnright", false);
+                anim.SetBool("turnleft", false);
+
+                anim.SetTrigger("StopTurning");
+            }
+        }
+        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
     }
 
     protected void rotateTowardsTarget(Vector3 pos)

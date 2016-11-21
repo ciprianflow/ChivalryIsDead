@@ -24,6 +24,8 @@ public class RangedAI : MonsterAI
     {
     }
 
+    
+
     public override void Attack()
     {
         RotateTowardsTarget();
@@ -93,6 +95,7 @@ public class RangedAI : MonsterAI
         //GameObject vrsdagrse = Instantiate(projectile);
 
         targetObj.name = "ROCKTARGET";
+
 
 
         targetObj.position = randTargetPos;//hit.point + new Vector3(0, 0.5f, 0);
