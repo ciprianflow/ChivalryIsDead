@@ -1,21 +1,38 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
-public class HubData : ScriptableObject {
-
+[Serializable]
+public class HubData
+{
+    public int RandomSeed;
     public int DaysLeft;
-    public int GlobalReputation;
+    public float GlobalReputation;
     public int QueueLength { get { return Mathf.CeilToInt(GlobalReputation / 20); } }
-    public List<IQuest> AvailableQuests;
+    [NonSerialized] public List<IQuest> AvailableQuests;
 
     public HubData()
     {
-        DaysLeft = 0;
-        GlobalReputation = 1000;
+        RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
+        DaysLeft = 14;
+        GlobalReputation = 100;
+    }
+
+    public HubData(int daysLeft, float reputation)
+    {
+        DaysLeft = daysLeft;
+        GlobalReputation = reputation;
     }
 
     public void GenerateQuests()
     {
-        AvailableQuests = DummyQuestGenerator.GenerateMultipleQuests(QueueLength);
+        var curDay = StaticData.TotalDays - DaysLeft;
+        QuestGenerator QG = new QuestGenerator(curDay, (int)GlobalReputation, RandomSeed);
+
+        if (AvailableQuests == null)
+            AvailableQuests = new List<IQuest>();
+
+        for (int i = 0; i < QueueLength; i++)
+            AvailableQuests.Add(QG.GenerateMultiQuest());
     }
 }
