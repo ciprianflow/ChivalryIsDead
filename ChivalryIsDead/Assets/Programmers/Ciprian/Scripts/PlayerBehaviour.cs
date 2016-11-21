@@ -32,13 +32,21 @@ class PlayerBehaviour : ScorePublisher
 
     public void ChangeRepScore(int score)
     {
-        
+
         if (score < 0)
         {
             RepLossParticle.SetActive(false);
 
             ScoreChange = dummyManager.GetComboMultiplier(score);
-            
+
+            //@@HARDCODED 
+            if (dummyManager.GetComboValue() > 8)
+                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepCombo, RepLossParticle);
+            else if ((ScoreChange * -1) > 500)
+                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepBig, RepLossParticle);
+            else
+                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepSmall, RepLossParticle);
+
             //increase combo
             dummyManager.IncreaseCombo();
             //reset cooldown
@@ -53,10 +61,12 @@ class PlayerBehaviour : ScorePublisher
             //particle effect
             RepGainParticle.SetActive(true);
             Reset();
+
+            WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.GainRep, RepGainParticle);
             ScoreChange = dummyManager.GetComboMultiplier(score);
         }
     }
-    
+
     //reset combo
     public void Reset()
     {
