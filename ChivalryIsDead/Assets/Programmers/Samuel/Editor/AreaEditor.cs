@@ -110,14 +110,16 @@ public class AreaEditor : Editor {
             Handles.color = Color.blue;
             if(areaScript.properties[i].MaxSpawn < 0)
                 Handles.Label(pos + Vector3.up * 4 + new Vector3(1, 0, 1),
-                                     "Area  : " + i + "\n "  +
+                                     "Area  : " + i + "\n"  +
                                      "Type : "+ areaScript.properties[i].SpawnType.ToString() + "\n" +
-                                     "Max Spawn : no limit", style);
+                                     "Max Spawn : no limit" + "\n" +
+                                     "Quest Type : " + areaScript.properties[i].QuestType, style);
             else
                 Handles.Label(pos + Vector3.up * 4 + new Vector3(1, 0, 1),
                                      "Area  : " + i + "\n"+
                                      "Type : " + areaScript.properties[i].SpawnType.ToString() + "\n" +
-                                     "Max Spawn : " + areaScript.properties[i].MaxSpawn, style);
+                                     "Max Spawn : " + areaScript.properties[i].MaxSpawn + "\n" +
+                                     "Quest Type : " + areaScript.properties[i].QuestType, style);
 
             areaScript.Areas[i] = new Rect(pos.x, pos.z, scale.x, scale.z);
 
