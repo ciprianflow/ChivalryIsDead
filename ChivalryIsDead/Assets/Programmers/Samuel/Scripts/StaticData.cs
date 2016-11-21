@@ -7,7 +7,7 @@ public static class StaticData {
     public static MultiQuest currQuest;
 
     //Meta Data
-    public static int daysLeft = 7;
+    public static int daysLeft = 14;
     public static int maxDaysLeft = daysLeft;
     public static float Reputation = 100;
     public static int Suspicion = 0;
