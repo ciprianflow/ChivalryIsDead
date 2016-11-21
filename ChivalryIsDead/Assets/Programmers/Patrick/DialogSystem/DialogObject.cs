@@ -36,6 +36,8 @@ public class DialogObject : MonoBehaviour {
     GameObject targetBubble;
     int indexCount;
 
+    public GameObject SwordParticle;
+
     float test;
     bool isSkipped;
     float SpeakingTime;
@@ -226,26 +228,27 @@ public class DialogObject : MonoBehaviour {
             {
                 indexCount = i;
                 swordBubble.SetActive(true);
+                SwordParticle.SetActive(true);
                 swordText.GetComponent<Text>().text = d.Text[i];
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
-
+                StartCoroutine(SwordBlink(d.Wait[i]));
                 while (!isSkipped && SpeakingTime > 0)
                 {
                     SpeakingTime -= Time.deltaTime;
                     yield return new WaitForEndOfFrame();
-
                 }
                 isSkipped = false;
                 //test = d.Wait[i];
                 //yield return StartCoroutine("SkipTest");
+                SwordParticle.SetActive(false);
                 swordBubble.SetActive(false);
             }
 
             if (d.Name[i] == "Princess")
             {
                 indexCount = i;
-                princessBubble.SetActive(true);
+                princessBubble.SetActive(true);             
                 princessText.GetComponent<Text>().text = d.Text[i];
                 ////yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
@@ -278,12 +281,10 @@ public class DialogObject : MonoBehaviour {
         kingText.GetComponent<Text>().text = "";
 
         isSpeaking = false;
-        gameMenu.skipAllBtn.SetActive(false);
         gameMenu.skipBtn.SetActive(false);
         gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
         gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
-        float duration = gameMenu.princess.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
-        Debug.Log("current clip length = " + duration);
+        float duration = gameMenu.sword.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
 
         StartCoroutine(Hide(duration));
     }
@@ -297,17 +298,15 @@ public class DialogObject : MonoBehaviour {
             yield return new WaitForEndOfFrame();
 
         }
-        isSpeaking = false;
         // Remember :)
         //yield return new WaitForSeconds(dur);
 
-        if(!isSpeaking)
-        {
-            gameMenu.sword.SetActive(false);
-            gameMenu.princess.SetActive(false);
-            gameMenu.skipBtn.SetActive(false);
+  
+        gameMenu.sword.SetActive(false);
+        gameMenu.princess.SetActive(false);
+        gameMenu.skipBtn.SetActive(false);
             
-        }
+        
 
       
 
@@ -341,7 +340,7 @@ public class DialogObject : MonoBehaviour {
         StopCoroutine("DialogSystem");
         gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
         gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
-        StartCoroutine(Hide(gameMenu.princess.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
+        StartCoroutine(Hide(gameMenu.sword.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length));
 
         
         playerBubble.SetActive(false);
@@ -359,11 +358,23 @@ public class DialogObject : MonoBehaviour {
                 arrayEnemyBubble.SetActive(false);
             }
         }
-        
-        
-        
-
     }
 
+    IEnumerator SwordBlink(float time)
+    {
+        //if(Time.timeScale)
+        while (time > 0)
+        {
+            SwordParticle.SetActive(true);
+            yield return new WaitForSeconds(Random.Range(0.06f, 0.16f));
+            SwordParticle.SetActive(false);
+            //yield return new WaitForSeconds(Random.Range(0.01f, 0.03f));
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
 
+            time -= Time.deltaTime;
+        }
+   
+    }
 }

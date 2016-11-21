@@ -31,9 +31,7 @@ public class GameMenu : MonoBehaviour {
     float testRND;
 
     public GameObject skipBtn;
-    public GameObject skipAllBtn;
     GameObject pauseBtn;
-
 
     private bool tauntCD = true;
 
@@ -58,7 +56,6 @@ public class GameMenu : MonoBehaviour {
         sword.SetActive(false);
         princess.SetActive(false);
         skipBtn.SetActive(false);
-        skipAllBtn.SetActive(false);
 
         //Princess();
         //Sword();
@@ -92,7 +89,7 @@ public class GameMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Princess();
@@ -220,28 +217,22 @@ public class GameMenu : MonoBehaviour {
         dialogSystem.SkipDialog();
     }
 
-    public void SkipDialog()
-    {
-        skipAllBtn.SetActive(false);
-        dialogSystem.StopDialog();
-    }
 
     public void Princess()
     {
-        skipAllBtn.SetActive(true);
         skipBtn.SetActive(true);
         princess.SetActive(true);
     }
 
     public void Sword()
     {
-        skipAllBtn.SetActive(true);
         skipBtn.SetActive(true);
         sword.SetActive(true);
+
     }
 
 
-    
+
 
     //Options
 
