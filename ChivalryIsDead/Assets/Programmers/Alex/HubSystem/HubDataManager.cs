@@ -227,7 +227,7 @@ public class HubDataManager : MonoBehaviour {
 
     void UpdateUI()
     {
-        RingImg.fillAmount = StaticData.daysLeft / StaticData.maxDaysLeft;
+        RingImg.fillAmount = (float)StaticData.daysLeft / (float)StaticData.maxDaysLeft;
     }
 
     public void SetDLCPopUp(bool b)
