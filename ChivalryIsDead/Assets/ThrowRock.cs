@@ -7,10 +7,11 @@ public class ThrowRock : MonoBehaviour {
     public GameObject rock_prefab;
     GameObject rock;
     public RangedAI rangedScript;
-	// Use this for initialization
+    public GameObject dustParticles;
+    // Use this for initialization
 
 
-	void Start () {
+    void Start () {
 	
 	}
 	
@@ -33,6 +34,7 @@ public class ThrowRock : MonoBehaviour {
         rock.GetComponent<Rigidbody>().useGravity = true;
         rock.GetComponent<BoxCollider>().enabled = true;
         rangedScript.FireProjectTile(ref rock);
+
     }
 
     public void dropRock() {
@@ -42,5 +44,12 @@ public class ThrowRock : MonoBehaviour {
             rock.transform.parent = null;
         }
 
+    }
+    public void setDust(int state) {
+        if(state == 1)
+            dustParticles.SetActive(true);
+        else 
+            dustParticles.SetActive(false);
+        
     }
 }

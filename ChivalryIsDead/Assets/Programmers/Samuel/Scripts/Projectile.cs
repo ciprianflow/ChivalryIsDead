@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour {
     {
 
 
-        if (setToDestroy || col.transform.CompareTag("Projectile") || col.gameObject == originMonster.transform.gameObject)
+        if (setToDestroy || col.transform.CompareTag("Projectile") || originMonster == null  || col.gameObject == originMonster.transform.gameObject)
             return;
 
 

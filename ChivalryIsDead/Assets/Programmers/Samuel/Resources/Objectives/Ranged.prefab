@@ -7219,7 +7219,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011796243958}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.61}
+  m_LocalPosition: {x: 0, y: -0.55, z: 0.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -7990,6 +7990,7 @@ MonoBehaviour:
   rock_prefab: {fileID: 1000012329749918, guid: 95b10be1172ee3f4ba35e9b65b7b640f,
     type: 2}
   rangedScript: {fileID: 114000013483877182}
+  dustParticles: {fileID: 1000011796243958}
 --- !u!114 &114000013483877182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8015,6 +8016,7 @@ MonoBehaviour:
   ObjectiveAttackRep: -20
   ObjectiveSheepRep: -100
   PlayerAttackRep: 30
+  monsterHandle: 0
   projectile: {fileID: 1000012329749918, guid: 95b10be1172ee3f4ba35e9b65b7b640f, type: 2}
   targetSprite: {fileID: 1000012462670054, guid: e269677dd49090c4eadd4f9939a56116,
     type: 2}
@@ -8712,7 +8714,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 10
+      scalar: 25
       maxCurve:
         serializedVersion: 2
         m_Curve:

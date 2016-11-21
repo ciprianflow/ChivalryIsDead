@@ -398,19 +398,22 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             //Updates the objective
             if (StaticIngameData.mapManager != null)
                 StaticIngameData.mapManager.CheckObjectives(this);
-
-            anim.Play("Death");
+            ToDeath();
+            Debug.Log("DED");
+            anim.Play("Death", 0, 0);
             //anim.SetTrigger("DIE");
             StartCoroutine(death());
 
             
+        }
+        else {
+            anim.Play("TakeDamage");
         }
 
         //Plays attacked sound
         WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Attacked, this.gameObject);
         HitThis();
 
-        anim.Play("TakeDamage");
     }
 
     IEnumerator death() {
