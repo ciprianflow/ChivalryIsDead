@@ -16,9 +16,45 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}'
-    m_lastTimePsrt1: 2354288
-    m_lastTimePart2: -1999368676
+    m_lastTimePsrt1: -1141915696
+    m_lastTimePart2: -1999368260
     List:
+    - Name: comboBoost
+      Path: Default Work Unit\reward\comboBoost
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: comboBoost
+        ObjectType: 3
+      ID: 2121219502
+      Guid: 35e50838c7c6894e8de05c48985e62e9
+      maxAttenuation: 0
+    - Name: comboEnd
+      Path: Default Work Unit\reward\comboEnd
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: comboEnd
+        ObjectType: 3
+      ID: 453596956
+      Guid: 1b5358d68ec5e340819778c48ff8fc4d
+      maxAttenuation: 0
+    - Name: comboStart
+      Path: Default Work Unit\reward\comboStart
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: comboStart
+        ObjectType: 3
+      ID: -328663361
+      Guid: be0f89feb6a4804b982833f66a2448be
+      maxAttenuation: 0
     - Name: dialogue_a_speech_bubble_pop
       Path: Default Work Unit\ui\dialogue_a_speech_bubble_pop
       PathAndIcons:
@@ -235,22 +271,6 @@ MonoBehaviour:
       ID: 347213686
       Guid: 3086f348b4c716488de62d4b29728d29
       maxAttenuation: 0
-    - Name: knight_scare
-      Path: Default Work Unit\characters\knight\combat\knight_scare
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: characters
-        ObjectType: 4
-      - ElementName: knight
-        ObjectType: 4
-      - ElementName: combat
-        ObjectType: 4
-      - ElementName: knight_scare
-        ObjectType: 3
-      ID: -1629850265
-      Guid: 95d496fc4e009c4fb0d5c94739d3f79d
-      maxAttenuation: 0
     - Name: knight_taunt
       Path: Default Work Unit\characters\knight\combat\knight_taunt
       PathAndIcons:
@@ -362,22 +382,6 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1302570184
       Guid: a55233b8345fe743aee75ea4a43bd9d9
-      maxAttenuation: 0
-    - Name: melee_scared
-      Path: Default Work Unit\characters\enemies\melee (merman type)\melee_scared
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: characters
-        ObjectType: 4
-      - ElementName: enemies
-        ObjectType: 4
-      - ElementName: melee (merman type)
-        ObjectType: 4
-      - ElementName: melee_scared
-        ObjectType: 3
-      ID: -485656770
-      Guid: de528085e1352940aabd2a4a243733e5
       maxAttenuation: 0
     - Name: melee_taunted
       Path: Default Work Unit\characters\enemies\melee (merman type)\melee_taunted
@@ -741,22 +745,6 @@ MonoBehaviour:
       ID: 808353447
       Guid: 259ed8af08fd924abd9e0597e223b794
       maxAttenuation: 0
-    - Name: ranged_scared
-      Path: Default Work Unit\characters\enemies\ranged (big troll type)\ranged_scared
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: characters
-        ObjectType: 4
-      - ElementName: enemies
-        ObjectType: 4
-      - ElementName: ranged (big troll type)
-        ObjectType: 4
-      - ElementName: ranged_scared
-        ObjectType: 3
-      ID: -1131803689
-      Guid: 001028117117604490d4c1f5efd09fab
-      maxAttenuation: 0
     - Name: ranged_take_out_throwing_object
       Path: Default Work Unit\characters\enemies\ranged (big troll type)\ranged_take_out_throwing_object
       PathAndIcons:
@@ -820,6 +808,18 @@ MonoBehaviour:
         ObjectType: 3
       ID: 521065176
       Guid: d20fdd0d7d4eb944b17acba77b644805
+      maxAttenuation: 0
+    - Name: smallReward
+      Path: Default Work Unit\reward\smallReward
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: smallReward
+        ObjectType: 3
+      ID: 42851371
+      Guid: bd29f25a4502964aa6a0d0c259eed3df
       maxAttenuation: 0
     - Name: start_hub_ambience
       Path: Default Work Unit\ambience\start_hub_ambience
@@ -892,22 +892,6 @@ MonoBehaviour:
         ObjectType: 3
       ID: -895232804
       Guid: fc991d035ba9b74898dbf2ccca89c8d3
-      maxAttenuation: 0
-    - Name: suicide_scared
-      Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_scared
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: characters
-        ObjectType: 4
-      - ElementName: enemies
-        ObjectType: 4
-      - ElementName: suicide (goblin type)
-        ObjectType: 4
-      - ElementName: suicide_scared
-        ObjectType: 3
-      ID: -1215961102
-      Guid: 86368e0e7193b146bbf61f440af2a68b
       maxAttenuation: 0
     - Name: suicide_taunted
       Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_taunted
@@ -1077,8 +1061,8 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{53EFE98F-F4D7-4002-81F7-3B00284891AE}'
-    m_lastTimePsrt1: -29856475
-    m_lastTimePart2: -1999368709
+    m_lastTimePsrt1: -1114205696
+    m_lastTimePart2: -1999368260
     List:
     - Name: Main_Soundbank
       Path: Default Work Unit\Main_Soundbank
@@ -1091,8 +1075,13 @@ MonoBehaviour:
       Guid: 2196daa1d32a7b498397d6570e61f3c1
   ExpandedItems:
   - /wwise project chivalry
-  - /wwise project chivalry/SoundBanks
-  - /wwise project chivalry/SoundBanks/Default Work Unit
+  - /wwise project chivalry/Events
+  - /wwise project chivalry/Events/Default Work Unit
+  - /wwise project chivalry/Events/Default Work Unit/ambience
+  - /wwise project chivalry/Events/Default Work Unit/characters
+  - /wwise project chivalry/Events/Default Work Unit/characters/princess
+  - /wwise project chivalry/Events/Default Work Unit/reward
+  - /wwise project chivalry/Switches
   m_lastPopulateTimePsrt1: 0
   m_lastPopulateTimePart2: 0
   autoPopulateEnabled: 1
