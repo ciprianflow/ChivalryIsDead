@@ -401,10 +401,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             ToDeath();
             Debug.Log("DED");
             anim.Play("Death", 0, 0);
-            //anim.SetTrigger("DIE");
-            StartCoroutine(death());
-
-            
+            if(this.GetType().Equals(typeof(SuicideAI)))
+                gameObject.SetActive(false);
+            else
+                StartCoroutine(death());
         }
         else {
             anim.Play("TakeDamage");
