@@ -136,4 +136,9 @@ public class DummyManager : MonoBehaviour
         return repGain  / repGainDivision;
 
     }
+
+    public int GetComboValue()
+    {
+        return combo;
+    }
 }
