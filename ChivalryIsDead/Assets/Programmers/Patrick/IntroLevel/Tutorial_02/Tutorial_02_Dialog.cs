@@ -20,9 +20,11 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
     bool learnedToGetHit;
     bool learnedToTaunt;
+    bool learnedToUseTaunt;
     bool deadSheeps;
 
     public GameObject HandCanvas;
+    public GameObject ScreenFreeze;
     Animator handAnimator;
     public Animator swordAnimator;
     public Animator skipAnimator;
@@ -35,6 +37,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         procceed = false;
         learnedToGetHit = true;
         learnedToTaunt = true;
+        learnedToUseTaunt = true;
         deadSheeps = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
 
@@ -59,14 +62,30 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         if (!learnedToTaunt)
         {
-            if (Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
+            if (Player.GetComponent<PlayerScript>().taunting)
             {
-                StartCoroutine("DialogSix");
+                handAnimator.SetBool("playTaunt", false);
+                ScreenFreeze.SetActive(false);
+                ControlMove.SetActive(true);
                 learnedToTaunt = true;
+                skipAnimator.speed = 1f;
+                swordAnimator.speed = 1f;
+                handAnimator.speed = 1f;
+                Time.timeScale = 1f;
             }
         }
 
-        if(!Sheeps[0].activeSelf && !Sheeps[1].activeSelf && !Sheeps[2].activeSelf && !Sheeps[3].activeSelf)
+        if (!learnedToUseTaunt)
+        {
+            if (Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
+            {
+                StartCoroutine("DialogSix");
+                
+                learnedToUseTaunt = true;
+            }
+        }
+
+        if (!Sheeps[0].activeSelf && !Sheeps[1].activeSelf && !Sheeps[2].activeSelf && !Sheeps[3].activeSelf)
         {
             if(deadSheeps)
             {
@@ -210,18 +229,22 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 2)
+        while (count < 4)
         {
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitUntil(SkipAndPlay);
         procceed = false;
-        skipAnimator.speed = 1f;
-        swordAnimator.speed = 1f;
-        Time.timeScale = 1f;
-        ControlMove.SetActive(true);
+
+        ScreenFreeze.SetActive(true);
+        handAnimator.speed = 10f;
+        handAnimator.SetBool("playTaunt", true);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
         ControlHit.SetActive(true);
 
+        learnedToUseTaunt = false;
         learnedToTaunt = false;
     }
 
