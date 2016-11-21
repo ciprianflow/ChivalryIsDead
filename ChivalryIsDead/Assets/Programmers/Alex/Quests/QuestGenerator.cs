@@ -147,6 +147,7 @@ public class QuestGenerator
         questData = new QuestData(questType, numNonSuicide + numSuicide, 0, AvailableEnemies);
 
         MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
+        MQ.Objectives.Add(new TimerObjective(31));
 
         return MQ;
     }

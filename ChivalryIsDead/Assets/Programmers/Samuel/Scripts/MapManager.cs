@@ -159,7 +159,7 @@ public class MapManager : MonoBehaviour {
     public void LoadHubArea()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4); //TODO: Change to string based loading
     }
 
     public void CreateQuestTypeObjects()
