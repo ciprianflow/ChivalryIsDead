@@ -53,15 +53,15 @@ public class HubDataManager : MonoBehaviour {
     public GameObject ContentPane;
     public GameObject QuestButton;
     public GameObject QuestLetter;
-    public Text RepText;
-    public Text QueueText;
     public Text DaysLeftText;
+    public Image RingImg;
 
     void Start () {
 
         peasantLineScript.FillPeasantLine();
         UpdateQuests();
         UpdateUIText();
+        UpdateUI();
         CreateQuestUIElements();
 
     }
@@ -216,16 +216,18 @@ public class HubDataManager : MonoBehaviour {
         ClearQuestUIElements();
         PushToHubData(repChange);
         CreateQuestUIElements();
-        QueueText.text = AvailableQuests.Count.ToString();
     }
 
     #region UI
 
     void UpdateUIText()
     {
-        QueueText.text = currentHubData.QueueLength.ToString();
-        RepText.text = StaticData.Reputation.ToString();
         DaysLeftText.text = StaticData.daysLeft.ToString();
+    }
+
+    void UpdateUI()
+    {
+        RingImg.fillAmount = (float)StaticData.daysLeft / (float)StaticData.maxDaysLeft;
     }
 
     public void SetDLCPopUp(bool b)
