@@ -1768,16 +1768,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010304692424}
-  - 33: {fileID: 33000012135572858}
   - 65: {fileID: 65000011152622932}
-  - 23: {fileID: 23000010843168316}
   - 195: {fileID: 195000013104909094}
   - 54: {fileID: 54000012031474318}
   - 114: {fileID: 114000013782044576}
   - 114: {fileID: 114000010215733298}
   - 114: {fileID: 114000014015430878}
-  - 114: {fileID: 114000014060914096}
-  - 114: {fileID: 114000011560561314}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Enemy
@@ -4109,42 +4105,6 @@ Transform:
   - {fileID: 4000011044536946}
   m_Father: {fileID: 4000011285504046}
   m_RootOrder: 10
---- !u!23 &23000010843168316
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013317938470}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: e3f6f887e0265284bb30693a726def4f, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &33000012135572858
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013317938470}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54000012031474318
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -4152,7 +4112,7 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013317938470}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 50
   m_Drag: 3
   m_AngularDrag: 2
   m_UseGravity: 1
@@ -4234,19 +4194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 549e3827cd0604f4f82a54d5aaaf337f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114000011560561314
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013317938470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6437938df979ef843bf27a97f598eb8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 22
-  health: 2
 --- !u!114 &114000011617903490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4423,19 +4370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6437938df979ef843bf27a97f598eb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 22
-  health: 2
---- !u!114 &114000014060914096
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013317938470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 549e3827cd0604f4f82a54d5aaaf337f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  id: 21
+  health: 1
 --- !u!137 &137000010030773836
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

@@ -288,7 +288,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
 
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
 
     }
    
