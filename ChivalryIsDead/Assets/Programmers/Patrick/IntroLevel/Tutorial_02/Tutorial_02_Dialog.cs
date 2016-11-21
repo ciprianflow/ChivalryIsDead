@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 public class Tutorial_02_Dialog : MonoBehaviour {
 
     public GameObject Player;
-
-    public GameObject MainCam;
-    public GameObject AnimCam;
+    public GameObject enemyBillboard;
+    public GameObject TrollA;
+    public GameObject TrollB;
 
     public GameObject UI;
     public GameObject ControlMove;
@@ -24,10 +24,13 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public GameObject HandCanvas;
     Animator handAnimator;
     public Animator swordAnimator;
+    public Animator skipAnimator;
+    int count;
 
     // Use this for initialization
     void Start()
     {
+        count = 0;
         procceed = false;
         learnedToGetHit = true;
         learnedToTaunt = true;
@@ -42,7 +45,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         {
             if(Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
             {
-                StartCoroutine("DialogThree");
+                StartCoroutine("DialogFour");
                 learnedToGetHit = true;
             }
             
@@ -64,21 +67,30 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
     public IEnumerator DialogOne()
     {
-        AnimCam.SetActive(true);
         ControlMove.SetActive(false);
-        ControlHit.SetActive(false);
-        yield return new WaitForSeconds(1);
-        ControlMove.SetActive(true);
-        MainCam.SetActive(true);
-        AnimCam.SetActive(false);
-        UI.GetComponent<GameMenu>().Princess();
+        ControlHit.SetActive(false);       
+        yield return new WaitForSeconds(1f);
+        
+        Time.timeScale = 0.1f;
+        swordAnimator.speed = 10f;
+        skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+        
 
-        Invoke("CallableSkip", 5f);
-
+        //Invoke("CallableSkip", 5f);
+        while(count < 10)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
+        ControlMove.SetActive(true);
+        swordAnimator.speed = 1f;
+        skipAnimator.speed = 1f;
+        Time.timeScale = 1f;
         InvisWallOne.SetActive(false);
 
     }
@@ -91,39 +103,56 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public void CallableSkip()
     {
         procceed = true;
+        count++;
     }
-
-
-
 
     public IEnumerator DialogTwo()
     {
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
-
-
-        UI.GetComponent<GameMenu>().Princess();
+        skipAnimator.speed = 10f;
+        enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollA;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        Invoke("CallableSkip", 0.3f);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+
+
+        count = 0;
+        while (count < 7)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         yield return new WaitUntil(SkipAndPlay);
         procceed = false;
-
+        skipAnimator.speed = 1f;
         swordAnimator.speed = 1f;
         Time.timeScale = 1f;
 
-        learnedToGetHit = false;
 
+        StartCoroutine("DialogThree");
     }
 
     public IEnumerator DialogThree()
     {
-        InvisWallTwo.SetActive(false);
-
-        UI.GetComponent<GameMenu>().Princess();
+        yield return new WaitForSeconds(3f);
+        Time.timeScale = 0.1f;
+        swordAnimator.speed = 10f;
+        skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+        count = 0;
+        while (count < 7)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+        procceed = false;
+        skipAnimator.speed = 1f;
+        swordAnimator.speed = 1f;
+        Time.timeScale = 1f;
 
-
-        yield return null;
+        learnedToGetHit = false;
 
 
     }
@@ -131,6 +160,13 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
     public IEnumerator DialogFour()
     {
+
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        yield return new WaitForSeconds(2f);
+        UI.GetComponent<GameMenu>().Sword();
+
+        InvisWallTwo.SetActive(false);
+
         yield return null;
     }
 
