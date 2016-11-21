@@ -35,6 +35,21 @@ public class TriggerSystemTutorial_02 : MonoBehaviour {
             Dialog.GetComponent<Tutorial_02_Dialog>().StartCoroutine("DialogFive");
         }
 
+        if (dialogNumber == 6)
+        {
+            Dialog.GetComponent<Tutorial_02_Dialog>().StartCoroutine("DialogSix");
+        }
+
+        if (dialogNumber == 7)
+        {
+            Dialog.GetComponent<Tutorial_02_Dialog>().StartCoroutine("DialogSeven");
+        }
+
+        if (dialogNumber == 8)
+        {
+            Dialog.GetComponent<Tutorial_02_Dialog>().StartCoroutine("DialogEight");
+        }
+
 
     }
 
