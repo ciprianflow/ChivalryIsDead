@@ -665,6 +665,28 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010608746464, guid: 9563a0af0de0f9145bc07a2924ccaba5,
     type: 2}
   m_PrefabInternal: {fileID: 118941157}
+--- !u!1 &127479578 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011757258766, guid: 98f8ff744a171b846b1188deab12c9be,
+    type: 2}
+  m_PrefabInternal: {fileID: 161653184}
+--- !u!95 &127479583
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 127479578}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 875f344dc5ac3394fa7c171fbec4f596, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &139979347
 Prefab:
   m_ObjectHideFlags: 0
@@ -888,6 +910,16 @@ Prefab:
     - target: {fileID: 1000013809427288, guid: 98f8ff744a171b846b1188deab12c9be, type: 2}
       propertyPath: m_Name
       value: UI - Tutorial - IntroDay
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: SwordParticle
+      value: 
+      objectReference: {fileID: 564959287}
+    - target: {fileID: 114000011013086234, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 98f8ff744a171b846b1188deab12c9be, type: 2}
@@ -4154,74 +4186,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2f0b8cc49fb6f314fbc86a754ceae532, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1248710683
+--- !u!1 &1248710683 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 224: {fileID: 1248710684}
-  - 222: {fileID: 1248710686}
-  - 114: {fileID: 1248710685}
-  m_Layer: 5
-  m_Name: FreezeScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &1248710684
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1248710683}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 1808104142}
-  m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1248710685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1248710683}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6666667}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &1248710686
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1248710683}
+  m_PrefabParentObject: {fileID: 1000011668723404, guid: 1ff69020aa975004c9243b16a7dd5d44,
+    type: 2}
+  m_PrefabInternal: {fileID: 1614597361}
 --- !u!1 &1262995694
 GameObject:
   m_ObjectHideFlags: 0
@@ -5083,36 +5052,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224000012961736172, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000014203011626, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011622176176, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011992399676, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012262848134, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000011893871498, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ff69020aa975004c9243b16a7dd5d44, type: 2}
   m_IsPrefabParent: 0
@@ -5720,11 +5659,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000011822690370, guid: 1ff69020aa975004c9243b16a7dd5d44,
     type: 2}
   m_PrefabInternal: {fileID: 1614597361}
---- !u!224 &1808104142 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224000010057150130, guid: 1ff69020aa975004c9243b16a7dd5d44,
-    type: 2}
-  m_PrefabInternal: {fileID: 1614597361}
 --- !u!1001 &1822498603
 Prefab:
   m_ObjectHideFlags: 0
@@ -6241,6 +6175,15 @@ Prefab:
         type: 2}
       propertyPath: prewarm
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013934265094, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000012961320070, guid: 2d5405dfae1646047a431fc12876b6d5,
+        type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
