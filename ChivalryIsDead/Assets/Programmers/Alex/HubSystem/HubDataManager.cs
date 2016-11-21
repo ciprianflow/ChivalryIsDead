@@ -53,11 +53,13 @@ public class HubDataManager : MonoBehaviour {
     public GameObject ContentPane;
     public GameObject QuestButton;
     public GameObject QuestLetter;
+    public GameObject WinScreen;
     public Text DaysLeftText;
     public Image RingImg;
 
     void Start () {
 
+        checkForWin();
         peasantLineScript.FillPeasantLine();
         UpdateQuests();
         UpdateUIText();
@@ -218,6 +220,14 @@ public class HubDataManager : MonoBehaviour {
         CreateQuestUIElements();
     }
 
+    void checkForWin()
+    {
+        if(StaticData.Reputation <= 0)
+        {
+            WinScreen.SetActive(true);
+        }
+    }
+
     #region UI
 
     void UpdateUIText()
@@ -252,6 +262,11 @@ public class HubDataManager : MonoBehaviour {
     public BaseQuest GetQuest(int i)
     {
         return (BaseQuest)AvailableQuests[i];
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     #endregion
