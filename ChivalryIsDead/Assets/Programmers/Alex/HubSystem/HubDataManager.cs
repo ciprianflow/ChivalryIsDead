@@ -148,9 +148,9 @@ public class HubDataManager : MonoBehaviour {
             int newI = i;
             b.onClick.AddListener(() => SelectQuest(newI));
 
-            peasantLineScript.GivePeasantQuest(i, newI, oAsQuest);
-
+            peasantLineScript.PushQuestToPeasant(i, newI, oAsQuest);
         }
+
         GenerateDLCQuest();
     }
 
