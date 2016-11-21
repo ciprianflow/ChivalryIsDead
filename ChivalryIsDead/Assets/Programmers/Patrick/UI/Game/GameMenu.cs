@@ -39,7 +39,7 @@ public class GameMenu : MonoBehaviour {
 
     void Awake ()
     {
-        speaking = false;
+        //speaking = false;
         paused = false;
         endletterActive = false;
         introletterActive = false;

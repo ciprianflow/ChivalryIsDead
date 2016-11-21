@@ -25,13 +25,18 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject HandCanvas;
     Animator handAnimator;
     public Animator swordAnimator;
+
+
     // Use this for initialization
-    void Start () {
+    void Awake () {
         procceed = false;
         learnedToMove = true;
         learnedToAttack = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
-	}
+
+
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -68,22 +73,42 @@ public class IntroLevelDialog : MonoBehaviour {
 
 	}
 
-    public IEnumerator DialogOne()
+    public IEnumerator Start()
     {
         AnimCam.SetActive(true);
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        UI.GetComponent<GameMenu>().Sword();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-        yield return new WaitForSeconds(15f);
+       
+        yield return new WaitForSeconds(2f);
+
+
+        UI.GetComponent<GameMenu>().Sword();
+        //Invoke("CallableSkip", 1.3f);
+
+        
+         
+    }
+
+    public IEnumerator DialogOne()
+    {
+        yield return new WaitUntil(SkipAndPlay);
+
+        procceed = false;
+        //yield return new WaitForSeconds(13f);
         MainCam.SetActive(true);
         AnimCam.SetActive(false);
+
         Time.timeScale = 0.1f;
         ScreenFreeze.SetActive(true);
         swordAnimator.speed = 10f;
-        UI.GetComponent<GameMenu>().Sword();
+
+
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+
+
         startingPos = Player.transform.position;
         learnedToMove = false;
 
@@ -99,12 +124,13 @@ public class IntroLevelDialog : MonoBehaviour {
         handAnimator.speed = 10f;
         handAnimator.SetBool("playLeftJoy", true);
         ControlMove.SetActive(true);
-
     }
+
 
     public bool SkipAndPlay()
     {
-        return procceed;
+        //return procceed;
+        return true;
     }
 
     public void CallableSkip()
@@ -120,7 +146,8 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogTwo()
     {
-        
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+        yield return new WaitForSeconds(2f);
         UI.GetComponent<GameMenu>().Sword();
 
         //handAnimator.speed = 1f;
@@ -129,7 +156,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //handAnimator.SetBool("playLeftJoy", false);
 
 
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+        
         
        
         
@@ -152,12 +179,13 @@ public class IntroLevelDialog : MonoBehaviour {
         ScreenFreeze.SetActive(true);
         handAnimator.speed = 10f;
         swordAnimator.speed = 10f;
-        UI.GetComponent<GameMenu>().Sword();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
         handAnimator.SetBool("playRightJoy", true);
         ControlHit.SetActive(true);
         learnedToAttack = false;
-        return null;
+
 
        
     }
@@ -177,16 +205,19 @@ public class IntroLevelDialog : MonoBehaviour {
     public IEnumerator DialogFour()
     {
         yield return new WaitForSeconds(2);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
+        yield return new WaitForSeconds(2);
 
         UI.GetComponent<GameMenu>().Sword();
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
-        yield return null;
+        
+
     }
 
     public IEnumerator DialogFive()
     {
-        UI.GetComponent<GameMenu>().Sword();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
+        yield return new WaitForSeconds(2);
+        UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(2);
     }

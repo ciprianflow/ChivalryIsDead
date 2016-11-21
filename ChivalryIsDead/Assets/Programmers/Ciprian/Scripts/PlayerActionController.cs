@@ -163,10 +163,12 @@ public class PlayerActionController : MonoBehaviour
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
 
-                Debug.Log("Overreact points:" + (AttackedDuration - overreactTimestamp) * -10);
-                pb.ChangeRepScore((int)((AttackedDuration - overreactTimestamp) * -10));
+                
+                //pb.ChangeRepScore((int)((AttackedDuration - overreactTimestamp) * -10));
+                int points = (int)((AttackedDuration - overreactTimestamp) * 10);
 
-                //pb.ChangeRepScore(lastMonsterAttacked.GetOverreactReputation());
+                Debug.Log("Overreact points:" + -points);
+                pb.ChangeRepScore(-points);
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
                 playerState = PlayerState.IDLE;
