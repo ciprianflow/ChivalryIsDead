@@ -161,4 +161,27 @@ public class MapManager : MonoBehaviour {
         Time.timeScale = 1;
         SceneManager.LoadScene(3);
     }
+
+    public void CreateQuestTypeObjects()
+    {
+
+        List<string> QuestTypes = Enum.GetNames(typeof(QuestType)).ToList();
+
+        GameObject list;
+        for (int i = 0; i < QuestTypes.Count; i++)
+        {
+            if (transform.FindChild(QuestTypes[i]) != null)
+                continue;
+
+            list = new GameObject(QuestTypes[i]);
+            list.transform.SetParent(this.transform);
+        }
+
+        if (transform.FindChild("StaticProtectObjects") != null)
+            return;
+
+        list = new GameObject("StaticProtectObjects");
+        list.transform.SetParent(this.transform);
+
+    }
 }
