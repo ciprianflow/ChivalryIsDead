@@ -23,8 +23,11 @@ public class ThrowRock : MonoBehaviour {
     public void spawnRock() {
         rock = Instantiate(rock_prefab);
         ////Vector3 handPos = hand.transform.localPosition;
+
         rock.transform.parent = hand.transform;
         rock.transform.localPosition = new Vector3(0.3f, -0.01f, 0);
+        //rock.transform.position = hand.transform.position + new Vector3(50f,50f, 0);
+
         rock.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
@@ -32,6 +35,7 @@ public class ThrowRock : MonoBehaviour {
 
 
         rock.GetComponent<Rigidbody>().useGravity = true;
+        rock.GetComponent<Rigidbody>().isKinematic = false;
         rock.GetComponent<BoxCollider>().enabled = true;
         rangedScript.FireProjectTile(ref rock);
 
