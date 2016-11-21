@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum State { Attack, Move, Charge, Idle, Utility }
+public enum State { Attack, Move, Charge, Idle, Utility, Death }
 
 public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
@@ -65,6 +65,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Init();
     public abstract void MoveEvent();
     public abstract void HitThis();
+    void Death() {}
 
     public abstract int GetObjectiveAttackReputation();
     public abstract int GetAttackReputation();
@@ -207,6 +208,13 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         //Debug.Log("IdleToMove");
         ToMove();
+    }
+
+    void ToDeath()
+    {
+        state = State.Death;
+        stateFunc = Death;
+        StopNavMeshAgent();
     }
 
     #endregion

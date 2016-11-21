@@ -53,15 +53,15 @@ public class HubDataManager : MonoBehaviour {
     public GameObject ContentPane;
     public GameObject QuestButton;
     public GameObject QuestLetter;
-    public Text RepText;
-    public Text QueueText;
     public Text DaysLeftText;
+    public Image RingImg;
 
     void Start () {
 
         peasantLineScript.FillPeasantLine();
         UpdateQuests();
         UpdateUIText();
+        UpdateUI();
         CreateQuestUIElements();
 
     }
@@ -79,11 +79,11 @@ public class HubDataManager : MonoBehaviour {
         //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
         hubData.AvailableQuests.Add(MQ);
 
-        QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
-        QD = new QuestData();
-        MQ = QG.GenerateMultiQuest(out QD);
+        //QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
+        //QD = new QuestData();
+        //MQ = QG.GenerateMultiQuest(out QD);
         //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
-        hubData.AvailableQuests.Add(MQ);
+        //hubData.AvailableQuests.Add(MQ);
 
         //AssetDatabase.SaveAssets();
         currentHubData = hubData;
@@ -140,9 +140,9 @@ public class HubDataManager : MonoBehaviour {
             int newI = i;
             //b.onClick.AddListener(() => SelectQuest(newI));
 
-            peasantLineScript.GivePeasantQuest(i, newI, oAsQuest);
-
+            peasantLineScript.PushQuestToPeasant(i, newI, oAsQuest);
         }
+
         GenerateDLCQuest();
     }
 
@@ -216,16 +216,18 @@ public class HubDataManager : MonoBehaviour {
         ClearQuestUIElements();
         PushToHubData(repChange);
         CreateQuestUIElements();
-        QueueText.text = AvailableQuests.Count.ToString();
     }
 
     #region UI
 
     void UpdateUIText()
     {
-        QueueText.text = currentHubData.QueueLength.ToString();
-        RepText.text = StaticData.Reputation.ToString();
         DaysLeftText.text = StaticData.daysLeft.ToString();
+    }
+
+    void UpdateUI()
+    {
+        RingImg.fillAmount = StaticData.daysLeft / StaticData.maxDaysLeft;
     }
 
     public void SetDLCPopUp(bool b)
