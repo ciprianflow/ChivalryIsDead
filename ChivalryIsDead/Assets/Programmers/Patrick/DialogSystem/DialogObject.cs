@@ -174,7 +174,7 @@ public class DialogObject : MonoBehaviour {
 
             if (GameObject.FindGameObjectWithTag("Enemy") != null)
             {
-
+                
                 if (GameObject.FindGameObjectWithTag("EnemyBubble"))
                 {
                     enemyText = GameObject.FindGameObjectsWithTag("EnemyText");
@@ -198,7 +198,15 @@ public class DialogObject : MonoBehaviour {
 
                 }
 
-                yield return new WaitForSeconds(d.Wait[i]);
+                //yield return new WaitForSeconds(d.Wait[i]);
+                SpeakingTime = d.Wait[i];
+
+                while (!isSkipped && SpeakingTime > 0)
+                {
+                    SpeakingTime -= Time.deltaTime;
+                    yield return new WaitForEndOfFrame();
+                }
+                isSkipped = false;
 
 
                 for (int j = 0; j < enemyText.Length; ++j)
