@@ -131,14 +131,14 @@ public class HubDataManager : MonoBehaviour {
             GameObject QuestButtonObj = Instantiate(QuestButton);
             QuestButtonObj.transform.SetParent(ContentPane.transform);
 
-            Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
+            //Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
             // TODO : Name doesnt load from quest description
             //newQuestText.text = oAsQuest.Description.Title;
-            newQuestText.text = "Quest";
+            //newQuestText.text = "Quest";
 
-            Button b = newQuestText.transform.parent.GetComponent<Button>();
+            //Button b = newQuestText.transform.parent.GetComponent<Button>();
             int newI = i;
-            b.onClick.AddListener(() => SelectQuest(newI));
+            //b.onClick.AddListener(() => SelectQuest(newI));
 
             peasantLineScript.GivePeasantQuest(i, newI, oAsQuest);
 
@@ -196,7 +196,7 @@ public class HubDataManager : MonoBehaviour {
 
         //
 
-        SceneManager.LoadScene(UnityEngine.Random.Range(4, 8));
+        SceneManager.LoadScene(UnityEngine.Random.Range(4, 10));
         //SceneManager.LoadScene(7);
 
     }

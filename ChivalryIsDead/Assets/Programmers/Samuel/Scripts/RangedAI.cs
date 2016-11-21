@@ -15,6 +15,7 @@ public class RangedAI : MonsterAI
     public float shootAngle = 60;
     public float randomShootRange = 4f;
     public float randomShootAngle = 20f;
+    public float softAttackRangeBreak = 12;
 
     [Space]
     private bool taunted = false;
@@ -31,7 +32,7 @@ public class RangedAI : MonsterAI
         RotateTowardsTarget();
         if (t1 > attackTime)
         {
-            if (RangeCheck())
+            if (RangeCheck(softAttackRangeBreak))
             {
                 AttackToMove();
                 return;
@@ -44,8 +45,8 @@ public class RangedAI : MonsterAI
 
     public override void Move()
     {
-        bool b = RangeCheckNavMesh();
-        if (b)
+
+        if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
@@ -102,6 +103,9 @@ public class RangedAI : MonsterAI
         targetObj.Rotate(0, 0, 90);
 
         obj.transform.SetParent(targetObj);
+
+        //Plays attack sound
+        //WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Attack, this.gameObject);
     }
 
     Vector3 BallisticVel(Vector3 target, float angle)
@@ -123,7 +127,12 @@ public class RangedAI : MonsterAI
         return vel * dir.normalized;
     }
 
-    public override void Taunt() { taunted = true; }
+    public override void Taunt() {
+        //Plays Taunt sound
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Taunted, this.gameObject);
+
+        taunted = true;
+    }
 
     public override void KillThis()
     {

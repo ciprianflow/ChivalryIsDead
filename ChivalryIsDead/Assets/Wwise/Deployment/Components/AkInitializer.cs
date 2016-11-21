@@ -80,10 +80,10 @@ public class AkInitializer : MonoBehaviour
     
     public static string GetDecodedBankFullPath()
     {
-#if (UNITY_ANDROID || UNITY_IOS) && ! UNITY_EDITOR
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR_WIN
 		return Path.Combine(Application.persistentDataPath, GetDecodedBankFolder());
 #else
-		return Path.Combine (AkBasePathGetter.GetPlatformBasePath(), GetDecodedBankFolder());
+        return Path.Combine (AkBasePathGetter.GetPlatformBasePath(), GetDecodedBankFolder());
 #endif
     }
 	
@@ -125,7 +125,7 @@ public class AkInitializer : MonoBehaviour
         AkInitSettings initSettings = new AkInitSettings();       
         AkSoundEngine.GetDefaultInitSettings(initSettings);
         initSettings.uDefaultPoolSize = (uint)defaultPoolSize * 1024;
-#if (!UNITY_ANDROID && !UNITY_WSA) || UNITY_EDITOR // Exclude WSA. It only needs the name of the DLL, and no path.
+#if (!UNITY_ANDROID && !UNITY_WSA) || UNITY_EDITOR_WIN // Exclude WSA. It only needs the name of the DLL, and no path.
         initSettings.szPluginDLLPath = Path.Combine(Application.dataPath, "Plugins" + Path.DirectorySeparatorChar);
 #endif
         
@@ -171,10 +171,10 @@ public class AkInitializer : MonoBehaviour
 		AkSoundEngine.SetDecodedBankPath(GetDecodedBankFullPath());
         AkSoundEngine.SetCurrentLanguage(language);
 
-#if (UNITY_ANDROID || UNITY_IOS) && ! UNITY_EDITOR
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR_WIN
 		AkSoundEngine.AddBasePath (	Application.persistentDataPath + Path.DirectorySeparatorChar );	
 #endif
-	
+
         result = AkCallbackManager.Init();
         if (result != AKRESULT.AK_Success)
         {

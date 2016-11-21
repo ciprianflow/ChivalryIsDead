@@ -30,6 +30,13 @@ public class MeleeAI : MonsterAI
 
         normSpeed = agent.speed;
         targetPoint = GetRandomPointOnNavMesh();
+        GameObject obj = new GameObject("AttackTrigger");
+        obj.transform.SetParent(this.transform, false);
+        SphereCollider col = obj.AddComponent<SphereCollider>();
+        col.center = new Vector3(0, 1);
+        col.radius = 2f;
+        col.isTrigger = true;
+
     }
 
     //Called every frame in the attack state
@@ -62,14 +69,15 @@ public class MeleeAI : MonsterAI
             normalAttack = false;
             AttackToMove();
             ResetTimer();
+
+            //Plays attack sound
+            WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Attack, this.gameObject);
         }
 
     }
 
     void TurnAttack()
     {
-
-        Debug.Log("TURN ATTACK");
         if (!rotated)
         {
             if (!ControlledRotation())
@@ -84,6 +92,9 @@ public class MeleeAI : MonsterAI
                 //Rotation is done
                 rotated = true;
                 ResetTimer();
+
+                //Plays attack sound
+                WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Attack, this.gameObject);
             }     
         }
 
@@ -260,6 +271,7 @@ public class MeleeAI : MonsterAI
     //Called every frame in the Move state
     public override void Move()
     {
+
         normalAttackTimer += Time.deltaTime;
         if (playerInRange && normalAttackTimer > normalAttackColddown)
         {
@@ -294,6 +306,9 @@ public class MeleeAI : MonsterAI
     //Called every time the monster is getting taunted
     public override void Taunt()
     {
+        //Plays Taunt sound
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Taunted, this.gameObject);
+
         ToCharge();
     }
 
@@ -396,6 +411,9 @@ public class MeleeAI : MonsterAI
         agent.speed = normSpeed * chargeSpeedMultiplier; //Set speed of monster to charge speed
         state = State.Charge;
         stateFunc = Charge;
+
+        //play charge sound
+        WwiseInterface.Instance.PlayUniqueMonsterSound(UniqueMonsterAudioHandle.MeleeCharge, this.gameObject);
     }
 
     //Transistion from Charge to Attack satte

@@ -82,7 +82,7 @@ class TauntAction: MonoBehaviour
         if (getCoolDown() && playerBase.canDoAction(PlayerActions.TAUNT))
         {
             WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Taunt, this.gameObject);
-
+            
             startTaunt(currentTauntRadius, this.transform.position);
             playerBase.taunt();
             //shrinkTauntArea();

@@ -38,6 +38,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     //KNIGHT ATTACk REP
     public int PlayerAttackRep = 30;
 
+    public MonsterHandle monsterHandle;
+
     HealthScript healthScript;
 
     //Timers
@@ -149,6 +151,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         {
             ToMove();
             aggroed = true;
+
+            //Plays aggro sound
+            WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Aggro, this.gameObject);
         }
     }
 
@@ -169,9 +174,15 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         ResumeNavMeshAgent();
         state = State.Move;
         stateFunc = Move;
+
         if(this.name!="Ranged")
             anim.SetTrigger("StartCharge");
         anim.SetFloat("Speed", 1);
+
+
+        //Plays move sound
+        WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Walk, this.gameObject);
+
     }
 
     protected void MoveToAttack()
@@ -237,6 +248,14 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         float dist = Vector3.Distance(transform.position, GetTargetPosition());
         if (dist > attackRange)
+            return true;
+        return false;
+    }
+
+    protected bool RangeCheck(float range)
+    {
+        float dist = Vector3.Distance(transform.position, GetTargetPosition());
+        if (dist > range)
             return true;
         return false;
     }
@@ -367,12 +386,20 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
         if (healthScript.takeDamage(damage))
         {
+            //Plays death sound
+            WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Death, this.gameObject);
+
+            //Updates the objective
+            if (StaticIngameData.mapManager != null)
+                StaticIngameData.mapManager.CheckObjectives(this);
+
             gameObject.SetActive(false);
 
-            if(StaticIngameData.mapManager != null)
-                StaticIngameData.mapManager.CheckObjectives(this);
+            
         }
 
+        //Plays attacked sound
+        WwiseInterface.Instance.PlayGeneralMonsterSound(monsterHandle, MonsterAudioHandle.Attacked, this.gameObject);
         HitThis();
 
         anim.Play("TakeDamage");
