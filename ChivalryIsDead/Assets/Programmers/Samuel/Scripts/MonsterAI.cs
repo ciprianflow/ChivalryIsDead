@@ -176,7 +176,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         state = State.Move;
         stateFunc = Move;
 
-        if(this.name!="Ranged")
+        if(monsterHandle != MonsterHandle.Ranged)
             anim.SetTrigger("StartCharge");
         anim.SetFloat("Speed", 1);
 
@@ -188,7 +188,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void MoveToAttack()
     {
-        Debug.Log("MoveToAttack");
+        //Debug.Log("MoveToAttack");
 
         StopNavMeshAgent();
         state = State.Attack;
@@ -401,10 +401,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             ToDeath();
             Debug.Log("DED");
             anim.Play("Death", 0, 0);
-            //anim.SetTrigger("DIE");
-            StartCoroutine(death());
-
-            
+            if(this.GetType().Equals(typeof(SuicideAI)))
+                gameObject.SetActive(false);
+            else
+                StartCoroutine(death());
         }
         else {
             anim.Play("TakeDamage");
