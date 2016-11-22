@@ -21,6 +21,7 @@ public class MeleeAI : MonsterAI
     private float normalAttackTimer = 0f;
 
     private bool rotated = false;
+    private bool hasHit = false;
     private bool normalAttack = false;
     private bool playerInRange = false;
 
@@ -85,12 +86,15 @@ public class MeleeAI : MonsterAI
                 //If rotation is ongoing
                 //chargeRotate resets timer so rotated makes sure that it does not enter the function again
                 //if it has rotated
-                MeleeAttack();
+                if(!hasHit)
+                    if (MeleeAttack())
+                        hasHit = true;
                 return;
             }else
             {
                 //Rotation is done
                 rotated = true;
+                hasHit = false;
                 ResetTimer();
 
                 //Plays attack sound
@@ -111,7 +115,7 @@ public class MeleeAI : MonsterAI
     }
 
     //Attack function, this function handles the calculations of an attack
-    public void MeleeAttack()
+    public bool MeleeAttack()
     {
         Collider[] Colliders = new Collider[0];
         Colliders = Physics.OverlapSphere(transform.position, attackLength);
@@ -129,11 +133,12 @@ public class MeleeAI : MonsterAI
                         body.AddExplosionForce(100000, transform.position, attackLength);
 
                     base.playerAction.PlayerAttacked(this);
-                    //Debug.Log("Hit player");
+                    Debug.LogError("O NO THE PLAYR HAS HITEN BY MOnsTR");
+                    return true;
                 }
             }
         }
-
+        return false;
         //Debug.Log("Attacking");
 
     }
