@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980717ca5f7d6ff40a975b997d867f16, type: 3}
+  m_Name: QuestParameters
+  m_EditorClassIdentifier: 
+  difficultyThresholds: 3c00000014000000
+  difficultyDefinitions:
+  - minNonSuicide: 4
+    maxNonSuicide: 7
+    minSuicide: 0
+    maxSuicide: 0
+    minFriendlies: 1
+    maxFriendlies: 3
+    houseStatus: 0
+  - minNonSuicide: 2
+    maxNonSuicide: 5
+    minSuicide: 1
+    maxSuicide: 3
+    minFriendlies: 3
+    maxFriendlies: 6
+    houseStatus: 0
+  - minNonSuicide: 1
+    maxNonSuicide: 3
+    minSuicide: 3
+    maxSuicide: 7
+    minFriendlies: 5
+    maxFriendlies: 10
+    houseStatus: 0
+  enemyThresholds:
+  - DayMarker: 0
+    AvailableEnemies: 4
+  - DayMarker: 1
+    AvailableEnemies: 6
+  - DayMarker: 4
+    AvailableEnemies: -2

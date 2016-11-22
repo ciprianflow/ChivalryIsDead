@@ -7,6 +7,10 @@ public static class StaticData {
 
     //Current quest and objectives
     public static MultiQuest currQuest;
+    
+    // Limits
+    public static int MaximumReputation = 100;
+    public static int TotalDays = 12;
 
     //Meta Data
     public static int daysLeft = 14;
