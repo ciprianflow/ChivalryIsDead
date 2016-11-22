@@ -435,6 +435,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         }
 
         //sheep goes fly
+        m.ToDeath();
         m.enabled = false;
         g.GetComponent<NavMeshAgent>().enabled = false;
         Rigidbody r = g.GetComponent<Rigidbody>();

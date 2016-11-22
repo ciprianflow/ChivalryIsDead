@@ -43,6 +43,8 @@ public class PlayerScript : MonoBehaviour {
     void Awake()
     {
 
+        Time.timeScale = 0.1f;
+
         //Time.timeScale = 1f;
 
         AnimDic.Add("attacking", 1);
@@ -347,6 +349,7 @@ public class PlayerScript : MonoBehaviour {
             //attackLowerWeight -= 0.05f;
             //anim.SetLayerWeight(1, attackUpperWeight);
             //anim.SetLayerWeight(2, attackLowerWeight);
+
             yield return new WaitForSeconds(0.01f);
         }
         
@@ -459,8 +462,8 @@ public class PlayerScript : MonoBehaviour {
 
         //anim.Play("Hero_Attack1", 2, 0);
 
-            SwordTrail.SetActive(true);
-        
+        SwordTrail.SetActive(true);
+
 
         if (!attacking)
         {
@@ -569,6 +572,7 @@ public class PlayerScript : MonoBehaviour {
         anim.SetLayerWeight(7, 0);
 
         SwordTrail.SetActive(false);
+
         //anim.Play("Scare", 5, 0);
 
 
@@ -636,7 +640,5 @@ public class PlayerScript : MonoBehaviour {
     //{
     //    return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
     //}
-
-
 
 }
