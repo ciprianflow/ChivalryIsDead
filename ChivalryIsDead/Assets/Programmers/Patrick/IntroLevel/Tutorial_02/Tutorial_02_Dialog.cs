@@ -64,28 +64,24 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         {
             if (Player.GetComponent<PlayerScript>().taunting)
             {
-                handAnimator.SetBool("playTaunt", false);
-                ScreenFreeze.SetActive(false);
-                ControlMove.SetActive(true);
+                gameObject.GetComponent<DialogObject>().StopDialog();
+                TauntEvent();
                 learnedToTaunt = true;
-                skipAnimator.speed = 1f;
-                swordAnimator.speed = 1f;
-                handAnimator.speed = 1f;
-                Time.timeScale = 1f;
             }
         }
+
+        
 
         if (!learnedToUseTaunt)
         {
             if (Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
             {
-                StartCoroutine("DialogSix");
                 
                 learnedToUseTaunt = true;
             }
         }
 
-        if (!Sheeps[0].activeSelf && !Sheeps[1].activeSelf && !Sheeps[2].activeSelf && !Sheeps[3].activeSelf)
+        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death)
         {
             if(deadSheeps)
             {
@@ -95,6 +91,18 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         }
 
 
+    }
+
+    void TauntEvent()
+    {
+        handAnimator.SetBool("playTaunt", false);
+        handAnimator.speed = 100f;
+        swordAnimator.speed = 1f;
+        skipAnimator.speed = 1f;
+        Time.timeScale = 1f;
+        ScreenFreeze.SetActive(false);
+        ControlMove.SetActive(true);
+        StartCoroutine("DialogSix");
     }
 
     public IEnumerator DialogOne()
@@ -107,8 +115,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
         
 
         //Invoke("CallableSkip", 5f);
@@ -120,9 +128,10 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         procceed = false;
         ControlMove.SetActive(true);
+       
+        Time.timeScale = 1f;
         swordAnimator.speed = 1f;
         skipAnimator.speed = 1f;
-        Time.timeScale = 1f;
         InvisWallOne.SetActive(false);
 
     }
@@ -146,8 +155,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         skipAnimator.speed = 10f;
         enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollA;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
 
 
         count = 0;
@@ -174,8 +183,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
         count = 0;
         while (count < 2)
         {
@@ -199,8 +208,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
         while (count < 2)
@@ -225,8 +234,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         skipAnimator.speed = 10f;
         enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollB;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
         while (count < 4)
@@ -236,28 +245,30 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         yield return new WaitUntil(SkipAndPlay);
         procceed = false;
 
+        learnedToUseTaunt = false;
+
         ScreenFreeze.SetActive(true);
         handAnimator.speed = 10f;
-        handAnimator.SetBool("playTaunt", true);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
+        handAnimator.SetBool("playTaunt", true);
         ControlHit.SetActive(true);
 
-        learnedToUseTaunt = false;
         learnedToTaunt = false;
     }
 
     public IEnumerator DialogSix()
     {
+        yield return new WaitForSeconds(1f);
         ControlMove.SetActive(false);
 
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
         while (count < 5)
@@ -295,8 +306,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 6);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
         while (count < 6)

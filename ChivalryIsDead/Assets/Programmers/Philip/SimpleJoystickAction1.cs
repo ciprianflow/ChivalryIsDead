@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Threading;
+using UnityEngine.SceneManagement;
 
 namespace CnControls
 {
@@ -338,12 +339,16 @@ namespace CnControls
             //else if((angle >= 54 && angle < 126)) { // angeliki commented out this
             else if ((angle >= 34 && angle < 147)) // angeliki added this
             {
-                //cancel = true;// angeliki commented out this
-                attack = true; // angeliki added this
-                if (attackCooldownFill == 1)
+                if(SceneManager.GetActiveScene().buildIndex != 4 && SceneManager.GetActiveScene().buildIndex != 3) // angeliki added this
                 {
-                    ActionBottom.color = new Color(1, 1, 1, 1);
+                    //cancel = true;// angeliki commented out this
+                    attack = true; // angeliki added this
+                    if (attackCooldownFill == 1)
+                    {
+                        ActionBottom.color = new Color(1, 1, 1, 1);
+                    }
                 }
+                
             }
             //else if (SX < 0 && -SX > Mathf.Abs(SY)) {
             //    taunt = true;
