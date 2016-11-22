@@ -16,7 +16,7 @@ public class AngHubDataManager : MonoBehaviour {
                 Debug.LogWarning("Attempted to access HubData.CurrentReputation without a HubData object being present.");
                 return 0;
             }
-            return currentHubData.GlobalReputation;
+            return (int)currentHubData.GlobalReputation;
         }
     }
     public int DaysLeft {
@@ -72,17 +72,17 @@ public class AngHubDataManager : MonoBehaviour {
         hubData.AvailableQuests = new List<IQuest>();
 
         // TODO : New quest spawning system??
-        QuestGenerator QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
-        QuestData QD = new QuestData();
-        MultiQuest MQ = QG.GenerateMultiQuest(out QD);
-        //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
-        hubData.AvailableQuests.Add(MQ);
+        //QuestGenerator QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
+        //QuestData QD = new QuestData();
+        //MultiQuest MQ = QG.GenerateMultiQuest(out QD);
+        ////MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
+        //hubData.AvailableQuests.Add(MQ);
 
-        QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
-        QD = new QuestData();
-        MQ = QG.GenerateMultiQuest(out QD);
-        //MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
-        hubData.AvailableQuests.Add(MQ);
+        //QG = new QuestGenerator(StaticData.daysLeft, (int)StaticData.Reputation);
+        //QD = new QuestData();
+        //MQ = QG.GenerateMultiQuest(out QD);
+        ////MQ.Description = new QuestDescription("ok", "this is dog", Difficulty.Easy);
+        //hubData.AvailableQuests.Add(MQ);
 
         //AssetDatabase.SaveAssets();
         currentHubData = hubData;
@@ -105,7 +105,7 @@ public class AngHubDataManager : MonoBehaviour {
         HubData hubData = null;
         //var hubData = AssetDatabase.LoadAssetAtPath<HubData>(hubDataPath);
         if (hubData == null) {
-            hubData = ScriptableObject.CreateInstance<HubData>();
+            //hubData = ScriptableObject.CreateInstance<HubData>();
            // AssetDatabase.CreateAsset(hubData, hubDataPath);
         }
         return hubData;
