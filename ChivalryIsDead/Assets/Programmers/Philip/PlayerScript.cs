@@ -336,12 +336,20 @@ public class PlayerScript : MonoBehaviour {
 
         while ((attackLowerWeight > 0 || attackUpperWeight > 0) && Attackended) {
             SwordTrail.SetActive(false);
-            attackUpperWeight -= 0.05f;
-            attackLowerWeight -= 0.05f;
-            anim.SetLayerWeight(1, attackUpperWeight);
-            anim.SetLayerWeight(2, attackLowerWeight);
+            if (attackLowerWeight > 0) {
+                attackLowerWeight -= 0.05f;
+                anim.SetLayerWeight(2, attackLowerWeight);
+            }
+            if (attackUpperWeight > 0) {
+                attackUpperWeight -= 0.05f;
+                anim.SetLayerWeight(1, attackUpperWeight);
+            }
+            //attackLowerWeight -= 0.05f;
+            //anim.SetLayerWeight(1, attackUpperWeight);
+            //anim.SetLayerWeight(2, attackLowerWeight);
             yield return new WaitForSeconds(0.01f);
         }
+        
         attacking = false;
         Attackended = false;
 
@@ -459,6 +467,20 @@ public class PlayerScript : MonoBehaviour {
             currentAttack = 1;
 
             anim.Play("Attack Transition", 1, 0);
+            currentAttack = 1;
+            int r = (int)UnityEngine.Random.Range(0, 3);
+            //if (r == 0) {
+            //    anim.SetTrigger("Attack1");
+            //}
+            //else if (r == 1) {
+            //    anim.SetTrigger("Attack12");
+            //}
+            //else {
+            //    anim.SetTrigger("Attack13");
+            //}
+            anim.SetTrigger("Attack1");
+
+
             cancelAnim(ref taunting, "taunting");
             cancelAnim(ref scaring, "scaring");
             attacking = true;
@@ -472,15 +494,33 @@ public class PlayerScript : MonoBehaviour {
 
         //Debug.Log(ASI.normalizedTime / ASI.length);
 
-        if (ASI.IsName("Attack1 0") || (ASI.IsName("Attack 1 exit tran") && (ASI.normalizedTime / ASI.length > 0.5f)))
+        if (ASI.IsTag("Attack1"))
         {
             currentAttack = 2;
-            anim.SetTrigger("Attack2");
+            int r = (int)UnityEngine.Random.Range(0, 3);
+            if (r == 0) {
+                anim.SetTrigger("Attack2");
+            }
+            else if(r == 1) {
+                anim.SetTrigger("Attack22");
+            }
+            else {
+                anim.SetTrigger("Attack23");
+            }
         }
         else
         {
             currentAttack = 1;
-            anim.SetTrigger("Attack1");
+            int r = (int)UnityEngine.Random.Range(0, 3);
+            if (r == 0) {
+                anim.SetTrigger("Attack1");
+            }
+            else if (r == 1) {
+                anim.SetTrigger("Attack12");
+            }
+            else {
+                anim.SetTrigger("Attack13");
+            }
         }
 
         attackReachedFull = false;
