@@ -21,6 +21,7 @@ GameObject:
   - 4: {fileID: 4000010187723352}
   - 198: {fileID: 198000011014986008}
   - 199: {fileID: 199000012906861318}
+  - 114: {fileID: 114000014107358796}
   m_Layer: 0
   m_Name: Rock_Dust
   m_TagString: Untagged
@@ -41,6 +42,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000014107358796
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013570197374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ebd8e2470b68e45b8e02e0a8ddcd5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198000011014986008
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -85,7 +97,7 @@ ParticleSystem:
       m_RotationOrder: 4
     minMaxState: 0
   speed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   moveWithTransform: 0
