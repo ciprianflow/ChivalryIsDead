@@ -436,6 +436,7 @@ GameObject:
   - 222: {fileID: 222000013671266376}
   - 114: {fileID: 114000010011080680}
   - 114: {fileID: 114000010943474702}
+  - 95: {fileID: 95000013019276714}
   m_Layer: 5
   m_Name: Skip
   m_TagString: SkipBtn
@@ -1292,6 +1293,23 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95000013019276714
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011757258766}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 875f344dc5ac3394fa7c171fbec4f596, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114000010011080680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1765,7 +1783,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 100
+    m_Left: 140
     m_Right: 95
     m_Top: 0
     m_Bottom: 40
@@ -2010,10 +2028,10 @@ MonoBehaviour:
   dialog:
   - {fileID: 11400000, guid: 3a9bcaae9ac1c5045952c65bf924e8f1, type: 2}
   - {fileID: 11400000, guid: faa36ae057c0b6045930d66085db0e9e, type: 2}
-  - {fileID: 11400000, guid: fa0d771a09ae8ad438745cee12150d93, type: 2}
-  - {fileID: 11400000, guid: 95f6b5980840dd74a8ab123a80970704, type: 2}
-  - {fileID: 11400000, guid: 597be779a75fca240859dfa3f8fb17e6, type: 2}
+  - {fileID: 11400000, guid: 18ee3400ca24f144baeb5178ca07bb34, type: 2}
   - {fileID: 11400000, guid: 73de5fe3954fbfd40a294e3ae6bf27b8, type: 2}
+  - {fileID: 11400000, guid: 597be779a75fca240859dfa3f8fb17e6, type: 2}
+  - {fileID: 11400000, guid: 1e7f81a067a25ec4f837d823b0a2210a, type: 2}
   playerText: {fileID: 1000010500786738}
   playerBubble: {fileID: 1000013854848194}
   swordText: {fileID: 1000013821041018}
@@ -2096,7 +2114,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010245152706}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
@@ -3517,7 +3535,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013865399816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8c1227c1809dae4fbeb8a7d0a18defa, type: 3}
+  m_Script: {fileID: 11500000, guid: acd296f70e096154684f2be86788e8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
@@ -3708,7 +3726,7 @@ MonoBehaviour:
   swordBubble: {fileID: 1000013472790120}
   princess: {fileID: 1000013319541366}
   princessBubble: {fileID: 1000011478621102}
-  speaking: 0
+  speaking: 1
   skipBtn: {fileID: 1000011757258766}
 --- !u!114 &114000013878867772
 MonoBehaviour:

@@ -176,7 +176,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         state = State.Move;
         stateFunc = Move;
 
-        if(this.name!="Ranged")
+        if(monsterHandle != MonsterHandle.Ranged)
             anim.SetTrigger("StartCharge");
         anim.SetFloat("Speed", 1);
 
@@ -188,7 +188,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void MoveToAttack()
     {
-        Debug.Log("MoveToAttack");
+        //Debug.Log("MoveToAttack");
 
         StopNavMeshAgent();
         state = State.Attack;
@@ -390,6 +390,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public void Hit(int damage)
     {
 
+        if (state == State.Death)
+            return;
+
         if (healthScript.takeDamage(damage))
         {
             //Plays death sound
@@ -401,10 +404,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             ToDeath();
             Debug.Log("DED");
             anim.Play("Death", 0, 0);
-            //anim.SetTrigger("DIE");
-            StartCoroutine(death());
-
-            
+            if(this.GetType().Equals(typeof(SuicideAI)))
+                gameObject.SetActive(false);
+            else
+                StartCoroutine(death());
         }
         else {
             anim.Play("TakeDamage");
@@ -444,6 +447,27 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         r.AddTorque((this.transform.position - g.transform.position) * 10);
 
         g.GetComponentInChildren<Animator>().SetTrigger("Flying");
+    }
+
+    protected static void DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
+    {
+        Collider[] Colliders = new Collider[0];
+        Colliders = Physics.OverlapSphere(pos, radius);
+        for (int i = 0; i < Colliders.Length; i++)
+        {
+            //Debug.Log("One in range");
+            if (Colliders[i].tag == "Player")
+            {
+                //Debug.Log("This on is a player");
+                Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                if (body)
+                    body.AddExplosionForce(force, pos, radius);
+
+
+                PlayerActionController PAC = Colliders[i].gameObject.GetComponent<PlayerActionController>();
+                PAC.PlayerAttacked(Monster);
+            }
+        }
     }
 
     #endregion
