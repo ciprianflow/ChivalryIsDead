@@ -1,18 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Projectile : MonoBehaviour {
 
+    public GameObject particles;
     public MonsterAI originMonster;
+
     bool setToDestroy = false;
+    bool hitGround = false;
 
 	void OnCollisionEnter(Collision col)
     {
-        if (setToDestroy || col.transform.CompareTag("Projectile"))
+        if (!hitGround && col.transform.CompareTag("Ground"))
+            HitGround();
+
+        if (setToDestroy || col.transform.CompareTag("Projectile") || originMonster == null  || col.gameObject == originMonster.transform.gameObject)
             return;
 
         ProjectileCollision(col.gameObject);
+    }
 
+    private void HitGround()
+    {
+        if (particles != null)
+        {
+            GameObject particlesObject = Instantiate(particles);
+            particlesObject.transform.position = this.transform.position;
+            hitGround = true;
+        }
     }
 
     void ProjectileCollision(GameObject collObj)
@@ -34,12 +50,9 @@ public class Projectile : MonoBehaviour {
             }
             else
             {
-
                 //let player know objective is attacked
                 originMonster.playerAction.ObjectiveAttacked(originMonster);
             }
-
-
         }
 
         //monster should make daamge not the projectile??

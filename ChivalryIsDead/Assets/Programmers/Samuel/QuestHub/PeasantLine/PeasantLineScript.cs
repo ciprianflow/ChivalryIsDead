@@ -21,7 +21,7 @@ public class PeasantLineScript : MonoBehaviour {
         if (Bezier == null)
             return;
 
-        int NumOfPeasants = 25;
+        int NumOfPeasants = (int)(25 * (StaticData.Reputation / 100)) + 1;
         //float PeasantDist = 1f / NumOfPeasants;
         float PeasantDist = 0.04f;
 

@@ -54,9 +54,9 @@ public class HubDataManager : MonoBehaviour {
     public GameObject ContentPane;
     public GameObject QuestButton;
     public GameObject QuestLetter;
-    public Text RepText;
-    public Text QueueText;
+    public GameObject WinScreen;
     public Text DaysLeftText;
+    public Image RingImg;
 
     void Awake()
     {
@@ -70,8 +70,10 @@ public class HubDataManager : MonoBehaviour {
 
     void Start () {
 
+        checkForWin();
         peasantLineScript.FillPeasantLine();
         UpdateUIText();
+        UpdateUI();
         CreateQuestUIElements();
 
     }
@@ -221,7 +223,16 @@ public class HubDataManager : MonoBehaviour {
         ClearQuestUIElements();
         PushToHubData(repChange);
         CreateQuestUIElements();
-        QueueText.text = AvailableQuests.Count.ToString();
+    }
+
+    void checkForWin()
+    {
+        if(StaticData.Reputation <= 0)
+        {
+            StaticData.Reputation = StaticData.MaxReputation;
+            StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
+            WinScreen.SetActive(true);
+        }
     }
 
     #region Static methods
@@ -265,9 +276,12 @@ public class HubDataManager : MonoBehaviour {
 
     void UpdateUIText()
     {
-        QueueText.text = currentHubData.QueueLength.ToString();
-        RepText.text = StaticData.Reputation.ToString();
         DaysLeftText.text = StaticData.daysLeft.ToString();
+    }
+
+    void UpdateUI()
+    {
+        RingImg.fillAmount = (float)StaticData.daysLeft / (float)StaticData.maxDaysLeft;
     }
 
     public void SetDLCPopUp(bool b)
@@ -292,6 +306,11 @@ public class HubDataManager : MonoBehaviour {
     public BaseQuest GetQuest(int i)
     {
         return (BaseQuest)AvailableQuests[i];
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     #endregion
