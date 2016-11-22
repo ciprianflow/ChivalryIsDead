@@ -13,7 +13,7 @@ public class HubData
 
     public HubData()
     {
-        RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
+        //RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
         DaysLeft = 14;
         GlobalReputation = 100;
     }

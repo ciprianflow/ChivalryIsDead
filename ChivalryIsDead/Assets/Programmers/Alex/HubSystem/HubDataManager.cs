@@ -232,7 +232,7 @@ public class HubDataManager : MonoBehaviour {
         HubData hubData = LoadJson();
 
         if (hubData == null)
-            hubData = new HubData();
+            hubData = new HubData() { RandomSeed = UnityEngine.Random.Range(0, int.MaxValue) };
 
         return hubData;
     }
