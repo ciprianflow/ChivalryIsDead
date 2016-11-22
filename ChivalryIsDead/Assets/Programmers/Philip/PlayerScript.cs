@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour {
     public GameObject DustParticle;
 
     Dictionary<String, int> AnimDic = new Dictionary<String, int>();
-    
+
 
     void Awake()
     {
@@ -449,7 +449,7 @@ public class PlayerScript : MonoBehaviour {
 
         attackCR = StartCoroutine(animateAttack());
 
-        anim.Play("Hero_Attack1", 2, 0);
+        //anim.Play("Hero_Attack1", 2, 0);
 
             SwordTrail.SetActive(true);
         
@@ -530,7 +530,14 @@ public class PlayerScript : MonoBehaviour {
 
         SwordTrail.SetActive(false);
         //anim.Play("Scare", 5, 0);
-        anim.SetTrigger("OverreactTrig");
+
+
+        if((int)UnityEngine.Random.Range(0,2) == 0) {
+            anim.SetTrigger("OverreactTrig1");
+        }
+        else {
+            anim.SetTrigger("OverreactTrig2");
+        }
         cancelAnim(ref attacking, "attacking");
         cancelAnim(ref taunting, "taunting");
         cancelAnim(ref scaring, "scaring");
