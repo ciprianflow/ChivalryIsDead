@@ -246,9 +246,19 @@
 										<Event Name="ranged_taunted" ID="{E88B8650-B620-4B27-914F-5663B754C2A4}">
 											<ChildrenList>
 												<Action Name="Play" ID="{BDF5AD1A-BC53-4EB2-936B-5B179865B1FC}" ShortID="775917479" Type="Play" Scope="One" Global="false">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.1"/>
+													</PropertyList>
 													<ElementList>
 														<Element ID="{E12B32B2-0E2C-410C-A510-CD8184659E0C}" Global="false">
 															<ObjectRef Name="ranged_taunted" ID="{48B7134E-3DBF-495D-9407-ACED3D2850A0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
+												<Action Name="Play" ID="{50B460C3-CB38-43F7-A1AB-30BC983E535B}" ShortID="164491643" Type="Play" Scope="One" Global="false">
+													<ElementList>
+														<Element ID="{65949669-4900-4B77-902F-893C3AAD564B}" Global="false">
+															<ObjectRef Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -367,9 +377,19 @@
 										<Event Name="melee_taunted" ID="{29C741C0-5369-4E95-B855-DD2C51281EB9}">
 											<ChildrenList>
 												<Action Name="Play" ID="{AFEC4904-1EE9-4282-A86B-A47364056863}" ShortID="559082573" Type="Play" Scope="One" Global="false">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.1"/>
+													</PropertyList>
 													<ElementList>
 														<Element ID="{50BACF87-1C47-4514-A09C-62B34F7EF749}" Global="false">
 															<ObjectRef Name="melee_taunted" ID="{F59BF882-CDCC-42A9-AC00-A974A0816E3C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
+												<Action Name="Play" ID="{AF03A222-4DA2-4D78-B279-440AB58BDDDF}" ShortID="945734443" Type="Play" Scope="One" Global="false">
+													<ElementList>
+														<Element ID="{8059BA97-CAD6-4CCA-A01F-BD98438ADB90}" Global="false">
+															<ObjectRef Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -392,6 +412,16 @@
 													<ElementList>
 														<Element ID="{F25C91D7-7DD9-423D-B644-1657D226A1E7}" Global="false">
 															<ObjectRef Name="melee_attack" ID="{3DB34CB4-D4B8-439B-8016-74CDEFF3821E}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
+												<Action Name="Play" ID="{B9C7B115-C0BD-4F1C-BD22-2F41B46F6653}" ShortID="183744153" Type="Play" Scope="One" Global="false">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.2"/>
+													</PropertyList>
+													<ElementList>
+														<Element ID="{073BCF21-2A34-4039-89DB-993BBD56ECBE}" Global="false">
+															<ObjectRef Name="spearTrust" ID="{F93F4DAB-8BF4-4456-B4AB-2ED9165721DF}" WorkUnitID="{BB5DD793-F285-4F74-8D1D-DF7A4B893280}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -740,6 +770,9 @@
 									</ElementList>
 								</Action>
 								<Action Name="Play" ID="{6C4F6142-A9B8-4377-85DA-D436E8CA0860}" ShortID="244043455" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="1"/>
+									</PropertyList>
 									<ElementList>
 										<Element ID="{5E7401F3-FE40-49E5-9D2E-4D0EB1B3498A}" Global="false">
 											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
@@ -762,6 +795,9 @@
 						<Event Name="reward_combo_boost" ID="{3808E535-C6C7-4E89-8DE0-5C48985E62E9}">
 							<ChildrenList>
 								<Action Name="Play" ID="{7A60B7C8-26CA-4730-A38F-7E1D9C684317}" ShortID="613308233" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="1"/>
+									</PropertyList>
 									<ElementList>
 										<Element ID="{3B2DCE9C-2525-49D9-BAD3-6AF5ED220E95}" Global="false">
 											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>

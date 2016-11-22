@@ -11362,7 +11362,7 @@ Presence is roughly related to distance and occlusion</Comment>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<SourcePlugin Name="SoundSeed Woosh" ID="{46D5C66C-7CD3-4528-BB71-199B52AF64D6}" ShortID="88627080" PluginName="SoundSeed Air/SoundSeed Woosh" CompanyID="0" PluginID="120">
+								<SourcePlugin Name="Sword" ID="{46D5C66C-7CD3-4528-BB71-199B52AF64D6}" ShortID="88627080" PluginName="SoundSeed Air/SoundSeed Woosh" CompanyID="0" PluginID="120">
 									<PropertyList>
 										<Property Name="ChannelMask" Type="int32" Value="2"/>
 										<Property Name="Duration" Type="Real64" Value="0.4"/>
@@ -11524,7 +11524,352 @@ Presence is roughly related to distance and occlusion</Comment>
 								</SourcePlugin>
 							</ChildrenList>
 							<ActiveSourceList>
-								<ActiveSource Name="SoundSeed Woosh" ID="{46D5C66C-7CD3-4528-BB71-199B52AF64D6}" Platform="Linked"/>
+								<ActiveSource Name="Sword" ID="{46D5C66C-7CD3-4528-BB71-199B52AF64D6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="spearTrust" ID="{F93F4DAB-8BF4-4456-B4AB-2ED9165721DF}" ShortID="762683595" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<SourcePlugin Name="spear" ID="{43F2D612-06B4-4765-85C1-CFAD0B3EBFA3}" ShortID="481995194" PluginName="SoundSeed Air/SoundSeed Woosh" CompanyID="0" PluginID="120">
+									<PropertyList>
+										<Property Name="Duration" Type="Real64" Value="0.2"/>
+										<Property Name="FrequencyScale" Type="Real32" Value="2"/>
+										<Property Name="FrequencyScaleAutomate" Type="bool" Value="True"/>
+										<Property Name="FrequencyScaleRandom" Type="Real32" Value="2.32"/>
+										<Property Name="GainOffset" Type="Real32" Value="10"/>
+										<Property Name="GainOffsetRandom" Type="Real32" Value="10"/>
+										<Property Name="QFactorScaleAutomate" Type="bool" Value="True"/>
+										<Property Name="SpeedAutomate" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<PluginData>
+	<WooshData>
+		<CurveList Version="1">
+			<CurveInfo Name="FrequencyScale">
+				<Curve Name="" ID="{8F2DF486-BB4B-4F60-9CA4-01A943D9E74B}">
+					<PropertyList>
+						<Property Name="Flags" Type="int32" Value="1"/>
+					</PropertyList>
+					<PointList>
+						<Point>
+							<XPos>0</XPos>
+							<YPos>0</YPos>
+							<Flags>5</Flags>
+						</Point>
+						<Point>
+							<XPos>0.04591</XPos>
+							<YPos>-1.15337</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.09978</XPos>
+							<YPos>-0.02454</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.166</XPos>
+							<YPos>0.37047</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.18145</XPos>
+							<YPos>-0.22086</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.2</XPos>
+							<YPos>-1.64417</YPos>
+							<Flags>37</Flags>
+						</Point>
+					</PointList>
+				</Curve>
+			</CurveInfo>
+			<CurveInfo Name="QFactorScale">
+				<Curve Name="" ID="{F5553EAF-A642-4889-A28B-E6DA77F2147B}">
+					<PropertyList>
+						<Property Name="Flags" Type="int32" Value="1"/>
+					</PropertyList>
+					<PointList>
+						<Point>
+							<XPos>0</XPos>
+							<YPos>0</YPos>
+							<Flags>5</Flags>
+						</Point>
+						<Point>
+							<XPos>0.0437</XPos>
+							<YPos>-4</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.09978</XPos>
+							<YPos>-0.02454</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.16689</XPos>
+							<YPos>-1.98773</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.2</XPos>
+							<YPos>-1.10429</YPos>
+							<Flags>37</Flags>
+						</Point>
+					</PointList>
+				</Curve>
+			</CurveInfo>
+			<CurveInfo Name="Speed">
+				<Curve Name="" ID="{68C8CEFF-1897-4483-9564-CAFFBC3D62DF}">
+					<PropertyList>
+						<Property Name="Flags" Type="int32" Value="1"/>
+					</PropertyList>
+					<PointList>
+						<Point>
+							<XPos>0</XPos>
+							<YPos>0</YPos>
+							<Flags>5</Flags>
+						</Point>
+						<Point>
+							<XPos>0.16588</XPos>
+							<YPos>100</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.2</XPos>
+							<YPos>0</YPos>
+							<Flags>37</Flags>
+						</Point>
+					</PointList>
+				</Curve>
+			</CurveInfo>
+		</CurveList>
+		<Path Version="1">
+			<Path2D Name="" ID="{3A3E47F1-6C22-48EE-9223-C46254E409C8}">
+				<PropertyList>
+					<Property Name="LinearTime" Type="bool" Value="False"/>
+				</PropertyList>
+				<PointList>
+					<Point>
+						<XPos>0</XPos>
+						<YPos>0</YPos>
+						<Flags>12</Flags>
+						<Time>0</Time>
+					</Point>
+				</PointList>
+			</Path2D>
+		</Path>
+	</WooshData>
+</PluginData>
+									<PluginInnerObjectList>
+										<List Name="Deflectors">
+											<PluginInnerObject Name="" ID="{1AC88243-5B6D-46F4-BC40-BBE1D64BB87F}" PluginName="Deflector" CompanyID="0" PluginID="122">
+												<PropertyList>
+													<Property Name="Frequency" Type="Real32" Value="849"/>
+												</PropertyList>
+											</PluginInnerObject>
+										</List>
+									</PluginInnerObjectList>
+								</SourcePlugin>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="spear" ID="{43F2D612-06B4-4765-85C1-CFAD0B3EBFA3}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="spearSwing" ID="{19C9C429-8B80-4CC0-9515-0C174AFED37C}" ShortID="294514980" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<SourcePlugin Name="Spear swing" ID="{AF06D037-2C92-40EB-B4DF-7749648E8DB2}" ShortID="369865668" PluginName="SoundSeed Air/SoundSeed Woosh" CompanyID="0" PluginID="120">
+									<PropertyList>
+										<Property Name="Duration" Type="Real64" Value="1"/>
+										<Property Name="FrequencyScale" Type="Real32" Value="2"/>
+										<Property Name="FrequencyScaleAutomate" Type="bool" Value="True"/>
+										<Property Name="FrequencyScaleRandom" Type="Real32" Value="2.65"/>
+										<Property Name="QFactorScaleAutomate" Type="bool" Value="True"/>
+										<Property Name="SpeedAutomate" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<PluginData>
+	<WooshData>
+		<CurveList Version="1">
+			<CurveInfo Name="FrequencyScale">
+				<Curve Name="" ID="{35B1BD23-3460-47CD-8362-95C33BC24303}">
+					<PropertyList>
+						<Property Name="Flags" Type="int32" Value="1"/>
+					</PropertyList>
+					<PointList>
+						<Point>
+							<XPos>0</XPos>
+							<YPos>0</YPos>
+							<Flags>5</Flags>
+						</Point>
+						<Point>
+							<XPos>0.25827</XPos>
+							<YPos>0.58896</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.57616</XPos>
+							<YPos>-0.53987</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.76601</XPos>
+							<YPos>0.28458</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>1</XPos>
+							<YPos>0</YPos>
+							<Flags>37</Flags>
+						</Point>
+					</PointList>
+				</Curve>
+			</CurveInfo>
+			<CurveInfo Name="QFactorScale">
+				<Curve Name="" ID="{04B4BDB1-6FF5-4C3C-9241-CC70FCD72A0A}">
+					<PropertyList>
+						<Property Name="Flags" Type="int32" Value="1"/>
+					</PropertyList>
+					<PointList>
+						<Point>
+							<XPos>0</XPos>
+							<YPos>0</YPos>
+							<Flags>5</Flags>
+						</Point>
+						<Point>
+							<XPos>0.25606</XPos>
+							<YPos>-0.46403</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.48565</XPos>
+							<YPos>0.09816</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.77041</XPos>
+							<YPos>-0.31092</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>1</XPos>
+							<YPos>0</YPos>
+							<Flags>37</Flags>
+						</Point>
+					</PointList>
+				</Curve>
+			</CurveInfo>
+			<CurveInfo Name="Speed">
+				<Curve Name="" ID="{6B18118E-6909-45AD-99D4-FC78CE762BC0}">
+					<PropertyList>
+						<Property Name="Flags" Type="int32" Value="1"/>
+					</PropertyList>
+					<PointList>
+						<Point>
+							<XPos>0</XPos>
+							<YPos>0</YPos>
+							<Flags>5</Flags>
+						</Point>
+						<Point>
+							<XPos>0.2649</XPos>
+							<YPos>40.45597</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.29801</XPos>
+							<YPos>62.20194</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.40839</XPos>
+							<YPos>73.61963</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.48786</XPos>
+							<YPos>100</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.624724061810154</XPos>
+							<YPos>73.2760452590787</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.72848</XPos>
+							<YPos>61.96319</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.77704</XPos>
+							<YPos>41.89794</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>0.90949</XPos>
+							<YPos>0</YPos>
+							<Flags>0</Flags>
+						</Point>
+						<Point>
+							<XPos>1</XPos>
+							<YPos>0</YPos>
+							<Flags>37</Flags>
+						</Point>
+					</PointList>
+				</Curve>
+			</CurveInfo>
+		</CurveList>
+		<Path Version="1">
+			<Path2D Name="" ID="{76C0C4AA-6F7F-43AE-882F-0969CBA2D367}">
+				<PropertyList>
+					<Property Name="LinearTime" Type="bool" Value="False"/>
+				</PropertyList>
+				<PointList>
+					<Point>
+						<XPos>0</XPos>
+						<YPos>0</YPos>
+						<Flags>12</Flags>
+						<Time>0</Time>
+					</Point>
+				</PointList>
+			</Path2D>
+		</Path>
+	</WooshData>
+</PluginData>
+									<PluginInnerObjectList>
+										<List Name="Deflectors">
+											<PluginInnerObject Name="" ID="{694A96AD-78C7-4627-A116-2AB72CE4E76D}" PluginName="Deflector" CompanyID="0" PluginID="122">
+												<PropertyList>
+													<Property Name="Frequency" Type="Real32" Value="500"/>
+													<Property Name="QFactor" Type="Real32" Value="6"/>
+												</PropertyList>
+											</PluginInnerObject>
+											<PluginInnerObject Name="" ID="{6B4D4744-1EEB-4787-AA76-A634EC7CCD11}" PluginName="Deflector" CompanyID="0" PluginID="122">
+												<PropertyList>
+													<Property Name="Frequency" Type="Real32" Value="90"/>
+													<Property Name="QFactor" Type="Real32" Value="48.69"/>
+												</PropertyList>
+											</PluginInnerObject>
+										</List>
+									</PluginInnerObjectList>
+								</SourcePlugin>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Spear swing" ID="{AF06D037-2C92-40EB-B4DF-7749648E8DB2}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
 					</ChildrenList>
