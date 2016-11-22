@@ -38,10 +38,11 @@ public class PlayerScript : MonoBehaviour {
     public GameObject DustParticle;
 
     Dictionary<String, int> AnimDic = new Dictionary<String, int>();
-    
 
     void Awake()
     {
+
+        Time.timeScale = 0.1f;
 
         //Time.timeScale = 1f;
 
@@ -336,6 +337,7 @@ public class PlayerScript : MonoBehaviour {
 
         while ((attackLowerWeight > 0 || attackUpperWeight > 0) && Attackended) {
             SwordTrail.SetActive(false);
+
             attackUpperWeight -= 0.05f;
             attackLowerWeight -= 0.05f;
             anim.SetLayerWeight(1, attackUpperWeight);
@@ -451,8 +453,8 @@ public class PlayerScript : MonoBehaviour {
 
         anim.Play("Hero_Attack1", 2, 0);
 
-            SwordTrail.SetActive(true);
-        
+        SwordTrail.SetActive(true);
+
 
         if (!attacking)
         {
@@ -529,6 +531,7 @@ public class PlayerScript : MonoBehaviour {
         anim.SetLayerWeight(7, 0);
 
         SwordTrail.SetActive(false);
+
         //anim.Play("Scare", 5, 0);
         anim.SetTrigger("OverreactTrig");
         cancelAnim(ref attacking, "attacking");
@@ -589,7 +592,5 @@ public class PlayerScript : MonoBehaviour {
     //{
     //    return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
     //}
-
-
 
 }
