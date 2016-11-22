@@ -12,9 +12,9 @@ FBXHeaderExtension:  {
 		Month: 11
 		Day: 22
 		Hour: 11
-		Minute: 26
-		Second: 52
-		Millisecond: 138
+		Minute: 27
+		Second: 46
+		Millisecond: 382
 	}
 	Creator: "FBX SDK/FBX Plugins version 2016.0"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -30,21 +30,21 @@ FBXHeaderExtension:  {
 			Comment: ""
 		}
 		Properties70:  {
-			P: "DocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\flowersred_a_01\flowersred_a_01.fbx"
-			P: "SrcDocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\flowersred_a_01\flowersred_a_01.fbx"
+			P: "DocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\reeds_a_01\reeds_a_01.fbx"
+			P: "SrcDocumentUrl", "KString", "Url", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\reeds_a_01\reeds_a_01.fbx"
 			P: "Original", "Compound", "", ""
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "2016"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "22/11/2016 10:26:52.137"
-			P: "Original|FileName", "KString", "", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\flowersred_a_01\flowersred_a_01.fbx"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "22/11/2016 10:27:46.381"
+			P: "Original|FileName", "KString", "", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Environment\reeds_a_01\reeds_a_01.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2016"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "22/11/2016 10:26:52.137"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "22/11/2016 10:27:46.381"
 			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\dadiu\Documents\Elias' DADIU\Graduation Game\Art Department\06 Enviroment\2D Planes"
-			P: "Original|ApplicationNativeFile", "KString", "", "", "C:\Users\dadiu\Documents\Elias' DADIU\Graduation Game\Art Department\06 Enviroment\2D Planes\flowersred_a_01.mb"
+			P: "Original|ApplicationNativeFile", "KString", "", "", "C:\Users\dadiu\Documents\Elias' DADIU\Graduation Game\Art Department\06 Enviroment\2D Planes\reeds_a_01.mb"
 		}
 	}
 }
@@ -79,10 +79,10 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 978855792, "", "Scene" {
+	Document: 978856048, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
-			P: "ActiveAnimStackName", "KString", "", "", "flowersred_a_01"
+			P: "ActiveAnimStackName", "KString", "", "", "reeds_a_01"
 		}
 		RootNode: 0
 	}
@@ -99,7 +99,7 @@ References:  {
 
 Definitions:  {
 	Version: 100
-	Count: 12
+	Count: 10
 	ObjectType: "GlobalSettings" {
 		Count: 1
 	}
@@ -131,18 +131,68 @@ Definitions:  {
 			}
 		}
 	}
-	ObjectType: "NodeAttribute" {
+	ObjectType: "Geometry" {
 		Count: 1
-		PropertyTemplate: "FbxNull" {
+		PropertyTemplate: "FbxMesh" {
 			Properties70:  {
 				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
-				P: "Size", "double", "Number", "",100
-				P: "Look", "enum", "", "",1
+				P: "BBoxMin", "Vector3D", "Vector", "",0,0,0
+				P: "BBoxMax", "Vector3D", "Vector", "",0,0,0
+				P: "Primary Visibility", "bool", "", "",1
+				P: "Casts Shadows", "bool", "", "",1
+				P: "Receive Shadows", "bool", "", "",1
+			}
+		}
+	}
+	ObjectType: "Material" {
+		Count: 1
+		PropertyTemplate: "FbxSurfaceLambert" {
+			Properties70:  {
+				P: "ShadingModel", "KString", "", "", "Lambert"
+				P: "MultiLayer", "bool", "", "",0
+				P: "EmissiveColor", "Color", "", "A",0,0,0
+				P: "EmissiveFactor", "Number", "", "A",1
+				P: "AmbientColor", "Color", "", "A",0.2,0.2,0.2
+				P: "AmbientFactor", "Number", "", "A",1
+				P: "DiffuseColor", "Color", "", "A",0.8,0.8,0.8
+				P: "DiffuseFactor", "Number", "", "A",1
+				P: "Bump", "Vector3D", "Vector", "",0,0,0
+				P: "NormalMap", "Vector3D", "Vector", "",0,0,0
+				P: "BumpFactor", "double", "Number", "",1
+				P: "TransparentColor", "Color", "", "A",0,0,0
+				P: "TransparencyFactor", "Number", "", "A",0
+				P: "DisplacementColor", "ColorRGB", "Color", "",0,0,0
+				P: "DisplacementFactor", "double", "Number", "",1
+				P: "VectorDisplacementColor", "ColorRGB", "Color", "",0,0,0
+				P: "VectorDisplacementFactor", "double", "Number", "",1
+			}
+		}
+	}
+	ObjectType: "Texture" {
+		Count: 2
+		PropertyTemplate: "FbxFileTexture" {
+			Properties70:  {
+				P: "TextureTypeUse", "enum", "", "",0
+				P: "Texture alpha", "Number", "", "A",1
+				P: "CurrentMappingType", "enum", "", "",0
+				P: "WrapModeU", "enum", "", "",0
+				P: "WrapModeV", "enum", "", "",0
+				P: "UVSwap", "bool", "", "",0
+				P: "PremultiplyAlpha", "bool", "", "",1
+				P: "Translation", "Vector", "", "A",0,0,0
+				P: "Rotation", "Vector", "", "A",0,0,0
+				P: "Scaling", "Vector", "", "A",1,1,1
+				P: "TextureRotationPivot", "Vector3D", "Vector", "",0,0,0
+				P: "TextureScalingPivot", "Vector3D", "Vector", "",0,0,0
+				P: "CurrentTextureBlendMode", "enum", "", "",1
+				P: "UVSet", "KString", "", "", "default"
+				P: "UseMaterial", "bool", "", "",0
+				P: "UseMipMap", "bool", "", "",0
 			}
 		}
 	}
 	ObjectType: "Model" {
-		Count: 2
+		Count: 1
 		PropertyTemplate: "FbxNode" {
 			Properties70:  {
 				P: "QuaternionInterpolate", "enum", "", "",0
@@ -219,66 +269,6 @@ Definitions:  {
 			}
 		}
 	}
-	ObjectType: "Geometry" {
-		Count: 1
-		PropertyTemplate: "FbxMesh" {
-			Properties70:  {
-				P: "Color", "ColorRGB", "Color", "",0.8,0.8,0.8
-				P: "BBoxMin", "Vector3D", "Vector", "",0,0,0
-				P: "BBoxMax", "Vector3D", "Vector", "",0,0,0
-				P: "Primary Visibility", "bool", "", "",1
-				P: "Casts Shadows", "bool", "", "",1
-				P: "Receive Shadows", "bool", "", "",1
-			}
-		}
-	}
-	ObjectType: "Material" {
-		Count: 1
-		PropertyTemplate: "FbxSurfaceLambert" {
-			Properties70:  {
-				P: "ShadingModel", "KString", "", "", "Lambert"
-				P: "MultiLayer", "bool", "", "",0
-				P: "EmissiveColor", "Color", "", "A",0,0,0
-				P: "EmissiveFactor", "Number", "", "A",1
-				P: "AmbientColor", "Color", "", "A",0.2,0.2,0.2
-				P: "AmbientFactor", "Number", "", "A",1
-				P: "DiffuseColor", "Color", "", "A",0.8,0.8,0.8
-				P: "DiffuseFactor", "Number", "", "A",1
-				P: "Bump", "Vector3D", "Vector", "",0,0,0
-				P: "NormalMap", "Vector3D", "Vector", "",0,0,0
-				P: "BumpFactor", "double", "Number", "",1
-				P: "TransparentColor", "Color", "", "A",0,0,0
-				P: "TransparencyFactor", "Number", "", "A",0
-				P: "DisplacementColor", "ColorRGB", "Color", "",0,0,0
-				P: "DisplacementFactor", "double", "Number", "",1
-				P: "VectorDisplacementColor", "ColorRGB", "Color", "",0,0,0
-				P: "VectorDisplacementFactor", "double", "Number", "",1
-			}
-		}
-	}
-	ObjectType: "Texture" {
-		Count: 2
-		PropertyTemplate: "FbxFileTexture" {
-			Properties70:  {
-				P: "TextureTypeUse", "enum", "", "",0
-				P: "Texture alpha", "Number", "", "A",1
-				P: "CurrentMappingType", "enum", "", "",0
-				P: "WrapModeU", "enum", "", "",0
-				P: "WrapModeV", "enum", "", "",0
-				P: "UVSwap", "bool", "", "",0
-				P: "PremultiplyAlpha", "bool", "", "",1
-				P: "Translation", "Vector", "", "A",0,0,0
-				P: "Rotation", "Vector", "", "A",0,0,0
-				P: "Scaling", "Vector", "", "A",1,1,1
-				P: "TextureRotationPivot", "Vector3D", "Vector", "",0,0,0
-				P: "TextureScalingPivot", "Vector3D", "Vector", "",0,0,0
-				P: "CurrentTextureBlendMode", "enum", "", "",1
-				P: "UVSet", "KString", "", "", "default"
-				P: "UseMaterial", "bool", "", "",0
-				P: "UseMipMap", "bool", "", "",0
-			}
-		}
-	}
 	ObjectType: "Video" {
 		Count: 2
 		PropertyTemplate: "FbxVideo" {
@@ -307,15 +297,9 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 936966320, "NodeAttribute::", "Null" {
-		Properties70:  {
-			P: "Look", "enum", "", "",0
-		}
-		TypeFlags: "Null"
-	}
-	Geometry: 342195440, "Geometry::", "Mesh" {
+	Geometry: 342190832, "Geometry::", "Mesh" {
 		Vertices: *12 {
-			a: -1.96103858947754,0,0,1.96103858947754,0,0,-1.96103858947754,4.10607671737671,0,1.96103858947754,4.10607671737671,0
+			a: -0.417544394731522,-1.11022302462516e-016,0.5,0.417544394731522,-1.11022302462516e-016,0.5,-0.417544394731522,1.11022302462516e-016,-0.5,0.417544394731522,1.11022302462516e-016,-0.5
 		} 
 		PolygonVertexIndex: *4 {
 			a: 0,1,3,-3
@@ -330,7 +314,7 @@ Objects:  {
 			MappingInformationType: "ByVertice"
 			ReferenceInformationType: "Direct"
 			Normals: *12 {
-				a: 0,0,1,0,0,1,0,0,1,0,0,1
+				a: 0,1,2.22044604925031e-016,0,1,2.22044604925031e-016,0,1,2.22044604925031e-016,0,1,2.22044604925031e-016
 			} 
 			NormalsW: *4 {
 				a: 1,1,1,1
@@ -342,7 +326,7 @@ Objects:  {
 			MappingInformationType: "ByPolygonVertex"
 			ReferenceInformationType: "IndexToDirect"
 			UV: *8 {
-				a: 0.489777415990829,0.380649715662003,0.598907232284546,0.380649715662003,0.489777415990829,0.495191931724548,0.598907232284546,0.495191931724548
+				a: 0.000490844249725342,-0.00142306182533503,0.265612840652466,-0.00142306182533503,0.000490844249725342,0.36552494764328,0.265612840652466,0.36552494764328
 			} 
 			UVIndex: *4 {
 				a: 0,1,3,2
@@ -386,30 +370,22 @@ Objects:  {
 			}
 		}
 	}
-	Model: 328696496, "Model::flowersred_a_01", "Null" {
+	Model: 328675616, "Model::pPlane1", "Mesh" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
-		}
-		Shading: Y
-		Culling: "CullingOff"
-	}
-	Model: 328682576, "Model::geo_flowersred_a_01", "Mesh" {
-		Version: 232
-		Properties70:  {
-			P: "RotationActive", "bool", "", "",1
-			P: "InheritType", "enum", "", "",1
-			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
-			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Translation", "Lcl Translation", "", "A",0,7.59324510652527,0
+			P: "Lcl Rotation", "Lcl Rotation", "", "A",90,0,0
+			P: "Lcl Scaling", "Lcl Scaling", "", "A",15.8312040905241,15.8312040905241,15.8312040905241
 			P: "currentUVSet", "KString", "", "U", "map1"
 		}
 		Shading: T
 		Culling: "CullingOff"
 	}
-	Material: 987856832, "Material::lambert2", "" {
+	Material: 987757632, "Material::lambert2", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -424,7 +400,7 @@ Objects:  {
 			P: "Opacity", "double", "Number", "",1
 		}
 	}
-	Video: 987855232, "Video::file1", "Clip" {
+	Video: 987854032, "Video::file1", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "C:/Users/dadiu/Documents/Elias' DADIU/Graduation Game/Art Department/06 Enviroment/2D Planes/Texture Atlas 2.png"
@@ -433,7 +409,7 @@ Objects:  {
 		Filename: "C:/Users/dadiu/Documents/Elias' DADIU/Graduation Game/Art Department/06 Enviroment/2D Planes/Texture Atlas 2.png"
 		RelativeFilename: "..\..\..\..\..\..\Elias' DADIU\Graduation Game\Art Department\06 Enviroment\2D Planes\Texture Atlas 2.png"
 	}
-	Video: 987751232, "Video::file2", "Clip" {
+	Video: 987747232, "Video::file2", "Clip" {
 		Type: "Clip"
 		Properties70:  {
 			P: "Path", "KString", "XRefUrl", "", "C:/Users/dadiu/Documents/Elias' DADIU/Graduation Game/Art Department/06 Enviroment/2D Planes/Texture Atlas 2 Cutout 1.png"
@@ -442,7 +418,7 @@ Objects:  {
 		Filename: "C:/Users/dadiu/Documents/Elias' DADIU/Graduation Game/Art Department/06 Enviroment/2D Planes/Texture Atlas 2 Cutout 1.png"
 		RelativeFilename: "..\..\..\..\..\..\Elias' DADIU\Graduation Game\Art Department\06 Enviroment\2D Planes\Texture Atlas 2 Cutout 1.png"
 	}
-	Texture: 995659280, "Texture::file1", "" {
+	Texture: 979494848, "Texture::file1", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::file1"
@@ -459,7 +435,7 @@ Objects:  {
 		Texture_Alpha_Source: "None"
 		Cropping: 0,0,0,0
 	}
-	Texture: 995657840, "Texture::file2", "" {
+	Texture: 979495328, "Texture::file2", "" {
 		Type: "TextureVideoClip"
 		Version: 202
 		TextureName: "Texture::file2"
@@ -476,7 +452,7 @@ Objects:  {
 		Texture_Alpha_Source: "RGB_Intensity"
 		Cropping: 0,0,0,0
 	}
-	AnimationStack: 1085511920, "AnimStack::flowersred_a_01", "" {
+	AnimationStack: 1150448304, "AnimStack::reeds_a_01", "" {
 		Properties70:  {
 			P: "LocalStart", "KTime", "Time", "",1924423250
 			P: "LocalStop", "KTime", "Time", "",230930790000
@@ -484,7 +460,7 @@ Objects:  {
 			P: "ReferenceStop", "KTime", "Time", "",230930790000
 		}
 	}
-	AnimationLayer: 980828496, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 980825152, "AnimLayer::BaseLayer", "" {
 	}
 }
 
@@ -493,43 +469,37 @@ Objects:  {
 
 Connections:  {
 	
-	;Model::flowersred_a_01, Model::RootNode
-	C: "OO",328696496,0
+	;Model::pPlane1, Model::RootNode
+	C: "OO",328675616,0
 	
-	;AnimLayer::BaseLayer, AnimStack::flowersred_a_01
-	C: "OO",980828496,1085511920
-	
-	;NodeAttribute::, Model::flowersred_a_01
-	C: "OO",936966320,328696496
-	
-	;Model::geo_flowersred_a_01, Model::flowersred_a_01
-	C: "OO",328682576,328696496
+	;AnimLayer::BaseLayer, AnimStack::reeds_a_01
+	C: "OO",980825152,1150448304
 	
 	;Texture::file1, Material::lambert2
-	C: "OP",995659280,987856832, "DiffuseColor"
+	C: "OP",979494848,987757632, "DiffuseColor"
 	
 	;Texture::file2, Material::lambert2
-	C: "OP",995657840,987856832, "TransparentColor"
+	C: "OP",979495328,987757632, "TransparentColor"
 	
 	;Video::file1, Texture::file1
-	C: "OO",987855232,995659280
+	C: "OO",987854032,979494848
 	
 	;Video::file2, Texture::file2
-	C: "OO",987751232,995657840
+	C: "OO",987747232,979495328
 	
-	;Geometry::, Model::geo_flowersred_a_01
-	C: "OO",342195440,328682576
+	;Geometry::, Model::pPlane1
+	C: "OO",342190832,328675616
 	
-	;Material::lambert2, Model::geo_flowersred_a_01
-	C: "OO",987856832,328682576
+	;Material::lambert2, Model::pPlane1
+	C: "OO",987757632,328675616
 }
 ;Takes section
 ;----------------------------------------------------
 
 Takes:  {
-	Current: "flowersred_a_01"
-	Take: "flowersred_a_01" {
-		FileName: "flowersred_a_01.tak"
+	Current: "reeds_a_01"
+	Take: "reeds_a_01" {
+		FileName: "reeds_a_01.tak"
 		LocalTime: 1924423250,230930790000
 		ReferenceTime: 1924423250,230930790000
 	}
