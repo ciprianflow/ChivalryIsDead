@@ -56,6 +56,8 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
         {   
             if(destroy)
                 gameObject.SetActive(false);
+
+            Debug.Log("Quest Objective died");
             StaticIngameData.mapManager.CheckObjectives(this);
         }
 

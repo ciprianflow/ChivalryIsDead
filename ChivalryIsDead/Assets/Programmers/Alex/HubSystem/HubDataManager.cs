@@ -224,6 +224,8 @@ public class HubDataManager : MonoBehaviour {
     {
         if(StaticData.Reputation <= 0)
         {
+            StaticData.Reputation = StaticData.MaxReputation;
+            StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
             WinScreen.SetActive(true);
         }
     }

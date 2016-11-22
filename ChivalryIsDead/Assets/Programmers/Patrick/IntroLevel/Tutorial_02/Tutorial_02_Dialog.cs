@@ -8,6 +8,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public GameObject enemyBillboard;
     public GameObject TrollA;
     public GameObject TrollB;
+    public GameObject[] Sheeps; 
 
     public GameObject UI;
     public GameObject ControlMove;
@@ -19,9 +20,11 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
     bool learnedToGetHit;
     bool learnedToTaunt;
-    bool learnedToOverreact;
+    bool learnedToUseTaunt;
+    bool deadSheeps;
 
     public GameObject HandCanvas;
+    public GameObject ScreenFreeze;
     Animator handAnimator;
     public Animator swordAnimator;
     public Animator skipAnimator;
@@ -34,8 +37,14 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         procceed = false;
         learnedToGetHit = true;
         learnedToTaunt = true;
-        learnedToOverreact = true;
+        learnedToUseTaunt = true;
+        deadSheeps = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
+
+        foreach (GameObject Sheep in Sheeps)
+        {
+            Sheep.GetComponent<SheepAI>().enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -53,14 +62,37 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         if (!learnedToTaunt)
         {
-           
+            if (Player.GetComponent<PlayerScript>().taunting)
+            {
+                handAnimator.SetBool("playTaunt", false);
+                ScreenFreeze.SetActive(false);
+                ControlMove.SetActive(true);
+                learnedToTaunt = true;
+                skipAnimator.speed = 1f;
+                swordAnimator.speed = 1f;
+                handAnimator.speed = 1f;
+                Time.timeScale = 1f;
+            }
         }
 
-        if (!learnedToOverreact)
+        if (!learnedToUseTaunt)
         {
-
+            if (Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
+            {
+                StartCoroutine("DialogSix");
+                
+                learnedToUseTaunt = true;
+            }
         }
 
+        if (!Sheeps[0].activeSelf && !Sheeps[1].activeSelf && !Sheeps[2].activeSelf && !Sheeps[3].activeSelf)
+        {
+            if(deadSheeps)
+            {
+                StartCoroutine("DialogSeven");
+                deadSheeps = false;
+            }
+        }
 
 
     }
@@ -108,6 +140,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
     public IEnumerator DialogTwo()
     {
+        ControlMove.SetActive(false);
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
@@ -127,7 +160,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         skipAnimator.speed = 1f;
         swordAnimator.speed = 1f;
         Time.timeScale = 1f;
-
+        ControlMove.SetActive(true);
 
         StartCoroutine("DialogThree");
     }
@@ -135,6 +168,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public IEnumerator DialogThree()
     {
         yield return new WaitForSeconds(3f);
+        ControlMove.SetActive(false);
+
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
@@ -142,7 +177,129 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         UI.GetComponent<GameMenu>().Sword();
         count = 0;
-        while (count < 7)
+        while (count < 2)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+        procceed = false;
+        skipAnimator.speed = 1f;
+        swordAnimator.speed = 1f;
+        Time.timeScale = 1f;
+        ControlMove.SetActive(true);
+        learnedToGetHit = false;
+    }
+
+
+    public IEnumerator DialogFour()
+    {
+        ControlMove.SetActive(false);
+
+        Time.timeScale = 0.1f;
+        swordAnimator.speed = 10f;
+        skipAnimator.speed = 10f;
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+
+        count = 0;
+        while (count < 2)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+        procceed = false;
+        skipAnimator.speed = 1f;
+        swordAnimator.speed = 1f;
+        Time.timeScale = 1f;
+        ControlMove.SetActive(true);
+        InvisWallTwo.SetActive(false);
+    }
+
+    public IEnumerator DialogFive()
+    {
+        ControlMove.SetActive(false);
+
+        Time.timeScale = 0.1f;
+        swordAnimator.speed = 10f;
+        skipAnimator.speed = 10f;
+        enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollB;
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+
+        count = 0;
+        while (count < 4)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+        procceed = false;
+
+        ScreenFreeze.SetActive(true);
+        handAnimator.speed = 10f;
+        handAnimator.SetBool("playTaunt", true);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+        ControlHit.SetActive(true);
+
+        learnedToUseTaunt = false;
+        learnedToTaunt = false;
+    }
+
+    public IEnumerator DialogSix()
+    {
+        ControlMove.SetActive(false);
+
+        Time.timeScale = 0.1f;
+        swordAnimator.speed = 10f;
+        skipAnimator.speed = 10f;
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+
+        count = 0;
+        while (count < 5)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+        procceed = false;
+        skipAnimator.speed = 1f;
+        swordAnimator.speed = 1f;
+        Time.timeScale = 1f;
+        ControlMove.SetActive(true);
+
+
+        foreach (GameObject Sheep in Sheeps)
+        {
+            Sheep.GetComponent<SheepAI>().enabled = true;
+        }
+
+        //StartCoroutine("DialogSeven");
+        
+    }
+
+   
+
+
+    public IEnumerator DialogSeven()
+    {
+
+        //yield return new WaitForSeconds(10f);
+
+        ControlMove.SetActive(false);
+
+        Time.timeScale = 0.1f;
+        swordAnimator.speed = 10f;
+        skipAnimator.speed = 10f;
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 6);
+        yield return new WaitForSeconds(0.2f);
+        UI.GetComponent<GameMenu>().Sword();
+
+        count = 0;
+        while (count < 6)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -152,27 +309,11 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         swordAnimator.speed = 1f;
         Time.timeScale = 1f;
 
-        learnedToGetHit = false;
 
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadScene(4);
 
     }
-
-
-    public IEnumerator DialogFour()
-    {
-
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
-        yield return new WaitForSeconds(2f);
-        UI.GetComponent<GameMenu>().Sword();
-
-        InvisWallTwo.SetActive(false);
-
-        yield return null;
-    }
-
-    public IEnumerator DialogFive()
-    {
-        yield return null;
-    }
+   
 
 }

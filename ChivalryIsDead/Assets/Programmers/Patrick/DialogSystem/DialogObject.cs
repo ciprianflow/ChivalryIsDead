@@ -251,6 +251,8 @@ public class DialogObject : MonoBehaviour {
                 swordBubble.SetActive(true);
                 
                 swordText.GetComponent<Text>().text = d.Text[i];
+                WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
+
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
                 
