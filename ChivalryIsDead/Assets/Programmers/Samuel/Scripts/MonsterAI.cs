@@ -390,6 +390,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public void Hit(int damage)
     {
 
+        if (state == State.Death)
+            return;
+
         if (healthScript.takeDamage(damage))
         {
             //Plays death sound
@@ -432,6 +435,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         }
 
         //sheep goes fly
+        m.ToDeath();
         m.enabled = false;
         g.GetComponent<NavMeshAgent>().enabled = false;
         Rigidbody r = g.GetComponent<Rigidbody>();
@@ -444,6 +448,27 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         r.AddTorque((this.transform.position - g.transform.position) * 10);
 
         g.GetComponentInChildren<Animator>().SetTrigger("Flying");
+    }
+
+    protected static void DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
+    {
+        Collider[] Colliders = new Collider[0];
+        Colliders = Physics.OverlapSphere(pos, radius);
+        for (int i = 0; i < Colliders.Length; i++)
+        {
+            //Debug.Log("One in range");
+            if (Colliders[i].tag == "Player")
+            {
+                //Debug.Log("This on is a player");
+                Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                if (body)
+                    body.AddExplosionForce(force, pos, radius);
+
+
+                PlayerActionController PAC = Colliders[i].gameObject.GetComponent<PlayerActionController>();
+                PAC.PlayerAttacked(Monster);
+            }
+        }
     }
 
     #endregion
