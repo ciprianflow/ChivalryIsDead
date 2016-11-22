@@ -204,10 +204,10 @@ public class PlayerScript : MonoBehaviour {
             anim.SetFloat("Turn", turnMag);
 
         }
-        if (Input.GetButtonDown("Jump"))
-        {
-            attack();
-        }
+        //if (Input.GetButtonDown("Jump"))
+        //{
+        //    attack();
+        //}
 
         //Debug.Log(anim.GetCurrentAnimatorStateInfo(1).normalizedTime);
 

@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013616658552}
   - 65: {fileID: 65000010146985674}
+  - 208: {fileID: 208000010071940194}
   m_Layer: 0
   m_Name: Fence_3
   m_TagString: Untagged
@@ -187,10 +188,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012800173030}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.12, y: -0.15220761, z: -10.83}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 25.35, y: 7.6916122, z: 3.72}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
   m_Children:
   - {fileID: 4000010121304868}
   - {fileID: 4000013660328576}
@@ -454,3 +455,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.19, y: 1.73, z: 2.53}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &208000010071940194
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012800173030}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.095, y: 0.865, z: 1.265}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
