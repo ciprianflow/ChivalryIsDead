@@ -19,4 +19,8 @@ public class EndStateCall : MonoBehaviour {
         Debug.Log(value);
         ps.EndState(value);
     }
+
+    void step() {
+
+    }
 }

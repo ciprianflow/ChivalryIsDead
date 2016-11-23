@@ -51,7 +51,6 @@ public class HubDataManager : MonoBehaviour {
     //public int TotalDays = 14;
 
     public GameObject DLCPane;
-    public GameObject ContentPane;
     public GameObject QuestButton;
     public GameObject QuestLetter;
     public GameObject WinScreen;
@@ -100,7 +99,7 @@ public class HubDataManager : MonoBehaviour {
     public void PushToHubData(float repChange, int dayChange)
     {
         var hubData = LoadHubData();
-        hubData.GlobalReputation += repChange;
+        hubData.GlobalReputation += Mathf.Clamp(repChange, -10, 10);
         hubData.DaysLeft += dayChange;
         hubData.RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
 
@@ -124,34 +123,13 @@ public class HubDataManager : MonoBehaviour {
     }
 
     #region Quest Generation
-    private void ClearQuestUIElements()
-    {
-        foreach (Transform gObj in ContentPane.GetComponentsInChildren<Transform>()) {
-            if (gObj.name != ContentPane.name && gObj.name != QuestButton.name)
-                GameObject.Destroy(gObj.gameObject);
-        }
-    }
-
-
     // TODO: Dummy method, shouldn't make it into the final game. Update to generic or UI specific alternative.
     private void CreateQuestUIElements()
     {
         for(int i = 0; i < AvailableQuests.Count; i++) { 
         //foreach (IObjective o in AvailableQuests) {
             BaseQuest oAsQuest = (BaseQuest)AvailableQuests[i];
-            GameObject QuestButtonObj = Instantiate(QuestButton);
-            QuestButtonObj.transform.SetParent(ContentPane.transform);
-
-            Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
-            // TODO : Name doesnt load from quest description
-            //newQuestText.text = oAsQuest.Description.Title;
-            newQuestText.text = "Quest";
-
-            Button b = newQuestText.transform.parent.GetComponent<Button>();
-            int newI = i;
-            b.onClick.AddListener(() => SelectQuest(newI));
-
-            peasantLineScript.PushQuestToPeasant(i, newI, oAsQuest);
+            peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
         }
 
         GenerateDLCQuest();
@@ -159,13 +137,16 @@ public class HubDataManager : MonoBehaviour {
 
     private void GenerateDLCQuest()
     {
-        GameObject QuestButtonObj = Instantiate(QuestButton);
-        QuestButtonObj.transform.SetParent(ContentPane.transform);
-        Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
-        newQuestText.text = "Most awesome quest ever!";
+        Debug.LogWarning("Something just aint right...");
+        //GameObject QuestButtonObj = Instantiate(QuestButton);
+        //QuestButtonObj.transform.SetParent(ContentPane.transform);
+        //Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
+        //newQuestText.text = "Most awesome quest ever!";
 
-        Button b = newQuestText.transform.parent.GetComponent<Button>();
-        b.onClick.AddListener(() => SetDLCPopUp(true));
+        //Button b = newQuestText.transform.parent.GetComponent<Button>();
+
+        /// SetDLCPopUp call following. This should be integrated into the final code.
+        //b.onClick.AddListener(() => SetDLCPopUp(true));
     }
 
     public void SelectQuest()
@@ -209,23 +190,6 @@ public class HubDataManager : MonoBehaviour {
 
     }
 
-    // TODO: Needs refactoring; Reputation change behaviour not specified properly.
-    private void CompleteQuest(IQuest quest)
-    {
-        var qSuccessRating = quest.SuccessRating;
-        int repChange;
-        if (qSuccessRating > 0.5f) {
-            repChange = (int)(qSuccessRating * (float)quest.Description.Difficulty);
-        } else {
-            repChange = -1 * (int)((1 - qSuccessRating) * (float)quest.Description.Difficulty);
-        }
-
-        // Save changes.
-        ClearQuestUIElements();
-        PushToHubData(repChange);
-        CreateQuestUIElements();
-    }
-
     void checkForWin()
     {
         if(StaticData.Reputation <= 0)
@@ -249,6 +213,15 @@ public class HubDataManager : MonoBehaviour {
         return hubData;
     }
 
+    private static void SaveJson(string jsonObject)
+    {
+        using (StreamWriter writer = new StreamWriter(hubDataPath)) {
+            writer.Write(jsonObject);
+            writer.Flush();
+            writer.Close();
+        }
+    }
+
     private static HubData LoadJson()
     {
         if (!File.Exists(hubDataPath))
@@ -261,15 +234,6 @@ public class HubDataManager : MonoBehaviour {
             reader.Close();
         }
         return retData;
-    }
-
-    private static void SaveJson(string jsonObject)
-    {
-        using (StreamWriter writer = new StreamWriter(hubDataPath)) {
-            writer.Write(jsonObject);
-            writer.Flush();
-            writer.Close();
-        }
     }
     #endregion
 
@@ -293,7 +257,8 @@ public class HubDataManager : MonoBehaviour {
     public void SetQuestLetter(int i)
     {
         BaseQuest quest = (BaseQuest)AvailableQuests[currSelectedQuestIndex];
-        QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
+        QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description, quest.Data);
+        //QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
         QuestLetter.SetActive(Convert.ToBoolean(i));
         //GameObject.FindGameObjectWithTag("HandCanvas").GetComponent<Animator>().SetTrigger("handhub");
         isClicked = true;
