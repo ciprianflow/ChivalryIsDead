@@ -38,10 +38,12 @@ public class PlayerScript : MonoBehaviour {
     public GameObject DustParticle;
 
     Dictionary<String, int> AnimDic = new Dictionary<String, int>();
-    
+
 
     void Awake()
     {
+
+        Time.timeScale = 0.1f;
 
         //Time.timeScale = 1f;
 
@@ -336,12 +338,21 @@ public class PlayerScript : MonoBehaviour {
 
         while ((attackLowerWeight > 0 || attackUpperWeight > 0) && Attackended) {
             SwordTrail.SetActive(false);
-            attackUpperWeight -= 0.05f;
-            attackLowerWeight -= 0.05f;
-            anim.SetLayerWeight(1, attackUpperWeight);
-            anim.SetLayerWeight(2, attackLowerWeight);
+            if (attackLowerWeight > 0) {
+                attackLowerWeight -= 0.05f;
+                anim.SetLayerWeight(2, attackLowerWeight);
+            }
+            if (attackUpperWeight > 0) {
+                attackUpperWeight -= 0.05f;
+                anim.SetLayerWeight(1, attackUpperWeight);
+            }
+            //attackLowerWeight -= 0.05f;
+            //anim.SetLayerWeight(1, attackUpperWeight);
+            //anim.SetLayerWeight(2, attackLowerWeight);
+
             yield return new WaitForSeconds(0.01f);
         }
+        
         attacking = false;
         Attackended = false;
 
@@ -449,16 +460,30 @@ public class PlayerScript : MonoBehaviour {
 
         attackCR = StartCoroutine(animateAttack());
 
-        anim.Play("Hero_Attack1", 2, 0);
+        //anim.Play("Hero_Attack1", 2, 0);
 
-            SwordTrail.SetActive(true);
-        
+        SwordTrail.SetActive(true);
+
 
         if (!attacking)
         {
             currentAttack = 1;
 
             anim.Play("Attack Transition", 1, 0);
+            currentAttack = 1;
+            int r = (int)UnityEngine.Random.Range(0, 3);
+            //if (r == 0) {
+            //    anim.SetTrigger("Attack1");
+            //}
+            //else if (r == 1) {
+            //    anim.SetTrigger("Attack12");
+            //}
+            //else {
+            //    anim.SetTrigger("Attack13");
+            //}
+            anim.SetTrigger("Attack1");
+
+
             cancelAnim(ref taunting, "taunting");
             cancelAnim(ref scaring, "scaring");
             attacking = true;
@@ -472,15 +497,33 @@ public class PlayerScript : MonoBehaviour {
 
         //Debug.Log(ASI.normalizedTime / ASI.length);
 
-        if (ASI.IsName("Attack1 0") || (ASI.IsName("Attack 1 exit tran") && (ASI.normalizedTime / ASI.length > 0.5f)))
+        if (ASI.IsTag("Attack1"))
         {
             currentAttack = 2;
-            anim.SetTrigger("Attack2");
+            int r = (int)UnityEngine.Random.Range(0, 3);
+            if (r == 0) {
+                anim.SetTrigger("Attack2");
+            }
+            else if(r == 1) {
+                anim.SetTrigger("Attack22");
+            }
+            else {
+                anim.SetTrigger("Attack23");
+            }
         }
         else
         {
             currentAttack = 1;
-            anim.SetTrigger("Attack1");
+            int r = (int)UnityEngine.Random.Range(0, 3);
+            if (r == 0) {
+                anim.SetTrigger("Attack1");
+            }
+            else if (r == 1) {
+                anim.SetTrigger("Attack12");
+            }
+            else {
+                anim.SetTrigger("Attack13");
+            }
         }
 
         attackReachedFull = false;
@@ -529,8 +572,16 @@ public class PlayerScript : MonoBehaviour {
         anim.SetLayerWeight(7, 0);
 
         SwordTrail.SetActive(false);
+
         //anim.Play("Scare", 5, 0);
-        anim.SetTrigger("OverreactTrig");
+
+
+        if((int)UnityEngine.Random.Range(0,2) == 0) {
+            anim.SetTrigger("OverreactTrig1");
+        }
+        else {
+            anim.SetTrigger("OverreactTrig2");
+        }
         cancelAnim(ref attacking, "attacking");
         cancelAnim(ref taunting, "taunting");
         cancelAnim(ref scaring, "scaring");
@@ -589,7 +640,5 @@ public class PlayerScript : MonoBehaviour {
     //{
     //    return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
     //}
-
-
 
 }
