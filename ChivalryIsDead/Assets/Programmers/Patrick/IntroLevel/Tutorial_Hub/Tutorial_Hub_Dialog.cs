@@ -108,7 +108,6 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
-        Debug.Log("haaaand");
         handAnimator.SetBool("handHub", true);
 
     }

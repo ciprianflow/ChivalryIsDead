@@ -38,7 +38,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         foreach (GameObject Sheep in Sheeps)
         {
-            Sheep.GetComponent<SheepAI>().enabled = false;
+            //Sheep.GetComponent<SheepAI>().enabled = false;
         }
     }
 
@@ -309,7 +309,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         ControlHit.SetActive(true);
 
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(6);
 
     }
 }
