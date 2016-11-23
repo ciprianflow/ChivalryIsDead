@@ -42,9 +42,6 @@ public class PlayerScript : MonoBehaviour {
 
     void Awake()
     {
-
-        Time.timeScale = 0.1f;
-
         //Time.timeScale = 1f;
 
         AnimDic.Add("attacking", 1);
