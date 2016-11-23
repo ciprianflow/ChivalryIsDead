@@ -209,6 +209,23 @@ public class HubDataManager : MonoBehaviour {
 
     }
 
+    // TODO: Needs refactoring; Reputation change behaviour not specified properly.
+    private void CompleteQuest(IQuest quest)
+    {
+        var qSuccessRating = quest.SuccessRating;
+        int repChange;
+        if (qSuccessRating > 0.5f) {
+            repChange = (int)(qSuccessRating * (float)quest.Description.Difficulty);
+        } else {
+            repChange = -1 * (int)((1 - qSuccessRating) * (float)quest.Description.Difficulty);
+        }
+
+        // Save changes.
+        ClearQuestUIElements();
+        PushToHubData(repChange);
+        CreateQuestUIElements();
+    }
+
     void checkForWin()
     {
         if(StaticData.Reputation <= 0)

@@ -49,7 +49,6 @@ public class GameMenu : MonoBehaviour {
     } 
 
     void Start () {
-        Time.timeScale = 1f;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         endLetter.SetActive(false);
@@ -90,7 +89,6 @@ public class GameMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 
         if (Input.GetKeyDown(KeyCode.Y))
         {

@@ -10,7 +10,6 @@ public class RangedAI : MonsterAI
 
     Transform targetObj;
 
-    float force = 1;
     [Space]
     public float shootAngle = 60;
     public float randomShootRange = 4f;
@@ -24,8 +23,6 @@ public class RangedAI : MonsterAI
     public override void Init()
     {
     }
-
-    
 
     public override void Attack()
     {
@@ -75,17 +72,18 @@ public class RangedAI : MonsterAI
         Vector3 random = new Vector3(UnityEngine.Random.Range(-randomShootRange, randomShootRange), 0, UnityEngine.Random.Range(-randomShootRange, randomShootRange));
         float randomAng = UnityEngine.Random.Range(-randomShootAngle, randomShootAngle);
 
-        Vector3 randTargetPos = targetObject.position + random;
+        Vector3 targetPos = GetTargetPosition();
         Vector3 velocity = Vector3.zero;
+
         if (taunted)
         {
-            velocity = BallisticVel(targetObject.position, 30) * force;
+            velocity = BallisticVel(targetPos, obj.transform.position, 10);
             taunted = false;
         }
         else
         {
-            randTargetPos += random;
-            velocity = BallisticVel(randTargetPos, shootAngle + randomAng) * force;
+            targetPos += random;
+            velocity = BallisticVel(targetPos, obj.transform.position, shootAngle + randomAng);
         }
 
 
@@ -102,8 +100,7 @@ public class RangedAI : MonsterAI
         targetObj.name = "ROCKTARGET";
 
         anim.SetBool("Taunted", false);
-
-        targetObj.position = randTargetPos;//hit.point + new Vector3(0, 0.5f, 0);
+        targetObj.position = targetPos;//hit.point + new Vector3(0, 0.5f, 0);
         targetObj.Rotate(0, 0, 90);
 
         obj.transform.SetParent(targetObj);
@@ -112,23 +109,43 @@ public class RangedAI : MonsterAI
         WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Attack, this.gameObject);
     }
 
-    Vector3 BallisticVel(Vector3 target, float angle)
+    Vector3 BallisticVel(Vector3 target, Vector3 pos, float initialAngle)
     {
-        Vector3 dir = target - transform.position;  // get target direction
+
+        float gravity = Physics.gravity.magnitude;
+        // Selected angle in radians
+        float angle = initialAngle * Mathf.Deg2Rad;
+
+        // Positions of this object and the target on the same plane
+        Vector3 planarTarget = new Vector3(target.x, 0, target.z);
+        Vector3 planarPostion = new Vector3(pos.x, 0, pos.z);
+
+        // Planar distance between objects
+        float distance = Vector3.Distance(planarTarget, planarPostion);
+        // Distance along the y axis between objects
+        float yOffset = pos.y - target.y;
+
+        float initialVelocity = (1 / Mathf.Cos(angle)) * Mathf.Sqrt((0.5f * gravity * Mathf.Pow(distance, 2)) / (distance * Mathf.Tan(angle) + yOffset));
+
+        Vector3 velocity = new Vector3(0, initialVelocity * Mathf.Sin(angle), initialVelocity * Mathf.Cos(angle));
+
+        // Rotate our velocity to match the direction between the two objects
+        float angleBetweenObjects = Vector3.Angle(Vector3.forward, planarTarget - planarPostion) * (target.x > pos.x ? 1 : -1);
+        return Quaternion.AngleAxis(angleBetweenObjects, Vector3.up) * velocity;
+
+        /*
+        Vector3 dir = target - pos;  // get target direction
         float h = dir.y;  // get height difference
         dir.y = 0;  // retain only the horizontal direction
         float dist = dir.magnitude;  // get horizontal distance
         float a = angle * Mathf.Deg2Rad;  // convert angle to radians
         dir.y = dist * Mathf.Tan(a);  // set dir to the elevation angle
         float tanA = Mathf.Tan(a);
-        //if (tanA == 0)
-            //tanA = 0.01f;
         dist += h / tanA;  // correct for small height differences
         // calculate the velocity magnitude
         float vel = Mathf.Sqrt(Mathf.Abs(dist) * Physics.gravity.magnitude / Mathf.Sin(2 * a));
-        //Debug.Log(vel + " = " + Mathf.Abs(dist) * Physics.gravity.magnitude + " / " + Mathf.Sin(2 * a));
-        //Debug.Log(Mathf.Sqrt(dist * Physics.gravity.magnitude / Mathf.Sin(2 * a)));
         return vel * dir.normalized;
+    */
     }
 
     public override void Taunt() {
