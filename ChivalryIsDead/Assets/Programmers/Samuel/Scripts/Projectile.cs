@@ -39,7 +39,6 @@ public class Projectile : MonoBehaviour {
         QuestObject questObj = collObj.GetComponent<QuestObject>();
         if(questObj != null)
         {
-
             questObj.takeDamage(1, true);
 
             MonsterAI m = questObj.gameObject.GetComponent<MonsterAI>();

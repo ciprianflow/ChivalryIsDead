@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Threading;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 namespace CnControls
 {
@@ -77,6 +79,15 @@ namespace CnControls
         /// </summary>
         [Tooltip("Image of the joystick base")]
         public Image ActionTop;
+        public Sprite attackRdy;
+        public Sprite Action1;
+        public Sprite Action2;
+        public Sprite Action3;
+        public Sprite Action4;
+        public Sprite Action5;
+        Sprite[] attackList;
+
+        public Sprite RW;
 
         /// <summary>
         /// Image of the joystick base
@@ -201,6 +212,8 @@ namespace CnControls
             }
 
             playerActionController = player.GetComponent<PlayerActionController>();
+
+            attackList = new Sprite[5] { Action1, Action2, Action3, Action4, Action5};
         }
 
 
@@ -301,50 +314,37 @@ namespace CnControls
             SX = Stick.rectTransform.localPosition.x/MovementRange;
             SY = Stick.rectTransform.localPosition.y/MovementRange;
 
-            float angle = Mathf.Rad2Deg * Mathf.Atan2(SY, SX);
-            if (angle < 0)
-                angle += 360;
 
 
+            updateActionUI();
 
 
-            resetOptions();
+            //resetOptions();
 
-            if (new Vector2(SX, SY).magnitude < 0.5) {
-                //attack = true; // angeliki commented out this
-                //ActionCenter.color = new Color(1, 1, 1, 1);
-                ActionCenterPushed.enabled = true;
-            }
-            //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
-            else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
-            {
-                overreact = true;
+            //if (new Vector2(SX, SY).magnitude < 0.5) {
+            //    //attack = true; // angeliki commented out this
+            //    //ActionCenter.color = new Color(1, 1, 1, 1);
+            //    ActionCenterPushed.enabled = true;
+            //}
+            ////else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
+            //else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
+            //{
+            //    overreact = true;
 
-                if (overreactCooldownFill == 1)
-                {
-                    ActionRight.color = new Color(1, 1, 1, 1);
-                }
-            }
-            //else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
-            else if ((angle >= 147 && angle < 265)) // angeliki added this
-            {
-                taunt = true;
-                if (tauntCooldownfill == 1)
-                {
-                    ActionLeft.color = new Color(1, 1, 1, 1);
-                }
+            //    if (overreactCooldownFill == 1)
+            //    {
+            //        ActionRight.color = new Color(1, 1, 1, 1);
+            //    }
+            //}
+            ////else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
+            //else if ((angle >= 147 && angle < 265)) // angeliki added this
+            //{
+            //    taunt = true;
+            //    if (tauntCooldownfill == 1)
+            //    {
+            //        ActionLeft.color = new Color(1, 1, 1, 1);
+            //    }
                     
-            }
-            //else if((angle >= 54 && angle < 126)) { // angeliki commented out this
-            else if ((angle >= 34 && angle < 147)) // angeliki added this
-            {
-                //cancel = true;// angeliki commented out this
-                attack = true; // angeliki added this
-                if (attackCooldownFill == 1)
-                {
-                    ActionBottom.color = new Color(1, 1, 1, 1);
-                }
-            }
             //else if (SX < 0 && -SX > Mathf.Abs(SY)) {
             //    taunt = true;
             //    ActionLeft.color = new Color(1, 1, 1, 1);
@@ -382,6 +382,57 @@ namespace CnControls
             HorizintalAxis.Value = horizontalValue;
             VerticalAxis.Value = verticalValue;
         }
+
+        void updateActionUI() {
+
+            float angle = Mathf.Rad2Deg * Mathf.Atan2(SY, SX);
+            if (angle < 0)
+                angle += 360;
+
+            resetOptions();
+
+    if (new Vector2(SX, SY).magnitude < 0.5)
+    {
+        //attack = true; // angeliki commented out this
+        //ActionCenter.color = new Color(1, 1, 1, 1);
+        ActionCenterPushed.enabled = true;
+    }
+    //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
+    else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
+    {
+        overreact = true;
+
+        if (overreactCooldownFill == 1)
+        {
+            ActionRight.color = new Color(1, 1, 1, 1);
+        }
+    }
+    //else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
+    else if ((angle >= 147 && angle < 265)) // angeliki added this
+    {
+        taunt = true;
+        if (tauntCooldownfill == 1)
+        {
+            ActionLeft.color = new Color(1, 1, 1, 1);
+        }
+
+    }
+    //else if((angle >= 54 && angle < 126)) { // angeliki commented out this
+    else if ((angle >= 34 && angle < 147)) // angeliki added this
+    {
+        //cancel = true;// angeliki commented out this
+        if (SceneManager.GetActiveScene().buildIndex != 4 && SceneManager.GetActiveScene().buildIndex != 3) // angeliki added this
+        {
+            attack = true; // angeliki added this
+            if (attackCooldownFill == 1)
+            {
+                ActionBottom.color = new Color(1, 1, 1, 1);
+            }
+        }
+    }
+        }
+
+
         private float attackCooldownFill = 1;
         private float tauntCooldownfill = 1;
         private float overreactCooldownFill = 1;
@@ -393,12 +444,20 @@ namespace CnControls
             attackCooldownFill = playerActionController.GetAttackActionCooldown();
             tauntCooldownfill = playerActionController.GetTauntActionCooldown();
             overreactCooldownFill = playerActionController.GetOverreactActionCooldown();
-
+            //Debug.Log((int)(attackCooldownFill / 0.2f));
             if (attackCooldownFill < 1)
             {
-                ActionBottom.fillAmount = attackCooldownFill;
-            }
+                ActionBottom.sprite = attackList[(int)(attackCooldownFill / 0.2f)];
+                
 
+                //ActionBottom.sprite = Action1;
+
+                //ActionBottom.fillAmount = attackCooldownFill;
+            }
+            else {
+                ActionBottom.sprite = attackRdy;
+                updateActionUI();
+            }
             if (tauntCooldownfill < 1)
             {
                 ActionLeft.fillAmount = tauntCooldownfill;

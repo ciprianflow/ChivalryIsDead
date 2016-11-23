@@ -39,6 +39,7 @@ public class DialogObject : MonoBehaviour {
     public GameObject SwordParticle;
 
     float test;
+    float duration;
     bool isSkipped;
     float SpeakingTime;
     bool isSpeaking;
@@ -156,6 +157,7 @@ public class DialogObject : MonoBehaviour {
             {
                 indexCount = i;
                 playerBubble.SetActive(true);
+                gameMenu.skipBtn.SetActive(true);
                 playerText.GetComponent<Text>().text = d.Text[i];
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
@@ -169,6 +171,7 @@ public class DialogObject : MonoBehaviour {
 
                 isSkipped = false;
                 playerBubble.SetActive(false);
+                gameMenu.skipBtn.SetActive(false);
             }
 
 
@@ -183,6 +186,7 @@ public class DialogObject : MonoBehaviour {
                     foreach (GameObject arrayEnemyBubble in enemyBubble)
                     {
                         arrayEnemyBubble.SetActive(false);
+
                     }
 
                 }
@@ -194,8 +198,9 @@ public class DialogObject : MonoBehaviour {
                 for (int j = 0; j < enemyText.Length; ++j)
                 {
                     enemyBubble[j].SetActive(true);
+                    gameMenu.skipBtn.SetActive(true);
                     enemyText[j].GetComponent<Text>().text = d.Text[i];
-
+                    WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Ranged, MonsterAudioHandle.Aggro, this.gameObject);
                 }
 
                 //yield return new WaitForSeconds(d.Wait[i]);
@@ -212,6 +217,7 @@ public class DialogObject : MonoBehaviour {
                 for (int j = 0; j < enemyText.Length; ++j)
                 {
                     enemyBubble[j].SetActive(false);
+                    gameMenu.skipBtn.SetActive(false);
 
                 }
             }
@@ -219,16 +225,20 @@ public class DialogObject : MonoBehaviour {
             if (d.Name[i] == "PeasantA")
             {
                 peasantABubble.SetActive(true);
+                gameMenu.skipBtn.SetActive(true);
                 peasantAText.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 peasantABubble.SetActive(false);
+                gameMenu.skipBtn.SetActive(false);
             }
             if (d.Name[i] == "PeasantB")
             {
                 peasantBBubble.SetActive(true);
+                gameMenu.skipBtn.SetActive(true);
                 peasantBText.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 peasantBBubble.SetActive(false);
+                gameMenu.skipBtn.SetActive(false);
             }
 
 
@@ -236,6 +246,7 @@ public class DialogObject : MonoBehaviour {
                 
             if (d.Name[i] == "Sword")
             {
+                gameMenu.Sword();
                 if (callBlink)
                 {
                     StartCoroutine(SwordBlink());
@@ -249,7 +260,8 @@ public class DialogObject : MonoBehaviour {
                 SwordParticle.SetActive(true);
                 indexCount = i;
                 swordBubble.SetActive(true);
-                
+                gameMenu.skipBtn.SetActive(true);
+
                 swordText.GetComponent<Text>().text = d.Text[i];
                 WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
 
@@ -266,12 +278,23 @@ public class DialogObject : MonoBehaviour {
                 //yield return StartCoroutine("SkipTest");
                 SwordParticle.SetActive(false);
                 swordBubble.SetActive(false);
+                gameMenu.skipBtn.SetActive(false);
+                if (i + 1 >= d.Dialog || d.Name[i + 1] != "Sword")
+                {
+                    gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
+                    duration = gameMenu.sword.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+                    yield return new WaitForSeconds(duration);
+                    //StartCoroutine(Hide(duration));
+                    gameMenu.sword.SetActive(false);
+                }
             }
 
             if (d.Name[i] == "Princess")
             {
+                gameMenu.Princess();
                 indexCount = i;
-                princessBubble.SetActive(true);             
+                princessBubble.SetActive(true);
+                gameMenu.skipBtn.SetActive(true);
                 princessText.GetComponent<Text>().text = d.Text[i];
                 ////yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
@@ -287,14 +310,25 @@ public class DialogObject : MonoBehaviour {
                 //test = d.Wait[i];
                 //yield return StartCoroutine("SkipTest");
                 princessBubble.SetActive(false);
+                gameMenu.skipBtn.SetActive(false);
+                if (i + 1 >= d.Dialog || d.Name[i+1] != "Princess")
+                {
+                    gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
+                    duration = gameMenu.princess.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+                    yield return new WaitForSeconds(duration);
+                    //StartCoroutine(Hide(duration));
+                    gameMenu.princess.SetActive(false);
+                }
             }
 
             if (d.Name[i] == "King")
             {
                 kingBubble.SetActive(true);
+                gameMenu.skipBtn.SetActive(true);
                 kingText.GetComponent<Text>().text = d.Text[i];
                 yield return new WaitForSeconds(d.Wait[i]);
                 kingBubble.SetActive(false);
+                gameMenu.skipBtn.SetActive(false);
             }
 
            
@@ -305,11 +339,12 @@ public class DialogObject : MonoBehaviour {
 
         isSpeaking = false;
         gameMenu.skipBtn.SetActive(false);
-        gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
-        gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
-        float duration = gameMenu.sword.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        //gameMenu.sword.GetComponent<Animator>().SetTrigger("Outro");
+        //gameMenu.princess.GetComponent<Animator>().SetTrigger("Outro");
+        //duration = gameMenu.sword.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+        gameMenu.speaking = false;
 
-        StartCoroutine(Hide(duration));
+        //StartCoroutine(Hide(duration));
     }
 
     IEnumerator Hide(float dur)

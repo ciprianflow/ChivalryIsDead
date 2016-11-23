@@ -14,7 +14,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
 
     void Awake()
     {
-        timerImage = GameObject.Find("Canvas").transform.FindChild("Timer").GetComponent<Image>();
+        timerImage = GameObject.Find("Canvas").transform.FindChild("TimerBG").FindChild("Timer").GetComponent<Image>();
     }
 
     void Update()

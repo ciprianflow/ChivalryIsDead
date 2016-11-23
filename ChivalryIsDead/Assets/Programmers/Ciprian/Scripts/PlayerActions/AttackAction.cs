@@ -5,7 +5,7 @@ using UnityEngine;
 class AttackAction : MonoBehaviour
 {
 
-    public float AttackCooldown = 0.3f;
+    public float AttackCooldown = 5f;
     private float cooldownTimeStamp = 0;
 
     private float attackRange;

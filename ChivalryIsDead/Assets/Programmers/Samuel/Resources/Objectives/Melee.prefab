@@ -2780,8 +2780,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011892179278}
-  - 33: {fileID: 33000012417923168}
-  - 23: {fileID: 23000010814934478}
   - 195: {fileID: 195000010249325622}
   - 54: {fileID: 54000013281746766}
   - 114: {fileID: 114000014104116408}
@@ -5742,7 +5740,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012860691644}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.6229873, y: -0.26999986, z: -6.764097}
+  m_LocalPosition: {x: -1.93, y: 12.854, z: 20.336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -8025,42 +8023,6 @@ Transform:
   - {fileID: 4000010076374104}
   m_Father: {fileID: 4000011793680306}
   m_RootOrder: 0
---- !u!23 &23000010814934478
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012860691644}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 8d405c4d96e25be4ab03c29053dbd9a4, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_SelectedWireframeHidden: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &33000012417923168
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012860691644}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!54 &54000013281746766
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -8086,7 +8048,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.2, y: 1, z: 1.2}
+  m_Size: {x: 1.3, y: 1, z: 1.3}
   m_Center: {x: 0, y: 1.05, z: 0}
 --- !u!95 &95000013036110108
 Animator:
@@ -8135,7 +8097,7 @@ MonoBehaviour:
   playerAction: {fileID: 0}
   targetObject: {fileID: 0}
   patrolling: 1
-  attackRotateSpeed: 90
+  attackRotateSpeed: 400
   AttackRep: -20
   OverreactRep: -60
   ObjectiveAttackRep: -20
@@ -8144,9 +8106,10 @@ MonoBehaviour:
   monsterHandle: 0
   PreChargeTime: 0.7
   chargeSpeedMultiplier: 3
-  attackLength: 1
+  attackLength: 2
   attackAngleWidth: 0.6
   chargeForce: 250
+  AttackForce: 5000
   normalAttackColddown: 3
 --- !u!137 &137000010348525326
 SkinnedMeshRenderer:

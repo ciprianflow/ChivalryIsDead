@@ -10,6 +10,7 @@ public class MeleeAI : MonsterAI
     public float attackLength = 1f;
     public float attackAngleWidth = 0.6f;
     public float chargeForce = 250f;
+    public float AttackForce = 5000;
     public float normalAttackColddown = 3f;
 
     private float accelTimer = 0;
@@ -21,6 +22,7 @@ public class MeleeAI : MonsterAI
     private float normalAttackTimer = 0f;
 
     private bool rotated = false;
+    private bool hasHit = false;
     private bool normalAttack = false;
     private bool playerInRange = false;
 
@@ -85,12 +87,15 @@ public class MeleeAI : MonsterAI
                 //If rotation is ongoing
                 //chargeRotate resets timer so rotated makes sure that it does not enter the function again
                 //if it has rotated
-                MeleeAttack();
+                if(!hasHit)
+                    if (MeleeAttack())
+                        hasHit = true;
                 return;
             }else
             {
                 //Rotation is done
                 rotated = true;
+                hasHit = false;
                 ResetTimer();
 
                 //Plays attack sound
@@ -111,29 +116,33 @@ public class MeleeAI : MonsterAI
     }
 
     //Attack function, this function handles the calculations of an attack
-    public void MeleeAttack()
+    public bool MeleeAttack()
     {
         Collider[] Colliders = new Collider[0];
         Colliders = Physics.OverlapSphere(transform.position, attackLength);
         for (int i = 0; i < Colliders.Length; i++)
         {
+
+            Debug.Log(Colliders[i].gameObject.name);
             //Debug.Log("One in range");
             if (Colliders[i].tag == "Player")
             {
+                Debug.DrawLine(transform.position + new Vector3(0, 1, 0), Colliders[i].transform.position + new Vector3(0, 1, 0), Color.red);
                 //Debug.Log("This on is a player");
                 Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
                 if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
                 {
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
-                        body.AddExplosionForce(100000, transform.position, attackLength);
+                        body.AddExplosionForce(AttackForce * 5, transform.position, attackLength);
 
                     base.playerAction.PlayerAttacked(this);
-                    //Debug.Log("Hit player");
+                    Debug.LogError("O NO THE PLAYR HAS HITEN BY MOnsTR");
+                    return true;
                 }
             }
         }
-
+        return false;
         //Debug.Log("Attacking");
 
     }
