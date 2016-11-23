@@ -10,6 +10,9 @@ public class Projectile : MonoBehaviour {
     bool setToDestroy = false;
     bool hitGround = false;
 
+    public float ExplosionRadius = 1f;
+    public float ExplosionForce = 500f;
+
 	void OnCollisionEnter(Collision col)
     {
         if (!hitGround && col.transform.CompareTag("Ground"))
@@ -29,6 +32,8 @@ public class Projectile : MonoBehaviour {
             particlesObject.transform.position = this.transform.position;
             hitGround = true;
         }
+
+        MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, originMonster);
     }
 
     void ProjectileCollision(GameObject collObj)
@@ -39,7 +44,7 @@ public class Projectile : MonoBehaviour {
         QuestObject questObj = collObj.GetComponent<QuestObject>();
         if(questObj != null)
         {
-            questObj.takeDamage(1, true);
+            questObj.takeDamage(1, false);
 
             MonsterAI m = questObj.gameObject.GetComponent<MonsterAI>();
             if (m != null && m.GetType() == typeof(SheepAI))

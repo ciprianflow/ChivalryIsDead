@@ -8,7 +8,7 @@ public class CallVid : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        this.StartCoroutine(this.PlayStreamingVideo("IntroPlaceholder.mp4"));
+        this.StartCoroutine(this.PlayStreamingVideo("cinematic_start.mp4"));
     }
 	
 	// Update is called once per frame

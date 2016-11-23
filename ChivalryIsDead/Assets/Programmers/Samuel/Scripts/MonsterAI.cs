@@ -430,7 +430,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     }
 
     //This is the function that makes the sheep go fly
-    protected void HitSheep(QuestObject QO, MonsterAI m, GameObject g, float force, bool useMosnsterOrigin)
+    public void HitSheep(QuestObject QO, MonsterAI m, GameObject g, float force, bool useMosnsterOrigin)
     {
 
         //Check the Quest Objective for nullpointer and if not make the sheep deed
@@ -457,12 +457,23 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         g.GetComponent<Sheep_flying>().flying = true;
     }
 
-    protected static void DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
+    public static void DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
     {
         Collider[] Colliders = new Collider[0];
         Colliders = Physics.OverlapSphere(pos, radius);
         for (int i = 0; i < Colliders.Length; i++)
         {
+
+            MonsterAI m = Colliders[i].GetComponent<MonsterAI>();
+            if(m != null)
+            {
+                //Hit a sheep
+                if (m.GetType().Equals(typeof(SheepAI)))
+                {
+                    Monster.HitSheep(m.GetComponent<QuestObject>(), m, m.gameObject, force, false);
+                }
+            }
+
             //Debug.Log("One in range");
             if (Colliders[i].tag == "Player")
             {
