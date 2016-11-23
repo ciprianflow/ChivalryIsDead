@@ -42,9 +42,6 @@ public class PlayerScript : MonoBehaviour {
 
     void Awake()
     {
-
-        Time.timeScale = 0.1f;
-
         //Time.timeScale = 1f;
 
         AnimDic.Add("attacking", 1);
@@ -100,14 +97,11 @@ public class PlayerScript : MonoBehaviour {
             return;
 
         if (x == 0 && y == 0) {
-            isSlowingDown = true;
             DustParticle.SetActive(false);
+            isSlowingDown = true;
             return;
         }
-        else {
-            isSlowingDown = false;
-            DustParticle.SetActive(true);
-        }
+
 
         //float camRot = Mathf.Deg2Rad * Camera.main.transform.eulerAngles.y;
 
@@ -130,6 +124,13 @@ public class PlayerScript : MonoBehaviour {
         else if (zVel > LastXY.magnitude) //TODO: sqrmagnitude
         {
             zVel -= speedAcc;
+        }
+
+        if(LastXY.magnitude > 0.5f) {
+            DustParticle.SetActive(true);
+        }
+        else {
+            DustParticle.SetActive(false);
         }
 
         //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX) + 90, 0);
