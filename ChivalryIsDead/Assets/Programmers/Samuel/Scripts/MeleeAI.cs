@@ -123,7 +123,7 @@ public class MeleeAI : MonsterAI
         for (int i = 0; i < Colliders.Length; i++)
         {
 
-            Debug.Log(Colliders[i].gameObject.name);
+            //Debug.Log(Colliders[i].gameObject.name);
             //Debug.Log("One in range");
             if (Colliders[i].tag == "Player")
             {
