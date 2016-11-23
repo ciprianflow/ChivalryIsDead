@@ -97,6 +97,7 @@ public class PlayerScript : MonoBehaviour {
             return;
 
         if (x == 0 && y == 0) {
+            DustParticle.SetActive(false);
             isSlowingDown = true;
             return;
         }
