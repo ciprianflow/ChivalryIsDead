@@ -197,13 +197,94 @@
 					<ChildrenList>
 						<Folder Name="princess" ID="{CF660A1C-7E33-481C-A758-3901FE4A6DD7}" ShortID="769754990">
 							<ChildrenList>
-								<Event Name="princess_happy" ID="{4F04D740-A727-45D1-A761-A248042DE9D9}"/>
-								<Event Name="princess_super_happy" ID="{A4A79685-7030-47F2-BB9B-6F09E5510991}"/>
-								<Event Name="princess_sad" ID="{6E7C0FE5-CDDE-4DFC-84B8-91A44FCAF381}"/>
-								<Event Name="princess_super_sad" ID="{95CCFA52-DB63-47A3-BE22-86B628DA002C}"/>
-								<Event Name="princess_crazy" ID="{DDA2245A-B903-453C-85A9-2B14139CD59E}"/>
-								<Event Name="princess_super_crazy" ID="{93588964-7065-4588-82B6-B32AFB79EA88}"/>
-								<Event Name="princess_whimpy" ID="{81E4C5B4-A699-47AA-926A-4A5E4AD604AF}"/>
+								<Event Name="princess_happy" ID="{4F04D740-A727-45D1-A761-A248042DE9D9}">
+									<ChildrenList>
+										<Action Name="Play" ID="{04F9E975-70C9-474F-BA3E-09D472399B14}" ShortID="412024744" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{71C299DF-9595-43B1-AC9F-89CF8F823959}" Global="false">
+													<ObjectRef Name="princess_happy" ID="{D8824C17-CADC-4886-8AC3-0A0EC25E179B}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="princess_super_happy" ID="{A4A79685-7030-47F2-BB9B-6F09E5510991}">
+									<ChildrenList>
+										<Action Name="Play" ID="{EA4BB892-65EE-44CF-A9C5-234F2D1B6E39}" ShortID="160766060" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{5992A505-4DB5-4324-A0CD-0DA8E82434EC}" Global="false">
+													<ObjectRef Name="princess_super_happy" ID="{C5DF8F21-A48A-4606-BA00-E3182E155F20}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="princess_sad" ID="{6E7C0FE5-CDDE-4DFC-84B8-91A44FCAF381}">
+									<ChildrenList>
+										<Action Name="Play" ID="{29223265-76D7-431B-9EB8-E076792CC07F}" ShortID="488149758" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{6B98B291-96D1-4DEB-BE74-AA9CC01877BD}" Global="false">
+													<ObjectRef Name="princess_sad" ID="{0CBEBA03-FA8B-49D8-9D13-C362CC0AB960}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="princess_super_sad" ID="{95CCFA52-DB63-47A3-BE22-86B628DA002C}">
+									<ChildrenList>
+										<Action Name="Play" ID="{FF8F0B9B-4901-4891-861A-99CD7A1C4BA2}" ShortID="347888323" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{E0B0A84B-F438-4F58-A50D-4098C30EAF22}" Global="false">
+													<ObjectRef Name="princess_super_sad" ID="{14AE7D19-0956-4133-B236-576071B370C2}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="princess_crazy" ID="{DDA2245A-B903-453C-85A9-2B14139CD59E}">
+									<ChildrenList>
+										<Action Name="Play" ID="{314F9C3C-A008-4D2E-8FF3-2BFE14510F2D}" ShortID="471336524" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{E51E7ACD-113D-458A-A70B-2BCA8858782A}" Global="false">
+													<ObjectRef Name="princess_crazy" ID="{65965305-11AA-4B0A-BD99-ACA238D0FE27}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="princess_super_crazy" ID="{93588964-7065-4588-82B6-B32AFB79EA88}">
+									<ChildrenList>
+										<Action Name="Play" ID="{C48858EB-047A-4A2D-819F-327508E64A90}" ShortID="355696027" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{F991DBFB-E41F-44B8-B4B6-A15DEBA3ACDF}" Global="false">
+													<ObjectRef Name="princess_super_crazy" ID="{002C371C-98B3-4B32-BED4-124A83465773}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="princess_super_flirty" ID="{81E4C5B4-A699-47AA-926A-4A5E4AD604AF}">
+									<ChildrenList>
+										<Action Name="Play" ID="{843685E8-22FB-4465-A47D-D1CF24859FB8}" ShortID="846885203" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{97FD7FE8-369C-4F4A-9244-617365FE7502}" Global="false">
+													<ObjectRef Name="princess_super_flirty" ID="{B6FF2833-4079-4C25-893D-E0271ED7FF53}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="princess_flirty" ID="{3CF603A9-BFB8-48C0-B9B9-02DF79B68731}">
+									<ChildrenList>
+										<Action Name="Play" ID="{E1BE5EF3-C3A7-476F-B819-E9AB561D7657}" ShortID="585405599" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{79D84CCF-6DC3-4068-8765-C63289A5BCAB}" Global="false">
+													<ObjectRef Name="princess_flirty" ID="{1AFD299C-E7A4-4778-BD89-25D7AA4269BA}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="enemies" ID="{74039287-9161-4621-8AAA-A05669C9F613}" ShortID="21639222">
@@ -223,10 +304,10 @@
 										</Event>
 										<Event Name="ranged_death" ID="{AFD89E25-FD08-4A92-BD9E-0597E223B794}">
 											<ChildrenList>
-												<Action Name="Play" ID="{93C1A72E-734A-467F-A4C8-1A68A77755EC}" ShortID="844348381" Type="Play" Scope="One" Global="false">
+												<Action Name="Play" ID="{4A542394-1237-4FB6-9EB9-BE4CB870C17F}" ShortID="742767221" Type="Play" Scope="One" Global="false">
 													<ElementList>
-														<Element ID="{8A7C574C-761B-4DB4-8C49-6C7560503024}" Global="false">
-															<ObjectRef Name="ranged_death" ID="{9C18ED50-2758-4273-9E34-B591DFBD7195}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														<Element ID="{00C8363F-933D-480F-8EA1-DBCBD73292A6}" Global="false">
+															<ObjectRef Name="ranged_death" ID="{02D35313-D219-477E-BA7A-0A41D2A290E5}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -236,8 +317,8 @@
 											<ChildrenList>
 												<Action Name="Play" ID="{51A5458E-D91D-4B81-9559-E5B82AF0A794}" ShortID="218994331" Type="Play" Scope="One" Global="false">
 													<ElementList>
-														<Element ID="{1AA0A35F-D844-469A-951B-5A1409976C14}" Global="false">
-															<ObjectRef Name="ranged_throw_object" ID="{B1C23F18-D4F7-4430-A095-969EFD48864F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														<Element ID="{C2D9E68B-3876-4BC2-9CE3-29A7A003C071}" Global="false">
+															<ObjectRef Name="ranged_throw" ID="{7BD30126-DC53-46B8-8B6C-AC55421F288B}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -259,17 +340,6 @@
 													<ElementList>
 														<Element ID="{65949669-4900-4B77-902F-893C3AAD564B}" Global="false">
 															<ObjectRef Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
-										<Event Name="ranged_take_out_throwing_object" ID="{3912C298-CD0A-47AC-8646-9E1CA8642A19}">
-											<ChildrenList>
-												<Action Name="Play" ID="{4ECD54F7-C0BF-4B93-A370-82E5805EA18B}" ShortID="183911443" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{A1E33CC7-60BC-4FE1-9352-0B5F6613E2ED}" Global="false">
-															<ObjectRef Name="ranged_pickup_stone" ID="{CC97E51D-E396-4B9B-921B-AC3167C071F9}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -297,6 +367,43 @@
 												</Action>
 											</ChildrenList>
 										</Event>
+										<Folder Name="pickup rock" ID="{3C2523F5-1C8C-42EF-BF6F-E9A07CC60F02}" ShortID="434455634">
+											<ChildrenList>
+												<Event Name="ranged_look_for_stone" ID="{3912C298-CD0A-47AC-8646-9E1CA8642A19}">
+													<ChildrenList>
+														<Action Name="Play" ID="{4ECD54F7-C0BF-4B93-A370-82E5805EA18B}" ShortID="183911443" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{A1E33CC7-60BC-4FE1-9352-0B5F6613E2ED}" Global="false">
+																	<ObjectRef Name="look_for_stone" ID="{404AE82A-09D0-4238-A2F0-3AB6E8475C84}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="ranged_find_stone" ID="{386F230B-6C54-41AF-9705-317D55C6066E}">
+													<ChildrenList>
+														<Action Name="Play" ID="{FEB9B68F-85C2-49C1-A6F1-9003247A4EB6}" ShortID="301177393" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{0F5EA844-2A43-45CB-891C-335684049B28}" Global="false">
+																	<ObjectRef Name="pickup_stone_anim" ID="{0772C99E-BD44-43CE-9F41-D7DA5848981E}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="ranged_pickup_stone" ID="{67A2F4DF-AC95-4FF6-ACEF-635FBB088C0A}">
+													<ChildrenList>
+														<Action Name="Play" ID="{71215145-DCE1-4ED0-B035-5BFD4167DE3A}" ShortID="828429701" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{B4451159-EAF5-4DF9-993B-6EC216B673A7}" Global="false">
+																	<ObjectRef Name="pickup_stone" ID="{9AEB5315-69AE-4CC5-B800-F858A73FAAF6}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+											</ChildrenList>
+										</Folder>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="suicide (goblin type)" ID="{92BF057C-735E-4C73-AEE4-0736E507DD80}" ShortID="123864082">
@@ -363,17 +470,6 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="melee_death" ID="{B83352A5-5F34-43E7-AEE7-5EA4A43BD9D9}">
-											<ChildrenList>
-												<Action Name="Play" ID="{AF3857BE-EAB0-4A5D-8960-F83C3BCD0670}" ShortID="220626041" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{C83781AB-AD5E-4316-B3AD-0B41E3232E0D}" Global="false">
-															<ObjectRef Name="melee_death" ID="{163EBBE2-6C3E-4E4A-9A1B-225D12FF4D3D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="melee_taunted" ID="{29C741C0-5369-4E95-B855-DD2C51281EB9}">
 											<ChildrenList>
 												<Action Name="Play" ID="{AFEC4904-1EE9-4282-A86B-A47364056863}" ShortID="559082573" Type="Play" Scope="One" Global="false">
@@ -406,27 +502,6 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="melee_attack" ID="{E5C311C4-8F09-4555-AFB9-B35F8704D1FC}">
-											<ChildrenList>
-												<Action Name="Play" ID="{3F831C2B-5A30-4059-B4D8-C5D9F712316A}" ShortID="876000055" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{F25C91D7-7DD9-423D-B644-1657D226A1E7}" Global="false">
-															<ObjectRef Name="melee_attack" ID="{3DB34CB4-D4B8-439B-8016-74CDEFF3821E}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-												<Action Name="Play" ID="{B9C7B115-C0BD-4F1C-BD22-2F41B46F6653}" ShortID="183744153" Type="Play" Scope="One" Global="false">
-													<PropertyList>
-														<Property Name="Delay" Type="Real64" Value="0.2"/>
-													</PropertyList>
-													<ElementList>
-														<Element ID="{073BCF21-2A34-4039-89DB-993BBD56ECBE}" Global="false">
-															<ObjectRef Name="spearTrust" ID="{F93F4DAB-8BF4-4456-B4AB-2ED9165721DF}" WorkUnitID="{BB5DD793-F285-4F74-8D1D-DF7A4B893280}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="melee_attacked" ID="{FD08529D-BA36-4B1B-BA54-112334EBFFD4}">
 											<ChildrenList>
 												<Action Name="Play" ID="{EEC0BA9B-7D6C-4DB5-AEDD-5EE8CD351903}" ShortID="757464249" Type="Play" Scope="One" Global="false">
@@ -449,6 +524,97 @@
 												</Action>
 											</ChildrenList>
 										</Event>
+										<Folder Name="death" ID="{E0E0F87E-3B44-493E-ADDE-3C3C48E5A2F5}" ShortID="371311100">
+											<ChildrenList>
+												<Event Name="melee_death" ID="{B83352A5-5F34-43E7-AEE7-5EA4A43BD9D9}">
+													<ChildrenList>
+														<Action Name="Play" ID="{AF3857BE-EAB0-4A5D-8960-F83C3BCD0670}" ShortID="220626041" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{C83781AB-AD5E-4316-B3AD-0B41E3232E0D}" Global="false">
+																	<ObjectRef Name="melee_death" ID="{163EBBE2-6C3E-4E4A-9A1B-225D12FF4D3D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="melee_fall_thump" ID="{A8FE89C9-6CE8-4233-B3F0-19A251EFBDC2}">
+													<ChildrenList>
+														<Action Name="Play" ID="{39F07A6F-CA3C-40C2-B101-0381BD76CD90}" ShortID="136620509" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{5152D01E-7CF8-489C-B639-522F958EA113}" Global="false">
+																	<ObjectRef Name="fall thump" ID="{3213FC93-57CB-40E0-AA71-E677FF1A14FA}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="melee_spear_spin" ID="{8A7B50E8-4EA1-485F-9A6F-9744BF80A7D4}">
+													<ChildrenList>
+														<Action Name="Play" ID="{DF33C093-196E-4598-846D-D56F372484B1}" ShortID="82449508" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{63763B8F-A12A-472F-B107-F7544AE46C74}" Global="false">
+																	<ObjectRef Name="spear spin" ID="{93A29FA7-CCFA-4F62-9A96-1F9E37F01112}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="melee_spear_splat" ID="{5B5D5FAE-C8CB-4B68-806B-DBB783211E3B}">
+													<ChildrenList>
+														<Action Name="Play" ID="{B82CD1EE-7950-481D-8DF1-8D96DD0B0E0A}" ShortID="797771673" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{4EFCD9BD-7CD4-4F71-B03B-4D857E945AD7}" Global="false">
+																	<ObjectRef Name="rear splat" ID="{EFDF0988-C27D-4E35-A5DB-591A732E41FD}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+											</ChildrenList>
+										</Folder>
+										<Folder Name="attack" ID="{A65F23B6-88CE-4D7A-A3B4-B4AFFE684B91}" ShortID="411253101">
+											<ChildrenList>
+												<Event Name="melee_attack" ID="{E5C311C4-8F09-4555-AFB9-B35F8704D1FC}">
+													<ChildrenList>
+														<Action Name="Stop" ID="{F9E2E1A0-FE80-40B3-BFFA-F351D5E36E48}" ShortID="1073652606" Type="Stop" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{2C3B2024-6FB2-4DFE-9B07-8011FB9C73F2}" Global="false">
+																	<ObjectRef Name="melee_weapon_charge" ID="{1DA925FB-2DAB-4672-8348-A117FCFA7A35}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+														<Action Name="Play" ID="{3F831C2B-5A30-4059-B4D8-C5D9F712316A}" ShortID="876000055" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{F25C91D7-7DD9-423D-B644-1657D226A1E7}" Global="false">
+																	<ObjectRef Name="melee_attack" ID="{3DB34CB4-D4B8-439B-8016-74CDEFF3821E}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+														<Action Name="Play" ID="{B9C7B115-C0BD-4F1C-BD22-2F41B46F6653}" ShortID="183744153" Type="Play" Scope="One" Global="false">
+															<PropertyList>
+																<Property Name="Delay" Type="Real64" Value="0.2"/>
+															</PropertyList>
+															<ElementList>
+																<Element ID="{073BCF21-2A34-4039-89DB-993BBD56ECBE}" Global="false">
+																	<ObjectRef Name="spearTrust" ID="{F93F4DAB-8BF4-4456-B4AB-2ED9165721DF}" WorkUnitID="{BB5DD793-F285-4F74-8D1D-DF7A4B893280}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+												<Event Name="melee_attack_charge_up" ID="{EB171462-12EF-471B-9443-5A4EFC9A8D31}">
+													<ChildrenList>
+														<Action Name="Play" ID="{D235F7D3-180A-4C6F-BB1D-C9B8770ED9E3}" ShortID="433139843" Type="Play" Scope="One" Global="false">
+															<ElementList>
+																<Element ID="{198827B3-225F-4BC0-BFB7-584095F25469}" Global="false">
+																	<ObjectRef Name="melee_weapon_charge" ID="{1DA925FB-2DAB-4672-8348-A117FCFA7A35}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+																</Element>
+															</ElementList>
+														</Action>
+													</ChildrenList>
+												</Event>
+											</ChildrenList>
+										</Folder>
 									</ChildrenList>
 								</Folder>
 							</ChildrenList>
@@ -503,7 +669,7 @@
 										</Event>
 									</ChildrenList>
 								</Folder>
-								<Folder Name="combat" ID="{D408F2AA-6FFD-4EC9-9449-F68128D8EC29}" ShortID="861596905">
+								<Folder Name="combat voice" ID="{D408F2AA-6FFD-4EC9-9449-F68128D8EC29}" ShortID="861596905">
 									<ChildrenList>
 										<Event Name="knight_taunt" ID="{B13B9EF3-8888-4AF9-900D-4B40695E323A}">
 											<ChildrenList>
@@ -635,19 +801,30 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="knight_walk" ID="{69E4AB49-DFB9-4E12-BF72-CA8AE43F2127}">
-											<ChildrenList>
-												<Action Name="Play" ID="{729295E9-676A-464C-A3CB-1E1AD46E4FFF}" ShortID="395550026" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{939B8AAA-14DB-4BE6-A8E8-DC325B331090}" Global="false">
-															<ObjectRef Name="knight_footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
 									</ChildrenList>
 								</Folder>
+								<Event Name="knight_overreact_tomato_splat" ID="{178F6241-94F1-4FC0-990B-77A1651E2464}">
+									<ChildrenList>
+										<Action Name="Play" ID="{7F7FB170-F7AB-4BD6-9134-91CA82AA3E8A}" ShortID="417630348" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{665DBEF8-6773-46BB-9D88-93503F3E9954}" Global="false">
+													<ObjectRef Name="overreact_tomato_splat" ID="{75E1DD64-9169-4366-BF70-03BAB7A5929C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="knight_move" ID="{69E4AB49-DFB9-4E12-BF72-CA8AE43F2127}">
+									<ChildrenList>
+										<Action Name="Play" ID="{729295E9-676A-464C-A3CB-1E1AD46E4FFF}" ShortID="395550026" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{939B8AAA-14DB-4BE6-A8E8-DC325B331090}" Global="false">
+													<ObjectRef Name="knight_footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="talking_sword" ID="{EF23D2DF-A778-451D-9856-3CEF7115AD31}" ShortID="224766381">
@@ -757,7 +934,39 @@
 						</Folder>
 					</ChildrenList>
 				</Folder>
-				<Folder Name="world objects" ID="{16AEF2AE-1961-4B25-AFC9-7789BC54E7B2}" ShortID="1052548698"/>
+				<Folder Name="world objects" ID="{16AEF2AE-1961-4B25-AFC9-7789BC54E7B2}" ShortID="1052548698">
+					<ChildrenList>
+						<Event Name="sheep_neutral_loop" ID="{E3417435-667E-442E-8DA2-B5A7617F6189}">
+							<ChildrenList>
+								<Action Name="Play" ID="{56D0A208-67F6-484B-89E9-F2F57D951317}" ShortID="921696627" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{67AB8B50-7094-4EEC-A7CF-4168DA7901ED}" Global="false">
+											<ObjectRef Name="sheep_neutral" ID="{1A4E9CAD-A257-4EDF-85A0-40FF68099D9C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="sheep_taunted" ID="{157F2AA2-7447-456D-8787-632B57432150}">
+							<ChildrenList>
+								<Action Name="Stop" ID="{D29F4AE4-55E2-4507-802E-4F1FE30EFB59}" ShortID="357797890" Type="Stop" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{5CEB30A6-7E50-4FC5-8555-345412ED7BE9}" Global="false">
+											<ObjectRef Name="sheep_neutral" ID="{1A4E9CAD-A257-4EDF-85A0-40FF68099D9C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{D49D88C8-AA2C-43D6-A076-0503224E0957}" ShortID="670356791" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{4F7A64A0-AC90-4BC6-883F-C3B3A0C33544}" Global="false">
+											<ObjectRef Name="sheep_die" ID="{D77B0949-BE10-40AB-8D79-379D783E368D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
 				<Folder Name="reward" ID="{F04112FB-F7FD-49A6-8D76-4777D0E18176}" ShortID="466188359">
 					<ChildrenList>
 						<Event Name="reward_combo_start" ID="{FE890FBE-A4B6-4B80-9828-33F66A2448BE}">
@@ -882,6 +1091,69 @@
 									<ElementList>
 										<Element ID="{36075A0A-F296-47C8-9DDE-8EF026A6A8BB}" Global="false">
 											<ObjectRef Name="sword flesh cut" ID="{58CBF26E-C879-4A24-BC0D-6E03CB7F6EB0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="impact_armor" ID="{7B642AC9-0FCF-4C30-83DF-D67B6E33635F}">
+							<ChildrenList>
+								<Action Name="Set Voice Pitch" ID="{EF42FC10-F5C1-4B4A-90C4-B7F090B9A8FB}" ShortID="347732034" Type="ChangePitch" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="Pitch" Type="int32" Value="-200">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{038B29DA-1642-4D9B-AE86-138711B54F55}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="100"/>
+															<Property Name="Min" Type="Real64" Value="-100"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{D202A3CD-2C90-4ED9-9BB2-5BE07E5F5EC1}" Global="false">
+											<ObjectRef Name="armor_impact_1" ID="{45F06CC2-E672-4D00-B67D-BCE2DFD70F4B}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{6B32A79C-B554-4FA5-8C89-1E2F0CDF1F30}" ShortID="1070053150" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{50596BA4-C5A4-4A01-82F3-54AF9BBD56B2}" Global="false">
+											<ObjectRef Name="armor_impact_1" ID="{45F06CC2-E672-4D00-B67D-BCE2DFD70F4B}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Set Voice Pitch" ID="{D2B7BC7F-E74C-48A4-A794-0D7230EB332C}" ShortID="167009174" Type="ChangePitch" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="0.5"/>
+										<Property Name="Pitch" Type="int32" Value="600">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{0A4BA88C-A3A4-4D00-8609-E86B430519D6}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="100"/>
+															<Property Name="Min" Type="Real64" Value="-100"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{D57E7391-89DE-40C9-BEF4-6FF43D09D3F2}" Global="false">
+											<ObjectRef Name="armor_impact_1" ID="{45F06CC2-E672-4D00-B67D-BCE2DFD70F4B}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{258A7B48-2F57-4A4C-9CCC-DB4798171FA8}" ShortID="506039871" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{1A3928BB-6107-457E-B451-67D99CF3ED69}" Global="false">
+											<ObjectRef Name="armor" ID="{D4C883C1-4D65-4F15-B4B9-0388E5C1276C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
 								</Action>
