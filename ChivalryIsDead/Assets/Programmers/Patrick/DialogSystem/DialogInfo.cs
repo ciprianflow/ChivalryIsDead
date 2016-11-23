@@ -16,7 +16,6 @@ public class DialogInfo : ScriptableObject
 
     public float[] Wait;
 
-    public string[] Sound;
 
     
 

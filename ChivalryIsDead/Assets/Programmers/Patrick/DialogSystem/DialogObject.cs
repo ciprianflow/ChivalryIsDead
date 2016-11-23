@@ -8,8 +8,7 @@ public class DialogObject : MonoBehaviour {
     public GameObject UI;
     GameMenu gameMenu;
 
-    public DialogInfo[] dialogEnglish;
-    public DialogInfo[] dialogDansk;
+    public DialogInfo[] dialog;
 
     GameObject[] container;
 
@@ -45,8 +44,6 @@ public class DialogObject : MonoBehaviour {
     float SpeakingTime;
     bool isSpeaking;
     bool callBlink;
-
-    SwordDialogueHandle mood;
 
     // Use this for initialization
     void Start () {
@@ -147,20 +144,7 @@ public class DialogObject : MonoBehaviour {
 
     public IEnumerator DialogSystem(int v)
     {
-        
-        DialogInfo d_English = dialogEnglish[v];
-        DialogInfo d_Dansk = dialogDansk[v];
-
-        DialogInfo d = d_English;
-
-        if (PlayerPrefs.GetString("Language") == "English")
-        {
-            d = d_English;
-        }
-        else if (PlayerPrefs.GetString("Language") == "Dansk")
-        {
-            d = d_Dansk;
-        }
+        DialogInfo d = dialog[v];
 
         d.Dialog = d.Name.Length;
 
@@ -262,7 +246,7 @@ public class DialogObject : MonoBehaviour {
                 
             if (d.Name[i] == "Sword")
             {
-                UI.GetComponent<GameMenu>().Sword();
+                gameMenu.Sword();
                 if (callBlink)
                 {
                     StartCoroutine(SwordBlink());
@@ -280,19 +264,6 @@ public class DialogObject : MonoBehaviour {
 
                 swordText.GetComponent<Text>().text = d.Text[i];
                 WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
-               
-                /*
-                if(d.Sound[i] == "Happy")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Happy);
-                else if (d.Sound[i] == "Angry")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Angry);
-                else if (d.Sound[i] == "Explanatory")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Explanatory);
-                else if (d.Sound[i] == "Funny")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Funny);
-                else if (d.Sound[i] == "Neutral")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Neutral);
-                */
 
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];

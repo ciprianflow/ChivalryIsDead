@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-#if UNITY_EDITOR
 using UnityEditor;
 
 public class DummyCreateQuestParameters
@@ -14,4 +13,3 @@ public class DummyCreateQuestParameters
         AssetDatabase.CreateAsset(QP, dataFolderPath + assetFileName);
     }
 }
-#endif

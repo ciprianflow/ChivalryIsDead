@@ -25,7 +25,7 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject HandCanvas;
     Animator handAnimator;
     public Animator swordAnimator;
-    public Animator skipAnimator;
+
 
     // Use this for initialization
     void Awake () {
@@ -40,7 +40,8 @@ public class IntroLevelDialog : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+       
+            
         if (!learnedToMove)
         {
             if (Vector3.Distance(startingPos, Player.transform.position) > 0.01f)
@@ -49,7 +50,6 @@ public class IntroLevelDialog : MonoBehaviour {
 
                 handAnimator.speed = 1f;
                 swordAnimator.speed = 1f;
-                skipAnimator.speed = 1f;
                 Time.timeScale = 1f;
                 handAnimator.SetBool("playLeftJoy", false);
                 ScreenFreeze.SetActive(false);
@@ -78,20 +78,15 @@ public class IntroLevelDialog : MonoBehaviour {
         AnimCam.SetActive(true);
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
-
-   
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-      
 
-        
-
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
 
 
         //UI.GetComponent<GameMenu>().Sword();
         //Invoke("CallableSkip", 1.3f);
 
-        //yield return null;
+        yield return null;
          
     }
 
@@ -107,8 +102,7 @@ public class IntroLevelDialog : MonoBehaviour {
         Time.timeScale = 0.1f;
         ScreenFreeze.SetActive(true);
         swordAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
-        handAnimator.speed = 10f;
+
 
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         //yield return new WaitForSeconds(0.2f);
@@ -127,6 +121,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //procceed = false;
 
 
+        handAnimator.speed = 10f;
         handAnimator.SetBool("playLeftJoy", true);
         ControlMove.SetActive(true);
     }
@@ -184,7 +179,6 @@ public class IntroLevelDialog : MonoBehaviour {
         ScreenFreeze.SetActive(true);
         handAnimator.speed = 10f;
         swordAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
@@ -202,7 +196,6 @@ public class IntroLevelDialog : MonoBehaviour {
         handAnimator.SetBool("playRightJoy", false);
         handAnimator.speed = 1f;
         swordAnimator.speed = 1f;
-        skipAnimator.speed = 1f;
         Time.timeScale = 1f;
         ScreenFreeze.SetActive(false);
         ControlMove.SetActive(true);
