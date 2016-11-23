@@ -213,8 +213,8 @@ public class GameMenu : MonoBehaviour {
 
     public void SkipOneBubble()
     {
-        
         dialogSystem.SkipDialog();
+        skipBtn.SetActive(false);
     }
 
 

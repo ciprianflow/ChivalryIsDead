@@ -79,14 +79,14 @@ public class IntroLevelDialog : MonoBehaviour {
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-       
-        yield return new WaitForSeconds(2f);
+
+        //yield return new WaitForSeconds(2f);
 
 
-        UI.GetComponent<GameMenu>().Sword();
+        //UI.GetComponent<GameMenu>().Sword();
         //Invoke("CallableSkip", 1.3f);
 
-        
+        yield return null;
          
     }
 
@@ -105,8 +105,8 @@ public class IntroLevelDialog : MonoBehaviour {
 
 
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
 
 
         startingPos = Player.transform.position;
@@ -147,8 +147,8 @@ public class IntroLevelDialog : MonoBehaviour {
     public IEnumerator DialogTwo()
     {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
-        yield return new WaitForSeconds(2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(2f);
+        //UI.GetComponent<GameMenu>().Sword();
 
         //handAnimator.speed = 1f;
         //swordAnimator.speed = 1f;
@@ -180,14 +180,14 @@ public class IntroLevelDialog : MonoBehaviour {
         handAnimator.speed = 10f;
         swordAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
-        yield return new WaitForSeconds(0.2f);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
         handAnimator.SetBool("playRightJoy", true);
         ControlHit.SetActive(true);
         learnedToAttack = false;
 
+        yield return null;
 
-       
     }
 
 
@@ -206,9 +206,9 @@ public class IntroLevelDialog : MonoBehaviour {
     {
         yield return new WaitForSeconds(2);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
 
-        UI.GetComponent<GameMenu>().Sword();
+        //UI.GetComponent<GameMenu>().Sword();
         
 
     }
@@ -216,8 +216,8 @@ public class IntroLevelDialog : MonoBehaviour {
     public IEnumerator DialogFive()
     {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
-        yield return new WaitForSeconds(2);
-        UI.GetComponent<GameMenu>().Sword();
+        //yield return new WaitForSeconds(2);
+        //UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(2);
     }
