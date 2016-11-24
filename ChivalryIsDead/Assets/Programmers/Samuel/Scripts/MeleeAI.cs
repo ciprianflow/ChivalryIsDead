@@ -315,6 +315,9 @@ public class MeleeAI : MonsterAI
     //Called every time the monster is getting taunted
     public override void Taunt()
     {
+        if (state == State.Death)
+            return;
+
         //Plays Taunt sound
         WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Taunted, this.gameObject);
 
