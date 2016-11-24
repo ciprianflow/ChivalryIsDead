@@ -53,7 +53,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
 
-        while(count < 2)
+        while(count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -84,7 +84,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
 
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -101,7 +101,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
 
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }

@@ -46,8 +46,6 @@ public class DialogObject : MonoBehaviour {
     bool isSpeaking;
     bool callBlink;
 
-    SwordDialogueHandle mood;
-
     // Use this for initialization
     void Start () {
         indexCount = 0;
@@ -175,6 +173,7 @@ public class DialogObject : MonoBehaviour {
                 playerBubble.SetActive(true);
                 gameMenu.skipBtn.SetActive(true);
                 playerText.GetComponent<Text>().text = d.Text[i];
+               
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
 
@@ -279,20 +278,9 @@ public class DialogObject : MonoBehaviour {
                 gameMenu.skipBtn.SetActive(true);
 
                 swordText.GetComponent<Text>().text = d.Text[i];
-                WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
-               
-                /*
-                if(d.Sound[i] == "Happy")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Happy);
-                else if (d.Sound[i] == "Angry")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Angry);
-                else if (d.Sound[i] == "Explanatory")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Explanatory);
-                else if (d.Sound[i] == "Funny")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Funny);
-                else if (d.Sound[i] == "Neutral")
-                    WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.Neutral);
-                */
+                //WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
+                WwiseInterface.Instance.PlaySwordDialogue(StaticData.GetSwordMood(d.Sound[i]));
+
 
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
