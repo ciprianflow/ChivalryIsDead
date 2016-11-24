@@ -157,8 +157,28 @@
 							</ChildrenList>
 						</Event>
 						<Event Name="quest_initiated" ID="{3D97BABB-2DA8-46AA-8257-ADC8EA6B258C}"/>
-						<Event Name="quests_finished_negative_rep" ID="{C480ACB2-C2CF-418F-B112-F14BB89173D7}"/>
-						<Event Name="quest_finished_positive_rep" ID="{33E7D9DA-2152-4573-9B8E-6E34A1E36E8C}"/>
+						<Event Name="quest_finished_negative_rep" ID="{C480ACB2-C2CF-418F-B112-F14BB89173D7}"/>
+						<Event Name="quest_finished_positive_rep" ID="{33E7D9DA-2152-4573-9B8E-6E34A1E36E8C}">
+							<ChildrenList>
+								<Action Name="Play" ID="{62893BD1-4A38-42C2-A5B0-46DE1A87E153}" ShortID="550330877" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{6AAE59F2-8D39-4123-AD90-BC244A368A0B}" Global="false">
+											<ObjectRef Name="gain rep bad long modulated" ID="{CE862297-74A9-4DB2-B901-74C0CC24BC2F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{23D6638B-BC6E-4EB3-A844-1C456823DAB3}" ShortID="304459007" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="2"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{1B12918A-E9CD-40F5-831E-E55A2356E37A}" Global="false">
+											<ObjectRef Name="spring" ID="{0E68963C-F034-4854-ADA4-80AD331886A3}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
 						<Event Name="world_transition" ID="{0515F34C-261A-49B3-84A3-52A72325403E}"/>
 						<Event Name="normal_button_backwards_pressed" ID="{A67CC0AE-99D7-446E-AB50-FAD207ADCE07}">
 							<ChildrenList>
@@ -313,7 +333,7 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="ranged_throw" ID="{26BF1B3B-A2EA-45DF-881B-8F46CABA955B}">
+										<Event Name="ranged_attack" ID="{26BF1B3B-A2EA-45DF-881B-8F46CABA955B}">
 											<ChildrenList>
 												<Action Name="Play" ID="{51A5458E-D91D-4B81-9559-E5B82AF0A794}" ShortID="218994331" Type="Play" Scope="One" Global="false">
 													<ElementList>
@@ -453,7 +473,7 @@
 											</ChildrenList>
 										</Event>
 										<Event Name="suicide_charge" ID="{34317813-515A-4EE1-8F27-D1C45F327768}"/>
-										<Event Name="suicide_explode" ID="{064E638E-54BF-4457-BAE6-EC3147CC4AFE}"/>
+										<Event Name="suicide_attack" ID="{064E638E-54BF-4457-BAE6-EC3147CC4AFE}"/>
 										<Event Name="suicide_flung_away" ID="{980B216C-9513-4777-90AC-A38F3FCD1670}"/>
 									</ChildrenList>
 								</Folder>
@@ -757,45 +777,23 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="knight_loose_rep_small" ID="{33BF1EFA-C1E3-4DA3-8209-AFB9149E4695}">
-											<ChildrenList>
-												<Action Name="Play" ID="{7B2B73ED-1B16-4763-9995-D175657F8DE0}" ShortID="286082507" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{A4010B27-D948-48D8-831C-90C9F252D0E3}" Global="false">
-															<ObjectRef Name="small reward" ID="{971A2097-909D-4B4A-AD17-048E6268D440}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
-										<Event Name="knight_loose_rep_big" ID="{6B1B56BB-CA70-4BEF-9337-5FBD6BD2D48F}">
-											<ChildrenList>
-												<Action Name="Play" ID="{5039D634-750E-42E8-B22B-01BACD0B26D5}" ShortID="440961576" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{FD043D0F-0444-4A78-B0C0-853E1EB31BC8}" Global="false">
-															<ObjectRef Name="knight_loose_rep_big" ID="{BDE2E9B1-291A-4D02-811C-ED812C92C4B3}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
 										<Event Name="knight_gain_rep" ID="{E1DCFA5F-8F51-453B-A70A-D809B44D4942}">
 											<ChildrenList>
 												<Action Name="Play" ID="{42FA0B25-BA4E-4777-8320-6585EF44730F}" ShortID="102049574" Type="Play" Scope="One" Global="false">
 													<ElementList>
 														<Element ID="{3C338A58-E955-4931-93C5-27698D80D210}" Global="false">
-															<ObjectRef Name="knight_gain_rep" ID="{334AC94F-09FF-438C-8B7C-3586B6EB36C4}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+															<ObjectRef Name="fail sound hurtig modulated" ID="{8872F418-3916-400A-9472-299CCD90F3F8}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="knight_loose_rep_combo" ID="{705BE56C-9DBF-4AFB-892B-650E899C43FA}">
+										<Event Name="kight_taunt_alternative" ID="{59985B07-93D5-4442-A979-6F1E4706986E}">
 											<ChildrenList>
-												<Action Name="Play" ID="{A23BB5A6-BBC8-4F8A-9F67-6CBB952FAC5A}" ShortID="200431297" Type="Play" Scope="One" Global="false">
+												<Action Name="Play" ID="{E6FFBD15-60F1-4955-8469-070F87F375E7}" ShortID="294527581" Type="Play" Scope="One" Global="false">
 													<ElementList>
-														<Element ID="{DD842D67-2A83-4B50-8D56-C3BE33E53388}" Global="false">
-															<ObjectRef Name="knight_loose_rep_combo" ID="{462BC24F-AD9E-4A82-AC31-82D75B817FED}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														<Element ID="{D2B605E9-214E-416A-B6CC-D075B11EAE98}" Global="false">
+															<ObjectRef Name="knight_taunt_pift" ID="{C1F914DE-AE49-440A-AED4-88355469743D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -1004,6 +1002,9 @@
 						<Event Name="reward_combo_boost" ID="{3808E535-C6C7-4E89-8DE0-5C48985E62E9}">
 							<ChildrenList>
 								<Action Name="Play" ID="{7A60B7C8-26CA-4730-A38F-7E1D9C684317}" ShortID="613308233" Type="Play" Scope="One" Global="false">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
 									<PropertyList>
 										<Property Name="Delay" Type="Real64" Value="1"/>
 									</PropertyList>
@@ -1043,6 +1044,24 @@
 									<ElementList>
 										<Element ID="{25C751CE-796A-4BFB-8424-42DD71F92D03}" Global="false">
 											<ObjectRef Name="combo fire" ID="{9362D158-E088-423C-8506-10932F0479E0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{557BAD61-617D-4545-B927-DF08CE20B58F}" ShortID="5840002" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{8D96F58A-DBCB-4F35-BFF2-E8888A4622FF}" Global="false">
+											<ObjectRef Name="comboend" ID="{9F3CCC44-130F-4072-A99C-B633B52F9F55}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="reward_fail" ID="{F8C1D343-195E-43E3-BE80-6568835DE4DF}">
+							<ChildrenList>
+								<Action Name="Play" ID="{87D3546F-4C96-49D4-BB04-1C1873D1852E}" ShortID="793255466" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{E7969648-1DD1-4FC3-8CB7-32264B2FFEE9}" Global="false">
+											<ObjectRef Name="fail sound hurtig modulated" ID="{8872F418-3916-400A-9472-299CCD90F3F8}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
 								</Action>
