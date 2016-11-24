@@ -40,7 +40,7 @@ class PlayerBehaviour : ScorePublisher
             ScoreChange = dummyManager.GetComboMultiplier(score);
 
             //@@HARDCODED 
-            if (dummyManager.GetComboValue() > 8)
+            if (dummyManager.GetComboValue() > 8) 
                 WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepCombo, RepLossParticle);
             else if ((ScoreChange * -1) > 500)
                 WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepBig, RepLossParticle);

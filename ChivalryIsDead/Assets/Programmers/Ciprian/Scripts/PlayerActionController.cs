@@ -169,6 +169,7 @@ public class PlayerActionController : MonoBehaviour
 
                 Debug.Log("Overreact points:" + -points);
                 pb.ChangeRepScore(-points);
+
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
                 playerState = PlayerState.IDLE;
