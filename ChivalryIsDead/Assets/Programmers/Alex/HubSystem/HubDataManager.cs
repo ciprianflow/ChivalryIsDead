@@ -56,6 +56,7 @@ public class HubDataManager : MonoBehaviour {
     public GameObject WinScreen;
     public Text DaysLeftText;
     public Image RingImg;
+    public bool isClicked;
 
     void Awake()
     {
@@ -68,7 +69,7 @@ public class HubDataManager : MonoBehaviour {
     }
 
     void Start () {
-
+        isClicked = false;
         checkForWin();
         peasantLineScript.FillPeasantLine();
         UpdateUIText();
@@ -184,7 +185,7 @@ public class HubDataManager : MonoBehaviour {
     {
 
         StaticData.currQuest = (MultiQuest)quest;
-        SceneManager.LoadScene(UnityEngine.Random.Range(4, 10));
+        SceneManager.LoadScene("0" + UnityEngine.Random.Range(1, 6).ToString() + "UR");
         //SceneManager.LoadScene(7);
 
     }
@@ -259,8 +260,8 @@ public class HubDataManager : MonoBehaviour {
         QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description, quest.Data);
         //QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
         QuestLetter.SetActive(Convert.ToBoolean(i));
-        GameObject.FindGameObjectWithTag("HandCanvas").GetComponent<Animator>().SetTrigger("handhub");
-
+        //GameObject.FindGameObjectWithTag("HandCanvas").GetComponent<Animator>().SetTrigger("handhub");
+        isClicked = true;
     }
 
     public void setCurrSelectedQuest(int i)

@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour {
     {
         //Application.OpenURL("https://www.youtube.com/watch?v=AuRXVMSG3po");
 
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("ProtoHubWorld 1");
     }
 
 

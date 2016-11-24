@@ -385,15 +385,18 @@ public class MeleeAI : MonsterAI
     //Gets a random point on the navmesh
     public Vector3 GetRandomPointOnNavMesh()
     {
-        float walkRadius = UnityEngine.Random.Range(6, 8);
-        Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized * walkRadius;
-        randomDirection += StaticIngameData.player.transform.position;
         NavMeshHit hit;
-        NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
-        if (hit.hit)
-            return hit.position;
-        else
-            return GetRandomPointOnNavMesh();
+        while (true)
+        {
+            float walkRadius = UnityEngine.Random.Range(4, 8);
+            Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized.normalized * walkRadius;
+            randomDirection = new Vector3(randomDirection.x, 0, randomDirection.y);
+            randomDirection += transform.position;
+            NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+            if (hit.hit)
+                break;
+        }
+        return hit.position;
     }
 
     //Transistion to the Charge state

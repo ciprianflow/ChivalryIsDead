@@ -62,6 +62,9 @@ public class SheepAI : MonsterAI {
 
     public override void Taunt()
     {
+        if (state == State.Death)
+            return;
+
         Debug.Log("Sheep taunted");
         if(state != State.Move)
             ToMove();

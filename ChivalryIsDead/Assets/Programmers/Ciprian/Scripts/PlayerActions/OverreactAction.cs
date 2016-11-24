@@ -48,6 +48,8 @@ class OverreactAction: MonoBehaviour
         playerBase.overreact();
         cooldownTimeStamp = Time.time + OverreactCooldown;
         Debug.Log("Overreact");
+
+        
     }
 
     public float elapsedCooldown()
