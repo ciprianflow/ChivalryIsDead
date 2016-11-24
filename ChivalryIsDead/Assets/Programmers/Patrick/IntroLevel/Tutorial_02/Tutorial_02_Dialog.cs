@@ -28,6 +28,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     Animator handAnimator;
     public Animator swordAnimator;
     public Animator skipAnimator;
+    public GameObject skipBtn;
     int count;
 
     // Use this for initialization
@@ -120,7 +121,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         
 
         //Invoke("CallableSkip", 5f);
-        while(count < 10)
+        while(count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -160,7 +161,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
 
         count = 0;
-        while (count < 7)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -186,7 +187,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -212,7 +213,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -238,7 +239,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 4)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -252,6 +253,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
+        skipBtn.SetActive(false);
         handAnimator.SetBool("playTaunt", true);
         ControlHit.SetActive(true);
 
@@ -271,7 +273,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 5)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -310,7 +312,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 6)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -321,7 +323,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         Time.timeScale = 1f;
 
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(5);
 
     }

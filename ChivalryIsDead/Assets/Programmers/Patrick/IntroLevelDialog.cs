@@ -25,7 +25,8 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject HandCanvas;
     Animator handAnimator;
     public Animator swordAnimator;
-
+    GameMenu gameMenu;
+    public GameObject skipBtn;
 
     // Use this for initialization
     void Awake () {
@@ -33,7 +34,7 @@ public class IntroLevelDialog : MonoBehaviour {
         learnedToMove = true;
         learnedToAttack = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
-
+        gameMenu = UI.GetComponent<GameMenu>();
 
     }
 
@@ -108,6 +109,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
+        skipBtn.SetActive(false);
 
         startingPos = Player.transform.position;
         learnedToMove = false;
@@ -120,7 +122,7 @@ public class IntroLevelDialog : MonoBehaviour {
 
         //procceed = false;
 
-
+        skipBtn.SetActive(false);
         handAnimator.speed = 10f;
         handAnimator.SetBool("playLeftJoy", true);
         ControlMove.SetActive(true);
@@ -183,6 +185,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         handAnimator.SetBool("playRightJoy", true);
+        skipBtn.SetActive(false);
         ControlHit.SetActive(true);
         learnedToAttack = false;
 
