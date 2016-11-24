@@ -4,6 +4,7 @@
 		<WorkUnit Name="Default Work Unit" ID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}" PersistMode="Standalone">
 			<ChildrenList>
 				<Bus Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}">
+					<ReferenceList/>
 					<ChildrenList>
 						<Bus Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}"/>
 						<Bus Name="ambience" ID="{274B38EF-37D2-44E0-9CBB-2909F0D8DE94}"/>
@@ -46,6 +47,13 @@
 						</Bus>
 						<Bus Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}"/>
 						<Bus Name="ui" ID="{A734EF15-D02E-4C42-9779-4314515EB394}"/>
+						<AuxBus Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}">
+							<ReferenceList>
+								<Reference Name="Effect0" PluginName="Wwise RoomVerb" CompanyID="0" PluginID="118" PluginType="3">
+									<ObjectRef Name="Have_U_Ever_Been_Outside" ID="{FE29AE8D-FD86-4652-A95D-68D32F5760EC}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+								</Reference>
+							</ReferenceList>
+						</AuxBus>
 					</ChildrenList>
 				</Bus>
 				<Bus Name="Master Secondary Bus" ID="{D2E0BC7E-7B3F-4FFE-A670-FAE02761B631}"/>
