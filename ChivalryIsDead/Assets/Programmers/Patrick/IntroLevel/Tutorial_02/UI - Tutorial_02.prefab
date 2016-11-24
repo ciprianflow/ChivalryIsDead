@@ -617,7 +617,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012049439332}
   - 114: {fileID: 114000011812507138}
-  - 114: {fileID: 114000010787301582}
   m_Layer: 0
   m_Name: DialogSystem
   m_TagString: DialogSystem
@@ -1635,34 +1634,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000010787301582
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012232878452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db14317ff4367254cab61ac8f077ad60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  enemyBillboard: {fileID: 1000010220231780}
-  TrollA: {fileID: 0}
-  TrollB: {fileID: 0}
-  Sheeps:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  UI: {fileID: 1000013271261386}
-  ControlMove: {fileID: 0}
-  ControlHit: {fileID: 0}
-  InvisWallOne: {fileID: 0}
-  InvisWallTwo: {fileID: 0}
-  HandCanvas: {fileID: 0}
-  ScreenFreeze: {fileID: 0}
-  swordAnimator: {fileID: 95000011459032032}
-  skipAnimator: {fileID: 95000010148322688}
 --- !u!114 &114000010795785500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2572,7 +2543,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114000010787301582}
+      - m_Target: {fileID: 0}
         m_MethodName: CallableSkip
         m_Mode: 1
         m_Arguments:

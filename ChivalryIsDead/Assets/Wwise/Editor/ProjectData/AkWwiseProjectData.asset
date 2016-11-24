@@ -16,45 +16,9 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}'
-    m_lastTimePsrt1: 64005338
-    m_lastTimePart2: -1999367254
+    m_lastTimePsrt1: -903945796
+    m_lastTimePart2: -1999367062
     List:
-    - Name: comboBoost
-      Path: Default Work Unit\reward\comboBoost
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: reward
-        ObjectType: 4
-      - ElementName: comboBoost
-        ObjectType: 3
-      ID: 2121219502
-      Guid: 35e50838c7c6894e8de05c48985e62e9
-      maxAttenuation: 0
-    - Name: comboEnd
-      Path: Default Work Unit\reward\comboEnd
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: reward
-        ObjectType: 4
-      - ElementName: comboEnd
-        ObjectType: 3
-      ID: 453596956
-      Guid: 1b5358d68ec5e340819778c48ff8fc4d
-      maxAttenuation: 0
-    - Name: comboStart
-      Path: Default Work Unit\reward\comboStart
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: reward
-        ObjectType: 4
-      - ElementName: comboStart
-        ObjectType: 3
-      ID: -328663361
-      Guid: be0f89feb6a4804b982833f66a2448be
-      maxAttenuation: 0
     - Name: dialogue_a_speech_bubble_pop
       Path: Default Work Unit\ui\dialogue_a_speech_bubble_pop
       PathAndIcons:
@@ -79,6 +43,30 @@ MonoBehaviour:
       ID: 452147236
       Guid: fae7a8b0071454489555b104b4b18d9a
       maxAttenuation: 0
+    - Name: impact_armor
+      Path: Default Work Unit\combat\impact_armor
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: combat
+        ObjectType: 4
+      - ElementName: impact_armor
+        ObjectType: 3
+      ID: 1666803679
+      Guid: c92a647bcf0f304c83dfd67b6e33635f
+      maxAttenuation: 0
+    - Name: impact_flesh
+      Path: Default Work Unit\combat\impact_flesh
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: combat
+        ObjectType: 4
+      - ElementName: impact_flesh
+        ObjectType: 3
+      ID: 2137223824
+      Guid: fa705596278e5445b555d9a082af722f
+      maxAttenuation: 0
     - Name: knight_angry
       Path: Default Work Unit\characters\knight\dialogue\knight_angry
       PathAndIcons:
@@ -96,7 +84,7 @@ MonoBehaviour:
       Guid: e459cc6f9455354ea3458ff126fe78ba
       maxAttenuation: 0
     - Name: knight_attack
-      Path: Default Work Unit\characters\knight\combat\knight_attack
+      Path: Default Work Unit\characters\knight\combat voice\knight_attack
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -104,7 +92,7 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_attack
         ObjectType: 3
@@ -112,7 +100,7 @@ MonoBehaviour:
       Guid: b5007bcf5626e54690b9d14c4d931edd
       maxAttenuation: 0
     - Name: knight_gain_rep
-      Path: Default Work Unit\characters\knight\combat\knight_gain_rep
+      Path: Default Work Unit\characters\knight\combat voice\knight_gain_rep
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -120,7 +108,7 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_gain_rep
         ObjectType: 3
@@ -160,7 +148,7 @@ MonoBehaviour:
       Guid: 6eacdd462363344f873ae3cc47a04b20
       maxAttenuation: 0
     - Name: knight_loose_rep_big
-      Path: Default Work Unit\characters\knight\combat\knight_loose_rep_big
+      Path: Default Work Unit\characters\knight\combat voice\knight_loose_rep_big
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -168,7 +156,7 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_loose_rep_big
         ObjectType: 3
@@ -176,7 +164,7 @@ MonoBehaviour:
       Guid: bb561b6b70caef4b93375fbd6bd2d48f
       maxAttenuation: 0
     - Name: knight_loose_rep_combo
-      Path: Default Work Unit\characters\knight\combat\knight_loose_rep_combo
+      Path: Default Work Unit\characters\knight\combat voice\knight_loose_rep_combo
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -184,7 +172,7 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_loose_rep_combo
         ObjectType: 3
@@ -192,7 +180,7 @@ MonoBehaviour:
       Guid: 6ce55b70bf9dfb4a892b650e899c43fa
       maxAttenuation: 0
     - Name: knight_loose_rep_small
-      Path: Default Work Unit\characters\knight\combat\knight_loose_rep_small
+      Path: Default Work Unit\characters\knight\combat voice\knight_loose_rep_small
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -200,12 +188,26 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_loose_rep_small
         ObjectType: 3
       ID: 1622433389
       Guid: fa1ebf33e3c1a34d8209afb9149e4695
+      maxAttenuation: 0
+    - Name: knight_move
+      Path: Default Work Unit\characters\knight\knight_move
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: knight
+        ObjectType: 4
+      - ElementName: knight_move
+        ObjectType: 3
+      ID: -1415260982
+      Guid: 49abe469b9df124ebf72ca8ae43f2127
       maxAttenuation: 0
     - Name: knight_neutral
       Path: Default Work Unit\characters\knight\dialogue\knight_neutral
@@ -224,7 +226,7 @@ MonoBehaviour:
       Guid: cb4179f37058244ca7ba32044a89329b
       maxAttenuation: 0
     - Name: knight_overreact_great
-      Path: Default Work Unit\characters\knight\combat\knight_overreact_great
+      Path: Default Work Unit\characters\knight\combat voice\knight_overreact_great
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -232,7 +234,7 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_overreact_great
         ObjectType: 3
@@ -240,7 +242,7 @@ MonoBehaviour:
       Guid: c8db0c2dc1eb3946b63bcf66505bccb0
       maxAttenuation: 0
     - Name: knight_overreact_ok
-      Path: Default Work Unit\characters\knight\combat\knight_overreact_ok
+      Path: Default Work Unit\characters\knight\combat voice\knight_overreact_ok
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -248,7 +250,7 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_overreact_ok
         ObjectType: 3
@@ -256,7 +258,7 @@ MonoBehaviour:
       Guid: 05bcb301583e7345bf4cf24c6867f7c9
       maxAttenuation: 0
     - Name: knight_overreact_perfect
-      Path: Default Work Unit\characters\knight\combat\knight_overreact_perfect
+      Path: Default Work Unit\characters\knight\combat voice\knight_overreact_perfect
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -264,15 +266,15 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_overreact_perfect
         ObjectType: 3
       ID: 347213686
       Guid: 3086f348b4c716488de62d4b29728d29
       maxAttenuation: 0
-    - Name: knight_taunt
-      Path: Default Work Unit\characters\knight\combat\knight_taunt
+    - Name: knight_overreact_tomato_splat
+      Path: Default Work Unit\characters\knight\knight_overreact_tomato_splat
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -280,28 +282,26 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: knight
         ObjectType: 4
-      - ElementName: combat
+      - ElementName: knight_overreact_tomato_splat
+        ObjectType: 3
+      ID: 2097749008
+      Guid: 41628f17f194c04f990b77a1651e2464
+      maxAttenuation: 0
+    - Name: knight_taunt
+      Path: Default Work Unit\characters\knight\combat voice\knight_taunt
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: knight
+        ObjectType: 4
+      - ElementName: combat voice
         ObjectType: 4
       - ElementName: knight_taunt
         ObjectType: 3
       ID: 1211663631
       Guid: f39e3bb18888f94a900d4b40695e323a
-      maxAttenuation: 0
-    - Name: knight_walk
-      Path: Default Work Unit\characters\knight\combat\knight_walk
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: characters
-        ObjectType: 4
-      - ElementName: knight
-        ObjectType: 4
-      - ElementName: combat
-        ObjectType: 4
-      - ElementName: knight_walk
-        ObjectType: 3
-      ID: 858763478
-      Guid: 49abe469b9df124ebf72ca8ae43f2127
       maxAttenuation: 0
     - Name: melee_aggro
       Path: Default Work Unit\characters\enemies\melee (merman type)\melee_aggro
@@ -320,7 +320,7 @@ MonoBehaviour:
       Guid: ae75ab81f73cb74e850c45aeaba09058
       maxAttenuation: 0
     - Name: melee_attack
-      Path: Default Work Unit\characters\enemies\melee (merman type)\melee_attack
+      Path: Default Work Unit\characters\enemies\melee (merman type)\attack\melee_attack
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -330,10 +330,30 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: melee (merman type)
         ObjectType: 4
+      - ElementName: attack
+        ObjectType: 4
       - ElementName: melee_attack
         ObjectType: 3
       ID: 1353242594
       Guid: c411c3e5098f5545afb9b35f8704d1fc
+      maxAttenuation: 0
+    - Name: melee_attack_charge_up
+      Path: Default Work Unit\characters\enemies\melee (merman type)\attack\melee_attack_charge_up
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: melee (merman type)
+        ObjectType: 4
+      - ElementName: attack
+        ObjectType: 4
+      - ElementName: melee_attack_charge_up
+        ObjectType: 3
+      ID: -998324117
+      Guid: 621417ebef121b4794435a4efc9a8d31
       maxAttenuation: 0
     - Name: melee_attacked
       Path: Default Work Unit\characters\enemies\melee (merman type)\melee_attacked
@@ -368,7 +388,7 @@ MonoBehaviour:
       Guid: 19f5f8ef7133d2478162e2815a4a81c2
       maxAttenuation: 0
     - Name: melee_death
-      Path: Default Work Unit\characters\enemies\melee (merman type)\melee_death
+      Path: Default Work Unit\characters\enemies\melee (merman type)\death\melee_death
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -378,10 +398,66 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: melee (merman type)
         ObjectType: 4
+      - ElementName: death
+        ObjectType: 4
       - ElementName: melee_death
         ObjectType: 3
       ID: 1302570184
       Guid: a55233b8345fe743aee75ea4a43bd9d9
+      maxAttenuation: 0
+    - Name: melee_fall_thump
+      Path: Default Work Unit\characters\enemies\melee (merman type)\death\melee_fall_thump
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: melee (merman type)
+        ObjectType: 4
+      - ElementName: death
+        ObjectType: 4
+      - ElementName: melee_fall_thump
+        ObjectType: 3
+      ID: -2053256894
+      Guid: c989fea8e86c3342b3f019a251efbdc2
+      maxAttenuation: 0
+    - Name: melee_spear_spin
+      Path: Default Work Unit\characters\enemies\melee (merman type)\death\melee_spear_spin
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: melee (merman type)
+        ObjectType: 4
+      - ElementName: death
+        ObjectType: 4
+      - ElementName: melee_spear_spin
+        ObjectType: 3
+      ID: 2090854408
+      Guid: e8507b8aa14e5f489a6f9744bf80a7d4
+      maxAttenuation: 0
+    - Name: melee_spear_splat
+      Path: Default Work Unit\characters\enemies\melee (merman type)\death\melee_spear_splat
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: melee (merman type)
+        ObjectType: 4
+      - ElementName: death
+        ObjectType: 4
+      - ElementName: melee_spear_splat
+        ObjectType: 3
+      ID: 851904728
+      Guid: ae5f5d5bcbc8684b806bdbb783211e3b
       maxAttenuation: 0
     - Name: melee_taunted
       Path: Default Work Unit\characters\enemies\melee (merman type)\melee_taunted
@@ -414,6 +490,30 @@ MonoBehaviour:
         ObjectType: 3
       ID: 1126582737
       Guid: 42b1be4d46e458459cdef0a33e9c9a28
+      maxAttenuation: 0
+    - Name: music1Play
+      Path: Default Work Unit\music\music1Play
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: music
+        ObjectType: 4
+      - ElementName: music1Play
+        ObjectType: 3
+      ID: -950610779
+      Guid: 395cc0e7bce688499ac2b39683806224
+      maxAttenuation: 0
+    - Name: musicStop
+      Path: Default Work Unit\music\musicStop
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: music
+        ObjectType: 4
+      - ElementName: musicStop
+        ObjectType: 3
+      ID: -316770818
+      Guid: 0a107ae509c0c6478ba2335f47c5c268
       maxAttenuation: 0
     - Name: normal_button_backwards_pressed
       Path: Default Work Unit\ui\normal_button_backwards_pressed
@@ -495,6 +595,20 @@ MonoBehaviour:
       ID: 523500532
       Guid: a21bb1265460c348ab0446eaaa5ced65
       maxAttenuation: 0
+    - Name: peasant_neutral
+      Path: Default Work Unit\characters\peasant\peasant_neutral
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: peasant
+        ObjectType: 4
+      - ElementName: peasant_neutral
+        ObjectType: 3
+      ID: 991626407
+      Guid: b1c1b4df0ed1fb4a9f3799fb4e318d74
+      maxAttenuation: 0
     - Name: peasant_random
       Path: Default Work Unit\characters\peasant\peasant_random
       PathAndIcons:
@@ -537,20 +651,6 @@ MonoBehaviour:
       ID: 533425982
       Guid: d59bea65caf0eb41ad59aeeb8bb24fae
       maxAttenuation: 0
-    - Name: peasany_neutral
-      Path: Default Work Unit\characters\peasant\peasany_neutral
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: characters
-        ObjectType: 4
-      - ElementName: peasant
-        ObjectType: 4
-      - ElementName: peasany_neutral
-        ObjectType: 3
-      ID: 1571174434
-      Guid: b1c1b4df0ed1fb4a9f3799fb4e318d74
-      maxAttenuation: 0
     - Name: play_button_pressed
       Path: Default Work Unit\ui\play_button_pressed
       PathAndIcons:
@@ -576,6 +676,20 @@ MonoBehaviour:
         ObjectType: 3
       ID: 243093414
       Guid: 5a24a2dd03b93c4585a92b14139cd59e
+      maxAttenuation: 0
+    - Name: princess_flirty
+      Path: Default Work Unit\characters\princess\princess_flirty
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: princess
+        ObjectType: 4
+      - ElementName: princess_flirty
+        ObjectType: 3
+      ID: -211670359
+      Guid: a903f63cb8bfc048b9b902df79b68731
       maxAttenuation: 0
     - Name: princess_happy
       Path: Default Work Unit\characters\princess\princess_happy
@@ -619,6 +733,20 @@ MonoBehaviour:
       ID: 2030745530
       Guid: 648958936570884582b6b32afb79ea88
       maxAttenuation: 0
+    - Name: princess_super_flirty
+      Path: Default Work Unit\characters\princess\princess_super_flirty
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: princess
+        ObjectType: 4
+      - ElementName: princess_super_flirty
+        ObjectType: 3
+      ID: -729834483
+      Guid: b4c5e48199a6aa47926a4a5e4ad604af
+      maxAttenuation: 0
     - Name: princess_super_happy
       Path: Default Work Unit\characters\princess\princess_super_happy
       PathAndIcons:
@@ -646,20 +774,6 @@ MonoBehaviour:
         ObjectType: 3
       ID: -1887965339
       Guid: 52facc9563dba347be2286b628da002c
-      maxAttenuation: 0
-    - Name: princess_whimpy
-      Path: Default Work Unit\characters\princess\princess_whimpy
-      PathAndIcons:
-      - ElementName: Default Work Unit
-        ObjectType: 12
-      - ElementName: characters
-        ObjectType: 4
-      - ElementName: princess
-        ObjectType: 4
-      - ElementName: princess_whimpy
-        ObjectType: 3
-      ID: 1040073673
-      Guid: b4c5e48199a6aa47926a4a5e4ad604af
       maxAttenuation: 0
     - Name: quest_finished_positive_rep
       Path: Default Work Unit\ui\quest_finished_positive_rep
@@ -745,8 +859,8 @@ MonoBehaviour:
       ID: 808353447
       Guid: 259ed8af08fd924abd9e0597e223b794
       maxAttenuation: 0
-    - Name: ranged_take_out_throwing_object
-      Path: Default Work Unit\characters\enemies\ranged (big troll type)\ranged_take_out_throwing_object
+    - Name: ranged_find_stone
+      Path: Default Work Unit\characters\enemies\ranged (big troll type)\pickup rock\ranged_find_stone
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -756,10 +870,48 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: ranged (big troll type)
         ObjectType: 4
-      - ElementName: ranged_take_out_throwing_object
+      - ElementName: pickup rock
+        ObjectType: 4
+      - ElementName: ranged_find_stone
         ObjectType: 3
-      ID: 1109250972
+      ID: -1101115404
+      Guid: 0b236f38546caf419705317d55c6066e
+      maxAttenuation: 0
+    - Name: ranged_look_for_stone
+      Path: Default Work Unit\characters\enemies\ranged (big troll type)\pickup rock\ranged_look_for_stone
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: ranged (big troll type)
+        ObjectType: 4
+      - ElementName: pickup rock
+        ObjectType: 4
+      - ElementName: ranged_look_for_stone
+        ObjectType: 3
+      ID: -525243320
       Guid: 98c212390acdac4786469e1ca8642a19
+      maxAttenuation: 0
+    - Name: ranged_pickup_stone
+      Path: Default Work Unit\characters\enemies\ranged (big troll type)\pickup rock\ranged_pickup_stone
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: ranged (big troll type)
+        ObjectType: 4
+      - ElementName: pickup rock
+        ObjectType: 4
+      - ElementName: ranged_pickup_stone
+        ObjectType: 3
+      ID: -1317924855
+      Guid: dff4a26795acf64facef635fbb088c0a
       maxAttenuation: 0
     - Name: ranged_taunted
       Path: Default Work Unit\characters\enemies\ranged (big troll type)\ranged_taunted
@@ -809,17 +961,77 @@ MonoBehaviour:
       ID: 521065176
       Guid: d20fdd0d7d4eb944b17acba77b644805
       maxAttenuation: 0
-    - Name: smallReward
-      Path: Default Work Unit\reward\smallReward
+    - Name: reward_combo_boost
+      Path: Default Work Unit\reward\reward_combo_boost
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
       - ElementName: reward
         ObjectType: 4
-      - ElementName: smallReward
+      - ElementName: reward_combo_boost
         ObjectType: 3
-      ID: 42851371
+      ID: -616985373
+      Guid: 35e50838c7c6894e8de05c48985e62e9
+      maxAttenuation: 0
+    - Name: reward_combo_end
+      Path: Default Work Unit\reward\reward_combo_end
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: reward_combo_end
+        ObjectType: 3
+      ID: -122876515
+      Guid: 1b5358d68ec5e340819778c48ff8fc4d
+      maxAttenuation: 0
+    - Name: reward_combo_start
+      Path: Default Work Unit\reward\reward_combo_start
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: reward_combo_start
+        ObjectType: 3
+      ID: 160232150
+      Guid: be0f89feb6a4804b982833f66a2448be
+      maxAttenuation: 0
+    - Name: reward_small
+      Path: Default Work Unit\reward\reward_small
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: reward_small
+        ObjectType: 3
+      ID: -19621980
       Guid: bd29f25a4502964aa6a0d0c259eed3df
+      maxAttenuation: 0
+    - Name: sheep_neutral_loop
+      Path: Default Work Unit\world objects\sheep_neutral_loop
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: world objects
+        ObjectType: 4
+      - ElementName: sheep_neutral_loop
+        ObjectType: 3
+      ID: 1684621815
+      Guid: 357441e37e662e448da2b5a7617f6189
+      maxAttenuation: 0
+    - Name: sheep_taunted
+      Path: Default Work Unit\world objects\sheep_taunted
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: world objects
+        ObjectType: 4
+      - ElementName: sheep_taunted
+        ObjectType: 3
+      ID: 1645778096
+      Guid: a22a7f1547746d458787632b57432150
       maxAttenuation: 0
     - Name: start_hub_ambience
       Path: Default Work Unit\ambience\start_hub_ambience
@@ -877,8 +1089,8 @@ MonoBehaviour:
       ID: -648283407
       Guid: 1f1078c6fb571e43a33dc5bfd50eba3c
       maxAttenuation: 0
-    - Name: suicide_death
-      Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_death
+    - Name: suicide_charge
+      Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_charge
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -888,10 +1100,42 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: suicide (goblin type)
         ObjectType: 4
-      - ElementName: suicide_death
+      - ElementName: suicide_charge
         ObjectType: 3
-      ID: -895232804
-      Guid: fc991d035ba9b74898dbf2ccca89c8d3
+      ID: -202316782
+      Guid: 137831345a51e14e8f27d1c45f327768
+      maxAttenuation: 0
+    - Name: suicide_explode
+      Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_explode
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: suicide (goblin type)
+        ObjectType: 4
+      - ElementName: suicide_explode
+        ObjectType: 3
+      ID: -1426046455
+      Guid: 8e634e06bf545744bae6ec3147cc4afe
+      maxAttenuation: 0
+    - Name: suicide_flung_away
+      Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_flung_away
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: suicide (goblin type)
+        ObjectType: 4
+      - ElementName: suicide_flung_away
+        ObjectType: 3
+      ID: 2023593297
+      Guid: 6c210b981395774790aca38f3fcd1670
       maxAttenuation: 0
     - Name: suicide_taunted
       Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_taunted
@@ -939,8 +1183,8 @@ MonoBehaviour:
       ID: 1107160974
       Guid: bab2d62f17bab7428b7eac9e60e1f59b
       maxAttenuation: 0
-    - Name: sword_explanatory
-      Path: Default Work Unit\characters\talking_sword\sword_explanatory
+    - Name: sword_crazy
+      Path: Default Work Unit\characters\talking_sword\sword_crazy
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -948,13 +1192,41 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: talking_sword
         ObjectType: 4
-      - ElementName: sword_explanatory
+      - ElementName: sword_crazy
         ObjectType: 3
-      ID: 1144071286
+      ID: -1537344698
+      Guid: 04024c31675c2b448b8ab93194d490cc
+      maxAttenuation: 0
+    - Name: sword_determined
+      Path: Default Work Unit\characters\talking_sword\sword_determined
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: talking_sword
+        ObjectType: 4
+      - ElementName: sword_determined
+        ObjectType: 3
+      ID: -1781416370
+      Guid: d6bda53395306d4e87d76c5db73dce8b
+      maxAttenuation: 0
+    - Name: sword_explanatory_long
+      Path: Default Work Unit\characters\talking_sword\sword_explanatory_long
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: talking_sword
+        ObjectType: 4
+      - ElementName: sword_explanatory_long
+        ObjectType: 3
+      ID: -358646853
       Guid: dab44eb0e12e8e4ca6fd663d127c8a98
       maxAttenuation: 0
-    - Name: sword_funny
-      Path: Default Work Unit\characters\talking_sword\sword_funny
+    - Name: sword_explanatory_short
+      Path: Default Work Unit\characters\talking_sword\sword_explanatory_short
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -962,13 +1234,13 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: talking_sword
         ObjectType: 4
-      - ElementName: sword_funny
+      - ElementName: sword_explanatory_short
         ObjectType: 3
-      ID: 606936541
-      Guid: 216ba665e337f54cbb78182d850bd424
+      ID: 1687954613
+      Guid: a1b219936f759643a24012b06052c15c
       maxAttenuation: 0
-    - Name: sword_happy
-      Path: Default Work Unit\characters\talking_sword\sword_happy
+    - Name: sword_happy_long
+      Path: Default Work Unit\characters\talking_sword\sword_happy_long
       PathAndIcons:
       - ElementName: Default Work Unit
         ObjectType: 12
@@ -976,10 +1248,24 @@ MonoBehaviour:
         ObjectType: 4
       - ElementName: talking_sword
         ObjectType: 4
-      - ElementName: sword_happy
+      - ElementName: sword_happy_long
         ObjectType: 3
-      ID: 2128741919
+      ID: 1849168320
       Guid: d9f25fb061d23b4b8a48d78208fa5fcd
+      maxAttenuation: 0
+    - Name: sword_happy_short
+      Path: Default Work Unit\characters\talking_sword\sword_happy_short
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: talking_sword
+        ObjectType: 4
+      - ElementName: sword_happy_short
+        ObjectType: 3
+      ID: 2042891232
+      Guid: 03edc7bd4ed9b04bbd1fa5ac560d5f7f
       maxAttenuation: 0
     - Name: sword_neutral
       Path: Default Work Unit\characters\talking_sword\sword_neutral
@@ -1011,9 +1297,20 @@ MonoBehaviour:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{907AFF45-16AF-4708-93BE-B0FF9D3A6728}'
-    m_lastTimePsrt1: 84995338
-    m_lastTimePart2: -1999367254
-    List: []
+    m_lastTimePsrt1: -900456145
+    m_lastTimePart2: -1999367062
+    List:
+    - Name: rvb_outside
+      Path: Default Work Unit\Master Audio Bus\rvb_outside
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      - ElementName: rvb_outside
+        ObjectType: 1
+      ID: 951790241
+      Guid: 7a0a69b335084e43b5b30ff86756e6cf
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
@@ -1061,8 +1358,8 @@ MonoBehaviour:
   - PhysicalPath: SoundBanks\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{53EFE98F-F4D7-4002-81F7-3B00284891AE}'
-    m_lastTimePsrt1: 86645338
-    m_lastTimePart2: -1999367254
+    m_lastTimePsrt1: -898226368
+    m_lastTimePart2: -1999367062
     List:
     - Name: Main_Soundbank
       Path: Default Work Unit\Main_Soundbank

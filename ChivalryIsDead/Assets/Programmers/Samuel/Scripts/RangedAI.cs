@@ -88,7 +88,7 @@ public class RangedAI : MonsterAI
 
 
         objRigidBody.velocity = velocity;
-        objRigidBody.AddTorque(velocity);
+        objRigidBody.AddTorque(velocity * 5);
 
         if (targetSprite == null) {
             return;

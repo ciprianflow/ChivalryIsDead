@@ -79,6 +79,9 @@ public class SuicideAI : MonsterAI
 
     public override void Taunt()
     {
+        if (state == State.Death)
+            return;
+
         //Plays Taunt sound
         WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Suicide, MonsterAudioHandle.Taunted, this.gameObject);
 
@@ -106,8 +109,10 @@ public class SuicideAI : MonsterAI
 
                 Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                 if (body)
-                    body.AddExplosionForce(explosionForce, transform.position - new Vector3(0, -5, 0), explosionRange);
-
+                {
+                    body.AddExplosionForce(explosionForce * 15, transform.position, explosionRange, 0.75f);
+                }
+                    
                 base.playerAction.PlayerAttacked(this);
                 Debug.Log("Hit player");
 

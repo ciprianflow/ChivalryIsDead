@@ -270,4 +270,10 @@ public class CameraMovement : MonoBehaviour {
 
     #endregion
 
+    public void enableKillCam()
+    {
+        this.enabled = false;
+        this.GetComponent<KillCam>().enabled = true;
+    }
+
 }

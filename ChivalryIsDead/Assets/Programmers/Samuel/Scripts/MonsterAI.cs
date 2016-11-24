@@ -402,7 +402,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
             if (StaticIngameData.mapManager != null)
                 StaticIngameData.mapManager.CheckObjectives(this);
             ToDeath();
-            Debug.Log("DED");
             anim.Play("Death", 0, 0);
             if(this.GetType().Equals(typeof(SuicideAI)))
                 gameObject.SetActive(false);
