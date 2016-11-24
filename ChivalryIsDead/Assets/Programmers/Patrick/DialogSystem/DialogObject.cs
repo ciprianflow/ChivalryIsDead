@@ -8,7 +8,8 @@ public class DialogObject : MonoBehaviour {
     public GameObject UI;
     GameMenu gameMenu;
 
-    public DialogInfo[] dialog;
+    public DialogInfo[] dialogEnglish;
+    public DialogInfo[] dialogDansk;
 
     GameObject[] container;
 
@@ -144,7 +145,20 @@ public class DialogObject : MonoBehaviour {
 
     public IEnumerator DialogSystem(int v)
     {
-        DialogInfo d = dialog[v];
+        
+        DialogInfo d_English = dialogEnglish[v];
+        DialogInfo d_Dansk = dialogDansk[v];
+
+        DialogInfo d = d_English;
+
+        if (PlayerPrefs.GetString("Language") == "English")
+        {
+            d = d_English;
+        }
+        else if (PlayerPrefs.GetString("Language") == "Dansk")
+        {
+            d = d_Dansk;
+        }
 
         d.Dialog = d.Name.Length;
 
@@ -159,6 +173,7 @@ public class DialogObject : MonoBehaviour {
                 playerBubble.SetActive(true);
                 gameMenu.skipBtn.SetActive(true);
                 playerText.GetComponent<Text>().text = d.Text[i];
+               
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
 
@@ -246,7 +261,7 @@ public class DialogObject : MonoBehaviour {
                 
             if (d.Name[i] == "Sword")
             {
-                gameMenu.Sword();
+                UI.GetComponent<GameMenu>().Sword();
                 if (callBlink)
                 {
                     StartCoroutine(SwordBlink());
@@ -263,7 +278,9 @@ public class DialogObject : MonoBehaviour {
                 gameMenu.skipBtn.SetActive(true);
 
                 swordText.GetComponent<Text>().text = d.Text[i];
-                WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
+                //WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
+                WwiseInterface.Instance.PlaySwordDialogue(StaticData.GetSwordMood(d.Sound[i]));
+
 
                 //yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];

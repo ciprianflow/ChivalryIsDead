@@ -39,5 +39,30 @@ public static class StaticData {
         //SceneManager.LoadScene("MainMenu");
     }
 
+    public static SwordDialogueHandle GetSwordMood(string s)
+    {
+        switch (s)
+        {
+            case "Angry":
+                return SwordDialogueHandle.Angry;
+            case "Crazy":
+                return SwordDialogueHandle.Crazy;
+            case "Determined":
+                return SwordDialogueHandle.Determined;
+            case "ExplanatoryLong":
+                return SwordDialogueHandle.ExplanatoryLong;
+            case "ExplanatoryShort":
+                return SwordDialogueHandle.ExplanatoryShort;
+            case "HappyLong":
+                return SwordDialogueHandle.HappyLong;
+            case "HappyShort":
+                return SwordDialogueHandle.HappyShort;
+            case "Neutral":
+                return SwordDialogueHandle.Neutral;
+            default:
+                throw new System.NotImplementedException();                
+        }
+    }
+
     #endregion
 }

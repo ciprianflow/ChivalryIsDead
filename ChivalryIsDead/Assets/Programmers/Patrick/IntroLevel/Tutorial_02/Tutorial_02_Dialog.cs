@@ -43,7 +43,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         foreach (GameObject Sheep in Sheeps)
         {
-            Sheep.GetComponent<SheepAI>().enabled = false;
+           // Sheep.GetComponent<SheepAI>().enabled = false;
         }
     }
 
@@ -81,7 +81,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
             }
         }
 
-        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death)
+        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death)
         {
             if(deadSheeps)
             {
@@ -120,7 +120,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         
 
         //Invoke("CallableSkip", 5f);
-        while(count < 10)
+        while(count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -160,7 +160,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
 
         count = 0;
-        while (count < 7)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -186,7 +186,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -212,7 +212,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -238,7 +238,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 4)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -246,7 +246,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         procceed = false;
 
         learnedToUseTaunt = false;
-
+        yield return new WaitForSeconds(0.1f);
         ScreenFreeze.SetActive(true);
         handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
@@ -271,7 +271,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 5)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -310,7 +310,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 6)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -321,8 +321,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         Time.timeScale = 1f;
 
 
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(4);
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(5);
 
     }
    

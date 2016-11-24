@@ -38,7 +38,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         foreach (GameObject Sheep in Sheeps)
         {
-            Sheep.GetComponent<SheepAI>().enabled = false;
+            //Sheep.GetComponent<SheepAI>().enabled = false;
         }
     }
 
@@ -119,7 +119,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         //Invoke("CallableSkip", 5f);
-        while (count < 10)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -163,7 +163,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         count = 0;
-        while (count < 4)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -193,7 +193,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -225,7 +225,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         count = 0;
-        while (count < 3)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -257,7 +257,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //UI.GetComponent<GameMenu>().Sword();
 
         count = 0;
-        while (count < 4)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -294,7 +294,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         count = 0;
-        while (count < 2)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -308,8 +308,8 @@ public class Tutorial_03_Dialog : MonoBehaviour
         ControlMove.SetActive(true);
         ControlHit.SetActive(true);
 
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(5);
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(6);
 
     }
 }
