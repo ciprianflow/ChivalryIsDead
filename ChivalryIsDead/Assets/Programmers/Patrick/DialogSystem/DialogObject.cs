@@ -281,7 +281,7 @@ public class DialogObject : MonoBehaviour {
                 //skipBtn.SetActive(true);
 
                 swordText.GetComponent<Text>().text = d.Text[i];
-                //WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
+                WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
                 WwiseInterface.Instance.PlaySwordDialogue(StaticData.GetSwordMood(d.Sound[i]));
 
 
