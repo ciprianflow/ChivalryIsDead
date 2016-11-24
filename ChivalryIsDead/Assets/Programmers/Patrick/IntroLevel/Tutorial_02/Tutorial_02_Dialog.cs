@@ -28,6 +28,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     Animator handAnimator;
     public Animator swordAnimator;
     public Animator skipAnimator;
+    public GameObject skipBtn;
     int count;
 
     // Use this for initialization
@@ -252,6 +253,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
+        skipBtn.SetActive(false);
         handAnimator.SetBool("playTaunt", true);
         ControlHit.SetActive(true);
 
