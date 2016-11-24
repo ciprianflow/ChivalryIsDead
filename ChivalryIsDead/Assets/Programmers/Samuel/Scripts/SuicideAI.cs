@@ -79,6 +79,9 @@ public class SuicideAI : MonsterAI
 
     public override void Taunt()
     {
+        if (state == State.Death)
+            return;
+
         //Plays Taunt sound
         WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Suicide, MonsterAudioHandle.Taunted, this.gameObject);
 
