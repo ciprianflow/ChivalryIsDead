@@ -12,8 +12,12 @@ public class EndStateCall : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        if (Input.GetButton("Jump")) {
+            //AkSoundEngine.PostEvent("knight_walk", transform.parent.gameObject);
+            //AkSoundEngine.PostEvent("knight
+
+        }
+    }
 
     void EndState(int value) {
         Debug.Log(value);
@@ -21,6 +25,8 @@ public class EndStateCall : MonoBehaviour {
     }
 
     void step() {
-
+        //Debug.Log("STEP");
+        //AkSoundEngine.PostEvent("knight_walk", gameObject);
+        //WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle., transform.parent.gameObject);
     }
 }

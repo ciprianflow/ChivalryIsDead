@@ -87,6 +87,9 @@ public class MeleeAI : MonsterAI
                 //If rotation is ongoing
                 //chargeRotate resets timer so rotated makes sure that it does not enter the function again
                 //if it has rotated
+
+                //Debug.Log("Turn");
+
                 if(!hasHit)
                     if (MeleeAttack())
                         hasHit = true;
@@ -123,7 +126,7 @@ public class MeleeAI : MonsterAI
         for (int i = 0; i < Colliders.Length; i++)
         {
 
-            Debug.Log(Colliders[i].gameObject.name);
+            //Debug.Log(Colliders[i].gameObject.name);
             //Debug.Log("One in range");
             if (Colliders[i].tag == "Player")
             {
@@ -188,7 +191,7 @@ public class MeleeAI : MonsterAI
     //Rotates the AI towards a point
     bool ControlledRotation()
     {
-        if (t1 < 1f)
+        if (t1 < 0.5f)
             return false;
 
         Vector3 v = transform.forward;
@@ -198,6 +201,11 @@ public class MeleeAI : MonsterAI
         v2.y = 0;
         v3.y = 0;
         //If the rotation is not done yet the function returns false
+        if (Vector3.Angle(v, v3 - v2) < 20f) {
+            anim.SetTrigger("Rotate");
+
+        }
+
         if (Vector3.Angle(v, v3 - v2) > 1f)
         {
             RotateTowardsTarget();
@@ -206,7 +214,7 @@ public class MeleeAI : MonsterAI
 
         //If the rotation is done the function ruturns true
         RotDone();
-        anim.SetTrigger("Rotate");
+        //anim.SetTrigger("Rotate");
         //anim.speed = 1f;
         return true;
     }
@@ -259,6 +267,7 @@ public class MeleeAI : MonsterAI
 
     void FixedUpdate()
     {
+        //Debug.Log(zVel);
         //Debug.Log(agent.velocity.magnitude);
 
 
@@ -309,7 +318,54 @@ public class MeleeAI : MonsterAI
         if (patrolling)
             targetPoint = GetRandomPointOnNavMesh();
 
-        anim.SetTrigger("StartTurnLeft");
+        Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
+        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
+        //if (this.name == "Ranged") {
+        //    if ((q.eulerAngles.y - transform.eulerAngles.y) > 5) {
+        //        anim.SetBool("turnright", true);
+        //        anim.SetBool("turnleft", false);
+        //    }
+        //    else if ((q.eulerAngles.y - transform.eulerAngles.y) < -5) {
+        //        anim.SetBool("turnright", false);
+        //        anim.SetBool("turnleft", true);
+        //    }
+        //    else {
+        //        anim.SetBool("turnright", false);
+        //        anim.SetBool("turnleft", false);
+        //    }
+        //}
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPoint;
+        v.y = 0;
+        v2.y = 0;
+        v3.y = 0;
+
+        if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180)  {
+            //if (Vector3.Angle(v, v3 - v2) < 20f) {
+            //    anim.SetTrigger("InstantRight");
+            //    Debug.Log("InstantRight");
+            //}
+            //else {
+            //    anim.SetTrigger("StartTurnRight");
+            //}
+            //Debug.Log("Right");
+            anim.SetTrigger("StartTurnRight");
+
+        }
+        else {
+            //if (Vector3.Angle(v, v3 - v2) < 20f) {
+            //    anim.SetTrigger("InstantLeft");
+            //    Debug.Log("InstantLeft");
+            //}
+            //else {
+            //    anim.SetTrigger("StartTurnLeft");
+            //}
+            anim.SetTrigger("StartTurnLeft");
+
+            Debug.Log("Left");
+        }
     }
 
     //Called every time the monster is getting taunted
@@ -465,13 +521,14 @@ public class MeleeAI : MonsterAI
                 ChargeToMove();
             }
         }
-        else if (state == State.Charge)
-        {
+        else if (state == State.Charge) {
+            anim.SetTrigger("HitObject");
+            Debug.Log("Hit wall");
+            agent.velocity = Vector3.zero;
             ChargeToMove();
         }
 
         MeleeAttack();
-        anim.SetTrigger("HitObject");
     }
 
     //This function should trigger a turn animation //PHILIP
