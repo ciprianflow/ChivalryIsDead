@@ -421,7 +421,7 @@ namespace CnControls
     else if ((angle >= 34 && angle < 147)) // angeliki added this
     {
         //cancel = true;// angeliki commented out this
-        if (SceneManager.GetActiveScene().buildIndex != 4 && SceneManager.GetActiveScene().buildIndex != 3) // angeliki added this
+        if (SceneManager.GetActiveScene().buildIndex != 4 && SceneManager.GetActiveScene().buildIndex != 5) // angeliki added this
         {
             attack = true; // angeliki added this
             if (attackCooldownFill == 1)
