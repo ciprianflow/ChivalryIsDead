@@ -185,7 +185,7 @@ public class HubDataManager : MonoBehaviour {
     {
 
         StaticData.currQuest = (MultiQuest)quest;
-        SceneManager.LoadScene(UnityEngine.Random.Range(4, 10));
+        SceneManager.LoadScene("0" + UnityEngine.Random.Range(1, 6).ToString() + "UR");
         //SceneManager.LoadScene(7);
 
     }
