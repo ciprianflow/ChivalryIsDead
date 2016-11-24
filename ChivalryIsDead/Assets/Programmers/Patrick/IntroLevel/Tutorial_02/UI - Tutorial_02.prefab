@@ -617,6 +617,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012049439332}
   - 114: {fileID: 114000011812507138}
+  - 114: {fileID: 114000012037152862}
   m_Layer: 0
   m_Name: DialogSystem
   m_TagString: DialogSystem
@@ -2466,6 +2467,7 @@ MonoBehaviour:
   peasantBBubble: {fileID: 1000013801241676}
   peasantBText: {fileID: 1000011537493498}
   SwordParticle: {fileID: 0}
+  skipBtn: {fileID: 1000011530401486}
 --- !u!114 &114000011819201322
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2603,6 +2605,35 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
+--- !u!114 &114000012037152862
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012232878452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db14317ff4367254cab61ac8f077ad60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  enemyBillboard: {fileID: 1000010220231780}
+  TrollA: {fileID: 0}
+  TrollB: {fileID: 0}
+  Sheeps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  UI: {fileID: 1000013271261386}
+  ControlMove: {fileID: 0}
+  ControlHit: {fileID: 0}
+  InvisWallOne: {fileID: 0}
+  InvisWallTwo: {fileID: 0}
+  HandCanvas: {fileID: 0}
+  ScreenFreeze: {fileID: 0}
+  swordAnimator: {fileID: 95000011459032032}
+  skipAnimator: {fileID: 95000010148322688}
+  skipBtn: {fileID: 1000011530401486}
 --- !u!114 &114000012048369868
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4522,7 +4553,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 802.5, y: -230}
+  m_AnchoredPosition: {x: 822.5, y: -230}
   m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011525508048
@@ -4576,8 +4607,8 @@ RectTransform:
   m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 930, y: 0}
-  m_SizeDelta: {x: 163.5, y: 103.5}
+  m_AnchoredPosition: {x: 710, y: 445}
+  m_SizeDelta: {x: 247, y: 138}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011646091454
 RectTransform:
