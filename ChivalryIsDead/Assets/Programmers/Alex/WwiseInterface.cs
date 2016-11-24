@@ -22,11 +22,6 @@ public enum CombatHandle
 }
 
 #region Characters
-public enum KnightDialogueHandle
-{
-    Angry, Grumpy, Happy, Neutral
-}
-
 public enum KnightCombatVoiceHandle
 {
     Attack, OverreactPerfect, OverreactGreat, OverreactOk, Taunt, TauntAlt
@@ -62,11 +57,6 @@ public enum UniqueSuicideAudioHandle
     Charge, FlungAway
 }
 
-public enum PeasantDialogueHandle
-{
-    Angry, Crazy, Death, Happy, Neutral, Random, Sad, Scared
-}
-
 public enum PrincessDialogueHandle
 {
     Crazy, Flirty, Happy, Sad, SuperCrazy, SuperFlirty, SuperHappy, SuperSad
@@ -96,6 +86,18 @@ public enum SheepAudioHandle
 public enum AmbienceHandle
 {
     Hub, WorldOne
+}
+#endregion
+
+#region Unused Handles
+public enum KnightDialogueHandle
+{
+    Angry, Grumpy, Happy, Neutral
+}
+
+public enum PeasantDialogueHandle
+{
+    Angry, Crazy, Death, Happy, Neutral, Random, Sad, Scared
 }
 #endregion
 

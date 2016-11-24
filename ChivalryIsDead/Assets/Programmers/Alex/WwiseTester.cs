@@ -12,11 +12,12 @@ public class WwiseTester : MonoBehaviour {
     public Text CurrentSoundName;
 
     private List<Type> AvailableSoundEnums = new List<Type>() {
-        typeof(UIHandle), typeof(MenuHandle), typeof(KnightCombatVoiceHandle),
+        typeof(UIHandle), typeof(MenuHandle), typeof(CombatHandle),
+        typeof(KnightCombatVoiceHandle), typeof(KnightCombatSFXHandle),
         typeof(MonsterHandle),
         typeof(UniqueMeleeAudioHandle), typeof(UniqueRangedAudioHandle), typeof(UniqueSuicideAudioHandle),
-        typeof(PeasantDialogueHandle), typeof(PrincessDialogueHandle), typeof(SwordDialogueHandle),
-        typeof(RewardHandle)
+        typeof(PrincessDialogueHandle), typeof(SwordDialogueHandle), typeof(RewardHandle),
+        typeof(SheepAudioHandle)
     };
 
     private List<Type> AvailableMusicEnums = new List<Type>() {
@@ -37,8 +38,7 @@ public class WwiseTester : MonoBehaviour {
     {
         foreach (Type T in AvailableSoundEnums) {
             CurrentEnumName.text = T.Name;
-            if (T.Name != "MonsterHandle") { 
-
+            if (T.Name != "MonsterHandle") {
                 foreach (string SFXName in Enum.GetNames(T)) {
                     CurrentSoundName.text = SFXName;
                     InvokeWwiseSFXMethod(Enum.Parse(T, SFXName));
@@ -47,6 +47,9 @@ public class WwiseTester : MonoBehaviour {
             }
             else {
                 foreach (string monsterName in Enum.GetNames(T)) {
+                    if (monsterName == "Other")
+                        continue;
+
                     object m_handle = Enum.Parse(T, monsterName);
                     foreach (string actionName in Enum.GetNames(typeof(MonsterAudioHandle))) {
                         CurrentSoundName.text =
@@ -96,6 +99,8 @@ public class WwiseTester : MonoBehaviour {
                 WwiseInterface.Instance.PlaySwordDialogue((SwordDialogueHandle)handle); break;
             case "RewardHandle":
                 WwiseInterface.Instance.PlayRewardSound((RewardHandle)handle); break;
+            case "CombatHandle":
+                WwiseInterface.Instance.PlayCombatSound((CombatHandle)handle, gameObject); break;
             case "KnightCombatSFX":
                 WwiseInterface.Instance.PlayKnightCombatSFX((KnightCombatSFXHandle)handle, gameObject); break;
             case "KnightCombatVoiceHandle":
