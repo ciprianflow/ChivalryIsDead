@@ -404,7 +404,7 @@ An example of trajectories and positioning handled in Wwise as opposed to SS Air
 						<Flags>5</Flags>
 					</Point>
 					<Point>
-						<XPos>5.19466666666667E-02</XPos>
+						<XPos>0.0519466666666667</XPos>
 						<YPos>195.918</YPos>
 						<Flags>0</Flags>
 					</Point>
@@ -639,7 +639,7 @@ An example of trajectories and positioning handled in Wwise as opposed to SS Air
 						<Flags>5</Flags>
 					</Point>
 					<Point>
-						<XPos>5.84421686746988E-02</XPos>
+						<XPos>0.0584421686746988</XPos>
 						<YPos>0</YPos>
 						<Flags>0</Flags>
 					</Point>
@@ -874,7 +874,7 @@ An example of trajectories and positioning handled in Wwise as opposed to SS Air
 						<Flags>5</Flags>
 					</Point>
 					<Point>
-						<XPos>6.81825301204819E-02</XPos>
+						<XPos>0.0681825301204819</XPos>
 						<YPos>0</YPos>
 						<Flags>0</Flags>
 					</Point>
@@ -6337,7 +6337,7 @@ RPM - a throttle control for the engine</Comment>
 				</PropertyList>
 				<PointList>
 					<Point>
-						<XPos>0.00001</XPos>
+						<XPos>1E-05</XPos>
 						<YPos>0</YPos>
 						<Flags>12</Flags>
 						<Time>0</Time>
@@ -10894,7 +10894,7 @@ Presence is roughly related to distance and occlusion</Comment>
 				</PropertyList>
 				<PointList>
 					<Point>
-						<XPos>0.00001</XPos>
+						<XPos>1E-05</XPos>
 						<YPos>-0.59347</YPos>
 						<Flags>12</Flags>
 						<Time>0</Time>
@@ -11859,14 +11859,15 @@ Presence is roughly related to distance and occlusion</Comment>
 										<List Name="Deflectors">
 											<PluginInnerObject Name="" ID="{694A96AD-78C7-4627-A116-2AB72CE4E76D}" PluginName="Deflector" CompanyID="0" PluginID="122">
 												<PropertyList>
-													<Property Name="Frequency" Type="Real32" Value="500"/>
-													<Property Name="QFactor" Type="Real32" Value="6"/>
+													<Property Name="Frequency" Type="Real32" Value="800"/>
+													<Property Name="QFactor" Type="Real32" Value="3"/>
 												</PropertyList>
 											</PluginInnerObject>
 											<PluginInnerObject Name="" ID="{6B4D4744-1EEB-4787-AA76-A634EC7CCD11}" PluginName="Deflector" CompanyID="0" PluginID="122">
 												<PropertyList>
-													<Property Name="Frequency" Type="Real32" Value="90"/>
-													<Property Name="QFactor" Type="Real32" Value="48.69"/>
+													<Property Name="Frequency" Type="Real32" Value="110"/>
+													<Property Name="Gain" Type="Real32" Value="-10"/>
+													<Property Name="QFactor" Type="Real32" Value="40"/>
 												</PropertyList>
 											</PluginInnerObject>
 										</List>
