@@ -43,7 +43,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         foreach (GameObject Sheep in Sheeps)
         {
-            Sheep.GetComponent<SheepAI>().enabled = false;
+           // Sheep.GetComponent<SheepAI>().enabled = false;
         }
     }
 
@@ -81,7 +81,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
             }
         }
 
-        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death)
+        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death)
         {
             if(deadSheeps)
             {
@@ -246,7 +246,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         procceed = false;
 
         learnedToUseTaunt = false;
-
+        yield return new WaitForSeconds(0.1f);
         ScreenFreeze.SetActive(true);
         handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
@@ -322,7 +322,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
 
         yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
 
     }
    

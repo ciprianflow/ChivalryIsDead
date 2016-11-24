@@ -58,7 +58,8 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
                 gameObject.SetActive(false);
 
             Debug.Log("Quest Objective died");
-            StaticIngameData.mapManager.CheckObjectives(this);
+            if(StaticIngameData.mapManager != null)
+                StaticIngameData.mapManager.CheckObjectives(this);
         }
 
         //add reputation
