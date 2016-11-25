@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EndStateCall : MonoBehaviour {
+public class Knight_Events : MonoBehaviour {
 
     public PlayerScript ps;
 
@@ -25,8 +25,8 @@ public class EndStateCall : MonoBehaviour {
     }
 
     void step() {
-        //Debug.Log("STEP");
-        //AkSoundEngine.PostEvent("knight_walk", gameObject);
+        Debug.Log("STEP");
+        AkSoundEngine.PostEvent("knight_move", gameObject);
         //WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle., transform.parent.gameObject);
     }
 }

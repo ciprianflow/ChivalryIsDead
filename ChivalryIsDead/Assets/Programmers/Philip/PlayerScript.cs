@@ -133,43 +133,43 @@ public class PlayerScript : MonoBehaviour {
 
 
         //float desiredFwd = (-Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX));
-        if (!staticControls) {
-            float desiredFwd = (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y;
-            if (desiredFwd < 0) {
-                desiredFwd += 360f;
-            }
+        //if (!staticControls) {
+            //float desiredFwd = (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y;
+            //if (desiredFwd < 0) {
+            //    desiredFwd += 360f;
+            //}
 
-            float currentFwd = transform.eulerAngles.y;
-            float diffTurn = desiredFwd - currentFwd;
+            //float currentFwd = transform.eulerAngles.y;
+            //float diffTurn = desiredFwd - currentFwd;
 
-            if (diffTurn > 180f) {
-                diffTurn -= 360f;
-            }
-            if (diffTurn < -180f) {
-                diffTurn += 360f;
-            }
-
-
-
-            Debug.Log("desiredFwd " + desiredFwd + " currentfwd " + currentFwd + " diffturn " + diffTurn);
+            //if (diffTurn > 180f) {
+            //    diffTurn -= 360f;
+            //}
+            //if (diffTurn < -180f) {
+            //    diffTurn += 360f;
+            //}
 
 
 
-            ////anim.SetFloat("Turn", turnMag);
+            //Debug.Log("desiredFwd " + desiredFwd + " currentfwd " + currentFwd + " diffturn " + diffTurn);
 
-            //Debug.Log(turnValue);
-            //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
-            //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
-            if (diffTurn > 0.001f || diffTurn < -0.001f) {
-                float turnAmount = diffTurn / 5;
-                transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
-                //anim.SetFloat("Turn", turnAmount / 1.5f);
 
-            }
-        }
-        else {
+
+            //////anim.SetFloat("Turn", turnMag);
+
+            ////Debug.Log(turnValue);
+            ////transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
+            ////transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+            //if (diffTurn > 0.001f || diffTurn < -0.001f) {
+            //    float turnAmount = diffTurn / 5;
+            //    transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
+            //    //anim.SetFloat("Turn", turnAmount / 1.5f);
+
+        //    }
+        //}
+        //else {
             transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
-        }
+        //}
         transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
 
         anim.SetFloat("Speed", zVel * 2f);
