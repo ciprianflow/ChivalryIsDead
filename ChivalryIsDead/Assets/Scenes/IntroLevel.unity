@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.68055195, g: 0.8008123, b: 0.87699205, a: 1}
+  m_IndirectSpecularColor: {r: 0.6771347, g: 0.7987713, b: 0.882913, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2421,6 +2421,21 @@ Prefab:
     - target: {fileID: 4000013689498970, guid: f5b7f9482cc3b034d969dc365fd73a25, type: 2}
       propertyPath: m_LocalScale.z
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013483877182, guid: f5b7f9482cc3b034d969dc365fd73a25,
+        type: 2}
+      propertyPath: Health
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013483877182, guid: f5b7f9482cc3b034d969dc365fd73a25,
+        type: 2}
+      propertyPath: attackTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 195000010588756586, guid: f5b7f9482cc3b034d969dc365fd73a25,
+        type: 2}
+      propertyPath: m_AngularSpeed
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f5b7f9482cc3b034d969dc365fd73a25, type: 2}
@@ -6225,7 +6240,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 43.44
+      value: 42.2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6233,7 +6248,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -8.21
+      value: -6.2
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6490,10 +6505,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076890307}
-  m_LocalRotation: {x: 0.3844018, y: -0.5906835, z: 0.3783313, w: 0.6001614}
-  m_LocalPosition: {x: 17.632431, y: 16.69509, z: -2.2913666}
+  m_LocalRotation: {x: 0.28840637, y: -0.58365965, z: 0.2330154, w: 0.72240365}
+  m_LocalPosition: {x: 45.818287, y: 11.186344, z: -8.881409}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 47.917004, y: 297.661, z: 0}
+  m_LocalEulerAnglesHint: {x: 50.640003, y: 289.064, z: 3.9380002}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -6510,52 +6525,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Areas:
   - serializedVersion: 2
-    x: 32.252064
-    y: -16.802898
-    width: 21.496737
-    height: 14.544963
+    x: 30.106869
+    y: -16.438921
+    width: 17.37618
+    height: 29.225626
   - serializedVersion: 2
-    x: 13.065413
+    x: 13.294215
     y: -16.6
-    width: 10.631788
+    width: 16.803598
     height: 31.714376
-  - serializedVersion: 2
-    x: 32.57636
-    y: -2.2862444
-    width: 21.428762
-    height: 15.328636
-  - serializedVersion: 2
-    x: 23.53003
-    y: -16.61832
-    width: 9.017491
-    height: 32.15446
   - serializedVersion: 2
     x: -7.056546
     y: -16.724342
     width: 20.175236
     height: 32.14158
   FocusPoints:
-  - {x: 37.2521, y: 0, z: -5.481455}
-  - {x: 16.537825, y: 0, z: -0.39621472}
-  - {x: 38.727085, y: 0, z: 2.4645376}
-  - {x: 30.251944, y: 0, z: -0.5069628}
+  - {x: 34.304253, y: 0, z: -6.4072003}
+  - {x: 20.571657, y: 0, z: -0.39621472}
   - {x: 9.947077, y: 0, z: -2.1690254}
   CameraPoints:
-  - {x: 48.792847, y: 12.00552, z: -8.881409}
+  - {x: 45.818287, y: 11.186344, z: -8.881409}
   - {x: 24.66878, y: 15.371712, z: -0.9823799}
-  - {x: 48.908085, y: 13.961414, z: 3.2421474}
-  - {x: 39.071007, y: 13.393906, z: -0.44933033}
   - {x: 17.632431, y: 16.69509, z: -2.2913666}
   AreaColor:
   - {r: 0.9269777, g: 1, b: 0.4705882, a: 1}
   - {r: 0.19999999, g: 0.9, b: 0.37862056, a: 1}
-  - {r: 0.9, g: 0.19999999, b: 0.41724128, a: 1}
-  - {r: 0.2, g: 0.2, b: 0.9, a: 1}
   - {r: 1, g: 0.39350912, b: 0.2352941, a: 1}
   cameraTransitionTime: 1
   rotationDamping: 0.8
   positionDamping: 0.8
-  FixedPosition: 1
+  FixedPosition: 0
   InstantTransisition: 0
   EnableTransistionCurve: 0
   curve:
