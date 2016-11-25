@@ -49,9 +49,9 @@ public class QuestGenerator
 
     public QuestGenerator(int currentDay, int currentReputation, int rngSeed)
     {
-        if (!QuestParameters.IsLoaded) {
+        if (!QuestParameters.IsLoaded)
             QuestParameters.LoadQuestParameters();
-        }
+
         this.currentDay = currentDay;
         this.currentReputation = currentReputation;
         this.rng = new System.Random(rngSeed);
@@ -113,11 +113,14 @@ public class QuestGenerator
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].minSuicide,
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxSuicide + 1);
 
-        MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies);
-
         MQ.Objectives.Add(GenerateProtectQuest(numFriendlies));
         MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
         MQ.Objectives.Add(new TimerObjective(31));
+
+        var hasHouse = MQ.GetAllObjectives().Any(o => (o as BaseObjective).targetID == 22);
+        int AvailableFriendlies = (int)FriendlyTypes.Sheep;
+        AvailableFriendlies += hasHouse ? (int)FriendlyTypes.House : (int)FriendlyTypes.None;
+        MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies, (FriendlyTypes)AvailableFriendlies);
 
         return MQ;
     }
@@ -135,7 +138,7 @@ public class QuestGenerator
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].minSuicide,
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxSuicide + 1);
 
-        MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, 0, AvailableEnemies);
+        MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, 0, AvailableEnemies, FriendlyTypes.None);
 
         MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
         MQ.Objectives.Add(new TimerObjective(31));

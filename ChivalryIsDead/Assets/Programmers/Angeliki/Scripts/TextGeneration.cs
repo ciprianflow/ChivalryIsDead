@@ -51,28 +51,25 @@ public class TextGeneration : MonoBehaviour {
         QuestDifficulty = desc.Difficulty.ToString();
     }
 
-    private string PresentMonsters(EnemyTypes enemyTypes)
-    {
-        var enemyList = new List<string>();
-        var hasMelee = (enemyTypes & EnemyTypes.HasMelee) == EnemyTypes.HasMelee;
-        var hasRanged = (enemyTypes & EnemyTypes.HasRanged) == EnemyTypes.HasRanged;
-        var hasSuicide = (enemyTypes & EnemyTypes.HasSuicide) == EnemyTypes.HasSuicide;
-
-        if (hasMelee) enemyList.Add("Fishmen");
-        if (hasRanged) enemyList.Add("Trolls");
-        if (hasSuicide) enemyList.Add("Gnomes");
-
-        return string.Join(", ", enemyList.ToArray());
-    }
-
     public string CreateQuestText(QuestData data)
     {
         var questDesc = new StringBuilder();
         if (data.Type == QuestType.Destroy) {
-            questDesc.Append(string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine, data.EnemyCount, PresentMonsters(data.PresentEnemies)));
+            questDesc.Append(string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+                data.EnemyCount,
+                string.Join(", ", data.GetEnemies().ToArray()))
+            );
         } else if (data.Type == QuestType.Protect) {
-            questDesc.Append(string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine, data.EnemyCount, PresentMonsters(data.PresentEnemies)));
-            questDesc.Append(string.Format("- Protect the {0} sheep." + Environment.NewLine, data.FriendlyCount));
+            questDesc.Append(
+                string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+                    data.EnemyCount,
+                    string.Join(", ", data.GetEnemies().ToArray()))
+            );
+            questDesc.Append(
+                string.Format("- Protect the {0} friendlies. (There are {1})" + Environment.NewLine, 
+                    data.FriendlyCount, 
+                    string.Join(", ", data.GetFriends().ToArray()))
+            );
         }
         questDesc.Append("- You have 150 seconds." + Environment.NewLine);
         questDesc.Append(Environment.NewLine + "NOTE FROM SWORD: Remember that you wanna lose the quest, not win it!");
