@@ -81,6 +81,7 @@ public class IntroLevelDialog : MonoBehaviour {
         AnimCam.SetActive(true);
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
 
         //yield return new WaitForSeconds(2f);
