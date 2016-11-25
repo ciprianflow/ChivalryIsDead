@@ -185,7 +185,16 @@ public class HubDataManager : MonoBehaviour {
     {
 
         StaticData.currQuest = (MultiQuest)quest;
-        SceneManager.LoadScene("0" + UnityEngine.Random.Range(1, 6).ToString() + "UR");
+        var allObjectives = StaticData.currQuest.GetAllObjectives().ToList();
+        var hasHouse = allObjectives.Any(o => (o as BaseObjective).targetID == 22);
+
+        List<int> houseIdxs;
+        if (hasHouse)   houseIdxs = new List<int>() { 4, 6 };
+        else            houseIdxs = new List<int>() { 1, 2, 3, 5 };
+
+        var mapIdx = UnityEngine.Random.Range(0, houseIdxs.Count);
+        var mapNum = houseIdxs[mapIdx];
+        SceneManager.LoadScene("0" + mapNum.ToString() + "UR");
         //SceneManager.LoadScene(7);
 
     }

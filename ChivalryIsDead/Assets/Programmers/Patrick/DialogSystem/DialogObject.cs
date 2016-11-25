@@ -162,7 +162,10 @@ public class DialogObject : MonoBehaviour {
             d = d_Dansk;
         }
 
-        d.Dialog = d.Name.Length;
+        if (d == null)
+            yield break;
+
+        d.Dialog = d.Name.Length; // Throws NullReferenceException (d can be null)
 
         isSpeaking = true;
         callBlink = true;

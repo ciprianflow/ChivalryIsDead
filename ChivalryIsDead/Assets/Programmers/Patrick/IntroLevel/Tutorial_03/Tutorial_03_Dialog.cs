@@ -164,7 +164,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         count = 0;
-        while (count < 1)
+        while (count < 3)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -201,6 +201,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         yield return new WaitUntil(SkipAndPlay);
         procceed = false;
 
+        yield return new WaitForSeconds(0.1f);
         ScreenFreeze.SetActive(true);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 6);
         //yield return new WaitForSeconds(0.2f);
@@ -233,7 +234,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         }
         yield return new WaitUntil(SkipAndPlay);
         procceed = false;
-       
+
         Time.timeScale = 1f;
         skipAnimator.speed = 1f;
         swordAnimator.speed = 1f;
@@ -241,7 +242,6 @@ public class Tutorial_03_Dialog : MonoBehaviour
         handAnimator.speed = 1f;
         ControlMove.SetActive(true);
         ControlHit.SetActive(true);
-
     }
 
     public IEnumerator DialogFive()
@@ -266,6 +266,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         yield return new WaitUntil(SkipAndPlay);
         procceed = false;
 
+        yield return new WaitForSeconds(0.1f);
         ScreenFreeze.SetActive(true);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
         //yield return new WaitForSeconds(0.2f);

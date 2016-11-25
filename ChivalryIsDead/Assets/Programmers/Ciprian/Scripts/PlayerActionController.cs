@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEditor;
 
 public enum PlayerState
 {
@@ -46,6 +47,8 @@ public class PlayerActionController : MonoBehaviour
     public GameObject ComboParticle;
     public GameObject ComboUpwardParticle;
 
+    [HideInInspector]
+    public static List<MonsterAI> monstersInScene;
 
     private float attackRange = 35f;
     private float attackRadius = 120f;
@@ -139,7 +142,7 @@ public class PlayerActionController : MonoBehaviour
         //init for overreact
         overreactAction.OverreactCooldown = OverreactCooldown;
 
-        
+        //init monsters
     }
 
     void Update()
@@ -170,8 +173,6 @@ public class PlayerActionController : MonoBehaviour
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
 
-
-                
                 int points = (int)((AttackedDuration - overreactTimestamp) * 100);
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
@@ -212,7 +213,10 @@ public class PlayerActionController : MonoBehaviour
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
-            Vector3 hitPoint = monster.transform.position + (midVec * 5);
+            Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
+            GameObject hP = Instantiate(hitParticle) as GameObject;
+            hP.transform.position = hitPoint;
+            //EditorApplication.isPaused = true;
 
             pb.ChangeRepScore(monster.PlayerAttackReputation());
             pb.Invoke();

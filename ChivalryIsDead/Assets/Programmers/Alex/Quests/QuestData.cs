@@ -14,6 +14,12 @@ public enum EnemyTypes
     None, HasMelee, HasRanged, HasSuicide = 4
 }
 
+[Flags]
+public enum FriendlyTypes
+{
+    None, Sheep, House
+}
+
 public struct QuestData
 {
     public string TypeString { get { return Enum.GetName(typeof(QuestType), Type); } }
@@ -21,13 +27,15 @@ public struct QuestData
     public int EnemyCount;
     public int FriendlyCount;
     public EnemyTypes PresentEnemies;
+    public FriendlyTypes PresentFriends;
 
-    public QuestData(QuestType questType, int enemyCount, int friendlyCount, EnemyTypes presentEnemies)
+    public QuestData(QuestType questType, int enemyCount, int friendlyCount, EnemyTypes presentEnemies, FriendlyTypes presentFriends)
     {
         Type = questType;
         EnemyCount = enemyCount;
         FriendlyCount = friendlyCount;
         PresentEnemies = presentEnemies;
+        PresentFriends = presentFriends;
     }
 
     public IEnumerable<string> GetEnemies()
@@ -41,5 +49,16 @@ public struct QuestData
             enemyTypes.Add("Suicide");
 
         return enemyTypes;
+    }
+
+    public IEnumerable<string> GetFriends()
+    {
+        List<string> friendTypes = new List<string>();
+        if ((PresentFriends & FriendlyTypes.Sheep) == FriendlyTypes.Sheep)
+            friendTypes.Add("Sheep");
+        if ((PresentFriends & FriendlyTypes.House) == FriendlyTypes.House)
+            friendTypes.Add("House");
+
+        return friendTypes;
     }
 }
