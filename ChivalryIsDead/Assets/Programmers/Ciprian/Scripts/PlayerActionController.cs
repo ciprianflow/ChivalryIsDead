@@ -43,7 +43,8 @@ public class PlayerActionController : MonoBehaviour
     [Header("Other stuff")]
     public GameObject RepGainParticle;
     public GameObject RepLossParticle;
-
+    public GameObject ComboParticle;
+    public GameObject ComboUpwardParticle;
 
 
     private float attackRange = 35f;
@@ -61,6 +62,7 @@ public class PlayerActionController : MonoBehaviour
    
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
+
 
     public GameObject hitParticle;
 
@@ -108,9 +110,13 @@ public class PlayerActionController : MonoBehaviour
 
         pb.RepGainParticle = RepGainParticle;
         pb.RepLossParticle = RepLossParticle;
+        pb.ComboBaseParticle = ComboParticle;
+        pb.ComboUpwardParticle = ComboUpwardParticle;
 
         pb.Reset();
 
+       
+        //ComboParticle.GetComponent<Particle>().Play();
 
         //player state
         playerState = PlayerState.IDLE;
@@ -164,13 +170,19 @@ public class PlayerActionController : MonoBehaviour
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
 
+
                 
-                //pb.ChangeRepScore((int)((AttackedDuration - overreactTimestamp) * -10));
-                int points = (int)((AttackedDuration - overreactTimestamp) * 10);
+                int points = (int)((AttackedDuration - overreactTimestamp) * 100);
+                //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
+                //@@HARDCODED
+                if (points > 99)
+                    WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
+                else
+                    WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
 
-                Debug.Log("Overreact points:" + -points);
+
                 pb.ChangeRepScore(-points);
-
+                Debug.Log("Overreact points:" + -points);
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
                 playerState = PlayerState.IDLE;
@@ -178,6 +190,8 @@ public class PlayerActionController : MonoBehaviour
             //if overreacts without reason
             else
             {
+                WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
+
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);

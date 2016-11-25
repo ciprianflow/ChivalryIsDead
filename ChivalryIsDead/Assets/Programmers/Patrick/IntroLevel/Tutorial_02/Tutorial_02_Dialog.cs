@@ -31,6 +31,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public GameObject skipBtn;
     int count;
 
+    public GameObject tutImage;
+
     // Use this for initialization
     void Start()
     {
@@ -55,6 +57,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         {
             if(Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
             {
+                gameObject.GetComponent<DialogObject>().StopDialog();
                 StartCoroutine("DialogFour");
                 learnedToGetHit = true;
             }
@@ -118,18 +121,19 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
-        
+
 
         //Invoke("CallableSkip", 5f);
-        while(count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
         ControlMove.SetActive(true);
-       
+        Debug.Log("DRINK MORE NIKOLINE");
         Time.timeScale = 1f;
         swordAnimator.speed = 1f;
         skipAnimator.speed = 1f;
@@ -158,7 +162,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
-
+        tutImage.SetActive(true);
+        skipBtn.SetActive(false);
 
         count = 0;
         while (count < 1)
@@ -177,26 +182,27 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
     public IEnumerator DialogThree()
     {
+        tutImage.SetActive(false);
         yield return new WaitForSeconds(3f);
-        ControlMove.SetActive(false);
+        //ControlMove.SetActive(false);
 
-        Time.timeScale = 0.1f;
-        swordAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
+        //Time.timeScale = 0.1f;
+        //swordAnimator.speed = 10f;
+        //skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
-        count = 0;
-        while (count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
-        procceed = false;
-        skipAnimator.speed = 1f;
-        swordAnimator.speed = 1f;
-        Time.timeScale = 1f;
-        ControlMove.SetActive(true);
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
+        //procceed = false;
+        //skipAnimator.speed = 1f;
+        //swordAnimator.speed = 1f;
+        //Time.timeScale = 1f;
+        //ControlMove.SetActive(true);
         learnedToGetHit = false;
     }
 
