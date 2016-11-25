@@ -139,6 +139,8 @@ public class CameraMovement : MonoBehaviour {
     [Header("Camera Settings")]
     public bool FixedPosition = true;
     public bool InstantTransisition = false;
+    public bool FixedRotation = false;
+    public bool FixedZAxis = false;
 
     [Header("Transistion Curve")]
     [Tooltip("Enabling this will smooth the transition To the curve beneath")]
@@ -166,7 +168,9 @@ public class CameraMovement : MonoBehaviour {
         }
         else // FOR FIXED POSITION
         {
-            
+            if (FixedRotation)
+                return;
+
             transform.position = Vector3.Lerp(oldPos, CP, cameraMovementT * positionDamping);
         }
         
@@ -181,7 +185,9 @@ public class CameraMovement : MonoBehaviour {
         }
         else // FOR FIXED POSITION
         {
-            
+            if (FixedRotation)
+                return;
+
             Quaternion rotation = Quaternion.LookRotation(FP - transform.position);
             transform.rotation = Quaternion.Lerp(oldRot, rotation, cameraMovementT * rotationDamping);
         }   

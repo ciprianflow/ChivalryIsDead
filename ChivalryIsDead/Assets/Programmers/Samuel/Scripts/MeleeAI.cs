@@ -458,17 +458,19 @@ public class MeleeAI : MonsterAI
             QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
             if (QO != null && m.GetType() == typeof(SheepAI))
             {
-
                 Debug.Log("I HIT A SHEEP");
                 HitSheep(QO, m, coll.gameObject, chargeForce * (accelTimer / accelTime), false);
                 base.playerAction.SheepAttacked(this);
             }
             //If its not a sheep it must be a static questObjective
-            else
+            else if(QO != null)
             {
                 Debug.Log("Hit static quest object");
                 QO.takeDamage(GetBaseAttackDamage(), true);
                 base.playerAction.ObjectiveAttacked(this);
+                ChargeToMove();
+            }else
+            {
                 ChargeToMove();
             }
         }

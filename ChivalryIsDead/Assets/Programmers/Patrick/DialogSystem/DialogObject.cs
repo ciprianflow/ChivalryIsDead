@@ -265,6 +265,9 @@ public class DialogObject : MonoBehaviour {
             if (d.Name[i] == "Sword")
             {
                 UI.GetComponent<GameMenu>().Sword();
+
+                // Do we need this?
+                /*
                 if (callBlink)
                 {
                     StartCoroutine(SwordBlink());
@@ -274,6 +277,7 @@ public class DialogObject : MonoBehaviour {
                         yield return new WaitForSeconds(0.2f);
                     callBlink = false;
                 }
+                */
 
                 SwordParticle.SetActive(true);
                 indexCount = i;
@@ -316,6 +320,10 @@ public class DialogObject : MonoBehaviour {
                 princessBubble.SetActive(true);
                 //skipBtn.SetActive(true);
                 princessText.GetComponent<Text>().text = d.Text[i];
+                WwiseInterface.Instance.PlayUISound(UIHandle.DialogueSpeechBubblePop);
+                WwiseInterface.Instance.PlayPrincessDialogue(StaticData.GetPrincessMood(d.Sound[i]));
+
+
                 ////yield return new WaitForSeconds(d.Wait[i]);
                 SpeakingTime = d.Wait[i];
 

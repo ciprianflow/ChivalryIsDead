@@ -103,6 +103,8 @@ public class SuicideAI : MonsterAI
         Colliders = Physics.OverlapSphere(transform.position, explosionRange);
         for (int i = 0; i < Colliders.Length; i++)
         {
+            QuestObject QO = Colliders[i].gameObject.GetComponent<QuestObject>();
+
             if (Colliders[i].tag == "Player")
             {
                 //Player
@@ -128,7 +130,6 @@ public class SuicideAI : MonsterAI
                     {
                         //Sheeps
                         Debug.Log("I HIT A SHEEP");
-                        QuestObject QO = Colliders[i].gameObject.GetComponent<QuestObject>();
                         HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true);
                         base.playerAction.SheepAttacked(this);
 
@@ -144,7 +145,19 @@ public class SuicideAI : MonsterAI
                     }
                 }
             }
+            else
+            {
+                //Static object
+                if (QO != null)
+                {
+                    Debug.Log("Hit static quest object");
+                    QO.takeDamage(GetBaseAttackDamage(), true);
+                    base.playerAction.ObjectiveAttacked(this);
+                }
+            }
         }
+
+        
 
         //Plays attack sound
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
