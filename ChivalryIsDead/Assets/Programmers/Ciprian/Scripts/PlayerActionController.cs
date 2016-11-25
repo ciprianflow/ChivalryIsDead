@@ -234,7 +234,9 @@ public class PlayerActionController : MonoBehaviour
 
         //can overreact
         playerState = PlayerState.HIT;
-
+        Debug.Log("HIT");
+        GetComponentInChildren<Animator>().SetTrigger("TakeDamage");
+        GetComponentInChildren<Animator>().SetLayerWeight(8, 1);
         //Player attacked add reputation according to monster base damage
         if (monster)
         {
