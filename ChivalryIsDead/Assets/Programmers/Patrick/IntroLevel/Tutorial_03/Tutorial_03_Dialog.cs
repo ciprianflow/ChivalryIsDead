@@ -24,6 +24,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
     public Animator swordAnimator;
     public Animator princessAnimator;
     public Animator skipAnimator;
+    public GameObject skipBtn;
     int count;
     // Use this for initialization
     void Start()
@@ -205,6 +206,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         handAnimator.SetBool("playOverreact", true);
+        skipBtn.SetActive(false);
         ControlHit.SetActive(true);
 
         learnedToOverreact = false;
@@ -269,6 +271,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         handAnimator.SetBool("playTaunt", true);
+        skipBtn.SetActive(false);
         ControlHit.SetActive(true);
 
         foreach (GameObject Sheep in Sheeps)

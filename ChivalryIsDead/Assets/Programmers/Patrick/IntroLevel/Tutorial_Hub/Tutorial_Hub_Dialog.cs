@@ -14,6 +14,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     Animator handAnimator;
     public Animator swordAnimator;
     public Animator skipAnimator;
+    public GameObject skipBtn;
     int count;
     bool waitforClick;
 
@@ -41,6 +42,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         {
             if (hdManager.isClicked)
             {
+                gameObject.GetComponent<DialogObject>().StopDialog();
                 StartCoroutine("DialogThree");
                 waitforClick = true;
                 hdManager.isClicked = false;
@@ -53,7 +55,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
 
-        while(count < 1)
+        while (count < 1)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -82,34 +84,36 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     {
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
+        skipBtn.SetActive(false);
 
-        count = 0;
-        while (count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
         blackScreen.SetActive(false);
         waitforClick = false;
+        yield return null;
     }
 
     public IEnumerator DialogThree()
     {
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+        skipBtn.SetActive(false);
 
-        count = 0;
-        while (count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
-
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
         procceed = false;
         handAnimator.SetBool("handHub", true);
-
+  
     }
 
     public void LoadTutorial2()

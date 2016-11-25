@@ -25,7 +25,9 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject HandCanvas;
     Animator handAnimator;
     public Animator swordAnimator;
-
+    GameMenu gameMenu;
+    public GameObject skipBtn;
+    public GameObject halfScreen;
 
     // Use this for initialization
     void Awake () {
@@ -33,7 +35,7 @@ public class IntroLevelDialog : MonoBehaviour {
         learnedToMove = true;
         learnedToAttack = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
-
+        gameMenu = UI.GetComponent<GameMenu>();
 
     }
 
@@ -52,6 +54,7 @@ public class IntroLevelDialog : MonoBehaviour {
                 swordAnimator.speed = 1f;
                 Time.timeScale = 1f;
                 handAnimator.SetBool("playLeftJoy", false);
+                halfScreen.SetActive(false);
                 ScreenFreeze.SetActive(false);
 
                 learnedToMove = true;
@@ -108,6 +111,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
+        skipBtn.SetActive(false);
 
         startingPos = Player.transform.position;
         learnedToMove = false;
@@ -120,7 +124,8 @@ public class IntroLevelDialog : MonoBehaviour {
 
         //procceed = false;
 
-
+        skipBtn.SetActive(false);
+        halfScreen.SetActive(true);
         handAnimator.speed = 10f;
         handAnimator.SetBool("playLeftJoy", true);
         ControlMove.SetActive(true);
@@ -182,7 +187,10 @@ public class IntroLevelDialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
+        halfScreen.SetActive(true);
+        halfScreen.transform.Translate(1024, 0, 0);
         handAnimator.SetBool("playRightJoy", true);
+        skipBtn.SetActive(false);
         ControlHit.SetActive(true);
         learnedToAttack = false;
 
@@ -194,6 +202,7 @@ public class IntroLevelDialog : MonoBehaviour {
     void AttackEvent()
     {
         handAnimator.SetBool("playRightJoy", false);
+        halfScreen.SetActive(false);
         handAnimator.speed = 1f;
         swordAnimator.speed = 1f;
         Time.timeScale = 1f;

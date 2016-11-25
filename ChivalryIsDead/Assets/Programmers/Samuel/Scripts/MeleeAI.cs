@@ -484,7 +484,7 @@ public class MeleeAI : MonsterAI
         stateFunc = Charge;
 
         //play charge sound
-        WwiseInterface.Instance.PlayUniqueMonsterSound(UniqueMonsterAudioHandle.MeleeCharge, this.gameObject);
+        WwiseInterface.Instance.PlayUniqueMeleeSound(UniqueMeleeAudioHandle.Charge, this.gameObject);
     }
 
     //Transistion from Charge to Attack satte

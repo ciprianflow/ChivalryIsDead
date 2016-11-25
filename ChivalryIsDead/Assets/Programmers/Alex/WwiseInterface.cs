@@ -18,18 +18,18 @@ public enum MenuHandle
 
 public enum CombatHandle
 {
-    ImpactFlesh
+    ImpactFlesh, ImpactArmor
 }
 
 #region Characters
-public enum KnightDialogueHandle
+public enum KnightCombatVoiceHandle
 {
-    Angry, Grumpy, Happy, Neutral
+    Attack, OverreactPerfect, OverreactGreat, OverreactOk, Taunt, TauntAlt
 }
 
-public enum KnightCombatHandle
+public enum KnightCombatSFXHandle
 {
-    Attack, GainRep, LoseRepBig, LoseRepSmall, LoseRepCombo, OverreactPerfect, OverreactGreat, OverreactOk, Taunt, Walk
+    Walk, OverreactTomatoSplat
 }
 
 public enum MonsterHandle
@@ -42,19 +42,24 @@ public enum MonsterAudioHandle
     Aggro, Attack, Attacked, Death, Taunted, Walk
 }
 
-public enum UniqueMonsterAudioHandle
+public enum UniqueMeleeAudioHandle
 {
-    MeleeCharge, RangeReload, SuicideCharge, SuicideExplode, SuicideFlungAway
+    Charge, AttackChargeUp
 }
 
-public enum PeasantDialogueHandle
+public enum UniqueRangedAudioHandle
 {
-    Angry, Crazy, Death, Happy, Neutral, Random, Sad, Scared
+    LookForStone, FindStone, PickupStone
+}
+
+public enum UniqueSuicideAudioHandle
+{
+    Charge, FlungAway
 }
 
 public enum PrincessDialogueHandle
 {
-    Crazy, Happy, Sad, SuperCrazy, SuperHappy, SuperSad, Whimpy
+    Crazy, Flirty, Happy, Sad, SuperCrazy, SuperFlirty, SuperHappy, SuperSad
 }
 
 public enum SwordDialogueHandle
@@ -70,7 +75,12 @@ public enum MusicHandle
 
 public enum RewardHandle
 {
-    ComboBoost, ComboStart, ComboEnd, Small
+    ComboBoost, ComboStart, ComboEnd, Big, Small, Fail
+}
+
+public enum SheepAudioHandle
+{
+    NeutralLoop, Taunted
 }
 
 public enum AmbienceHandle
@@ -79,20 +89,39 @@ public enum AmbienceHandle
 }
 #endregion
 
+#region Unused Handles
+public enum KnightDialogueHandle
+{
+    Angry, Grumpy, Happy, Neutral
+}
+
+public enum PeasantDialogueHandle
+{
+    Angry, Crazy, Death, Happy, Neutral, Random, Sad, Scared
+}
+#endregion
+
 public interface IWwiseInterface
 {
+    // Non-Targeted audio.
     void SetAmbience(AmbienceHandle handle);
     void SetMusic(MusicHandle handle);
     void PlayRewardSound(RewardHandle handle);
     void PlayUISound(UIHandle handle);
     void PlayMenuSound(MenuHandle handle);
-    void PlayKnightCombatSound(KnightCombatHandle handle, GameObject audioObject);
-    void PlayGeneralMonsterSound(MonsterHandle m_handle, MonsterAudioHandle m_audioHandle, GameObject audioObject);
-    void PlayUniqueMonsterSound(UniqueMonsterAudioHandle handle, GameObject audioObject);
-    void PlayCombatSound(CombatHandle handle, GameObject audioObject);
     void PlayPeasantDialogue(PeasantDialogueHandle handle);
     void PlayPrincessDialogue(PrincessDialogueHandle handle);
     void PlaySwordDialogue(SwordDialogueHandle handle);
+
+    // Targeted audio
+    void PlayKnightCombatSFX(KnightCombatSFXHandle handle, GameObject audioObject);
+    void PlayKnightCombatVoiceSound(KnightCombatVoiceHandle handle, GameObject audioObject);
+    void PlayGeneralMonsterSound(MonsterHandle m_handle, MonsterAudioHandle m_audioHandle, GameObject audioObject);
+    void PlayUniqueMeleeSound(UniqueMeleeAudioHandle handle, GameObject audioObject);
+    void PlayUniqueRangedSound(UniqueRangedAudioHandle handle, GameObject audioObject);
+    void PlayUniqueSuicideSound(UniqueSuicideAudioHandle handle, GameObject audioObject);
+    void PlayCombatSound(CombatHandle handle, GameObject audioObject);
+    void PlaySheepSound(SheepAudioHandle handle, GameObject audioObject);
 }
 
 /// <summary>
@@ -114,6 +143,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         Instance = this;
     }
 
+    #region Non-Targeted Audio
     public void SetMusic(MusicHandle handle)
     {
         switch (handle) {
@@ -141,8 +171,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
     public void PlayRewardSound(RewardHandle handle)
     {
         StringBuilder eventBuilder = new StringBuilder("reward_");
-
-        eventBuilder.Append(HandleToEventStringCamel(handle));
+        eventBuilder.Append(HandleToEventString(handle));
 
         AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
     }
@@ -181,7 +210,41 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         }
     }
 
-    public void PlayKnightCombatSound(KnightCombatHandle handle, GameObject audioObject)
+    public void PlayPeasantDialogue(PeasantDialogueHandle handle)
+    {
+        StringBuilder eventBuilder = new StringBuilder("peasant_");
+        eventBuilder.Append(HandleToEventString(handle));
+
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
+    }
+
+    public void PlayPrincessDialogue(PrincessDialogueHandle handle)
+    {
+        StringBuilder eventBuilder = new StringBuilder("princess_");
+        eventBuilder.Append(HandleToEventString(handle));
+
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
+    }
+
+    public void PlaySwordDialogue(SwordDialogueHandle handle)
+    {
+        StringBuilder eventBuilder = new StringBuilder("sword_");
+        eventBuilder.Append(HandleToEventString(handle));
+
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
+    }
+    #endregion
+
+    #region Targeted Audio
+    public void PlayKnightCombatSFX(KnightCombatSFXHandle handle, GameObject audioObject)
+    {
+        StringBuilder eventBuilder = new StringBuilder("knight_");
+        eventBuilder.Append(HandleToEventString(handle));
+
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), audioObject);
+    }
+
+    public void PlayKnightCombatVoiceSound(KnightCombatVoiceHandle handle, GameObject audioObject)
     {
         StringBuilder eventBuilder = new StringBuilder("knight_");
         eventBuilder.Append(HandleToEventString(handle));
@@ -192,7 +255,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
     public void PlayGeneralMonsterSound(MonsterHandle m_handle, MonsterAudioHandle m_audioHandle, GameObject audioObject)
     {
         if (m_handle == MonsterHandle.Other)
-            return; // Placeholder to avoid sheep and others from playing sounds and throwing exceptions.
+            return; // Hack to avoid sheep and others from playing sounds and throwing exceptions.
 
         StringBuilder eventBuilder = new StringBuilder();
 
@@ -213,58 +276,31 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
                     typeof(MonsterAudioHandle).Name, Enum.GetName(typeof(MonsterAudioHandle), m_audioHandle)));
                 return;
             }
-
-
         }
     }
 
-    public void PlayUniqueMonsterSound(UniqueMonsterAudioHandle handle, GameObject audioObject)
+    public void PlayUniqueMeleeSound(UniqueMeleeAudioHandle handle, GameObject audioObject)
     {
-        switch (handle) {
-            case UniqueMonsterAudioHandle.MeleeCharge:
-                AkSoundEngine.PostEvent("melee_charge", audioObject); break;
-            case UniqueMonsterAudioHandle.RangeReload:
-                AkSoundEngine.PostEvent("ranged_take_out_throwing_object", audioObject); break;
-            case UniqueMonsterAudioHandle.SuicideCharge:
-                AkSoundEngine.PostEvent("suicide_charge", audioObject); break;
-            case UniqueMonsterAudioHandle.SuicideFlungAway:
-                AkSoundEngine.PostEvent("suicide_flung_away", audioObject); break;
-            case UniqueMonsterAudioHandle.SuicideExplode:
-                AkSoundEngine.PostEvent("suicide_explode", audioObject); break;
-            default:
-                DebugError(handle); return;
-        }
-    }
-
-    public void PlayPeasantDialogue(PeasantDialogueHandle handle)
-    {
-        StringBuilder eventBuilder = new StringBuilder("peasant_");
+        StringBuilder eventBuilder = new StringBuilder("melee_");
         eventBuilder.Append(HandleToEventString(handle));
 
-        AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
-        // Fixed as of 23-11-2016.
-        //try {
-        //    AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
-        //} catch (Exception) {
-        //    if (handle == PeasantDialogueHandle.Neutral)
-        //        AkSoundEngine.PostEvent("peasany_neutral", gameObject);
-        //}
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), audioObject);
     }
 
-    public void PlayPrincessDialogue(PrincessDialogueHandle handle)
+    public void PlayUniqueRangedSound(UniqueRangedAudioHandle handle, GameObject audioObject)
     {
-        StringBuilder eventBuilder = new StringBuilder("princess_");
+        StringBuilder eventBuilder = new StringBuilder("ranged_");
         eventBuilder.Append(HandleToEventString(handle));
 
-        AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), audioObject);
     }
 
-    public void PlaySwordDialogue(SwordDialogueHandle handle)
+    public void PlayUniqueSuicideSound(UniqueSuicideAudioHandle handle, GameObject audioObject)
     {
-        StringBuilder eventBuilder = new StringBuilder("sword_");
+        StringBuilder eventBuilder = new StringBuilder("suicide_");
         eventBuilder.Append(HandleToEventString(handle));
 
-        AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), audioObject);
     }
 
     public void PlayCombatSound(CombatHandle handle, GameObject audioObject)
@@ -275,6 +311,16 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         AkSoundEngine.PostEvent(eventBuilder.ToString(), audioObject);
     }
 
+    public void PlaySheepSound(SheepAudioHandle handle, GameObject audioObject)
+    {
+        StringBuilder eventBuilder = new StringBuilder("sheep_");
+        eventBuilder.Append(HandleToEventString(handle));
+
+        AkSoundEngine.PostEvent(eventBuilder.ToString(), audioObject);
+    }
+    #endregion
+
+    #region Private Helper Methods
     private string HandleToEventString(Enum handle)
     {
         var enumName = Enum.GetName(handle.GetType(), handle);
@@ -298,7 +344,10 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         MatchCollection matches = pattern.Matches(enumName);
 
         string[] matchesArray = new string[matches.Count];
-        matchesArray[0] = matchesArray[0].ToLower();
+        matchesArray[0] = matches[0].ToString().ToLower();
+        for (int i = 1; i < matches.Count; i++)
+            matchesArray[i] = matches[i].ToString();
+
         return string.Join("", matchesArray);
     }
 
@@ -308,4 +357,5 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
             string.Format("Handle of type '{0}' has no defined sound for value '{1}'.",
             handle.GetType().Name, Enum.GetName(handle.GetType(), handle)));
     }
+    #endregion
 }

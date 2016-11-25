@@ -76,7 +76,7 @@ class AttackAction : MonoBehaviour
             //clear colliders if attack doesnt go through
             return colliders;
         }
-        WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Attack, this.gameObject);
+        WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.Attack, this.gameObject);
 
         playerBase.attack();
 

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{76826067-E50F-4CBB-83F7-83448BF0148E}" SchemaVersion="72">
 	<Modulators>
-		<WorkUnit Name="Default Work Unit" ID="{76826067-E50F-4CBB-83F7-83448BF0148E}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{76826067-E50F-4CBB-83F7-83448BF0148E}" PersistMode="Standalone">
+			<ChildrenList>
+				<ModulatorLfo Name="vibrato" ID="{7FD2D044-776F-4B88-A9D6-5E863C586DE0}" ShortID="446202523">
+					<PropertyList>
+						<Property Name="LfoFrequency" Type="Real64" Value="6.2"/>
+					</PropertyList>
+				</ModulatorLfo>
+				<ModulatorEnvelope Name="spring envelope" ID="{A92760B5-EA3A-4406-813B-0AC73DA99BD3}" ShortID="558227585"/>
+			</ChildrenList>
+		</WorkUnit>
 	</Modulators>
 </WwiseDocument>

@@ -81,7 +81,7 @@ class TauntAction: MonoBehaviour
         //Debug.Log("TAUNT CAN: " + playerBase.canDoAction(PlayerActions.TAUNT));
         if (getCoolDown() && playerBase.canDoAction(PlayerActions.TAUNT))
         {
-            WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.Taunt, this.gameObject);
+            WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.Taunt, this.gameObject);
             
             startTaunt(currentTauntRadius, this.transform.position);
             playerBase.taunt();
