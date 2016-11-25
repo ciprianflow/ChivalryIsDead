@@ -47,33 +47,29 @@ public class Gameplay_Dialog : MonoBehaviour
 
     
 
-    public IEnumerator PrincessFeedback()
+    public void PrincessFeedback()
     {
         MoodUpdate();
 
         if (princessMood == "Crazy")
         {
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-            //WwiseInterface.Instance.PlayPrincessDialogue(PrincessDialogueHandle.Happy);
         }
 
-        yield return null;
     }
 
-    public IEnumerator SwordFeedback()
+    public void SwordFeedback()
     {
         MoodUpdate();
 
         if (swordMood == "Happy")
         {
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-            //WwiseInterface.Instance.PlaySwordDialogue(SwordDialogueHandle.HappyLong);
         }
 
-        yield return null;
     }
 
-    public IEnumerator EnemyFeedback()
+    public void EnemyFeedback()
     {
         foreach(GameObject enemy in enemies)
         {
@@ -88,7 +84,6 @@ public class Gameplay_Dialog : MonoBehaviour
         enemyBillboard.GetComponent<CameraBillboard>().speaker = enemySpeaker;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
 
-        yield return null;
     }
 
     public void MoodUpdate()
@@ -98,6 +93,25 @@ public class Gameplay_Dialog : MonoBehaviour
 
 
     }
+
+    // Feedback
+
+    public void HitThreeWrongTargets()
+    {
+
+    }
+
+    public void HalfTime()
+    {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+    }
+
+    public void WakeUp()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
+    }
+
+
 
     public IEnumerator PlayerTaunt()
     {
