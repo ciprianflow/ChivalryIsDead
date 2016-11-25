@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6771347, g: 0.7987713, b: 0.882913, a: 1}
+  m_IndirectSpecularColor: {r: 0.68055195, g: 0.8008123, b: 0.87699205, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -942,21 +942,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000010913354426, guid: 98f8ff744a171b846b1188deab12c9be,
-        type: 2}
-      propertyPath: SwordParticle
-      value: 
-      objectReference: {fileID: 1608666569}
-    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
-        type: 2}
-      propertyPath: speaker
-      value: 
-      objectReference: {fileID: 445637484}
-    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 2076890311}
     - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
       propertyPath: Player
@@ -1002,6 +987,26 @@ Prefab:
       propertyPath: HandCanvas
       value: 
       objectReference: {fileID: 1808104137}
+    - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: halfScreen
+      value: 
+      objectReference: {fileID: 1886532301}
+    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: speaker
+      value: 
+      objectReference: {fileID: 445637484}
+    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2076890311}
+    - target: {fileID: 114000010913354426, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: SwordParticle
+      value: 
+      objectReference: {fileID: 1608666569}
     - target: {fileID: 1000013809427288, guid: 98f8ff744a171b846b1188deab12c9be, type: 2}
       propertyPath: m_Name
       value: UI - Tutorial - IntroDay
@@ -3074,6 +3079,10 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011342307564, guid: 15bb8cd434fe47a45aa4615c109490d6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15bb8cd434fe47a45aa4615c109490d6, type: 2}
   m_IsPrefabParent: 0
@@ -4975,10 +4984,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1000011822690370, guid: 1ff69020aa975004c9243b16a7dd5d44, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ff69020aa975004c9243b16a7dd5d44, type: 2}
   m_IsPrefabParent: 0
@@ -5150,7 +5155,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012085243604, guid: a913a2d70c160114190af577954b2e63, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000012432796276, guid: a913a2d70c160114190af577954b2e63, type: 2}
       propertyPath: m_IsActive
@@ -5923,6 +5928,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1563918908}
   m_Script: {fileID: 11500000, guid: becd99ec7e278d247b0c54f34938c926, type: 3}
+--- !u!1 &1886532301 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012039414628, guid: 1ff69020aa975004c9243b16a7dd5d44,
+    type: 2}
+  m_PrefabInternal: {fileID: 1614597361}
 --- !u!1 &1907932221
 GameObject:
   m_ObjectHideFlags: 0

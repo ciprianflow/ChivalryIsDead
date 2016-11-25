@@ -40,12 +40,12 @@ class PlayerBehaviour : ScorePublisher
             ScoreChange = dummyManager.GetComboMultiplier(score);
 
             //@@HARDCODED 
-            if (dummyManager.GetComboValue() > 8) 
-                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepCombo, RepLossParticle);
+            if (dummyManager.GetComboValue() > 8)
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
             else if ((ScoreChange * -1) > 500)
-                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepBig, RepLossParticle);
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.Big);
             else
-                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepSmall, RepLossParticle);
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.Small);
 
             //increase combo
             dummyManager.IncreaseCombo();
@@ -62,7 +62,7 @@ class PlayerBehaviour : ScorePublisher
             RepGainParticle.SetActive(true);
             Reset();
 
-            WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.GainRep, RepGainParticle);
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.Fail);
             ScoreChange = dummyManager.GetComboMultiplier(score);
         }
     }
