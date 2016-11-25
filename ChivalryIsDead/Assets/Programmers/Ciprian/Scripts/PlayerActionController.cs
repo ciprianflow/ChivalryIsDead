@@ -47,6 +47,8 @@ public class PlayerActionController : MonoBehaviour
     public GameObject ComboParticle;
     public GameObject ComboUpwardParticle;
 
+    [HideInInspector]
+    public static List<MonsterAI> monstersInScene;
 
     private float attackRange = 35f;
     private float attackRadius = 120f;
@@ -140,7 +142,7 @@ public class PlayerActionController : MonoBehaviour
         //init for overreact
         overreactAction.OverreactCooldown = OverreactCooldown;
 
-        
+        //init monsters
     }
 
     void Update()
@@ -171,8 +173,6 @@ public class PlayerActionController : MonoBehaviour
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
 
-
-                
                 int points = (int)((AttackedDuration - overreactTimestamp) * 100);
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED

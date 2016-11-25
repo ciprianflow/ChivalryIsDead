@@ -20,10 +20,11 @@ public class SetupData : MonoBehaviour {
             PlayerPrefs.SetFloat("SoundVolume", 1);
             PlayerPrefs.SetFloat("SoundMusic", 1);
             PlayerPrefs.SetFloat("SoundSound", 1);
+            PlayerPrefs.SetInt("Swapped", 0);
 
             //PlayerPrefs.SetInt("Level", 1);
 
-            
+
 
             language.SetActive(true);
 

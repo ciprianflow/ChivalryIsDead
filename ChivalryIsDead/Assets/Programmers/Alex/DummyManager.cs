@@ -25,6 +25,8 @@ public class DummyManager : MonoBehaviour
     public ScoreHandler SuspicionHandler;
     public ScoreHandler DaysRemaining;
 
+    public Gameplay_Dialog GameDialogUI;
+
     private float comboTimeStamp = 0;
 
     private int combo = 0;
@@ -62,19 +64,21 @@ public class DummyManager : MonoBehaviour
 
         antiAfkTimestamp += Time.deltaTime;
         handleAFK(antiAfkTimestamp);
-
-
-
+        
     }
 
     private void handleAFK(float timestamp)
     {
         int secondsAFK = (int) Math.Floor(timestamp);
 
+        if (GameDialogUI != null && secondsAFK == StartAFKSeconds)
+        {
+            GameDialogUI.WakeUp();
+        }
+
         if (antiAFKTime < secondsAFK && secondsAFK > StartAFKSeconds)
         {
             antiAFKTime = secondsAFK;
-
             ReputationHandler.Score += antiAfkPoints;
         
         }
