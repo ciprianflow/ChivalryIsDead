@@ -733,7 +733,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012093702446
 GameObject:
   m_ObjectHideFlags: 1
@@ -1511,23 +1511,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 1000010485397392}
   dialogEnglish:
-  - {fileID: 11400000, guid: fe4c33d0cb31d6743922213390b53196, type: 2}
-  - {fileID: 11400000, guid: 57c4970c28edd3d4995e23ee9f37f653, type: 2}
-  - {fileID: 11400000, guid: 95f9f4ca1399456459a09cb877b33189, type: 2}
-  - {fileID: 11400000, guid: 100dbcdc3b537f948a996ff2f5ae5527, type: 2}
-  - {fileID: 11400000, guid: ddf20ab5a65662f4f838335ec39a814e, type: 2}
-  - {fileID: 11400000, guid: 2348592b400059e48942d2d5d36428ce, type: 2}
-  - {fileID: 11400000, guid: 9985b697dfd7f33478c1632d04e7d968, type: 2}
-  - {fileID: 11400000, guid: bbed95f5a1722594f83dbe0d8ff5d3d4, type: 2}
+  - {fileID: 11400000, guid: b975cfc248dd5234db8fd0bfea5bdf45, type: 2}
+  - {fileID: 11400000, guid: 174227e7e1dbe2647b81a4f9393fef90, type: 2}
+  - {fileID: 11400000, guid: ac12f327d044f384fb33b39b43fb6043, type: 2}
   dialogDansk:
-  - {fileID: 11400000, guid: 6b5f42582e0fe844ab1e0b59f2416b39, type: 2}
-  - {fileID: 11400000, guid: a8e3b2a18bc06284d9b6943542c61c84, type: 2}
-  - {fileID: 11400000, guid: cb2847e6d7575164da91a8de006956d9, type: 2}
-  - {fileID: 11400000, guid: fb3fbf993f3412543a48a1a0fe32d845, type: 2}
-  - {fileID: 11400000, guid: 7e49c6db6b322894898bfa32be3703e4, type: 2}
-  - {fileID: 11400000, guid: 12bdc8068abc6ce4b819d41a6881074a, type: 2}
-  - {fileID: 11400000, guid: ccc348f611e50db4db3832599c099e5e, type: 2}
-  - {fileID: 11400000, guid: 05d0084f79b14394faa29184162790f9, type: 2}
+  - {fileID: 11400000, guid: b975cfc248dd5234db8fd0bfea5bdf45, type: 2}
+  - {fileID: 11400000, guid: 174227e7e1dbe2647b81a4f9393fef90, type: 2}
+  - {fileID: 11400000, guid: ac12f327d044f384fb33b39b43fb6043, type: 2}
   playerText: {fileID: 1000013217776696}
   playerBubble: {fileID: 1000010330997050}
   swordText: {fileID: 1000010340376272}
@@ -3804,6 +3794,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5cdad411f3df74f8503bde9a632fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UI: {fileID: 1000010485397392}
+  enemyBillboard: {fileID: 1000010492502376}
   playerTauntBubble: {fileID: 1000011244966598}
   enemyTauntBubble: {fileID: 1000012915544526}
 --- !u!114 &114000013652336784
@@ -4752,10 +4744,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 224000013681330832}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 572.5, y: -126.5}
-  m_SizeDelta: {x: 805, y: 53}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000010735804830
 RectTransform:
@@ -5710,7 +5702,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4, y: 6}
-  m_SizeDelta: {x: 1055, y: 253}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013802709936
 RectTransform:
