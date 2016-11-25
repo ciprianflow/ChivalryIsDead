@@ -13,6 +13,9 @@ class PlayerBehaviour : ScorePublisher
     public GameObject RepGainParticle;
     public GameObject RepLossParticle;
 
+    public GameObject ComboBaseParticle;
+    public GameObject ComboUpwardParticle;
+
     public PlayerBehaviour(string handle)
     {
         dummyManager = DummyManager.dummyManager;
@@ -40,12 +43,12 @@ class PlayerBehaviour : ScorePublisher
             ScoreChange = dummyManager.GetComboMultiplier(score);
 
             //@@HARDCODED 
-            if (dummyManager.GetComboValue() > 8) 
-                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepCombo, RepLossParticle);
-            else if ((ScoreChange * -1) > 500)
-                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepBig, RepLossParticle);
+            if (dummyManager.GetComboValue() > 7)
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
+            else if ((ScoreChange * -1) > 200)
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.Big);
             else
-                WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.LoseRepSmall, RepLossParticle);
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.Small);
 
             //increase combo
             dummyManager.IncreaseCombo();
@@ -54,6 +57,11 @@ class PlayerBehaviour : ScorePublisher
 
             //particle effect
             RepLossParticle.SetActive(true);
+
+            
+            ComboBaseParticle.GetComponent<ParticleSystem>().startSize = dummyManager.GetComboValue() * 2;
+            
+            ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.15f;
         }
         else
         {
@@ -62,9 +70,12 @@ class PlayerBehaviour : ScorePublisher
             RepGainParticle.SetActive(true);
             Reset();
 
-            WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle.GainRep, RepGainParticle);
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.Fail);
             ScoreChange = dummyManager.GetComboMultiplier(score);
+            ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 1;
+            ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
         }
+        
     }
 
     //reset combo

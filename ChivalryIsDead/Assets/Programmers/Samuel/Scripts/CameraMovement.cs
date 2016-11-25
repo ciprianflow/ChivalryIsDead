@@ -24,12 +24,18 @@ public class CameraMovement : MonoBehaviour {
     {
         if (target)
         {
-            updateAreaCamVaribles();
-            if (!reachedDestination)
+            if (FixedPosition)
             {
-                if (FixedPosition)
-                    UpdateCameraMovementTimer();
-
+                UpdateCameraMovementTimer();
+            
+                updateAreaCamVaribles();
+                if (!reachedDestination)
+                {
+                    movePos();
+                    moveRot();
+                }
+            }else
+            {
                 movePos();
                 moveRot();
             }   
@@ -139,6 +145,8 @@ public class CameraMovement : MonoBehaviour {
     [Header("Camera Settings")]
     public bool FixedPosition = true;
     public bool InstantTransisition = false;
+    public bool FixedRotation = false;
+    public bool FixedZAxis = false;
 
     [Header("Transistion Curve")]
     [Tooltip("Enabling this will smooth the transition To the curve beneath")]
@@ -161,12 +169,17 @@ public class CameraMovement : MonoBehaviour {
         //Set height and distance
         if (!FixedPosition)
         {
-            Vector3 pos = distToFP + target.position + new Vector3(0, target.position.y, 0);
+            Vector3 pos;
+            if (FixedZAxis)
+                pos = CP + new Vector3(0,0,target.position.z) + new Vector3(0, target.position.y, 0);
+            else
+                pos = distToFP + target.position + new Vector3(0, target.position.y, 0);
+
             transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping);
+
         }
         else // FOR FIXED POSITION
         {
-            
             transform.position = Vector3.Lerp(oldPos, CP, cameraMovementT * positionDamping);
         }
         
@@ -176,12 +189,14 @@ public class CameraMovement : MonoBehaviour {
     {
         if (!FixedPosition)
         {
+            if (FixedRotation)
+                return;
+
             Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
             transform.rotation = rotation;
         }
         else // FOR FIXED POSITION
         {
-            
             Quaternion rotation = Quaternion.LookRotation(FP - transform.position);
             transform.rotation = Quaternion.Lerp(oldRot, rotation, cameraMovementT * rotationDamping);
         }   
@@ -205,15 +220,7 @@ public class CameraMovement : MonoBehaviour {
     {
         Debug.Log("Setting camera position");
         //Set height and distance
-        if (!FixedPosition)
-        {
-            Vector3 pos = distToFP + target.position + new Vector3(0, target.position.y, 0);
-            transform.position = pos;
-        }
-        else
-        {
-            transform.position = CP;
-        }
+        transform.position = CP;
 
         oldPos = transform.position;
     }
@@ -221,16 +228,9 @@ public class CameraMovement : MonoBehaviour {
     void setRot()
     {
         Debug.Log("Setting camera rotation");
-        if (!FixedPosition)
-        {
-            Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
-            transform.rotation = rotation;
-        }
-        else
-        {
-            Quaternion rotation = Quaternion.LookRotation(FP - transform.position);
-            transform.rotation = rotation;
-        }
+
+        Quaternion rotation = Quaternion.LookRotation(FP - transform.position);
+        transform.rotation = rotation;
 
         oldRot = transform.rotation;
         
