@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEditor;
 
 public enum PlayerState
 {
@@ -46,6 +47,8 @@ public class PlayerActionController : MonoBehaviour
     public GameObject ComboParticle;
     public GameObject ComboUpwardParticle;
 
+    [HideInInspector]
+    public static List<MonsterAI> monstersInScene;
 
     private float attackRange = 35f;
     private float attackRadius = 120f;
@@ -62,6 +65,9 @@ public class PlayerActionController : MonoBehaviour
    
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
+
+
+    public GameObject hitParticle;
 
     void OnDrawGizmos()
     {
@@ -136,7 +142,7 @@ public class PlayerActionController : MonoBehaviour
         //init for overreact
         overreactAction.OverreactCooldown = OverreactCooldown;
 
-        
+        //init monsters
     }
 
     void Update()
@@ -167,8 +173,6 @@ public class PlayerActionController : MonoBehaviour
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
 
-
-                
                 int points = (int)((AttackedDuration - overreactTimestamp) * 100);
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
@@ -208,6 +212,11 @@ public class PlayerActionController : MonoBehaviour
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
+            Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
+            Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
+            GameObject hP = Instantiate(hitParticle) as GameObject;
+            hP.transform.position = hitPoint;
+            //EditorApplication.isPaused = true;
 
             pb.ChangeRepScore(monster.PlayerAttackReputation());
             pb.Invoke();
@@ -246,7 +255,10 @@ public class PlayerActionController : MonoBehaviour
 
         //can overreact
         playerState = PlayerState.HIT;
-
+        Debug.Log("HIT");
+        //GetComponentInChildren<Animator>().SetTrigger("TakeDamage");
+        //GetComponentInChildren<Animator>().SetLayerWeight(8, 1);
+        GetComponent<PlayerScript>().takeDamage();
         //Player attacked add reputation according to monster base damage
         if (monster)
         {
