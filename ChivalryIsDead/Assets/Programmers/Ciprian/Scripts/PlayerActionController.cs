@@ -65,6 +65,9 @@ public class PlayerActionController : MonoBehaviour
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
 
+
+    public GameObject hitParticle;
+
     void OnDrawGizmos()
     {
 
@@ -208,6 +211,8 @@ public class PlayerActionController : MonoBehaviour
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
+            Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
+            Vector3 hitPoint = monster.transform.position + (midVec * 5);
 
             pb.ChangeRepScore(monster.PlayerAttackReputation());
             pb.Invoke();
@@ -246,7 +251,10 @@ public class PlayerActionController : MonoBehaviour
 
         //can overreact
         playerState = PlayerState.HIT;
-
+        Debug.Log("HIT");
+        //GetComponentInChildren<Animator>().SetTrigger("TakeDamage");
+        //GetComponentInChildren<Animator>().SetLayerWeight(8, 1);
+        GetComponent<PlayerScript>().takeDamage();
         //Player attacked add reputation according to monster base damage
         if (monster)
         {
