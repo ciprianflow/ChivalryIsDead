@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections;
 using System;
+using UnityEditor;
 
 public enum PlayerState
 {
@@ -212,7 +213,10 @@ public class PlayerActionController : MonoBehaviour
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
-            Vector3 hitPoint = monster.transform.position + (midVec * 5);
+            Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
+            GameObject hP = Instantiate(hitParticle) as GameObject;
+            hP.transform.position = hitPoint;
+            //EditorApplication.isPaused = true;
 
             pb.ChangeRepScore(monster.PlayerAttackReputation());
             pb.Invoke();
