@@ -43,7 +43,8 @@ public class PlayerActionController : MonoBehaviour
     [Header("Other stuff")]
     public GameObject RepGainParticle;
     public GameObject RepLossParticle;
-
+    public GameObject ComboParticle;
+    public GameObject ComboUpwardParticle;
 
 
     private float attackRange = 35f;
@@ -61,7 +62,6 @@ public class PlayerActionController : MonoBehaviour
    
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
-
 
     void OnDrawGizmos()
     {
@@ -107,9 +107,13 @@ public class PlayerActionController : MonoBehaviour
 
         pb.RepGainParticle = RepGainParticle;
         pb.RepLossParticle = RepLossParticle;
+        pb.ComboBaseParticle = ComboParticle;
+        pb.ComboUpwardParticle = ComboUpwardParticle;
 
         pb.Reset();
 
+       
+        //ComboParticle.GetComponent<Particle>().Play();
 
         //player state
         playerState = PlayerState.IDLE;
