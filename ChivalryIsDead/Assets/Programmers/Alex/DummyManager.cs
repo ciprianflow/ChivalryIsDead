@@ -25,6 +25,8 @@ public class DummyManager : MonoBehaviour
     public ScoreHandler SuspicionHandler;
     public ScoreHandler DaysRemaining;
 
+    public Gameplay_Dialog GameDialogUI;
+
     private float comboTimeStamp = 0;
 
     private int combo = 0;
@@ -70,6 +72,11 @@ public class DummyManager : MonoBehaviour
     private void handleAFK(float timestamp)
     {
         int secondsAFK = (int) Math.Floor(timestamp);
+
+        if (GameDialogUI != null)
+        {
+            //GameDialogUI.getCom
+        }
 
         if (antiAFKTime < secondsAFK && secondsAFK > StartAFKSeconds)
         {
