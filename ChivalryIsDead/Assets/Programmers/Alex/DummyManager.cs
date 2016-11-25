@@ -11,7 +11,7 @@ public class DummyManager : MonoBehaviour
 
     [Header("Combo values")]
 
-    public float ComboCooldown = 10f;
+    public float[] ComboCooldown;
     public int[] ComboMultiplier;
 
     [Header("Anti AFK")]
@@ -39,6 +39,14 @@ public class DummyManager : MonoBehaviour
         DummyManager.dummyManager = this;
 
         antiAfkPoints = AFKPointsDec;
+    }
+
+    void Start()
+    {
+        if(ComboCooldown.Length != ComboMultiplier.Length)
+        {
+            Debug.LogError("Combo cooldown must have the same size as Combo Multiplier");
+        }
     }
 
 
@@ -117,7 +125,14 @@ public class DummyManager : MonoBehaviour
 
     public void resetCooldown()
     {
-        comboTimeStamp = Time.time + ComboCooldown;
+        try
+        {
+            comboTimeStamp = Time.time + ComboCooldown[combo];
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Debug.LogError(e.Message);
+        }
     }
 
     public void ActionPerformed()
