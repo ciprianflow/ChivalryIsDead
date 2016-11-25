@@ -26,7 +26,8 @@ public class MapManager : MonoBehaviour {
     void Awake()
     {
 
-        QuestTarget = transform.Find("StaticProtectObjects").GetChild(0);
+        if(transform.Find("StaticProtectObjects") != null)
+            QuestTarget = transform.Find("StaticProtectObjects").GetChild(0);
 
         areas = transform.GetComponent<AreaScript>();
         OM = new ObjectiveManager();
