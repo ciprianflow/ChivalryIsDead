@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour {
     public bool attacking = false;
     public bool taunting = false;
     public bool scaring = false;
+    public bool takedamaging = false;
     public bool attackReachedFull = false;
     public bool overreacting = false;
     public bool Attackended = false;
@@ -25,6 +26,7 @@ public class PlayerScript : MonoBehaviour {
     private Coroutine attackCR;
     private Coroutine tauntCR;
     private Coroutine overreactCR;
+    private Coroutine takedamageCR;
 
     private bool isSlowingDown = false;
 
@@ -48,6 +50,7 @@ public class PlayerScript : MonoBehaviour {
         AnimDic.Add("taunting", 3);
         AnimDic.Add("scaring", 5);
         AnimDic.Add("overreacting", 7);
+        AnimDic.Add("takedamaging", 8);
 
         StaticIngameData.player = this.transform;
 
@@ -83,7 +86,12 @@ public class PlayerScript : MonoBehaviour {
                     return false;
                 }
                 break;
-                
+            //case PlayerActions.:
+            //    if (attacking || taunting) {
+            //        return false;
+            //    }
+            //    break;
+
             default:
                 return true;
         }
@@ -133,43 +141,43 @@ public class PlayerScript : MonoBehaviour {
 
 
         //float desiredFwd = (-Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX));
-        if (!staticControls) {
-            float desiredFwd = (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y;
-            if (desiredFwd < 0) {
-                desiredFwd += 360f;
-            }
+        //if (!staticControls) {
+            //float desiredFwd = (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y;
+            //if (desiredFwd < 0) {
+            //    desiredFwd += 360f;
+            //}
 
-            float currentFwd = transform.eulerAngles.y;
-            float diffTurn = desiredFwd - currentFwd;
+            //float currentFwd = transform.eulerAngles.y;
+            //float diffTurn = desiredFwd - currentFwd;
 
-            if (diffTurn > 180f) {
-                diffTurn -= 360f;
-            }
-            if (diffTurn < -180f) {
-                diffTurn += 360f;
-            }
-
-
-
-            Debug.Log("desiredFwd " + desiredFwd + " currentfwd " + currentFwd + " diffturn " + diffTurn);
+            //if (diffTurn > 180f) {
+            //    diffTurn -= 360f;
+            //}
+            //if (diffTurn < -180f) {
+            //    diffTurn += 360f;
+            //}
 
 
 
-            ////anim.SetFloat("Turn", turnMag);
+            //Debug.Log("desiredFwd " + desiredFwd + " currentfwd " + currentFwd + " diffturn " + diffTurn);
 
-            //Debug.Log(turnValue);
-            //transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
-            //transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
-            if (diffTurn > 0.001f || diffTurn < -0.001f) {
-                float turnAmount = diffTurn / 5;
-                transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
-                //anim.SetFloat("Turn", turnAmount / 1.5f);
 
-            }
-        }
-        else {
+
+            //////anim.SetFloat("Turn", turnMag);
+
+            ////Debug.Log(turnValue);
+            ////transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
+            ////transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+            //if (diffTurn > 0.001f || diffTurn < -0.001f) {
+            //    float turnAmount = diffTurn / 5;
+            //    transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
+            //    //anim.SetFloat("Turn", turnAmount / 1.5f);
+
+        //    }
+        //}
+        //else {
             transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
-        }
+        //}
         transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
 
         anim.SetFloat("Speed", zVel * 2f);
@@ -202,10 +210,9 @@ public class PlayerScript : MonoBehaviour {
             anim.SetFloat("Turn", turnMag);
 
         }
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    attack();
-        //}
+        if (Input.GetButtonDown("Jump")) {
+            anim.SetLayerWeight(8, 0);
+        }
 
         //Debug.Log(anim.GetCurrentAnimatorStateInfo(1).normalizedTime);
 
@@ -298,6 +305,34 @@ public class PlayerScript : MonoBehaviour {
             yield return new WaitForSeconds(0.01f);
         }
         overreacting = false;
+    }
+
+
+    IEnumerator animateTakeDamage() {
+        bool reachedFullWeight = false;
+        float upperWeight = 0;
+
+        while (reachedFullWeight == false) {
+            upperWeight += 0.05f;
+
+            if (upperWeight >= 1) {
+                reachedFullWeight = true;
+            }
+            anim.SetLayerWeight(8, upperWeight);
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (reachedFullWeight && anim.GetCurrentAnimatorStateInfo(8).normalizedTime < 0.8f) {
+            yield return new WaitForSeconds(0.01f);
+        }
+        while (reachedFullWeight && anim.GetCurrentAnimatorStateInfo(8).normalizedTime >= 0.8f) {
+            upperWeight -= 0.05f;
+            anim.SetLayerWeight(8, upperWeight);
+            if (upperWeight < 0) {
+                break;
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+        takedamaging = false;
     }
 
     IEnumerator animateAttack() {
@@ -444,6 +479,7 @@ public class PlayerScript : MonoBehaviour {
         anim.SetLayerWeight(3, 0);
         anim.SetLayerWeight(4, 0);
         anim.SetLayerWeight(7, 0);
+        anim.SetLayerWeight(8, 0);
         cancelCoroutines();
 
         Attackended = false;
@@ -482,7 +518,7 @@ public class PlayerScript : MonoBehaviour {
 
 
             cancelAnim(ref taunting, "taunting");
-            cancelAnim(ref scaring, "scaring");
+            cancelAnim(ref takedamaging, "takedamaging");
             attacking = true;
             return;
         }
@@ -536,7 +572,8 @@ public class PlayerScript : MonoBehaviour {
         //anim.Play("Taunt", 3, 0);
         anim.SetTrigger("TauntTrig");
         cancelAnim(ref attacking, "attacking");
-        cancelAnim(ref scaring, "scaring");
+        cancelAnim(ref takedamaging, "takedamaging");
+
         if (tauntCR != null)
             StopCoroutine(tauntCR);
         if (attackCR != null)
@@ -548,6 +585,7 @@ public class PlayerScript : MonoBehaviour {
         anim.SetLayerWeight(1, 0);
         anim.SetLayerWeight(2, 0);
         anim.SetLayerWeight(7, 0);
+        anim.SetLayerWeight(8, 0);
 
         tauntCR = StartCoroutine(animateTaunt());
 
@@ -560,6 +598,8 @@ public class PlayerScript : MonoBehaviour {
             StopCoroutine(attackCR);
         if (overreactCR != null)
             StopCoroutine(overreactCR);
+        if (takedamageCR != null)
+            StopCoroutine(takedamageCR);
     }
     public void overreact() {
         cancelCoroutines();
@@ -567,6 +607,7 @@ public class PlayerScript : MonoBehaviour {
         anim.SetLayerWeight(3, 0);
         anim.SetLayerWeight(4, 0);
         anim.SetLayerWeight(7, 0);
+        anim.SetLayerWeight(8, 0);
 
         SwordTrail.SetActive(false);
 
@@ -582,8 +623,29 @@ public class PlayerScript : MonoBehaviour {
         cancelAnim(ref attacking, "attacking");
         cancelAnim(ref taunting, "taunting");
         cancelAnim(ref scaring, "scaring");
+        cancelAnim(ref takedamaging, "takedamaging");
         overreacting = true;
         overreactCR = StartCoroutine(animateOverreact());
+
+    }
+
+    public void takeDamage() {
+        //cancelCoroutines();
+        if(attacking || taunting || overreacting || takedamaging) {
+            return;
+        }
+        //anim.SetLayerWeight(3, 0);
+        //anim.SetLayerWeight(4, 0);
+        //anim.SetLayerWeight(7, 0);
+
+        //SwordTrail.SetActive(false);
+
+        //anim.Play("Scare", 5, 0);
+
+
+        takedamaging = true;
+        anim.SetTrigger("TakeDamage");
+        takedamageCR = StartCoroutine(animateTakeDamage());
 
     }
 
