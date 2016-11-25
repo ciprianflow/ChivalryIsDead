@@ -173,8 +173,13 @@ public class CameraMovement : MonoBehaviour {
             if (FixedZAxis)
                 pos = CP + new Vector3(0,0,target.position.z) + new Vector3(0, target.position.y, 0);
             else
+            {
                 pos = distToFP + target.position + new Vector3(0, target.position.y, 0);
 
+                if (Vector3.Distance(target.position, transform.position) < distToFP.magnitude)
+                    transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping);
+            }
+                
             transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping);
 
         }
