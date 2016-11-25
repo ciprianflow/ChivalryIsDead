@@ -171,6 +171,12 @@ public class PlayerActionController : MonoBehaviour
                 //pb.ChangeRepScore((int)((AttackedDuration - overreactTimestamp) * -10));
                 int points = (int)((AttackedDuration - overreactTimestamp) * 10);
 
+                //@@HARDCODED
+                if (points > 30)
+                    WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
+                else
+                    WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
+
                 Debug.Log("Overreact points:" + -points);
                 pb.ChangeRepScore(-points);
 
@@ -181,6 +187,8 @@ public class PlayerActionController : MonoBehaviour
             //if overreacts without reason
             else
             {
+                WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
+
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
