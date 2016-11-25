@@ -64,24 +64,21 @@ public class DummyManager : MonoBehaviour
 
         antiAfkTimestamp += Time.deltaTime;
         handleAFK(antiAfkTimestamp);
-
-
-
+        
     }
 
     private void handleAFK(float timestamp)
     {
         int secondsAFK = (int) Math.Floor(timestamp);
 
-        if (GameDialogUI != null)
+        if (GameDialogUI != null && secondsAFK == StartAFKSeconds)
         {
-            //GameDialogUI.getCom
+            GameDialogUI.WakeUp();
         }
 
         if (antiAFKTime < secondsAFK && secondsAFK > StartAFKSeconds)
         {
             antiAFKTime = secondsAFK;
-
             ReputationHandler.Score += antiAfkPoints;
         
         }
