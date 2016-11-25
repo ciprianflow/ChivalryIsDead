@@ -449,15 +449,16 @@ public class MeleeAI : MonsterAI
         if (state != State.Charge)
             return;
 
-        QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
-
+        
+        MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
         //If collision happened with a quest object
-        if (QO != null)
+        if (m != null)
         {
             //If AI hit a sheep invoke the sheep hit function
-            MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
-            if (m != null && m.GetType() == typeof(SheepAI))
+            QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
+            if (QO != null && m.GetType() == typeof(SheepAI))
             {
+
                 Debug.Log("I HIT A SHEEP");
                 HitSheep(QO, m, coll.gameObject, chargeForce * (accelTimer / accelTime), false);
                 base.playerAction.SheepAttacked(this);
