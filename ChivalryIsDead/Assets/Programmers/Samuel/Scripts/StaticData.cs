@@ -64,5 +64,30 @@ public static class StaticData {
         }
     }
 
+    public static PrincessDialogueHandle GetPrincessMood(string s)
+    {
+        switch (s)
+        {
+            case "Happy":
+                return PrincessDialogueHandle.Happy;
+            case "SuperHappy":
+                return PrincessDialogueHandle.SuperHappy;
+            case "Crazy":
+                return PrincessDialogueHandle.Crazy;
+            case "SuperCrazy":
+                return PrincessDialogueHandle.SuperCrazy;
+            case "Sad":
+                return PrincessDialogueHandle.Sad;
+            case "SuperSad":
+                return PrincessDialogueHandle.SuperSad;
+            case "Flirty":
+                return PrincessDialogueHandle.Flirty;
+            case "SuperFlirty":
+                return PrincessDialogueHandle.SuperFlirty;
+            default:
+                throw new System.NotImplementedException();
+        }
+    }
+
     #endregion
 }

@@ -98,19 +98,23 @@ public class SuicideAI : MonsterAI
             Instantiate(explosionObject, transform.position, Quaternion.identity);
         }
 
+        //Checks for collision with different agents
         Collider[] Colliders = new Collider[0];
         Colliders = Physics.OverlapSphere(transform.position, explosionRange);
         for (int i = 0; i < Colliders.Length; i++)
         {
+            QuestObject QO = Colliders[i].gameObject.GetComponent<QuestObject>();
+
             if (Colliders[i].tag == "Player")
             {
+                //Player
                 Debug.Log("This on is a player");
                 Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
 
                 Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                 if (body)
                 {
-                    body.AddExplosionForce(explosionForce * 15, transform.position, explosionRange, 0.75f);
+                    body.AddExplosionForce(explosionForce * 15, transform.position, explosionRange, 0.5f);
                 }
                     
                 base.playerAction.PlayerAttacked(this);
@@ -124,16 +128,36 @@ public class SuicideAI : MonsterAI
                 {
                     if(m.GetType().Equals(typeof(SheepAI)))
                     {
-
+                        //Sheeps
                         Debug.Log("I HIT A SHEEP");
-                        QuestObject QO = Colliders[i].gameObject.GetComponent<QuestObject>();
                         HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true);
                         base.playerAction.SheepAttacked(this);
 
+                    }else
+                    {
+                        //Other monsters
+                        m.Hit(1);
+                        Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                        if (body)
+                        {
+                            body.AddExplosionForce(explosionForce, transform.position, explosionRange, 0f);
+                        }
                     }
                 }
             }
+            else
+            {
+                //Static object
+                if (QO != null)
+                {
+                    Debug.Log("Hit static quest object");
+                    QO.takeDamage(GetBaseAttackDamage(), true);
+                    base.playerAction.ObjectiveAttacked(this);
+                }
+            }
         }
+
+        
 
         //Plays attack sound
         Debug.LogError("ALLUH AKHBAR INFIDEL!!");
