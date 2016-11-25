@@ -167,19 +167,19 @@ public class PlayerActionController : MonoBehaviour
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
 
-                
-                //pb.ChangeRepScore((int)((AttackedDuration - overreactTimestamp) * -10));
-                int points = (int)((AttackedDuration - overreactTimestamp) * 10);
 
+                
+                int points = (int)((AttackedDuration - overreactTimestamp) * 100);
+                //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
-                if (points > 30)
+                if (points > 99)
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
                 else
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
 
-                Debug.Log("Overreact points:" + -points);
-                pb.ChangeRepScore(-points);
 
+                pb.ChangeRepScore(-points);
+                Debug.Log("Overreact points:" + -points);
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
                 playerState = PlayerState.IDLE;
