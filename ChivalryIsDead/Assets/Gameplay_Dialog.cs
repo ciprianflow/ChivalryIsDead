@@ -30,6 +30,7 @@ public class Gameplay_Dialog : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.T))
         {
             StartCoroutine("PlayerTaunt");
+            StartCoroutine("EnemyTaunted");
             StartCoroutine("EnemyFeedback");
         }
 
@@ -101,7 +102,14 @@ public class Gameplay_Dialog : MonoBehaviour
     public IEnumerator PlayerTaunt()
     {
         playerTauntBubble.SetActive(true);
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         playerTauntBubble.SetActive(false);
+    }
+
+    public IEnumerator EnemyTaunted()
+    {
+        enemyTauntBubble.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        enemyTauntBubble.SetActive(false);
     }
 }
