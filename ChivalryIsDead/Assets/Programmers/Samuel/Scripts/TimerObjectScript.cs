@@ -11,6 +11,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     float maxTime = 120;
 
     Image timerImage;
+    GameObject Dsystem;
 
     void Awake()
     {
@@ -25,6 +26,12 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
 
         if (timerImage != null)
             timerImage.fillAmount = 1 - timer / maxTime;
+
+        if (timer > maxTime / 2)
+        {
+            Dsystem = GameObject.FindGameObjectWithTag("DialogSystem");
+            Dsystem.GetComponent<Gameplay_Dialog>().HalfTime();
+        }
     }
 
     public int ID

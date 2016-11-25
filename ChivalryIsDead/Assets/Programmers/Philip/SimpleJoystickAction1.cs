@@ -400,20 +400,26 @@ namespace CnControls
     //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
     else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
     {
-        overreact = true;
-
-        if (overreactCooldownFill == 1)
+        if (SceneManager.GetActiveScene().name != "IntroLevel") // angeliki added this
         {
-            ActionRight.color = new Color(1, 1, 1, 1);
+            overreact = true;
+
+            if (overreactCooldownFill == 1)
+            {
+                ActionRight.color = new Color(1, 1, 1, 1);
+            }
         }
     }
     //else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
     else if ((angle >= 147 && angle < 265)) // angeliki added this
     {
-        taunt = true;
-        if (tauntCooldownfill == 1)
+        if (SceneManager.GetActiveScene().name != "IntroLevel") // angeliki added this
         {
-            ActionLeft.color = new Color(1, 1, 1, 1);
+            taunt = true;
+            if (tauntCooldownfill == 1)
+            {
+                ActionLeft.color = new Color(1, 1, 1, 1);
+            }
         }
 
     }
@@ -421,7 +427,7 @@ namespace CnControls
     else if ((angle >= 34 && angle < 147)) // angeliki added this
     {
         //cancel = true;// angeliki commented out this
-        if (SceneManager.GetActiveScene().buildIndex != 4 && SceneManager.GetActiveScene().buildIndex != 5) // angeliki added this
+        if (SceneManager.GetActiveScene().name != "Tutorial_02" && SceneManager.GetActiveScene().name != "Tutorial_03") // angeliki added this
         {
             attack = true; // angeliki added this
             if (attackCooldownFill == 1)
