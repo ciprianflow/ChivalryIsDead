@@ -29,6 +29,22 @@ public class BaseQuest : IQuest
         Description = new QuestDescription(title, description, difficulty);
     }
 
+    public IEnumerable<IObjective> GetAllObjectives()
+    {
+        foreach (IObjective o in Objectives) {
+            BaseQuest oAsBase;
+            if ((oAsBase = (o as BaseQuest)) == null) {
+                yield return o;
+                //currentList.Add(o);
+            } else {
+                foreach (IObjective inner_o in oAsBase.GetAllObjectives())
+                    yield return inner_o;
+                //currentList.AddRange(oAsBase.GetAllObjectives(currentList));
+            }
+        }
+        //return currentList;
+    }
+
     public virtual bool CheckTarget(IObjectiveTarget gObj)
     {
         var objEnumerator = Objectives.GetEnumerator();
