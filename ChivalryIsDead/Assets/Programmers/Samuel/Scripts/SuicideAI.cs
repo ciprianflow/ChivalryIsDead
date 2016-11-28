@@ -61,11 +61,13 @@ public class SuicideAI : MonsterAI
 
     public override void Move() {
 
-        if (RangeCheckNavMesh()) {
-            UpdateNavMeshPathDelayed();
-        }else if (RangeCheck(deSpawnRange))
+        if (RangeCheck(deSpawnRange))
         {
             MoveToIdle();
+        }
+
+        if (RangeCheckNavMesh()) {
+            UpdateNavMeshPathDelayed();
         }else {
             MoveToAttack();
         }
@@ -234,5 +236,6 @@ public class SuicideAI : MonsterAI
         stateFunc = Idle;
         StopNavMeshAgent();
         aggroed = false;
+        anim.SetTrigger("Taunted");
     }
 }
