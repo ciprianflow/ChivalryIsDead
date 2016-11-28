@@ -18,13 +18,13 @@ public class SettingsMngr : MonoBehaviour {
     // Use this for initialization
     void Awake () {
 	if(PlayerPrefs.GetInt("Swapped") == 1) {
-            Debug.Log("AWAKE SWAPPED");
+            //    Debug.Log("AWAKE SWAPPED");
 
-            Vector3 tempX = joystick_move.transform.localPosition;
-            joystick_move.transform.localPosition = joystick_action.transform.localPosition;
-            joystick_action.transform.localPosition = tempX;
+            //    Vector3 tempX = joystick_move.transform.localPosition;
+            //    joystick_move.transform.localPosition = joystick_action.transform.localPosition;
+            //    joystick_action.transform.localPosition = tempX;
         }
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -56,6 +56,8 @@ public class SettingsMngr : MonoBehaviour {
         Vector3 tempX = joystick_move.transform.localPosition;
         joystick_move.transform.localPosition = joystick_action.transform.localPosition;
         joystick_action.transform.localPosition = tempX;
+        joystick_move.GetComponent<CnControls.SimpleJoystick1>().swap();
+        joystick_action.GetComponent<CnControls.SimpleJoystickAction1>().swap();
         PlayerPrefs.SetInt("Swapped", Mathf.Abs(PlayerPrefs.GetInt("Swapped") - 1));
     }
 }
