@@ -46,6 +46,8 @@ public class GameMenu : MonoBehaviour {
 
         dialogSystem = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<DialogObject>();
         settingManager = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsMngr>();
+
+        StaticIngameData.gameMenu = this;
     } 
 
     void Start () {
