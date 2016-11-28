@@ -23,9 +23,9 @@ public class PeasantLineScript : MonoBehaviour {
         if (Bezier == null)
             return;
 
-        int NumOfPeasants = (int)(25 * (StaticData.Reputation / 100)) + 1;
+        int NumOfPeasants = (int)(20 * (StaticData.Reputation / 100)) + 1;
         //float PeasantDist = 1f / NumOfPeasants;
-        float PeasantDist = 0.04f;
+        float PeasantDist = 0.08f;
 
         float height = PeasantPrfab.GetComponent<Image>().rectTransform.sizeDelta.y / 2;
 
