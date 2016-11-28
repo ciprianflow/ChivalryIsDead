@@ -55,9 +55,8 @@ public class EndScreen : MonoBehaviour {
 	// Update is called once per frame
 	void showMonsters () {
 
-
         //Debug.Log("IMP!---------------");
-        List<MonsterAI> list = StaticIngameData.mapManager.OM.GetMonsters();
+        List<MonsterAI> list = StaticIngameData.mapManager.GetObjectiveManager().GetMonsters();
             
         Debug.Log(list.Count);
         //better ways
