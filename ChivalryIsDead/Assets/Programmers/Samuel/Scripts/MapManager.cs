@@ -32,7 +32,7 @@ public class MapManager : MonoBehaviour {
             QuestTarget = staticProtectObjects.GetChild(0);
 
         areas = transform.GetComponent<AreaScript>();
-        endLetter = StaticIngameData.gameMenu.endLetter;
+        
         OM = new ObjectiveManager();
         StaticIngameData.mapManager = this;
 
@@ -47,6 +47,7 @@ public class MapManager : MonoBehaviour {
     {
         OM.LoadAllObjectives();
         InitQuest();
+        endLetter = StaticIngameData.gameMenu.endLetter;
     }
 
     public void InitQuest()
