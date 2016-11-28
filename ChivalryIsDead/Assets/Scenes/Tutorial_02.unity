@@ -168,7 +168,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 43.44
+      value: 42.32
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -176,7 +176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.27
+      value: 5.39
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7821,8 +7821,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076890307}
-  m_LocalRotation: {x: 0.35781822, y: -0.6105321, z: 0.35897294, w: 0.60856813}
-  m_LocalPosition: {x: 51.707195, y: 15.545988, z: 3.8813376}
+  m_LocalRotation: {x: 0.36174223, y: -0.6125695, z: 0.37141412, w: 0.5966177}
+  m_LocalPosition: {x: 48.030457, y: 12.184471, z: 5.038505}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 59.525, y: 316.884, z: -2.6880002}
   m_Children: []
@@ -7841,23 +7841,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Areas:
   - serializedVersion: 2
-    x: 32.57636
+    x: 27.927471
     y: -16.565578
-    width: 21.428762
+    width: 20.51461
     height: 32.311295
   FocusPoints:
-  - {x: 43.057396, y: 0, z: 3.853468}
+  - {x: 41.67866, y: 0, z: 4.870888}
   CameraPoints:
-  - {x: 51.707195, y: 15.545988, z: 3.8813376}
+  - {x: 48.030457, y: 12.184471, z: 5.038505}
   AreaColor:
   - {r: 0.9, g: 0.19999999, b: 0.41724128, a: 1}
-  cameraTransitionTime: 1
+  target: {fileID: 864839253}
+  Speed: 1
   rotationDamping: 0.8
   positionDamping: 0.8
-  FixedPosition: 0
+  FixedCamera: 0
   InstantTransisition: 0
-  FixedRotation: 1
-  FixedZAxis: 0
+  LockRotation: 1
+  LockZAxis: 0
+  LockPosInsideArea: 1
   EnableTransistionCurve: 0
   curve:
     serializedVersion: 2
@@ -7865,7 +7867,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  target: {fileID: 864839253}
 --- !u!4 &2084680518 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010956516300, guid: a1389bf65a6b1f44b8ced17f9fc847f3,
