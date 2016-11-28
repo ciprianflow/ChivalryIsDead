@@ -105,7 +105,6 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogOne()
     {
-        Debug.Log("in here!");
         //yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
