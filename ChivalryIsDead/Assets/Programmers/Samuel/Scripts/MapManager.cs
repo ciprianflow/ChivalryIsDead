@@ -25,7 +25,7 @@ public class MapManager : MonoBehaviour {
 
     void Awake()
     {
-        var staticProtectObjects = transform.Find("StaticProtectObjects");
+        var staticProtectObjects = transform.FindChild("StaticProtectObjects");
         if (staticProtectObjects == null)
             return;
         else
