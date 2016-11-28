@@ -132,21 +132,7 @@ public class HubDataManager : MonoBehaviour {
             peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
         }
 
-        GenerateDLCQuest();
-    }
-
-    private void GenerateDLCQuest()
-    {
-        Debug.LogWarning("Something just aint right...");
-        //GameObject QuestButtonObj = Instantiate(QuestButton);
-        //QuestButtonObj.transform.SetParent(ContentPane.transform);
-        //Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
-        //newQuestText.text = "Most awesome quest ever!";
-
-        //Button b = newQuestText.transform.parent.GetComponent<Button>();
-
-        /// SetDLCPopUp call following. This should be integrated into the final code.
-        //b.onClick.AddListener(() => SetDLCPopUp(true));
+        //GenerateDLCQuest();
     }
 
     public void SelectQuest()

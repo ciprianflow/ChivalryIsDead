@@ -393,7 +393,7 @@ public class PlayerScript : MonoBehaviour {
     public void EndState(int a) {
         if (a == currentAttack) {
             Attackended = true;
-            Debug.Log("STATE ENDED");
+            //Debug.Log("STATE ENDED");
         }
     }
 
@@ -484,7 +484,7 @@ public class PlayerScript : MonoBehaviour {
 
         Attackended = false;
 
-        Debug.Log("isattacking = " + attacking);
+        //Debug.Log("isattacking = " + attacking);
         if (overreacting)
             return;
 

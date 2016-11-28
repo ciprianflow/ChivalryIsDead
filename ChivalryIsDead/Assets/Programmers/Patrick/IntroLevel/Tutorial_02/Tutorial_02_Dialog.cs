@@ -133,7 +133,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         procceed = false;
         ControlMove.SetActive(true);
-        Debug.Log("DRINK MORE NIKOLINE");
+        //Debug.Log("DRINK MORE NIKOLINE");
         Time.timeScale = 1f;
         swordAnimator.speed = 1f;
         skipAnimator.speed = 1f;

@@ -223,7 +223,7 @@ public class CameraMovement : MonoBehaviour {
 
     void setPos()
     {
-        Debug.Log("Setting camera position");
+        //Debug.Log("Setting camera position");
         //Set height and distance
         transform.position = CP;
 
@@ -232,7 +232,7 @@ public class CameraMovement : MonoBehaviour {
 
     void setRot()
     {
-        Debug.Log("Setting camera rotation");
+        //Debug.Log("Setting camera rotation");
 
         Quaternion rotation = Quaternion.LookRotation(FP - transform.position);
         transform.rotation = rotation;

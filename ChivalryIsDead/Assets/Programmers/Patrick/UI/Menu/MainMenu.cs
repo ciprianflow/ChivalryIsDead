@@ -11,7 +11,10 @@ public class MainMenu : MonoBehaviour {
     Scene testGame;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
     }
