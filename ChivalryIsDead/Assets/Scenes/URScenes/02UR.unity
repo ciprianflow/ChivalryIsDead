@@ -7456,8 +7456,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076890307}
-  m_LocalRotation: {x: 0.25525075, y: -0.7215509, z: 0.33524022, w: 0.5493864}
-  m_LocalPosition: {x: 22.426983, y: 11.984718, z: 8.249041}
+  m_LocalRotation: {x: 0.2853815, y: -0.65181845, z: 0.29082516, w: 0.63961774}
+  m_LocalPosition: {x: 21.611826, y: 9.955381, z: 5.727235}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 3.7200003, y: 0, z: 0}
   m_Children: []
@@ -7477,22 +7477,24 @@ MonoBehaviour:
   Areas:
   - serializedVersion: 2
     x: 3.3645039
-    y: -0.5217285
+    y: -13.043621
     width: 18.498547
-    height: 19.141066
+    height: 26.494383
   FocusPoints:
   - {x: 12.677981, y: 0, z: 5.5584164}
   CameraPoints:
-  - {x: 22.426983, y: 11.984718, z: 8.249041}
+  - {x: 21.611826, y: 9.955381, z: 5.727235}
   AreaColor:
   - {r: 0.69350153, g: 0.34807524, b: 0.8161765, a: 1}
-  cameraTransitionTime: 1
+  target: {fileID: 864839253}
+  Speed: 1
   rotationDamping: 0.8
   positionDamping: 0.8
-  FixedPosition: 0
+  FixedCamera: 0
   InstantTransisition: 0
-  FixedRotation: 1
-  FixedZAxis: 0
+  LockRotation: 1
+  LockZAxis: 0
+  LockPosInsideArea: 1
   EnableTransistionCurve: 0
   curve:
     serializedVersion: 2
@@ -7500,7 +7502,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  target: {fileID: 864839253}
 --- !u!1001 &2100336942
 Prefab:
   m_ObjectHideFlags: 0
