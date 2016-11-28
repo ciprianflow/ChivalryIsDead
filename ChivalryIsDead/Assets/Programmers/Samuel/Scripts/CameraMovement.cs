@@ -156,11 +156,11 @@ public class CameraMovement : MonoBehaviour {
 
     [Header("Fixed Camera Settings")]
     [Tooltip("If enabled camera will lock to the CP and FP inside the targets current area")]
-    public bool FixedCamera = true;
+    public bool FixedCamera = false;
     [Tooltip("If enabled will do instant transistions between the areas")]
     public bool InstantTransisition = false;
     [Header("Free Camera Settings")]
-    public bool LockRotation = false;
+    public bool LockRotation = true;
     public bool LockZAxis = false;
     public bool LockPosInsideArea = true;
 
@@ -311,5 +311,4 @@ public class CameraMovement : MonoBehaviour {
         this.enabled = false;
         this.GetComponent<KillCam>().enabled = true;
     }
-
 }
