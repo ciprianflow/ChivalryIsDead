@@ -101,6 +101,8 @@ namespace CnControls
         protected VirtualAxis HorizintalAxis;
         protected VirtualAxis VerticalAxis;
 
+        private bool swapped = true;
+
 
         private float SX;
         private float SY;

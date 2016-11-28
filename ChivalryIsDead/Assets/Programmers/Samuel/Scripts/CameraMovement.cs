@@ -24,7 +24,7 @@ public class CameraMovement : MonoBehaviour {
     {
         if (target)
         {
-            if (FixedPosition)
+            if (FixedCamera)
             {
                 UpdateCameraMovementTimer();
             
@@ -36,6 +36,7 @@ public class CameraMovement : MonoBehaviour {
                 }
             }else
             {
+                updateAreaCamVariblesSimple();
                 movePos();
                 moveRot();
             }   
@@ -97,6 +98,13 @@ public class CameraMovement : MonoBehaviour {
         }
     }
 
+    void updateAreaCamVariblesSimple()
+    {
+        UpdateRectsContainingPlayer();
+       // updatePoint(FocusPoints, out FP);
+        //updatePoint(CameraPoints, out CP);
+    }
+
     void UpdateRectsContainingPlayer()
     {  
         RectsContainingTarget.Clear();
@@ -132,9 +140,13 @@ public class CameraMovement : MonoBehaviour {
     private Vector3 CP; // Camera Point
     private Vector3 distToFP;
 
+    [Header("GameObjects")]
+    [Tooltip("Target that the camera is going to focus on ")]
+    public Transform target;
+
     [Header("Camera Variables")]
-    [Tooltip("Camera Transition Time")]
-    public float cameraTransitionTime = 1f;
+    [Tooltip("Camera Transition Time for fixed camera, for free camera its the general speed")]
+    public float Speed = 1f;
     [Tooltip("Determines the amount of damping on the rotation")]
     [Range(0.0f, 3.0f)]
     public float rotationDamping = 1.2f;
@@ -142,20 +154,20 @@ public class CameraMovement : MonoBehaviour {
     [Range(0.0f, 3.0f)]
     public float positionDamping = 1.2f;
 
-    [Header("Camera Settings")]
-    public bool FixedPosition = true;
+    [Header("Fixed Camera Settings")]
+    [Tooltip("If enabled camera will lock to the CP and FP inside the targets current area")]
+    public bool FixedCamera = true;
+    [Tooltip("If enabled will do instant transistions between the areas")]
     public bool InstantTransisition = false;
-    public bool FixedRotation = false;
-    public bool FixedZAxis = false;
+    [Header("Free Camera Settings")]
+    public bool LockRotation = false;
+    public bool LockZAxis = false;
+    public bool LockPosInsideArea = true;
 
     [Header("Transistion Curve")]
     [Tooltip("Enabling this will smooth the transition To the curve beneath")]
     public bool EnableTransistionCurve = false;
     public AnimationCurve curve;
-
-    [Header("GameObjects")]
-    [Tooltip("Target that the camera is going to focus on ")]
-    public Transform target;
 
     //Area transition
     private float cameraMovementT = 0f;
@@ -167,20 +179,39 @@ public class CameraMovement : MonoBehaviour {
     {
 
         //Set height and distance
-        if (!FixedPosition)
+        if (!FixedCamera)
         {
             Vector3 pos;
-            if (FixedZAxis)
+            float multiplyer = 1f;
+            if (LockZAxis)
                 pos = CP + new Vector3(0,0,target.position.z) + new Vector3(0, target.position.y, 0);
             else
             {
                 pos = distToFP + target.position + new Vector3(0, target.position.y, 0);
 
                 if (Vector3.Distance(target.position, transform.position) < distToFP.magnitude)
-                    transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping);
+                    multiplyer = 2f;
             }
-                
-            transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping);
+
+            if (LockPosInsideArea && RectsContainingTarget.Count > 0)
+            {
+                Rect area = Areas[RectsContainingTarget[0]];
+
+                float maxX = area.xMin + area.width;
+                float maxY = area.yMin + area.height;
+
+                if (pos.x > maxX)
+                    pos.x = maxX;
+                else if (pos.x < area.xMin)
+                    pos.x = area.xMin;
+
+                if (pos.z > maxY)
+                    pos.z = maxY;
+                else if (pos.z < area.yMin)
+                    pos.z = area.yMin;
+            }
+
+            transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping * multiplyer * Speed);
 
         }
         else // FOR FIXED POSITION
@@ -192,9 +223,9 @@ public class CameraMovement : MonoBehaviour {
 
     void moveRot()
     {
-        if (!FixedPosition)
+        if (!FixedCamera)
         {
-            if (FixedRotation)
+            if (LockRotation)
                 return;
 
             Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
@@ -210,9 +241,9 @@ public class CameraMovement : MonoBehaviour {
     void UpdateCameraMovementTimer()
     {
         if (EnableTransistionCurve)
-            cameraMovementT += (Time.deltaTime / cameraTransitionTime) * curve.Evaluate(cameraMovementT);
+            cameraMovementT += (Time.deltaTime / Speed) * curve.Evaluate(cameraMovementT);
         else
-            cameraMovementT += Time.deltaTime / cameraTransitionTime;
+            cameraMovementT += Time.deltaTime / Speed;
 
         if(cameraMovementT >= 1)
         {

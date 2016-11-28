@@ -20,7 +20,7 @@ public class Knight_Events : MonoBehaviour {
     }
 
     void EndState(int value) {
-        Debug.Log(value);
+        //Debug.Log(value);
         ps.EndState(value);
     }
 
