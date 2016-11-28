@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System;
 
+
 public enum PlayerState
 {
     IDLE, HIT, ATTACKING, TAUNTING
@@ -254,7 +255,7 @@ public class PlayerActionController : MonoBehaviour
 
         //can overreact
         playerState = PlayerState.HIT;
-        Debug.Log("HIT");
+        //Debug.Log("HIT");
         //GetComponentInChildren<Animator>().SetTrigger("TakeDamage");
         //GetComponentInChildren<Animator>().SetLayerWeight(8, 1);
         GetComponent<PlayerScript>().takeDamage();

@@ -142,7 +142,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         stateFunc = Idle;
         //if(anim != null)
         //anim.SetFloat("Speed", 0);
-        Debug.Log("TOIDLE");
+        //Debug.Log("TOIDLE");
 
     }
 

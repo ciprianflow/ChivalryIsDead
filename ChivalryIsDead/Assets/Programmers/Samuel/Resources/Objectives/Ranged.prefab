@@ -521,6 +521,7 @@ GameObject:
   - 195: {fileID: 195000010588756586}
   - 54: {fileID: 54000014071647424}
   - 114: {fileID: 114000010456272666}
+  - 114: {fileID: 114000012002457724}
   m_Layer: 0
   m_Name: Ranged
   m_TagString: Enemy
@@ -1685,7 +1686,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011805207112
 GameObject:
   m_ObjectHideFlags: 1
@@ -6164,8 +6165,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010519441102}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54.050976, y: 23.864422, z: -16.166586}
+  m_LocalRotation: {x: -0, y: 0.69916326, z: -0, w: 0.7149621}
+  m_LocalPosition: {x: 7.3, y: 14.368061, z: 16.67}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -7384,7 +7385,7 @@ Transform:
   m_GameObject: {fileID: 1000010435365774}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: -0.655, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013108909302}
@@ -7932,9 +7933,20 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010519441102}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 549e3827cd0604f4f82a54d5aaaf337f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000012002457724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010519441102}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5757e34d7fe5bf44c904e047efe3f0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114000012202132322
@@ -7965,9 +7977,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 12
-  Health: 2
+  Health: 3
   attackDamage: 5
-  attackTime: 3
+  attackTime: 2
   attackRange: 10
   playerAction: {fileID: 0}
   targetObject: {fileID: 0}
@@ -8281,12 +8293,12 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1336589160
+  randomSeed: -974528683
   InitialModule:
     serializedVersion: 2
     enabled: 1
     startLifetime:
-      scalar: 3.06
+      scalar: 0.51
       maxCurve:
         serializedVersion: 2
         m_Curve:

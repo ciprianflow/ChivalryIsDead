@@ -12,11 +12,12 @@ public class ThrowRock : MonoBehaviour {
 
 
     void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        dustParticles.GetComponent<ParticleSystem>().Stop();
+
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 
@@ -45,15 +46,19 @@ public class ThrowRock : MonoBehaviour {
         if (rock.transform.parent == hand.transform) {
             rock.GetComponent<Rigidbody>().useGravity = true;
             rock.GetComponent<BoxCollider>().enabled = true;
+            rock.GetComponent<Rigidbody>().isKinematic = false;
+            rock.GetComponent<Projectile>().originMonster = this.transform.parent.GetComponent<MonsterAI>();
             rock.transform.parent = null;
+            Debug.Log("JFWIAO");
         }
 
     }
     public void setDust(int state) {
-        if(state == 1)
-            dustParticles.SetActive(true);
-        else 
-            dustParticles.SetActive(false);
-        
+        if (state == 1)
+            dustParticles.GetComponent<ParticleSystem>().Play();
+        //dustParticles.SetActive(true);
+
+        else
+            dustParticles.GetComponent<ParticleSystem>().Stop();
     }
 }
