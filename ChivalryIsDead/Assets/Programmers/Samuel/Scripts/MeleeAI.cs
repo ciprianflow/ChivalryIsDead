@@ -522,11 +522,14 @@ public class MeleeAI : MonsterAI
             else if(QO != null)
             {
                 Debug.Log("Hit static quest object");
+                anim.SetTrigger("HitObject");
                 QO.takeDamage(GetBaseAttackDamage(), true);
                 base.playerAction.ObjectiveAttacked(this);
                 ChargeToMove();
             }else
             {
+                anim.SetTrigger("HitObject");
+                Debug.Log("hit another monster");
                 ChargeToMove();
             }
         }
