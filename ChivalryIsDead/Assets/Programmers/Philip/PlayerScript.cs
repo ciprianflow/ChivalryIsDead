@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 public class PlayerScript : MonoBehaviour {
     [Header("Variables")]
@@ -534,7 +535,7 @@ public class PlayerScript : MonoBehaviour {
         {
             currentAttack = 2;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0) {
+            if (r == 0 || SceneManager.GetActiveScene().name == "IntroLevel") {
                 anim.SetTrigger("Attack2");
             }
             else if(r == 1) {
@@ -548,7 +549,7 @@ public class PlayerScript : MonoBehaviour {
         {
             currentAttack = 1;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0) {
+            if (r == 0 || SceneManager.GetActiveScene().name == "IntroLevel") {
                 anim.SetTrigger("Attack1");
             }
             else if (r == 1) {

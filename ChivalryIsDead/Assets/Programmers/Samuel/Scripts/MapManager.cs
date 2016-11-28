@@ -25,7 +25,7 @@ public class MapManager : MonoBehaviour {
 
     void Awake()
     {
-        var staticProtectObjects = transform.Find("StaticProtectObjects");
+        var staticProtectObjects = transform.FindChild("StaticProtectObjects");
         if (staticProtectObjects == null)
             return;
         else
@@ -108,13 +108,13 @@ public class MapManager : MonoBehaviour {
             System.Random r = new System.Random();
             foreach (int index in Enumerable.Range(0, sortedAreas[ID].Count).OrderBy(x => r.Next()))
             {
-                Debug.Log(index + " INDEX");
-                Debug.Log(sortedMaxSpawn[ID][index] + " COUNT");
+                //Debug.Log(index + " INDEX");
+                //Debug.Log(sortedMaxSpawn[ID][index] + " COUNT");
                 //If the amount of spawns left is above zero it-sa go (Why dont you like me?, i'ma sorrie green mario)'
                 //If the amount of spawns is below zero its unlimited spawna timaeee.....
                 if(sortedMaxSpawn[ID][index] != 0)
                 {
-                    Debug.Log("SPAWNING OBJECTIVE");
+                    //Debug.Log("SPAWNING OBJECTIVE");
                     sortedMaxSpawn[ID][index]--; //Subtracts one from the amount of monsters able to spawn
                     return areas.GetRandomPointOnRect(sortedAreas[ID][index]); //Return a random point inside the spawn rect
                 }          
@@ -122,7 +122,7 @@ public class MapManager : MonoBehaviour {
         }
 
         //If no suitable spawn area for a monster was found spawn in 0,0
-        Debug.Log("There does not seem to be an area for monster : " + ((monsterType)ID).ToString());
+        //Debug.Log("There does not seem to be an area for monster : " + ((monsterType)ID).ToString());
         return Vector3.zero;
     }
 

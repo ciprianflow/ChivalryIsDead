@@ -4815,7 +4815,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 19.24
+      value: 18.22
       objectReference: {fileID: 0}
     - target: {fileID: 4000010574198558, guid: 2d5405dfae1646047a431fc12876b6d5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -6628,7 +6628,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011317841420, guid: 7cd539373e34e474bbb29d3fdc4e9116, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 15.984915
+      value: 16.238
       objectReference: {fileID: 0}
     - target: {fileID: 4000011317841420, guid: 7cd539373e34e474bbb29d3fdc4e9116, type: 2}
       propertyPath: m_LocalPosition.y
@@ -7487,8 +7487,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2076890307}
-  m_LocalRotation: {x: 0.34764066, y: -0.5976504, z: 0.3210076, w: 0.6472357}
-  m_LocalPosition: {x: 25.957623, y: 13.631678, z: -8.270091}
+  m_LocalRotation: {x: 0.2802853, y: -0.6484386, z: 0.27949646, w: 0.6502687}
+  m_LocalPosition: {x: 25.883953, y: 11.068926, z: -7.581441}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 3.7200003, y: 0, z: 0}
   m_Children: []
@@ -7507,23 +7507,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Areas:
   - serializedVersion: 2
-    x: 10.714019
+    x: 9.516536
     y: -16.300055
-    width: 14.144018
-    height: 18.045542
+    width: 14.235315
+    height: 31.791838
   FocusPoints:
-  - {x: 16.957428, y: 0, z: -7.5519753}
+  - {x: 15.429426, y: 0, z: -7.5519753}
   CameraPoints:
-  - {x: 25.957623, y: 13.631678, z: -8.270091}
+  - {x: 25.883953, y: 11.068926, z: -7.581441}
   AreaColor:
   - {r: 0.8206897, g: 1, b: 0, a: 1}
-  cameraTransitionTime: 1
+  target: {fileID: 864839253}
+  Speed: 1
   rotationDamping: 0.8
   positionDamping: 0.8
-  FixedPosition: 0
+  FixedCamera: 0
   InstantTransisition: 0
-  FixedRotation: 1
-  FixedZAxis: 0
+  LockRotation: 1
+  LockZAxis: 0
+  LockPosInsideArea: 1
   EnableTransistionCurve: 0
   curve:
     serializedVersion: 2
@@ -7531,7 +7533,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  target: {fileID: 864839253}
 --- !u!1001 &2134637707
 Prefab:
   m_ObjectHideFlags: 0
