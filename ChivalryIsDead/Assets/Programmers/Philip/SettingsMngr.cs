@@ -16,8 +16,12 @@ public class SettingsMngr : MonoBehaviour {
     bool settingButtons = false;
 
     // Use this for initialization
-    void Start () {
-	
+    void Awake () {
+	if(PlayerPrefs.GetInt("Swapped") == 1) {
+            Vector3 tempX = joystick_move.transform.localPosition;
+            joystick_move.transform.localPosition = joystick_action.transform.localPosition;
+            joystick_action.transform.localPosition = tempX;
+        }
 	}
 	
 	// Update is called once per frame
@@ -49,6 +53,6 @@ public class SettingsMngr : MonoBehaviour {
         Vector3 tempX = joystick_move.transform.localPosition;
         joystick_move.transform.localPosition = joystick_action.transform.localPosition;
         joystick_action.transform.localPosition = tempX;
-
+        PlayerPrefs.SetInt("Swapped", Mathf.Abs(PlayerPrefs.GetInt("Swapped") - 1));
     }
 }
