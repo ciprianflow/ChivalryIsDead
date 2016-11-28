@@ -140,9 +140,13 @@ public class CameraMovement : MonoBehaviour {
     private Vector3 CP; // Camera Point
     private Vector3 distToFP;
 
+    [Header("GameObjects")]
+    [Tooltip("Target that the camera is going to focus on ")]
+    public Transform target;
+
     [Header("Camera Variables")]
-    [Tooltip("Camera Transition Time")]
-    public float cameraTransitionTime = 1f;
+    [Tooltip("Camera Transition Time for fixed camera, for free camera its the general speed")]
+    public float Speed = 1f;
     [Tooltip("Determines the amount of damping on the rotation")]
     [Range(0.0f, 3.0f)]
     public float rotationDamping = 1.2f;
@@ -164,10 +168,6 @@ public class CameraMovement : MonoBehaviour {
     [Tooltip("Enabling this will smooth the transition To the curve beneath")]
     public bool EnableTransistionCurve = false;
     public AnimationCurve curve;
-
-    [Header("GameObjects")]
-    [Tooltip("Target that the camera is going to focus on ")]
-    public Transform target;
 
     //Area transition
     private float cameraMovementT = 0f;
@@ -211,7 +211,7 @@ public class CameraMovement : MonoBehaviour {
                     pos.z = area.yMin;
             }
 
-            transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping * multiplyer);
+            transform.position = Vector3.Slerp(transform.position, pos, Time.deltaTime * positionDamping * multiplyer * Speed);
 
         }
         else // FOR FIXED POSITION
@@ -241,9 +241,9 @@ public class CameraMovement : MonoBehaviour {
     void UpdateCameraMovementTimer()
     {
         if (EnableTransistionCurve)
-            cameraMovementT += (Time.deltaTime / cameraTransitionTime) * curve.Evaluate(cameraMovementT);
+            cameraMovementT += (Time.deltaTime / Speed) * curve.Evaluate(cameraMovementT);
         else
-            cameraMovementT += Time.deltaTime / cameraTransitionTime;
+            cameraMovementT += Time.deltaTime / Speed;
 
         if(cameraMovementT >= 1)
         {
