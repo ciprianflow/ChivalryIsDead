@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
+[Flags]
 public enum HouseStatus
 {
-    Random, Never, Always
+    Random, Bakery, Farmhouse
+    //Random, Never, Always
 }
 
 [Serializable]

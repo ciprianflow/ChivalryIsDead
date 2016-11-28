@@ -173,10 +173,24 @@ public class HubDataManager : MonoBehaviour {
         StaticData.currQuest = (MultiQuest)quest;
         var allObjectives = StaticData.currQuest.GetAllObjectives().ToList();
         var hasHouse = allObjectives.Any(o => (o as BaseObjective).targetID == 22);
+        var isBakeryOrFarmHouse = StaticData.currQuest.Data.PresentFriends & (FriendlyTypes.Bakery | FriendlyTypes.Farmhouse);
 
         List<int> houseIdxs;
-        if (hasHouse)   houseIdxs = new List<int>() { 4, 6 };
-        else            houseIdxs = new List<int>() { 1, 2, 3, 5 };
+        if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) && HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Farmhouse)) {
+            // Reduce to one or the other
+            if (Convert.ToBoolean(UnityEngine.Random.Range(0, 2))) {
+                houseIdxs = new List<int>() { 6 };
+            } else {
+                houseIdxs = new List<int>() { 4 };
+            }
+        } else if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) || HasFlag(isBakeryOrFarmHouse, (int) FriendlyTypes.Farmhouse)) {
+            if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery))
+                houseIdxs = new List<int>() { 6 };
+            else
+                houseIdxs = new List<int>() { 4 };
+        } else {
+            houseIdxs = new List<int>() { 1, 2, 3, 5 };
+        }   
 
         var mapIdx = UnityEngine.Random.Range(0, houseIdxs.Count);
         var mapNum = houseIdxs[mapIdx];
@@ -275,4 +289,9 @@ public class HubDataManager : MonoBehaviour {
     }
 
     #endregion
+
+    private bool HasFlag(FriendlyTypes e, int value)
+    {
+        return (e & (FriendlyTypes)value) == e;
+    }
 }

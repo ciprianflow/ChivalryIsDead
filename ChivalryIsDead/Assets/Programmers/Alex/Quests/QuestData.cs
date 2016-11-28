@@ -17,7 +17,7 @@ public enum EnemyTypes
 [Flags]
 public enum FriendlyTypes
 {
-    None, Sheep, House
+    None, Sheep, Bakery, Farmhouse
 }
 
 public struct QuestData
@@ -56,8 +56,10 @@ public struct QuestData
         List<string> friendTypes = new List<string>();
         if ((PresentFriends & FriendlyTypes.Sheep) == FriendlyTypes.Sheep)
             friendTypes.Add("Sheep");
-        if ((PresentFriends & FriendlyTypes.House) == FriendlyTypes.House)
-            friendTypes.Add("House");
+        if ((PresentFriends & FriendlyTypes.Bakery) == FriendlyTypes.Bakery)
+            friendTypes.Add("Bakery");
+        if ((PresentFriends & FriendlyTypes.Farmhouse) == FriendlyTypes.Farmhouse)
+            friendTypes.Add("Farmhouse");
 
         return friendTypes;
     }

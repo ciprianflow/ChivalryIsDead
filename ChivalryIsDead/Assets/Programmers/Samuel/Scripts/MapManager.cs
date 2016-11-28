@@ -27,7 +27,7 @@ public class MapManager : MonoBehaviour {
     {
         var staticProtectObjects = transform.FindChild("StaticProtectObjects");
         if (staticProtectObjects == null)
-            return;
+            QuestTarget = null; // DO NOT RETURN FROM HERE! Returning renders the objective manager uninitialized.
         else
             QuestTarget = staticProtectObjects.GetChild(0);
 

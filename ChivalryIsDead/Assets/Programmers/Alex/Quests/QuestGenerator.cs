@@ -63,8 +63,8 @@ public class QuestGenerator
         var protQuest = new BaseQuest();
 
         var curHouseStatus = QuestParameters.DifficultyDefs[(int)CurrentDifficulty].houseStatus;
-        if ( curHouseStatus == HouseStatus.Always || 
-            (curHouseStatus == HouseStatus.Random && System.Convert.ToBoolean(rng.Next(0, 2))))
+        if ( HasFlag(curHouseStatus, (int)HouseStatus.Bakery) || HasFlag(curHouseStatus, (int)HouseStatus.Farmhouse) ||
+            (HasFlag(curHouseStatus, (int)HouseStatus.Random) && System.Convert.ToBoolean(rng.Next(0, 2))))
         {
             protQuest.Objectives.Add(new ProtectTargetObjective(22));
             numFriendlies--;
@@ -119,7 +119,8 @@ public class QuestGenerator
 
         var hasHouse = MQ.GetAllObjectives().Any(o => (o as BaseObjective).targetID == 22);
         int AvailableFriendlies = (int)FriendlyTypes.Sheep;
-        AvailableFriendlies += hasHouse ? (int)FriendlyTypes.House : (int)FriendlyTypes.None;
+        AvailableFriendlies += hasHouse && (CurrentDifficulty == Difficulty.Easy || CurrentDifficulty == Difficulty.Medium) ? (int)FriendlyTypes.Bakery : (int)FriendlyTypes.None;
+        AvailableFriendlies += hasHouse && (CurrentDifficulty == Difficulty.Medium || CurrentDifficulty == Difficulty.Hard) ? (int)FriendlyTypes.Farmhouse : (int)FriendlyTypes.None;
         MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies, (FriendlyTypes)AvailableFriendlies);
 
         return MQ;
@@ -161,5 +162,10 @@ public class QuestGenerator
         }
 
         return MQ;
+    }
+
+    private bool HasFlag(HouseStatus e, int value)
+    {
+        return (e & (HouseStatus)value) == e;
     }
 }
