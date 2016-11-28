@@ -7,7 +7,7 @@ using System.Linq;
 [RequireComponent(typeof(AreaScript))]
 public class MapManager : MonoBehaviour {
 
-    ObjectiveManager OM;
+    public ObjectiveManager OM;
     AreaScript areas;
 
     Transform QuestTarget;

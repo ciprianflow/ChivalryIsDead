@@ -5,6 +5,7 @@ public class ObjectiveManager {
 
     List<IObjectiveTarget> objectives = new List<IObjectiveTarget>();
     Dictionary<int, GameObject> objectivePrefabs = new Dictionary<int, GameObject>();
+    List<MonsterAI> monsters = new List<MonsterAI>();
 
     Transform objectiveListObject;
 
@@ -40,6 +41,9 @@ public class ObjectiveManager {
             Monster.targetObject = StaticIngameData.player;
         }
         Monster.InitMonster();
+
+        monsters.Add(Monster);
+
     }
 
     /// <summary>
@@ -69,6 +73,11 @@ public class ObjectiveManager {
     public List<IObjectiveTarget> GetObjectives()
     {
         return objectives;
+    }
+
+    public List<MonsterAI> GetMonsters()
+    {
+        return monsters;
     }
 
 
