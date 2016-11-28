@@ -7,6 +7,7 @@ public class SuicideAI : MonsterAI
 
     [Header("Suicide Specific Variables")]
     public float tauntTime = 5f;
+    public float deSpawnRange = 8f;
     [Space]
     public float explosionForce = 750f;
     public float explosionRange = 4f;
@@ -60,10 +61,14 @@ public class SuicideAI : MonsterAI
 
     public override void Move() {
 
+        if (RangeCheck(deSpawnRange))
+        {
+            MoveToIdle();
+        }
+
         if (RangeCheckNavMesh()) {
             UpdateNavMeshPathDelayed();
-        }
-        else {
+        }else {
             MoveToAttack();
         }
     }
@@ -223,5 +228,14 @@ public class SuicideAI : MonsterAI
         Explode();
 
 
+    }
+
+    void MoveToIdle()
+    {
+        state = State.Idle;
+        stateFunc = Idle;
+        StopNavMeshAgent();
+        aggroed = false;
+        anim.SetTrigger("Taunted");
     }
 }

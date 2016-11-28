@@ -2388,7 +2388,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1210866801
 Transform:
   m_ObjectHideFlags: 0
@@ -2463,6 +2463,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 22
   health: 2
+  ForceDestroyOnDeath: 0
 --- !u!208 &1210866806
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -3557,7 +3558,7 @@ Prefab:
       objectReference: {fileID: 969417774}
     - target: {fileID: 1000013317938470, guid: 8e416516cba371e4c8304dc2eb1dca99, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114000012938104204, guid: 8e416516cba371e4c8304dc2eb1dca99,
         type: 2}
@@ -4690,13 +4691,15 @@ MonoBehaviour:
   AreaColor:
   - {r: 0.9103451, g: 0, b: 1, a: 1}
   - {r: 0.2, g: 0.2, b: 0.9, a: 1}
-  cameraTransitionTime: 2
+  target: {fileID: 969417774}
+  Speed: 1
   rotationDamping: 1.2
   positionDamping: 1.2
-  FixedPosition: 0
+  FixedCamera: 0
   InstantTransisition: 0
-  FixedRotation: 1
-  FixedZAxis: 0
+  LockRotation: 1
+  LockZAxis: 0
+  LockPosInsideArea: 1
   EnableTransistionCurve: 1
   curve:
     serializedVersion: 2
@@ -4724,7 +4727,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
-  target: {fileID: 969417774}
 --- !u!114 &2076890314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4877,7 +4879,7 @@ Prefab:
       objectReference: {fileID: 969417774}
     - target: {fileID: 1000010519441102, guid: f5b7f9482cc3b034d969dc365fd73a25, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114000013483877182, guid: f5b7f9482cc3b034d969dc365fd73a25,
         type: 2}

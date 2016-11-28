@@ -172,6 +172,11 @@ namespace CnControls
         private bool cancel;
         //private bool question;
 
+        private bool swapped = false;
+
+        private float xClamp;
+        private float yBotClamp;
+        private float yTopClamp;
 
         GameObject player;
 
@@ -203,6 +208,12 @@ namespace CnControls
 
             _stickTransform.anchoredPosition = _initialStickPosition;
             _baseTransform.anchoredPosition = _initialBasePosition;
+
+            xClamp = GetComponent<RectTransform>().rect.width + (transform.parent.GetComponent<RectTransform>().rect.width / 2) - ((_baseTransform.rect.width / 2) + (_stickTransform.rect.width / 2)) - 120;
+            //xClamp = GetComponent<RectTransform>().rect.width + (transform.parent.GetComponent<RectTransform>().rect.width / 2) - xClamp;
+
+            yBotClamp = (_baseTransform.rect.height / 2) + (_stickTransform.rect.height / 2) + 120;
+            yTopClamp = GetComponent<RectTransform>().rect.height - yBotClamp;
 
             _oneOverMovementRange = 1f / MovementRange;
 
@@ -586,9 +597,26 @@ namespace CnControls
                 RectTransformUtility.ScreenPointToWorldPointInRectangle(_baseTransform, eventData.position,
                     CurrentEventCamera, out localBasePosition);
 
-                _baseTransform.position = localBasePosition;
-                _stickTransform.position = localStickPosition;
+                float newX = localBasePosition.x;
+                float newY = localBasePosition.y;
+
+                if ((swapped && localBasePosition.x < xClamp) || (!swapped && localBasePosition.x > xClamp)) {
+                    newX = xClamp;
+                }
+                if (localBasePosition.y > yTopClamp) {
+                    newY = yTopClamp;
+                    //Debug.Log("CLAMPED");
+                }
+                if (localBasePosition.y < yBotClamp) {
+                    newY = yBotClamp;
+                    //Debug.Log("CLAMPED");
+                }
+                //Debug.Log(GetComponent<RectTransform>().rect.height);
+
+                _baseTransform.position = new Vector3(newX, newY, 0);
+                _stickTransform.position = new Vector3(newX, newY, 0);
                 _intermediateStickPosition = _stickTransform.anchoredPosition;
+
             }
             //else
             //{
@@ -614,6 +642,14 @@ namespace CnControls
             //ActionBottom.gameObject.SetActive(!isHidden);
             //Stick.gameObject.SetActive(!isHidden);
             //Stick.gameObject.GetComponent<Image>().enabled = isHidden;
+        }
+
+        public void swap() {
+            swapped = !swapped;
+            if (!swapped)
+                xClamp = GetComponent<RectTransform>().rect.width + (transform.parent.GetComponent<RectTransform>().rect.width / 2) - xClamp;
+            if (swapped)
+                xClamp = (transform.parent.GetComponent<RectTransform>().rect.width) - xClamp;
         }
     }
 }
