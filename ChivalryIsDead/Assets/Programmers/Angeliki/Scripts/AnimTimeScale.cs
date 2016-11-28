@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class AnimTimeScale : MonoBehaviour {
-
-	// Use this for initialization
-	void Awake () {
-        Animator anim = GetComponent<Animator>();
+    Animator anim;
+    // Use this for initialization
+    void Awake () {
+        anim = GetComponent<Animator>();
         anim.speed = 10f;
 	}
 	
@@ -16,6 +16,7 @@ public class AnimTimeScale : MonoBehaviour {
 
     public void CloseWindow()
     {
+        anim.SetBool("playGetHit", false);
         gameObject.SetActive(false);
     }
 }

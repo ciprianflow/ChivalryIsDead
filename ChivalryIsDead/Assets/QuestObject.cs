@@ -7,18 +7,16 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
 
     public int id = 22;
     public int health = 2;
+    public bool ForceDestroyOnDeath = false;
 
     HealthScript healthScript;
     //private PlayerBehaviour pb;
     // Use this for initialization
     void Awake()
     {
-
         //healthScript = transform.GetComponent<HealthScript>();
         healthScript = new HealthScript(health);
-
         //pb = new PlayerBehaviour("rep");
-
     }
 
     public int Health
@@ -54,7 +52,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
 
         if (healthScript.takeDamage(dmg))
         {   
-            if(destroy)
+            if(destroy || ForceDestroyOnDeath)
                 gameObject.SetActive(false);
 
             Debug.Log("Quest Objective died");
