@@ -32,6 +32,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     int count;
 
     public GameObject tutImage;
+    public Animator tutImgAnimator;
 
     // Use this for initialization
     void Start()
@@ -163,6 +164,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         tutImage.SetActive(true);
+        tutImgAnimator.SetBool("playGetHit", true);
         skipBtn.SetActive(false);
 
         count = 0;
@@ -241,6 +243,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         skipAnimator.speed = 10f;
         enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollB;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
+        tutImage.SetActive(true);
+        tutImgAnimator.SetBool("playLearnTaunt", true);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 

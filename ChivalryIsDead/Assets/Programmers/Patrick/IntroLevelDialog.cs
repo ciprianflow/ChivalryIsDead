@@ -14,6 +14,8 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject ControlMove;
     public GameObject ControlHit;
 
+    public GameObject TriggerZoneOne;
+
     public GameObject InvisWallOne;
     public GameObject InvisWallTwo;
     bool procceed;
@@ -48,12 +50,13 @@ public class IntroLevelDialog : MonoBehaviour {
         {
             if (Vector3.Distance(startingPos, Player.transform.position) > 0.01f)
             {
-                gameObject.GetComponent<DialogObject>().StopDialog();
+                //gameObject.GetComponent<DialogObject>().StopDialog();
 
                 handAnimator.speed = 1f;
                 swordAnimator.speed = 1f;
                 Time.timeScale = 1f;
                 handAnimator.SetBool("playLeftJoy", false);
+                skipBtn.SetActive(true);
                 halfScreen.SetActive(false);
                 ScreenFreeze.SetActive(false);
 
@@ -66,7 +69,7 @@ public class IntroLevelDialog : MonoBehaviour {
         {
             if (Player.GetComponent<PlayerScript>().attacking)
             {
-                gameObject.GetComponent<DialogObject>().StopDialog();
+                //gameObject.GetComponent<DialogObject>().StopDialog();
                 AttackEvent();
                 learnedToAttack = true;
             }
@@ -83,7 +86,7 @@ public class IntroLevelDialog : MonoBehaviour {
         ControlHit.SetActive(false);
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-
+        Invoke("SkipCam", 13f);
         //yield return new WaitForSeconds(2f);
 
 
@@ -94,9 +97,16 @@ public class IntroLevelDialog : MonoBehaviour {
          
     }
 
+    void SkipCam()
+    {
+        TriggerZoneOne.SetActive(false);
+        StartCoroutine("DialogOne");
+    }
+
     public IEnumerator DialogOne()
     {
-        yield return new WaitUntil(SkipAndPlay);
+        Debug.Log("in here!");
+        //yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
         //yield return new WaitForSeconds(13f);
@@ -130,13 +140,14 @@ public class IntroLevelDialog : MonoBehaviour {
         handAnimator.speed = 10f;
         handAnimator.SetBool("playLeftJoy", true);
         ControlMove.SetActive(true);
+        yield return null;
     }
 
 
     public bool SkipAndPlay()
     {
-        //return procceed;
-        return true;
+        return procceed;
+        //return true;
     }
 
     public void CallableSkip()
@@ -173,6 +184,7 @@ public class IntroLevelDialog : MonoBehaviour {
     public void EventOne()
     {
         handAnimator.SetBool("playRightJoy", false);
+        skipBtn.SetActive(true);
         InvisWallTwo.SetActive(false);
     }
 
@@ -203,22 +215,24 @@ public class IntroLevelDialog : MonoBehaviour {
     void AttackEvent()
     {
         handAnimator.SetBool("playRightJoy", false);
+        skipBtn.SetActive(true);
         halfScreen.SetActive(false);
         handAnimator.speed = 1f;
         swordAnimator.speed = 1f;
         Time.timeScale = 1f;
         ScreenFreeze.SetActive(false);
         ControlMove.SetActive(true);
-        StartCoroutine("DialogFour");
+        //StartCoroutine("DialogFour");
     }
 
     public IEnumerator DialogFour()
     {
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
         //yield return new WaitForSeconds(2);
 
         //UI.GetComponent<GameMenu>().Sword();
+        yield return null;
         
 
     }

@@ -14,6 +14,8 @@ public class PeasantLineScript : MonoBehaviour {
 
     List<GameObject> Peasants = new List<GameObject>();
 
+    public Sprite[] PeasantSprites;
+
     public void FillPeasantLine()
     {
         BezierSpline Bezier = transform.GetComponent<BezierSpline>();
@@ -48,6 +50,11 @@ public class PeasantLineScript : MonoBehaviour {
             PeasantObj.GetComponent<RectTransform>().rotation = new Quaternion(0, -180, 0, 1);
         PeasantObj.transform.SetParent(this.transform);
         PeasantObj.transform.position = pos;
+
+        if(PeasantSprites != null)
+        {
+            PeasantObj.GetComponent<Image>().sprite = PeasantSprites[Random.Range(0, PeasantSprites.Length)];
+        }
 
         Peasants.Add(PeasantObj);
     }
