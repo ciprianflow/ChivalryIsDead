@@ -21,6 +21,8 @@ namespace CnControls
     /// </summary>
     public class SimpleJoystick1 : MonoBehaviour, IDragHandler, IPointerUpHandler, IPointerDownHandler
     {
+
+        
         /// <summary>
         /// Current event camera reference. Needed for the sake of Unity Remote input
         /// </summary>
@@ -101,8 +103,11 @@ namespace CnControls
         protected VirtualAxis HorizintalAxis;
         protected VirtualAxis VerticalAxis;
 
-        private bool swapped = true;
+        private bool swapped = false;
 
+        private float xClamp;
+        private float yBotClamp;
+        private float yTopClamp;
 
         private float SX;
         private float SY;
@@ -135,7 +140,9 @@ namespace CnControls
             _baseTransform.anchoredPosition = _initialBasePosition;
 
             _oneOverMovementRange = 1f / MovementRange;
-
+            xClamp = (_baseTransform.rect.width / 2) + (_stickTransform.rect.width / 2) - 50;
+            yBotClamp = (_baseTransform.rect.height / 2) + (_stickTransform.rect.height / 2) - 50;
+            yTopClamp = GetComponent<RectTransform>().rect.height - yBotClamp;
             if (HideOnRelease)
             {
                 Hide(true);
@@ -311,11 +318,9 @@ namespace CnControls
 
                     float newX = localBasePosition.x;
                     float newY = localBasePosition.y;
+                    Debug.Log(newX);
 
-                    float xClamp = (JoystickBase.GetComponent<RectTransform>().rect.width / 2) + (Stick.GetComponent<RectTransform>().rect.width / 2) - 50;
-                    float yBotClamp = (JoystickBase.GetComponent<RectTransform>().rect.height / 2) + (Stick.GetComponent<RectTransform>().rect.height / 2) - 50;
-                    float yTopClamp = GetComponent<RectTransform>().rect.height - yBotClamp;
-                    if (localBasePosition.x < xClamp)
+                    if ((!swapped && localBasePosition.x < xClamp) || (swapped && localBasePosition.x > xClamp))
                     {
                         newX = xClamp;
                         //Debug.Log("CLAMPED");
@@ -363,6 +368,16 @@ namespace CnControls
             JoystickBase.gameObject.SetActive(!isHidden);
             Stick.gameObject.SetActive(!isHidden);
         }
-  
+
+        public void swap() {
+            Debug.Log("JDWAIUOJ");
+            swapped = !swapped;
+            if (swapped)
+                xClamp = GetComponent<RectTransform>().rect.width + (transform.parent.GetComponent<RectTransform>().rect.width / 2) - xClamp;
+            if (!swapped)
+                xClamp = (transform.parent.GetComponent<RectTransform>().rect.width) - xClamp;
+
+        }
+
     }
 }
