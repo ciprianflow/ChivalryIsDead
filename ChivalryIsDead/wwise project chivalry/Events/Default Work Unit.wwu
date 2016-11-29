@@ -342,6 +342,16 @@
 														</Element>
 													</ElementList>
 												</Action>
+												<Action Name="Stop" ID="{43423000-D13B-44C5-AC4E-1F770EFD965C}" ShortID="2406858" Type="Stop" Scope="One" Global="false">
+													<PropertyList>
+														<Property Name="FadeTime" Type="Real64" Value="0.1"/>
+													</PropertyList>
+													<ElementList>
+														<Element ID="{766F9F9A-D67C-4F9D-A8E2-198D0DAA2156}" Global="false">
+															<ObjectRef Name="pickup_stone" ID="{9AEB5315-69AE-4CC5-B800-F858A73FAAF6}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
 											</ChildrenList>
 										</Event>
 										<Event Name="ranged_taunted" ID="{E88B8650-B620-4B27-914F-5663B754C2A4}">
@@ -1202,12 +1212,20 @@
 						<Event Name="musicStop" ID="{E57A100A-C009-47C6-8BA2-335F47C5C268}">
 							<ChildrenList>
 								<Action Name="Stop" ID="{D2197AF9-B712-418D-AC3A-BA991703D258}" ShortID="162962489" Type="Stop" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
 									<ElementList>
 										<Element ID="{7FB4E98C-3C6A-4E9F-BE35-5528520BF572}" Global="false">
 											<ObjectRef Name="music1" ID="{0429355F-7B67-428E-9155-26F4ACE93DAF}" WorkUnitID="{BFA04094-2C33-42D1-BC69-0B51752965D1}"/>
 										</Element>
 									</ElementList>
 								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="musicquest" ID="{D3375474-5902-488C-9CE4-A7994EC802CF}">
+							<ChildrenList>
+								<Action Name="Play" ID="{2A1EACF3-2D2B-4B63-B026-FD54DE265E51}" ShortID="658158759" Type="Play" Scope="One" Global="false"/>
 							</ChildrenList>
 						</Event>
 					</ChildrenList>
