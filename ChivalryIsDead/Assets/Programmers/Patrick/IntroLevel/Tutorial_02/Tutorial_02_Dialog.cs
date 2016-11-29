@@ -39,6 +39,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        
         count = 0;
         procceed = false;
         learnedToGetHit = true;
@@ -125,34 +126,50 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
     public IEnumerator DialogOne()
     {
+        //yield return new WaitForSeconds(animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        animCam.SetActive(true);
+        mainCam.SetActive(false);
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);       
-        yield return new WaitForSeconds(1f);
-        
-        Time.timeScale = 0.1f;
-        swordAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
+        //yield return new WaitForSeconds(1f);
+        Invoke("SkipCam", 13f);
+
+        //Time.timeScale = 0.1f;
+        //swordAnimator.speed = 10f;
+        //skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
 
-        //Invoke("CallableSkip", 5f);
-        //count = 0;
-        //while (count < 1)
-        //{
-        //    yield return new WaitForEndOfFrame();
-        //}
-        //yield return new WaitUntil(SkipAndPlay);
+        count = 0;
+        Invoke("SkipCam", animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        
+        while (count < 1)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
         ControlMove.SetActive(true);
+        mainCam.SetActive(true);
+        animCam.SetActive(false);
+        
+
+
         Debug.Log("DRINK MORE NIKOLINE");
         Time.timeScale = 1f;
         swordAnimator.speed = 1f;
         skipAnimator.speed = 1f;
 
 
+    }
+
+    void SkipCam ()
+    {
+        count = 1;
+        CallableSkip();
     }
 
     public bool SkipAndPlay()
@@ -253,6 +270,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         animCam.SetActive(true);
         mainCam.SetActive(false);
+        animCam.GetComponent<Animator>().SetTrigger("zoomInCam");
         InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
 
         yield return new WaitForSeconds(animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
