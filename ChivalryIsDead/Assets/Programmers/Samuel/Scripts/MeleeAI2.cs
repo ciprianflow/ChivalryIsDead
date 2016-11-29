@@ -1,35 +1,33 @@
 ﻿using UnityEngine;
 using System;
 
-public class MeleeAI : MonsterAI
+public class MeleeAI2 : MonsterAI
 {
 
     [Header("Melee Specific Values")]
     public float PreChargeTime = 1f;
     public float chargeSpeedMultiplier = 3f;
-    public float attackLength = 1f;
+    public float attackLength = 2f;
     public float attackAngleWidth = 0.6f;
     public float chargeForce = 250f;
-    public float AttackForce = 5000;
-    public float normalAttackColddown = 3f;
+    public float attackForce = 5000;
+    public float spinAttackDuration = 0.5f;
+    public float spinAttackColddown = 3f;
 
     private float accelTimer = 0;
     private float accelTime = 0.2f;
     private float zVel = 0f;
     private float normSpeed;
-    private float attackDuration = 1f;
     private float ChargeTurnTime = 0.5f;
-    private float normalAttackTimer = 0f;
+    private float SpinAttackTimer = 0f;
 
     private bool rotated = false;
     private bool hasHit = false;
-    private bool normalAttack = false;
     private bool playerInRange = false;
 
     //Called one time at Awake()
     public override void Init()
     {
-
         normSpeed = agent.speed;
         targetPoint = GetRandomPointOnNavMesh();
         GameObject obj = new GameObject("AttackTrigger");
@@ -44,78 +42,18 @@ public class MeleeAI : MonsterAI
     //Called every frame in the attack state
     public override void Attack()
     {
-        //Decides which attack to use
-        if (normalAttack)
-            NormalAttack(); //Normal attacks trigger when normalAttack == true
-        else
-            TurnAttack(); //This is default attack which happens at the end of a path
-
-    }
-
-    void NormalAttack()
-    {
-        //Debug.Log("I am in a normal attack state now");
-        if (!rotated)
+        Debug.Log(t1 + " > " + spinAttackDuration);
+        if(t1 < spinAttackDuration)
         {
-            if (!TimedControlledRotation(t1 / ChargeTurnTime))
-            {
-                //Rotation not yet done
-                return;
-            }
-            //Rotation done
-        }
-        if (t1 >= attackDuration)
-        {
-            //If the palyer is not in range any more go back to moving
             MeleeAttack();
-            normalAttack = false;
-            AttackToMove();
-            ResetTimer();
-
-            //Plays attack sound
-            WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Attack, this.gameObject);
+            DoAOEAttack(transform.position, attackLength, attackForce, this);
         }
-
-    }
-
-    void TurnAttack()
-    {
-        if (!rotated)
+        else
         {
-            if (!ControlledRotation())
-            {
-                //If rotation is ongoing
-                //chargeRotate resets timer so rotated makes sure that it does not enter the function again
-                //if it has rotated
-
-                //Debug.Log("Turn");
-
-                if(!hasHit)
-                    if (MeleeAttack())
-                        hasHit = true;
-                return;
-            }else
-            {
-                //Rotation is done
-                rotated = true;
-                hasHit = false;
-                ResetTimer();
-
-                //Plays attack sound
-                WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Attack, this.gameObject);
-            }     
-        }
-
-        //If time is above attack time
-        if (t1 > attackTime)// || patrolling)
-        {
-            // TODO : do a melee attack here??? 
-            // (ASK SAMUEL IF IN DOUBT IF YOU ARE, BCS HE IS??? BibleThump into SwiftRage)
-            //Reset timers and go to move state
-            ResetTimer();
+            Debug.Log("IM DONE");
             AttackToMove();
-            return;
         }
+
     }
 
     //Attack function, this function handles the calculations of an attack
@@ -125,19 +63,15 @@ public class MeleeAI : MonsterAI
         Colliders = Physics.OverlapSphere(transform.position, attackLength);
         for (int i = 0; i < Colliders.Length; i++)
         {
-
-            //Debug.Log(Colliders[i].gameObject.name);
-            //Debug.Log("One in range");
             if (Colliders[i].tag == "Player")
             {
-                Debug.DrawLine(transform.position + new Vector3(0, 1, 0), Colliders[i].transform.position + new Vector3(0, 1, 0), Color.red);
                 //Debug.Log("This on is a player");
                 Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
                 if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
                 {
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
-                        body.AddExplosionForce(AttackForce * 5, transform.position, attackLength);
+                        body.AddExplosionForce(attackForce * 5, transform.position, attackLength);
 
                     base.playerAction.PlayerAttacked(this);
                     Debug.LogError("O NO THE PLAYR HAS HITEN BY MOnsTR");
@@ -147,19 +81,12 @@ public class MeleeAI : MonsterAI
         }
         return false;
         //Debug.Log("Attacking");
-
     }
 
-    void InitNormalAttack(Vector3 pos)
+    void ToSpinAttack(Vector3 pos)
     {
-        Vector3 targetPos = pos;
-        targetPos.y = 0;
-        targetPoint = targetPos;
-        normalAttack = true;
-        rotated = false;
-        initTimedRotation();
+        SpinAttackTimer = 0;
         ResetTimer();
-        normalAttackTimer = 0;
         MoveToAttack();
     }
 
@@ -186,37 +113,6 @@ public class MeleeAI : MonsterAI
         {
             UpdateNavMeshPathDelayed();
         }
-    }
-
-    //Rotates the AI towards a point
-    bool ControlledRotation()
-    {
-        if (t1 < 0.5f)
-            return false;
-
-        Vector3 v = transform.forward;
-        Vector3 v2 = transform.position;
-        Vector3 v3 = targetPoint;
-        v.y = 0;
-        v2.y = 0;
-        v3.y = 0;
-        //If the rotation is not done yet the function returns false
-        if (Vector3.Angle(v, v3 - v2) < 20f) {
-            anim.SetTrigger("Rotate");
-
-        }
-
-        if (Vector3.Angle(v, v3 - v2) > 1f)
-        {
-            RotateTowardsTarget();
-            return false;
-        }
-
-        //If the rotation is done the function ruturns true
-        RotDone();
-        //anim.SetTrigger("Rotate");
-        //anim.speed = 1f;
-        return true;
     }
 
     bool TimedControlledRotation(float t)
@@ -267,10 +163,6 @@ public class MeleeAI : MonsterAI
 
     void FixedUpdate()
     {
-        //Debug.Log(zVel);
-        //Debug.Log(agent.velocity.magnitude);
-
-
         if (Mathf.Abs(zVel - (agent.velocity.magnitude)) < 0.05f)
         {
             return;
@@ -290,22 +182,23 @@ public class MeleeAI : MonsterAI
     public override void Move()
     {
 
-        normalAttackTimer += Time.deltaTime;
-        if (playerInRange && normalAttackTimer > normalAttackColddown)
+        SpinAttackTimer += Time.deltaTime;
+        if (playerInRange && SpinAttackTimer > spinAttackColddown)
         {
-            InitNormalAttack(targetObject.position);
+            ToSpinAttack(targetObject.position);
             return;
         }
-            
+
+        if (GetAngleToTarget() > 5)
+            ToTurn();
 
         //Checks if the monster is in range of its target, returns true if it is not
         if (RangeCheckNavMesh())
             UpdateNavMeshPathDelayed(); //If the monster is not in range of his target yet update its path
-        else //From move to Attack
+        else
         {
-            MeleeMoveToAttack();
+            targetPoint = GetRandomPointOnNavMesh();
         }
-
     }
 
     private void MeleeMoveToAttack()
@@ -329,13 +222,15 @@ public class MeleeAI : MonsterAI
         v3.y = 0;
 
         if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180)  {
+
             anim.SetTrigger("StartTurnRight");
 
         }
         else {
-            anim.SetTrigger("StartTurnLeft");
 
+            anim.SetTrigger("StartTurnLeft");
             Debug.Log("Left");
+
         }
     }
 
@@ -522,7 +417,7 @@ public class MeleeAI : MonsterAI
         {
             if (state == State.Move)
             {
-                InitNormalAttack(other.transform.position);
+                ToSpinAttack(other.transform.position);
             }
 
             playerInRange = true;
@@ -540,5 +435,59 @@ public class MeleeAI : MonsterAI
 
     public override void HitThis() { }
 
-    public override void Turn() { }
+    void ToTurn()
+    {
+
+        StopNavMeshAgent();
+        targetPoint = GetRandomPointOnNavMesh();
+        state = State.Turn;
+        stateFunc = Turn;
+
+    }
+
+    public override void Turn()
+    {
+
+        if ( ControlledRotation() )
+        {
+            ToMove();
+        }
+
+
+    }
+
+    //Rotates the AI towards a point
+    bool ControlledRotation()
+    {
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPoint;
+        v.y = 0;
+        v2.y = 0;
+        v3.y = 0;
+        //If the rotation is not done yet the function returns false
+        if (Vector3.Angle(v, v3 - v2) < 20f)
+        {
+            anim.SetTrigger("Rotate");
+        }
+
+        if (Vector3.Angle(v, v3 - v2) > 1f)
+        {
+            RotateTowardsTarget();
+            return false;
+        }
+        return true;
+    }
+
+    float GetAngleToTarget()
+    {
+        Vector3 v = transform.forward;
+        Vector3 v2 = transform.position;
+        Vector3 v3 = targetPoint;
+        v.y = 0;
+        v2.y = 0;
+        v3.y = 0;
+        //If the rotation is not done yet the function returns false
+        return Vector3.Angle(v, v3 - v2);
+    }
 }
