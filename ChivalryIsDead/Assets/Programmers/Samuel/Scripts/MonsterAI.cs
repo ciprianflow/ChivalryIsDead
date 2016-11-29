@@ -457,7 +457,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         g.GetComponent<Sheep_flying>().flying = true;
     }
 
-    public static void DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
+    public static bool DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
     {
         Collider[] Colliders = new Collider[0];
         Colliders = Physics.OverlapSphere(pos, radius);
@@ -485,8 +485,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
                 PlayerActionController PAC = Colliders[i].gameObject.GetComponent<PlayerActionController>();
                 PAC.PlayerAttacked(Monster);
+                return true;
             }
         }
+        return false;
     }
 
     #endregion
