@@ -7,5 +7,6 @@ public static class StaticIngameData {
     public static PlayerActionController playerAction;
     public static MapManager mapManager;
     public static DummyManager dummyManager;
+    public static GameMenu gameMenu;
 
 }

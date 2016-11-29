@@ -15,7 +15,7 @@ public class MapManager : MonoBehaviour {
     Dictionary<int, List<Rect>> sortedAreas;
     Dictionary<int, List<int>> sortedMaxSpawn;
 
-    public GameObject endLetter;
+    private GameObject endLetter;
 
     internal void SetQuestObject(Transform transform)
     {
@@ -26,13 +26,12 @@ public class MapManager : MonoBehaviour {
     void Awake()
     {
         var staticProtectObjects = transform.FindChild("StaticProtectObjects");
-        if (staticProtectObjects == null)
-            QuestTarget = null; // DO NOT RETURN FROM HERE! Returning renders the objective manager uninitialized.
-        else
+        if (staticProtectObjects != null)
             QuestTarget = staticProtectObjects.GetChild(0);
 
-        areas = transform.GetComponent<AreaScript>();
         OM = new ObjectiveManager();
+
+        areas = transform.GetComponent<AreaScript>();
         StaticIngameData.mapManager = this;
 
         //This functions gets all spawn areas in the map in a dictionary sorted based on monster ID
@@ -45,6 +44,7 @@ public class MapManager : MonoBehaviour {
     {
         OM.LoadAllObjectives();
         InitQuest();
+        endLetter = StaticIngameData.gameMenu.endLetter;
     }
 
     public void InitQuest()
@@ -189,5 +189,10 @@ public class MapManager : MonoBehaviour {
         list = new GameObject("StaticProtectObjects");
         list.transform.SetParent(this.transform);
 
+    }
+
+    public ObjectiveManager GetObjectiveManager()
+    {
+        return OM;
     }
 }

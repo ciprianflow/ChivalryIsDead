@@ -105,4 +105,9 @@ public class SheepAI : MonsterAI {
     }
 
     public override void HitThis() { }
+
+    public override void Turn()
+    {
+        throw new NotImplementedException();
+    }
 }

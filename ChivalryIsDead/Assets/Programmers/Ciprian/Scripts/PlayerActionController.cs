@@ -111,15 +111,15 @@ public class PlayerActionController : MonoBehaviour
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
+        //particles
         pb.RepGainParticle = RepGainParticle;
         pb.RepLossParticle = RepLossParticle;
-        pb.ComboBaseParticle = ComboParticle;
-        pb.ComboUpwardParticle = ComboUpwardParticle;
 
-        pb.Reset();
+        DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
+        DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
 
-       
-        //ComboParticle.GetComponent<Particle>().Play();
+        pb.ResetCombo();
+
 
         //player state
         playerState = PlayerState.IDLE;

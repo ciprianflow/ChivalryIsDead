@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum State { Attack, Move, Charge, Idle, Utility, Death }
+public enum State { Attack, Move, Charge, Idle, Utility, Death, Turn }
 
 public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
@@ -59,6 +59,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Attack();
     public abstract void Move();
     public abstract void Idle();
+    public abstract void Turn();
     public abstract void Taunt();
     public abstract void EnterUtilityState();
     public abstract void Utility();
@@ -459,7 +460,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         g.GetComponent<Sheep_flying>().flying = true;
     }
 
-    public static void DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
+    public static bool DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
     {
         Collider[] Colliders = new Collider[0];
         Colliders = Physics.OverlapSphere(pos, radius);
@@ -487,8 +488,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
                 PlayerActionController PAC = Colliders[i].gameObject.GetComponent<PlayerActionController>();
                 PAC.PlayerAttacked(Monster);
+                return true;
             }
         }
+        return false;
     }
 
     #endregion

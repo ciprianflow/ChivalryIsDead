@@ -90,7 +90,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: 0.16666667
     manualCellSize: 0
-  m_NavMeshData: {fileID: 23800000, guid: 3b1a7af78ebdd3642bcf6fc79596fc5b, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e7e277610c1a6f749b734eaa8c0deb38, type: 2}
 --- !u!4 &19719883 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000010421013652, guid: f7a4d5e6b4b45c64bb87bfcc0a3b3138,
@@ -743,7 +743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a394cb31786454d8b0f9c7276870b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endLetter: {fileID: 0}
 --- !u!114 &207393651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2521,7 +2520,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 855931542}
   m_LocalRotation: {x: -0, y: 0.9498494, z: -0, w: 0.31270778}
-  m_LocalPosition: {x: 13.5, y: 184.7, z: -157.35}
+  m_LocalPosition: {x: 14.28, y: 184.7, z: -158.4}
   m_LocalScale: {x: 4.749597, y: 10.716486, z: 13.360145}
   m_LocalEulerAnglesHint: {x: 0, y: 143.307, z: 0}
   m_Children: []
@@ -4345,7 +4344,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1000011125008694, guid: 4815fd27992cc2c4eb2df04ceae55116, type: 2}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 4294967287
       objectReference: {fileID: 0}
     - target: {fileID: 1000011125008694, guid: 4815fd27992cc2c4eb2df04ceae55116, type: 2}
       propertyPath: m_NavMeshLayer
@@ -4842,7 +4841,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013263344388, guid: 2b3b6ff375360224da6c5f767fb4636b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -5.46
+      value: -5.36
       objectReference: {fileID: 0}
     - target: {fileID: 4000013263344388, guid: 2b3b6ff375360224da6c5f767fb4636b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6075,7 +6074,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2069272809}
   m_LocalRotation: {x: -0, y: 0.9498494, z: -0, w: 0.31270778}
-  m_LocalPosition: {x: 5.07, y: 184.7, z: -145.94}
+  m_LocalPosition: {x: 4.49, y: 184.7, z: -145.16}
   m_LocalScale: {x: 4.2244043, y: 10.716486, z: 8.570272}
   m_LocalEulerAnglesHint: {x: 0, y: 143.307, z: 0}
   m_Children: []
@@ -6307,13 +6306,15 @@ MonoBehaviour:
   - {x: 23.249643, y: 10.504906, z: 9.024881}
   AreaColor:
   - {r: 0.69350153, g: 0.34807524, b: 0.8161765, a: 1}
-  cameraTransitionTime: 1
+  target: {fileID: 864839253}
+  Speed: 1
   rotationDamping: 0.8
   positionDamping: 0.8
-  FixedPosition: 0
+  FixedCamera: 0
   InstantTransisition: 0
-  FixedRotation: 1
-  FixedZAxis: 0
+  LockRotation: 1
+  LockZAxis: 0
+  LockPosInsideArea: 1
   EnableTransistionCurve: 0
   curve:
     serializedVersion: 2
@@ -6321,7 +6322,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  target: {fileID: 864839253}
 --- !u!1001 &2124084233
 Prefab:
   m_ObjectHideFlags: 0

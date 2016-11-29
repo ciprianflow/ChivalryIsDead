@@ -25,8 +25,8 @@ public class Knight_Events : MonoBehaviour {
     }
 
     void step() {
-        Debug.Log("STEP");
         AkSoundEngine.PostEvent("knight_move", gameObject);
+        //WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.Attack, this.gameObject);
         //WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle., transform.parent.gameObject);
     }
 }

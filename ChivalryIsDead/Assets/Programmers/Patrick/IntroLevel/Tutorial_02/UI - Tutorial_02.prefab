@@ -1750,7 +1750,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6b2673475a3823b46a296b2df5193dd9, type: 3}
-    m_FontSize: 80
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2600,6 +2600,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2348592b400059e48942d2d5d36428ce, type: 2}
   - {fileID: 11400000, guid: 9985b697dfd7f33478c1632d04e7d968, type: 2}
   - {fileID: 11400000, guid: bbed95f5a1722594f83dbe0d8ff5d3d4, type: 2}
+  - {fileID: 11400000, guid: 5fefb5e938651984ea11017bfeb131be, type: 2}
   dialogDansk:
   - {fileID: 11400000, guid: 6b5f42582e0fe844ab1e0b59f2416b39, type: 2}
   - {fileID: 11400000, guid: a8e3b2a18bc06284d9b6943542c61c84, type: 2}
@@ -2608,6 +2609,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7e49c6db6b322894898bfa32be3703e4, type: 2}
   - {fileID: 11400000, guid: 12bdc8068abc6ce4b819d41a6881074a, type: 2}
   - {fileID: 11400000, guid: ccc348f611e50db4db3832599c099e5e, type: 2}
+  - {fileID: 11400000, guid: 05d0084f79b14394faa29184162790f9, type: 2}
   - {fileID: 11400000, guid: 05d0084f79b14394faa29184162790f9, type: 2}
   playerText: {fileID: 1000010552168602}
   playerBubble: {fileID: 1000011265911144}
@@ -2782,6 +2784,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db14317ff4367254cab61ac8f077ad60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animCam: {fileID: 0}
+  mainCam: {fileID: 0}
   Player: {fileID: 0}
   enemyBillboard: {fileID: 1000010220231780}
   TrollA: {fileID: 0}
@@ -2794,7 +2798,6 @@ MonoBehaviour:
   ControlMove: {fileID: 0}
   ControlHit: {fileID: 0}
   InvisWallOne: {fileID: 0}
-  InvisWallTwo: {fileID: 0}
   HandCanvas: {fileID: 0}
   ScreenFreeze: {fileID: 0}
   swordAnimator: {fileID: 95000011459032032}
@@ -2870,7 +2873,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a4c0bc664ff92b94b8604d20ffba31d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93248c80be869f04da3731ab61c5d1f6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3037,7 +3040,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a4c0bc664ff92b94b8604d20ffba31d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93248c80be869f04da3731ab61c5d1f6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4798,7 +4801,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 867.5, y: -135}
-  m_SizeDelta: {x: 0, y: 99}
+  m_SizeDelta: {x: 0, y: 74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011525508048
 RectTransform:
