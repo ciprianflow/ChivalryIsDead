@@ -319,7 +319,7 @@ public class MeleeAI : MonsterAI
             targetPoint = GetRandomPointOnNavMesh();
 
         Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
-        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
+        //Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
         //if (this.name == "Ranged") {
         //    if ((q.eulerAngles.y - transform.eulerAngles.y) > 5) {
@@ -364,7 +364,7 @@ public class MeleeAI : MonsterAI
             //}
             anim.SetTrigger("StartTurnLeft");
 
-            Debug.Log("Left");
+            //Debug.Log("Left");
         }
     }
 
@@ -522,11 +522,14 @@ public class MeleeAI : MonsterAI
             else if(QO != null)
             {
                 Debug.Log("Hit static quest object");
+                anim.SetTrigger("HitObject");
                 QO.takeDamage(GetBaseAttackDamage(), true);
                 base.playerAction.ObjectiveAttacked(this);
                 ChargeToMove();
             }else
             {
+                anim.SetTrigger("HitObject");
+                Debug.Log("hit another monster");
                 ChargeToMove();
             }
         }
