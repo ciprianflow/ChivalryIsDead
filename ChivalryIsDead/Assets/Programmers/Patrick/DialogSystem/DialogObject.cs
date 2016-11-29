@@ -317,7 +317,7 @@ public class DialogObject : MonoBehaviour {
 
             if (d.Name[i] == "Princess")
             {
-                gameMenu.Princess();
+                UI.GetComponent<GameMenu>().Princess();
                 indexCount = i;
                 princessBubble.SetActive(true);
                 //skipBtn.SetActive(true);
