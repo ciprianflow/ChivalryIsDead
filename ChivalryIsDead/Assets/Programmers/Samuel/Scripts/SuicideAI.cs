@@ -138,8 +138,7 @@ public class SuicideAI : MonsterAI
                     {
                         //Sheeps
                         Debug.Log("I HIT A SHEEP");
-                        HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true);
-                        base.playerAction.SheepAttacked(this);
+                        HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true, this);
 
                     }else
                     {

@@ -25,7 +25,7 @@ public class PeasantLineScript : MonoBehaviour {
 
         int NumOfPeasants = (int)(20 * (StaticData.Reputation / 100)) + 1;
         //float PeasantDist = 1f / NumOfPeasants;
-        float PeasantDist = 0.06f;
+        float PeasantDist = 0.05f;
 
         float height = PeasantPrfab.GetComponent<Image>().rectTransform.sizeDelta.y / 2;
 
