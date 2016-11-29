@@ -177,8 +177,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         state = State.Move;
         stateFunc = Move;
 
-        if(monsterHandle != MonsterHandle.Ranged)
+        if (monsterHandle != MonsterHandle.Ranged) {
             anim.SetTrigger("StartCharge");
+        }
         anim.SetFloat("Speed", 1);
 
 
@@ -243,7 +244,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void updateNavMeshPath()
     {
-        agent.SetDestination(GetTargetPosition());
+        if (agent.isOnNavMesh)
+            agent.SetDestination(GetTargetPosition());
+        else
+            Debug.LogWarning("NavMesh Agent is not on a NavMesh!!");
     }
 
     protected bool RangeCheckNavMesh()

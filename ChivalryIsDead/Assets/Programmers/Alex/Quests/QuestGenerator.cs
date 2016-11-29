@@ -43,7 +43,13 @@ public class QuestGenerator
                     idx = i;
                 }
             }
-            return QuestParameters.EnemyThresholds[idx].AvailableEnemies;
+            var thresholdValue = QuestParameters.EnemyThresholds[idx].AvailableEnemies;
+
+            foreach (ReputationOverride rO in QuestParameters.ReputationOverrides) {
+                if (currentReputation <= rO.RepMarker && ((thresholdValue & rO.enemyType) != rO.enemyType))
+                    thresholdValue += (int)rO.enemyType;
+            }
+            return thresholdValue;
         }
     }
 
@@ -63,13 +69,14 @@ public class QuestGenerator
         var protQuest = new BaseQuest();
 
         var curHouseStatus = QuestParameters.DifficultyDefs[(int)CurrentDifficulty].houseStatus;
-        if ( curHouseStatus == HouseStatus.Always || 
-            (curHouseStatus == HouseStatus.Random && System.Convert.ToBoolean(rng.Next(0, 2))))
+        if (HasFlag(curHouseStatus, (int)HouseStatus.Bakery) || HasFlag(curHouseStatus, (int)HouseStatus.Farmhouse)) // ||
+            //(HasFlag(curHouseStatus, (int)HouseStatus.Random) && System.Convert.ToBoolean(rng.Next(0, 2))))
         {
             protQuest.Objectives.Add(new ProtectTargetObjective(22));
             numFriendlies--;
         }
 
+        // Adds sheep objectives.
         for (int i = 0; i < numFriendlies; i++) {
             protQuest.Objectives.Add(new ProtectTargetObjective(21));
         }
@@ -79,6 +86,10 @@ public class QuestGenerator
 
     private IQuest GenerateDestroyQuest(int numNonSuicide, int numSuicide)
     {
+        // Makes sure that suicide monsters are spawned if an override is active.
+        //if (numSuicide == 0 && (AvailableEnemies & EnemyTypes.HasSuicide) == EnemyTypes.HasSuicide)
+        //    numSuicide = rng.Next(QuestParameters.ReputationOverrides[2].minOverride, QuestParameters.ReputationOverrides[2].maxOverride);
+
         var destQuest = new BaseQuest();
         var meleeAvailable = (AvailableEnemies & EnemyTypes.HasMelee) == EnemyTypes.HasMelee;
 
@@ -108,10 +119,11 @@ public class QuestGenerator
             rng.Next(
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].minNonSuicide,
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxNonSuicide + 1);
-        var numSuicide =
+        var numSuicide = (AvailableEnemies & EnemyTypes.HasSuicide) == EnemyTypes.HasSuicide ?
             rng.Next(
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].minSuicide,
-                QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxSuicide + 1);
+                QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxSuicide + 1) :
+            0;
 
         MQ.Objectives.Add(GenerateProtectQuest(numFriendlies));
         MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
@@ -119,7 +131,8 @@ public class QuestGenerator
 
         var hasHouse = MQ.GetAllObjectives().Any(o => (o as BaseObjective).targetID == 22);
         int AvailableFriendlies = (int)FriendlyTypes.Sheep;
-        AvailableFriendlies += hasHouse ? (int)FriendlyTypes.House : (int)FriendlyTypes.None;
+        AvailableFriendlies += hasHouse && (CurrentDifficulty == Difficulty.Easy || CurrentDifficulty == Difficulty.Medium) ? (int)FriendlyTypes.Bakery : (int)FriendlyTypes.None;
+        AvailableFriendlies += hasHouse && (CurrentDifficulty == Difficulty.Medium || CurrentDifficulty == Difficulty.Hard) ? (int)FriendlyTypes.Farmhouse : (int)FriendlyTypes.None;
         MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies, (FriendlyTypes)AvailableFriendlies);
 
         return MQ;
@@ -133,10 +146,11 @@ public class QuestGenerator
             rng.Next(
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].minNonSuicide,
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxNonSuicide + 1);
-        var numSuicide =
+        var numSuicide = (AvailableEnemies & EnemyTypes.HasSuicide) == EnemyTypes.HasSuicide ?
             rng.Next(
                 QuestParameters.DifficultyDefs[(int)CurrentDifficulty].minSuicide,
-                QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxSuicide + 1);
+                QuestParameters.DifficultyDefs[(int)CurrentDifficulty].maxSuicide + 1) :
+            0;
 
         MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, 0, AvailableEnemies, FriendlyTypes.None);
 
@@ -161,5 +175,10 @@ public class QuestGenerator
         }
 
         return MQ;
+    }
+
+    private bool HasFlag(HouseStatus e, int value)
+    {
+        return (e & (HouseStatus)value) == e;
     }
 }

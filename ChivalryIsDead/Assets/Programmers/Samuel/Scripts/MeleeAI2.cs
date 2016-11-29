@@ -11,7 +11,7 @@ public class MeleeAI2 : MonsterAI
     public float attackAngleWidth = 0.6f;
     public float chargeForce = 250f;
     public float attackForce = 5000;
-    public float spinAttackDuration = 0.5f;
+    public float spinAttackDuration = 0.9f;
     public float spinAttackColddown = 3f;
 
     private float accelTimer = 0;
@@ -42,7 +42,7 @@ public class MeleeAI2 : MonsterAI
     //Called every frame in the attack state
     public override void Attack()
     {
-        Debug.Log(t1 + " > " + spinAttackDuration);
+        //Debug.Log(t1 + " > " + spinAttackDuration);
         if(t1 < spinAttackDuration)
         {
             if (!hitPlayer)
@@ -84,12 +84,27 @@ public class MeleeAI2 : MonsterAI
         //Debug.Log("Attacking");
     }
 
-    void ToSpinAttack(Vector3 pos)
+    void ToSpinAttack()
     {
         hitPlayer = false;
         SpinAttackTimer = 0;
         ResetTimer();
         MoveToAttack();
+
+
+        Quaternion q = Quaternion.LookRotation(targetObject.transform.position - transform.position);
+        //Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
+
+        if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
+
+            anim.SetTrigger("attackRight");
+        }
+        else {
+
+            anim.SetTrigger("attackLeft");
+        }
+
+
     }
 
     //Called every frame in the charge state
@@ -187,7 +202,7 @@ public class MeleeAI2 : MonsterAI
         SpinAttackTimer += Time.deltaTime;
         if (playerInRange && SpinAttackTimer > spinAttackColddown)
         {
-            ToSpinAttack(targetObject.position);
+            ToSpinAttack();
             return;
         }
 
@@ -203,38 +218,6 @@ public class MeleeAI2 : MonsterAI
         }
     }
 
-    private void MeleeMoveToAttack()
-    {
-        MoveToAttack(); //If the monster is in range of its target go to the Attack state
-        ResetTimer(); //Resets the attack timer
-        rotated = false;
-
-        //If in patrolling get a new point on the navmesh and set it as the next destination
-        if (patrolling)
-            targetPoint = GetRandomPointOnNavMesh();
-
-        Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
-        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
-
-        Vector3 v = transform.forward;
-        Vector3 v2 = transform.position;
-        Vector3 v3 = targetPoint;
-        v.y = 0;
-        v2.y = 0;
-        v3.y = 0;
-
-        if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180)  {
-
-            anim.SetTrigger("StartTurnRight");
-
-        }
-        else {
-
-            anim.SetTrigger("StartTurnLeft");
-            Debug.Log("Left");
-
-        }
-    }
 
     //Called every time the monster is getting taunted
     public override void Taunt()
@@ -419,7 +402,7 @@ public class MeleeAI2 : MonsterAI
         {
             if (state == State.Move)
             {
-                ToSpinAttack(other.transform.position);
+                ToSpinAttack();
             }
 
             playerInRange = true;
@@ -441,10 +424,26 @@ public class MeleeAI2 : MonsterAI
     {
 
         StopNavMeshAgent();
-        targetPoint = GetRandomPointOnNavMesh();
         state = State.Turn;
         stateFunc = Turn;
 
+        Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
+
+        if (Mathf.Abs(q.eulerAngles.y - transform.eulerAngles.y) < 10)
+            return;
+
+        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
+
+
+        if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
+            Debug.Log("RIGHT");
+            anim.SetTrigger("StartTurnRight");
+        }
+        else {
+            Debug.Log("LEFT");
+
+            anim.SetTrigger("StartTurnLeft");
+        }
     }
 
     public override void Turn()

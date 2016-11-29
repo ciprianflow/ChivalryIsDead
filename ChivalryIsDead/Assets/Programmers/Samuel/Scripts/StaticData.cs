@@ -16,7 +16,7 @@ public static class StaticData {
     public static int daysLeft = 14;
     public static int maxDaysLeft = daysLeft;
     public static float Reputation = 100;
-    public static readonly float MaxReputation = 100;
+    public static readonly float MaxReputation = Reputation;
     public static int Suspicion = 0;
 
     #region Helper functions

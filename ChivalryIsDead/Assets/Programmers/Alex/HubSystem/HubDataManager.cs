@@ -61,10 +61,12 @@ public class HubDataManager : MonoBehaviour {
 
     void Awake()
     {
+        Time.timeScale = 1f;
+
         hubDataPath = Application.persistentDataPath + "/HubData.json";
 
         if (StaticData.currQuest == null)
-            UpdateQuests();
+            UpdateQuests();    
         else
             PushToHubData(StaticData.currQuest.ReputationChange);
     }
@@ -120,7 +122,7 @@ public class HubDataManager : MonoBehaviour {
     public static void ResetHubData()
     {
         var hubData = new HubData();
-        SaveHubData(hubData);
+        SaveHubData(hubData, Application.persistentDataPath + "/HubData.json");
     }
 
     #region Quest Generation
@@ -133,21 +135,7 @@ public class HubDataManager : MonoBehaviour {
             peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
         }
 
-        GenerateDLCQuest();
-    }
-
-    private void GenerateDLCQuest()
-    {
-        Debug.LogWarning("Something just aint right...");
-        //GameObject QuestButtonObj = Instantiate(QuestButton);
-        //QuestButtonObj.transform.SetParent(ContentPane.transform);
-        //Text newQuestText = QuestButtonObj.transform.GetComponentInChildren<Text>();
-        //newQuestText.text = "Most awesome quest ever!";
-
-        //Button b = newQuestText.transform.parent.GetComponent<Button>();
-
-        /// SetDLCPopUp call following. This should be integrated into the final code.
-        //b.onClick.AddListener(() => SetDLCPopUp(true));
+        //GenerateDLCQuest();
     }
 
     public void SelectQuest()
@@ -188,10 +176,24 @@ public class HubDataManager : MonoBehaviour {
         StaticData.currQuest = (MultiQuest)quest;
         var allObjectives = StaticData.currQuest.GetAllObjectives().ToList();
         var hasHouse = allObjectives.Any(o => (o as BaseObjective).targetID == 22);
+        var isBakeryOrFarmHouse = StaticData.currQuest.Data.PresentFriends & (FriendlyTypes.Bakery | FriendlyTypes.Farmhouse);
 
         List<int> houseIdxs;
-        if (hasHouse)   houseIdxs = new List<int>() { 4, 6 };
-        else            houseIdxs = new List<int>() { 1, 2, 3, 5 };
+        if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) && HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Farmhouse)) {
+            // Reduce to one or the other
+            if (Convert.ToBoolean(UnityEngine.Random.Range(0, 2))) {
+                houseIdxs = new List<int>() { 6 };
+            } else {
+                houseIdxs = new List<int>() { 4 };
+            }
+        } else if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) || HasFlag(isBakeryOrFarmHouse, (int) FriendlyTypes.Farmhouse)) {
+            if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery))
+                houseIdxs = new List<int>() { 4 };
+            else
+                houseIdxs = new List<int>() { 6 };
+        } else {
+            houseIdxs = new List<int>() { 1, 2, 3, 5 };
+        }   
 
         var mapIdx = UnityEngine.Random.Range(0, houseIdxs.Count);
         var mapNum = houseIdxs[mapIdx];
@@ -220,6 +222,7 @@ public class HubDataManager : MonoBehaviour {
     }
 
     #region Static methods
+    private static void SaveHubData(HubData hubData, string path) { SaveJson(JsonUtility.ToJson(hubData), path); }
     private static void SaveHubData(HubData hubData) { SaveJson(JsonUtility.ToJson(hubData)); }
 
     private static HubData LoadHubData()
@@ -232,9 +235,9 @@ public class HubDataManager : MonoBehaviour {
         return hubData;
     }
 
-    private static void SaveJson(string jsonObject)
-    {
-        using (StreamWriter writer = new StreamWriter(hubDataPath)) {
+    private static void SaveJson(string jsonObject) { SaveJson(jsonObject, hubDataPath); }
+    private static void SaveJson(string jsonObject, string path) {
+        using (StreamWriter writer = new StreamWriter(path)) {
             writer.Write(jsonObject);
             writer.Flush();
             writer.Close();
@@ -299,4 +302,9 @@ public class HubDataManager : MonoBehaviour {
     }
 
     #endregion
+
+    private bool HasFlag(FriendlyTypes e, int value)
+    {
+        return (e & (FriendlyTypes)value) == e;
+    }
 }
