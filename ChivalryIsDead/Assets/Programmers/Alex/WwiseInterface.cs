@@ -140,7 +140,16 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
 
     void Awake()
     {
-        Instance = this;
+        var interfaces = FindObjectsOfType<WwiseInterface>();
+        if (interfaces.Length > 1 && Instance != this) {
+            UnityEngine.Object.DestroyImmediate(gameObject);
+        }
+        else {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+        //DontDestroyOnLoad(gameObject);
     }
 
     #region Non-Targeted Audio

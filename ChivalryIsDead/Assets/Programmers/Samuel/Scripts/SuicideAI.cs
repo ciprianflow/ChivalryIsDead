@@ -173,6 +173,11 @@ public class SuicideAI : MonsterAI
     void OnTriggerEnter(Collider coll)
     {
         //Debug.Log("Collided with something exploding");
+
+        //EXPLODE WITH EVERYTHING
+        if (!coll.CompareTag("Ground"))
+            Explode();
+
         if (state == State.Utility)
             Explode();
 
@@ -239,5 +244,8 @@ public class SuicideAI : MonsterAI
         anim.SetTrigger("Taunted");
     }
 
-    public override void Turn() { }
+    public override void Turn()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -132,10 +132,6 @@ public class EndScreen : MonoBehaviour {
             hh.SetActive(true);
         }
 
-        //hh.GetComponentInChildren<Image>().sprite;
-
-
-        Debug.Log(totalTrolls + " - " + deadTrolls);
         
 	}
 

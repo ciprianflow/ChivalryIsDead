@@ -43,7 +43,13 @@ public class QuestGenerator
                     idx = i;
                 }
             }
-            return QuestParameters.EnemyThresholds[idx].AvailableEnemies;
+            var thresholdValue = QuestParameters.EnemyThresholds[idx].AvailableEnemies;
+
+            foreach (ReputationOverride rO in QuestParameters.ReputationOverrides) {
+                if (currentReputation <= rO.RepMarker && ((thresholdValue & rO.enemyType) != rO.enemyType))
+                    thresholdValue += (int)rO.enemyType;
+            }
+            return thresholdValue;
         }
     }
 
@@ -63,22 +69,28 @@ public class QuestGenerator
         var protQuest = new BaseQuest();
 
         var curHouseStatus = QuestParameters.DifficultyDefs[(int)CurrentDifficulty].houseStatus;
-        if ( curHouseStatus == HouseStatus.Always || 
-            (curHouseStatus == HouseStatus.Random && System.Convert.ToBoolean(rng.Next(0, 2))))
+        if (HasFlag(curHouseStatus, (int)HouseStatus.Bakery) || HasFlag(curHouseStatus, (int)HouseStatus.Farmhouse)) // ||
+            //(HasFlag(curHouseStatus, (int)HouseStatus.Random) && System.Convert.ToBoolean(rng.Next(0, 2))))
         {
             protQuest.Objectives.Add(new ProtectTargetObjective(22));
             numFriendlies--;
         }
 
-        for (int i = 0; i < numFriendlies; i++) {
-            protQuest.Objectives.Add(new ProtectTargetObjective(21));
-        }
+        // Adds sheep objectives.
+        // Removed at request of the game designer (28-11-16)
+        //for (int i = 0; i < numFriendlies; i++) {
+        //    protQuest.Objectives.Add(new ProtectTargetObjective(21));
+        //}
 
         return protQuest;
     }
 
     private IQuest GenerateDestroyQuest(int numNonSuicide, int numSuicide)
     {
+        // Makes sure that suicide monsters are spawned if an override is active.
+        if (numSuicide == 0 && (AvailableEnemies & EnemyTypes.HasSuicide) == EnemyTypes.HasSuicide)
+            numSuicide = rng.Next(QuestParameters.ReputationOverrides[2].minOverride, QuestParameters.ReputationOverrides[2].maxOverride);
+
         var destQuest = new BaseQuest();
         var meleeAvailable = (AvailableEnemies & EnemyTypes.HasMelee) == EnemyTypes.HasMelee;
 
@@ -118,8 +130,9 @@ public class QuestGenerator
         MQ.Objectives.Add(new TimerObjective(31));
 
         var hasHouse = MQ.GetAllObjectives().Any(o => (o as BaseObjective).targetID == 22);
-        int AvailableFriendlies = (int)FriendlyTypes.Sheep;
-        AvailableFriendlies += hasHouse ? (int)FriendlyTypes.House : (int)FriendlyTypes.None;
+        int AvailableFriendlies = 0;/*(int)FriendlyTypes.Sheep;*/
+        AvailableFriendlies += hasHouse && (CurrentDifficulty == Difficulty.Easy || CurrentDifficulty == Difficulty.Medium) ? (int)FriendlyTypes.Bakery : (int)FriendlyTypes.None;
+        AvailableFriendlies += hasHouse && (CurrentDifficulty == Difficulty.Medium || CurrentDifficulty == Difficulty.Hard) ? (int)FriendlyTypes.Farmhouse : (int)FriendlyTypes.None;
         MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies, (FriendlyTypes)AvailableFriendlies);
 
         return MQ;
@@ -161,5 +174,10 @@ public class QuestGenerator
         }
 
         return MQ;
+    }
+
+    private bool HasFlag(HouseStatus e, int value)
+    {
+        return (e & (HouseStatus)value) == e;
     }
 }
