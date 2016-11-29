@@ -62,7 +62,7 @@
 								<Action Name="Play" ID="{85F110CD-F4B1-4601-B5F3-0A9031336752}" ShortID="590881247" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{7209E0ED-B088-4163-A405-7AEE283BBC7C}" Global="false">
-											<ObjectRef Name="play_button_1" ID="{5B062AD5-73C0-45D8-A903-E2A52CCB6BF1}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+											<ObjectRef Name="play_button_2" ID="{AA3F1EA0-CF87-4574-9576-270764F79248}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -475,6 +475,17 @@
 										<Event Name="suicide_charge" ID="{34317813-515A-4EE1-8F27-D1C45F327768}"/>
 										<Event Name="suicide_attack" ID="{064E638E-54BF-4457-BAE6-EC3147CC4AFE}"/>
 										<Event Name="suicide_flung_away" ID="{980B216C-9513-4777-90AC-A38F3FCD1670}"/>
+										<Event Name="suicide_explosion" ID="{68940B44-3F99-4B04-A753-6A5DE5DA6539}">
+											<ChildrenList>
+												<Action Name="Play" ID="{8DCF72D1-3B27-450A-A454-7E31097A5B5B}" ShortID="258735899" Type="Play" Scope="One" Global="false">
+													<ElementList>
+														<Element ID="{B4A08F99-05AB-4FFA-8C77-CFDD16486644}" Global="false">
+															<ObjectRef Name="explosions" ID="{420CFBA8-AE52-48CA-A085-9AED22EE7D16}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
+											</ChildrenList>
+										</Event>
 									</ChildrenList>
 								</Folder>
 								<Folder Name="melee (merman type)" ID="{0C8CF168-9786-4C54-9400-16D5F8D0A195}" ShortID="903014615">
@@ -753,6 +764,13 @@
 														</Element>
 													</ElementList>
 												</Action>
+												<Action Name="Play" ID="{9FFD1C3D-6B97-4566-8DC8-507425D84C87}" ShortID="472325750" Type="Play" Scope="One" Global="false">
+													<ElementList>
+														<Element ID="{EAAB9676-FFC3-4C4B-89D6-F629E8B08500}" Global="false">
+															<ObjectRef Name="gasp" ID="{93560794-5D35-4638-8953-447B1CE99928}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
 											</ChildrenList>
 										</Event>
 										<Event Name="knight_overreact_great" ID="{2D0CDBC8-EBC1-4639-B63B-CF66505BCCB0}">
@@ -761,6 +779,13 @@
 													<ElementList>
 														<Element ID="{209CA882-B5D0-4AFF-BF89-826FCDF16B58}" Global="false">
 															<ObjectRef Name="knight_overreact_great" ID="{3FAAA59A-383E-49D7-A161-20C0BB177EB8}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
+												<Action Name="Play" ID="{EC78F58C-DDC9-49E9-9A52-9B812D90DD26}" ShortID="760321154" Type="Play" Scope="One" Global="false">
+													<ElementList>
+														<Element ID="{BBBC9439-F942-4D4E-BE52-DC36DB605D49}" Global="false">
+															<ObjectRef Name="gasp" ID="{93560794-5D35-4638-8953-447B1CE99928}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -997,16 +1022,21 @@
 										</Element>
 									</ElementList>
 								</Action>
+								<Action Name="Play" ID="{46AC9EE7-9EC4-4773-91A8-155EB12C310D}" ShortID="934836221" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{0CC422DE-488F-441E-9C55-73ACE0BDB2BA}" Global="false">
+											<ObjectRef Name="crowd boo1" ID="{45623A03-44A5-4140-B5B2-EB9FC9802754}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
 							</ChildrenList>
 						</Event>
 						<Event Name="reward_combo_boost" ID="{3808E535-C6C7-4E89-8DE0-5C48985E62E9}">
 							<ChildrenList>
 								<Action Name="Play" ID="{7A60B7C8-26CA-4730-A38F-7E1D9C684317}" ShortID="613308233" Type="Play" Scope="One" Global="false">
-									<ExcludedPlatformList>
-										<Platform>Android</Platform>
-									</ExcludedPlatformList>
 									<PropertyList>
 										<Property Name="Delay" Type="Real64" Value="1"/>
+										<Property Name="FadeTime" Type="Real64" Value="50"/>
 									</PropertyList>
 									<ElementList>
 										<Element ID="{3B2DCE9C-2525-49D9-BAD3-6AF5ED220E95}" Global="false">
@@ -1018,6 +1048,13 @@
 									<ElementList>
 										<Element ID="{49FA85DE-F203-4426-AA3E-2DE4A3DCF022}" Global="false">
 											<ObjectRef Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{448CEFD1-545F-4EEA-8F77-47D779D3963A}" ShortID="209084625" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{696945DC-C0A5-42E7-B32E-C58A5C07518D}" Global="false">
+											<ObjectRef Name="crowd boo2" ID="{670D9235-C563-450B-AEAD-BFC5D8016E59}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -1062,6 +1099,64 @@
 									<ElementList>
 										<Element ID="{E7969648-1DD1-4FC3-8CB7-32264B2FFEE9}" Global="false">
 											<ObjectRef Name="fail sound hurtig modulated" ID="{8872F418-3916-400A-9472-299CCD90F3F8}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="reward_combo_boost2" ID="{5C869946-78CA-4190-8587-1D60678A505D}">
+							<ChildrenList>
+								<Action Name="Play" ID="{30D0A543-A791-418E-AA59-E48219CBC67F}" ShortID="267732903" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="1"/>
+										<Property Name="FadeTime" Type="Real64" Value="50"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{9E76535D-0687-4918-AA05-2B6514BF929F}" Global="false">
+											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{AC75D49E-C105-4542-9370-DDF8A7BA4A35}" ShortID="641216285" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{C4E0391C-2CDC-41B3-8F3D-D450B476C6CD}" Global="false">
+											<ObjectRef Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{A1134979-4F05-42D6-93F9-277E649942B0}" ShortID="869438509" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{89B28276-B49B-476E-ADEC-13CAF3296C92}" Global="false">
+											<ObjectRef Name="crowd boo3" ID="{CAD2EEBB-1446-4B9D-93DE-37367AE73592}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="reward_combo_boost3" ID="{92ABDC3B-FB21-4298-BEE6-E36B188ED566}">
+							<ChildrenList>
+								<Action Name="Play" ID="{878CABBC-1316-4600-99B1-E11F313D786D}" ShortID="1066487691" Type="Play" Scope="One" Global="false">
+									<PropertyList>
+										<Property Name="Delay" Type="Real64" Value="1"/>
+										<Property Name="FadeTime" Type="Real64" Value="50"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{789B92A5-A76D-407C-8228-D3EC56B6FCC1}" Global="false">
+											<ObjectRef Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{BC759282-E512-4E45-96BD-C2F45FA6BF89}" ShortID="170089564" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{49858A02-1A57-4B6F-B62E-2CCA1F3F6CF2}" Global="false">
+											<ObjectRef Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{F3BC7367-F95D-43E4-9923-AAC30C0647B7}" ShortID="788300052" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{6F504066-9800-4557-8C52-F236EF1CA23B}" Global="false">
+											<ObjectRef Name="crowd boo4" ID="{4217877E-788C-4691-8D90-B4D623572304}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -1175,6 +1270,30 @@
 											<ObjectRef Name="armor" ID="{D4C883C1-4D65-4F15-B4B9-0388E5C1276C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="gamestates" ID="{43F09621-0F1C-4A28-BBEC-9BD972185785}" ShortID="664149865">
+					<ChildrenList>
+						<Event Name="pause" ID="{2BAEC8A5-557F-4C53-90AE-0BE328A754F3}">
+							<ChildrenList>
+								<Action Name="Set State" ID="{96A17D1F-EDA4-44B9-B53C-3AFFFCA8814A}" ShortID="61936856" Type="SetState" Scope="All" Global="true">
+									<SetItemParam>
+										<Group Name="pause" ID="{3A0BA39A-05FE-404D-A626-DD0E30FDACAD}"/>
+										<GroupItem Name="paused" ID="{6AB7DAE7-63A1-43E1-9AA5-FC60C32455CA}"/>
+									</SetItemParam>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="unpause" ID="{DB512E2F-5895-478B-8D7D-86C7FEABE578}">
+							<ChildrenList>
+								<Action Name="Set State" ID="{A7110A6F-E511-4DC9-8778-B0DA5352BED8}" ShortID="164711397" Type="SetState" Scope="All" Global="true">
+									<SetItemParam>
+										<Group Name="pause" ID="{3A0BA39A-05FE-404D-A626-DD0E30FDACAD}"/>
+										<GroupItem Name="unpaused" ID="{7D7A5713-2685-49DD-AEA4-181882A451F7}"/>
+									</SetItemParam>
 								</Action>
 							</ChildrenList>
 						</Event>
