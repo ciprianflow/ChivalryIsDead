@@ -176,8 +176,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         state = State.Move;
         stateFunc = Move;
 
-        if(monsterHandle != MonsterHandle.Ranged)
+        if (monsterHandle != MonsterHandle.Ranged) {
             anim.SetTrigger("StartCharge");
+        }
         anim.SetFloat("Speed", 1);
 
 
