@@ -61,10 +61,12 @@ public class HubDataManager : MonoBehaviour {
 
     void Awake()
     {
+        Time.timeScale = 1f;
+
         hubDataPath = Application.persistentDataPath + "/HubData.json";
 
         if (StaticData.currQuest == null)
-            UpdateQuests();
+            UpdateQuests();    
         else
             PushToHubData(StaticData.currQuest.ReputationChange);
     }
@@ -191,11 +193,13 @@ public class HubDataManager : MonoBehaviour {
                 houseIdxs = new List<int>() { 6 };
         } else {
             houseIdxs = new List<int>() { 1, 2, 3, 5 };
-        }   
+        } 
 
         var mapIdx = UnityEngine.Random.Range(0, houseIdxs.Count);
         var mapNum = houseIdxs[mapIdx];
-        SceneManager.LoadScene("0" + mapNum.ToString() + "UR");
+        
+        int mapIndex = UnityEngine.Random.Range(1, 7);
+        SceneManager.LoadScene("0" + mapIndex.ToString() + "UR");
         //SceneManager.LoadScene(7);
 
     }
@@ -214,8 +218,8 @@ public class HubDataManager : MonoBehaviour {
         /* UNCOMMENT TO HAVE THE LOSE SCREEN */
         if (StaticData.daysLeft < 1)
         {            
-            //StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
-            //LoseScreen.SetActive(true);
+            StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
+            LoseScreen.SetActive(true);
         }
     }
 

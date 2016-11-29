@@ -96,6 +96,7 @@ public class MenuOptions : MonoBehaviour {
 
     public void ResetData()
     {
+        HubDataManager.ResetHubData();
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(0);
         

@@ -143,6 +143,7 @@ public class GameMenu : MonoBehaviour {
         }
     }
 
+
     public void TauntCooldown()
     {
         PlayerActionController pAction = GameObject.Find("Player").GetComponent<PlayerActionController>();
@@ -170,7 +171,7 @@ public class GameMenu : MonoBehaviour {
 
     public void EndLetter()
     {
-        
+        /*
         if(!endletterActive)
         {
             endLetter.SetActive(true);
@@ -181,7 +182,7 @@ public class GameMenu : MonoBehaviour {
         {
             endLetter.SetActive(false);
             endletterActive = false;
-        }     
+        }   */  
     }
 
     public void IntroLetter()
