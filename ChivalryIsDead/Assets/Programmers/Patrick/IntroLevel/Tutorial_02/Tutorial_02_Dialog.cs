@@ -318,7 +318,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         tutImage.SetActive(true);
         tutImgAnimator.SetBool("playLearnTaunt", true);
-
+        skipBtn.SetActive(false);
 
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
