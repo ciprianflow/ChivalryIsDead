@@ -16,8 +16,8 @@ MonoBehaviour:
   - PhysicalPath: Events\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}'
-    m_lastTimePsrt1: -121987583
-    m_lastTimePart2: -1999366306
+    m_lastTimePsrt1: -1313630279
+    m_lastTimePart2: -1999366046
     List:
     - Name: dialogue_a_speech_bubble_pop
       Path: Default Work Unit\ui\dialogue_a_speech_bubble_pop
@@ -507,6 +507,18 @@ MonoBehaviour:
       ID: -887794454
       Guid: 174f4c79ea20c44bbf4aff92c411917b
       maxAttenuation: 0
+    - Name: pause
+      Path: Default Work Unit\gamestates\pause
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: gamestates
+        ObjectType: 4
+      - ElementName: pause
+        ObjectType: 3
+      ID: -1202379803
+      Guid: a5c8ae2b7f55534c90ae0be328a754f3
+      maxAttenuation: 0
     - Name: peasant_angry
       Path: Default Work Unit\characters\peasant\peasant_angry
       PathAndIcons:
@@ -941,6 +953,30 @@ MonoBehaviour:
       ID: -616985373
       Guid: 35e50838c7c6894e8de05c48985e62e9
       maxAttenuation: 0
+    - Name: reward_combo_boost2
+      Path: Default Work Unit\reward\reward_combo_boost2
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: reward_combo_boost2
+        ObjectType: 3
+      ID: -23541397
+      Guid: 4699865cca78904185871d60678a505d
+      maxAttenuation: 0
+    - Name: reward_combo_boost3
+      Path: Default Work Unit\reward\reward_combo_boost3
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: reward
+        ObjectType: 4
+      - ElementName: reward_combo_boost3
+        ObjectType: 3
+      ID: -23541398
+      Guid: 3bdcab9221fb9842bee6e36b188ed566
+      maxAttenuation: 0
     - Name: reward_combo_end
       Path: Default Work Unit\reward\reward_combo_end
       PathAndIcons:
@@ -1100,6 +1136,22 @@ MonoBehaviour:
         ObjectType: 3
       ID: -202316782
       Guid: 137831345a51e14e8f27d1c45f327768
+      maxAttenuation: 0
+    - Name: suicide_explosion
+      Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_explosion
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: characters
+        ObjectType: 4
+      - ElementName: enemies
+        ObjectType: 4
+      - ElementName: suicide (goblin type)
+        ObjectType: 4
+      - ElementName: suicide_explosion
+        ObjectType: 3
+      ID: -1728636109
+      Guid: 440b9468993f044ba7536a5de5da6539
       maxAttenuation: 0
     - Name: suicide_flung_away
       Path: Default Work Unit\characters\enemies\suicide (goblin type)\suicide_flung_away
@@ -1261,6 +1313,18 @@ MonoBehaviour:
       ID: 1755187636
       Guid: 2d16c7c10f740049b272cb1d7d3ffadc
       maxAttenuation: 0
+    - Name: unpause
+      Path: Default Work Unit\gamestates\unpause
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: gamestates
+        ObjectType: 4
+      - ElementName: unpause
+        ObjectType: 3
+      ID: -882098922
+      Guid: 2f2e51db95588b478d7d86c7feabe578
+      maxAttenuation: 0
     - Name: world_transition
       Path: Default Work Unit\ui\world_transition
       PathAndIcons:
@@ -1277,8 +1341,8 @@ MonoBehaviour:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{907AFF45-16AF-4708-93BE-B0FF9D3A6728}'
-    m_lastTimePsrt1: -114499839
-    m_lastTimePart2: -1999366306
+    m_lastTimePsrt1: -1311550279
+    m_lastTimePart2: -1999366046
     List:
     - Name: rvb_outside
       Path: Default Work Unit\Master Audio Bus\rvb_outside
@@ -1295,9 +1359,34 @@ MonoBehaviour:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPhysicalPath: 
     Guid: '{4DC9D3F3-F4BF-4D7B-8287-4467997241C1}'
-    m_lastTimePsrt1: -768074552
-    m_lastTimePart2: -1999367498
-    List: []
+    m_lastTimePsrt1: -1305490279
+    m_lastTimePart2: -1999366046
+    List:
+    - Name: pause
+      Path: Default Work Unit\pause
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: pause
+        ObjectType: 9
+      ID: -1202379803
+      Guid: 9aa30b3afe054d40a626dd0e30fdacad
+      values:
+      - None
+      - paused
+      - unpaused
+      ValueIcons:
+      - ElementName: None
+        ObjectType: 8
+      - ElementName: paused
+        ObjectType: 8
+      - ElementName: unpaused
+        ObjectType: 8
+      valueIDs: db3ba32c1b810713c6296451
+      ValueGuids:
+      - bytes: b50d65366bd24e41aee6e1504e0a6bda
+      - bytes: e7dab76aa163e1439aa5fc60c32455ca
+      - bytes: 13577a7d8526dd49aea4181882a451f7
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPhysicalPath: 

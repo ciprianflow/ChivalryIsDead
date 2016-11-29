@@ -276,11 +276,11 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         // GATE!
         yield return new WaitForSeconds(1f);
-
-        animCam.GetComponent<Animator>().SetTrigger("zoomInCam");
-        InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
         animCam.SetActive(true);
         mainCam.SetActive(false);
+        animCam.GetComponent<Animator>().SetTrigger("zoomInCam");
+        InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
+        
 
         yield return new WaitForSeconds(animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         mainCam.SetActive(true);

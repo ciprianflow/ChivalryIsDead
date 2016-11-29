@@ -34,8 +34,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        animCam.SetActive(true);
-        mainCam.SetActive(false);
+       
         count = 0;
         procceed = false;
         learnedToGetHit = true;
@@ -43,7 +42,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         usedOverreact = true;
         deadSheep = false;
         handAnimator = HandCanvas.GetComponent<Animator>();
-        enemy.GetComponent<MeleeAI>().attackRange = 0;
+        enemy.GetComponent<MeleeAI2>().attackRange = 0;
 
         foreach (GameObject Sheep in Sheeps)
         {
@@ -80,6 +79,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         {
             if (Player.GetComponent<PlayerScript>().overreacting && Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
             {
+                gameObject.GetComponent<DialogObject>().StopDialog();
                 StartCoroutine("DialogFive");
                 learnedToOverreact = true;
             }
@@ -116,10 +116,14 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
     public IEnumerator DialogOne()
     {
+        animCam.SetActive(true);
+        mainCam.SetActive(false);
+        animCam.GetComponent<Animator>().SetBool("startAnim", true);
+
         ControlMove.SetActive(false);
         ControlHit.SetActive(false);
 
-        Time.timeScale = 0.1f;
+        Time.timeScale = 0.1f;      
         swordAnimator.speed = 10f;
         princessAnimator.speed = 10f;
         skipAnimator.speed = 10f;
@@ -137,7 +141,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         }
         yield return new WaitUntil(SkipAndPlay);
 
-        UI.GetComponent<GameMenu>().SkipOneBubble();
+        //UI.GetComponent<GameMenu>().SkipOneBubble();
 
         procceed = false;
         ControlMove.SetActive(true);
@@ -151,10 +155,11 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         mainCam.SetActive(true);
         animCam.SetActive(false);
+        animCam.GetComponent<Animator>().SetBool("startAnim", false);
 
     }
 
-   
+
 
     public bool SkipAndPlay()
     {
@@ -176,11 +181,12 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //princessAnimator.speed = 10f;
         //skipAnimator.speed = 10f;
         //handAnimator.speed = 10f;
+        //yield return new WaitForSeconds(2f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
-        enemy.GetComponent<MeleeAI>().attackRange = 1.5f;
+        enemy.GetComponent<MeleeAI2>().attackRange = 1.5f;
         learnedToGetHit = false;
 
         yield return null;
@@ -254,6 +260,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //princessAnimator.speed = 10f;
         //skipAnimator.speed = 10f;
         //handAnimator.speed = 10f;
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         learnedToOverreact = false;
         //yield return new WaitForSeconds(0.2f);
@@ -288,21 +295,32 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //princessAnimator.speed = 10f;
         //skipAnimator.speed = 10f;
         //handAnimator.speed = 10f;
-        InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
+        yield return new WaitForSeconds(2f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
-        deadSheep = true;
-        yield return null;
+
+        animCam.SetActive(true);
+        mainCam.SetActive(false);
+        animCam.GetComponent<Animator>().SetTrigger("zoomInCam");
+        InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
+
+
+        yield return new WaitForSeconds(2.5f);
+        mainCam.SetActive(true);
+        animCam.SetActive(false);
+
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
         //count = 0;
-        //while (count < 1)
+        //while (count < 2)
         //{
         //    yield return new WaitForEndOfFrame();
         //}
         //yield return new WaitUntil(SkipAndPlay);
         //procceed = false;
 
+        deadSheep = true;
+        //yield return null;
         //yield return new WaitForSeconds(0.1f);
         //ScreenFreeze.SetActive(true);
         //this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
@@ -315,7 +333,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //{
         //    Sheep.GetComponent<SheepAI>().enabled = true;
         //}
-        
+
     }
 
     public IEnumerator DialogSix()
@@ -333,7 +351,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         //count = 0;
-        //while (count < 1)
+        //while (count < 2)
         //{
         //    yield return new WaitForEndOfFrame();
         //}
@@ -347,7 +365,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //ControlMove.SetActive(true);
         //ControlHit.SetActive(true);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(7f);
         SceneManager.LoadScene(6);
 
     }
