@@ -434,7 +434,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     }
 
     //This is the function that makes the sheep go fly
-    public void HitSheep(QuestObject QO, MonsterAI m, GameObject g, float force, bool useMosnsterOrigin)
+    public void HitSheep(QuestObject QO, MonsterAI m, GameObject g, float force, bool useMosnsterOrigin, MonsterAI originMonster)
     {
 
         //Check the Quest Objective for nullpointer and if not make the sheep deed
@@ -459,6 +459,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
         g.GetComponentInChildren<Animator>().SetTrigger("Flying");
         g.GetComponent<Sheep_flying>().flying = true;
+
+        originMonster.playerAction.SheepAttacked(originMonster);
     }
 
     public static bool DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
@@ -474,7 +476,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 //Hit a sheep
                 if (m.GetType().Equals(typeof(SheepAI)))
                 {
-                    Monster.HitSheep(m.GetComponent<QuestObject>(), m, m.gameObject, force, false);
+                    Monster.HitSheep(m.GetComponent<QuestObject>(), m, m.gameObject, force, false, Monster);
                 }
             }
 
