@@ -238,4 +238,6 @@ public class SuicideAI : MonsterAI
         aggroed = false;
         anim.SetTrigger("Taunted");
     }
+
+    public override void Turn() { }
 }
