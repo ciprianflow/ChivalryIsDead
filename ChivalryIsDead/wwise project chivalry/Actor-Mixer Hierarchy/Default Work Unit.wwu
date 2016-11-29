@@ -9638,45 +9638,10 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="pickup_2" ID="{C67B4ED6-422B-43BD-A6D0-F52D42637025}" ShortID="783466142" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="pickup_2" ID="{892D8D61-481F-4D73-9AB4-60914DEBCEA9}" ShortID="412238058">
-															<Language>SFX</Language>
-															<AudioFile>pickup_2.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="pickup_2" ID="{892D8D61-481F-4D73-9AB4-60914DEBCEA9}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="pickup_3" ID="{E3BBCDC2-9436-4305-AD9A-5F5C5C803864}" ShortID="208323535" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="pickup_3" ID="{08527487-47A3-40BA-BD36-7AC3EDDAFDF5}" ShortID="599169704">
-															<Language>SFX</Language>
-															<AudioFile>pickup_3.wav</AudioFile>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="pickup_3" ID="{08527487-47A3-40BA-BD36-7AC3EDDAFDF5}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
 												<Sound Name="pickup_4" ID="{ADF4576A-B6A6-46AD-B136-B671A8D02435}" ShortID="985500879" Type="SoundFX">
+													<ExcludedPlatformList>
+														<Platform>Android</Platform>
+													</ExcludedPlatformList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -9714,7 +9679,7 @@
 														<ActiveSource Name="pickup_5" ID="{FB19D734-F1C2-4175-8A6C-55C60F7EB39E}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="pickup_6" ID="{3BBCEFF8-DABA-4BF7-A1F8-9AC821FFA033}" ShortID="381979646" Type="SoundFX">
+												<Sound Name="pickup1" ID="{7DFA9DDA-754C-46A9-8A3A-7EF456E40517}" ShortID="411742424" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -9724,13 +9689,240 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="pickup_6" ID="{0398AC5F-CCB4-4FEE-AEB1-44850A484D96}" ShortID="571728734">
+														<AudioFileSource Name="pickup1" ID="{D2524601-B2FE-4CD0-95E6-8D8CCF133DBC}" ShortID="848769873">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0247219438877755"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.150803857715431"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>pickup_6.wav</AudioFile>
+															<AudioFile>pickup1.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="pickup_6" ID="{0398AC5F-CCB4-4FEE-AEB1-44850A484D96}" Platform="Linked"/>
+														<ActiveSource Name="pickup1" ID="{D2524601-B2FE-4CD0-95E6-8D8CCF133DBC}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup2" ID="{D443D0BA-14B1-4690-94BE-F43FEC8F09FE}" ShortID="595943835" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup2" ID="{95256F01-D768-44CD-B154-6D0287E1A474}" ShortID="672586888">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0207662825651303"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0657598947895792"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup2.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup2" ID="{95256F01-D768-44CD-B154-6D0287E1A474}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup3" ID="{32E7C74F-8EE8-4DAA-B468-D3099F43AF50}" ShortID="294620314" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup3" ID="{637949DB-FA88-419B-8132-03A84263A2E2}" ShortID="163888741">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.00707339679358718"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.115103456913828"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup3.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup3" ID="{637949DB-FA88-419B-8132-03A84263A2E2}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup4" ID="{F624707D-D4DD-468F-B7B9-AA2A44EB0A7C}" ShortID="683911883" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup4" ID="{D576F012-142D-4871-B916-299229CDB76F}" ShortID="28562197">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.00887608550434202"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0852104208416834"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup4.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup4" ID="{D576F012-142D-4871-B916-299229CDB76F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup5" ID="{C5139A14-A8AF-4142-AC78-FD22F3ED8AC9}" ShortID="563306899" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup5" ID="{BED6E4BC-3401-423B-9096-E058FEFA3ECF}" ShortID="834068114">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.00578588426853708"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.056280874248497"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup5.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup5" ID="{BED6E4BC-3401-423B-9096-E058FEFA3ECF}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup6" ID="{FF644201-BA2E-4A10-84B1-08A76E79F369}" ShortID="363161362" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup6" ID="{7B75230B-3233-4027-944E-219F401FEAC2}" ShortID="565056236">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0127141574816299"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0942343436873748"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup6.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup6" ID="{7B75230B-3233-4027-944E-219F401FEAC2}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup7" ID="{5B949E96-8E9A-4C71-9DD5-ADB94BC518D6}" ShortID="799246107" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup7" ID="{86DA137E-0766-46F4-9B1E-A34B174DEA1F}" ShortID="114875009">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.00974194221776887"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0189711506346025"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup7.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup7" ID="{86DA137E-0766-46F4-9B1E-A34B174DEA1F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup8" ID="{6AB354FB-92C7-497C-B425-0DE482B08709}" ShortID="823502394" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup8" ID="{D662AD50-D976-477F-8B71-BCC56E237246}" ShortID="595453770">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0277952989311957"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.107347361389446"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup8.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup8" ID="{D662AD50-D976-477F-8B71-BCC56E237246}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup9" ID="{07A6B225-611A-4E45-9904-622D278B9533}" ShortID="847896003" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup9" ID="{82918126-D9D8-459B-9285-FFEB7D3FDFE3}" ShortID="493003985">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0113272378089512"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.206155728122912"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>pickup9.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup9" ID="{82918126-D9D8-459B-9285-FFEB7D3FDFE3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="attack4" ID="{D24FFF73-B3E5-48F1-84B8-F2F4920AD895}" ShortID="51163353" Type="SoundFX">
+													<PropertyList>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Spatialization" Type="bool" Value="False"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+														</Reference>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+															<ObjectRef Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="Effect1" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+															<ObjectRef Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+														</Reference>
+														<Reference Name="Effect2" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
+															<ObjectRef Name="Monsterize" ID="{99F80B38-1C45-42CE-9BCD-E94F3885DCAA}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="attack4" ID="{14123EE5-8FEF-47FA-9629-E98012D60560}" ShortID="648537736">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.00683107882431529"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0898549599198397"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>attack4.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="attack4" ID="{14123EE5-8FEF-47FA-9629-E98012D60560}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
@@ -10008,6 +10200,226 @@
 													</ChildrenList>
 													<ActiveSourceList>
 														<ActiveSource Name="troll_throwing_object-04" ID="{AC6C36DD-C75B-4CA8-BBF9-91B40DDD33F9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="attack" ID="{85D9B715-CC9F-4DE3-B1A7-F2ECBD04A92B}" ShortID="472977020" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="attack" ID="{20BB77B4-EF53-4D87-96C4-5AF8A8FF3318}" ShortID="1012239889">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.00254646793587174"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0857310871743487"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>attack.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="attack" ID="{20BB77B4-EF53-4D87-96C4-5AF8A8FF3318}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="attack2" ID="{1DBA352B-119C-4917-ABD7-F7A6E1B7F00C}" ShortID="639150484" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="attack2" ID="{7CABDA3F-8FAC-4B8A-9ED5-583E31FD1020}" ShortID="184004908">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0196439128256513"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0862149507348029"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>attack2.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="attack2" ID="{7CABDA3F-8FAC-4B8A-9ED5-583E31FD1020}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="attack3" ID="{B67305E3-C7B6-4D82-80CC-856060F1C5DB}" ShortID="497230084" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="attack3" ID="{88D86AE5-2A29-40BA-89AD-5D74ECE4E686}" ShortID="134349177">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0787641741816967"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.144567155143621"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>attack3.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="attack3" ID="{88D86AE5-2A29-40BA-89AD-5D74ECE4E686}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="attack5" ID="{4CA98874-BF75-42DD-A5B5-2BCDC1C051A5}" ShortID="357745036" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="attack5" ID="{BCE433A8-51EF-46F8-80B5-A95A7AC8BC1F}" ShortID="123053630">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0300588259853039"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.0457416917167669"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>attack5.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="attack5" ID="{BCE433A8-51EF-46F8-80B5-A95A7AC8BC1F}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="attack6" ID="{F6D8420C-B63D-440A-AC04-83A82655B861}" ShortID="567985311" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="attack6" ID="{032CAE57-E4F7-4CD2-BDF6-CD25DCF91D47}" ShortID="1011705619">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="0.0149552229458918"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.116650738977956"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>attack6.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="attack6" ID="{032CAE57-E4F7-4CD2-BDF6-CD25DCF91D47}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup_3" ID="{E3BBCDC2-9436-4305-AD9A-5F5C5C803864}" ShortID="208323535" Type="SoundFX">
+													<PropertyList>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Spatialization" Type="bool" Value="False"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+														</Reference>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+															<ObjectRef Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="Effect1" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+															<ObjectRef Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+														</Reference>
+														<Reference Name="Effect2" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
+															<ObjectRef Name="Monsterize" ID="{99F80B38-1C45-42CE-9BCD-E94F3885DCAA}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup_3" ID="{08527487-47A3-40BA-BD36-7AC3EDDAFDF5}" ShortID="599169704">
+															<Language>SFX</Language>
+															<AudioFile>pickup_3.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup_3" ID="{08527487-47A3-40BA-BD36-7AC3EDDAFDF5}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup_2" ID="{C67B4ED6-422B-43BD-A6D0-F52D42637025}" ShortID="783466142" Type="SoundFX">
+													<PropertyList>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Spatialization" Type="bool" Value="False"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+														</Reference>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+															<ObjectRef Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="Effect1" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+															<ObjectRef Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+														</Reference>
+														<Reference Name="Effect2" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
+															<ObjectRef Name="Monsterize" ID="{99F80B38-1C45-42CE-9BCD-E94F3885DCAA}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup_2" ID="{892D8D61-481F-4D73-9AB4-60914DEBCEA9}" ShortID="412238058">
+															<Language>SFX</Language>
+															<AudioFile>pickup_2.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup_2" ID="{892D8D61-481F-4D73-9AB4-60914DEBCEA9}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup_6" ID="{3BBCEFF8-DABA-4BF7-A1F8-9AC821FFA033}" ShortID="381979646" Type="SoundFX">
+													<PropertyList>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Spatialization" Type="bool" Value="False"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+														</Reference>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+															<ObjectRef Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="Effect1" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+															<ObjectRef Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+														</Reference>
+														<Reference Name="Effect2" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
+															<ObjectRef Name="Monsterize" ID="{99F80B38-1C45-42CE-9BCD-E94F3885DCAA}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup_6" ID="{0398AC5F-CCB4-4FEE-AEB1-44850A484D96}" ShortID="571728734">
+															<Language>SFX</Language>
+															<AudioFile>pickup_6.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup_6" ID="{0398AC5F-CCB4-4FEE-AEB1-44850A484D96}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
