@@ -11,8 +11,13 @@ public class EndScreen : MonoBehaviour {
     public Text title;
     public Text info;
 
-    private int deadFishmen = 0, deadTrolls = 0, deadGnomes = 0, deadSheep = 0;
-    private int totalFishmen = 0, totalTrolls = 0, totalGnomes = 0, totalSheep = 0;
+    public Sprite SheepSprite;
+    public Sprite meleeSprite;
+    public Sprite rangedSprite;
+    public Sprite suicideSprite;
+
+    public GameObject FadeOut;
+
 
     private QuestData data;
 
@@ -22,7 +27,9 @@ public class EndScreen : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        
+
+        if (FadeOut != null)
+            FadeOut.SetActive(true);
 
         if (StaticData.currQuest == null) return;
         data = StaticData.currQuest.Data;
@@ -31,40 +38,51 @@ public class EndScreen : MonoBehaviour {
         if (data.Type == QuestType.Destroy)
         {
 
-            questDesc.Append(string.Format("Destroy quest!" + Environment.NewLine));
+            //questDesc.Append(string.Format("Destroy quest!" + Environment.NewLine));
 
             //questDesc.Append(string.Format(" - 0/{0} enemies slain." + Environment.NewLine, data.EnemyCount, PresentMonsters(data.PresentEnemies)));
         }
         else if (data.Type == QuestType.Protect)
         {
-            questDesc.Append(string.Format("Protect the objective!" + Environment.NewLine));
+            //questDesc.Append(string.Format("Protect the objective!" + Environment.NewLine));
 
             //questDesc.Append(string.Format(" - 0/{0} enemies slain." + Environment.NewLine, data.EnemyCount, PresentMonsters(data.PresentEnemies)));
             //questDesc.Append(string.Format(" - 0/{0} sheep to protect." + Environment.NewLine, data.FriendlyCount));
-
         }
 
+
+        questDesc.Append(string.Format("YOU FAILED..." + Environment.NewLine));
         questDesc.Append(string.Format("Reputation gained: " + StaticIngameData.dummyManager.ReputationHandler.Score));
 
 
 
         info.text = questDesc.ToString();
         showMonsters();
+
     }
 	
+    void Update()
+    {
+       
+       
+    }
+
 	// Update is called once per frame
 	void showMonsters () {
 
-        //Debug.Log("IMP!---------------");
         List<MonsterAI> list = StaticIngameData.mapManager.GetObjectiveManager().GetMonsters();
-            
-        Debug.Log(list.Count);
+
+
+
+         int deadFishmen = 0, deadTrolls = 0, deadGnomes = 0, deadSheep = 0;
+         int totalFishmen = 0, totalTrolls = 0, totalGnomes = 0, totalSheep = 0;
         //better ways
         foreach (MonsterAI monster in list)
         {
 
             switch (monster.GetType().ToString())
             {
+                
                 case "RangedAI":
                     totalTrolls++;
                     if (monster.getState() == State.Death)
@@ -97,20 +115,23 @@ public class EndScreen : MonoBehaviour {
         }
 
         int poz = 0;
+        int pozIncrease = 150;
         if (totalSheep > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
             hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += 50;
-            hh.GetComponentInChildren<Text>().text = deadSheep + "/" + totalSheep + " dead sheep";
+            poz += pozIncrease;
+            hh.GetComponentInChildren<Text>().text = "X " + deadSheep;
+            hh.GetComponentInChildren<Image>().sprite = SheepSprite;
             hh.SetActive(true);
         }
         if (totalFishmen > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
             hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += 50;
-            hh.GetComponentInChildren<Text>().text = deadFishmen + "/" + totalFishmen + " dead fishmen";
+            poz += pozIncrease;
+            hh.GetComponentInChildren<Text>().text = "X " + deadFishmen;
+            hh.GetComponentInChildren<Image>().sprite = meleeSprite;
             hh.SetActive(true);
         }
 
@@ -118,8 +139,9 @@ public class EndScreen : MonoBehaviour {
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
             hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += 50;
-            hh.GetComponentInChildren<Text>().text = deadGnomes + "/" + totalGnomes + " dead gnomes";
+            poz += pozIncrease;
+            hh.GetComponentInChildren<Text>().text = "X " + deadGnomes;
+            //hh.GetComponentInChildren<Image>().sprite =;
             hh.SetActive(true);
         }
 
@@ -127,8 +149,9 @@ public class EndScreen : MonoBehaviour {
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
             hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += 50;
-            hh.GetComponentInChildren<Text>().text = deadTrolls + "/" + totalTrolls + " dead trolls";
+            poz += pozIncrease;
+            hh.GetComponentInChildren<Text>().text = "X " + deadTrolls;
+            hh.GetComponentInChildren<Image>().sprite = rangedSprite;
             hh.SetActive(true);
         }
 
@@ -141,17 +164,4 @@ public class EndScreen : MonoBehaviour {
     }
 
 
-    private string PresentMonsters(EnemyTypes enemyTypes)
-    {
-        var enemyList = new List<string>();
-        var hasMelee = (enemyTypes & EnemyTypes.HasMelee) == EnemyTypes.HasMelee;
-        var hasRanged = (enemyTypes & EnemyTypes.HasRanged) == EnemyTypes.HasRanged;
-        var hasSuicide = (enemyTypes & EnemyTypes.HasSuicide) == EnemyTypes.HasSuicide;
-
-        if (hasMelee) enemyList.Add("Fishmen");
-        if (hasRanged) enemyList.Add("Trolls");
-        if (hasSuicide) enemyList.Add("Gnomes");
-
-        return string.Join(", ", enemyList.ToArray());
-    }
 }
