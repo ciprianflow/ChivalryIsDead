@@ -166,6 +166,21 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         count++;
     }
 
+    public IEnumerator DialogEight()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 8);
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
+  
+        count = 0;
+        while (count < 1)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+        procceed = false;
+    }
+
     public IEnumerator DialogTwo()
     {
         ControlMove.SetActive(false);
@@ -270,10 +285,14 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
         skipAnimator.speed = 10f;
-        enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollB;
+        //enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollB;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
+        InvisWallOne.GetComponent<Animator>().SetTrigger("gateClose");
+
         tutImage.SetActive(true);
         tutImgAnimator.SetBool("playLearnTaunt", true);
+
+
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
@@ -362,7 +381,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //Time.timeScale = 1f;
 
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene(5);
 
     }
