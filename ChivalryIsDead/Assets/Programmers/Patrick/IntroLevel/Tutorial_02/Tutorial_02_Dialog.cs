@@ -4,6 +4,9 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial_02_Dialog : MonoBehaviour {
 
+    public GameObject animCam;
+    public GameObject mainCam;
+
     public GameObject Player;
     public GameObject enemyBillboard;
     public GameObject TrollA;
@@ -222,6 +225,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public IEnumerator DialogFour()
     {
         ControlMove.SetActive(false);
+        ControlHit.SetActive(false);
 
         //Time.timeScale = 0.1f;
         //swordAnimator.speed = 10f;
@@ -229,10 +233,18 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
-        
+
         // GATE!
+        yield return new WaitForSeconds(1f);
+        animCam.SetActive(true);
+        mainCam.SetActive(false);
         InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
+
+        yield return new WaitForSeconds(animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        mainCam.SetActive(true);
+        animCam.SetActive(false);
         ControlMove.SetActive(true);
+        ControlHit.SetActive(true);
 
         /*
         count = 0;
