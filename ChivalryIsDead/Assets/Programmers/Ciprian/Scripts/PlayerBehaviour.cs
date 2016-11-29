@@ -72,8 +72,8 @@ class PlayerBehaviour : ScorePublisher
 
             WwiseInterface.Instance.PlayRewardSound(RewardHandle.Fail);
             ScoreChange = dummyManager.GetComboMultiplier(score);
-            ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
-            ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
+
+            
         }
         
     }
@@ -81,6 +81,8 @@ class PlayerBehaviour : ScorePublisher
     //reset combo
     public void Reset()
     {
+        resetParticles();
+
         dummyManager.ResetCombo();
     }
 
@@ -93,7 +95,11 @@ class PlayerBehaviour : ScorePublisher
         OnChangeScoreEvent(new ScoreEventArgs(ScoreChange));
     }
 
-
+    private void resetParticles()
+    {
+        ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
+        ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
+    }
 
 
 }
