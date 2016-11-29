@@ -47,7 +47,7 @@ class OverreactAction: MonoBehaviour
         //reset cooldown 
         playerBase.overreact();
         cooldownTimeStamp = Time.time + OverreactCooldown;
-        Debug.Log("Overreact");
+        //Debug.Log("Overreact");
 
         
     }
