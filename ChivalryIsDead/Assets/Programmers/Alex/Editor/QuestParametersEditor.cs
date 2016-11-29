@@ -185,8 +185,6 @@ public class QuestParametersEditor : Editor {
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel(label);
         qParamTarget.reputationOverrides[idx].RepMarker = EditorGUILayout.IntField(qParamTarget.reputationOverrides[idx].RepMarker);
-        qParamTarget.reputationOverrides[idx].minOverride = EditorGUILayout.IntField(qParamTarget.reputationOverrides[idx].minOverride, GUILayout.Width(40));
-        qParamTarget.reputationOverrides[idx].maxOverride = EditorGUILayout.IntField(qParamTarget.reputationOverrides[idx].maxOverride, GUILayout.Width(40));
         EditorGUILayout.EndHorizontal();
 
         switch (idx) {

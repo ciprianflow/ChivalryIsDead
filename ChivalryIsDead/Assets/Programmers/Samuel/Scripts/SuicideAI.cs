@@ -35,7 +35,10 @@ public class SuicideAI : MonsterAI
             if(t1 > tauntTime)
             {
                 Debug.Log("Un-taunt");
-                ToMove();
+                if (!RangeCheck(deSpawnRange))
+                    ToMove();
+                else
+                    MoveToIdle();
                 taunted = false;
             }
         }

@@ -316,12 +316,6 @@ namespace CnControls
             var horizontalValue = Mathf.Clamp(difference.x * _oneOverMovementRange, -1f, 1f);
             var verticalValue = Mathf.Clamp(difference.y * _oneOverMovementRange, -1f, 1f);
 
-            //Debug.Log("HV " + horizontalValue);
-            //Debug.Log("stickAnchoredPosition.x " + stickAnchoredPosition.x);
-            //Debug.Log("Diff.x " + difference.x);
-            //Debug.Log("_intermediateStickPosition " + difference.x);
-
-
             SX = Stick.rectTransform.localPosition.x/MovementRange;
             SY = Stick.rectTransform.localPosition.y/MovementRange;
 
@@ -330,60 +324,7 @@ namespace CnControls
             updateActionUI();
 
 
-            //resetOptions();
-
-            //if (new Vector2(SX, SY).magnitude < 0.5) {
-            //    //attack = true; // angeliki commented out this
-            //    //ActionCenter.color = new Color(1, 1, 1, 1);
-            //    ActionCenterPushed.enabled = true;
-            //}
-            ////else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
-            //else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
-            //{
-            //    overreact = true;
-
-            //    if (overreactCooldownFill == 1)
-            //    {
-            //        ActionRight.color = new Color(1, 1, 1, 1);
-            //    }
-            //}
-            ////else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
-            //else if ((angle >= 147 && angle < 265)) // angeliki added this
-            //{
-            //    taunt = true;
-            //    if (tauntCooldownfill == 1)
-            //    {
-            //        ActionLeft.color = new Color(1, 1, 1, 1);
-            //    }
-                    
-            //else if (SX < 0 && -SX > Mathf.Abs(SY)) {
-            //    taunt = true;
-            //    ActionLeft.color = new Color(1, 1, 1, 1);
-            //}
-            //else if (SY > 0 && SY > Mathf.Abs(SX)) {
-            //    //question = true;
-            //    //ActionTop.color = new Color(1, 1, 1, 1);
-            //    resetOptions();
-            //}
-            //else if (SY < 0 && -SY > Mathf.Abs(SX)) {
-            //    cancel = true;
-            //    ActionBottom.color = new Color(1, 1, 1, 1);
-            //}
-            //else if (SY < -0.2f) {
-            //        ActionBottom.color = new Color(1, 1, 1, 1);
-            //        ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            //}
-            //else {
-            //    ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            //    ActionBottom.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            //}
-
-            //if (SY > 0) {
-            //    Stick.color = new Color(1- SY/2, 1-SY, 1, 1);
-            //}
-            //else if(SY < 0) {
-            //    Stick.color = new Color(1, 1+SY/2 , 1+SY/2, 1);
-            //}
+           
 
             //t.text = "x: " + Math.Round(SX, 2) + "y: " + Math.Round(SY, 2);
 

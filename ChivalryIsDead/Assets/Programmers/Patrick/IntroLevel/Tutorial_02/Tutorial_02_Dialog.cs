@@ -48,6 +48,12 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         deadSheeps = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
 
+        TrollA.GetComponent<RangedAI>().softAttackRangeBreak = 0;
+        TrollA.GetComponent<RangedAI>().attackRange = 0;
+
+        TrollB.GetComponent<RangedAI>().softAttackRangeBreak = 0;
+        TrollB.GetComponent<RangedAI>().attackRange = 0;
+
         foreach (GameObject Sheep in Sheeps)
         {
            // Sheep.GetComponent<SheepAI>().enabled = false;
@@ -65,11 +71,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
                 StartCoroutine("DialogFour");
 
                 
-                TrollA.GetComponent<RangedAI>().softAttackRangeBreak = 0;
-                TrollA.GetComponent<RangedAI>().attackRange = 0;
-
-                TrollB.GetComponent<RangedAI>().softAttackRangeBreak = 0;
-                TrollB.GetComponent<RangedAI>().attackRange = 0;
+                
 
                 learnedToGetHit = true;
             }
@@ -230,13 +232,17 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public IEnumerator DialogThree()
     {
         tutImage.SetActive(false);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         //ControlMove.SetActive(false);
 
         //Time.timeScale = 0.1f;
         //swordAnimator.speed = 10f;
         //skipAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+
+        TrollA.GetComponent<RangedAI>().softAttackRangeBreak = 12;
+        TrollA.GetComponent<RangedAI>().attackRange = 10;
+
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         //count = 0;
@@ -251,6 +257,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //Time.timeScale = 1f;
         //ControlMove.SetActive(true);
         learnedToGetHit = false;
+        yield return null;
     }
 
 

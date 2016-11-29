@@ -83,6 +83,8 @@
 				<Event Id="3232260158" Name="ranged_taunted" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_taunted"/>
 				<Event Id="521065176" Name="ranged_walk" ObjectPath="\Events\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_walk"/>
 				<Event Id="3677981923" Name="reward_combo_boost" ObjectPath="\Events\Default Work Unit\reward\reward_combo_boost"/>
+				<Event Id="4271425899" Name="reward_combo_boost2" ObjectPath="\Events\Default Work Unit\reward\reward_combo_boost2"/>
+				<Event Id="4271425898" Name="reward_combo_boost3" ObjectPath="\Events\Default Work Unit\reward\reward_combo_boost3"/>
 				<Event Id="4172090781" Name="reward_combo_end" ObjectPath="\Events\Default Work Unit\reward\reward_combo_end"/>
 				<Event Id="160232150" Name="reward_combo_start" ObjectPath="\Events\Default Work Unit\reward\reward_combo_start"/>
 				<Event Id="1671939679" Name="reward_fail" ObjectPath="\Events\Default Work Unit\reward\reward_fail"/>
@@ -95,6 +97,7 @@
 				<Event Id="4272946598" Name="suicide_attack" ObjectPath="\Events\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_attack"/>
 				<Event Id="3646683889" Name="suicide_attacked" ObjectPath="\Events\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_attacked"/>
 				<Event Id="4092650514" Name="suicide_charge" ObjectPath="\Events\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_charge"/>
+				<Event Id="2566331187" Name="suicide_explosion" ObjectPath="\Events\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_explosion"/>
 				<Event Id="2023593297" Name="suicide_flung_away" ObjectPath="\Events\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_flung_away"/>
 				<Event Id="2559993417" Name="suicide_taunted" ObjectPath="\Events\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_taunted"/>
 				<Event Id="1506181365" Name="suicide_walk" ObjectPath="\Events\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_walk"/>
@@ -135,7 +138,7 @@
 				</File>
 				<File Id="47195038" Language="SFX">
 					<ShortName>knight_taunt-05.wav</ShortName>
-					<Path>SFX/knight_taunt-05_D4E65496.wem</Path>
+					<Path>SFX/knight_taunt-05_D1657958.wem</Path>
 				</File>
 				<File Id="51556018" Language="SFX">
 					<ShortName>footsteps dirt.wav</ShortName>
@@ -161,6 +164,14 @@
 					<ShortName>troll_aggro-04.wav</ShortName>
 					<Path>SFX/troll_aggro-04_645155D0.wem</Path>
 				</File>
+				<File Id="65735867" Language="SFX">
+					<ShortName>trolltaunt5.wav</ShortName>
+					<Path>SFX/trolltaunt5_2EFD2433.wem</Path>
+				</File>
+				<File Id="72083450" Language="SFX">
+					<ShortName>troll aggro2.wav</ShortName>
+					<Path>SFX/troll aggro2_21D42E13.wem</Path>
+				</File>
 				<File Id="73926407" Language="SFX">
 					<ShortName>look_for_rock_3.wav</ShortName>
 					<Path>SFX/look_for_rock_3_645155D0.wem</Path>
@@ -175,7 +186,7 @@
 				</File>
 				<File Id="83947997" Language="SFX">
 					<ShortName>combat\impact punch5.wav</ShortName>
-					<Path>SFX/combat/impact punch5_9FB6F956.wem</Path>
+					<Path>SFX/combat/impact punch5_94CB321E.wem</Path>
 				</File>
 				<File Id="85623998" Language="SFX">
 					<ShortName>pop_1.wav</ShortName>
@@ -195,7 +206,7 @@
 				</File>
 				<File Id="93264076" Language="SFX">
 					<ShortName>combo end 2.wav</ShortName>
-					<Path>SFX/combo end 2_138EBBFB.wem</Path>
+					<Path>SFX/combo end 2_0EDDDEDD.wem</Path>
 				</File>
 				<File Id="93347152" Language="SFX">
 					<ShortName>stone_boots_7.wav</ShortName>
@@ -249,6 +260,10 @@
 					<ShortName>troll_getting_hit-01.wav</ShortName>
 					<Path>SFX/troll_getting_hit-01_645155D0.wem</Path>
 				</File>
+				<File Id="111317952" Language="SFX">
+					<ShortName>explosions\explosion9.wav</ShortName>
+					<Path>SFX/explosions/explosion9_AC60BAF7.wem</Path>
+				</File>
 				<File Id="117234038" Language="SFX">
 					<ShortName>fishman_walking-05.wav</ShortName>
 					<Path>SFX/fishman_walking-05_645155D0.wem</Path>
@@ -260,6 +275,10 @@
 				<File Id="124797533" Language="SFX">
 					<ShortName>sheep_5.wav</ShortName>
 					<Path>SFX/sheep_5_645155D0.wem</Path>
+				</File>
+				<File Id="127869551" Language="SFX">
+					<ShortName>explosions\explosion2.wav</ShortName>
+					<Path>SFX/explosions/explosion2_A1A2690E.wem</Path>
 				</File>
 				<File Id="128504471" Language="SFX">
 					<ShortName>talking sword happy4.wav</ShortName>
@@ -301,10 +320,6 @@
 					<ShortName>fishman_charge-04.wav</ShortName>
 					<Path>SFX/fishman_charge-04_645155D0.wem</Path>
 				</File>
-				<File Id="148285484" Language="SFX">
-					<ShortName>small reward2.wav</ShortName>
-					<Path>SFX/small reward2_645155D0.wem</Path>
-				</File>
 				<File Id="148996419" Language="SFX">
 					<ShortName>grass_boots_6.wav</ShortName>
 					<Path>SFX/grass_boots_6_261120DE.wem</Path>
@@ -320,6 +335,10 @@
 				<File Id="170148162" Language="SFX">
 					<ShortName>gain rep bad long modulated.wav</ShortName>
 					<Path>SFX/gain rep bad long modulated_645155D0.wem</Path>
+				</File>
+				<File Id="172980892" Language="SFX">
+					<ShortName>trolltaunt2.wav</ShortName>
+					<Path>SFX/trolltaunt2_A0112353.wem</Path>
 				</File>
 				<File Id="173355335" Language="SFX">
 					<ShortName>pallet_boots_6.wav</ShortName>
@@ -340,6 +359,10 @@
 				<File Id="185185842" Language="SFX">
 					<ShortName>sword attack7.wav</ShortName>
 					<Path>SFX/sword attack7_645155D0.wem</Path>
+				</File>
+				<File Id="188935295" Language="SFX">
+					<ShortName>explosions\explosion8.wav</ShortName>
+					<Path>SFX/explosions/explosion8_F0F0330A.wem</Path>
 				</File>
 				<File Id="191124188" Language="SFX">
 					<ShortName>troll_getting_hit-11.wav</ShortName>
@@ -363,7 +386,7 @@
 				</File>
 				<File Id="207656760" Language="SFX">
 					<ShortName>combo end 3.wav</ShortName>
-					<Path>SFX/combo end 3_2C1E5447.wem</Path>
+					<Path>SFX/combo end 3_288D6B31.wem</Path>
 				</File>
 				<File Id="208187776" Language="SFX">
 					<ShortName>talking sword happy5.wav</ShortName>
@@ -372,6 +395,10 @@
 				<File Id="208499235" Language="SFX">
 					<ShortName>sword attack2.wav</ShortName>
 					<Path>SFX/sword attack2_E77E25A7.wem</Path>
+				</File>
+				<File Id="209299865" Language="SFX">
+					<ShortName>explosions\explosion11.wav</ShortName>
+					<Path>SFX/explosions/explosion11_0B2805D1.wem</Path>
 				</File>
 				<File Id="209605840" Language="SFX">
 					<ShortName>talking sword neutral5.wav</ShortName>
@@ -453,6 +480,10 @@
 					<ShortName>super_flirty_1.wav</ShortName>
 					<Path>SFX/super_flirty_1_645155D0.wem</Path>
 				</File>
+				<File Id="251686211" Language="SFX">
+					<ShortName>crowd\crowd boo3.wav</ShortName>
+					<Path>SFX/crowd/crowd boo3_645155D0.wem</Path>
+				</File>
 				<File Id="253011173" Language="SFX">
 					<ShortName>knight_attack_14.wav</ShortName>
 					<Path>SFX/knight_attack_14_645155D0.wem</Path>
@@ -495,7 +526,7 @@
 				</File>
 				<File Id="275380279" Language="SFX">
 					<ShortName>pift 4.wav</ShortName>
-					<Path>SFX/pift 4_47468BE1.wem</Path>
+					<Path>SFX/pift 4_028C8B2E.wem</Path>
 				</File>
 				<File Id="275620395" Language="SFX">
 					<ShortName>talking sword neutral3.wav</ShortName>
@@ -549,6 +580,10 @@
 					<ShortName>dirt_boots_10.wav</ShortName>
 					<Path>SFX/dirt_boots_10_EB3B8EF1.wem</Path>
 				</File>
+				<File Id="310656049" Language="SFX">
+					<ShortName>explosions\explosion4.wav</ShortName>
+					<Path>SFX/explosions/explosion4_B55DE6C2.wem</Path>
+				</File>
 				<File Id="312095579" Language="SFX">
 					<ShortName>combat\sword impact3.wav</ShortName>
 					<Path>SFX/combat/sword impact3_645155D0.wem</Path>
@@ -573,13 +608,13 @@
 					<ShortName>combo reward 5.wav</ShortName>
 					<Path>SFX/combo reward 5_27CBF12E.wem</Path>
 				</File>
-				<File Id="336089542" Language="SFX">
-					<ShortName>knight loose rep small.wav</ShortName>
-					<Path>SFX/knight loose rep small_645155D0.wem</Path>
-				</File>
 				<File Id="336340365" Language="SFX">
 					<ShortName>combat\impact punch6.wav</ShortName>
-					<Path>SFX/combat/impact punch6_3503C48B.wem</Path>
+					<Path>SFX/combat/impact punch6_E68B44EA.wem</Path>
+				</File>
+				<File Id="338264633" Language="SFX">
+					<ShortName>crowd gasp2.wav</ShortName>
+					<Path>SFX/crowd gasp2_645155D0.wem</Path>
 				</File>
 				<File Id="339154783" Language="SFX">
 					<ShortName>talking sword explanatory long 2.wav</ShortName>
@@ -643,7 +678,7 @@
 				</File>
 				<File Id="376230859" Language="SFX">
 					<ShortName>small reward3.wav</ShortName>
-					<Path>SFX/small reward3_6CC150D3.wem</Path>
+					<Path>SFX/small reward3_6BFE860A.wem</Path>
 				</File>
 				<File Id="384601771" Language="SFX">
 					<ShortName>super_happy_2.wav</ShortName>
@@ -707,7 +742,7 @@
 				</File>
 				<File Id="414694016" Language="SFX">
 					<ShortName>knight_taunt-03.wav</ShortName>
-					<Path>SFX/knight_taunt-03_A13E3BD9.wem</Path>
+					<Path>SFX/knight_taunt-03_2AAB007C.wem</Path>
 				</File>
 				<File Id="415284205" Language="SFX">
 					<ShortName>look_for_rock_1.wav</ShortName>
@@ -821,6 +856,10 @@
 					<ShortName>trumpet reward2.wav</ShortName>
 					<Path>SFX/trumpet reward2_645155D0.wem</Path>
 				</File>
+				<File Id="476700394" Language="SFX">
+					<ShortName>troll aggro4.wav</ShortName>
+					<Path>SFX/troll aggro4_C3939901.wem</Path>
+				</File>
 				<File Id="477283424" Language="SFX">
 					<ShortName>sword attack8.wav</ShortName>
 					<Path>SFX/sword attack8_645155D0.wem</Path>
@@ -849,6 +888,10 @@
 					<ShortName>armor_rustle_6.wav</ShortName>
 					<Path>SFX/armor_rustle_6_645155D0.wem</Path>
 				</File>
+				<File Id="496204827" Language="SFX">
+					<ShortName>crowd\crowd boo2.wav</ShortName>
+					<Path>SFX/crowd/crowd boo2_645155D0.wem</Path>
+				</File>
 				<File Id="497168476" Language="SFX">
 					<ShortName>talking sword neutral6.wav</ShortName>
 					<Path>SFX/talking sword neutral6_645155D0.wem</Path>
@@ -867,11 +910,15 @@
 				</File>
 				<File Id="503075465" Language="SFX">
 					<ShortName>spring.wav</ShortName>
-					<Path>SFX/spring_D4EB87AC.wem</Path>
+					<Path>SFX/spring_07D59BA5.wem</Path>
 				</File>
 				<File Id="503842650" Language="SFX">
 					<ShortName>knight_getting_hit-10.wav</ShortName>
 					<Path>SFX/knight_getting_hit-10_645155D0.wem</Path>
+				</File>
+				<File Id="504700251" Language="SFX">
+					<ShortName>trolltaunt3.wav</ShortName>
+					<Path>SFX/trolltaunt3_A69F709D.wem</Path>
 				</File>
 				<File Id="509972293" Language="SFX">
 					<ShortName>knight_getting_hit-13.wav</ShortName>
@@ -880,10 +927,6 @@
 				<File Id="512074993" Language="SFX">
 					<ShortName>talking sword happy long4.wav</ShortName>
 					<Path>SFX/talking sword happy long4_645155D0.wem</Path>
-				</File>
-				<File Id="512767770" Language="SFX">
-					<ShortName>knight loose rep big.wav</ShortName>
-					<Path>SFX/knight loose rep big_645155D0.wem</Path>
 				</File>
 				<File Id="521700148" Language="SFX">
 					<ShortName>dirt_boots_8.wav</ShortName>
@@ -897,9 +940,17 @@
 					<ShortName>dirt_boots_6.wav</ShortName>
 					<Path>SFX/dirt_boots_6_DDE22E12.wem</Path>
 				</File>
+				<File Id="528959122" Language="SFX">
+					<ShortName>troll aggro3.wav</ShortName>
+					<Path>SFX/troll aggro3_07B56919.wem</Path>
+				</File>
 				<File Id="536872306" Language="SFX">
 					<ShortName>taunt sound.wav</ShortName>
 					<Path>SFX/taunt sound_34AAA5BD.wem</Path>
+				</File>
+				<File Id="541182474" Language="SFX">
+					<ShortName>crowd gasp3.wav</ShortName>
+					<Path>SFX/crowd gasp3_645155D0.wem</Path>
 				</File>
 				<File Id="541441542" Language="SFX">
 					<ShortName>grass_boots_3.wav</ShortName>
@@ -965,10 +1016,6 @@
 					<ShortName>talking sword crazy2.wav</ShortName>
 					<Path>SFX/talking sword crazy2_645155D0.wem</Path>
 				</File>
-				<File Id="570622057" Language="SFX">
-					<ShortName>knight loose rep combo.wav</ShortName>
-					<Path>SFX/knight loose rep combo_645155D0.wem</Path>
-				</File>
 				<File Id="571728734" Language="SFX">
 					<ShortName>pickup_6.wav</ShortName>
 					<Path>SFX/pickup_6_645155D0.wem</Path>
@@ -1000,6 +1047,14 @@
 				<File Id="588985119" Language="SFX">
 					<ShortName>talking sword angry4.wav</ShortName>
 					<Path>SFX/talking sword angry4_645155D0.wem</Path>
+				</File>
+				<File Id="593605574" Language="SFX">
+					<ShortName>troll aggro1.wav</ShortName>
+					<Path>SFX/troll aggro1_CF100B86.wem</Path>
+				</File>
+				<File Id="594618283" Language="SFX">
+					<ShortName>trolltaunt1.wav</ShortName>
+					<Path>SFX/trolltaunt1_E018F297.wem</Path>
 				</File>
 				<File Id="596689285" Language="SFX">
 					<ShortName>fishman_walking-08.wav</ShortName>
@@ -1048,6 +1103,10 @@
 				<File Id="616165439" Language="SFX">
 					<ShortName>talking sword angry2.wav</ShortName>
 					<Path>SFX/talking sword angry2_645155D0.wem</Path>
+				</File>
+				<File Id="619600550" Language="SFX">
+					<ShortName>explosions\explosion6.wav</ShortName>
+					<Path>SFX/explosions/explosion6_DBD31A04.wem</Path>
 				</File>
 				<File Id="622548562" Language="SFX">
 					<ShortName>suicide_getting_hit-01.wav</ShortName>
@@ -1103,7 +1162,7 @@
 				</File>
 				<File Id="648139683" Language="SFX">
 					<ShortName>combat\impact punch3.wav</ShortName>
-					<Path>SFX/combat/impact punch3_DDBAD9C7.wem</Path>
+					<Path>SFX/combat/impact punch3_017FD472.wem</Path>
 				</File>
 				<File Id="648966708" Language="SFX">
 					<ShortName>grass_boots_7.wav</ShortName>
@@ -1127,7 +1186,7 @@
 				</File>
 				<File Id="655335562" Language="SFX">
 					<ShortName>combo end 1.wav</ShortName>
-					<Path>SFX/combo end 1_22FC1BDA.wem</Path>
+					<Path>SFX/combo end 1_C3BFCF09.wem</Path>
 				</File>
 				<File Id="659171208" Language="SFX">
 					<ShortName>knight_attack_10.wav</ShortName>
@@ -1137,13 +1196,21 @@
 					<ShortName>pallet_boots_4.wav</ShortName>
 					<Path>SFX/pallet_boots_4_645155D0.wem</Path>
 				</File>
+				<File Id="660095065" Language="SFX">
+					<ShortName>crowd gasp4.wav</ShortName>
+					<Path>SFX/crowd gasp4_645155D0.wem</Path>
+				</File>
 				<File Id="663451059" Language="SFX">
 					<ShortName>combat\impact punch.wav</ShortName>
-					<Path>SFX/combat/impact punch_6D0F0AF9.wem</Path>
+					<Path>SFX/combat/impact punch_3F16A03C.wem</Path>
 				</File>
 				<File Id="666533575" Language="SFX">
 					<ShortName>dirt_boots_5.wav</ShortName>
 					<Path>SFX/dirt_boots_5_405B2D72.wem</Path>
+				</File>
+				<File Id="666732634" Language="SFX">
+					<ShortName>crowd gasp1.wav</ShortName>
+					<Path>SFX/crowd gasp1_645155D0.wem</Path>
 				</File>
 				<File Id="670256923" Language="SFX">
 					<ShortName>troll_death-04.wav</ShortName>
@@ -1177,6 +1244,10 @@
 					<ShortName>knight_overreact_ok-01.wav</ShortName>
 					<Path>SFX/knight_overreact_ok-01_645155D0.wem</Path>
 				</File>
+				<File Id="686139689" Language="SFX">
+					<ShortName>explosions\explosion5.wav</ShortName>
+					<Path>SFX/explosions/explosion5_336E8A9F.wem</Path>
+				</File>
 				<File Id="688599165" Language="SFX">
 					<ShortName>talking sword crazy5.wav</ShortName>
 					<Path>SFX/talking sword crazy5_645155D0.wem</Path>
@@ -1191,7 +1262,7 @@
 				</File>
 				<File Id="699324565" Language="SFX">
 					<ShortName>combat\impact punch4.wav</ShortName>
-					<Path>SFX/combat/impact punch4_6EEBB63A.wem</Path>
+					<Path>SFX/combat/impact punch4_336E3837.wem</Path>
 				</File>
 				<File Id="700765041" Language="SFX">
 					<ShortName>stone_boots_5.wav</ShortName>
@@ -1231,11 +1302,15 @@
 				</File>
 				<File Id="722408829" Language="SFX">
 					<ShortName>pift 2.wav</ShortName>
-					<Path>SFX/pift 2_D38B8AC6.wem</Path>
+					<Path>SFX/pift 2_9451E21D.wem</Path>
 				</File>
 				<File Id="723072889" Language="SFX">
 					<ShortName>knight_overreact_ok-02.wav</ShortName>
 					<Path>SFX/knight_overreact_ok-02_645155D0.wem</Path>
+				</File>
+				<File Id="723819154" Language="SFX">
+					<ShortName>crowd\crowd boo1.wav</ShortName>
+					<Path>SFX/crowd/crowd boo1_645155D0.wem</Path>
 				</File>
 				<File Id="724098718" Language="SFX">
 					<ShortName>wooden_floor_boots_10.wav</ShortName>
@@ -1243,7 +1318,7 @@
 				</File>
 				<File Id="725552119" Language="SFX">
 					<ShortName>combat\impact punch2.wav</ShortName>
-					<Path>SFX/combat/impact punch2_76843749.wem</Path>
+					<Path>SFX/combat/impact punch2_C2EF7078.wem</Path>
 				</File>
 				<File Id="730229115" Language="SFX">
 					<ShortName>dirt_boots_1.wav</ShortName>
@@ -1251,7 +1326,7 @@
 				</File>
 				<File Id="732779061" Language="SFX">
 					<ShortName>small reward4.wav</ShortName>
-					<Path>SFX/small reward4_660F1814.wem</Path>
+					<Path>SFX/small reward4_09A8C7C7.wem</Path>
 				</File>
 				<File Id="737616593" Language="SFX">
 					<ShortName>stone_boots_6.wav</ShortName>
@@ -1276,6 +1351,10 @@
 				<File Id="760889707" Language="SFX">
 					<ShortName>sheep_3.wav</ShortName>
 					<Path>SFX/sheep_3_645155D0.wem</Path>
+				</File>
+				<File Id="762084876" Language="SFX">
+					<ShortName>crowd gasp6.wav</ShortName>
+					<Path>SFX/crowd gasp6_645155D0.wem</Path>
 				</File>
 				<File Id="764424246" Language="SFX">
 					<ShortName>dirt_boots_5.wav</ShortName>
@@ -1329,6 +1408,10 @@
 					<ShortName>sheep_2.wav</ShortName>
 					<Path>SFX/sheep_2_645155D0.wem</Path>
 				</File>
+				<File Id="787712012" Language="SFX">
+					<ShortName>explosions\explosion3.wav</ShortName>
+					<Path>SFX/explosions/explosion3_2F44C5A9.wem</Path>
+				</File>
 				<File Id="789427470" Language="SFX">
 					<ShortName>knight_getting_hit-08.wav</ShortName>
 					<Path>SFX/knight_getting_hit-08_645155D0.wem</Path>
@@ -1336,10 +1419,6 @@
 				<File Id="794950502" Language="SFX">
 					<ShortName>troll_throwing_object-01.wav</ShortName>
 					<Path>SFX/troll_throwing_object-01_1E418C1C.wem</Path>
-				</File>
-				<File Id="800557248" Language="SFX">
-					<ShortName>small reward1.wav</ShortName>
-					<Path>SFX/small reward1_645155D0.wem</Path>
 				</File>
 				<File Id="804165838" Language="SFX">
 					<ShortName>fishman_getting_hit-05.wav</ShortName>
@@ -1352,6 +1431,10 @@
 				<File Id="805141022" Language="SFX">
 					<ShortName>sword_hit_clang_1.wav</ShortName>
 					<Path>SFX/sword_hit_clang_1_645155D0.wem</Path>
+				</File>
+				<File Id="808895488" Language="SFX">
+					<ShortName>crowd gasp5.wav</ShortName>
+					<Path>SFX/crowd gasp5_645155D0.wem</Path>
 				</File>
 				<File Id="809641143" Language="SFX">
 					<ShortName>knight_getting_hit-03.wav</ShortName>
@@ -1437,6 +1520,10 @@
 					<ShortName>combo reward 6.wav</ShortName>
 					<Path>SFX/combo reward 6_D4E47A9D.wem</Path>
 				</File>
+				<File Id="879400219" Language="SFX">
+					<ShortName>explosions\explosion7.wav</ShortName>
+					<Path>SFX/explosions/explosion7_508768D7.wem</Path>
+				</File>
 				<File Id="882159545" Language="SFX">
 					<ShortName>sad_3.wav</ShortName>
 					<Path>SFX/sad_3_645155D0.wem</Path>
@@ -1481,6 +1568,10 @@
 					<ShortName>talking sword happy6.wav</ShortName>
 					<Path>SFX/talking sword happy6_645155D0.wem</Path>
 				</File>
+				<File Id="905938041" Language="SFX">
+					<ShortName>crowd\crowd boo4.wav</ShortName>
+					<Path>SFX/crowd/crowd boo4_645155D0.wem</Path>
+				</File>
 				<File Id="907310886" Language="SFX">
 					<ShortName>pallet_boots_8.wav</ShortName>
 					<Path>SFX/pallet_boots_8_645155D0.wem</Path>
@@ -1491,7 +1582,7 @@
 				</File>
 				<File Id="918049914" Language="SFX">
 					<ShortName>fishman_spear_splat_1.wav</ShortName>
-					<Path>SFX/fishman_spear_splat_1_298D3DA6.wem</Path>
+					<Path>SFX/fishman_spear_splat_1_0E82A740.wem</Path>
 				</File>
 				<File Id="924663840" Language="SFX">
 					<ShortName>fishman_aggro-01.wav</ShortName>
@@ -1504,6 +1595,14 @@
 				<File Id="930611581" Language="SFX">
 					<ShortName>trumpet reward1.wav</ShortName>
 					<Path>SFX/trumpet reward1_645155D0.wem</Path>
+				</File>
+				<File Id="936261350" Language="SFX">
+					<ShortName>explosions\explosion10.wav</ShortName>
+					<Path>SFX/explosions/explosion10_A4FB38F4.wem</Path>
+				</File>
+				<File Id="936988672" Language="SFX">
+					<ShortName>explosions\explosion1.wav</ShortName>
+					<Path>SFX/explosions/explosion1_7335C5A7.wem</Path>
 				</File>
 				<File Id="941613171" Language="SFX">
 					<ShortName>knight_attack_13.wav</ShortName>
@@ -1519,7 +1618,7 @@
 				</File>
 				<File Id="949182450" Language="SFX">
 					<ShortName>small reward5.wav</ShortName>
-					<Path>SFX/small reward5_9233F28B.wem</Path>
+					<Path>SFX/small reward5_5B908596.wem</Path>
 				</File>
 				<File Id="949605462" Language="SFX">
 					<ShortName>combo reward 2.wav</ShortName>
@@ -1537,9 +1636,13 @@
 					<ShortName>suicide_getting_hit-05.wav</ShortName>
 					<Path>SFX/suicide_getting_hit-05_645155D0.wem</Path>
 				</File>
+				<File Id="959230780" Language="SFX">
+					<ShortName>trolltaunt4.wav</ShortName>
+					<Path>SFX/trolltaunt4_6CB7A76C.wem</Path>
+				</File>
 				<File Id="959807863" Language="SFX">
 					<ShortName>pift 1 (bedst).wav</ShortName>
-					<Path>SFX/pift 1 (bedst)_839CBBDC.wem</Path>
+					<Path>SFX/pift 1 (bedst)_019E33A7.wem</Path>
 				</File>
 				<File Id="964363103" Language="SFX">
 					<ShortName>knight_getting_hit-11.wav</ShortName>
@@ -1587,7 +1690,7 @@
 				</File>
 				<File Id="990310578" Language="SFX">
 					<ShortName>pift 5.wav</ShortName>
-					<Path>SFX/pift 5_4F5F730B.wem</Path>
+					<Path>SFX/pift 5_9AA0A96F.wem</Path>
 				</File>
 				<File Id="990784513" Language="SFX">
 					<ShortName>metal_hammer_2.wav</ShortName>
@@ -1679,7 +1782,7 @@
 				</File>
 				<File Id="1043680727" Language="SFX">
 					<ShortName>pift 3.wav</ShortName>
-					<Path>SFX/pift 3_1D64729A.wem</Path>
+					<Path>SFX/pift 3_F0E913D5.wem</Path>
 				</File>
 				<File Id="1045094303" Language="SFX">
 					<ShortName>knight_overreact_great-02.wav</ShortName>
@@ -1719,7 +1822,7 @@
 				</File>
 				<File Id="1068350267" Language="SFX">
 					<ShortName>knight_taunt-04.wav</ShortName>
-					<Path>SFX/knight_taunt-04_5D72207A.wem</Path>
+					<Path>SFX/knight_taunt-04_B4DF7C93.wem</Path>
 				</File>
 				<File Id="1068872106" Language="SFX">
 					<ShortName>fishman_aggro-02.wav</ShortName>
