@@ -319,7 +319,7 @@ public class MeleeAI : MonsterAI
             targetPoint = GetRandomPointOnNavMesh();
 
         Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
-        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
+        //Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
         //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
         //if (this.name == "Ranged") {
         //    if ((q.eulerAngles.y - transform.eulerAngles.y) > 5) {
@@ -364,7 +364,7 @@ public class MeleeAI : MonsterAI
             //}
             anim.SetTrigger("StartTurnLeft");
 
-            Debug.Log("Left");
+            //Debug.Log("Left");
         }
     }
 
