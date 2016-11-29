@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ThrowRock : MonoBehaviour {
+public class Ranged_Events : MonoBehaviour {
 
     public GameObject hand;
     public GameObject rock_prefab;
@@ -9,11 +9,10 @@ public class ThrowRock : MonoBehaviour {
     public RangedAI rangedScript;
     public GameObject dustParticles;
     // Use this for initialization
-
+    string[] sounds = new string[3] { "ranged_find_stone" , "ranged_look_for_stone" , "ranged_pickup_stone" };
 
     void Start () {
         dustParticles.GetComponent<ParticleSystem>().Stop();
-
     }
 
     // Update is called once per frame
@@ -60,5 +59,9 @@ public class ThrowRock : MonoBehaviour {
 
         else
             dustParticles.GetComponent<ParticleSystem>().Stop();
+    }
+
+    public void callSound(int sound) {
+        AkSoundEngine.PostEvent(sounds[sound], gameObject);
     }
 }
