@@ -177,10 +177,7 @@ public class SuicideAI : MonsterAI
         //Debug.Log("Collided with something exploding");
 
         //EXPLODE WITH EVERYTHING
-        if (!coll.CompareTag("Ground"))
-            Explode();
-
-        if (state == State.Utility)
+        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility)
             Explode();
 
     }
