@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public enum State { Attack, Move, Charge, Idle, Utility, Death, Turn }
+public enum State { Attack, Move, Charge, Idle, Utility, Death }
 
 public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
@@ -60,7 +60,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public abstract void Move();
     public abstract void Idle();
     public abstract void Taunt();
-    public abstract void Turn();
     public abstract void EnterUtilityState();
     public abstract void Utility();
     public abstract void Init();

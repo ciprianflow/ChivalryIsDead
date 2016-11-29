@@ -201,9 +201,4 @@ public class RangedAI : MonsterAI
     }
 
     public override void HitThis() { }
-
-    public override void Turn()
-    {
-        throw new NotImplementedException();
-    }
 }
