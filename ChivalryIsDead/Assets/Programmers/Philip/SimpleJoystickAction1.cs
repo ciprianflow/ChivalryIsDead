@@ -411,7 +411,7 @@ namespace CnControls
     //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
     else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
     {
-        if (SceneManager.GetActiveScene().name != "IntroLevel") // angeliki added this
+        if (SceneManager.GetActiveScene().name != "IntroLevel" && SceneManager.GetActiveScene().name != "Tutorial_02") // angeliki added this
         {
             overreact = true;
 

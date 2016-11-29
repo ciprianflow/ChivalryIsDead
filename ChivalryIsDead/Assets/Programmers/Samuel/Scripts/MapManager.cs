@@ -7,7 +7,7 @@ using System.Linq;
 [RequireComponent(typeof(AreaScript))]
 public class MapManager : MonoBehaviour {
 
-    public ObjectiveManager OM;
+    ObjectiveManager OM;
     AreaScript areas;
 
     Transform QuestTarget;
@@ -26,16 +26,13 @@ public class MapManager : MonoBehaviour {
     void Awake()
     {
         var staticProtectObjects = transform.FindChild("StaticProtectObjects");
-        if (staticProtectObjects == null)
-            return;
-        else
+        if (staticProtectObjects != null)
             QuestTarget = staticProtectObjects.GetChild(0);
 
-        areas = transform.GetComponent<AreaScript>();
-        endLetter = StaticIngameData.gameMenu.endLetter;
         OM = new ObjectiveManager();
-        StaticIngameData.mapManager = this;
 
+        areas = transform.GetComponent<AreaScript>();
+        StaticIngameData.mapManager = this;
 
         //This functions gets all spawn areas in the map in a dictionary sorted based on monster ID
         sortedAreas = areas.GetSortedAreas();
@@ -47,6 +44,7 @@ public class MapManager : MonoBehaviour {
     {
         OM.LoadAllObjectives();
         InitQuest();
+        endLetter = StaticIngameData.gameMenu.endLetter;
     }
 
     public void InitQuest()
@@ -191,5 +189,10 @@ public class MapManager : MonoBehaviour {
         list = new GameObject("StaticProtectObjects");
         list.transform.SetParent(this.transform);
 
+    }
+
+    public ObjectiveManager GetObjectiveManager()
+    {
+        return OM;
     }
 }

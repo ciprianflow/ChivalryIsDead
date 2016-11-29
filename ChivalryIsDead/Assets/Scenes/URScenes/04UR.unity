@@ -704,7 +704,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a394cb31786454d8b0f9c7276870b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endLetter: {fileID: 0}
 --- !u!114 &207393651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,11 +734,11 @@ MonoBehaviour:
   properties:
   - AreaColor: {r: 0, g: 1, b: 0.13103437, a: 1}
     SpawnType: 12
-    MaxSpawn: 1
+    MaxSpawn: -1
     QuestType: 0
   - AreaColor: {r: 0.24137926, g: 1, b: 0, a: 1}
     SpawnType: 12
-    MaxSpawn: 1
+    MaxSpawn: -1
     QuestType: 0
   - AreaColor: {r: 0.014597764, g: 0.7902918, b: 0.99264705, a: 1}
     SpawnType: 11
@@ -3982,6 +3981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 22
   health: 3
+  ForceDestroyOnDeath: 0
 --- !u!208 &1037612760
 NavMeshObstacle:
   m_ObjectHideFlags: 0
