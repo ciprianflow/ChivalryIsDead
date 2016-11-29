@@ -23,6 +23,11 @@
 							<ChildrenList>
 								<SwitchContainer Name="footsteps" ID="{DDE5099E-098D-4F70-B50A-851DC5D1873C}" ShortID="958176197">
 									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>0.1</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ModifierList>
 												<ModifierInfo>
@@ -39,7 +44,7 @@
 										<Property Name="PositioningType" Type="int16" Value="1"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-13</Value>
+												<Value>-5</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
@@ -1293,11 +1298,17 @@
 								</SwitchContainer>
 								<RandomSequenceContainer Name="armor" ID="{D4C883C1-4D65-4F15-B4B9-0388E5C1276C}" ShortID="709473620">
 									<PropertyList>
+										<Property Name="InitialDelay" Type="Real64">
+											<ValueList>
+												<Value>0.1</Value>
+											</ValueList>
+										</Property>
 										<Property Name="Lowpass" Type="int16">
 											<ValueList>
 												<Value>20</Value>
 											</ValueList>
 										</Property>
+										<Property Name="OverrideEffect" Type="bool" Value="True"/>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
 												<Value>450</Value>
@@ -1321,13 +1332,25 @@
 										<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="3"/>
 										<Property Name="Volume" Type="Real64">
 											<ValueList>
-												<Value>-15</Value>
+												<Value>-20</Value>
 											</ValueList>
 										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="Effect0" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
+											<ObjectRef Name="armordly" ID="{BD3BEB5D-FB59-4228-82FE-6819F5E53FE7}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+										</Reference>
+										<Reference Name="Effect1" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
+											<ObjectRef Name="armordly2" ID="{54235F1D-D973-4F2F-9C81-C84203A0478D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+										</Reference>
+										<Reference Name="Effect2" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+											<ObjectRef Name="armorverb" ID="{5B4C1C62-DE65-4E67-A7EF-91134A13CBCB}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+										</Reference>
+										<Reference Name="Effect3" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+											<ObjectRef Name="armoreq" ID="{134C369B-1150-4D6E-B4BA-6D9D30A975BD}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
 										</Reference>
 										<Reference Name="OutputBus">
 											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
@@ -3355,6 +3378,317 @@
 								<ActiveSource Name="overreact_1" ID="{362CEFF1-F6FE-4510-A35C-1A3817D2580B}" Platform="Linked"/>
 							</ActiveSourceList>
 						</Sound>
+						<RandomSequenceContainer Name="chainmail" ID="{0DAA9F95-6BF6-4F9E-849D-B21150DD1A46}" ShortID="807275396">
+							<PropertyList>
+								<Property Name="OverrideEffect" Type="bool" Value="True"/>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-40</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+								</Reference>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+									<ObjectRef Name="chainmailrvb" ID="{F6935F04-13CC-45ED-B9A9-8B28ECF63C86}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+								</Reference>
+								<Reference Name="Effect1" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+									<ObjectRef Name="chainmaileq" ID="{E368B863-4FDB-4724-9B9E-EC302117F1A9}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+								</Reference>
+								<Reference Name="Effect2" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+									<ObjectRef Name="chainmaileq2" ID="{CBF360F1-2AB3-4B81-9E4B-7A00109F7409}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="chainmail" ID="{8042A5E5-C0BA-4D97-9F06-26F46B69DD04}" ShortID="432411630" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail" ID="{C1E47784-D220-4D83-B6E5-BEFA2EC68909}" ShortID="987565925">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0155886773547095"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.154327905811623"/>
+												<Property Name="FadeOutShape" Type="int16" Value="6"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.568986723446894"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.827758767535069"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail" ID="{C1E47784-D220-4D83-B6E5-BEFA2EC68909}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail1" ID="{E81DED89-4699-4320-A1BE-F7E8FBAC5703}" ShortID="548301079" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail1" ID="{6524C23B-6AE3-4E7D-9C21-F8FF31C5A1F1}" ShortID="673557280">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0200400801603207"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.162324649298597"/>
+												<Property Name="FadeOutShape" Type="int16" Value="6"/>
+												<Property Name="TrimBegin" Type="Real64" Value="1.05210420841683"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.28256513026052"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail1" ID="{6524C23B-6AE3-4E7D-9C21-F8FF31C5A1F1}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail10" ID="{9606480A-C4D3-48A3-83E9-8D013D39E0C0}" ShortID="473433600" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail10" ID="{40E0A462-4272-43C1-AA70-5D9DACD02E0D}" ShortID="402614746">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0186830536072145"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.21910126503006"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.563888527054108"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.850928168837675"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail10.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail10" ID="{40E0A462-4272-43C1-AA70-5D9DACD02E0D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail11" ID="{84989F52-EB1C-44D8-8F8B-E82EF10E81AC}" ShortID="894049876" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail11" ID="{6799D748-9155-4036-8FC5-EACE225CB519}" ShortID="685774113">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0174498997995992"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.174498997995992"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.43450250501002"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.717190881763527"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail11.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail11" ID="{6799D748-9155-4036-8FC5-EACE225CB519}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail3" ID="{F546CF06-B87D-4965-A59C-CB67027FCBED}" ShortID="861567455" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail3" ID="{B3417378-ED78-420C-AED2-437A2760C4CD}" ShortID="459582799">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0271753507014028"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.280245804108217"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.531617798096192"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.867912763026052"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail3.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail3" ID="{B3417378-ED78-420C-AED2-437A2760C4CD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail4" ID="{35FABE12-97E9-4308-95BB-8D9ACB7D1B11}" ShortID="990859800" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail4" ID="{2BEA940E-842B-4223-B62F-03D5036229A0}" ShortID="342202895">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.00907398129592518"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.225034736138945"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.437365898463594"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.751325651302605"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail4.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail4" ID="{2BEA940E-842B-4223-B62F-03D5036229A0}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail5" ID="{58334758-8A64-43B7-9FF6-A6A6F8119376}" ShortID="1071887203" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail5" ID="{44493D59-3953-4804-A746-AD0D9487AB2E}" ShortID="494937422">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0841788577154309"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.171475450901804"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.559633517034068"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.857377254509017"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail5.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail5" ID="{44493D59-3953-4804-A746-AD0D9487AB2E}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail6" ID="{A401545E-E9FD-46FD-BEB3-AF0F9C21AFBC}" ShortID="594276495" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail6" ID="{50C9A9DC-BAD7-47DB-86B7-7A7DAE6B9C3C}" ShortID="987717487">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0363890280561122"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.184085671342685"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.558678607214428"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.903304108216432"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail6.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail6" ID="{50C9A9DC-BAD7-47DB-86B7-7A7DAE6B9C3C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail7" ID="{75F3579A-1997-47E9-92DD-D8884B454559}" ShortID="695306088" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail7" ID="{A2B7779B-9394-47FC-9C0C-E5EB65B27AAA}" ShortID="967247543">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0254070641282566"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.237132598530394"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.675404454742819"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.0205170758183"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail7.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail7" ID="{A2B7779B-9394-47FC-9C0C-E5EB65B27AAA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail8" ID="{CDFFDC94-97CE-4487-AC21-7F082447324E}" ShortID="198908053" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail8" ID="{E5F66224-DCB9-4862-973D-4C17D4C91CCA}" ShortID="518927396">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0521405936873748"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.413262483299933"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail8.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail8" ID="{E5F66224-DCB9-4862-973D-4C17D4C91CCA}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="chainmail9" ID="{FF5A88FD-87E8-4BB7-9EA5-9398CCE4C459}" ShortID="682432415" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="chainmail9" ID="{58040638-0BCB-47F9-AE30-B923B326FA04}" ShortID="347675846">
+											<PropertyList>
+												<Property Name="FadeInDuration" Type="Real64" Value="0.0244299014696059"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="0.293158817635271"/>
+												<Property Name="TrimBegin" Type="Real64" Value="0.434852246158985"/>
+												<Property Name="TrimEnd" Type="Real64" Value="0.913678314963259"/>
+											</PropertyList>
+											<Language>SFX</Language>
+											<AudioFile>armor\chainmail9.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="chainmail9" ID="{58040638-0BCB-47F9-AE30-B923B326FA04}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="combat sounds" ID="{C472610A-704A-4172-919C-4EDC77316B59}" ShortID="395535494">
@@ -3767,6 +4101,392 @@
 												<ActiveSource Name="armor_impact_1" ID="{C69D0A84-607C-4424-8E70-86739BF8A628}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
+										<RandomSequenceContainer Name="stone rolling" ID="{131B6530-10A3-41B1-9CE3-431CA3A3D43F}" ShortID="974819590">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{BC6E14AD-83F3-4836-91BE-D6C19D82D43B}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-300"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="UserAuxSendVolume0" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-20</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="stone rolling" ID="{8D756786-C0B3-4880-9D77-081539048654}" ShortID="97882175" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stone rolling" ID="{2E074AA4-1A3B-413B-95BD-A33F21CF4A38}" ShortID="784448698">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.416090848363393"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>stones\stone rolling.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stone rolling" ID="{2E074AA4-1A3B-413B-95BD-A33F21CF4A38}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stones_2_1_01_01" ID="{2AFAE970-7B3D-4BA5-9DD2-11178BD46BD5}" ShortID="419310292" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stones_2_1_01_01" ID="{39777D58-D330-4113-AF09-107763D84A4A}" ShortID="849844886">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.764339616733467"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>stones\stones_2.1.01.01.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stones_2_1_01_01" ID="{39777D58-D330-4113-AF09-107763D84A4A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stones_3_1_01" ID="{13A570D8-53C5-4D8C-8710-0C82520EE773}" ShortID="383427738" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stones_3_1_01" ID="{8CBFEF1F-BD70-4C87-8F73-B88F7B8BF557}" ShortID="954156758">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.848886836172345"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>stones\stones_3.1.01.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stones_3_1_01" ID="{8CBFEF1F-BD70-4C87-8F73-B88F7B8BF557}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stones_4_1" ID="{D21F88B1-CE3E-4D94-B777-2145D6CA74AF}" ShortID="210023538" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stones_4_1" ID="{BBC7A1F9-3B15-4548-A917-3D2272D444F0}" ShortID="1012352694">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.701157001503006"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>stones\stones_4.1.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stones_4_1" ID="{BBC7A1F9-3B15-4548-A917-3D2272D444F0}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stones_9_1" ID="{C5FB08E6-B44D-44F7-AD42-F42E8B639189}" ShortID="581673598" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stones_9_1" ID="{2D512CB2-1A9D-4D67-ACA1-AE88983757D3}" ShortID="270304853">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="1.34152054108216"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>stones\stones_9.1.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stones_9_1" ID="{2D512CB2-1A9D-4D67-ACA1-AE88983757D3}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stones_11_02" ID="{48EA0F86-DC62-41E5-9DD2-CF13B3CB545B}" ShortID="128767985" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stones_11_02" ID="{C51291C3-019A-4169-A689-B4033E52CA0A}" ShortID="1049580478">
+															<PropertyList>
+																<Property Name="FadeOutDuration" Type="Real64" Value="0.759468937875752"/>
+															</PropertyList>
+															<Language>SFX</Language>
+															<AudioFile>stones\stones_11.02.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stones_11_02" ID="{C51291C3-019A-4169-A689-B4033E52CA0A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="stone impact" ID="{3ADFF95A-8DC3-417A-9197-C7162D6F0BA2}" ShortID="400609209">
+											<PropertyList>
+												<Property Name="Pitch" Type="int32">
+													<ModifierList>
+														<ModifierInfo>
+															<Modifier Name="" ID="{5C3401D1-106D-4172-8AA4-1BC00C9CC8C4}">
+																<PropertyList>
+																	<Property Name="Enabled" Type="bool" Value="True"/>
+																	<Property Name="Min" Type="Real64" Value="-300"/>
+																</PropertyList>
+															</Modifier>
+														</ModifierInfo>
+													</ModifierList>
+												</Property>
+												<Property Name="UserAuxSendVolume0" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-20</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="stone impact hård 3" ID="{639A3B52-1DC5-43E2-8EAC-6E908B18C071}" ShortID="524497140" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stone impact hård 3" ID="{AC4218E8-DD78-4AFF-9BB4-E3B84B647A37}" ShortID="707547444">
+															<Language>SFX</Language>
+															<AudioFile>stones\stone impact hård 3.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stone impact hård 3" ID="{AC4218E8-DD78-4AFF-9BB4-E3B84B647A37}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stoneimpact hård" ID="{AF828FFE-320B-4B14-93E4-BB44854D53B3}" ShortID="159795619" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stoneimpact hård" ID="{D5B0AD8B-AD29-457C-85E4-A59D07D2C5D4}" ShortID="598824805">
+															<Language>SFX</Language>
+															<AudioFile>stones\stoneimpact hård.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stoneimpact hård" ID="{D5B0AD8B-AD29-457C-85E4-A59D07D2C5D4}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stoneimpact hård 2" ID="{7CC3BB6F-3F2B-4E85-851D-1FCF7C796345}" ShortID="612451635" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stoneimpact hård 2" ID="{B6D0DB96-3575-4E3E-841A-731DD8232519}" ShortID="659079107">
+															<Language>SFX</Language>
+															<AudioFile>stones\stoneimpact hård 2.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stoneimpact hård 2" ID="{B6D0DB96-3575-4E3E-841A-731DD8232519}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="stoneimpact lightish" ID="{531E95CD-45CE-485D-BC71-B2FF226B37B2}" ShortID="294415959" Type="SoundFX">
+													<PropertyList>
+														<Property Name="UserAuxSendVolume0" Type="Real64">
+															<ValueList>
+																<Value>-10</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+														<Reference Name="UserAuxSend0">
+															<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="stoneimpact lightish" ID="{A4B22935-3EA5-4410-A862-C433402B6598}" ShortID="82630509">
+															<Language>SFX</Language>
+															<AudioFile>stones\stoneimpact lightish.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="stoneimpact lightish" ID="{A4B22935-3EA5-4410-A862-C433402B6598}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
 									</ChildrenList>
 								</ActorMixer>
 								<RandomSequenceContainer Name="swordattack" ID="{D236D6DC-4486-4FAE-8D21-F114027DFE51}" ShortID="736769482">

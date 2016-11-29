@@ -839,7 +839,29 @@
 								</Event>
 								<Event Name="knight_move" ID="{69E4AB49-DFB9-4E12-BF72-CA8AE43F2127}">
 									<ChildrenList>
+										<Action Name="Play" ID="{17251242-0145-4500-A800-6E208FE8DAB7}" ShortID="61348871" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{C25DFD31-59FE-4FAB-BCEF-467EDC37AC8A}" Global="false">
+													<ObjectRef Name="chainmail" ID="{0DAA9F95-6BF6-4F9E-849D-B21150DD1A46}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+										<Action Name="Stop" ID="{3215ED3F-C24D-4024-A10E-58BEB1357A62}" ShortID="484169422" Type="Stop" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="0.1"/>
+												<Property Name="FadeCurve" Type="int16" Value="0"/>
+												<Property Name="FadeTime" Type="Real64" Value="1"/>
+											</PropertyList>
+											<ElementList>
+												<Element ID="{7978D66C-88B4-4164-B4F1-04993D8A89A6}" Global="false">
+													<ObjectRef Name="chainmail" ID="{0DAA9F95-6BF6-4F9E-849D-B21150DD1A46}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
 										<Action Name="Play" ID="{729295E9-676A-464C-A3CB-1E1AD46E4FFF}" ShortID="395550026" Type="Play" Scope="One" Global="false">
+											<PropertyList>
+												<Property Name="Delay" Type="Real64" Value="0.05"/>
+											</PropertyList>
 											<ElementList>
 												<Element ID="{939B8AAA-14DB-4BE6-A8E8-DC325B331090}" Global="false">
 													<ObjectRef Name="knight_footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
@@ -1268,6 +1290,24 @@
 									<ElementList>
 										<Element ID="{1A3928BB-6107-457E-B451-67D99CF3ED69}" Global="false">
 											<ObjectRef Name="armor" ID="{D4C883C1-4D65-4F15-B4B9-0388E5C1276C}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="impact_stone" ID="{75133026-D5DC-4526-A82B-F57B49F210FF}">
+							<ChildrenList>
+								<Action Name="Play" ID="{06947339-B702-4D6C-B37C-29F7218AA6DC}" ShortID="51423177" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{3EEBA783-6623-4AC6-A009-36A3E1C6EA11}" Global="false">
+											<ObjectRef Name="stone impact" ID="{3ADFF95A-8DC3-417A-9197-C7162D6F0BA2}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{46781D4F-FEF0-4690-9104-825E4383B305}" ShortID="278728500" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{7FE9C82A-8D79-42AA-BC2D-182089FBC078}" Global="false">
+											<ObjectRef Name="stone rolling" ID="{131B6530-10A3-41B1-9CE3-431CA3A3D43F}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
 								</Action>
