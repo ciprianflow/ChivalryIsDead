@@ -13,6 +13,7 @@ public class DummyManager : MonoBehaviour
 
     public float[] ComboCooldown;
     public int[] ComboMultiplier;
+    public int[] ComboActionModifier;
 
     [Header("Anti AFK")]
     public int StartAFKSeconds = 1;
@@ -25,15 +26,22 @@ public class DummyManager : MonoBehaviour
     public ScoreHandler SuspicionHandler;
     public ScoreHandler DaysRemaining;
 
+    [Header("Other stuff")]
     public Gameplay_Dialog GameDialogUI;
+    public GameObject ComboBaseParticle;
+    public GameObject ComboUpwardParticle;
 
     private float comboTimeStamp = 0;
 
     private int combo = 0;
+    //used to track actions that modify the combo
+    private int comboModifierActions = 0;
+
 
     private float antiAfkTimestamp;
     private int antiAfkPoints = 10;
     private int antiAFKTime;
+
 
     void Awake()
     {
@@ -64,7 +72,7 @@ public class DummyManager : MonoBehaviour
 
         antiAfkTimestamp += Time.deltaTime;
         handleAFK(antiAfkTimestamp);
-        
+
     }
 
     private void handleAFK(float timestamp)
@@ -93,11 +101,35 @@ public class DummyManager : MonoBehaviour
 
     public void IncreaseCombo()
     {
-        if (combo < ComboMultiplier.Length - 1)
+        comboModifierActions++;
+
+        if (comboModifierActions < ComboActionModifier.Length - 1)
         {
-            combo++;
+            try
+            {
+                handleComboChange(ComboActionModifier[comboModifierActions]);
+            }
+            catch (IndexOutOfRangeException e)
+            {
+                Debug.LogError(e.Message + " Combo Modifier Actions -> check DummyManager prefab");
+            }
         }
-        
+
+
+    }
+
+    private void handleComboChange(int comboValue)
+    {
+
+        if (comboValue < ComboMultiplier.Length - 1)
+        {
+            //if (ComboActionModifier[ComboActionModifier])
+            combo = comboValue;
+
+            ComboBaseParticle.GetComponent<ParticleSystem>().startSize = combo;
+
+            ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.1f + (combo * 2f) / 100f;
+        }
     }
 
     public void DecreaseCombo()
@@ -113,7 +145,10 @@ public class DummyManager : MonoBehaviour
 
     public void ResetCombo()
     {
+        comboModifierActions = 0;
         combo = 0;
+        ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
+        ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
 
     }
     
