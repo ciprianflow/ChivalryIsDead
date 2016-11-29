@@ -13,9 +13,6 @@ class PlayerBehaviour : ScorePublisher
     public GameObject RepGainParticle;
     public GameObject RepLossParticle;
 
-    public GameObject ComboBaseParticle;
-    public GameObject ComboUpwardParticle;
-
     public PlayerBehaviour(string handle)
     {
         dummyManager = DummyManager.dummyManager;
@@ -42,6 +39,11 @@ class PlayerBehaviour : ScorePublisher
 
             ScoreChange = dummyManager.GetComboMultiplier(score);
 
+            //increase combo
+            dummyManager.IncreaseCombo();
+            //reset cooldown
+            dummyManager.resetCooldown();
+
             //@@HARDCODED 
             if (dummyManager.GetComboValue() > 7)
                 WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
@@ -50,39 +52,28 @@ class PlayerBehaviour : ScorePublisher
             else
                 WwiseInterface.Instance.PlayRewardSound(RewardHandle.Small);
 
-            //increase combo
-            dummyManager.IncreaseCombo();
-            //reset cooldown
-            dummyManager.resetCooldown();
+
 
             //particle effect
             RepLossParticle.SetActive(true);
-
-            
-            ComboBaseParticle.GetComponent<ParticleSystem>().startSize = dummyManager.GetComboValue();
-            
-            ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.1f + (dummyManager.GetComboValue() * 2f )/100f;
         }
         else
         {
             RepGainParticle.SetActive(false);
             //particle effect
             RepGainParticle.SetActive(true);
-            Reset();
+            ResetCombo();
 
             WwiseInterface.Instance.PlayRewardSound(RewardHandle.Fail);
             ScoreChange = dummyManager.GetComboMultiplier(score);
-
-            
+           
         }
         
     }
 
     //reset combo
-    public void Reset()
+    public void ResetCombo()
     {
-        resetParticles();
-
         dummyManager.ResetCombo();
     }
 
@@ -95,11 +86,7 @@ class PlayerBehaviour : ScorePublisher
         OnChangeScoreEvent(new ScoreEventArgs(ScoreChange));
     }
 
-    private void resetParticles()
-    {
-        ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
-        ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
-    }
+
 
 
 }
