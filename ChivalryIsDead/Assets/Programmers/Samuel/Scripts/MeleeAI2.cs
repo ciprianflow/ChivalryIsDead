@@ -22,7 +22,7 @@ public class MeleeAI2 : MonsterAI
     private float SpinAttackTimer = 0f;
 
     private bool rotated = false;
-    private bool hasHit = false;
+    private bool hitPlayer = false;
     private bool playerInRange = false;
 
     //Called one time at Awake()
@@ -45,8 +45,9 @@ public class MeleeAI2 : MonsterAI
         Debug.Log(t1 + " > " + spinAttackDuration);
         if(t1 < spinAttackDuration)
         {
-            MeleeAttack();
-            DoAOEAttack(transform.position, attackLength, attackForce, this);
+            if (!hitPlayer)
+                if (DoAOEAttack(transform.position, attackLength, attackForce, this))
+                    hitPlayer = true;
         }
         else
         {
@@ -85,6 +86,7 @@ public class MeleeAI2 : MonsterAI
 
     void ToSpinAttack(Vector3 pos)
     {
+        hitPlayer = false;
         SpinAttackTimer = 0;
         ResetTimer();
         MoveToAttack();

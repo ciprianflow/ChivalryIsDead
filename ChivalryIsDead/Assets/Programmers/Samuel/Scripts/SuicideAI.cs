@@ -242,5 +242,8 @@ public class SuicideAI : MonsterAI
         anim.SetTrigger("Taunted");
     }
 
-    public override void Turn() { }
+    public override void Turn()
+    {
+        throw new NotImplementedException();
+    }
 }

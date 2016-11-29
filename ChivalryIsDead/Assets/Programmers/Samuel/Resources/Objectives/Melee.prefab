@@ -2798,9 +2798,9 @@ GameObject:
   - 4: {fileID: 4000011892179278}
   - 195: {fileID: 195000010249325622}
   - 54: {fileID: 54000013281746766}
-  - 114: {fileID: 114000014104116408}
   - 114: {fileID: 114000012670265610}
   - 65: {fileID: 65000010367349222}
+  - 114: {fileID: 114000012082231896}
   m_Layer: 0
   m_Name: Melee
   m_TagString: Enemy
@@ -5758,7 +5758,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012860691644}
   m_LocalRotation: {x: -0, y: 0.43266457, z: -0, w: 0.901555}
-  m_LocalPosition: {x: -4.26, y: 12.854, z: 21.7}
+  m_LocalPosition: {x: -7.58, y: 12.854, z: 20.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 51.006, z: 0}
   m_Children:
@@ -8148,6 +8148,40 @@ TrailRenderer:
       rgba: 7530459
   m_MinVertexDistance: 3
   m_Autodestruct: 0
+--- !u!114 &114000012082231896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012860691644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9b3fbd0c20a004da7b9c38292654ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 11
+  Health: 2
+  attackDamage: 5
+  attackTime: 3
+  attackRange: 1.15
+  playerAction: {fileID: 0}
+  targetObject: {fileID: 0}
+  patrolling: 1
+  attackRotateSpeed: 400
+  AttackRep: -20
+  OverreactRep: -60
+  ObjectiveAttackRep: -20
+  ObjectiveSheepRep: -100
+  PlayerAttackRep: 30
+  monsterHandle: 1
+  PreChargeTime: 0.5
+  chargeSpeedMultiplier: 3
+  attackLength: 2
+  attackAngleWidth: 0.6
+  chargeForce: 250
+  attackForce: 750
+  spinAttackDuration: 0.5
+  spinAttackColddown: 3
 --- !u!114 &114000012670265610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8171,39 +8205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trail: {fileID: 1000011829131404}
---- !u!114 &114000014104116408
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012860691644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f4a0c2ec19f704aa0f48a7c5354984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 11
-  Health: 2
-  attackDamage: 5
-  attackTime: 3
-  attackRange: 1.5
-  playerAction: {fileID: 0}
-  targetObject: {fileID: 0}
-  patrolling: 1
-  attackRotateSpeed: 400
-  AttackRep: -20
-  OverreactRep: -60
-  ObjectiveAttackRep: -20
-  ObjectiveSheepRep: -100
-  PlayerAttackRep: 30
-  monsterHandle: 0
-  PreChargeTime: 0.7
-  chargeSpeedMultiplier: 3
-  attackLength: 2
-  attackAngleWidth: 0.6
-  chargeForce: 250
-  AttackForce: 5000
-  normalAttackColddown: 3
 --- !u!137 &137000010348525326
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
