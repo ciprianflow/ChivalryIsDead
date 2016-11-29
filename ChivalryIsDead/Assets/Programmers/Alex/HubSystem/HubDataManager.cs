@@ -54,6 +54,7 @@ public class HubDataManager : MonoBehaviour {
     public GameObject QuestButton;
     public GameObject QuestLetter;
     public GameObject WinScreen;
+    public GameObject LoseScreen;
     public Text DaysLeftText;
     public Image RingImg;
     public bool isClicked;
@@ -206,6 +207,15 @@ public class HubDataManager : MonoBehaviour {
             StaticData.Reputation = StaticData.MaxReputation;
             StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
             WinScreen.SetActive(true);
+
+            return;
+        }
+
+        /* UNCOMMENT TO HAVE THE LOSE SCREEN */
+        if (StaticData.daysLeft < 1)
+        {            
+            //StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
+            //LoseScreen.SetActive(true);
         }
     }
 

@@ -318,7 +318,7 @@ namespace CnControls
 
                     float newX = localBasePosition.x;
                     float newY = localBasePosition.y;
-                    //Debug.Log(newX);
+
 
                     if ((!swapped && localBasePosition.x < xClamp) || (swapped && localBasePosition.x > xClamp))
                     {

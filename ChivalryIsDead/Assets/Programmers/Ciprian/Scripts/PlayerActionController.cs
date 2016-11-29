@@ -194,7 +194,7 @@ public class PlayerActionController : MonoBehaviour
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
 
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
-                Debug.Log("Overreact points: 0");
+                //Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
                 pb.Invoke();
             }
