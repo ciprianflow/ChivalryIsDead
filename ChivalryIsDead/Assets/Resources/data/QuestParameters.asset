@@ -12,34 +12,51 @@ MonoBehaviour:
   m_Name: QuestParameters
   m_EditorClassIdentifier: 
   difficultyThresholds: 3c00000014000000
+  enemyThresholds:
+  - DayMarker: -2
+    RepMarker: 0
+    AvailableEnemies: 4
+  - DayMarker: 1
+    RepMarker: 0
+    AvailableEnemies: 2
+  - DayMarker: 2
+    RepMarker: 0
+    AvailableEnemies: -10
+  - DayMarker: 5
+    RepMarker: 0
+    AvailableEnemies: 14
   difficultyDefinitions:
   - minNonSuicide: 3
     maxNonSuicide: 6
     minSuicide: 0
     maxSuicide: 0
     minFriendlies: 1
-    maxFriendlies: 3
-    houseStatus: 0
+    maxFriendlies: 1
+    houseStatus: 1
   - minNonSuicide: 2
     maxNonSuicide: 5
     minSuicide: 1
     maxSuicide: 4
-    minFriendlies: 3
-    maxFriendlies: 6
-    houseStatus: 0
+    minFriendlies: 1
+    maxFriendlies: 1
+    houseStatus: -1
   - minNonSuicide: 2
     maxNonSuicide: 4
     minSuicide: 3
     maxSuicide: 6
     minFriendlies: 5
     maxFriendlies: 8
-    houseStatus: 0
-  enemyThresholds:
-  - DayMarker: -2
-    AvailableEnemies: 4
-  - DayMarker: 1
-    AvailableEnemies: 2
-  - DayMarker: 2
-    AvailableEnemies: -10
-  - DayMarker: 5
-    AvailableEnemies: 14
+    houseStatus: 2
+  reputationOverrides:
+  - enemyType: 1
+    RepMarker: 0
+    minOverride: 0
+    maxOverride: 0
+  - enemyType: 2
+    RepMarker: 0
+    minOverride: 0
+    maxOverride: 0
+  - enemyType: 4
+    RepMarker: 0
+    minOverride: 0
+    maxOverride: 0

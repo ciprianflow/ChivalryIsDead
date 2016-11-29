@@ -7,8 +7,16 @@ using UnityEngine;
 [Flags]
 public enum HouseStatus
 {
-    Random, Bakery, Farmhouse
+    /*Random,*/ Bakery, Farmhouse
     //Random, Never, Always
+}
+
+[Serializable]
+public class ReputationOverride
+{
+    public EnemyTypes enemyType; // Should be only one enemy type!
+    public int RepMarker;
+    public int minOverride, maxOverride;
 }
 
 [Serializable]
@@ -16,6 +24,7 @@ public class EnemyThreshold
 {
     public bool IsEmpty { get { return DayMarker == 0 && AvailableEnemies == EnemyTypes.None; } }
     public int DayMarker;
+    public int RepMarker;
     public EnemyTypes AvailableEnemies;
 }
 
@@ -36,17 +45,21 @@ public class QuestParameters : ScriptableObject
     public static int[] DifficultyThresholds;
     public static List<EnemyThreshold> EnemyThresholds;
     public static DifficultyDefinition[] DifficultyDefs;
+    public static ReputationOverride[] ReputationOverrides;
 
     public int[] difficultyThresholds;
     [SerializeField]
+    public List<EnemyThreshold> enemyThresholds;
+    [SerializeField]
     public DifficultyDefinition[] difficultyDefinitions;
     [SerializeField]
-    public List<EnemyThreshold> enemyThresholds;
+    public ReputationOverride[] reputationOverrides;
 
     public QuestParameters()
     {
         difficultyThresholds = new int[2];
         difficultyDefinitions = new DifficultyDefinition[3];
+        reputationOverrides = new ReputationOverride[3];
         enemyThresholds = new List<EnemyThreshold>();
     }
 
@@ -55,6 +68,7 @@ public class QuestParameters : ScriptableObject
         DifficultyThresholds = difficultyThresholds;
         DifficultyDefs = difficultyDefinitions;
         EnemyThresholds = enemyThresholds;
+        ReputationOverrides = reputationOverrides;
     }
 
     public static void LoadQuestParameters()
