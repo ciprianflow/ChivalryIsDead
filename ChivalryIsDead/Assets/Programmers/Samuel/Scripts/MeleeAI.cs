@@ -515,8 +515,7 @@ public class MeleeAI : MonsterAI
             if (QO != null && m.GetType() == typeof(SheepAI))
             {
                 Debug.Log("I HIT A SHEEP");
-                HitSheep(QO, m, coll.gameObject, chargeForce * (accelTimer / accelTime), false);
-                base.playerAction.SheepAttacked(this);
+                HitSheep(QO, m, coll.gameObject, chargeForce * (accelTimer / accelTime), false, this);
             }
             //If its not a sheep it must be a static questObjective
             else if(QO != null)

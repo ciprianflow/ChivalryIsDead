@@ -64,7 +64,8 @@ public class MapManager : MonoBehaviour {
         {
 
             TranslateQuest(objectives[i]);
-
+            if ((objectives[i] as BaseObjective) != null && (objectives[i] as BaseObjective).targetID == 21)
+                StaticData.GetObjectives().RemoveAt(i);
         }
     }
 
@@ -152,8 +153,8 @@ public class MapManager : MonoBehaviour {
 
         //CALC SCORE
         float localRepGain = StaticIngameData.dummyManager.GetGlobalScore();
-        StaticData.Reputation += localRepGain;
-
+        //StaticData.Reputation += localRepGain;
+        StaticData.currQuest.ReputationChange = localRepGain;
         //Load Quest Hub Manager
         if (endLetter != null)
         {

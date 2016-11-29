@@ -61,10 +61,12 @@ public class HubDataManager : MonoBehaviour {
 
     void Awake()
     {
+        Time.timeScale = 1f;
+
         hubDataPath = Application.persistentDataPath + "/HubData.json";
 
         if (StaticData.currQuest == null)
-            UpdateQuests();
+            UpdateQuests();    
         else
             PushToHubData(StaticData.currQuest.ReputationChange);
     }
