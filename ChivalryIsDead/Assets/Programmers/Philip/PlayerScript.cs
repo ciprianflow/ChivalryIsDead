@@ -16,7 +16,6 @@ public class PlayerScript : MonoBehaviour {
     float worldY = 0;
     public bool attacking = false;
     public bool taunting = false;
-    public bool scaring = false;
     public bool takedamaging = false;
     public bool attackReachedFull = false;
     public bool overreacting = false;
@@ -49,7 +48,6 @@ public class PlayerScript : MonoBehaviour {
 
         AnimDic.Add("attacking", 1);
         AnimDic.Add("taunting", 3);
-        AnimDic.Add("scaring", 5);
         AnimDic.Add("overreacting", 7);
         AnimDic.Add("takedamaging", 8);
 
@@ -87,16 +85,11 @@ public class PlayerScript : MonoBehaviour {
                     return false;
                 }
                 break;
-            //case PlayerActions.:
-            //    if (attacking || taunting) {
-            //        return false;
-            //    }
-            //    break;
+
 
             default:
                 return true;
         }
-        //Debug.Log(taunting + " - " + attacking + " - " + overreacting);
         
         return true;
     }
@@ -115,75 +108,22 @@ public class PlayerScript : MonoBehaviour {
             DustParticle.SetActive(true);
         }
 
-        //float camRot = Mathf.Deg2Rad * Camera.main.transform.eulerAngles.y;
+        //Debug.Log(LastXY.sqrMagnitude + " " + LastXY.magnitude);
 
-        //float worldX = (x * Mathf.Cos(camRot)) - (y * Mathf.Sin(camRot));
-        //float worldY = (x * Mathf.Sin(camRot)) + (y * Mathf.Cos(camRot));
-        //worldX = (x * Mathf.Cos(Mathf.PI/4)) - (y * Mathf.Sin(Mathf.PI / 4));
-        //worldY = (x * Mathf.Sin(Mathf.PI / 4)) + (y * Mathf.Cos(Mathf.PI / 4));
-
-
-
-        //Debug.Log(Mathf.Atan2(worldY, worldX));
-        //Debug.Log("X: " + (Mathf.Rad2Deg * worldX) + " Y " + (Mathf.Rad2Deg * worldY));
-
-        //float turnValue = SignedAngle(LastXY, new Vector2(x, y));
-        //turnMag += turnValue;
         LastXY = new Vector2(x, y);
-        if (zVel < LastXY.magnitude - 0.05f) {
+        if (zVel < LastXY.sqrMagnitude - 0.05f) {
             zVel += speedAcc;
         }
-        else if (zVel > LastXY.magnitude) //TODO: sqrmagnitude
+        else if (zVel > LastXY.sqrMagnitude) //TODO: sqrmagnitude
         {
             zVel -= speedAcc;
         }
 
-        //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX) + 90, 0);
-
-
-        //float desiredFwd = (-Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX));
-        //if (!staticControls) {
-            //float desiredFwd = (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y;
-            //if (desiredFwd < 0) {
-            //    desiredFwd += 360f;
-            //}
-
-            //float currentFwd = transform.eulerAngles.y;
-            //float diffTurn = desiredFwd - currentFwd;
-
-            //if (diffTurn > 180f) {
-            //    diffTurn -= 360f;
-            //}
-            //if (diffTurn < -180f) {
-            //    diffTurn += 360f;
-            //}
-
-
-
-            //Debug.Log("desiredFwd " + desiredFwd + " currentfwd " + currentFwd + " diffturn " + diffTurn);
-
-
-
-            //////anim.SetFloat("Turn", turnMag);
-
-            ////Debug.Log(turnValue);
-            ////transform.position += new Vector3(worldX * maxSpeed * zVel, 0, worldY * maxSpeed * zVel);
-            ////transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
-            //if (diffTurn > 0.001f || diffTurn < -0.001f) {
-            //    float turnAmount = diffTurn / 5;
-            //    transform.eulerAngles = new Vector3(0, currentFwd + turnAmount, 0);
-            //    //anim.SetFloat("Turn", turnAmount / 1.5f);
-
-        //    }
-        //}
-        //else {
-            transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
-        //}
+        transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
         transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
-
+        //GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1000);
         anim.SetFloat("Speed", zVel * 2f);
 
-        //Debug.Log( "CAMERA " + Camera.main.transform.eulerAngles.y);
     }
 
     float SignedAngle(Vector3 a, Vector3 b) {
@@ -398,78 +338,7 @@ public class PlayerScript : MonoBehaviour {
         }
     }
 
-    //public void animate(ref bool animState, String animName)
-    //{
-    //    if (animName != "attacking" && anim.GetCurrentAnimatorStateInfo(AnimDic[animName]).normalizedTime > 0.8f)
-    //    {
-    //        if (UpperWeight > 0)
-    //        {
-    //            UpperWeight -= 0.05f;
-    //            anim.SetLayerWeight(AnimDic[animName], UpperWeight);
-    //        }
-    //        if (LowerWeight > 0)
-    //        {
-    //            LowerWeight -= 0.05f;
-    //            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-    //        }
-    //        if(UpperWeight < 0 && LowerWeight < 0)
-    //        {
-
-    //            //Debug.Log("ENDEDANIM");
-    //            animState = false;
-    //        }
-    //        return;
-    //    }
-    //    else if (animName == "attacking" && anim.GetCurrentAnimatorStateInfo(1).IsTag("Exit") && attackReachedFull)
-    //    {
-            
-    //        if (UpperWeight > 0)
-    //        {
-    //            UpperWeight -= 0.025f;
-    //            anim.SetLayerWeight(AnimDic[animName], UpperWeight);
-    //        }
-    //        if (LowerWeight > 0)
-    //        {
-    //            LowerWeight -= 0.025f;
-    //            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-    //        }
-    //        if (UpperWeight < 0 && LowerWeight < 0)
-    //        {
-    //            SwordTrail.SetActive(false);
-    //            animState = false;
-    //        }
-    //        return;
-    //    }
-        
-    //    if (zVel == 0)
-    //    {
-    //        if (LowerWeight < 1)
-    //        {
-    //            LowerWeight += 0.05f;
-    //            anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-    //        }
-    //    }
-    //    else if (LowerWeight > 0)
-    //    {
-    //        LowerWeight -= 0.05f;
-    //        anim.SetLayerWeight(AnimDic[animName] + 1, LowerWeight);
-    //    }
-
-    //    if (UpperWeight < 1)
-    //    {
-    //        UpperWeight += 0.1f;
-    //        anim.SetLayerWeight(AnimDic[animName], UpperWeight);
-    //    }
-    //    else
-    //        attackReachedFull = true;
-    //    //else if (UpperWeight > 0)
-    //    //{
-    //    //    UpperWeight -= 0.1f;
-    //    //    anim.SetLayerWeight(layer-1, UpperWeight);
-    //    //}
-
-       
-    //}
+    
 
     public void toggleControls() {
         staticControls = !staticControls;
@@ -506,15 +375,7 @@ public class PlayerScript : MonoBehaviour {
             anim.Play("Attack Transition", 1, 0);
             currentAttack = 1;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            //if (r == 0) {
-            //    anim.SetTrigger("Attack1");
-            //}
-            //else if (r == 1) {
-            //    anim.SetTrigger("Attack12");
-            //}
-            //else {
-            //    anim.SetTrigger("Attack13");
-            //}
+
             anim.SetTrigger("Attack1");
 
 
@@ -612,7 +473,6 @@ public class PlayerScript : MonoBehaviour {
 
         SwordTrail.SetActive(false);
 
-        //anim.Play("Scare", 5, 0);
 
 
         if((int)UnityEngine.Random.Range(0,2) == 0) {
@@ -623,7 +483,6 @@ public class PlayerScript : MonoBehaviour {
         }
         cancelAnim(ref attacking, "attacking");
         cancelAnim(ref taunting, "taunting");
-        cancelAnim(ref scaring, "scaring");
         cancelAnim(ref takedamaging, "takedamaging");
         overreacting = true;
         overreactCR = StartCoroutine(animateOverreact());
@@ -635,13 +494,7 @@ public class PlayerScript : MonoBehaviour {
         if(attacking || taunting || overreacting || takedamaging) {
             return;
         }
-        //anim.SetLayerWeight(3, 0);
-        //anim.SetLayerWeight(4, 0);
-        //anim.SetLayerWeight(7, 0);
 
-        //SwordTrail.SetActive(false);
-
-        //anim.Play("Scare", 5, 0);
 
 
         takedamaging = true;
@@ -660,45 +513,4 @@ public class PlayerScript : MonoBehaviour {
         anim.SetLayerWeight(AnimDic[animName] + 1, 0);
 
     }
-    //[Header("Variables")]
-    //public float maxSpeed = 0.5f;
-
-    //public void move(float x, float y) {
-
-    //    FixedPosition(x, y);
-
-    //}
-
-    //void FixedPosition(float x, float y)
-    //{
-
-    //    Vector3 dir = new Vector3(x, 0, y);
-
-    //    Vector3 fwd = Camera.main.transform.forward;
-    //    fwd.y = transform.position.y;
-
-    //    //float angle = Vector3.Angle(fwd, Vector3.forward) * Mathf.Deg2Rad;
-    //    float angle = CalculateAngle(fwd, Vector3.forward) * Mathf.Deg2Rad;
-    //    //angle = Camera.main.transform.rotation.y * Mathf.Deg2Rad;
-
-    //    float worldX = (x * Mathf.Cos(angle)) - (y * Mathf.Sin(angle));
-    //    float worldY = (x * Mathf.Sin(angle)) + (y * Mathf.Cos(angle));
-
-    //    //dir = Quaternion.AngleAxis(angle, Vector3.up) * dir;
-
-    //    //Debug.Log(Mathf.Atan2(worldY, worldX));
-    //    //transform.eulerAngles = new Vector3(0, -Mathf.Rad2Deg * Mathf.Atan2(worldY, worldX), 0);
-
-    //    transform.LookAt(transform.position - new Vector3(worldX * maxSpeed, 0, worldY * maxSpeed));
-
-    //    transform.position -= new Vector3(worldX * maxSpeed, 0, worldY * maxSpeed);
-
-    //    //transform.position += dir * maxSpeed;
-    //}
-
-    //public static float CalculateAngle(Vector3 from, Vector3 to)
-    //{
-    //    return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
-    //}
-
 }

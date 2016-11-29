@@ -85,6 +85,8 @@ public class MapManager : MonoBehaviour {
 
         if (ID == 0) return;
 
+        Debug.Log("ID = " + ID);
+
         //NEED TO CHANGE THIS APROACH
         if (ID == 22)
         {

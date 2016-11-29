@@ -18,11 +18,11 @@ public class SettingsMngr : MonoBehaviour {
     // Use this for initialization
     void Awake () {
 	if(PlayerPrefs.GetInt("Swapped") == 1) {
-            //    Debug.Log("AWAKE SWAPPED");
+            Debug.Log("AWAKE SWAPPED");
 
-            //    Vector3 tempX = joystick_move.transform.localPosition;
-            //    joystick_move.transform.localPosition = joystick_action.transform.localPosition;
-            //    joystick_action.transform.localPosition = tempX;
+            Vector3 tempX = joystick_move.transform.localPosition;
+            joystick_move.transform.localPosition = joystick_action.transform.localPosition;
+            joystick_action.transform.localPosition = tempX;
         }
     }
 	
