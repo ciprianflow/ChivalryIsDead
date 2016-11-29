@@ -129,6 +129,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public IEnumerator DialogOne()
     {
         //yield return new WaitForSeconds(animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        animCam.GetComponent<Animator>().SetBool("startAnim", true);
         animCam.SetActive(true);
         mainCam.SetActive(false);
         ControlMove.SetActive(false);
@@ -145,7 +146,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
 
         count = 0;
-        Invoke("SkipCam", animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        Invoke("SkipCam", 7.25f);
         
         while (count < 1)
         {
@@ -157,10 +158,10 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         ControlMove.SetActive(true);
         mainCam.SetActive(true);
         animCam.SetActive(false);
-        
+        animCam.GetComponent<Animator>().SetBool("startAnim", false);
 
 
-        Debug.Log("DRINK MORE NIKOLINE");
+
         Time.timeScale = 1f;
         swordAnimator.speed = 1f;
         skipAnimator.speed = 1f;
@@ -275,10 +276,11 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         // GATE!
         yield return new WaitForSeconds(1f);
-        animCam.SetActive(true);
-        mainCam.SetActive(false);
+
         animCam.GetComponent<Animator>().SetTrigger("zoomInCam");
         InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
+        animCam.SetActive(true);
+        mainCam.SetActive(false);
 
         yield return new WaitForSeconds(animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
         mainCam.SetActive(true);

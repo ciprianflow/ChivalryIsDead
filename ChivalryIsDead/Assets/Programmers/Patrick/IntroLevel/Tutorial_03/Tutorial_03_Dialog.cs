@@ -4,17 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class Tutorial_03_Dialog : MonoBehaviour
 {
+    public GameObject mainCam;
+    public GameObject animCam;
+
     public GameObject Player;
     public GameObject[] Sheeps;
+    public GameObject enemy;
     public GameObject UI;
     public GameObject ControlMove;
     public GameObject ControlHit;
     public GameObject InvisWallOne;
-    public GameObject InvisWallTwo;
     bool procceed;
 
     bool learnedToGetHit;
-    bool learnedToPlaceYourself;
+    bool usedOverreact;
     bool learnedToOverreact;
     bool deadSheep;
 
@@ -25,17 +28,22 @@ public class Tutorial_03_Dialog : MonoBehaviour
     public Animator princessAnimator;
     public Animator skipAnimator;
     public GameObject skipBtn;
+    public GameObject tutImage;
+    public Animator tutImgAnimator;
     int count;
     // Use this for initialization
     void Start()
     {
+        animCam.SetActive(true);
+        mainCam.SetActive(false);
         count = 0;
         procceed = false;
         learnedToGetHit = true;
-        learnedToPlaceYourself = true;
         learnedToOverreact = true;
+        usedOverreact = true;
         deadSheep = false;
         handAnimator = HandCanvas.GetComponent<Animator>();
+        enemy.GetComponent<MeleeAI>().attackRange = 0;
 
         foreach (GameObject Sheep in Sheeps)
         {
@@ -56,29 +64,32 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         }
 
-        if (!learnedToOverreact)
+        if(!usedOverreact)
         {
             if (Player.GetComponent<PlayerScript>().overreacting)
             {
                 gameObject.GetComponent<DialogObject>().StopDialog();
                 OverreactEvent();
-                learnedToOverreact = true;
                 StartCoroutine("DialogFour");
+                usedOverreact = true;
             }
+           
         }
-        if (!learnedToPlaceYourself)
-        {
-            if (Player.GetComponent<PlayerScript>().taunting)
-            {
-                gameObject.GetComponent<DialogObject>().StopDialog();
-                OverreactEvent();
-                learnedToPlaceYourself = true;
-            }
 
+        if (!learnedToOverreact)
+        {
+            if (Player.GetComponent<PlayerScript>().overreacting && Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
+            {
+                StartCoroutine("DialogFive");
+                learnedToOverreact = true;
+            }
         }
+
+       
 
         
-        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death)
+        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death
+            && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[4].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[5].GetComponent<MonsterAI>().getState() == State.Death)
         {
             if (deadSheep)
             {
@@ -94,7 +105,6 @@ public class Tutorial_03_Dialog : MonoBehaviour
     void OverreactEvent()
     {
         handAnimator.SetBool("playOverreact", false);
-        handAnimator.SetBool("playTaunt", false);
         Time.timeScale = 1f;
         handAnimator.speed = 1f;
         swordAnimator.speed = 1f;
@@ -115,16 +125,19 @@ public class Tutorial_03_Dialog : MonoBehaviour
         skipAnimator.speed = 10f;
         handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+        Invoke("CallableSkip", 3f);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
 
         //Invoke("CallableSkip", 5f);
-        while (count < 1)
+        while (count < 4)
         {
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitUntil(SkipAndPlay);
+
+        UI.GetComponent<GameMenu>().SkipOneBubble();
 
         procceed = false;
         ControlMove.SetActive(true);
@@ -136,7 +149,12 @@ public class Tutorial_03_Dialog : MonoBehaviour
         skipAnimator.speed = 1f;
         handAnimator.speed = 1f;
 
+        mainCam.SetActive(true);
+        animCam.SetActive(false);
+
     }
+
+   
 
     public bool SkipAndPlay()
     {
@@ -151,37 +169,48 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
     public IEnumerator DialogTwo()
     {
-        ControlMove.SetActive(false);
-        ControlHit.SetActive(false);
-        Time.timeScale = 0.1f;
-        swordAnimator.speed = 10f;
-        princessAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
-        handAnimator.speed = 10f;
+        //ControlMove.SetActive(false);
+        //ControlHit.SetActive(false);
+        //Time.timeScale = 0.1f;
+        //swordAnimator.speed = 10f;
+        //princessAnimator.speed = 10f;
+        //skipAnimator.speed = 10f;
+        //handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
-
-        count = 0;
-        while (count < 3)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
-        procceed = false;
-        skipAnimator.speed = 1f;
-        swordAnimator.speed = 1f;
-        princessAnimator.speed = 1f;
-        handAnimator.speed = 1f;
-        Time.timeScale = 1f;
-        ControlMove.SetActive(true);
-        ControlHit.SetActive(true);
+        enemy.GetComponent<MeleeAI>().attackRange = 1.5f;
         learnedToGetHit = false;
+
+        yield return null;
+
+
+
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
+        //procceed = false;
+
+        
+
+
+        //skipAnimator.speed = 1f;
+        //swordAnimator.speed = 1f;
+        //princessAnimator.speed = 1f;
+        //handAnimator.speed = 1f;
+        //Time.timeScale = 1f;
+        //ControlMove.SetActive(true);
+        //ControlHit.SetActive(true);
+
     }
 
     public IEnumerator DialogThree()
     {
+        procceed = false;
         ControlMove.SetActive(false);
 
         Time.timeScale = 0.1f;
@@ -190,6 +219,8 @@ public class Tutorial_03_Dialog : MonoBehaviour
         skipAnimator.speed = 10f;
         handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+        tutImage.SetActive(true);
+        tutImgAnimator.SetBool("playLearnOverreact", true);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
@@ -210,107 +241,111 @@ public class Tutorial_03_Dialog : MonoBehaviour
         skipBtn.SetActive(false);
         ControlHit.SetActive(true);
 
-        learnedToOverreact = false;
+        usedOverreact = false;
+        //learnedToOverreact = false;
     }
 
     public IEnumerator DialogFour()
     {
-        ControlMove.SetActive(false);
-        ControlHit.SetActive(false);
-        Time.timeScale = 0.1f;
-        swordAnimator.speed = 10f;
-        princessAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
-        handAnimator.speed = 10f;
+        //ControlMove.SetActive(false);
+        //ControlHit.SetActive(false);
+        //Time.timeScale = 0.1f;
+        //swordAnimator.speed = 10f;
+        //princessAnimator.speed = 10f;
+        //skipAnimator.speed = 10f;
+        //handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        learnedToOverreact = false;
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
+        yield return null;
 
-        count = 0;
-        while (count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
-        procceed = false;
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
+        //procceed = false;
 
-        Time.timeScale = 1f;
-        skipAnimator.speed = 1f;
-        swordAnimator.speed = 1f;
-        princessAnimator.speed = 1f;
-        handAnimator.speed = 1f;
-        ControlMove.SetActive(true);
-        ControlHit.SetActive(true);
+        //Time.timeScale = 1f;
+        //skipAnimator.speed = 1f;
+        //swordAnimator.speed = 1f;
+        //princessAnimator.speed = 1f;
+        //handAnimator.speed = 1f;
+        //ControlMove.SetActive(true);
+        //ControlHit.SetActive(true);
     }
 
     public IEnumerator DialogFive()
     {
-        ControlMove.SetActive(false);
-        ControlHit.SetActive(false);
+        //ControlMove.SetActive(false);
+        //ControlHit.SetActive(false);
 
-        Time.timeScale = 0.1f;
-        swordAnimator.speed = 10f;
-        princessAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
-        handAnimator.speed = 10f;
+        //Time.timeScale = 0.1f;
+        //swordAnimator.speed = 10f;
+        //princessAnimator.speed = 10f;
+        //skipAnimator.speed = 10f;
+        //handAnimator.speed = 10f;
+        InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
-        //yield return new WaitForSeconds(0.2f);
-        //UI.GetComponent<GameMenu>().Sword();
-
-        count = 0;
-        while (count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
-        procceed = false;
-
-        yield return new WaitForSeconds(0.1f);
-        ScreenFreeze.SetActive(true);
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
-        //yield return new WaitForSeconds(0.2f);
-        //UI.GetComponent<GameMenu>().Sword();
-        handAnimator.SetBool("playTaunt", true);
-        skipBtn.SetActive(false);
-        ControlHit.SetActive(true);
-
-        foreach (GameObject Sheep in Sheeps)
-        {
-            Sheep.GetComponent<SheepAI>().enabled = true;
-        }
         deadSheep = true;
-        learnedToPlaceYourself = false;
+        yield return null;
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
+
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
+        //procceed = false;
+
+        //yield return new WaitForSeconds(0.1f);
+        //ScreenFreeze.SetActive(true);
+        //this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
+        //yield return new WaitForSeconds(0.2f);
+        //UI.GetComponent<GameMenu>().Sword();
+        //skipBtn.SetActive(false);
+        //ControlHit.SetActive(true);
+
+        //foreach (GameObject Sheep in Sheeps)
+        //{
+        //    Sheep.GetComponent<SheepAI>().enabled = true;
+        //}
+        
     }
 
     public IEnumerator DialogSix()
     {
-        ControlMove.SetActive(false);
-        ControlHit.SetActive(false);
-        Time.timeScale = 0.1f;
-        swordAnimator.speed = 10f;
-        princessAnimator.speed = 10f;
-        skipAnimator.speed = 10f;
-        handAnimator.speed = 10f;
+        //ControlMove.SetActive(false);
+        //ControlHit.SetActive(false);
+        //Time.timeScale = 0.1f;
+        //swordAnimator.speed = 10f;
+        //princessAnimator.speed = 10f;
+        //skipAnimator.speed = 10f;
+        //handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
 
-        count = 0;
-        while (count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(SkipAndPlay);
-        procceed = false;
-        skipAnimator.speed = 1f;
-        swordAnimator.speed = 1f;
-        princessAnimator.speed = 1f;
-        handAnimator.speed = 1f;
-        Time.timeScale = 1f;
-        ControlMove.SetActive(true);
-        ControlHit.SetActive(true);
+        //count = 0;
+        //while (count < 1)
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //}
+        //yield return new WaitUntil(SkipAndPlay);
+        //procceed = false;
+        //skipAnimator.speed = 1f;
+        //swordAnimator.speed = 1f;
+        //princessAnimator.speed = 1f;
+        //handAnimator.speed = 1f;
+        //Time.timeScale = 1f;
+        //ControlMove.SetActive(true);
+        //ControlHit.SetActive(true);
 
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(6);
