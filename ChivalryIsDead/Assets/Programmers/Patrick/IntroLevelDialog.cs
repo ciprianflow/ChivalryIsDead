@@ -31,6 +31,8 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject skipBtn;
     public GameObject halfScreen;
 
+    public GameObject TrollA;
+
     // Use this for initialization
     void Awake () {
         procceed = false;
@@ -89,7 +91,8 @@ public class IntroLevelDialog : MonoBehaviour {
         Invoke("SkipCam", 13f);
         //yield return new WaitForSeconds(2f);
 
-
+        TrollA.GetComponent<RangedAI>().softAttackRangeBreak = 0;
+        TrollA.GetComponent<RangedAI>().attackRange = 0;
         //UI.GetComponent<GameMenu>().Sword();
         //Invoke("CallableSkip", 1.3f);
 
