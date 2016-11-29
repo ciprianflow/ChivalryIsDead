@@ -22,6 +22,8 @@ public class QuestParametersEditor : Editor {
     private static bool[] diffDefIsToggled = new bool[3];
 
     private static bool enemyThreshIsToggled;
+
+    private static bool repOverrideIsToggled;
     #endregion
 
     void OnEnable()
@@ -73,11 +75,23 @@ public class QuestParametersEditor : Editor {
         enemyThreshIsToggled = EditorGUILayout.Foldout(enemyThreshIsToggled, "Enemy Thresholds");
         if (enemyThreshIsToggled) {
             EditorGUI.indentLevel++;
-            for (int i = 0; i < enemyThreshCount; i++) // Draw all enemy thresholds
+            for (int i = 0; i < enemyThreshCount; i++) { // Draw all enemy thresholds
                 DrawEnemyThreshold(i);
+                EditorGUILayout.Space();
+            }
 
             if (GUILayout.Button("Add Threshold"))
                 qParamTarget.enemyThresholds.Add(new EnemyThreshold());
+            EditorGUI.indentLevel--;
+        }
+
+        /// Setting up Reputation Overrides
+        repOverrideIsToggled = EditorGUILayout.Foldout(repOverrideIsToggled, "Reputation Overrides");
+        if (repOverrideIsToggled) {
+            EditorGUI.indentLevel++;
+            DrawReputationOverride(0, "Melee (Rep/Min/Max)");
+            DrawReputationOverride(1, "Ranged (Rep/Min/Max)");
+            DrawReputationOverride(2, "Suicide (Rep/Min/Max)");
             EditorGUI.indentLevel--;
         }
 
@@ -127,14 +141,14 @@ public class QuestParametersEditor : Editor {
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.PrefixLabel("Min/Max Friendlies:");
+            EditorGUILayout.PrefixLabel("Min/Max Friendlies (Obsolete):");
             newDefinition.minFriendlies = EditorGUILayout.IntField(newDefinition.minFriendlies);
             newDefinition.maxFriendlies = EditorGUILayout.IntField(newDefinition.maxFriendlies);
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.PrefixLabel("House Status:");
-            newDefinition.houseStatus = (HouseStatus)EditorGUILayout.EnumPopup(newDefinition.houseStatus);
+            newDefinition.houseStatus = (HouseStatus)EditorGUILayout.EnumMaskPopup(new GUIContent(), newDefinition.houseStatus);
             EditorGUILayout.EndHorizontal();
             EditorGUI.indentLevel--;
         }
@@ -142,13 +156,48 @@ public class QuestParametersEditor : Editor {
 
     private void DrawEnemyThreshold(int idx)
     {
+        //EditorGUILayout.BeginVertical();
+        // Activation Day
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.BeginVertical();
         EditorGUILayout.BeginHorizontal();
         EditorGUILayout.PrefixLabel("Activation Day:");
         qParamTarget.enemyThresholds[idx].DayMarker = EditorGUILayout.IntField(qParamTarget.enemyThresholds[idx].DayMarker);
-        qParamTarget.enemyThresholds[idx].AvailableEnemies = (EnemyTypes)EditorGUILayout.EnumMaskPopup(new GUIContent(), qParamTarget.enemyThresholds[idx].AvailableEnemies);
+        EditorGUILayout.EndHorizontal();
 
+        //// Activation Rep
+        //EditorGUILayout.BeginHorizontal();
+        //EditorGUILayout.PrefixLabel("Activation Rep:");
+        //qParamTarget.enemyThresholds[idx].RepMarker = EditorGUILayout.IntField(qParamTarget.enemyThresholds[idx].RepMarker);
+        //EditorGUILayout.EndHorizontal();
+
+        // Type and button
+        qParamTarget.enemyThresholds[idx].AvailableEnemies = (EnemyTypes)EditorGUILayout.EnumMaskPopup(new GUIContent(), qParamTarget.enemyThresholds[idx].AvailableEnemies);
+        EditorGUILayout.EndVertical();
         if (GUILayout.Button("-")) qParamTarget.enemyThresholds.RemoveAt(idx);
         EditorGUILayout.EndHorizontal();
+
+        //EditorGUILayout.EndVertical();
+    }
+
+    private void DrawReputationOverride(int idx, string label)
+    {
+        EditorGUILayout.BeginHorizontal();
+        EditorGUILayout.PrefixLabel(label);
+        qParamTarget.reputationOverrides[idx].RepMarker = EditorGUILayout.IntField(qParamTarget.reputationOverrides[idx].RepMarker);
+        qParamTarget.reputationOverrides[idx].minOverride = EditorGUILayout.IntField(qParamTarget.reputationOverrides[idx].minOverride, GUILayout.Width(40));
+        qParamTarget.reputationOverrides[idx].maxOverride = EditorGUILayout.IntField(qParamTarget.reputationOverrides[idx].maxOverride, GUILayout.Width(40));
+        EditorGUILayout.EndHorizontal();
+
+        switch (idx) {
+            case 0:
+                qParamTarget.reputationOverrides[idx].enemyType = EnemyTypes.HasMelee; break;
+            case 1:
+                qParamTarget.reputationOverrides[idx].enemyType = EnemyTypes.HasRanged; break;
+            case 2:
+                qParamTarget.reputationOverrides[idx].enemyType = EnemyTypes.HasSuicide; break;
+        }
+        //qParamTarget.reputationOverrides[idx].enemyType = (EnemyTypes)EditorGUILayout.EnumPopup(qParamTarget.reputationOverrides[idx].enemyType);
     }
     #endregion
 
