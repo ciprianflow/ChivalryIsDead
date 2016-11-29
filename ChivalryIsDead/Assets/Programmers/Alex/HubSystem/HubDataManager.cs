@@ -216,8 +216,8 @@ public class HubDataManager : MonoBehaviour {
         /* UNCOMMENT TO HAVE THE LOSE SCREEN */
         if (StaticData.daysLeft < 1)
         {            
-            //StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
-            //LoseScreen.SetActive(true);
+            StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
+            LoseScreen.SetActive(true);
         }
     }
 
