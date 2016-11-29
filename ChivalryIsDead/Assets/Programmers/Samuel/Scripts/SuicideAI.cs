@@ -173,6 +173,11 @@ public class SuicideAI : MonsterAI
     void OnTriggerEnter(Collider coll)
     {
         //Debug.Log("Collided with something exploding");
+
+        //EXPLODE WITH EVERYTHING
+        if (!coll.CompareTag("Ground"))
+            Explode();
+
         if (state == State.Utility)
             Explode();
 
