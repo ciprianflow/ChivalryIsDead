@@ -16,7 +16,7 @@ public class ReputationOverride
 {
     public EnemyTypes enemyType; // Should be only one enemy type!
     public int RepMarker;
-    public int minOverride, maxOverride;
+    //public int minOverride, maxOverride;
 }
 
 [Serializable]
