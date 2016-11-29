@@ -568,4 +568,9 @@ public class MeleeAI : MonsterAI
     }
 
     public override void HitThis() { }
+
+    public override void Turn()
+    {
+        throw new NotImplementedException();
+    }
 }
