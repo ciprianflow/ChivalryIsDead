@@ -91,6 +91,27 @@
 	</ConvolutionData>
 </PluginData>
 				</Effect>
+				<Effect Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+					<PropertyList>
+						<Property Name="AttackTime" Type="Real32" Value="0.01"/>
+						<Property Name="OutputGain" Type="Real32" Value="10"/>
+						<Property Name="Ratio" Type="Real32" Value="4.6"/>
+						<Property Name="Threshold" Type="Real32" Value="-33.5"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="enemiesML" ID="{00C1D2B1-33F7-4905-A29D-B25DE27A3DA9}" PluginName="McDSP ML1" CompanyID="256" PluginID="103" PluginType="3">
+					<PropertyList>
+						<Property Name="Ceiling" Type="Real32" Value="-0.1"/>
+						<Property Name="Threshold" Type="Real32" Value="-20"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="explosion" ID="{8B984E96-4BB2-47AE-92BC-10BD876EB122}" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+					<PropertyList>
+						<Property Name="AttackTime" Type="Real32" Value="0.001"/>
+						<Property Name="Ratio" Type="Real32" Value="8"/>
+						<Property Name="Threshold" Type="Real32" Value="-6.6"/>
+					</PropertyList>
+				</Effect>
 			</ChildrenList>
 		</WorkUnit>
 	</Effects>
