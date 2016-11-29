@@ -319,22 +319,8 @@ public class MeleeAI : MonsterAI
             targetPoint = GetRandomPointOnNavMesh();
 
         Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
-        //Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
-        //transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
-        //if (this.name == "Ranged") {
-        //    if ((q.eulerAngles.y - transform.eulerAngles.y) > 5) {
-        //        anim.SetBool("turnright", true);
-        //        anim.SetBool("turnleft", false);
-        //    }
-        //    else if ((q.eulerAngles.y - transform.eulerAngles.y) < -5) {
-        //        anim.SetBool("turnright", false);
-        //        anim.SetBool("turnleft", true);
-        //    }
-        //    else {
-        //        anim.SetBool("turnright", false);
-        //        anim.SetBool("turnleft", false);
-        //    }
-        //}
+        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
+
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
         Vector3 v3 = targetPoint;
@@ -343,28 +329,13 @@ public class MeleeAI : MonsterAI
         v3.y = 0;
 
         if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180)  {
-            //if (Vector3.Angle(v, v3 - v2) < 20f) {
-            //    anim.SetTrigger("InstantRight");
-            //    Debug.Log("InstantRight");
-            //}
-            //else {
-            //    anim.SetTrigger("StartTurnRight");
-            //}
-            //Debug.Log("Right");
             anim.SetTrigger("StartTurnRight");
 
         }
         else {
-            //if (Vector3.Angle(v, v3 - v2) < 20f) {
-            //    anim.SetTrigger("InstantLeft");
-            //    Debug.Log("InstantLeft");
-            //}
-            //else {
-            //    anim.SetTrigger("StartTurnLeft");
-            //}
             anim.SetTrigger("StartTurnLeft");
 
-            //Debug.Log("Left");
+            Debug.Log("Left");
         }
     }
 
@@ -568,4 +539,7 @@ public class MeleeAI : MonsterAI
     }
 
     public override void HitThis() { }
+
+    public override void Turn() { }
+
 }
