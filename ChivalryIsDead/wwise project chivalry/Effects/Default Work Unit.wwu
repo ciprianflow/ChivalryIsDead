@@ -112,6 +112,215 @@
 						<Property Name="Threshold" Type="Real32" Value="-6.6"/>
 					</PropertyList>
 				</Effect>
+				<Effect Name="armordly" ID="{BD3BEB5D-FB59-4228-82FE-6819F5E53FE7}" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
+					<PropertyList>
+						<Property Name="DelayTime" Type="Real32" Value="0.1"/>
+						<Property Name="Feedback" Type="Real32">
+							<RTPCList>
+								<RTPC Name="" ID="{B1A61609-E3D9-4F15-BB69-10DEE5395A8A}" ShortID="160530612">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="armordlylfo1" ID="{9F3B56F8-0A60-47E9-9535-A5E9F0B86A4E}" WorkUnitID="{76826067-E50F-4CBB-83F7-83448BF0148E}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{E9A36A84-F583-44C5-AB7C-B202011A8BCE}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="1"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>3.19277</YPos>
+												<Flags>21</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>20.06024</YPos>
+												<Flags>53</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+						<Property Name="WetDryMix" Type="Real32" Value="10">
+							<RTPCList>
+								<RTPC Name="" ID="{66AA6E8F-5E4A-4792-B2E0-01725FB2B7C0}" ShortID="576655542">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="armordlylfo1" ID="{9F3B56F8-0A60-47E9-9535-A5E9F0B86A4E}" WorkUnitID="{76826067-E50F-4CBB-83F7-83448BF0148E}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{1C07B892-5BCC-4FDE-9CDF-8AA554E14364}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="1"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>9.09639</YPos>
+												<Flags>21</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>0</YPos>
+												<Flags>53</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
+				</Effect>
+				<Effect Name="armor" ID="{254F7F12-2876-4E4A-ADD5-3A3088CD4238}" PluginName="Wwise Stereo Delay" CompanyID="0" PluginID="135" PluginType="3"/>
+				<Effect Name="armordly2" ID="{54235F1D-D973-4F2F-9C81-C84203A0478D}" PluginName="Wwise Delay" CompanyID="0" PluginID="106" PluginType="3">
+					<PropertyList>
+						<Property Name="DelayTime" Type="Real32" Value="0.13"/>
+						<Property Name="Feedback" Type="Real32">
+							<RTPCList>
+								<RTPC Name="" ID="{1FA0CA75-CC61-49C9-AB56-854C2C1CE9BF}" ShortID="607428768">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="armorlfo2" ID="{39643528-2AD3-403B-B549-D20118C2FAEA}" WorkUnitID="{76826067-E50F-4CBB-83F7-83448BF0148E}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{0A686EDA-7E13-4C44-A8B7-76CD89516282}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="1"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>0</YPos>
+												<Flags>21</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>15</YPos>
+												<Flags>53</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+						<Property Name="WetDryMix" Type="Real32" Value="10">
+							<RTPCList>
+								<RTPC Name="" ID="{D880C5AD-498F-4F81-936B-740B7EB5ED0E}" ShortID="321468287">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="armorlfo2" ID="{39643528-2AD3-403B-B549-D20118C2FAEA}" WorkUnitID="{76826067-E50F-4CBB-83F7-83448BF0148E}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{28A17F7F-8D5E-4804-843D-A813FB632793}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="1"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>10.06024</YPos>
+												<Flags>21</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>0</YPos>
+												<Flags>53</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+					</PropertyList>
+				</Effect>
+				<Effect Name="armorverb" ID="{5B4C1C62-DE65-4E67-A7EF-91134A13CBCB}" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+					<PropertyList>
+						<Property Name="HFRatio" Type="Real32" Value="0.5"/>
+						<Property Name="NumberOfDelays" Type="int32" Value="16"/>
+						<Property Name="PreDelay" Type="Real32" Value="0.05"/>
+						<Property Name="ReverbTime" Type="Real32" Value="0.2"/>
+						<Property Name="WetLevel" Type="Real32" Value="-30"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="armoreq" ID="{134C369B-1150-4D6E-B4BA-6D9D30A975BD}" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+					<PropertyList>
+						<Property Name="FrequencyBand2" Type="Real32" Value="500"/>
+						<Property Name="FrequencyBand3" Type="Real32" Value="4517"/>
+						<Property Name="GainBand1" Type="Real32" Value="-5"/>
+						<Property Name="GainBand2" Type="Real32" Value="-20"/>
+						<Property Name="GainBand3" Type="Real32" Value="-10"/>
+						<Property Name="OutputLevel" Type="Real32" Value="10"/>
+						<Property Name="QFactorBand2" Type="Real32" Value="2.1"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="chainmaileq" ID="{E368B863-4FDB-4724-9B9E-EC302117F1A9}" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+					<PropertyList>
+						<Property Name="FilterTypeBand1" Type="int32" Value="6"/>
+						<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+						<Property Name="FrequencyBand1" Type="Real32" Value="4034">
+							<RTPCList>
+								<RTPC Name="" ID="{9D967F5F-CD01-4720-901F-1F365C15A1D4}" ShortID="378478480">
+									<ReferenceList>
+										<Reference Name="ControlInput">
+											<ObjectRef Name="LFOchain1" ID="{B7C0990E-CDA6-4280-9E74-2E0B2D25CFEC}" WorkUnitID="{76826067-E50F-4CBB-83F7-83448BF0148E}"/>
+										</Reference>
+									</ReferenceList>
+									<Curve Name="" ID="{00BC2C73-BD7E-4BEF-9CF0-D08E64F44246}">
+										<PropertyList>
+											<Property Name="Flags" Type="int32" Value="5"/>
+										</PropertyList>
+										<PointList>
+											<Point>
+												<XPos>0</XPos>
+												<YPos>2174.44985</YPos>
+												<Flags>21</Flags>
+											</Point>
+											<Point>
+												<XPos>1</XPos>
+												<YPos>2324.15485</YPos>
+												<Flags>53</Flags>
+											</Point>
+										</PointList>
+									</Curve>
+								</RTPC>
+							</RTPCList>
+						</Property>
+						<Property Name="FrequencyBand2" Type="Real32" Value="3900"/>
+						<Property Name="FrequencyBand3" Type="Real32" Value="4200"/>
+						<Property Name="GainBand1" Type="Real32" Value="5"/>
+						<Property Name="GainBand2" Type="Real32" Value="5"/>
+						<Property Name="GainBand3" Type="Real32" Value="5"/>
+						<Property Name="QFactorBand1" Type="Real32" Value="90"/>
+						<Property Name="QFactorBand2" Type="Real32" Value="90"/>
+						<Property Name="QFactorBand3" Type="Real32" Value="90"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="chainmaileq2" ID="{CBF360F1-2AB3-4B81-9E4B-7A00109F7409}" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+					<PropertyList>
+						<Property Name="FilterTypeBand3" Type="int32" Value="6"/>
+						<Property Name="FrequencyBand1" Type="Real32" Value="1789"/>
+						<Property Name="FrequencyBand2" Type="Real32" Value="500"/>
+						<Property Name="FrequencyBand3" Type="Real32" Value="5234"/>
+						<Property Name="GainBand1" Type="Real32" Value="10"/>
+						<Property Name="GainBand2" Type="Real32" Value="-20"/>
+						<Property Name="GainBand3" Type="Real32" Value="12"/>
+						<Property Name="OnOffBand1" Type="bool" Value="False"/>
+						<Property Name="OnOffBand2" Type="bool" Value="False"/>
+						<Property Name="QFactorBand2" Type="Real32" Value="18.3"/>
+						<Property Name="QFactorBand3" Type="Real32" Value="9.9"/>
+					</PropertyList>
+				</Effect>
+				<Effect Name="chainmailrvb" ID="{F6935F04-13CC-45ED-B9A9-8B28ECF63C86}" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+					<PropertyList>
+						<Property Name="DryLevel" Type="Real32" Value="-7"/>
+						<Property Name="HFRatio" Type="Real32" Value="1"/>
+						<Property Name="NumberOfDelays" Type="int32" Value="16"/>
+						<Property Name="ReverbTime" Type="Real32" Value="0.3"/>
+						<Property Name="WetLevel" Type="Real32" Value="-7"/>
+					</PropertyList>
+				</Effect>
 			</ChildrenList>
 		</WorkUnit>
 	</Effects>

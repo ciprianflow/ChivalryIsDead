@@ -19,6 +19,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1126582737	melee_walk			\Default Work Unit\characters\enemies\melee (merman type)\melee_walk	
 	1194678982	start_hub_ambience			\Default Work Unit\ambience\start_hub_ambience	
 	1211663631	knight_taunt			\Default Work Unit\characters\knight\combat voice\knight_taunt	
+	1297289809	impact_stone			\Default Work Unit\combat\impact_stone	
 	1302570184	melee_death			\Default Work Unit\characters\enemies\melee (merman type)\death\melee_death	
 	1353242594	melee_attack			\Default Work Unit\characters\enemies\melee (merman type)\attack\melee_attack	
 	1506181365	suicide_walk			\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_walk	
@@ -59,6 +60,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	2964915621	peasant_crazy			\Default Work Unit\characters\peasant\peasant_crazy	
 	2965945301	knight_attack			\Default Work Unit\characters\knight\combat voice\knight_attack	
 	2977042441	ranged_pickup_stone			\Default Work Unit\characters\enemies\ranged (big troll type)\pickup rock\ranged_pickup_stone	
+	3092587493	pause			\Default Work Unit\gamestates\pause	
 	3149292963	normal_button_backwards_pressed			\Default Work Unit\ui\normal_button_backwards_pressed	
 	3193851892	ranged_find_stone			\Default Work Unit\characters\enemies\ranged (big troll type)\pickup rock\ranged_find_stone	
 	3197778154	peasant_sad			\Default Work Unit\characters\peasant\peasant_sad	
@@ -67,6 +69,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3300250497	kight_taunt_alternative			\Default Work Unit\characters\knight\combat voice\kight_taunt_alternative	
 	3344356517	music1Play			\Default Work Unit\music\music1Play	
 	3407172842	normal_button_forward_pressed			\Default Work Unit\ui\normal_button_forward_pressed	
+	3412868374	unpause			\Default Work Unit\gamestates\unpause	
 	3435211054	melee_charge			\Default Work Unit\characters\enemies\melee (merman type)\melee_charge	
 	3565132813	princess_super_flirty			\Default Work Unit\characters\princess\princess_super_flirty	
 	3646683889	suicide_attacked			\Default Work Unit\characters\enemies\suicide (goblin type)\suicide_attacked	
@@ -81,6 +84,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	4105479982	knight_overreact_great			\Default Work Unit\characters\knight\combat voice\knight_overreact_great	
 	4172090781	reward_combo_end			\Default Work Unit\reward\reward_combo_end	
 	4177902087	peasant_random			\Default Work Unit\characters\peasant\peasant_random	
+	4188254404	musicquest			\Default Work Unit\music\musicquest	
 	4198655567	world_transition			\Default Work Unit\ui\world_transition	
 	4207348505	princess_sad			\Default Work Unit\characters\princess\princess_sad	
 	4271425898	reward_combo_boost3			\Default Work Unit\reward\reward_combo_boost3	
@@ -98,11 +102,27 @@ Switch	ID	Name	Switch Group			Notes
 	2195636714	dirt	footsteps			
 	4248645337	grass	footsteps			
 
+State Group	ID	Name			Wwise Object Path	Notes
+	3092587493	pause			\Default Work Unit\pause	
+
+State	ID	Name	State Group			Notes
+	319258907	paused	pause			
+	748895195	None	pause			
+	1365518790	unpaused	pause			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	174233489	paused	pause	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus		
+
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1006694123	music_volume			\Default Work Unit\music_volume	
+	1564184899	sfx_volume			\Default Work Unit\sfx_volume	
+	4179668880	master_volume			\Default Work Unit\master_volume	
 
 Modulator LFO	ID	Name			Wwise Object Path	Notes
+	59809128	LFOchain1			\Default Work Unit\LFOchain1	
+	73080185	armorlfo2			\Default Work Unit\armorlfo2	
 	446202523	vibrato			\Default Work Unit\vibrato	
+	555761945	armordlylfo1			\Default Work Unit\armordlylfo1	
 
 Modulator Envelope	ID	Name			Wwise Object Path	Notes
 	350562847	boo			\Default Work Unit\boo	
@@ -123,9 +143,16 @@ Auxiliary Bus	ID	Name			Wwise Object Path	Notes
 Effect plug-ins	ID	Name	Type				Notes
 	48620415	Have_U_Ever_Been_Outside	Wwise RoomVerb			
 	294542258	enemiescomp	Wwise Compressor			
+	400443571	chainmaileq2	Wwise Parametric EQ			
+	452600789	chainmailrvb	Wwise Matrix Reverb			
 	992902880	Small_Tiled_Room1	Wwise Matrix Reverb			
+	1085452039	armordly2	Wwise Delay			
 	1431265797	Monsterize	Wwise Pitch Shifter			
+	1611016471	armordly	Wwise Delay			
+	1651780123	chainmaileq	Wwise Parametric EQ			
+	2696595189	armorverb	Wwise Matrix Reverb			
 	2998002419	Boost_3dB_10KHz	Wwise Parametric EQ			
+	3435417592	armoreq	Wwise Parametric EQ			
 
 Source plug-ins	ID	Name	Type		Wwise Object Path	Notes
 	88627080	Sword	SoundSeed Air/SoundSeed Woosh		\Actor-Mixer Hierarchy\Factory SoundSeed Air Objects\chivalry is dead\sword\Sword	
@@ -135,6 +162,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	3420249	fishman_death-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_death-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\death\melee_death\fishman_death-03		18153
 	8702143	talking sword angry6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword angry6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\angry\talking sword angry6		8423
 	23454709	knight_overreact_fail-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_fail-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_fail\knight_overreact_fail-02		19800
+	28562197	pickup4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup4_3F663464.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup4		4649
 	35203456	knight_getting_hit-15	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_getting_hit-15_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attacked\knight_getting_hit-15		4560
 	39019231	fishman_getting_hit-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_getting_hit-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_attacked\fishman_getting_hit-02		4932
 	39373360	super_crazy_3_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\super_crazy_3_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_super_crazy\super_crazy_3_1		14890
@@ -145,11 +173,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	60561368	knight_getting_hit-07	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_getting_hit-07_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attacked\knight_getting_hit-07		3888
 	63422420	music main 1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\music main 1_824B34CA.wem		\Interactive Music Hierarchy\Default Work Unit\music1\music main 1\music main 1		1156044
 	64086600	troll_aggro-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_aggro-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll_aggro-04		6273
-	65735867	trolltaunt5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt5_2EFD2433.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt5		21826
-	72083450	troll aggro2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro2_21D42E13.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro2		21987
+	65735867	trolltaunt5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt5_2356F6BD.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt5		21826
+	72083450	troll aggro2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro2_E2F05472.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro2		21987
 	73926407	look_for_rock_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\look_for_rock_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\look_for_stone\look_for_rock_3		8481
 	75827429	armor_impact_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_impact_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\armor_impact_1		3388
 	77698730	pallet_boots_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_3		3588
+	82630509	stoneimpact lightish	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stoneimpact lightish_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone impact\stoneimpact lightish		21053
 	83947997	impact punch5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\impact punch5_94CB321E.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\impact punch\impact punch5		2607
 	85623998	speech bubble pop	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pop_1_CDD09569.wem		\Actor-Mixer Hierarchy\Default Work Unit\ui\speech bubble pop		4661
 	88919798	talking sword neutral9	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword neutral9_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\neutral\talking sword neutral9		21406
@@ -169,15 +198,18 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	110450832	pickup_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup_4		10834
 	110532760	suicide_taunted-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_taunted-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_taunted\suicide_taunted-03		16768
 	110540297	troll_getting_hit-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-01		4212
-	111317952	explosion9	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion9_AC60BAF7.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion9		16161
+	111317952	explosion9	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion9_A79DB3FB.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion9		16161
+	114875009	pickup7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup7_465AF010.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup7		5836
 	117234038	fishman_walking-05	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_walking-05_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_walking_voice\fishman_walking-05		3497
 	122843971	sword impact6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\sword impact6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\sword flesh cut\sword impact6		7365
+	123053630	attack5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\attack5_1C34D2D7.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\attack5		14012
 	124797533	sheep_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sheep_5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\world objects\sheep\sheep_neutral\sheep_5		11674
-	127869551	explosion2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion2_A1A2690E.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion2		15702
+	127869551	explosion2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion2_F304067C.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion2		15702
 	128504471	talking sword happy4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword happy4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\happyshort\talking sword happy4		16406
 	128919052	fishman_charge-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_charge-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_charge\fishman_charge-02		28089
 	131012819	armor_rustle_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_1		2010
 	132149624	footsteps stone	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\footsteps stone_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_footsteps\stone\footsteps stone		3968
+	134349177	attack3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\attack3_72A4FAE0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\attack3		9204
 	139371646	knight_taunt-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_taunt-01_726FC38C.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_taunt\knight_taunt-01		8083
 	140349901	pallet_boots_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_2		3596
 	144210280	wooden_floor_boots_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\wooden_floor_boots_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\wooden_floor\wooden_floor_boots_2		3024
@@ -186,15 +218,17 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	146165502	fishman_charge-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_charge-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_charge\fishman_charge-04		35661
 	148996419	grass_boots_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\grass_boots_6_261120DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\grass\grass_boots_6		4042
 	153497248	knight_overreact_perfect-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_perfect-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_perfect\knight_overreact_perfect-02		20465
+	163888741	pickup3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup3_CA08E9AC.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup3		6044
 	169376198	troll_aggro-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_aggro-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll_aggro-03		9888
 	170148162	gain rep bad long modulated	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\gain rep bad long modulated_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\gain rep bad long modulated		35737
-	172980892	trolltaunt2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt2_A0112353.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt2		14598
+	172980892	trolltaunt2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt2_66BD1957.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt2		14598
 	173355335	pallet_boots_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_6		3191
 	173520875	knight_overreact_fail-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_fail-03_8F9D4EFC.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_fail\knight_overreact_fail-03		20182
 	173662297	talking sword determined6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword determined6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\determined\talking sword determined6		21812
 	176495273	talking sword explanatory2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword explanatory2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\explanatory short\talking sword explanatory2		13124
+	184004908	attack2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\attack2_B1B8E987.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\attack2		10520
 	185185842	sword attack7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sword attack7_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\swordattack\sword attack7		10106
-	188935295	explosion8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion8_F0F0330A.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion8		14617
+	188935295	explosion8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion8_7FA28097.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion8		14617
 	191124188	troll_getting_hit-11	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-11_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-11		6163
 	196586325	troll_aggro-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_aggro-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll_aggro-01		5470
 	197102625	death fall thump 2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\death fall thump 2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_death\death fall thump 2		9986
@@ -203,7 +237,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	207656760	combo end 3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combo end 3_288D6B31.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\comboend\combo end 3		30505
 	208187776	talking sword happy5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword happy5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\happyshort\talking sword happy5		15341
 	208499235	sword attack2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sword attack2_E77E25A7.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\swordattack\sword attack2		7701
-	209299865	explosion11	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion11_0B2805D1.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion11		15755
+	209299865	explosion11	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion11_00EF2B37.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion11		15755
 	209605840	talking sword neutral5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword neutral5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\neutral\talking sword neutral5		30836
 	210853535	dirt_boots_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_2_7B26EACC.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\dirt\dirt_boots_2		3815
 	214237314	fishman_taunted-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_taunted-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_taunted\fishman_taunted-01		16284
@@ -234,6 +268,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	265579573	super_crazy_4_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\super_crazy_4_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_super_crazy\super_crazy_4_1		20338
 	267629145	fishman_attack-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_attack-03_57DA485E.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\attack\melee_weapon_charge\fishman_attack-03		4247
 	267933104	suicide_taunted-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_taunted-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_taunted\suicide_taunted-02		19556
+	270304853	stones_9_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stones_9.1_4955288E.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone rolling\stones_9_1		27556
 	271697490	pallet_boots_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_5_ED30B778.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_5		3185
 	275380279	pift 4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pift 4_028C8B2E.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_taunt_pift\pift 4		28620
 	275620395	talking sword neutral3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword neutral3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\neutral\talking sword neutral3		34282
@@ -249,7 +284,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	304541966	suicide_exploding-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_exploding-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_explode\suicide_exploding-03		27643
 	307785256	pallet_boots_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_1		3009
 	308528686	dirt_boots_10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_10_EB3B8EF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\dirt\dirt_boots_10		4576
-	310656049	explosion4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion4_B55DE6C2.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion4		15383
+	310656049	explosion4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion4_8BE0C402.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion4		15383
 	312095579	sword impact3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\sword impact3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\sword flesh cut\sword impact3		5567
 	313229235	grass_boots_11	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\grass_boots_11_1A7612F6.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\grass\grass_boots_11		4284
 	327612636	troll_taunted-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_taunted-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\troll_taunted-04		15499
@@ -259,8 +294,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	336340365	impact punch6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\impact punch6_E68B44EA.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\impact punch\impact punch6		2797
 	338264633	crowd gasp2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\crowd gasp2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\crowd\gasp\crowd gasp2		16044
 	339154783	talking sword explanatory long 2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword explanatory long 2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\explanatory long\talking sword explanatory long 2		20121
+	342202895	chainmail4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail4_A9962503.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail4		3802
 	342691530	troll_getting_hit-09	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-09_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-09		4731
 	343360110	sword_clang_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sword_clang_5_34327DF4.wem		\Actor-Mixer Hierarchy\Default Work Unit\ui\regular_button\sword_clang\sword_clang_5		3995
+	347675846	chainmail9	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail9_42878D44.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail9		5423
 	348305984	dirt_boots_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_3_6FE299C0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\dirt\dirt_boots_3		3739
 	353650010	suicide_getting_hit-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_getting_hit-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_attacked\suicide_getting_hit-03		4068
 	353962122	talking sword happy2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword happy2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\happyshort\talking sword happy2		12405
@@ -286,9 +323,10 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	399499201	pallet_boots_9	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_9_6C0AFD40.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_9		3135
 	401720470	armor_rustle_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_5		2089
 	402494829	swoosh	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\throw_swoosh_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\swoosh		6195
+	402614746	chainmail10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail10_7BDE77ED.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail10		3481
 	404285835	stone_boots_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stone_boots_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_footsteps\stone\stone_boots_2		4021
 	406920423	sword_clang_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sword_clang_1_188285CE.wem		\Actor-Mixer Hierarchy\Default Work Unit\ui\regular_button\sword_clang\sword_clang_1		4332
-	412238058	pickup_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup_2		8676
+	412238058	pickup_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\pickup_2		8676
 	414694016	knight_taunt-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_taunt-03_2AAB007C.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_taunt\knight_taunt-03		8331
 	415284205	look_for_rock_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\look_for_rock_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\look_for_stone\look_for_rock_1		8872
 	416556646	pickup_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup_5		9173
@@ -312,19 +350,22 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	449085477	troll_aggro-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_aggro-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll_aggro-02		6351
 	451790132	stone_boots_8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stone_boots_8_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_footsteps\stone\stone_boots_8		3644
 	457846459	fishman_aggro-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_aggro-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_aggro\fishman_aggro-04		17552
+	459582799	chainmail3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail3_C2841751.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail3		4093
 	465206004	talking sword explanatory1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword explanatory1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\explanatory short\talking sword explanatory1		13987
 	465233404	fishman_death-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_death-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\death\melee_death\fishman_death-02		16022
 	470132707	bird sound forest loop	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\bird sound forest loop_824B34CA.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\quest world 1\world_1\bird sound forest loop		737941
 	470207518	talking sword explanatory long 1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword explanatory long 1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\explanatory long\talking sword explanatory long 1		20045
 	474595740	suicide_aggro-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_aggro-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_aggro\suicide_aggro-04		5370
 	475382198	trumpet reward2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trumpet reward2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\reward trumpet\trumpet reward2		51342
-	476700394	troll aggro4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro4_C3939901.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro4		22824
+	476700394	troll aggro4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro4_F83410AA.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro4		22824
 	477283424	sword attack8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sword attack8_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\swordattack\sword attack8		9917
 	479303446	knight_attack_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_attack_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attack\knight_attack_4		3804
 	481999606	look_for_rock_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\look_for_rock_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\look_for_stone\look_for_rock_4		10474
 	486605323	talking sword crazy7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword crazy7_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\crazy\talking sword crazy7		43149
 	488647088	talking sword crazy3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword crazy3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\crazy\talking sword crazy3		15133
 	490641647	armor_rustle_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_2		4814
+	493003985	pickup9	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup9_EF3AA17C.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup9		4531
+	494937422	chainmail5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail5_AB1C4D10.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail5		3911
 	495090269	armor_rustle_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_6		4204
 	496204827	crowd boo2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\crowd\crowd boo2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\crowd\boo\crowd boo2		36882
 	497168476	talking sword neutral6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword neutral6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\neutral\talking sword neutral6		29805
@@ -333,13 +374,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	503027827	knight_overreact_fail-05	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_fail-05_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_fail\knight_overreact_fail-05		21875
 	503075465	spring	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\spring_07D59BA5.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\spring		20865
 	503842650	knight_getting_hit-10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_getting_hit-10_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attacked\knight_getting_hit-10		7266
-	504700251	trolltaunt3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt3_A69F709D.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt3		13511
+	504700251	trolltaunt3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt3_E409DCDE.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt3		13511
 	509972293	knight_getting_hit-13	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_getting_hit-13_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attacked\knight_getting_hit-13		3974
 	512074993	talking sword happy long4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword happy long4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\happylong\talking sword happy long4		20047
+	518927396	chainmail8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail8_93990C91.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail8		9956
 	521700148	dirt_boots_8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_8_CE1DCAD6.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\footsteps\dirt\dirt_boots_8		4528
 	525101795	fishman_walking-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_walking-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_walking_voice\fishman_walking-01		1760
 	527919328	dirt_boots_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_6_DDE22E12.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\dirt\dirt_boots_6		4203
-	528959122	troll aggro3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro3_07B56919.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro3		17761
+	528959122	troll aggro3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro3_77DB61F4.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro3		17761
 	536872306	taunt sound	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\taunt sound_34AAA5BD.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\taunt sound		14060
 	541182474	crowd gasp3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\crowd gasp3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\crowd\gasp\crowd gasp3		16761
 	541441542	grass_boots_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\grass_boots_3_ADD69C7F.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\grass\grass_boots_3		4224
@@ -354,11 +396,12 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	559786204	play_button_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\play_button_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\ui\play_button_2		28736
 	563838557	look_for_rock_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\look_for_rock_6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\look_for_stone\look_for_rock_6		11127
 	564111595	suicide_getting_hit-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_getting_hit-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_attacked\suicide_getting_hit-04		3718
+	565056236	pickup6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup6_9C52A3F6.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup6		9457
 	567374912	trumpet reward7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trumpet reward7_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\reward trumpet\trumpet reward7		74367
 	568087625	knight_attack_12	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_attack_12_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attack\knight_attack_12		4138
 	568414374	wooden_floor_boots_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\wooden_floor_boots_6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\wooden_floor\wooden_floor_boots_6		3504
 	570456386	talking sword crazy2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword crazy2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\crazy\talking sword crazy2		26398
-	571728734	pickup_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup_6		11020
+	571728734	pickup_6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_6_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\pickup_6		11020
 	575935787	talking sword crazy4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword crazy4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\crazy\talking sword crazy4		33278
 	577411855	fishman_attack-05	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_attack-05_1988DEB7.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\attack\melee_attack\fishman_attack-05		3497
 	579816094	crazy_3_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\crazy_3_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_crazy\crazy_3_1		19545
@@ -366,11 +409,13 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	582887910	grass_boots_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\grass_boots_2_D29FF516.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\grass\grass_boots_2		3945
 	588445708	sword impact5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\sword impact5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\sword flesh cut\sword impact5		2887
 	588985119	talking sword angry4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword angry4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\angry\talking sword angry4		17132
-	593605574	troll aggro1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro1_CF100B86.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro1		18674
-	594618283	trolltaunt1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt1_E018F297.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt1		12012
+	593605574	troll aggro1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll aggro1_C8FC263A.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_aggro\troll aggro1		18674
+	594618283	trolltaunt1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt1_CA672E56.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt1		12012
+	595453770	pickup8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup8_70746D42.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup8		13010
 	596689285	fishman_walking-08	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_walking-08_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_walking_voice\fishman_walking-08		2516
 	597281457	troll_getting_hit-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-03		6084
-	599169704	pickup_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup_3		9879
+	598824805	stoneimpact hård	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stoneimpact hård_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone impact\stoneimpact hård		23540
+	599169704	pickup_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\pickup_3		9879
 	601578589	super_sad_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\super_sad_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_super_sad\super_sad_2		25627
 	603034145	armor_rustle_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_3		4640
 	604362213	super_happy_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\super_happy_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_super_happy\super_happy_1		26498
@@ -380,7 +425,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	613801491	knight_attack_11	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_attack_11_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attack\knight_attack_11		4055
 	615793787	dirt_boots_7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_7_93207152.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\dirt\dirt_boots_7		3977
 	616165439	talking sword angry2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword angry2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\angry\talking sword angry2		8219
-	619600550	explosion6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion6_DBD31A04.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion6		17065
+	619600550	explosion6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion6_9836BFD5.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion6		17065
 	622548562	suicide_getting_hit-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_getting_hit-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_attacked\suicide_getting_hit-01		2600
 	628476988	river_running_3D	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\river_running_loop_1_824B34CA.wem		\Actor-Mixer Hierarchy\Default Work Unit\world objects\river_running_3D		447952
 	628738359	fishman_attack-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_attack-02_DE64ABD3.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\attack\melee_attack\fishman_attack-02		4416
@@ -395,12 +440,14 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	645290302	dirt_boots_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_3_44DD0092.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\footsteps\dirt\dirt_boots_3		4261
 	647849496	super_crazy_2_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\super_crazy_2_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_super_crazy\super_crazy_2_1		14423
 	648139683	impact punch3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\impact punch3_017FD472.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\impact punch\impact punch3		2500
+	648537736	attack4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\attack4_1CE3498C.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\attack4		5519
 	648966708	grass_boots_7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\grass_boots_7_4E154071.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\grass\grass_boots_7		4067
 	651413944	sword attack1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sword attack1_2DC06445.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\swordattack\sword attack1		7656
 	652798770	knight_attack_8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_attack_8_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attack\knight_attack_8		4566
 	652863861	fishman_attack-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_attack-04_DD7EB15D.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\attack\melee_weapon_charge\fishman_attack-04		10599
 	654972831	stone_boots_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stone_boots_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_footsteps\stone\stone_boots_4		3590
 	655335562	combo end 1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combo end 1_C3BFCF09.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\comboend\combo end 1		33067
+	659079107	stoneimpact hård 2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stoneimpact hård 2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone impact\stoneimpact hård 2		23776
 	659171208	knight_attack_10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_attack_10_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attack\knight_attack_10		5472
 	659784663	pallet_boots_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_4		3172
 	660095065	crowd gasp4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\crowd gasp4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\crowd\gasp\crowd gasp4		26078
@@ -410,17 +457,21 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	670256923	troll_death-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_death-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_death\ranged_death_voice\troll_death-04		17331
 	671123052	crowd_loop_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\crowd_loop_1_824B34CA.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\hub_world\crowd_loop_1		653259
 	671782291	suicide_exploding-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_exploding-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_explode\suicide_exploding-01		23611
+	672586888	pickup2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup2_938158B4.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup2		6169
+	673557280	chainmail1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail1_6D044031.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail1		3000
 	677028370	fishman_walking-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_walking-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_walking_voice\fishman_walking-02		1593
 	679089596	knight neutral	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight neutral_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\dialogue\knight_neutral\knight neutral		5943
 	679830042	armor_rustle_8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_8_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_8		4144
 	680456381	look_for_rock_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\look_for_rock_5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\look_for_stone\look_for_rock_5		10384
 	681234476	knight_overreact_ok-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_ok-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_ok\knight_overreact_ok-01		36697
-	686139689	explosion5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion5_336E8A9F.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion5		16809
+	685774113	chainmail11	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail11_5292BA68.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail11		3478
+	686139689	explosion5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion5_B3BFAE60.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion5		16809
 	688599165	talking sword crazy5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword crazy5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\crazy\talking sword crazy5		33889
 	697759909	fishman_getting_hit-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_getting_hit-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_attacked\fishman_getting_hit-04		2610
 	698002806	flirty_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\flirty_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_flirty\flirty_4		16135
 	699324565	impact punch4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\impact punch4_336E3837.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\impact punch\impact punch4		2704
 	700765041	stone_boots_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stone_boots_5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_footsteps\stone\stone_boots_5		3688
+	707547444	stone impact hård 3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stone impact hård 3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone impact\stone impact hård 3		24394
 	708918412	metal_hammer_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\metal_hammer_3_824B34CA.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\hub_world\metal_hammer_smith\metal_hammer_3		15241
 	710029714	trumpet reward3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trumpet reward3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\reward trumpet\trumpet reward3		72284
 	711090787	horse_wagon_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\horse_wagon_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\hub_world\horse_wagon\horse_wagon_2		255667
@@ -455,8 +506,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	779311260	knight_getting_hit-12	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_getting_hit-12_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attacked\knight_getting_hit-12		4227
 	779880706	troll_getting_hit-10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-10_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-10		6651
 	782418436	troll_death-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_death-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_death\ranged_death_voice\troll_death-01		19813
+	784448698	stone rolling	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stone rolling_0B756221.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone rolling\stone rolling		12122
 	786507398	sheep_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sheep_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\world objects\sheep\sheep_neutral\sheep_2		7462
-	787712012	explosion3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion3_2F44C5A9.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion3		16114
+	787712012	explosion3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion3_55F48DCA.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion3		16114
 	789427470	knight_getting_hit-08	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_getting_hit-08_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attacked\knight_getting_hit-08		4803
 	794950502	troll_throwing_object-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_throwing_object-01_1E418C1C.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\troll_throwing_object-01		8442
 	804165838	fishman_getting_hit-05	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_getting_hit-05_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_attacked\fishman_getting_hit-05		2690
@@ -470,6 +522,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	827507368	sword_clang_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sword_clang_2_DB5179FD.wem		\Actor-Mixer Hierarchy\Default Work Unit\ui\regular_button\sword_clang\sword_clang_2		4653
 	829959811	sword impact	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\sword impact_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\sword flesh cut\sword impact		4457
 	829962151	fail sound hurtig modulated	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fail sound hurtig modulated_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\fail sound hurtig modulated		28707
+	834068114	pickup5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup5_CE6C547A.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup5		10044
 	834360303	fishman_charge-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_charge-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_charge\fishman_charge-03		26027
 	837078039	armor_rustle_10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_10_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_10		4812
 	838699684	fishman_taunted-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_taunted-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_taunted\fishman_taunted-04		14846
@@ -478,13 +531,15 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	842839459	armor_rustle_14	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_14_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_14		2977
 	846407342	knight_overreact_great-06	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_great-06_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_great\knight_overreact_great-06		32257
 	847032738	happy_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\happy_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_happy\happy_4		17049
+	848769873	pickup1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup1_0E5ECDB2.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone\pickup1		5588
+	849844886	stones_2_1_01_01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stones_2.1.01.01_4A761CE7.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone rolling\stones_2_1_01_01		17967
 	865953537	fishman_getting_hit-06	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_getting_hit-06_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_attacked\fishman_getting_hit-06		2812
 	867562747	chicken_4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\chicken_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\hub_world\chicken\chicken_4		58352
 	870326261	knight_overreact_perfect-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_perfect-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_perfect\knight_overreact_perfect-04		26567
 	871617869	look_for_rock_2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\look_for_rock_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\look_for_stone\look_for_rock_2		8643
 	875745377	troll_getting_hit-06	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-06_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-06		6031
 	875786080	combo reward 6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combo reward 6_D4E47A9D.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\comboboost\combo reward 6		81179
-	879400219	explosion7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion7_508768D7.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion7		16633
+	879400219	explosion7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion7_3B778E0F.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion7		16633
 	882159545	sad_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sad_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_sad\sad_3		20751
 	883609475	dirt_boots_8	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\dirt_boots_8_191FDB96.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\dirt\dirt_boots_8		3860
 	889092405	fishman_getting_hit-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_getting_hit-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_attacked\fishman_getting_hit-01		7003
@@ -503,19 +558,21 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	924663840	fishman_aggro-01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_aggro-01_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_aggro\fishman_aggro-01		8516
 	926157107	fishman_attack-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_attack-04_28726AB4.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\attack\melee_attack\fishman_attack-04		3474
 	930611581	trumpet reward1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trumpet reward1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\reward trumpet\trumpet reward1		71116
-	936261350	explosion10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion10_A4FB38F4.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion10		15703
-	936988672	explosion1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion1_7335C5A7.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion1		18759
+	936261350	explosion10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion10_3F441749.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion10		15703
+	936988672	explosion1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\explosions\explosion1_D3E659E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\explosions\explosion1		18759
 	941613171	knight_attack_13	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_attack_13_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attack\knight_attack_13		6526
 	946785412	wooden_floor_boots_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\wooden_floor_boots_5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\wooden_floor\wooden_floor_boots_5		3775
 	949048099	talking sword neutral4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\talking sword neutral4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\sword\neutral\talking sword neutral4		15899
 	949182450	small reward5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\small reward5_5B908596.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\small reward\small reward5		51076
 	949605462	combo reward 2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combo reward 2_6D590CF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\comboboost\combo reward 2		90876
+	954156758	stones_3_1_01	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stones_3.1.01_14EF0BE1.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone rolling\stones_3_1_01		21313
 	955845334	troll_getting_hit-07	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-07_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-07		4071
 	955947486	sad_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\sad_1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_sad\sad_1		22829
 	956194336	suicide_getting_hit-05	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\suicide_getting_hit-05_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\suicide (goblin type)\suicide_attacked\suicide_getting_hit-05		2479
-	959230780	trolltaunt4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt4_6CB7A76C.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt4		14314
+	959230780	trolltaunt4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\trolltaunt4_D6EA4810.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_taunted\trolltaunt4		14314
 	959807863	pift 1 (bedst)	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pift 1 (bedst)_019E33A7.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_taunt_pift\pift 1 (bedst)		26024
 	964363103	knight_getting_hit-11	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_getting_hit-11_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attacked\knight_getting_hit-11		4331
+	967247543	chainmail7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail7_994934BB.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail7		4204
 	973660912	fishman_death-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_death-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\death\melee_death\fishman_death-04		14640
 	979591397	super_sad_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\super_sad_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\princess\princess_super_sad\super_sad_3		25392
 	979946973	armor_rustle_12	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor_rustle_12_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\armor\armor_rustle_12		6208
@@ -523,6 +580,8 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	980953988	wooden_floor_boots_3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\wooden_floor_boots_3_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\wooden_floor\wooden_floor_boots_3		3306
 	981959804	chicken_7	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\chicken_7_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\hub_world\chicken\chicken_7		84196
 	982551673	knight_attack_5	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_attack_5_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_attack\knight_attack_5		3854
+	987565925	chainmail	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail_6CEB5932.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail		3539
+	987717487	chainmail6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\armor\chainmail6_B018C6D7.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\chainmail\chainmail6		4118
 	989300188	knight_overreact_ok-04	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_ok-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_ok\knight_overreact_ok-04		27835
 	989541088	fishman_walking-06	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_walking-06_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_walking_voice\fishman_walking-06		2064
 	989795540	fishman_walking-07	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_walking-07_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_walking_voice\fishman_walking-07		2544
@@ -538,6 +597,9 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	1005115545	stone_boots_9	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stone_boots_9_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_footsteps\stone\stone_boots_9		3178
 	1006120754	sword impact4	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\sword impact4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\sword flesh cut\sword impact4		3252
 	1007561012	stone_boots_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stone_boots_1_29391D46.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\knight_footsteps\footsteps\stone\stone_boots_1		3669
+	1011705619	attack6	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\attack6_32506C22.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\attack6		10179
+	1012239889	attack	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\attack_CDDC5F42.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_throw\ranged_throw_object\attack		9285
+	1012352694	stones_4_1	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stones_4.1_7A045789.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone rolling\stones_4_1		14213
 	1017329702	pickup_stone_anim	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pickup stone anim_93744830.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\pickup_stone_anim		31375
 	1023187476	knight_overreact_great-05	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_great-05_7DBCB2FE.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_great\knight_overreact_great-05		26166
 	1026582749	troll_death-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_death-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_death\ranged_death_voice\troll_death-03		19138
@@ -552,6 +614,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	1043680727	pift 3	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pift 3_F0E913D5.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_taunt_pift\pift 3		26973
 	1045094303	knight_overreact_great-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\knight_overreact_great-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_great\knight_overreact_great-02		33321
 	1045603216	sword impact2	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\combat\sword impact2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\sword flesh cut\sword impact2		4059
+	1049580478	stones_11_02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\stones\stones_11.02_DBFD92D8.wem		\Actor-Mixer Hierarchy\Default Work Unit\combat sounds\combat sounds\impacts\stone rolling\stones_11_02		13071
 	1051313377	troll_getting_hit-02	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\troll_getting_hit-02_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-02		4331
 	1053933591	fishman_walking-03	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\fishman_walking-03_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_footsteps\melee_walking_voice\fishman_walking-03		1955
 	1054030477	pallet_boots_10	Y:\ChivalryIsDead\ChivalryIsDead\wwise project chivalry\.cache\Mac\SFX\pallet_boots_10_02F15F8F.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_footsteps\wood\pallet\pallet_boots_10		2900
