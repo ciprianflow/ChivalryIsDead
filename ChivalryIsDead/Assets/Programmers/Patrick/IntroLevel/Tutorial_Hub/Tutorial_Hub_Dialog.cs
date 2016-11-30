@@ -51,7 +51,9 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     }
 
     public IEnumerator DialogOne()
-    {   
+    {
+        if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
+            skipBtn.SetActive(true);
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
 
