@@ -48,7 +48,7 @@ class PlayerBehaviour : ScorePublisher
             if (dummyManager.GetComboValue() > 7)
                 WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
             else if ((ScoreChange * -1) > 200)
-                WwiseInterface.Instance.PlayRewardSound(RewardHandle.Big);
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost); // Previously "RewardHandle.Big"
             else
                 WwiseInterface.Instance.PlayRewardSound(RewardHandle.Small);
 

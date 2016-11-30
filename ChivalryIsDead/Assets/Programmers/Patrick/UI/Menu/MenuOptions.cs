@@ -10,13 +10,17 @@ public class MenuOptions : MonoBehaviour {
     public GameObject areYouSure;
 
     public GameObject muteSound;
-    public GameObject soundVolume;
+    public Slider masterVolume;
+    public Slider soundVolume;
+    public Slider musicVolume;
 
     // Use this for initialization
     void Start () {
 
-        // Check Volume Slider
-        soundVolume.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundVolume");
+        // Check Volume Sliders
+        masterVolume.value = PlayerPrefs.GetFloat("MasterVolume");
+        soundVolume.value = PlayerPrefs.GetFloat("SoundVolume");
+        musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
 
         // Check Mute
 
@@ -35,8 +39,9 @@ public class MenuOptions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
-       
+        WwiseInterface.Instance.SetVolume(masterVolume.value * 100, VolumeHandle.Master);
+        WwiseInterface.Instance.SetVolume(soundVolume.value * 100, VolumeHandle.SFX);
+        WwiseInterface.Instance.SetVolume(musicVolume.value * 100, VolumeHandle.Music);
 
     }
 
@@ -52,7 +57,17 @@ public class MenuOptions : MonoBehaviour {
 
     public void SoundVolume()
     {
-        PlayerPrefs.SetFloat("SoundVolume", soundVolume.GetComponent<Slider>().value);
+        PlayerPrefs.SetFloat("SoundVolume", soundVolume.value);
+    }
+
+    public void MusicVolume()
+    {
+        PlayerPrefs.SetFloat("MusicVolume", musicVolume.value);
+    }
+
+    public void MasterVolume()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", masterVolume.value);
     }
 
     public void SoundMute()
