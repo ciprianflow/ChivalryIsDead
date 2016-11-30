@@ -81,8 +81,6 @@ class PlayerBehaviour : ScorePublisher
 
     public void Invoke()
     {
-        dummyManager.ActionPerformed();
-
         OnChangeScoreEvent(new ScoreEventArgs(ScoreChange));
     }
 

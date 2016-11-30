@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DummyManager : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class DummyManager : MonoBehaviour
     public int[] ComboActionModifier;
 
     [Header("Anti AFK")]
-    public int StartAFKSeconds = 1;
-    public int AFKPointsDec = 10;
+    public int StartAFKSeconds = 20;
+    public int AFKPointsDec = 20;
 
     public Text ComboHandler;
 
@@ -31,6 +32,8 @@ public class DummyManager : MonoBehaviour
     public GameObject ComboBaseParticle;
     public GameObject ComboUpwardParticle;
 
+    [HideInInspector]
+    private float repGain = 0;
     private float comboTimeStamp = 0;
 
     private int combo = 0;
@@ -71,7 +74,13 @@ public class DummyManager : MonoBehaviour
         ComboHandler.text = combo.ToString();
 
         antiAfkTimestamp += Time.deltaTime;
-        handleAFK(antiAfkTimestamp);
+        if (antiAfkTimestamp > StartAFKSeconds)
+        {
+            handleAFK(antiAfkTimestamp);
+        }
+
+        Debug.Log(Input.touchCount);
+
 
     }
 
@@ -176,37 +185,56 @@ public class DummyManager : MonoBehaviour
 
     public void ActionPerformed()
     {
-        antiAFKTime = 0;
-        antiAfkTimestamp = 0;
-        antiAfkPoints = AFKPointsDec;
+        //antiAFKTime = 0;
+        //antiAfkTimestamp = 0;
+        //antiAfkPoints = AFKPointsDec;
     }
 
 
     internal float GetGlobalScore()
     {
+        //calculate bonus
+        repGain = getLocalScore(ReputationHandler.Score);
+        
+        float repGainDivision = 50;
+        return repGain / repGainDivision;
 
-        float repGain = ReputationHandler.Score;
+    }
 
-        /* bonus 
+    private float getLocalScore(float score)
+    {
+
+        float time = 0;
+        if (TimerObjectScript.Instance != null)
+            time = TimerObjectScript.Instance.GetTimer();
+        // bonus
         //get time from  quest timer
-        float time = 0.5f;
-        float bonus = repGain * Mathf.Exp(time * 3) * 0.15f;
+        float bonus = score * Mathf.Exp(time * 3) * 0.15f;
 
-        if (time == 0 || repgain > 0)
+        if (time == 0 || score > 0)
         {
             bonus = 0;
         }
 
-        float repGain = repGain + bonus;
-        */
+        //Debug.Log("REP: " + score + " BONUS: " + bonus + " time: " + time + " TOTAL REP GAINED: " + score + bonus);
+        return (score + bonus);
+    }
 
-        float repGainDivision = 50;
-        return repGain  / repGainDivision;
-
+    public int GetLocalScore()
+    {
+        return (int) repGain;
     }
 
     public int GetComboValue()
     {
         return combo;
+    }
+
+    public void onTouchAction()
+    {
+
+        antiAFKTime = 0;
+        antiAfkTimestamp = 0;
+        antiAfkPoints = AFKPointsDec;
     }
 }

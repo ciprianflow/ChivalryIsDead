@@ -6,6 +6,10 @@ using System.Collections.Generic;
 public class DialogObject : MonoBehaviour {
 
     public GameObject UI;
+    GameObject Player;
+    GameObject[] Enemies;
+    List<GameObject> eBubbles = new List<GameObject>();
+    //GameObject[] eBubbles = new GameObject[1000];
     GameMenu gameMenu;
 
     public DialogInfo[] dialogEnglish;
@@ -15,6 +19,7 @@ public class DialogObject : MonoBehaviour {
 
     public GameObject playerText;
     public GameObject playerBubble;
+    public GameObject playerTauntBubble;
 
     public GameObject swordText;
     public GameObject swordBubble;
@@ -27,6 +32,7 @@ public class DialogObject : MonoBehaviour {
 
     GameObject[] enemyText;
     GameObject[] enemyBubble;
+    public GameObject enemyTauntBubble;
 
     public GameObject peasantABubble;
     public GameObject peasantAText;
@@ -47,12 +53,17 @@ public class DialogObject : MonoBehaviour {
     bool isSpeaking;
     bool callBlink;
 
+    bool hasTaunted;
     // Use this for initialization
     void Start () {
         indexCount = 0;
         isSkipped = false;
         isSpeaking = false;
+        hasTaunted = false;
         gameMenu = UI.GetComponent<GameMenu>();
+
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         //peasantA = GameObject.FindGameObjectWithTag("PeasantA");
         //peasantB = GameObject.FindGameObjectWithTag("PeasantB");
@@ -134,16 +145,52 @@ public class DialogObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-      
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            StopDialog();
-        }
+     if(!hasTaunted && Player.GetComponent<PlayerScript>().taunting)
+     {
+            hasTaunted = true;
+            playerTauntBubble.SetActive(true);
 
+            
+            Collider[] hitColliders = Player.GetComponent<TauntAction>().GetTauntedColliders();
+            int i = 0;
+            int index = 0;
+            foreach(Collider hit in hitColliders)
+            {
+                if (hit.CompareTag("Enemy"))
+                    Debug.Log("hits" + hit);
+            }
+            while (i < hitColliders.Length)
+            {
+
+                if (hitColliders[i].CompareTag("Enemy"))
+                {
+                    GameObject temp = (GameObject)Instantiate(enemyTauntBubble);
+                    eBubbles.Add(temp);
+                    eBubbles[index].transform.SetParent(GameObject.FindGameObjectWithTag("GameUI").transform);
+                    eBubbles[index].GetComponent<CameraBillboard>().speaker = hitColliders[i].gameObject;
+                    eBubbles[index].GetComponent<CameraBillboard>().m_Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+                    eBubbles[index].transform.GetChild(1).gameObject.SetActive(true);
+                    index++;
+
+                }
+                i++;
+            }
+            
+            StartCoroutine("waitsomesecs");
+            
+        }
+        hasTaunted = false;
     }
 
+    IEnumerator waitsomesecs()
+    {
+        yield return new WaitForSeconds(2f);
+        playerTauntBubble.SetActive(false);
+        foreach (GameObject eBubble in eBubbles)
+            eBubble.SetActive(false);
+        
+    }
 
-   
 
     public IEnumerator DialogSystem(int v)
     {

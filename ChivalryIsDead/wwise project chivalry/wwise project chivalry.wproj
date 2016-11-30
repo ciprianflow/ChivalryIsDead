@@ -5,16 +5,12 @@
 			<Platforms>
 				<Platform Name="Android" ReferencePlatform="Android" ID="{D4DACE3A-720E-4ED3-BE9F-746C20080274}"/>
 				<Platform Name="iOS" ReferencePlatform="iOS" ID="{8CD0252A-74A3-4A0A-BFAC-B6B8014233BB}"/>
-				<Platform Name="Linux" ReferencePlatform="Linux" ID="{4EF5B767-5FD2-49FD-A46B-E467044B9482}"/>
-				<Platform Name="Mac" ReferencePlatform="Mac" ID="{B841F05C-A0B2-40DF-B6B4-70BDEB743AEF}"/>
 				<Platform Name="Windows" ReferencePlatform="Windows" ID="{BC62D8DA-C4C3-4DA3-BA9E-6C258A4559C0}"/>
 			</Platforms>
 			<PropertyList>
 				<Property Name="DefaultLanguage" Type="int32" Value="12"/>
 				<Property Name="ExternalSourcesInputPath" Type="string">
 					<ValueList>
-						<Value Platform="Mac"></Value>
-						<Value Platform="Linux"></Value>
 						<Value Platform="iOS"></Value>
 						<Value Platform="Windows"></Value>
 						<Value Platform="Android"></Value>
@@ -22,8 +18,6 @@
 				</Property>
 				<Property Name="ExternalSourcesOutputPath" Type="string">
 					<ValueList>
-						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
-						<Value Platform="Linux">GeneratedSoundBanks\Linux\</Value>
 						<Value Platform="iOS">GeneratedSoundBanks\iOS\</Value>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
 						<Value Platform="Android">GeneratedSoundBanks\Android\</Value>
@@ -33,8 +27,6 @@
 				<Property Name="SoundBankHeaderFilePath" Type="string" Value="GeneratedSoundBanks\"/>
 				<Property Name="SoundBankPaths" Type="string">
 					<ValueList>
-						<Value Platform="Mac">GeneratedSoundBanks\Mac\</Value>
-						<Value Platform="Linux">GeneratedSoundBanks\Linux\</Value>
 						<Value Platform="iOS">GeneratedSoundBanks\iOS\</Value>
 						<Value Platform="Windows">GeneratedSoundBanks\Windows\</Value>
 						<Value Platform="Android">GeneratedSoundBanks\Android\</Value>
@@ -42,8 +34,6 @@
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdDescription" Type="string">
 					<ValueList>
-						<Value Platform="Mac">Copy Streamed Files</Value>
-						<Value Platform="Linux">Copy Streamed Files</Value>
 						<Value Platform="iOS">Copy Streamed Files</Value>
 						<Value Platform="Windows">Copy Streamed Files</Value>
 						<Value Platform="Android">Copy Streamed Files</Value>
@@ -51,8 +41,6 @@
 				</Property>
 				<Property Name="SoundBankPostGenerateCustomCmdLines" Type="string">
 					<ValueList>
-						<Value Platform="Mac">"$(WwiseExePath)\CopyStreamedFiles.exe" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
-						<Value Platform="Linux">"$(WwiseExePath)\CopyStreamedFiles.exe" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
 						<Value Platform="iOS">"$(WwiseExePath)\CopyStreamedFiles.exe" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
 						<Value Platform="Windows">"$(WwiseExePath)\CopyStreamedFiles.exe" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
 						<Value Platform="Android">"$(WwiseExePath)\CopyStreamedFiles.exe" -info "$(InfoFilePath)" -outputpath "$(SoundBankPath)" -banks "$(SoundBankListAsTextFile)" -languages "$(LanguageList)"</Value>
@@ -60,8 +48,6 @@
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdDescription" Type="string">
 					<ValueList>
-						<Value Platform="Mac"></Value>
-						<Value Platform="Linux"></Value>
 						<Value Platform="iOS"></Value>
 						<Value Platform="Windows"></Value>
 						<Value Platform="Android"></Value>
@@ -69,8 +55,6 @@
 				</Property>
 				<Property Name="SoundBankPreGenerateCustomCmdLines" Type="string">
 					<ValueList>
-						<Value Platform="Mac"></Value>
-						<Value Platform="Linux"></Value>
 						<Value Platform="iOS"></Value>
 						<Value Platform="Windows"></Value>
 						<Value Platform="Android"></Value>
