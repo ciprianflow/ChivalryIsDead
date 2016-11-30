@@ -43,13 +43,13 @@ public class QuestGenerator
                     idx = i;
                 }
             }
-            var thresholdValue = QuestParameters.EnemyThresholds[idx].AvailableEnemies;
+            var thresholdValue = (uint)QuestParameters.EnemyThresholds[idx].AvailableEnemies;
 
             foreach (ReputationOverride rO in QuestParameters.ReputationOverrides) {
-                if (currentReputation <= rO.RepMarker && ((thresholdValue & rO.enemyType) != rO.enemyType))
-                    thresholdValue += (int)rO.enemyType;
+                if (currentReputation <= rO.RepMarker && ((thresholdValue & (uint)rO.enemyType) != (uint)rO.enemyType))
+                    thresholdValue += (uint)rO.enemyType;
             }
-            return thresholdValue;
+            return (EnemyTypes)thresholdValue;
         }
     }
 
@@ -77,6 +77,7 @@ public class QuestGenerator
         }
 
         // Adds sheep objectives.
+        // THis probably shouldn't be here.
         for (int i = 0; i < numFriendlies; i++) {
             protQuest.Objectives.Add(new ProtectTargetObjective(21));
         }
@@ -94,7 +95,7 @@ public class QuestGenerator
         var meleeAvailable = (AvailableEnemies & EnemyTypes.HasMelee) == EnemyTypes.HasMelee;
 
         for (int i = 0; i < numNonSuicide; i++) {
-            if (i % 2 == 0)/* && meleeAvailable)*/
+            if (i % 2 == 0 && meleeAvailable)
                 destQuest.Objectives.Add(new DestroyTargetObjective(11));
             else
                 destQuest.Objectives.Add(new DestroyTargetObjective(12));
