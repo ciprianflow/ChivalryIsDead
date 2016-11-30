@@ -340,6 +340,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
         skipBtn.SetActive(false);
         handAnimator.SetBool("playTaunt", true);
+        PlayerPrefs.SetInt("Taunt", 1);
         ControlHit.SetActive(true);
 
         learnedToTaunt = false;
