@@ -94,7 +94,7 @@ public class QuestGenerator
         var meleeAvailable = (AvailableEnemies & EnemyTypes.HasMelee) == EnemyTypes.HasMelee;
 
         for (int i = 0; i < numNonSuicide; i++) {
-            if (i % 2 == 0 && meleeAvailable)
+            if (i % 2 == 0)/* && meleeAvailable)*/
                 destQuest.Objectives.Add(new DestroyTargetObjective(11));
             else
                 destQuest.Objectives.Add(new DestroyTargetObjective(12));
