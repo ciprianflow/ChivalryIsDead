@@ -156,7 +156,6 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="quest_initiated" ID="{3D97BABB-2DA8-46AA-8257-ADC8EA6B258C}"/>
 						<Event Name="quest_finished_negative_rep" ID="{C480ACB2-C2CF-418F-B112-F14BB89173D7}"/>
 						<Event Name="quest_finished_positive_rep" ID="{33E7D9DA-2152-4573-9B8E-6E34A1E36E8C}">
 							<ChildrenList>
@@ -179,7 +178,6 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="world_transition" ID="{0515F34C-261A-49B3-84A3-52A72325403E}"/>
 						<Event Name="normal_button_backwards_pressed" ID="{A67CC0AE-99D7-446E-AB50-FAD207ADCE07}">
 							<ChildrenList>
 								<Action Name="Set Voice Pitch" ID="{51076F86-7702-4F9D-93BE-4B5FB2B1FC5C}" ShortID="714158279" Type="ChangePitch" Scope="One" Global="false">
@@ -1002,7 +1000,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="sheep_taunted" ID="{157F2AA2-7447-456D-8787-632B57432150}">
+						<Event Name="Sheep_death" ID="{157F2AA2-7447-456D-8787-632B57432150}">
 							<ChildrenList>
 								<Action Name="Stop" ID="{D29F4AE4-55E2-4507-802E-4F1FE30EFB59}" ShortID="357797890" Type="Stop" Scope="One" Global="false">
 									<ElementList>
@@ -1063,7 +1061,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="reward_combo_boost" ID="{3808E535-C6C7-4E89-8DE0-5C48985E62E9}">
+						<Event Name="reward_combo_boost_1" ID="{3808E535-C6C7-4E89-8DE0-5C48985E62E9}">
 							<ChildrenList>
 								<Action Name="Play" ID="{7A60B7C8-26CA-4730-A38F-7E1D9C684317}" ShortID="613308233" Type="Play" Scope="One" Global="false">
 									<PropertyList>
@@ -1134,9 +1132,16 @@
 										</Element>
 									</ElementList>
 								</Action>
+								<Action Name="Post Event" ID="{E8AA1E03-50AF-4554-9D83-24A7585477F1}" ShortID="505339433" Type="PlayEvent" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{CFC642CE-CDEA-4BB7-9067-C8BCBB53CEB4}" Global="false">
+											<ObjectRef Name="reward_combo_end" ID="{D658531B-C58E-40E3-8197-78C48FF8FC4D}" WorkUnitID="{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}"/>
+										</Element>
+									</ElementList>
+								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="reward_combo_boost2" ID="{5C869946-78CA-4190-8587-1D60678A505D}">
+						<Event Name="reward_combo_boost_2" ID="{5C869946-78CA-4190-8587-1D60678A505D}">
 							<ChildrenList>
 								<Action Name="Play" ID="{30D0A543-A791-418E-AA59-E48219CBC67F}" ShortID="267732903" Type="Play" Scope="One" Global="false">
 									<PropertyList>
@@ -1165,7 +1170,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="reward_combo_boost3" ID="{92ABDC3B-FB21-4298-BEE6-E36B188ED566}">
+						<Event Name="reward_combo_boost_3" ID="{92ABDC3B-FB21-4298-BEE6-E36B188ED566}">
 							<ChildrenList>
 								<Action Name="Play" ID="{878CABBC-1316-4600-99B1-E11F313D786D}" ShortID="1066487691" Type="Play" Scope="One" Global="false">
 									<PropertyList>
@@ -1223,11 +1228,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="musicquest" ID="{D3375474-5902-488C-9CE4-A7994EC802CF}">
-							<ChildrenList>
-								<Action Name="Play" ID="{2A1EACF3-2D2B-4B63-B026-FD54DE265E51}" ShortID="658158759" Type="Play" Scope="One" Global="false"/>
-							</ChildrenList>
-						</Event>
+						<Event Name="musicquest" ID="{D3375474-5902-488C-9CE4-A7994EC802CF}"/>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="combat" ID="{CBBB6024-232D-4328-BA9D-55635AC73CF5}" ShortID="943533429">
