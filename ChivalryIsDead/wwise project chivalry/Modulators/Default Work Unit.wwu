@@ -14,6 +14,28 @@
 						<Property Name="EnvelopeAttackTime" Type="Real64" Value="2"/>
 					</PropertyList>
 				</ModulatorEnvelope>
+				<ModulatorLfo Name="armordlylfo1" ID="{9F3B56F8-0A60-47E9-9535-A5E9F0B86A4E}" ShortID="555761945">
+					<PropertyList>
+						<Property Name="LfoFrequency" Type="Real64" Value="0.1"/>
+					</PropertyList>
+				</ModulatorLfo>
+				<ModulatorLfo Name="armorlfo2" ID="{39643528-2AD3-403B-B549-D20118C2FAEA}" ShortID="73080185">
+					<PropertyList>
+						<Property Name="LfoFrequency" Type="Real64" Value="0.13"/>
+						<Property Name="LfoInitialPhase" Type="Real64" Value="83"/>
+					</PropertyList>
+				</ModulatorLfo>
+				<ModulatorLfo Name="LFOchain1" ID="{B7C0990E-CDA6-4280-9E74-2E0B2D25CFEC}" ShortID="59809128">
+					<PropertyList>
+						<Property Name="LfoFrequency" Type="Real64" Value="0.001"/>
+					</PropertyList>
+				</ModulatorLfo>
+				<ModulatorEnvelope Name="chainmaillfo" ID="{38FD7506-D22A-41A3-9F05-91BD83962157}" ShortID="607279600">
+					<PropertyList>
+						<Property Name="EnvelopeAttackCurve" Type="Real64" Value="20"/>
+						<Property Name="EnvelopeAttackTime" Type="Real64" Value="0.5"/>
+					</PropertyList>
+				</ModulatorEnvelope>
 			</ChildrenList>
 		</WorkUnit>
 	</Modulators>
