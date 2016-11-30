@@ -358,7 +358,7 @@ namespace CnControls
     //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
     else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
     {
-        if (PlayerPrefs.GetInt("Attack") == 1) // angeliki added this
+        if (PlayerPrefs.GetInt("Overreact") == 1) // angeliki added this
         {
             overreact = true;
 
