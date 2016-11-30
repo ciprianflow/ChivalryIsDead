@@ -65,8 +65,8 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
         procceed = false;
         BlackScreenAnimator.SetTrigger("fadeOut");
-        duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(duration);
+        //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(5f);
         StartCoroutine("DialogTwo");
 
     }
@@ -122,6 +122,17 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     {
         handAnimator.SetBool("handHub", false);
         SceneManager.LoadScene(4);
+    }
+
+    public void removeBubble()
+    {
+        GameObject swBub = GameObject.FindGameObjectWithTag("SwordBubble");
+        if(swBub != null)
+        {
+            swBub.SetActive(false);
+            GameObject.FindGameObjectWithTag("Sword").SetActive(false);
+        }
+
     }
 
 

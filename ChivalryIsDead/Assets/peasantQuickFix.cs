@@ -17,4 +17,5 @@ public class peasantQuickFix : MonoBehaviour {
     {
         questLetter.SetActive(true);
     }
+
 }
