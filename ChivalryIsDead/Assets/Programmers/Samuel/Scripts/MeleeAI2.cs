@@ -64,6 +64,16 @@ public class MeleeAI2 : MonsterAI
         Colliders = Physics.OverlapSphere(transform.position, attackLength);
         for (int i = 0; i < Colliders.Length; i++)
         {
+            MonsterAI m = Colliders[i].GetComponent<MonsterAI>();
+
+            if(m != null && m != this)
+            {
+                m.Hit(1);
+                Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                if (body)
+                    body.AddExplosionForce(attackForce, transform.position, attackLength);
+            }
+
             if (Colliders[i].tag == "Player")
             {
                 //Debug.Log("This on is a player");
@@ -301,7 +311,7 @@ public class MeleeAI2 : MonsterAI
             float walkRadius = UnityEngine.Random.Range(4, 8);
             Vector3 randomDirection = UnityEngine.Random.insideUnitCircle.normalized.normalized * walkRadius;
             randomDirection = new Vector3(randomDirection.x, 0, randomDirection.y);
-            randomDirection += transform.position;
+            randomDirection += targetObject.position;
             NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
             if (hit.hit)
                 break;
@@ -383,7 +393,7 @@ public class MeleeAI2 : MonsterAI
                 ChargeToMove();
             }
         }
-        else if (state == State.Charge) {
+        else {
             anim.SetTrigger("HitObject");
             Debug.Log("Hit wall");
             agent.velocity = Vector3.zero;
@@ -430,9 +440,6 @@ public class MeleeAI2 : MonsterAI
 
         if (Mathf.Abs(q.eulerAngles.y - transform.eulerAngles.y) < 10)
             return;
-
-        Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
-
 
         if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
             Debug.Log("RIGHT");

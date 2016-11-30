@@ -198,6 +198,7 @@ namespace CnControls
 
         public virtual void OnDrag(PointerEventData eventData)
         {
+
             if (!held)
             {
                 return;
@@ -294,6 +295,9 @@ namespace CnControls
             {
                 Hide(true);
             }
+
+            //afk manager-
+            DummyManager.dummyManager.onTouchAction();
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -355,7 +359,11 @@ namespace CnControls
                 {
                     Hide(false);
                 }
+
             }
+
+            //afk manager-
+            DummyManager.dummyManager.onTouchAction();
 
         }
 
