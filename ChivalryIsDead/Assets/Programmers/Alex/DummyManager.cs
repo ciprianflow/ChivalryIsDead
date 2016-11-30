@@ -32,6 +32,8 @@ public class DummyManager : MonoBehaviour
     public GameObject ComboBaseParticle;
     public GameObject ComboUpwardParticle;
 
+    [HideInInspector]
+    private float repGain = 0;
     private float comboTimeStamp = 0;
 
     private int combo = 0;
@@ -191,12 +193,22 @@ public class DummyManager : MonoBehaviour
 
     internal float GetGlobalScore()
     {
+        //calculate bonus
+        repGain = getLocalScore(ReputationHandler.Score);
+        
+        float repGainDivision = 50;
+        return repGain / repGainDivision;
 
-        float score = ReputationHandler.Score;
+    }
 
-        /* bonus
+    private float getLocalScore(float score)
+    {
+
+        float time = 0;
+        if (TimerObjectScript.Instance != null)
+            time = TimerObjectScript.Instance.GetTimer();
+        // bonus
         //get time from  quest timer
-        float time = 0.5f;
         float bonus = score * Mathf.Exp(time * 3) * 0.15f;
 
         if (time == 0 || score > 0)
@@ -204,12 +216,13 @@ public class DummyManager : MonoBehaviour
             bonus = 0;
         }
 
-        float repGain = score + bonus;
-        */
-        
-        float repGainDivision = 50;
-        return score / repGainDivision;
+        //Debug.Log("REP: " + score + " BONUS: " + bonus + " time: " + time + " TOTAL REP GAINED: " + score + bonus);
+        return (score + bonus);
+    }
 
+    public int GetLocalScore()
+    {
+        return (int) repGain;
     }
 
     public int GetComboValue()
