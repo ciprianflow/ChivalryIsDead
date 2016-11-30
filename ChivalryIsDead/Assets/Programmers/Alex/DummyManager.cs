@@ -79,9 +79,6 @@ public class DummyManager : MonoBehaviour
             handleAFK(antiAfkTimestamp);
         }
 
-        Debug.Log(Input.touchCount);
-
-
     }
 
     private void handleAFK(float timestamp)
@@ -206,7 +203,7 @@ public class DummyManager : MonoBehaviour
 
         float time = 0;
         if (TimerObjectScript.Instance != null)
-            time = TimerObjectScript.Instance.GetTimer();
+            time = TimerObjectScript.Instance.GetElapsedTime();
         // bonus
         //get time from  quest timer
         float bonus = score * Mathf.Exp(time * 3) * 0.15f;
