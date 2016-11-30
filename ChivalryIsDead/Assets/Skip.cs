@@ -19,8 +19,9 @@ public class Skip : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
 	void Update () {
         if (holding) {
             t -= Time.deltaTime;
-            texttext.text = "Hold for " + (int)(t + 0.99f) + " sec";
-            if(t <= 0) {
+            //texttext.text = "Hold for " + (int)(t + 0.99f) + " sec";
+            texttext.text = "Hold for " + Mathf.Ceil(t) + " sec";
+            if (t <= 0) {
                 SceneManager.LoadScene(3);
             }
         }

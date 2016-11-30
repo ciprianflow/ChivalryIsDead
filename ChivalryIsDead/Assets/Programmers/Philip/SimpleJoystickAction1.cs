@@ -80,45 +80,27 @@ namespace CnControls
         [Tooltip("Image of the joystick base")]
         public Image ActionTop;
         public Sprite attackRdy;
-        public Sprite Action1;
-        public Sprite Action2;
-        public Sprite Action3;
-        public Sprite Action4;
-        public Sprite Action5;
+        public Sprite attackCd;
+
         Sprite[] attackList;
 
         public Sprite RW;
 
-        /// <summary>
-        /// Image of the joystick base
-        /// </summary>
-        [Tooltip("Image of the joystick base")]
-        public Image ActionBottom;
 
         /// <summary>
         /// Image of the joystick base
         /// </summary>
         [Tooltip("Image of the joystick base")]
         public Image ActionLeft;
-
+        public Sprite tauntRdy;
+        public Sprite tauntCd;
         /// <summary>
         /// Image of the joystick base
         /// </summary>
         [Tooltip("Image of the joystick base")]
         public Image ActionRight;
-
-        /// <summary>
-        /// Image of the joystick base
-        /// </summary>
-        [Tooltip("Image of the joystick base")]
-        public Image ActionCenter;
-
-        /// <summary>
-        /// Image of the joystick base
-        /// </summary>
-        [Tooltip("Image of the joystick base")]
-        public Image ActionCenterPushed;
-
+        public Sprite overreactRdy;
+        public Sprite overreactCd;
         /// <summary>
         /// Image of the stick itself
         /// </summary>
@@ -230,7 +212,6 @@ namespace CnControls
 
             playerActionController = player.GetComponent<PlayerActionController>();
 
-            attackList = new Sprite[5] { Action1, Action2, Action3, Action4, Action5};
         }
 
 
@@ -353,7 +334,7 @@ namespace CnControls
     {
         //attack = true; // angeliki commented out this
         //ActionCenter.color = new Color(1, 1, 1, 1);
-        ActionCenterPushed.enabled = true;
+        //ActionCenterPushed.enabled = true;
     }
     //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
     else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
@@ -390,7 +371,7 @@ namespace CnControls
             attack = true; // angeliki added this
             if (attackCooldownFill == 1)
             {
-                ActionBottom.color = new Color(1, 1, 1, 1);
+                ActionTop.color = new Color(1, 1, 1, 1);
             }
         }
     }
@@ -409,29 +390,66 @@ namespace CnControls
             tauntCooldownfill = playerActionController.GetTauntActionCooldown();
             overreactCooldownFill = playerActionController.GetOverreactActionCooldown();
             //Debug.Log((int)(attackCooldownFill / 0.2f));
-            if (attackCooldownFill < 1)
-            {
-                ActionBottom.sprite = attackList[(int)(attackCooldownFill / 0.2f)];
-                
+            //if (attackCooldownFill < 1)
+            //{
+            //    //ActionTop.sprite = attackList[(int)(attackCooldownFill / 0.2f)];
+            //    ActionTop.sprite = attackList[0];
 
-                //ActionBottom.sprite = Action1;
 
-                //ActionBottom.fillAmount = attackCooldownFill;
+            //    //ActionTop.sprite = Action1;
+
+            //    //ActionTop.fillAmount = attackCooldownFill;
+            //}
+            //else {
+            //    ActionTop.sprite = attackRdy;
+            //    updateActionUI();
+            //}
+
+            if (attackCooldownFill < 1) {
+                ActionTop.sprite = attackCd;
+                ActionTop.fillAmount = attackCooldownFill;
             }
             else {
-                ActionBottom.sprite = attackRdy;
-                updateActionUI();
+                if (attack) {
+                    ActionTop.color = new Color(1, 1, 1, 1);
+                }
+                ActionTop.sprite = attackRdy;
             }
-            if (tauntCooldownfill < 1)
-            {
+
+            if (tauntCooldownfill < 1) {
+                ActionLeft.sprite = tauntCd;
                 ActionLeft.fillAmount = tauntCooldownfill;
+
+            }
+            else {
+                if (taunt) {
+                    ActionLeft.color = new Color(1, 1, 1, 1);
+                }
+                ActionLeft.sprite = tauntRdy;
             }
 
-
-            if (overreactCooldownFill < 1)
-            {
+            if (overreactCooldownFill < 1) {
+                ActionRight.sprite = overreactCd;
                 ActionRight.fillAmount = overreactCooldownFill;
+
             }
+            else {
+                if (overreact) {
+                    ActionRight.color = new Color(1, 1, 1, 1);
+                }
+                ActionRight.sprite = overreactRdy;
+            }
+
+            //if (tauntCooldownfill < 1)
+            //{
+            //    ActionLeft.fillAmount = tauntCooldownfill;
+            //}
+
+
+            //if (overreactCooldownFill < 1)
+            //{
+            //    ActionRight.fillAmount = overreactCooldownFill;
+            //}
 
         }
 
@@ -443,10 +461,9 @@ namespace CnControls
             cancel = false;
             //question = false;
             //ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            ActionBottom.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
             ActionLeft.color = new Color(0.5f, 0.5f, 0.5f, 1);
             ActionRight.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            ActionCenterPushed.enabled = false;
 
         }
 
@@ -530,7 +547,7 @@ namespace CnControls
 
             SX = SY = 0;
             ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
-            ActionBottom.color = new Color(0.5f, 0.5f, 0.5f, 1);
+            ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
             //Debug.Log("JFIDOAWJDIOWA");
             // When we press, we first want to snap the joystick to the user's finger
             if (SnapsToFinger)
