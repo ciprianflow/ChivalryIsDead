@@ -134,7 +134,7 @@ public class DialogObject : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+      
         if (Input.GetKeyDown(KeyCode.Return))
         {
             StopDialog();
@@ -317,7 +317,7 @@ public class DialogObject : MonoBehaviour {
 
             if (d.Name[i] == "Princess")
             {
-                gameMenu.Princess();
+                UI.GetComponent<GameMenu>().Princess();
                 indexCount = i;
                 princessBubble.SetActive(true);
                 //skipBtn.SetActive(true);
