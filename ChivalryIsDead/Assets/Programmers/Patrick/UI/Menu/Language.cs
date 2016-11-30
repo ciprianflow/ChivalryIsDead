@@ -18,6 +18,7 @@ public class Language : MonoBehaviour {
 
     public void English()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         PlayerPrefs.SetString("Language", "English");
 
         menu.SetActive(true);
@@ -27,6 +28,7 @@ public class Language : MonoBehaviour {
 
     public void Dansk()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         PlayerPrefs.SetString("Language", "Dansk");
 
         menu.SetActive(true);

@@ -187,6 +187,12 @@ namespace CnControls
 
         private void Awake()
         {
+            if(SceneManager.GetActiveScene().name != "IntroLevel" && SceneManager.GetActiveScene().name != "Tutorial_02" && SceneManager.GetActiveScene().name != "Tutorial_03")
+            {
+                PlayerPrefs.SetInt("Attack", 1);
+                PlayerPrefs.SetInt("Taunt", 1);
+                PlayerPrefs.SetInt("Overreact", 1);
+            }
             
 
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
@@ -352,20 +358,20 @@ namespace CnControls
     //else if ((angle >= 0 && angle < 54) || (angle >= 270 && angle < 360)) { // angeliki commented out this
     else if ((angle >= 0 && angle < 34) || (angle >= 265 && angle < 360)) // angeliki added this
     {
-        if (SceneManager.GetActiveScene().name != "IntroLevel" && SceneManager.GetActiveScene().name != "Tutorial_02") // angeliki added this
+        if (PlayerPrefs.GetInt("Overreact") == 1) // angeliki added this
         {
             overreact = true;
 
             if (overreactCooldownFill == 1)
             {
                 ActionRight.color = new Color(1, 1, 1, 1);
-            }
+            }     
         }
     }
     //else if ((angle >= 126 && angle < 270)) { // angeliki commented out this
     else if ((angle >= 147 && angle < 265)) // angeliki added this
     {
-        if (SceneManager.GetActiveScene().name != "IntroLevel") // angeliki added this
+        if (PlayerPrefs.GetInt("Taunt") == 1) // angeliki added this
         {
             taunt = true;
             if (tauntCooldownfill == 1)
@@ -379,16 +385,20 @@ namespace CnControls
     else if ((angle >= 34 && angle < 147)) // angeliki added this
     {
         //cancel = true;// angeliki commented out this
-        if (SceneManager.GetActiveScene().name != "Tutorial_02" && SceneManager.GetActiveScene().name != "Tutorial_03") // angeliki added this
+        if (SceneManager.GetActiveScene().name != "Tutorial_02" || SceneManager.GetActiveScene().name != "Tutorial_03") // angeliki added this
         {
-            attack = true; // angeliki added this
-            if (attackCooldownFill == 1)
+            if(PlayerPrefs.GetInt("Attack") == 1)
             {
-                ActionBottom.color = new Color(1, 1, 1, 1);
+                attack = true; // angeliki added this
+                if (attackCooldownFill == 1)
+                {
+                    ActionBottom.color = new Color(1, 1, 1, 1);
+                }
             }
+           
         }
     }
-        }
+}
 
 
         private float attackCooldownFill = 1;
@@ -485,6 +495,9 @@ namespace CnControls
             {
                 Hide(true);
             }
+
+            //afk manager-
+            DummyManager.dummyManager.onTouchAction();
         }
 
         private void action_attack()
@@ -570,6 +583,9 @@ namespace CnControls
             {
                 Hide(false);
             }
+
+            //afk manager-
+            DummyManager.dummyManager.onTouchAction();
         }
 
         /// <summary>

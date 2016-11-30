@@ -53,11 +53,13 @@ public class MenuOptions : MonoBehaviour {
 
     public void Dansk()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         PlayerPrefs.SetString("Language", "Dansk");
     }
 
     public void English()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         PlayerPrefs.SetString("Language", "English");
     }
 
@@ -80,12 +82,14 @@ public class MenuOptions : MonoBehaviour {
     {
         if (PlayerPrefs.GetInt("Sound") == 1)
         {
+            WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
             PlayerPrefs.SetInt("Sound", 0);
             WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
             muteSound.GetComponent<Image>().color = Color.red;
         }
         else if (PlayerPrefs.GetInt("Sound") == 0)
         {
+            WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
             PlayerPrefs.SetInt("Sound", 1);
             muteSound.GetComponent<Image>().color = Color.white;
             // Volume is set correctly in update loop, and doesn't need to be set here.
@@ -99,16 +103,19 @@ public class MenuOptions : MonoBehaviour {
 
     public void AreYouSure()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         areYouSure.SetActive(true);
     }
 
     public void IAmNotSure()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
         areYouSure.SetActive(false);
     }
 
     public void ResetData()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         HubDataManager.ResetHubData();
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(0);
@@ -117,6 +124,7 @@ public class MenuOptions : MonoBehaviour {
 
     public void Back()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
         menu.SetActive(true);
         options.SetActive(false);
     }

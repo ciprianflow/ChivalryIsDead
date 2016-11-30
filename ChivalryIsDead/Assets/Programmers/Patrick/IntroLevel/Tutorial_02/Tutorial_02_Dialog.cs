@@ -282,7 +282,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         InvisWallOne.GetComponent<Animator>().SetTrigger("gateOpen");
         
 
-        yield return new WaitForSeconds(animCam.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(2.5f);
         mainCam.SetActive(true);
         animCam.SetActive(false);
         ControlMove.SetActive(true);
@@ -340,6 +340,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
         skipBtn.SetActive(false);
         handAnimator.SetBool("playTaunt", true);
+        PlayerPrefs.SetInt("Taunt", 1);
         ControlHit.SetActive(true);
 
         learnedToTaunt = false;

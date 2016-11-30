@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public static class StaticData {
 
+    internal static float VersionNumber = 0.3011f;
+
     //Current quest and objectives
     public static MultiQuest currQuest;
     
