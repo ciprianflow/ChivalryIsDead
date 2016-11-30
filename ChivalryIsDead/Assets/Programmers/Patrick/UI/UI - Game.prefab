@@ -1433,6 +1433,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 224000013681330832}
+  - {fileID: 224000013347334712}
   - {fileID: 224000011111012454}
   m_Father: {fileID: 224000010270180124}
   m_RootOrder: 1
@@ -1615,20 +1616,22 @@ MonoBehaviour:
   UI: {fileID: 1000010485397392}
   dialogEnglish:
   - {fileID: 11400000, guid: b975cfc248dd5234db8fd0bfea5bdf45, type: 2}
-  - {fileID: 11400000, guid: 174227e7e1dbe2647b81a4f9393fef90, type: 2}
+  - {fileID: 11400000, guid: 0400590e4cdb06c49a5d8205effe7d0e, type: 2}
   - {fileID: 11400000, guid: ac12f327d044f384fb33b39b43fb6043, type: 2}
   dialogDansk:
   - {fileID: 11400000, guid: b975cfc248dd5234db8fd0bfea5bdf45, type: 2}
-  - {fileID: 11400000, guid: 174227e7e1dbe2647b81a4f9393fef90, type: 2}
+  - {fileID: 11400000, guid: 0400590e4cdb06c49a5d8205effe7d0e, type: 2}
   - {fileID: 11400000, guid: ac12f327d044f384fb33b39b43fb6043, type: 2}
   playerText: {fileID: 1000013217776696}
   playerBubble: {fileID: 1000010330997050}
+  playerTauntBubble: {fileID: 1000011244966598}
   swordText: {fileID: 1000010340376272}
   swordBubble: {fileID: 1000013538321572}
   princessText: {fileID: 1000010592325808}
   princessBubble: {fileID: 1000012519938510}
   kingText: {fileID: 1000013373637058}
   kingBubble: {fileID: 1000012609175824}
+  enemyTauntBubble: {fileID: 1000010492502376}
   peasantABubble: {fileID: 1000012700284342}
   peasantAText: {fileID: 1000013707142172}
   peasantBBubble: {fileID: 1000012093702446}
@@ -5186,10 +5189,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: -0.6}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 224000013347334712}
+  m_Children: []
   m_Father: {fileID: 4000013813119884}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 4, y: 6}
@@ -6024,16 +6026,16 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010094171144}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.6}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
-  m_Father: {fileID: 224000011111012454}
-  m_RootOrder: 0
+  m_Father: {fileID: 4000013813119884}
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 35, y: 0}
+  m_AnchoredPosition: {x: 4.700001, y: 6}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013360043626
