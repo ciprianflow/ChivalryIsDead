@@ -205,6 +205,7 @@ public class IntroLevelDialog : MonoBehaviour {
         halfScreen.SetActive(true);
         halfScreen.transform.Translate(1024, 0, 0);
         handAnimator.SetBool("playRightJoy", true);
+        PlayerPrefs.SetInt("Attack", 1);
         skipBtn.SetActive(false);
         ControlHit.SetActive(true);
         learnedToAttack = false;
@@ -244,7 +245,7 @@ public class IntroLevelDialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
         //yield return new WaitForSeconds(2);
         //UI.GetComponent<GameMenu>().Sword();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(2);
     }
 
