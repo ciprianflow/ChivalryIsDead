@@ -227,6 +227,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
         tutImage.SetActive(true);
         tutImgAnimator.SetBool("playLearnOverreact", true);
+        skipBtn.SetActive(false);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
 
@@ -244,6 +245,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
         handAnimator.SetBool("playOverreact", true);
+        PlayerPrefs.SetInt("Overreact", 1);
         skipBtn.SetActive(false);
         ControlHit.SetActive(true);
 
