@@ -77,6 +77,7 @@ public class QuestGenerator
         }
 
         // Adds sheep objectives.
+        // THis probably shouldn't be here.
         for (int i = 0; i < numFriendlies; i++) {
             protQuest.Objectives.Add(new ProtectTargetObjective(21));
         }

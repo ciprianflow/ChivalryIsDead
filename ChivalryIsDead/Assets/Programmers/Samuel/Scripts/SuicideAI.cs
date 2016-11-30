@@ -167,7 +167,6 @@ public class SuicideAI : MonsterAI
         
 
         //Plays attack sound
-        Debug.LogError("ALLUH AKHBAR INFIDEL!!");
         WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Suicide, MonsterAudioHandle.Attack, this.gameObject);
         base.Hit(99);
     }
