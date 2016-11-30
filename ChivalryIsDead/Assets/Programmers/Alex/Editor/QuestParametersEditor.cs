@@ -89,9 +89,9 @@ public class QuestParametersEditor : Editor {
         repOverrideIsToggled = EditorGUILayout.Foldout(repOverrideIsToggled, "Reputation Overrides");
         if (repOverrideIsToggled) {
             EditorGUI.indentLevel++;
-            DrawReputationOverride(0, "Melee (Rep/Min/Max)");
-            DrawReputationOverride(1, "Ranged (Rep/Min/Max)");
-            DrawReputationOverride(2, "Suicide (Rep/Min/Max)");
+            DrawReputationOverride(0, "Melee (Rep)");
+            DrawReputationOverride(1, "Ranged (Rep)");
+            DrawReputationOverride(2, "Suicide (Rep)");
             EditorGUI.indentLevel--;
         }
 

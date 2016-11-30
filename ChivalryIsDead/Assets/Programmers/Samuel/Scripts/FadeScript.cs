@@ -15,6 +15,7 @@ public class FadeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        this.gameObject.SetActive(true);
         CG = GetComponent<CanvasGroup>();
         StartCoroutine(stay());
     }
@@ -32,21 +33,6 @@ public class FadeScript : MonoBehaviour {
     {
 
         while(timer < fadeTime)
-        {
-            timer += Time.deltaTime;
-            CG.alpha = 1 - timer / fadeTime;
-            yield return new WaitForSeconds(Time.deltaTime);
-
-        }
-
-        this.gameObject.SetActive(false);
-
-    }
-
-    IEnumerator fadeIn()
-    {
-
-        while (timer < fadeTime)
         {
             timer += Time.deltaTime;
             CG.alpha = 1 - timer / fadeTime;

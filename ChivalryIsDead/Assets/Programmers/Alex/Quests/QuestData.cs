@@ -11,7 +11,7 @@ public enum QuestType
 [Flags]
 public enum EnemyTypes
 {
-    None, HasMelee, HasRanged, HasSuicide = 4
+    /*None, */HasMelee = 1, HasRanged = 2, HasSuicide = 4
 }
 
 [Flags]
