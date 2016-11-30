@@ -52,7 +52,7 @@ public class EndScreen : MonoBehaviour {
 
 
         questDesc.Append(string.Format("YOU FAILED..." + Environment.NewLine));
-        questDesc.Append(string.Format("Reputation gained: " + StaticIngameData.dummyManager.ReputationHandler.Score));
+        questDesc.Append(string.Format("Reputation gained: " + StaticIngameData.dummyManager.GetLocalScore()));
 
 
 
