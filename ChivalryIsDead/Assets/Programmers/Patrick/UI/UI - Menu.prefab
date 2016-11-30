@@ -1086,7 +1086,9 @@ MonoBehaviour:
   options: {fileID: 1000013756591174}
   areYouSure: {fileID: 1000012655576794}
   muteSound: {fileID: 1000011933975248}
-  soundVolume: {fileID: 1000011381223572}
+  masterVolume: {fileID: 114000011917388178}
+  soundVolume: {fileID: 114000013449596150}
+  musicVolume: {fileID: 114000012659166614}
 --- !u!114 &114000010075941330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2261,7 +2263,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114000010057898820}
-        m_MethodName: SoundVolume
+        m_MethodName: MasterVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2677,7 +2679,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114000010057898820}
-        m_MethodName: SoundVolume
+        m_MethodName: MusicVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3891,11 +3893,11 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 224000010673598860}
   - {fileID: 224000010966033104}
   - {fileID: 224000010639067202}
   - {fileID: 224000012766377782}
   - {fileID: 224000010972841996}
-  - {fileID: 224000010673598860}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -3960,7 +3962,7 @@ RectTransform:
   - {fileID: 224000013107301138}
   - {fileID: 224000011080143168}
   m_Father: {fileID: 224000010463366570}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3980,7 +3982,7 @@ RectTransform:
   - {fileID: 224000012886487800}
   - {fileID: 224000012464346682}
   m_Father: {fileID: 224000010463366570}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4054,7 +4056,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 224000010463366570}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4082,7 +4084,7 @@ RectTransform:
   - {fileID: 224000012560390316}
   - {fileID: 224000012871802868}
   m_Father: {fileID: 224000010463366570}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -4601,7 +4603,7 @@ RectTransform:
   - {fileID: 224000012740876742}
   - {fileID: 224000011480585506}
   m_Father: {fileID: 224000010463366570}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}

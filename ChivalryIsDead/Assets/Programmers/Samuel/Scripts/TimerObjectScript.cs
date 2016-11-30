@@ -12,10 +12,16 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
 
     Image timerImage;
     GameObject Dsystem;
+    public static TimerObjectScript Instance;
 
     void Awake()
     {
         timerImage = GameObject.Find("Canvas").transform.FindChild("TimerBG").FindChild("Timer").GetComponent<Image>();
+    }
+
+    void Start()
+    {
+        Instance = this;
     }
 
     void Update()
@@ -32,6 +38,12 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
             Dsystem = GameObject.FindGameObjectWithTag("DialogSystem");
             Dsystem.GetComponent<Gameplay_Dialog>().HalfTime();
         }
+    }
+
+    public float GetTimer()
+    {
+
+        return 1 - timer / maxTime;
     }
 
     public int ID

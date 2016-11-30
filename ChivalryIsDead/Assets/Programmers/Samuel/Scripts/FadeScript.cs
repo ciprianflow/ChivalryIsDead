@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class FadeScript : MonoBehaviour {
 
     public float stayTime = 2f;
@@ -14,6 +15,7 @@ public class FadeScript : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        this.gameObject.SetActive(true);
         CG = GetComponent<CanvasGroup>();
         StartCoroutine(stay());
     }

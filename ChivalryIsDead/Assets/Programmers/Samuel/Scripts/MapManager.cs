@@ -155,6 +155,7 @@ public class MapManager : MonoBehaviour {
         float localRepGain = StaticIngameData.dummyManager.GetGlobalScore();
         //StaticData.Reputation += localRepGain;
         StaticData.currQuest.ReputationChange = localRepGain;
+        Debug.Log("REP: " + localRepGain);
         //Load Quest Hub Manager
         if (endLetter != null)
         {
