@@ -50,18 +50,25 @@ class TauntAction: MonoBehaviour
         cooldownTimeStamp = Time.time + TauntCooldown;
 
         //10 layer - Monster
-        Collider[] hitColliders = Physics.OverlapSphere(position, radius);
+        //Collider[] hitColliders = Physics.OverlapSphere(position, radius);
+        Collider[] hitColliders = GetTauntedColliders();
         int i = 0;
         while (i < hitColliders.Length)
         {
             
             if (hitColliders[i].CompareTag("Enemy"))
             {
+
                 checkStateAndTaunt(hitColliders[i].GetComponent<MonsterAI>());
             }
 
             i++;
         }
+    }
+
+    public Collider[] GetTauntedColliders()
+    {
+        return Physics.OverlapSphere(this.transform.position, currentTauntRadius); 
     }
 
     private void checkStateAndTaunt(MonsterAI monster)
@@ -101,6 +108,7 @@ class TauntAction: MonoBehaviour
     }
 
     //shrinkTauntArea
+    /*
     private void shrinkTauntArea()
     {
 
@@ -114,7 +122,7 @@ class TauntAction: MonoBehaviour
         }
 
     }
-
+    */
     //cooldown
     private bool getCoolDown()
     {

@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class FadeScript : MonoBehaviour {
 
     public float stayTime = 2f;
@@ -31,6 +32,21 @@ public class FadeScript : MonoBehaviour {
     {
 
         while(timer < fadeTime)
+        {
+            timer += Time.deltaTime;
+            CG.alpha = 1 - timer / fadeTime;
+            yield return new WaitForSeconds(Time.deltaTime);
+
+        }
+
+        this.gameObject.SetActive(false);
+
+    }
+
+    IEnumerator fadeIn()
+    {
+
+        while (timer < fadeTime)
         {
             timer += Time.deltaTime;
             CG.alpha = 1 - timer / fadeTime;
