@@ -364,10 +364,10 @@
 														</Element>
 													</ElementList>
 												</Action>
-												<Action Name="Play" ID="{50B460C3-CB38-43F7-A1AB-30BC983E535B}" ShortID="164491643" Type="Play" Scope="One" Global="false">
+												<Action Name="Post Event" ID="{6E7F2063-006D-4B7A-99EC-E5F10DDD09FE}" ShortID="374890757" Type="PlayEvent" Scope="One" Global="false">
 													<ElementList>
-														<Element ID="{65949669-4900-4B77-902F-893C3AAD564B}" Global="false">
-															<ObjectRef Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														<Element ID="{33499305-7032-4E2D-B532-E259DAA3A6FC}" Global="false">
+															<ObjectRef Name="enemy_taunted" ID="{E8D26D39-F2A5-494B-89C7-D53C3394F140}" WorkUnitID="{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -467,6 +467,13 @@
 														</Element>
 													</ElementList>
 												</Action>
+												<Action Name="Post Event" ID="{DCE1FD3C-61E0-44D6-A757-A6A39DD9AD38}" ShortID="338327993" Type="PlayEvent" Scope="One" Global="false">
+													<ElementList>
+														<Element ID="{D1FCD6DB-6D10-4FF7-A1B3-5A321543F521}" Global="false">
+															<ObjectRef Name="suicide_explosion" ID="{68940B44-3F99-4B04-A753-6A5DE5DA6539}" WorkUnitID="{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}"/>
+														</Element>
+													</ElementList>
+												</Action>
 											</ChildrenList>
 										</Event>
 										<Event Name="suicide_flung_away" ID="{980B216C-9513-4777-90AC-A38F3FCD1670}">
@@ -518,10 +525,10 @@
 														</Element>
 													</ElementList>
 												</Action>
-												<Action Name="Play" ID="{AF03A222-4DA2-4D78-B279-440AB58BDDDF}" ShortID="945734443" Type="Play" Scope="One" Global="false">
+												<Action Name="Post Event" ID="{A2E23384-60C6-4CDB-8EDD-8A723148CA25}" ShortID="97555836" Type="PlayEvent" Scope="One" Global="false">
 													<ElementList>
-														<Element ID="{8059BA97-CAD6-4CCA-A01F-BD98438ADB90}" Global="false">
-															<ObjectRef Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														<Element ID="{FACC86FC-4342-4630-AE4A-AEAA6EC0BFEA}" Global="false">
+															<ObjectRef Name="enemy_taunted" ID="{E8D26D39-F2A5-494B-89C7-D53C3394F140}" WorkUnitID="{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -529,6 +536,16 @@
 										</Event>
 										<Event Name="melee_charge" ID="{EFF8F519-3371-47D2-8162-E2815A4A81C2}">
 											<ChildrenList>
+												<Action Name="Stop" ID="{ED8AD842-5EB7-4F7C-8832-DA1EF934C63A}" ShortID="888539868" Type="Stop" Scope="One" Global="false">
+													<PropertyList>
+														<Property Name="FadeTime" Type="Real64" Value="0.2"/>
+													</PropertyList>
+													<ElementList>
+														<Element ID="{86DD9B5F-1D31-4187-84C9-28489F1291D6}" Global="false">
+															<ObjectRef Name="ranged_taunted" ID="{48B7134E-3DBF-495D-9407-ACED3D2850A0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+														</Element>
+													</ElementList>
+												</Action>
 												<Action Name="Play" ID="{10BB3199-B7B8-40E5-9877-60999FD2B56D}" ShortID="603920689" Type="Play" Scope="One" Global="false">
 													<ElementList>
 														<Element ID="{0F73DA9A-1995-44FD-B622-F0375D4B0B9F}" Global="false">
@@ -653,6 +670,17 @@
 										</Folder>
 									</ChildrenList>
 								</Folder>
+								<Event Name="enemy_taunted" ID="{E8D26D39-F2A5-494B-89C7-D53C3394F140}">
+									<ChildrenList>
+										<Action Name="Play" ID="{FD046A32-13B3-4FE9-B72F-C57413376B56}" ShortID="571723454" Type="Play" Scope="One" Global="false">
+											<ElementList>
+												<Element ID="{BAA81427-1BAC-450B-9D3D-A637E1C5BC4D}" Global="false">
+													<ObjectRef Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+												</Element>
+											</ElementList>
+										</Action>
+									</ChildrenList>
+								</Event>
 							</ChildrenList>
 						</Folder>
 						<Folder Name="knight" ID="{4E0FE389-F959-49F5-A8C0-FD2428B1DB2E}" ShortID="994661403">
@@ -818,17 +846,6 @@
 												</Action>
 											</ChildrenList>
 										</Event>
-										<Event Name="kight_taunt_alternative" ID="{59985B07-93D5-4442-A979-6F1E4706986E}">
-											<ChildrenList>
-												<Action Name="Play" ID="{E6FFBD15-60F1-4955-8469-070F87F375E7}" ShortID="294527581" Type="Play" Scope="One" Global="false">
-													<ElementList>
-														<Element ID="{D2B605E9-214E-416A-B6CC-D075B11EAE98}" Global="false">
-															<ObjectRef Name="knight_taunt_pift" ID="{C1F914DE-AE49-440A-AED4-88355469743D}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
-														</Element>
-													</ElementList>
-												</Action>
-											</ChildrenList>
-										</Event>
 									</ChildrenList>
 								</Folder>
 								<Event Name="knight_move" ID="{69E4AB49-DFB9-4E12-BF72-CA8AE43F2127}">
@@ -958,7 +975,6 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
-						<Folder Name="king" ID="{09680B55-0902-4812-AF22-EFF685C6FCCD}" ShortID="504783389"/>
 						<Folder Name="peasant" ID="{ADCFC621-3D9E-41C5-8CC8-A2146BD50D15}" ShortID="532587911">
 							<ChildrenList>
 								<Event Name="peasant_happy" ID="{26B11BA2-6054-48C3-AB04-46EAAA5CED65}"/>
