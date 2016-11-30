@@ -46,7 +46,8 @@ public class IntroLevelDialog : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-       
+
+        Debug.Log(PlayerPrefs.GetInt("Attack"));
             
         if (!learnedToMove)
         {
@@ -88,7 +89,7 @@ public class IntroLevelDialog : MonoBehaviour {
         ControlHit.SetActive(false);
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
-        Invoke("SkipCam", 13f);
+        Invoke("SkipCam", 5f);
         //yield return new WaitForSeconds(2f);
 
         TrollA.GetComponent<RangedAI>().softAttackRangeBreak = 0;
@@ -102,8 +103,12 @@ public class IntroLevelDialog : MonoBehaviour {
 
     void SkipCam()
     {
-        TriggerZoneOne.SetActive(false);
-        StartCoroutine("DialogOne");
+        if(TriggerZoneOne != null)
+        {
+            TriggerZoneOne.SetActive(false);
+            StartCoroutine("DialogOne");
+        }
+       
     }
 
     public IEnumerator DialogOne()
