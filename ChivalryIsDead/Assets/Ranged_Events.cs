@@ -42,6 +42,9 @@ public class Ranged_Events : MonoBehaviour {
     }
 
     public void dropRock() {
+        if (rock == null)
+            return;
+
         if (rock.transform.parent == hand.transform) {
             rock.GetComponent<Rigidbody>().useGravity = true;
             rock.GetComponent<BoxCollider>().enabled = true;
