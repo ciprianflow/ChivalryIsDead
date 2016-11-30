@@ -126,8 +126,11 @@ public class GameMenu : MonoBehaviour {
 
     public void Pause()
     {
+        
+
         if (!paused)
         {
+            WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
             pause.SetActive(true);
             paused = true;
             //pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.pressedSprite;
@@ -135,6 +138,7 @@ public class GameMenu : MonoBehaviour {
             Time.timeScale = 0f;
         } else
         {
+            WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
             pause.SetActive(false);
             paused = false;
             //pauseBtn.SetActive(true);
@@ -241,11 +245,14 @@ public class GameMenu : MonoBehaviour {
 
     public void SoundVolume()
     {
+        //WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         PlayerPrefs.SetFloat("SoundVolume", soundVolume.GetComponent<Slider>().value);
     }
 
     public void SoundMute()
     {
+        
+
         if (PlayerPrefs.GetInt("Sound") == 1)
         {
             PlayerPrefs.SetInt("Sound", 0);
@@ -259,10 +266,12 @@ public class GameMenu : MonoBehaviour {
 
         if (PlayerPrefs.GetInt("Sound") == 0)
         {
+            WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
             muteSound.GetComponent<Image>().color = Color.red;
         }
         else if (PlayerPrefs.GetInt("Sound") == 1)
         {
+            WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
             muteSound.GetComponent<Image>().color = Color.white;
 
         }
@@ -270,11 +279,13 @@ public class GameMenu : MonoBehaviour {
 
     public void SwapControl()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         settingManager.swapSides();
     }
 
     public void MainMenu()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
