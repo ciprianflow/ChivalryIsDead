@@ -38,16 +38,16 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (!waitforClick)
-        {
-            if (hdManager.isClicked)
-            {
-                gameObject.GetComponent<DialogObject>().StopDialog();
-                StartCoroutine("DialogThree");
-                waitforClick = true;
-                hdManager.isClicked = false;
-            }
-        }
+        //if (!waitforClick)
+        //{
+        //    if (hdManager.isClicked)
+        //    {
+        //        gameObject.GetComponent<DialogObject>().StopDialog();
+        //        StartCoroutine("DialogThree");
+        //        waitforClick = true;
+        //        hdManager.isClicked = false;
+        //    }
+        //}
     }
 
     public IEnumerator DialogOne()
@@ -57,7 +57,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
 
-        while (count < 1)
+        while (count < 5)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -66,7 +66,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         procceed = false;
         BlackScreenAnimator.SetTrigger("fadeOut");
         //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         StartCoroutine("DialogTwo");
 
     }
@@ -85,20 +85,19 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     public IEnumerator DialogTwo()
     {
         //yield return new WaitForSeconds(1f);
+        blackScreen.SetActive(false);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        skipBtn.SetActive(false);
 
-        //count = 0;
-        //while (count < 1)
-        //{
-        //    yield return new WaitForEndOfFrame();
-        //}
-        //yield return new WaitUntil(SkipAndPlay);
+        count = 0;
+        while (count < 2)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
-        blackScreen.SetActive(false);
-        waitforClick = false;
-        yield return null;
+        //waitforClick = false;
+        StartCoroutine("DialogThree");
     }
 
     public IEnumerator DialogThree()
@@ -114,7 +113,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //}
         //yield return new WaitUntil(SkipAndPlay);
         procceed = false;
-        handAnimator.SetBool("handHub", true);
+        //handAnimator.SetBool("handHub", true);
   
     }
 
