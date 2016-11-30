@@ -194,7 +194,7 @@ public class DummyManager : MonoBehaviour
 
         float score = ReputationHandler.Score;
 
-        //bonus
+        /* bonus
         //get time from  quest timer
         float time = 0.5f;
         float bonus = score * Mathf.Exp(time * 3) * 0.15f;
@@ -205,10 +205,10 @@ public class DummyManager : MonoBehaviour
         }
 
         float repGain = score + bonus;
-        
+        */
         
         float repGainDivision = 50;
-        return repGain  / repGainDivision;
+        return score / repGainDivision;
 
     }
 
