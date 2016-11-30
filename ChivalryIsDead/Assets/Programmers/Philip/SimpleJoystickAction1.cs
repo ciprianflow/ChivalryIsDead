@@ -485,6 +485,9 @@ namespace CnControls
             {
                 Hide(true);
             }
+
+            //afk manager-
+            DummyManager.dummyManager.onTouchAction();
         }
 
         private void action_attack()
@@ -570,6 +573,9 @@ namespace CnControls
             {
                 Hide(false);
             }
+
+            //afk manager-
+            DummyManager.dummyManager.onTouchAction();
         }
 
         /// <summary>
