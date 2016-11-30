@@ -89,7 +89,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
 
         count = 0;
-        while (count < 2)
+        while (count < 3)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -97,7 +97,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
         procceed = false;
         //waitforClick = false;
-        StartCoroutine("DialogThree");
+        //StartCoroutine("DialogThree");
     }
 
     public IEnumerator DialogThree()
