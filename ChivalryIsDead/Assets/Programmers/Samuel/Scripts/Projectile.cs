@@ -41,19 +41,33 @@ public class Projectile : MonoBehaviour {
         DestroyTarget();
         setToDestroy = true;
 
-        QuestObject questObj = collObj.GetComponent<QuestObject>();
-        if(questObj != null)
+        
+        MonsterAI m = collObj.gameObject.GetComponent<MonsterAI>();
+        if (m != null)
         {
-            questObj.takeDamage(1, false);
 
-            MonsterAI m = questObj.gameObject.GetComponent<MonsterAI>();
-            if (m != null && m.GetType() == typeof(SheepAI))
+            //other monsters
+            QuestObject questObj = collObj.GetComponent<QuestObject>();
+            if (m.GetType() == typeof(SheepAI))
             {
                 //let player know objective is attacked
-                originMonster.playerAction.SheepAttacked(originMonster);
+                originMonster.HitSheep(m.GetComponent<QuestObject>(), m, m.gameObject, ExplosionForce, false, originMonster);
+                return;
             }
+            //other monsters
             else
             {
+                m.Hit(1);
+                Rigidbody body = collObj.GetComponent<Rigidbody>();
+                if (body)
+                {
+                    body.AddExplosionForce(ExplosionForce, transform.position, ExplosionRadius, 0f);
+                }
+            }
+
+            if(questObj != null)
+            {
+                questObj.takeDamage(1, false);
                 //let player know objective is attacked
                 originMonster.playerAction.ObjectiveAttacked(originMonster);
             }
