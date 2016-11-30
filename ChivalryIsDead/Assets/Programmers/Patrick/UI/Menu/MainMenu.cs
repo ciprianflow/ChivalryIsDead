@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Continue()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         //Application.OpenURL("https://www.youtube.com/watch?v=AuRXVMSG3po");
 
         SceneManager.LoadScene("ProtoHubWorld 1");
@@ -38,6 +39,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Play()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         HubDataManager.ResetHubData();
         StartCoroutine("LoadLevel");
         
@@ -45,6 +47,7 @@ public class MainMenu : MonoBehaviour {
 
     public void Options()
     {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
         options.SetActive(true);
         menu.SetActive(false);
     }
