@@ -81,14 +81,12 @@ public class MenuOptions : MonoBehaviour {
         if (PlayerPrefs.GetInt("Sound") == 1)
         {
             PlayerPrefs.SetInt("Sound", 0);
-            Debug.Log("Off");
             WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
             muteSound.GetComponent<Image>().color = Color.red;
         }
         else if (PlayerPrefs.GetInt("Sound") == 0)
         {
             PlayerPrefs.SetInt("Sound", 1);
-            Debug.Log("On");
             muteSound.GetComponent<Image>().color = Color.white;
             // Volume is set correctly in update loop, and doesn't need to be set here.
         }
