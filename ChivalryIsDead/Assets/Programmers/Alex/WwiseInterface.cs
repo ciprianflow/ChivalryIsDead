@@ -18,7 +18,7 @@ public enum MenuHandle
 
 public enum CombatHandle
 {
-    ImpactFlesh, ImpactArmor
+    ImpactFlesh, ImpactArmor, ImpactStone
 }
 
 #region Characters
@@ -68,14 +68,19 @@ public enum SwordDialogueHandle
 }
 #endregion
 
+public enum VolumeHandle
+{
+    Master, SFX, Music
+}
+
 public enum MusicHandle
 {
-    MusicOnePlay, MusicStop
+    MusicOnePlay, MusicQuest, MusicStop
 }
 
 public enum RewardHandle
 {
-    ComboBoost, ComboStart, ComboEnd, Big, Small, Fail
+    ComboBoost, ComboBoost2, ComboBoost3, ComboStart, ComboEnd, /*Big,*/ Small, Fail
 }
 
 public enum SheepAudioHandle
@@ -86,6 +91,11 @@ public enum SheepAudioHandle
 public enum AmbienceHandle
 {
     Hub, WorldOne
+}
+
+public enum GameStateHandle
+{
+    Paused, Unpaused
 }
 #endregion
 
@@ -103,6 +113,9 @@ public enum PeasantDialogueHandle
 
 public interface IWwiseInterface
 {
+    // Audio settings
+    void SetVolume(float volume, VolumeHandle handle);
+
     // Non-Targeted audio.
     void SetAmbience(AmbienceHandle handle);
     void SetMusic(MusicHandle handle);
@@ -152,12 +165,24 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         //DontDestroyOnLoad(gameObject);
     }
 
+    #region Audio settings
+    public void SetVolume(float volume, VolumeHandle type)
+    {
+        volume = Mathf.Clamp(volume, 0, 100);
+        var eventBuilder = new StringBuilder("_volume");
+        eventBuilder.Insert(0, HandleToEventString(type));
+        AkSoundEngine.SetRTPCValue(eventBuilder.ToString(), volume);
+    }
+    #endregion
+
     #region Non-Targeted Audio
     public void SetMusic(MusicHandle handle)
     {
         switch (handle) {
             case MusicHandle.MusicOnePlay:
                 AkSoundEngine.PostEvent("music1Play", gameObject); break;
+            case MusicHandle.MusicQuest:
+                AkSoundEngine.PostEvent("musicquest", gameObject); break;
             case MusicHandle.MusicStop:
                 AkSoundEngine.PostEvent("musicStop", gameObject); break;
             default:
@@ -333,7 +358,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
     private string HandleToEventString(Enum handle)
     {
         var enumName = Enum.GetName(handle.GetType(), handle);
-        Regex pattern = new Regex(@"([A-Z][a-z]+)");
+        Regex pattern = new Regex(@"([A-Z]+[a-z]*\d*)");
         MatchCollection matches = pattern.Matches(enumName);
 
         string[] matchesArray = new string[matches.Count];
@@ -349,7 +374,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         // Staight ripped from HandleToEventString method.
         // Adjustments made to control for camelcasing instead of underscores.
         var enumName = Enum.GetName(handle.GetType(), handle);
-        Regex pattern = new Regex(@"([A-Z][a-z]+)");
+        Regex pattern = new Regex(@"([A-Z][a-z]+\d*)");
         MatchCollection matches = pattern.Matches(enumName);
 
         string[] matchesArray = new string[matches.Count];
