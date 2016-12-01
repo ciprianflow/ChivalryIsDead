@@ -53,6 +53,7 @@ public class HubDataManager : MonoBehaviour {
     public GameObject DLCPane;
     public GameObject QuestButton;
     public GameObject QuestLetter;
+    public GameObject DampenLightObject;
     public GameObject WinScreen;
     public GameObject LoseScreen;
     public Text DaysLeftText;
@@ -129,7 +130,7 @@ public class HubDataManager : MonoBehaviour {
     // TODO: Dummy method, shouldn't make it into the final game. Update to generic or UI specific alternative.
     private void CreateQuestUIElements()
     {
-        for(int i = 0; i < AvailableQuests.Count; i++) { 
+        for(int i = 0; i < 1; i++) { 
         //foreach (IObjective o in AvailableQuests) {
             BaseQuest oAsQuest = (BaseQuest)AvailableQuests[i];
             peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
@@ -282,10 +283,13 @@ public class HubDataManager : MonoBehaviour {
     {
         BaseQuest quest = (BaseQuest)AvailableQuests[currSelectedQuestIndex];
         QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description, quest.Data);
+
+        bool boolean = Convert.ToBoolean(i);
         //QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
-        QuestLetter.SetActive(Convert.ToBoolean(i));
+        QuestLetter.SetActive(boolean);
+        DampenLightObject.SetActive(boolean);
         //GameObject.FindGameObjectWithTag("HandCanvas").GetComponent<Animator>().SetTrigger("handhub");
-        isClicked = true;
+        isClicked = boolean;
     }
 
     public void setCurrSelectedQuest(int i)
