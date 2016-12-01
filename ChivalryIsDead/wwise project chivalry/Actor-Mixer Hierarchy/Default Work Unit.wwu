@@ -8,11 +8,6 @@
 						<BlendContainer Name="knight_footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" ShortID="705790780">
 							<PropertyList>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
@@ -1641,10 +1636,9 @@
 								</Property>
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
-										<Value>40</Value>
+										<Value>45</Value>
 									</ValueList>
 								</Property>
-								<Property Name="PositioningType" Type="int16" Value="1"/>
 								<Property Name="UserAuxSendVolume0" Type="Real64">
 									<ValueList>
 										<Value>-10</Value>
@@ -1652,14 +1646,11 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-4</Value>
+										<Value>-12</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
-								<Reference Name="Attenuation">
-									<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
-								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 								</Reference>
@@ -1787,6 +1778,37 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="knight_overreact_ok-05" ID="{86457E01-6C2A-426B-BE41-4923CE3A6934}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="knight_gain_rep" ID="{334AC94F-09FF-438C-8B7C-3586B6EB36C4}" ShortID="227259959">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="knight gain rep" ID="{82FE13D6-94D8-4E24-90A1-84C1B3AB097B}" ShortID="265384830" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="knight gain rep" ID="{E8E12C64-C2CA-42F2-AB79-F5E3327613F8}" ShortID="254174458">
+													<Language>SFX</Language>
+													<AudioFile>knight gain rep.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="knight gain rep" ID="{E8E12C64-C2CA-42F2-AB79-F5E3327613F8}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -2848,7 +2870,8 @@
 												<AudioFileSource Name="knight_taunt-02" ID="{2601E49D-5FC5-42D0-A8E1-8F7733BB0714}" ShortID="390459741">
 													<PropertyList>
 														<Property Name="FadeInDuration" Type="Real64" Value="1.10895647321429E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="0.102023995535714"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="3.77045200892857E-02"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.373718331473214"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>knight_taunt-02.wav</AudioFile>
@@ -2874,7 +2897,7 @@
 														<Property Name="FadeOutDuration" Type="Real64" Value="0.173416057752423"/>
 														<Property Name="FadeOutShape" Type="int16" Value="3"/>
 														<Property Name="TrimBegin" Type="Real64" Value="0.117088006017505"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.788101283482143"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.739100167410714"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>knight_taunt-03.wav</AudioFile>
@@ -2931,206 +2954,6 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="knight_taunt-05" ID="{0994CCF7-9FAC-4A3F-ACC1-D655C9902C08}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 1 (bedst)" ID="{CC5ADBC5-6ECE-49C8-A148-62420C9276EB}" ShortID="896449188" Type="SoundFX">
-											<PropertyList>
-												<Property Name="PositioningType" Type="int16" Value="1"/>
-												<Property Name="UserAuxSendVolume0" Type="Real64">
-													<ValueList>
-														<Value>-10</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Attenuation">
-													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
-												</Reference>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
-													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-												<Reference Name="UserAuxSend0">
-													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" ShortID="959807863">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="8.42436165047329E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="6.17786521034708E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 1 (bedst).wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 2" ID="{2B65764E-5CE3-45AF-B0DC-0890CCBCF4F1}" ShortID="705859713" Type="SoundFX">
-											<PropertyList>
-												<Property Name="PositioningType" Type="int16" Value="1"/>
-												<Property Name="UserAuxSendVolume0" Type="Real64">
-													<ValueList>
-														<Value>-10</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Attenuation">
-													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
-												</Reference>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
-													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-												<Reference Name="UserAuxSend0">
-													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" ShortID="722408829">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="7.60911968417487E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.130442051728712"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 2.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 3" ID="{156DD665-9622-4FB9-903E-4C9463A1F09F}" ShortID="536856794" Type="SoundFX">
-											<PropertyList>
-												<Property Name="PositioningType" Type="int16" Value="1"/>
-												<Property Name="UserAuxSendVolume0" Type="Real64">
-													<ValueList>
-														<Value>-10</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Attenuation">
-													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
-												</Reference>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
-													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-												<Reference Name="UserAuxSend0">
-													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" ShortID="1043680727">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="5.7974467687492E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="5.21770209187428E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 3.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 4" ID="{D5161DAE-865E-4739-AFED-5CFB07B6C558}" ShortID="619135280" Type="SoundFX">
-											<PropertyList>
-												<Property Name="PositioningType" Type="int16" Value="1"/>
-												<Property Name="UserAuxSendVolume0" Type="Real64">
-													<ValueList>
-														<Value>-10</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Attenuation">
-													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
-												</Reference>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
-													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-												<Reference Name="UserAuxSend0">
-													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" ShortID="275380279">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="6.15979136319723E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="2.15592697711903E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 4.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 5" ID="{809A09FB-1AA5-47DA-B72E-45AB20968A9F}" ShortID="43965556" Type="SoundFX">
-											<PropertyList>
-												<Property Name="PositioningType" Type="int16" Value="1"/>
-												<Property Name="UserAuxSendVolume0" Type="Real64">
-													<ValueList>
-														<Value>-10</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
-											<ReferenceList>
-												<Reference Name="Attenuation">
-													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
-												</Reference>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
-													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-												<Reference Name="UserAuxSend0">
-													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" ShortID="990310578">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="1.35877554357529E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="1.35877554357529E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 5.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -3245,6 +3068,133 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="knight_overreact_fail-05" ID="{5E4A6176-7240-4529-8021-440A0CAC2DEA}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="knight_taunt_pift" ID="{C1F914DE-AE49-440A-AED4-88355469743D}" ShortID="507351883">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<Sound Name="pift 1 (bedst)" ID="{CC5ADBC5-6ECE-49C8-A148-62420C9276EB}" ShortID="896449188" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" ShortID="959807863">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="8.42436165047329E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="6.17786521034708E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 1 (bedst).wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 2" ID="{2B65764E-5CE3-45AF-B0DC-0890CCBCF4F1}" ShortID="705859713" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" ShortID="722408829">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="7.60911968417487E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.130442051728712"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 3" ID="{156DD665-9622-4FB9-903E-4C9463A1F09F}" ShortID="536856794" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" ShortID="1043680727">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="5.7974467687492E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="5.21770209187428E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 4" ID="{D5161DAE-865E-4739-AFED-5CFB07B6C558}" ShortID="619135280" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" ShortID="275380279">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="6.15979136319723E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="2.15592697711903E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 4.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 5" ID="{809A09FB-1AA5-47DA-B72E-45AB20968A9F}" ShortID="43965556" Type="SoundFX">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" ShortID="990310578">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.35877554357529E-02"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.35877554357529E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 5.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -3397,6 +3347,37 @@
 								</RandomSequenceContainer>
 							</ChildrenList>
 						</ActorMixer>
+						<Sound Name="overreact_tomato_splat" ID="{75E1DD64-9169-4366-BF70-03BAB7A5929C}" ShortID="564569481" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="overreact_1" ID="{362CEFF1-F6FE-4510-A35C-1A3817D2580B}" ShortID="1042022668">
+									<PropertyList>
+										<Property Name="FadeInDuration" Type="Real64" Value="1.29737723214286E-02"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="0.236771344866071"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.1589287109375"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>overreact_1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="overreact_1" ID="{362CEFF1-F6FE-4510-A35C-1A3817D2580B}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 						<RandomSequenceContainer Name="chainmail" ID="{0DAA9F95-6BF6-4F9E-849D-B21150DD1A46}" ShortID="807275396">
 							<PropertyList>
 								<Property Name="OverrideEffect" Type="bool" Value="True"/>
@@ -3782,7 +3763,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="impact punch" ID="{4FAB5781-255C-452A-AEC9-EB9C0A30C901}" ShortID="2736707" Type="SoundFX">
+												<Sound Name="impact punch" ID="{00347C74-6EF8-4D22-B3D8-99C35A045756}" ShortID="860479703" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3792,16 +3773,20 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="impact punch" ID="{9FF8B887-04AB-42EF-9F09-D17A1CA52A56}" ShortID="521769536">
+														<AudioFileSource Name="impact punch" ID="{625A42B0-62DF-4EB7-88F8-E38AF6961AA2}" ShortID="663451059">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="1.63518927315837E-04"/>
+																<Property Name="TrimBegin" Type="Real64" Value="3.84507869750913E-02"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>impact punch.wav</AudioFile>
+															<AudioFile>combat\impact punch.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="impact punch" ID="{9FF8B887-04AB-42EF-9F09-D17A1CA52A56}" Platform="Linked"/>
+														<ActiveSource Name="impact punch" ID="{625A42B0-62DF-4EB7-88F8-E38AF6961AA2}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="impact punch2" ID="{1FCE0C52-B431-4640-AB2F-DAAF7057D0B5}" ShortID="879795504" Type="SoundFX">
+												<Sound Name="impact punch2" ID="{D158B226-39CB-455D-AC27-254FC2BDBC84}" ShortID="198689089" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3811,16 +3796,20 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="impact punch2" ID="{B5560307-E546-4A5C-BA11-5D9DF418D308}" ShortID="1058711891">
+														<AudioFileSource Name="impact punch2" ID="{4F436646-052B-49AD-9BCB-D0FB6F567C15}" ShortID="725552119">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="4.9055678194751E-04"/>
+																<Property Name="TrimBegin" Type="Real64" Value="5.43716087489425E-02"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>impact punch2.wav</AudioFile>
+															<AudioFile>combat\impact punch2.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="impact punch2" ID="{B5560307-E546-4A5C-BA11-5D9DF418D308}" Platform="Linked"/>
+														<ActiveSource Name="impact punch2" ID="{4F436646-052B-49AD-9BCB-D0FB6F567C15}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="impact punch3" ID="{C06F4856-AF97-419C-B8DE-8BD5A2879926}" ShortID="512996707" Type="SoundFX">
+												<Sound Name="impact punch3" ID="{87DAD24B-F023-4033-BE6A-0CCA5FA735E3}" ShortID="896923635" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3830,16 +3819,21 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="impact punch3" ID="{14ECC4DB-782B-41FE-A1C6-E5CC46231438}" ShortID="676485394">
+														<AudioFileSource Name="impact punch3" ID="{92BD0174-7236-4400-BDE3-08581A8BFEDD}" ShortID="648139683">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="2.18025236421115E-04"/>
+																<Property Name="FadeOutDuration" Type="Real64" Value="6.29139072847682E-02"/>
+																<Property Name="TrimBegin" Type="Real64" Value="8.43461577614151E-02"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>impact punch3.wav</AudioFile>
+															<AudioFile>combat\impact punch3.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="impact punch3" ID="{14ECC4DB-782B-41FE-A1C6-E5CC46231438}" Platform="Linked"/>
+														<ActiveSource Name="impact punch3" ID="{92BD0174-7236-4400-BDE3-08581A8BFEDD}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="impact punch4" ID="{95397664-FD69-409F-AF1D-7F1990AB70A2}" ShortID="699772061" Type="SoundFX">
+												<Sound Name="impact punch4" ID="{37DCB4F6-1C77-408D-8C4A-4858E72EE93E}" ShortID="107450719" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3849,16 +3843,20 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="impact punch4" ID="{89A25239-90E0-48ED-AEE6-EFE55C8B9074}" ShortID="546756517">
+														<AudioFileSource Name="impact punch4" ID="{9AA12037-AFD8-4E95-9730-50B316CD9932}" ShortID="699324565">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="6.54075709263346E-04"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.094301997513105"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>impact punch4.wav</AudioFile>
+															<AudioFile>combat\impact punch4.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="impact punch4" ID="{89A25239-90E0-48ED-AEE6-EFE55C8B9074}" Platform="Linked"/>
+														<ActiveSource Name="impact punch4" ID="{9AA12037-AFD8-4E95-9730-50B316CD9932}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="impact punch5" ID="{9320DA44-E94A-4DAB-86F2-5302750EDD0A}" ShortID="822593261" Type="SoundFX">
+												<Sound Name="impact punch5" ID="{31B5BD86-CB7C-4DF9-85B7-B24A8F446127}" ShortID="516405783" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3868,16 +3866,27 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="impact punch5" ID="{ECF13A2A-BEB6-4AA9-9ADA-E5BBBB646778}" ShortID="179022273">
+														<AudioFileSource Name="impact punch5" ID="{F2D66ABF-0ACF-465D-9C40-05AD2F95C11D}" ShortID="83947997">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="4.9055678194751E-04"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.106007987738585"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>impact punch5.wav</AudioFile>
+															<AudioFile>combat\impact punch5.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="impact punch5" ID="{ECF13A2A-BEB6-4AA9-9ADA-E5BBBB646778}" Platform="Linked"/>
+														<ActiveSource Name="impact punch5" ID="{F2D66ABF-0ACF-465D-9C40-05AD2F95C11D}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="impact punch6" ID="{A3218AEE-B785-4083-84CB-0D60A523E3D3}" ShortID="625668831" Type="SoundFX">
+												<Sound Name="impact punch6" ID="{74FB9BC2-8BC8-444C-AD6B-112A5FD04859}" ShortID="416859574" Type="SoundFX">
+													<PropertyList>
+														<Property Name="Volume" Type="Real64">
+															<ValueList>
+																<Value>-3</Value>
+															</ValueList>
+														</Property>
+													</PropertyList>
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3887,13 +3896,17 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="impact punch6" ID="{8E4789A0-215F-4B7E-BF51-AD310A195C5B}" ShortID="320464081">
+														<AudioFileSource Name="impact punch6" ID="{32C392D0-3BF2-4E8C-B86F-FF53438E7FA4}" ShortID="336340365">
+															<PropertyList>
+																<Property Name="FadeInDuration" Type="Real64" Value="9.8111356389502E-04"/>
+																<Property Name="TrimBegin" Type="Real64" Value="0.168061653970692"/>
+															</PropertyList>
 															<Language>SFX</Language>
-															<AudioFile>impact punch6.wav</AudioFile>
+															<AudioFile>combat\impact punch6.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="impact punch6" ID="{8E4789A0-215F-4B7E-BF51-AD310A195C5B}" Platform="Linked"/>
+														<ActiveSource Name="impact punch6" ID="{32C392D0-3BF2-4E8C-B86F-FF53438E7FA4}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
@@ -3922,7 +3935,7 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
-												<Sound Name="sword impact" ID="{274AD9CD-97DC-43CE-B10A-89012F844EBE}" ShortID="1060353627" Type="SoundFX">
+												<Sound Name="sword impact" ID="{439F1497-6D4C-4FF5-B070-B020DB61D34F}" ShortID="818303716" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3932,16 +3945,16 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="sword impact" ID="{C9B7D177-3DE5-43B4-92A5-D512738478E8}" ShortID="174981601">
+														<AudioFileSource Name="sword impact" ID="{92ABA8D5-44D2-44F1-8646-975AF95A0C7E}" ShortID="829959811">
 															<Language>SFX</Language>
-															<AudioFile>sword impact.wav</AudioFile>
+															<AudioFile>combat\sword impact.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="sword impact" ID="{C9B7D177-3DE5-43B4-92A5-D512738478E8}" Platform="Linked"/>
+														<ActiveSource Name="sword impact" ID="{92ABA8D5-44D2-44F1-8646-975AF95A0C7E}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="sword impact2" ID="{BC0AAACC-7121-40C3-AD2C-B3A5A10CD7E7}" ShortID="703720" Type="SoundFX">
+												<Sound Name="sword impact2" ID="{A8E3E959-DB81-41B0-A3B4-BB6D1BC4F87E}" ShortID="546351878" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3951,16 +3964,16 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="sword impact2" ID="{4DC9D06D-3C73-475D-8627-11C3EF8FA6DC}" ShortID="1025280729">
+														<AudioFileSource Name="sword impact2" ID="{06E85D76-7A7D-4347-B02F-A6975A6628EF}" ShortID="1045603216">
 															<Language>SFX</Language>
-															<AudioFile>sword impact2.wav</AudioFile>
+															<AudioFile>combat\sword impact2.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="sword impact2" ID="{4DC9D06D-3C73-475D-8627-11C3EF8FA6DC}" Platform="Linked"/>
+														<ActiveSource Name="sword impact2" ID="{06E85D76-7A7D-4347-B02F-A6975A6628EF}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="sword impact3" ID="{BA881913-35BB-43BE-B058-10846BA62690}" ShortID="116828866" Type="SoundFX">
+												<Sound Name="sword impact3" ID="{6DA6C194-ACB7-47E2-840F-2B7C73B718A2}" ShortID="547893258" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3970,16 +3983,16 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="sword impact3" ID="{B1F5B7BE-ACDB-411B-9216-F122EF73D721}" ShortID="193892807">
+														<AudioFileSource Name="sword impact3" ID="{3F9A33CA-390A-46B0-9B81-9F61D79237F8}" ShortID="312095579">
 															<Language>SFX</Language>
-															<AudioFile>sword impact3.wav</AudioFile>
+															<AudioFile>combat\sword impact3.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="sword impact3" ID="{B1F5B7BE-ACDB-411B-9216-F122EF73D721}" Platform="Linked"/>
+														<ActiveSource Name="sword impact3" ID="{3F9A33CA-390A-46B0-9B81-9F61D79237F8}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="sword impact4" ID="{DBDCA2CC-0F6C-475B-B7CC-911161E25B3D}" ShortID="1033949177" Type="SoundFX">
+												<Sound Name="sword impact4" ID="{A9F87D25-987A-4811-A524-8A72234E9638}" ShortID="242061770" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -3989,16 +4002,16 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="sword impact4" ID="{1A4CB3E0-093C-45A9-9387-E33E653D829D}" ShortID="215055310">
+														<AudioFileSource Name="sword impact4" ID="{CB1C9374-49D7-4391-8F79-89E35F53A415}" ShortID="1006120754">
 															<Language>SFX</Language>
-															<AudioFile>sword impact4.wav</AudioFile>
+															<AudioFile>combat\sword impact4.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="sword impact4" ID="{1A4CB3E0-093C-45A9-9387-E33E653D829D}" Platform="Linked"/>
+														<ActiveSource Name="sword impact4" ID="{CB1C9374-49D7-4391-8F79-89E35F53A415}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="sword impact5" ID="{1005B536-A429-486B-8066-564986089CA8}" ShortID="690971287" Type="SoundFX">
+												<Sound Name="sword impact5" ID="{864B0D38-0495-47A3-8055-52D698D92E0B}" ShortID="1050176233" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -4008,16 +4021,16 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="sword impact5" ID="{35610490-7AD0-48BD-BCB8-2AC05FEC9B91}" ShortID="1054524200">
+														<AudioFileSource Name="sword impact5" ID="{E7EE767A-7B88-4728-846A-020DEBAD652A}" ShortID="588445708">
 															<Language>SFX</Language>
-															<AudioFile>sword impact5.wav</AudioFile>
+															<AudioFile>combat\sword impact5.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="sword impact5" ID="{35610490-7AD0-48BD-BCB8-2AC05FEC9B91}" Platform="Linked"/>
+														<ActiveSource Name="sword impact5" ID="{E7EE767A-7B88-4728-846A-020DEBAD652A}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="sword impact6" ID="{6C8AD08F-8821-47A8-8EDF-9B1A5D33AF67}" ShortID="532216455" Type="SoundFX">
+												<Sound Name="sword impact6" ID="{EC30CE70-DBDB-4460-8324-7544661665FB}" ShortID="152765767" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -4027,16 +4040,16 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="sword impact6" ID="{C54FA1E3-4D2F-4E4F-AF58-77F0EB7027C1}" ShortID="853785178">
+														<AudioFileSource Name="sword impact6" ID="{09365A4F-454C-42A0-8742-646B06D1D86D}" ShortID="122843971">
 															<Language>SFX</Language>
-															<AudioFile>sword impact6.wav</AudioFile>
+															<AudioFile>combat\sword impact6.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="sword impact6" ID="{C54FA1E3-4D2F-4E4F-AF58-77F0EB7027C1}" Platform="Linked"/>
+														<ActiveSource Name="sword impact6" ID="{09365A4F-454C-42A0-8742-646B06D1D86D}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="sword impact7" ID="{0C19E53F-20AE-40B1-9AF4-67913C84D848}" ShortID="939475135" Type="SoundFX">
+												<Sound Name="sword impact7" ID="{672865E0-64E7-4501-B2B7-9CCA2F078645}" ShortID="249477377" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -4046,13 +4059,13 @@
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="sword impact7" ID="{7E324F9F-F4F1-4D5A-BA80-73F0711EB10D}" ShortID="152424858">
+														<AudioFileSource Name="sword impact7" ID="{9EB7CE2E-EE82-47C2-9CCA-B823F955307C}" ShortID="432351044">
 															<Language>SFX</Language>
-															<AudioFile>sword impact7.wav</AudioFile>
+															<AudioFile>combat\sword impact7.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="sword impact7" ID="{7E324F9F-F4F1-4D5A-BA80-73F0711EB10D}" Platform="Linked"/>
+														<ActiveSource Name="sword impact7" ID="{9EB7CE2E-EE82-47C2-9CCA-B823F955307C}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
@@ -4997,21 +5010,9 @@
 					<ChildrenList>
 						<Sound Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" ShortID="549260623" Type="SoundFX">
 							<PropertyList>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-								<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
 										<Value>300</Value>
-									</ValueList>
-								</Property>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
 									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
@@ -5052,11 +5053,6 @@
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
 										<Value>20</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -7181,13 +7177,6 @@
 									</ChildrenList>
 								</BlendContainer>
 								<ActorMixer Name="death" ID="{D29B7A23-381B-425F-B3B0-1EF37A480BDF}" ShortID="393760917">
-									<PropertyList>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>7</Value>
-											</ValueList>
-										</Property>
-									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -7296,7 +7285,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-6</Value>
+														<Value>-18</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7322,7 +7311,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-5</Value>
+														<Value>-6</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7351,7 +7340,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-5</Value>
+														<Value>-10</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7520,13 +7509,6 @@
 											</ChildrenList>
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="melee_weapon_charge" ID="{1DA925FB-2DAB-4672-8348-A117FCFA7A35}" ShortID="1071439996">
-											<PropertyList>
-												<Property Name="Volume" Type="Real64">
-													<ValueList>
-														<Value>6</Value>
-													</ValueList>
-												</Property>
-											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -7724,7 +7706,7 @@
 										</Property>
 										<Property Name="Pitch" Type="int32">
 											<ValueList>
-												<Value>-600</Value>
+												<Value>-1000</Value>
 											</ValueList>
 										</Property>
 										<Property Name="SwitchBehavior" Type="int16" Value="1"/>
@@ -9475,7 +9457,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-15</Value>
+														<Value>-6</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -9656,6 +9638,28 @@
 												</Reference>
 											</ReferenceList>
 											<ChildrenList>
+												<Sound Name="pickup_4" ID="{ADF4576A-B6A6-46AD-B136-B671A8D02435}" ShortID="985500879" Type="SoundFX">
+													<ExcludedPlatformList>
+														<Platform>Android</Platform>
+													</ExcludedPlatformList>
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup_4" ID="{03EDED32-74C0-415D-B2A1-B20041E21A38}" ShortID="110450832">
+															<Language>SFX</Language>
+															<AudioFile>pickup_4.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup_4" ID="{03EDED32-74C0-415D-B2A1-B20041E21A38}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
 												<Sound Name="pickup_5" ID="{DECAA013-AE61-448D-8B56-6805F878D37F}" ShortID="288050998" Type="SoundFX">
 													<ReferenceList>
 														<Reference Name="Conversion">
@@ -10313,64 +10317,109 @@
 														<ActiveSource Name="attack6" ID="{032CAE57-E4F7-4CD2-BDF6-CD25DCF91D47}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="pickup_2" ID="{152AE3EA-549B-48C1-9CC8-847FC49454C8}" ShortID="511717299" Type="SoundFX">
+												<Sound Name="pickup_3" ID="{E3BBCDC2-9436-4305-AD9A-5F5C5C803864}" ShortID="208323535" Type="SoundFX">
+													<PropertyList>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Spatialization" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+														</Reference>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 														</Reference>
+														<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+															<ObjectRef Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="Effect1" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+															<ObjectRef Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+														</Reference>
+														<Reference Name="Effect2" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
+															<ObjectRef Name="Monsterize" ID="{99F80B38-1C45-42CE-9BCD-E94F3885DCAA}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
 														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+															<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="pickup_2" ID="{D2E7249F-0129-4A5A-B6E5-CD3F0E9B7039}" ShortID="298220797">
+														<AudioFileSource Name="pickup_3" ID="{08527487-47A3-40BA-BD36-7AC3EDDAFDF5}" ShortID="599169704">
+															<Language>SFX</Language>
+															<AudioFile>pickup_3.wav</AudioFile>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="pickup_3" ID="{08527487-47A3-40BA-BD36-7AC3EDDAFDF5}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+												<Sound Name="pickup_2" ID="{C67B4ED6-422B-43BD-A6D0-F52D42637025}" ShortID="783466142" Type="SoundFX">
+													<PropertyList>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Spatialization" Type="bool" Value="False"/>
+													</PropertyList>
+													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+														</Reference>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+															<ObjectRef Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="Effect1" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+															<ObjectRef Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+														</Reference>
+														<Reference Name="Effect2" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
+															<ObjectRef Name="Monsterize" ID="{99F80B38-1C45-42CE-9BCD-E94F3885DCAA}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="pickup_2" ID="{892D8D61-481F-4D73-9AB4-60914DEBCEA9}" ShortID="412238058">
 															<Language>SFX</Language>
 															<AudioFile>pickup_2.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="pickup_2" ID="{D2E7249F-0129-4A5A-B6E5-CD3F0E9B7039}" Platform="Linked"/>
+														<ActiveSource Name="pickup_2" ID="{892D8D61-481F-4D73-9AB4-60914DEBCEA9}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
-												<Sound Name="pickup_5" ID="{FBF142A8-9AA7-4AD3-A56D-F698E1F5408D}" ShortID="1044893899" Type="SoundFX">
+												<Sound Name="pickup_6" ID="{3BBCEFF8-DABA-4BF7-A1F8-9AC821FFA033}" ShortID="381979646" Type="SoundFX">
+													<PropertyList>
+														<Property Name="PositioningType" Type="int16" Value="1"/>
+														<Property Name="Spatialization" Type="bool" Value="False"/>
+													</PropertyList>
 													<ReferenceList>
+														<Reference Name="Attenuation">
+															<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+														</Reference>
 														<Reference Name="Conversion">
 															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 														</Reference>
+														<Reference Name="Effect0" PluginName="Wwise Parametric EQ" CompanyID="0" PluginID="105" PluginType="3">
+															<ObjectRef Name="Boost_3dB_10KHz" ID="{59632554-9396-4E15-889E-7A2F5458DEC3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
+														<Reference Name="Effect1" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+															<ObjectRef Name="enemiescomp" ID="{F2CA091F-ED07-474A-9A69-862894431B7D}" WorkUnitID="{8B887AB9-43BC-4DD8-806A-3E6F307A1D2D}"/>
+														</Reference>
+														<Reference Name="Effect2" PluginName="Wwise Pitch Shifter" CompanyID="0" PluginID="136" PluginType="3">
+															<ObjectRef Name="Monsterize" ID="{99F80B38-1C45-42CE-9BCD-E94F3885DCAA}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+														</Reference>
 														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+															<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 														</Reference>
 													</ReferenceList>
 													<ChildrenList>
-														<AudioFileSource Name="pickup_5" ID="{D39A8EA0-D77E-429A-B2C7-D401FC02F810}" ShortID="1027967331">
-															<Language>SFX</Language>
-															<AudioFile>pickup_5.wav</AudioFile>
-															<ConvertedFileIDList>
-																<File ID="416556646"/>
-															</ConvertedFileIDList>
-														</AudioFileSource>
-													</ChildrenList>
-													<ActiveSourceList>
-														<ActiveSource Name="pickup_5" ID="{D39A8EA0-D77E-429A-B2C7-D401FC02F810}" Platform="Linked"/>
-													</ActiveSourceList>
-												</Sound>
-												<Sound Name="pickup_6" ID="{4E2BB99B-13D9-4902-8C63-4DE27C5C10AE}" ShortID="90120897" Type="SoundFX">
-													<ReferenceList>
-														<Reference Name="Conversion">
-															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-														</Reference>
-														<Reference Name="OutputBus">
-															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-														</Reference>
-													</ReferenceList>
-													<ChildrenList>
-														<AudioFileSource Name="pickup_6" ID="{D78474E8-CF22-48CC-9D9B-8CDAC1BAA889}" ShortID="1056433714">
+														<AudioFileSource Name="pickup_6" ID="{0398AC5F-CCB4-4FEE-AEB1-44850A484D96}" ShortID="571728734">
 															<Language>SFX</Language>
 															<AudioFile>pickup_6.wav</AudioFile>
 														</AudioFileSource>
 													</ChildrenList>
 													<ActiveSourceList>
-														<ActiveSource Name="pickup_6" ID="{D78474E8-CF22-48CC-9D9B-8CDAC1BAA889}" Platform="Linked"/>
+														<ActiveSource Name="pickup_6" ID="{0398AC5F-CCB4-4FEE-AEB1-44850A484D96}" Platform="Linked"/>
 													</ActiveSourceList>
 												</Sound>
 											</ChildrenList>
@@ -10429,11 +10478,6 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>5</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -10447,6 +10491,216 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
+								<SwitchContainer Name="suicide_footsteps" ID="{814E3B9C-C6D4-4748-ACB1-4ECF0EC948C7}" ShortID="286925812">
+									<ExcludedPlatformList>
+										<Platform>Android</Platform>
+									</ExcludedPlatformList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<RandomSequenceContainer Name="grass" ID="{B7D61800-A9FC-45E5-B45F-373BB4938110}" ShortID="752264425">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="footsteps grass" ID="{292D1AED-77EA-4C9B-8399-3D0F09B6B8D9}" ShortID="853365849" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="footsteps grass" ID="{4BA60BBF-3A3C-4294-8501-E137F5E68874}" ShortID="16692924">
+															<Language>SFX</Language>
+															<AudioFile>footsteps grass.wav</AudioFile>
+															<ConvertedFileIDList>
+																<File Platform="Android" ID="544585358"/>
+																<File Platform="iOS" ID="544585358"/>
+																<File Platform="Mac" ID="544585358"/>
+																<File Platform="Windows" ID="544585358"/>
+															</ConvertedFileIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="footsteps grass" ID="{4BA60BBF-3A3C-4294-8501-E137F5E68874}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="wood" ID="{40BC4823-E4C0-4C19-9B8F-761154AABFF8}" ShortID="690013351">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="footsteps wood" ID="{2CDFEE02-AADE-4375-866C-F143570D7586}" ShortID="700216167" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="footsteps wood" ID="{25E22D5D-1E95-4A11-B906-AA8DFD16ED66}" ShortID="145668478">
+															<Language>SFX</Language>
+															<AudioFile>footsteps wood.wav</AudioFile>
+															<ConvertedFileIDList>
+																<File Platform="Android" ID="769883262"/>
+																<File Platform="iOS" ID="769883262"/>
+																<File Platform="Linux" ID="65674684"/>
+																<File Platform="Mac" ID="769883262"/>
+																<File Platform="Windows" ID="769883262"/>
+															</ConvertedFileIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="footsteps wood" ID="{25E22D5D-1E95-4A11-B906-AA8DFD16ED66}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="dirt" ID="{FB83D676-ADD7-453D-8461-C7759A8E7593}" ShortID="593758019">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="footsteps dirt" ID="{7AD4CFAD-5E00-4BFC-8F37-73A12E5910D4}" ShortID="875840567" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="footsteps dirt" ID="{0D22C425-10E5-4ED1-AD13-E9EA2D4F9950}" ShortID="417717087">
+															<Language>SFX</Language>
+															<AudioFile>footsteps dirt.wav</AudioFile>
+															<ConvertedFileIDList>
+																<File Platform="Android" ID="51556018"/>
+																<File Platform="iOS" ID="51556018"/>
+																<File Platform="Linux" ID="52703633"/>
+																<File Platform="Mac" ID="51556018"/>
+																<File Platform="Windows" ID="51556018"/>
+															</ConvertedFileIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="footsteps dirt" ID="{0D22C425-10E5-4ED1-AD13-E9EA2D4F9950}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+										<RandomSequenceContainer Name="stone" ID="{2BCBBC88-9651-46B7-B0C1-E7985905767B}" ShortID="49106808">
+											<ReferenceList>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<Sound Name="footsteps stone" ID="{C2879E17-3349-4DBA-8594-53FBD716067A}" ShortID="695216766" Type="SoundFX">
+													<ReferenceList>
+														<Reference Name="Conversion">
+															<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+														</Reference>
+														<Reference Name="OutputBus">
+															<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+														</Reference>
+													</ReferenceList>
+													<ChildrenList>
+														<AudioFileSource Name="footsteps stone" ID="{0F09C7AA-0416-468C-8954-6D61D4B9DD8A}" ShortID="720869560">
+															<Language>SFX</Language>
+															<AudioFile>footsteps stone.wav</AudioFile>
+															<ConvertedFileIDList>
+																<File Platform="Android" ID="132149624"/>
+																<File Platform="iOS" ID="132149624"/>
+																<File Platform="Linux" ID="582426767"/>
+																<File Platform="Mac" ID="132149624"/>
+																<File Platform="Windows" ID="132149624"/>
+															</ConvertedFileIDList>
+														</AudioFileSource>
+													</ChildrenList>
+													<ActiveSourceList>
+														<ActiveSource Name="footsteps stone" ID="{0F09C7AA-0416-468C-8954-6D61D4B9DD8A}" Platform="Linked"/>
+													</ActiveSourceList>
+												</Sound>
+											</ChildrenList>
+										</RandomSequenceContainer>
+									</ChildrenList>
+									<GroupingInfo>
+										<GroupRef Name="footsteps" ID="{9B2F9993-342B-4198-8D87-CD754108BF2D}"/>
+										<DefaultSwitchRef Name="grass" ID="{D3337BD3-2C92-4405-9ABE-61DA5317E222}"/>
+										<GroupingBehaviorList>
+											<GroupingBehavior>
+												<ItemRef Name="grass" ID="{B7D61800-A9FC-45E5-B45F-373BB4938110}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="wood" ID="{40BC4823-E4C0-4C19-9B8F-761154AABFF8}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="dirt" ID="{FB83D676-ADD7-453D-8461-C7759A8E7593}"/>
+											</GroupingBehavior>
+											<GroupingBehavior>
+												<ItemRef Name="stone" ID="{2BCBBC88-9651-46B7-B0C1-E7985905767B}"/>
+											</GroupingBehavior>
+										</GroupingBehaviorList>
+										<GroupingList>
+											<Grouping>
+												<SwitchRef Name="stone" ID="{32FC8B19-4D44-4799-8652-5ED9EBAD4701}"/>
+												<ItemList>
+													<ItemRef Name="stone" ID="{2BCBBC88-9651-46B7-B0C1-E7985905767B}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="dirt" ID="{74EF4333-240F-435A-A776-503864C44FCC}"/>
+												<ItemList>
+													<ItemRef Name="dirt" ID="{FB83D676-ADD7-453D-8461-C7759A8E7593}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="wood" ID="{B3BBDC4C-3524-4ADE-8006-B8D46099FAD2}"/>
+												<ItemList>
+													<ItemRef Name="wood" ID="{40BC4823-E4C0-4C19-9B8F-761154AABFF8}"/>
+												</ItemList>
+											</Grouping>
+											<Grouping>
+												<SwitchRef Name="grass" ID="{D3337BD3-2C92-4405-9ABE-61DA5317E222}"/>
+												<ItemList>
+													<ItemRef Name="grass" ID="{B7D61800-A9FC-45E5-B45F-373BB4938110}"/>
+												</ItemList>
+											</Grouping>
+										</GroupingList>
+									</GroupingInfo>
+								</SwitchContainer>
 								<RandomSequenceContainer Name="suicide_flung_away" ID="{FBDBAC31-8D5F-4645-85B1-9F088A074C25}" ShortID="918529946">
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -10565,6 +10819,16 @@
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
+								</RandomSequenceContainer>
+								<RandomSequenceContainer Name="suicide_charge" ID="{739CB6AA-F3F7-4AB6-836B-F436F16787D3}" ShortID="361255389">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
 								</RandomSequenceContainer>
 								<RandomSequenceContainer Name="suicide_attacked" ID="{B7828EAD-8BB2-4D43-AF9D-3E5E58CA3E8E}" ShortID="344314959">
 									<ReferenceList>
@@ -10881,11 +11145,6 @@
 												</ModifierInfo>
 											</ModifierList>
 										</Property>
-										<Property Name="Volume" Type="Real64">
-											<ValueList>
-												<Value>-5</Value>
-											</ValueList>
-										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -11173,11 +11432,6 @@
 						<RandomSequenceContainer Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" ShortID="207329286">
 							<PropertyList>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-2</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -11376,11 +11630,6 @@
 						<RandomSequenceContainer Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" ShortID="557904956">
 							<PropertyList>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-3</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -11538,11 +11787,6 @@
 						<RandomSequenceContainer Name="small reward" ID="{971A2097-909D-4B4A-AD17-048E6268D440}" ShortID="528818968">
 							<PropertyList>
 								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-5</Value>
-									</ValueList>
-								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -11604,7 +11848,7 @@
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-3</Value>
+										<Value>-10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -11627,13 +11871,6 @@
 							</ActiveSourceList>
 						</Sound>
 						<RandomSequenceContainer Name="bigreward" ID="{1DC5B81B-2CD8-4B93-A914-51C842193214}" ShortID="217655011">
-							<PropertyList>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-1</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -11668,25 +11905,6 @@
 							</ChildrenList>
 						</RandomSequenceContainer>
 						<Sound Name="fail sound hurtig modulated" ID="{8872F418-3916-400A-9472-299CCD90F3F8}" ShortID="53597349" Type="SoundFX">
-							<PropertyList>
-								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
-								<Property Name="MaxSoundPerInstance" Type="int16">
-									<ValueList>
-										<Value>1</Value>
-									</ValueList>
-								</Property>
-								<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
-								<Property Name="UseMaxSoundPerInstance" Type="bool">
-									<ValueList>
-										<Value>True</Value>
-									</ValueList>
-								</Property>
-								<Property Name="Volume" Type="Real64">
-									<ValueList>
-										<Value>-6</Value>
-									</ValueList>
-								</Property>
-							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -11932,7 +12150,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-5</Value>
+										<Value>-10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -13173,7 +13391,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-14</Value>
+										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -14490,6 +14708,7 @@
 										</Sound>
 										<Sound Name="metal_hammer_3" ID="{76982BF1-056D-4F9A-AEBC-93F4E6EB0FC7}" ShortID="747561908" Type="SoundFX">
 											<ExcludedPlatformList>
+												<Platform>Linux</Platform>
 												<Platform>Android</Platform>
 											</ExcludedPlatformList>
 											<PropertyList>
