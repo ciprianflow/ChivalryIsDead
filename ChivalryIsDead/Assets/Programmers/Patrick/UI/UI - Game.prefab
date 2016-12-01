@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000010129988088
 GameObject:
   m_ObjectHideFlags: 1
@@ -384,11 +384,11 @@ GameObject:
   - 95: {fileID: 95000011819251410}
   m_Layer: 5
   m_Name: PlayerTaunt
-  m_TagString: PlayerBubble
+  m_TagString: PlayerTauntBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000011277181928
 GameObject:
   m_ObjectHideFlags: 1
@@ -1624,14 +1624,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac12f327d044f384fb33b39b43fb6043, type: 2}
   playerText: {fileID: 1000013217776696}
   playerBubble: {fileID: 1000010330997050}
-  playerTauntBubble: {fileID: 1000011244966598}
   swordText: {fileID: 1000010340376272}
   swordBubble: {fileID: 1000013538321572}
   princessText: {fileID: 1000010592325808}
   princessBubble: {fileID: 1000012519938510}
   kingText: {fileID: 1000013373637058}
   kingBubble: {fileID: 1000012609175824}
-  enemyTauntBubble: {fileID: 1000010492502376}
   peasantABubble: {fileID: 1000012700284342}
   peasantAText: {fileID: 1000013707142172}
   peasantBBubble: {fileID: 1000012093702446}
@@ -2637,7 +2635,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e9dd8a2b88c26c048ba8562bc6a974b9, type: 3}
+    m_Font: {fileID: 12800000, guid: 6b2673475a3823b46a296b2df5193dd9, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -4184,7 +4182,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e9dd8a2b88c26c048ba8562bc6a974b9, type: 3}
+    m_Font: {fileID: 12800000, guid: 6b2673475a3823b46a296b2df5193dd9, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -4250,6 +4248,7 @@ MonoBehaviour:
   meleeSprite: {fileID: 21300000, guid: 03ddf8dc611b5e24797697458dcf81c3, type: 3}
   rangedSprite: {fileID: 21300000, guid: 701a6e8e0dbc03847abc8db47f67b5ce, type: 3}
   suicideSprite: {fileID: 0}
+  timeSprite: {fileID: 21300000, guid: fb5037a02228d63418289274169de784, type: 3}
   FadeOut: {fileID: 1000012630998002}
 --- !u!114 &114000013748761768
 MonoBehaviour:
@@ -4423,7 +4422,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: e9dd8a2b88c26c048ba8562bc6a974b9, type: 3}
+    m_Font: {fileID: 12800000, guid: 6b2673475a3823b46a296b2df5193dd9, type: 3}
     m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
@@ -4435,7 +4434,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: X 3
+  m_Text: 'X
+
+'
 --- !u!114 &114000014205904454
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6016,7 +6017,7 @@ RectTransform:
   m_Father: {fileID: 224000010882874462}
   m_RootOrder: 0
   m_AnchorMin: {x: 0.35, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}

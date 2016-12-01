@@ -38,9 +38,14 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
             Dsystem = GameObject.FindGameObjectWithTag("DialogSystem");
             Dsystem.GetComponent<Gameplay_Dialog>().HalfTime();
         }
+
     }
 
     public float GetTimer()
+    {
+        return timer;
+    }
+    public float GetElapsedTime()
     {
 
         return 1 - timer / maxTime;
