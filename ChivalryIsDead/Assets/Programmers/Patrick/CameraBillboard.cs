@@ -14,7 +14,10 @@ public class CameraBillboard : MonoBehaviour
     {
         //transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward, m_Camera.transform.rotation * Vector3.up);
         //rotation = Quaternion.LookRotation(Vector3.up, Vector3.forward);
-        
+        if(transform.parent.name == "ExclamationCanvas")
+        {
+            m_Camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        }
 
     }
 
