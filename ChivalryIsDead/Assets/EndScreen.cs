@@ -17,7 +17,9 @@ public class EndScreen : MonoBehaviour {
     public Sprite suicideSprite;
     public Sprite timeSprite;
 
+    public GameObject Grid;
     public GameObject FadeOut;
+    public GameObject Timer;
 
 
     private QuestData data;
@@ -51,15 +53,17 @@ public class EndScreen : MonoBehaviour {
             //questDesc.Append(string.Format(" - 0/{0} sheep to protect." + Environment.NewLine, data.FriendlyCount));
         }
 
-        questDesc.Append(string.Format("YOU FAILED..." + Environment.NewLine));
+        
 
         int localScore = StaticIngameData.dummyManager.GetLocalScore();
         if (localScore >= 0)
         {
+            questDesc.Append(string.Format("YOU FAILED..." + Environment.NewLine));
             questDesc.Append(string.Format("Reputation gained: " + localScore));
         }
         else
         {
+            questDesc.Append(string.Format("YOU WIN THIS BATTLE!" + Environment.NewLine));
             questDesc.Append(string.Format("Reputation lost: " + localScore));
         }
 
@@ -123,13 +127,17 @@ public class EndScreen : MonoBehaviour {
             }
         }
 
-        int poz = 0;
-        int pozIncrease = 150;
+
+        if (TimerObjectScript.Instance != null)
+        {
+            float timer = TimerObjectScript.Instance.GetTimer();
+
+            Timer.GetComponentInChildren<Text>().text = secondsToMinutes((int) Math.Round(timer));
+        }
+
         if (totalSheep > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
             hh.GetComponentInChildren<Text>().text = "X " + deadSheep;
             hh.GetComponentInChildren<Image>().sprite = SheepSprite;
             hh.SetActive(true);
@@ -137,8 +145,7 @@ public class EndScreen : MonoBehaviour {
         if (totalFishmen > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
+
             hh.GetComponentInChildren<Text>().text = "X " + deadFishmen;
             hh.GetComponentInChildren<Image>().sprite = meleeSprite;
             hh.SetActive(true);
@@ -147,8 +154,6 @@ public class EndScreen : MonoBehaviour {
         if (totalGnomes > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
             hh.GetComponentInChildren<Text>().text = "X " + deadGnomes;
             //hh.GetComponentInChildren<Image>().sprite =;
             hh.SetActive(true);
@@ -157,26 +162,11 @@ public class EndScreen : MonoBehaviour {
         if (totalTrolls > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
             hh.GetComponentInChildren<Text>().text = "X " + deadTrolls;
             hh.GetComponentInChildren<Image>().sprite = rangedSprite;
             hh.SetActive(true);
         }
 
-        if (TimerObjectScript.Instance != null)
-        {
-            float timer = TimerObjectScript.Instance.GetTimer();
-
-            GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
-
-            Debug.Log("TIME " + timer);
-            hh.GetComponentInChildren<Text>().text = "X " + (int) Math.Round(timer);
-            hh.GetComponentInChildren<Image>().sprite = timeSprite;
-            hh.SetActive(true);
-        }
 
 
     }
@@ -186,5 +176,28 @@ public class EndScreen : MonoBehaviour {
         StaticIngameData.mapManager.LoadHubArea();
     }
 
+    private string secondsToMinutes(int seconds)
+    {
+        string format;
+        int min = Math.Abs(seconds / 60);
+        format = min.ToString();
+        if ( min < 10)
+        {
+            format = "0" + format;
+        }
+        int sec = Math.Abs(60 * min - seconds);
+        
+        if (sec < 10)
+        {
+            format = format + ":0" + sec;
+        }
+        else
+        {
+            format = format + ":" + sec;
+        }
+
+        return format;
+
+    }
 
 }

@@ -7578,6 +7578,34 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013030166368, guid: 7b23a88e507dc4e43b78a3f5bab93191,
     type: 2}
   m_PrefabInternal: {fileID: 1285067810}
+--- !u!1 &1313665483
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1927020830}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1313665484}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1313665484
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 1927020830}
+  m_GameObject: {fileID: 1313665483}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
 --- !u!4 &1315152938 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4000012181302800, guid: c4718c80e5fac4b4fbd36fde63b87e02,
@@ -9530,7 +9558,7 @@ Prefab:
     - target: {fileID: 224000012245938430, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 224000012245938430, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
@@ -9582,6 +9610,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010913354426, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: SwordParticle
+      value: 
+      objectReference: {fileID: 1608666569}
+    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: speaker
+      value: 
+      objectReference: {fileID: 322391648}
+    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2076890311}
     - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
       propertyPath: Player
@@ -9642,21 +9685,6 @@ Prefab:
       propertyPath: TrollA
       value: 
       objectReference: {fileID: 1541762707}
-    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
-        type: 2}
-      propertyPath: speaker
-      value: 
-      objectReference: {fileID: 322391648}
-    - target: {fileID: 114000013685866040, guid: 98f8ff744a171b846b1188deab12c9be,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 2076890311}
-    - target: {fileID: 114000010913354426, guid: 98f8ff744a171b846b1188deab12c9be,
-        type: 2}
-      propertyPath: SwordParticle
-      value: 
-      objectReference: {fileID: 1608666569}
     - target: {fileID: 1000013809427288, guid: 98f8ff744a171b846b1188deab12c9be, type: 2}
       propertyPath: m_Name
       value: UI - Tutorial - IntroDay
@@ -9775,6 +9803,16 @@ Prefab:
         type: 2}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012961736172, guid: 1ff69020aa975004c9243b16a7dd5d44,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000010385518424, guid: 1ff69020aa975004c9243b16a7dd5d44,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -39.340652
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ff69020aa975004c9243b16a7dd5d44, type: 2}

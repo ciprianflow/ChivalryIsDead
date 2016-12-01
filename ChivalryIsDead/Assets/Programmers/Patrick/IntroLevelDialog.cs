@@ -47,7 +47,7 @@ public class IntroLevelDialog : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log(PlayerPrefs.GetInt("Attack"));
+ 
             
         if (!learnedToMove)
         {
@@ -252,7 +252,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(3f);
         PlayerPrefs.SetInt("AttackLevel", 1);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Cinematic");
     }
 
 

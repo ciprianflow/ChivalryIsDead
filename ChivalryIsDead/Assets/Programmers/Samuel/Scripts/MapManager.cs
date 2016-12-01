@@ -62,10 +62,11 @@ public class MapManager : MonoBehaviour {
 
         for(int i = 0; i < objectives.Count; i++)
         {
-
             TranslateQuest(objectives[i]);
-            if ((objectives[i] as BaseObjective) != null && (objectives[i] as BaseObjective).targetID == 21)
-                StaticData.GetObjectives().RemoveAt(i);
+        }
+
+        foreach(IObjective spawn in StaticData.currQuest.Spawns) {
+            TranslateQuest(spawn);
         }
     }
 

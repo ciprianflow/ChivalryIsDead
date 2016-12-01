@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 public class InvisibleBGCtrl : MonoBehaviour, IPointerClickHandler
 {
     MenuVisibilityCtrl _parentCtrl;
+    GameObject otherObject;
 
     public void setParentCtrl(MenuVisibilityCtrl ctrl)
     {
