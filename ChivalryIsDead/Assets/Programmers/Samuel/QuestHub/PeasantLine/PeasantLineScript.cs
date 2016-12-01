@@ -8,6 +8,7 @@ public class PeasantLineScript : MonoBehaviour {
     public HubDataManager hubDataManager;
 
     public GameObject PeasantPrfab;
+    public GameObject PeasantOutlinePrefab;
     public GameObject QuestMarkerPrefab;
 
     public int QuestMarkerHeight = 175;
@@ -53,7 +54,7 @@ public class PeasantLineScript : MonoBehaviour {
 
         if(PeasantSprites != null)
         {
-            PeasantObj.GetComponent<Image>().sprite = PeasantSprites[Random.Range(0, PeasantSprites.Length)];
+            PeasantObj.transform.GetChild(0).GetComponent<Image>().sprite = PeasantSprites[Random.Range(0, PeasantSprites.Length)];
         }
 
         Peasants.Add(PeasantObj);
@@ -63,6 +64,8 @@ public class PeasantLineScript : MonoBehaviour {
     {
 
         Vector3 pos = Peasants[PeasantIndex].transform.position;
+        Peasants[PeasantIndex].transform.GetComponent<Image>().enabled = true;
+        Peasants[PeasantIndex].transform.GetComponent<colorLerp>().enabled = true;
 
         GameObject QuestMarkerObj = Instantiate(QuestMarkerPrefab);
 
