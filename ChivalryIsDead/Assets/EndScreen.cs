@@ -17,7 +17,9 @@ public class EndScreen : MonoBehaviour {
     public Sprite suicideSprite;
     public Sprite timeSprite;
 
+    public GameObject Grid;
     public GameObject FadeOut;
+    public GameObject Timer;
 
 
     private QuestData data;
@@ -123,22 +125,25 @@ public class EndScreen : MonoBehaviour {
             }
         }
 
-        int poz = 0;
-        int pozIncrease = 150;
+
+        if (TimerObjectScript.Instance != null)
+        {
+            float timer = TimerObjectScript.Instance.GetTimer();
+
+            Timer.GetComponentInChildren<Text>().text = secondsToMinutes((int) Math.Round(timer));
+        }
+
         if (totalSheep > 0)
         {
-            GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
+            GameObject hh = Instantiate(killLine, Grid.transform.parent, killLine.transform) as GameObject;
             hh.GetComponentInChildren<Text>().text = "X " + deadSheep;
             hh.GetComponentInChildren<Image>().sprite = SheepSprite;
             hh.SetActive(true);
         }
         if (totalFishmen > 0)
         {
-            GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
+            GameObject hh = Instantiate(killLine, Grid.transform.parent, killLine.transform) as GameObject;
+
             hh.GetComponentInChildren<Text>().text = "X " + deadFishmen;
             hh.GetComponentInChildren<Image>().sprite = meleeSprite;
             hh.SetActive(true);
@@ -146,9 +151,7 @@ public class EndScreen : MonoBehaviour {
 
         if (totalGnomes > 0)
         {
-            GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
+            GameObject hh = Instantiate(killLine, Grid.transform.parent, killLine.transform) as GameObject;
             hh.GetComponentInChildren<Text>().text = "X " + deadGnomes;
             //hh.GetComponentInChildren<Image>().sprite =;
             hh.SetActive(true);
@@ -156,27 +159,12 @@ public class EndScreen : MonoBehaviour {
 
         if (totalTrolls > 0)
         {
-            GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
+            GameObject hh = Instantiate(killLine, Grid.transform.parent, killLine.transform) as GameObject;
             hh.GetComponentInChildren<Text>().text = "X " + deadTrolls;
             hh.GetComponentInChildren<Image>().sprite = rangedSprite;
             hh.SetActive(true);
         }
 
-        if (TimerObjectScript.Instance != null)
-        {
-            float timer = TimerObjectScript.Instance.GetTimer();
-
-            GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.transform.Translate(new Vector3(0, -poz, 0));
-            poz += pozIncrease;
-
-            Debug.Log("TIME " + timer);
-            hh.GetComponentInChildren<Text>().text = "X " + (int) Math.Round(timer);
-            hh.GetComponentInChildren<Image>().sprite = timeSprite;
-            hh.SetActive(true);
-        }
 
 
     }
@@ -186,5 +174,11 @@ public class EndScreen : MonoBehaviour {
         StaticIngameData.mapManager.LoadHubArea();
     }
 
+    private string secondsToMinutes(int seconds)
+    {
+        return "" + seconds;
+
+
+    }
 
 }
