@@ -9,12 +9,12 @@ FBXHeaderExtension:  {
 	CreationTimeStamp:  {
 		Version: 1000
 		Year: 2016
-		Month: 11
-		Day: 30
+		Month: 12
+		Day: 1
 		Hour: 10
-		Minute: 48
-		Second: 19
-		Millisecond: 835
+		Minute: 43
+		Second: 3
+		Millisecond: 175
 	}
 	Creator: "FBX SDK/FBX Plugins version 2016.1.2"
 	SceneInfo: "SceneInfo::GlobalInfo", "UserData" {
@@ -36,14 +36,14 @@ FBXHeaderExtension:  {
 			P: "Original|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "Original|ApplicationName", "KString", "", "", "Maya"
 			P: "Original|ApplicationVersion", "KString", "", "", "2016"
-			P: "Original|DateTime_GMT", "DateTime", "", "", "30/11/2016 09:48:19.834"
+			P: "Original|DateTime_GMT", "DateTime", "", "", "01/12/2016 09:43:03.172"
 			P: "Original|FileName", "KString", "", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Animations\Cinematic\Intro Cinematic\Scene 1\Camera_anim.fbx"
 			P: "LastSaved", "Compound", "", ""
 			P: "LastSaved|ApplicationVendor", "KString", "", "", "Autodesk"
 			P: "LastSaved|ApplicationName", "KString", "", "", "Maya"
 			P: "LastSaved|ApplicationVersion", "KString", "", "", "2016"
-			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "30/11/2016 09:48:19.834"
-			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\dadiu\Documents\ChivalryIsDead\ChivalryIsDead\Assets\Art\Animations\Cinematic\Intro Cinematic"
+			P: "LastSaved|DateTime_GMT", "DateTime", "", "", "01/12/2016 09:43:03.172"
+			P: "Original|ApplicationActiveProject", "KString", "", "", "C:\Users\dadiu\Documents\maya\projects\default"
 			P: "Original|ApplicationNativeFile", "KString", "", "", "Z:\team4\Art department\Cinematic\Intro Cutscene\SC_010\SH_010\SC_010.ma"
 		}
 	}
@@ -79,7 +79,7 @@ GlobalSettings:  {
 
 Documents:  {
 	Count: 1
-	Document: 1205225136, "", "Scene" {
+	Document: 1195670992, "", "Scene" {
 		Properties70:  {
 			P: "SourceObject", "object", "", ""
 			P: "ActiveAnimStackName", "KString", "", "", "Take 001"
@@ -225,24 +225,26 @@ Definitions:  {
 ;------------------------------------------------------------------
 
 Objects:  {
-	NodeAttribute: 1088472960, "NodeAttribute::", "LimbNode" {
+	NodeAttribute: 1203892832, "NodeAttribute::", "LimbNode" {
 		Properties70:  {
 			P: "Size", "double", "Number", "",16.6666666666667
 		}
 		TypeFlags: "Skeleton"
 	}
-	Model: 236799200, "Model::Camera_jnt", "LimbNode" {
+	Model: 379762368, "Model::Camera_jnt", "LimbNode" {
 		Version: 232
 		Properties70:  {
 			P: "RotationActive", "bool", "", "",1
 			P: "InheritType", "enum", "", "",1
 			P: "ScalingMax", "Vector3D", "Vector", "",0,0,0
 			P: "DefaultAttributeIndex", "int", "Integer", "",0
+			P: "Lcl Rotation", "Lcl Rotation", "", "AL7",0,0,0
+			P: "Lcl Scaling", "Lcl Scaling", "", "AL7",1,1,1
 		}
 		Shading: Y
 		Culling: "CullingOff"
 	}
-	AnimationStack: 1091471008, "AnimStack::Camera_anim", "" {
+	AnimationStack: 1141309696, "AnimStack::Camera_anim", "" {
 		Properties70:  {
 			P: "LocalStart", "KTime", "Time", "",1924423250
 			P: "LocalStop", "KTime", "Time", "",577326975000
@@ -250,9 +252,9 @@ Objects:  {
 			P: "ReferenceStop", "KTime", "Time", "",577326975000
 		}
 	}
-	AnimationLayer: 1091236560, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 1195657664, "AnimLayer::BaseLayer", "" {
 	}
-	AnimationLayer: 1091236256, "AnimLayer::BaseLayer", "" {
+	AnimationLayer: 1195657968, "AnimLayer::BaseLayer", "" {
 	}
 }
 
@@ -262,13 +264,13 @@ Objects:  {
 Connections:  {
 	
 	;Model::Camera_jnt, Model::RootNode
-	C: "OO",236799200,0
+	C: "OO",379762368,0
 	
 	;NodeAttribute::, Model::Camera_jnt
-	C: "OO",1088472960,236799200
+	C: "OO",1203892832,379762368
 	
 	;AnimLayer::BaseLayer, AnimStack::Camera_anim
-	C: "OO",1091236256,1091471008
+	C: "OO",1195657968,1141309696
 }
 ;Takes section
 ;----------------------------------------------------
