@@ -47,7 +47,7 @@ public class IntroLevelDialog : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log(PlayerPrefs.GetInt("Attack"));
+ 
             
         if (!learnedToMove)
         {
