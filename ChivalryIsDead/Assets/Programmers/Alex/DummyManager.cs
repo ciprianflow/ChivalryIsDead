@@ -78,10 +78,6 @@ public class DummyManager : MonoBehaviour
         {
             handleAFK(antiAfkTimestamp);
         }
-
-        Debug.Log(Input.touchCount);
-
-
     }
 
     private void handleAFK(float timestamp)
