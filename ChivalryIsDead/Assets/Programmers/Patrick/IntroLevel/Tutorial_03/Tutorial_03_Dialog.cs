@@ -368,6 +368,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //ControlHit.SetActive(true);
 
         yield return new WaitForSeconds(7f);
+        PlayerPrefs.SetInt("OverreactLevel", 1);
         SceneManager.LoadScene(6);
 
     }
