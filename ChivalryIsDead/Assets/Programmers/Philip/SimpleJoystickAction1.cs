@@ -498,27 +498,16 @@ namespace CnControls
 
         private void action_attack()
         {
-            t.text = "Attack";
-            t.color = new Color(1, 0, 0, 1);
             Vibration.Vibrate(50);
             playerActionController.HandleAttack();
-
-
-            
-            //playerScript.attack();
         }
 
         private void action_taunt()
         {
-            t.text = "Taunt";
-            t.color = new Color(0, 0, 1, 1);
             Vibration.Vibrate(50);
-            //playerScript.taunt();
             playerActionController.HandleTaunt();
         }
         private void action_overreact() {
-            t.text = "overreact";
-            t.color = new Color(0, 1, 0, 1);
             playerActionController.HandleOverreact();
 
         }
