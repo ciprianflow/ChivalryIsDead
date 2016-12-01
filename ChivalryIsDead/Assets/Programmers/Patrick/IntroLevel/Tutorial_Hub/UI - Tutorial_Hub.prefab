@@ -61,6 +61,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1000010229139472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011129160134}
+  m_Layer: 0
+  m_Name: Placeholder
+  m_TagString: SettingsManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010238025444
 GameObject:
   m_ObjectHideFlags: 1
@@ -147,6 +162,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000010370399860
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000014065479940}
+  m_Layer: 0
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000010380355934
 GameObject:
   m_ObjectHideFlags: 1
@@ -160,6 +190,22 @@ GameObject:
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000010401726096
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000011382558784}
+  - 114: {fileID: 114000010901688300}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -550,7 +596,7 @@ GameObject:
   - 95: {fileID: 95000010034803230}
   m_Layer: 5
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1195,6 +1241,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4000011129160134
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010229139472}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1008.05, y: -767.1561, z: 5.7224646}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 4000011382558784}
+  - {fileID: 4000014065479940}
+  m_Father: {fileID: 224000012915800950}
+  m_RootOrder: 7
+--- !u!4 &4000011382558784
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010401726096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011129160134}
+  m_RootOrder: 0
 --- !u!4 &4000011385189622
 Transform:
   m_ObjectHideFlags: 1
@@ -1278,6 +1352,19 @@ Transform:
   - {fileID: 224000013002015526}
   m_Father: {fileID: 224000011900447060}
   m_RootOrder: 6
+--- !u!4 &4000014065479940
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010370399860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011129160134}
+  m_RootOrder: 1
 --- !u!95 &95000010034803230
 Animator:
   serializedVersion: 3
@@ -1675,6 +1762,36 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000010901688300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010401726096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41b163b53b62daa46943f39cfc350f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 6
+  zVel: 0
+  turnMag: 0
+  speedAcc: 0.03
+  speedDec: 0.03
+  anim: {fileID: 0}
+  attacking: 0
+  taunting: 0
+  takedamaging: 0
+  attackReachedFull: 0
+  overreacting: 0
+  Attackended: 0
+  currentAttack: 1
+  attackUpperWeight: 0
+  attackLowerWeight: 0
+  UpperWeight: 0
+  LowerWeight: 0
+  SwordTrail: {fileID: 0}
+  DustParticle: {fileID: 0}
 --- !u!114 &114000010926485956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2361,17 +2478,19 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
   playerText: {fileID: 1000011916623800}
   playerBubble: {fileID: 1000012815899930}
+  playerTauntBubble: {fileID: 1000010229139472}
   swordText: {fileID: 1000012261041828}
   swordBubble: {fileID: 1000010674391578}
   princessText: {fileID: 1000013333229018}
   princessBubble: {fileID: 1000012994192230}
   kingText: {fileID: 1000012804769138}
   kingBubble: {fileID: 1000010450137542}
+  enemyTauntBubble: {fileID: 1000010229139472}
   peasantABubble: {fileID: 1000013751018466}
   peasantAText: {fileID: 1000013247491938}
   peasantBBubble: {fileID: 1000011002408128}
   peasantBText: {fileID: 1000012626397622}
-  SwordParticle: {fileID: 0}
+  SwordParticle: {fileID: 1000010229139472}
   skipBtn: {fileID: 1000013528525684}
 --- !u!114 &114000012001764546
 MonoBehaviour:
@@ -3614,9 +3733,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff86406a33a9b345a5a73a9091573db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pause: {fileID: 0}
-  muteSound: {fileID: 0}
-  soundVolume: {fileID: 0}
+  pause: {fileID: 1000012803518334}
+  muteSound: {fileID: 1000012660053834}
+  soundVolume: {fileID: 1000013620167860}
   quest: {fileID: 1000010666544478}
   endLetter: {fileID: 1000013873665836}
   introLetter: {fileID: 1000013417139420}
@@ -5087,6 +5206,7 @@ RectTransform:
   - {fileID: 224000010124313790}
   - {fileID: 224000010552083982}
   - {fileID: 224000013968264220}
+  - {fileID: 4000011129160134}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
