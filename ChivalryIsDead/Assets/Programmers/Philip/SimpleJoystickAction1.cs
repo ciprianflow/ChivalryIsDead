@@ -187,13 +187,13 @@ namespace CnControls
 
         private void Awake()
         {
-            if(SceneManager.GetActiveScene().name != "IntroLevel" && SceneManager.GetActiveScene().name != "Tutorial_02" && SceneManager.GetActiveScene().name != "Tutorial_03")
+
+            if(Application.isEditor)
             {
                 PlayerPrefs.SetInt("Attack", 1);
                 PlayerPrefs.SetInt("Taunt", 1);
                 PlayerPrefs.SetInt("Overreact", 1);
             }
-            
 
             player = GameObject.FindGameObjectWithTag("Player").gameObject;
             //playerScript = player.GetComponent<Player>();
