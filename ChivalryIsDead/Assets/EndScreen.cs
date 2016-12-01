@@ -15,6 +15,7 @@ public class EndScreen : MonoBehaviour {
     public Sprite meleeSprite;
     public Sprite rangedSprite;
     public Sprite suicideSprite;
+    public Sprite timeSprite;
 
     public GameObject FadeOut;
 
@@ -50,9 +51,17 @@ public class EndScreen : MonoBehaviour {
             //questDesc.Append(string.Format(" - 0/{0} sheep to protect." + Environment.NewLine, data.FriendlyCount));
         }
 
-
         questDesc.Append(string.Format("YOU FAILED..." + Environment.NewLine));
-        questDesc.Append(string.Format("Reputation gained: " + StaticIngameData.dummyManager.GetLocalScore()));
+
+        int localScore = StaticIngameData.dummyManager.GetLocalScore();
+        if (localScore >= 0)
+        {
+            questDesc.Append(string.Format("Reputation gained: " + localScore));
+        }
+        else
+        {
+            questDesc.Append(string.Format("Reputation lost: " + localScore));
+        }
 
 
 
@@ -155,8 +164,22 @@ public class EndScreen : MonoBehaviour {
             hh.SetActive(true);
         }
 
-        
-	}
+        if (TimerObjectScript.Instance != null)
+        {
+            float timer = TimerObjectScript.Instance.GetTimer();
+
+            GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
+            hh.transform.Translate(new Vector3(0, -poz, 0));
+            poz += pozIncrease;
+
+            Debug.Log("TIME " + timer);
+            hh.GetComponentInChildren<Text>().text = "X " + (int) Math.Round(timer);
+            hh.GetComponentInChildren<Image>().sprite = timeSprite;
+            hh.SetActive(true);
+        }
+
+
+    }
 
     public void GoToHubWorld()
     {

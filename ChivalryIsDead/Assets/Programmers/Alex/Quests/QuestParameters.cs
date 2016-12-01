@@ -22,7 +22,7 @@ public class ReputationOverride
 [Serializable]
 public class EnemyThreshold
 {
-    public bool IsEmpty { get { return DayMarker == 0 && AvailableEnemies == EnemyTypes.None; } }
+    public bool IsEmpty { get { return DayMarker == 0 && AvailableEnemies == 0; } }
     public int DayMarker;
     public int RepMarker;
     public EnemyTypes AvailableEnemies;

@@ -22,7 +22,6 @@ public class BaseQuest : IQuest
     #endregion
     #endregion
 
-
     public BaseQuest() : this("", "", Difficulty.Easy) { }
     public BaseQuest(string title, string description, Difficulty difficulty)
     {
