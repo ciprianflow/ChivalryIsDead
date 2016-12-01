@@ -21,7 +21,7 @@ public class SheepAI : MonsterAI {
         }
         else
         {
-            rotateTowardsTarget(targetObject.position);
+            RotateTowardsTarget(targetObject.position);
         }
     }
 

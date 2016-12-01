@@ -329,7 +329,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     }
 
-    protected void rotateTowardsTarget(Vector3 pos)
+    protected void RotateTowardsTarget(Vector3 pos)
     {
         Quaternion q = Quaternion.LookRotation(pos - transform.position);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, q, attackRotateSpeed * Time.deltaTime);
