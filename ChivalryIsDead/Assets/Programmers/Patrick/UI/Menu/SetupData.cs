@@ -27,6 +27,11 @@ public class SetupData : MonoBehaviour {
             PlayerPrefs.SetInt("Taunt", 0);
             PlayerPrefs.SetInt("Overreact", 0);
 
+            // Tut Levels
+            PlayerPrefs.SetInt("AttackLevel", 0);
+            PlayerPrefs.SetInt("TauntLevel", 0);
+            PlayerPrefs.SetInt("OverreactLevel", 0);
+
             //PlayerPrefs.SetInt("Level", 1);
 
 
