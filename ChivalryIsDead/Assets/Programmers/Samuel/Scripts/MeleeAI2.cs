@@ -435,6 +435,7 @@ public class MeleeAI2 : MonsterAI
         StopNavMeshAgent();
         state = State.Turn;
         stateFunc = Turn;
+        rotated = false;
 
         Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
 
@@ -454,7 +455,6 @@ public class MeleeAI2 : MonsterAI
 
     public override void Turn()
     {
-
         if ( ControlledRotation() )
         {
             ToMove();
@@ -468,21 +468,23 @@ public class MeleeAI2 : MonsterAI
     {
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
-        Vector3 v3 = targetPoint;
+        Vector3 v3 = agent.steeringTarget;
         v.y = 0;
         v2.y = 0;
         v3.y = 0;
         //If the rotation is not done yet the function returns false
-        if (Vector3.Angle(v, v3 - v2) < 20f)
+        if (!rotated && Vector3.Angle(v, v3 - v2) < 20f)
         {
             anim.SetTrigger("Rotate");
+            rotated = true;
         }
 
         if (Vector3.Angle(v, v3 - v2) > 1f)
         {
-            RotateTowardsTarget();
+            RotateTowardsTarget(agent.steeringTarget);
             return false;
         }
+        rotated = false;
         return true;
     }
 
@@ -490,7 +492,7 @@ public class MeleeAI2 : MonsterAI
     {
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
-        Vector3 v3 = targetPoint;
+        Vector3 v3 = agent.steeringTarget;
         v.y = 0;
         v2.y = 0;
         v3.y = 0;
