@@ -27,22 +27,22 @@ public class Gameplay_Dialog : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            StartCoroutine("PlayerTaunt");
-            StartCoroutine("EnemyTaunted");
-            StartCoroutine("EnemyFeedback");
-        }
+        //if (Input.GetKeyDown(KeyCode.T))
+        //{
+        //    StartCoroutine("PlayerTaunt");
+        //    StartCoroutine("EnemyTaunted");
+        //    StartCoroutine("EnemyFeedback");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            StartCoroutine("SwordFeedback");
-        }
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    StartCoroutine("SwordFeedback");
+        //}
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartCoroutine("PrincessFeedback");
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    StartCoroutine("PrincessFeedback");
+        //}
     }
 
     
