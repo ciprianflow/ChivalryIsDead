@@ -37,6 +37,7 @@ public class DummyManager : MonoBehaviour
     private float comboTimeStamp = 0;
 
     private int combo = 0;
+    private int oldCombo = 0;
     //used to track actions that modify the combo
     private int comboModifierActions = 0;
 
@@ -135,6 +136,28 @@ public class DummyManager : MonoBehaviour
             ComboBaseParticle.GetComponent<ParticleSystem>().startSize = combo;
 
             ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.1f + (combo * 2f) / 100f;
+
+
+            if (oldCombo < combo)
+            {
+
+                switch(combo)
+                {
+                    case 1:
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
+                        break;
+                    case 2:
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost);
+                        break;
+                    case 3:
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost2);
+                        break;
+                    case 4:
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost3);
+                        break;
+                }
+                oldCombo = combo;
+            }
         }
     }
 
@@ -151,6 +174,12 @@ public class DummyManager : MonoBehaviour
 
     public void ResetCombo()
     {
+        if ( combo != oldCombo)
+        {
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
+            oldCombo = combo;
+        }
+
         comboModifierActions = 0;
         combo = 0;
         ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
