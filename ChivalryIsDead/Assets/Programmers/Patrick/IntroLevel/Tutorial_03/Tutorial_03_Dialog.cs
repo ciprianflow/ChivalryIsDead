@@ -96,7 +96,8 @@ public class Tutorial_03_Dialog : MonoBehaviour
             }
             if (countSheep == Sheeps.Length)
             {
-                StartCoroutine("DialogSeven");
+                StartCoroutine("DialogSix");
+                deadSheep = false;
             }
         }
 

@@ -112,6 +112,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
             if(countSheep == Sheeps.Length)
             {
                 StartCoroutine("DialogSeven");
+                deadSheeps = false;
             }
         }
         //if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death)
