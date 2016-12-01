@@ -112,11 +112,15 @@ public class PlayerActionController : MonoBehaviour
         pb = new PlayerBehaviour("rep");
 
         //particles
-        pb.RepGainParticle = RepGainParticle;
-        pb.RepLossParticle = RepLossParticle;
+        if(PlayerPrefs.GetInt("AttackLevel") != 0)
+        {
+            pb.RepGainParticle = RepGainParticle;
+            pb.RepLossParticle = RepLossParticle;
 
-        DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
-        DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+            DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
+            DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+        }
+
 
         pb.ResetCombo();
 
