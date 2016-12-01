@@ -8,5 +8,6 @@ public interface IQuest : IObjective
     QuestData Data { get; }
     QuestDescription Description { get; }
     List<IObjective> Objectives { get; }
+    List<IObjective> Spawns { get; }
     float ReputationChange { get; }
 }
