@@ -251,6 +251,7 @@ public class IntroLevelDialog : MonoBehaviour {
         //yield return new WaitForSeconds(2);
         //UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(3f);
+        PlayerPrefs.SetInt("AttackLevel", 1);
         SceneManager.LoadScene(2);
     }
 

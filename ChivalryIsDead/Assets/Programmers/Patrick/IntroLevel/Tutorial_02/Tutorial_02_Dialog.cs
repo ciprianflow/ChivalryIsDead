@@ -410,6 +410,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
 
         yield return new WaitForSeconds(4f);
+        PlayerPrefs.SetInt("TauntLevel", 1);
         SceneManager.LoadScene(5);
 
     }
