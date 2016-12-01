@@ -148,12 +148,14 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     public void LoadTutorial2()
     {
         handAnimator.SetBool("handHub", false);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         SceneManager.LoadScene("Tutorial_02");
     }
 
     public void LoadTutorial3()
     {
         handAnimator.SetBool("handHub", false);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         SceneManager.LoadScene("Tutorial_03");
     }
 
