@@ -55,9 +55,10 @@ public class GameMenu : MonoBehaviour {
 
         endLetter.SetActive(false);
         introLetter.SetActive(false);
-        sword.SetActive(false);
+        //sword.SetActive(false);
         princess.SetActive(false);
-        skipBtn.SetActive(false);
+        //if(SceneManager.GetActiveScene().name != "TutHubWorld 1" && SceneManager.GetActiveScene().name != "TutHubWorld 2")
+        //    skipBtn.SetActive(false);
 
         //Princess();
         //Sword();
