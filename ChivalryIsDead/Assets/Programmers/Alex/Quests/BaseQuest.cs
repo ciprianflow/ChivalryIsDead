@@ -11,6 +11,8 @@ public class BaseQuest : IQuest
     public QuestDescription Description { get; private set; }
     private List<IObjective> objectives = new List<IObjective>();
     public List<IObjective> Objectives { get { return objectives; } }
+    private List<IObjective> spawns = new List<IObjective>();
+    public List<IObjective> Spawns { get { return spawns; } }
     public float ReputationChange { get; set; }
     #endregion
 
