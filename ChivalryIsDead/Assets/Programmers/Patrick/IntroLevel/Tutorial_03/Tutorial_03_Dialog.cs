@@ -369,7 +369,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         yield return new WaitForSeconds(7f);
         PlayerPrefs.SetInt("OverreactLevel", 1);
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene("ProtoHubWorld 1");
 
     }
 }

@@ -32,7 +32,10 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         procceed = false;
         waitforClick = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
-        StartCoroutine("DialogOne");
+        if (SceneManager.GetActiveScene().name == "TutHubWorld 1")
+            StartCoroutine("DialogOne");
+        else if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
+            StartCoroutine("DialogNineAndThreeQuarters");
     }
 
     // Update is called once per frame
@@ -117,10 +120,41 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
   
     }
 
+    public IEnumerator DialogNineAndThreeQuarters()
+    {
+        if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
+        {
+            //UI.GetComponent<GameMenu>().Sword();
+            skipBtn.SetActive(true);
+        }
+          
+        //yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+
+        while (count < 3)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+
+        procceed = false;
+        BlackScreenAnimator.SetTrigger("fadeOut");
+        //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(4f);
+        StartCoroutine("DialogTwo");
+
+    }
+
     public void LoadTutorial2()
     {
         handAnimator.SetBool("handHub", false);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene("Tutorial_02");
+    }
+
+    public void LoadTutorial3()
+    {
+        handAnimator.SetBool("handHub", false);
+        SceneManager.LoadScene("Tutorial_03");
     }
 
     public void removeBubble()
