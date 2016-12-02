@@ -105,7 +105,6 @@ public class MeleeAI2 : MonsterAI
         Vector3 v1 = (targetObject.position - transform.position).normalized;
         float dot = Vector3.Dot(transform.forward, v1);
         float atkDelay = 0.7f - ((dot + 1) / 2.4f);
-        Debug.Log(atkDelay);
 
         //Delays the attack
         StartCoroutine(DelayAoeAttack(atkDelay));
