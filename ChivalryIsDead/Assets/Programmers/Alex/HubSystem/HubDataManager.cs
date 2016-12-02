@@ -198,9 +198,7 @@ public class HubDataManager : MonoBehaviour {
 
         var mapIdx = UnityEngine.Random.Range(0, houseIdxs.Count);
         var mapNum = houseIdxs[mapIdx];
-        
-        int mapIndex = UnityEngine.Random.Range(1, 7);
-        SceneManager.LoadScene("0" + mapIndex.ToString() + "UR");
+        SceneManager.LoadScene("0" + mapNum.ToString() + "UR");
         //SceneManager.LoadScene(7);
 
     }
