@@ -188,14 +188,23 @@ public class PlayerActionController : MonoBehaviour
                 {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
                     if (OverreactGreatParticle != null)
-                        OverreactGreatParticle.GetComponent<ParticleSystem>().Play();
+                    {
+                        OverreactGreatParticle.SetActive(false);
+                        OverreactGreatParticle.SetActive(true);
+                    }
+                        
 
                 }
                 else
                 {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
                     if (OverreactOkParticle != null)
-                        OverreactOkParticle.GetComponent<ParticleSystem>().Play();
+                    {
+                        OverreactOkParticle.SetActive(false);
+                        OverreactOkParticle.SetActive(true);
+                        
+                    }
+                        
                 }
                     
 
