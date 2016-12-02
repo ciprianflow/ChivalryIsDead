@@ -56,7 +56,7 @@ public class MainMenu : MonoBehaviour {
         if (PlayerPrefs.GetInt("TauntLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1)
         {
             Debug.Log("Level2");
-            PlayerPrefs.SetInt("Attack", 1);
+            PlayerPrefs.SetInt("Attack", 0);
             PlayerPrefs.SetInt("Taunt", 0);
             PlayerPrefs.SetInt("Overreact", 0);
             StartCoroutine("LoadLevel", "TutHubWorld 1");
@@ -65,7 +65,7 @@ public class MainMenu : MonoBehaviour {
         else if (PlayerPrefs.GetInt("OverreactLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1)
         {
             Debug.Log("Level3");
-            PlayerPrefs.SetInt("Attack", 1);
+            PlayerPrefs.SetInt("Attack", 0);
             PlayerPrefs.SetInt("Taunt", 1);
             PlayerPrefs.SetInt("Overreact", 0);
             StartCoroutine("LoadLevel", "Tutorial_03");

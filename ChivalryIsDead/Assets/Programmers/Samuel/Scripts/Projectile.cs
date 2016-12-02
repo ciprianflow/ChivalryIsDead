@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour {
 
         WwiseInterface.Instance.PlayCombatSound(CombatHandle.ImpactStone, this.gameObject);
 
-        MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, ExplosionForce, originMonster);
+        MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, originMonster);
     }
 
     void ProjectileCollision(GameObject collObj)
