@@ -102,8 +102,8 @@ public class DummyManager : MonoBehaviour
 
     public int GetComboMultiplier(int score)
     {
-        //combo multiplier
-        return score * (ComboMultiplier[combo] / 100 + 1);
+        float rep = score * (ComboMultiplier[combo] / 100f + 1f);
+        return (int) rep;
     }
 
     public void IncreaseCombo()
