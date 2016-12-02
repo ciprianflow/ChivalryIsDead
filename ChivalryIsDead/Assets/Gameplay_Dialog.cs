@@ -138,6 +138,11 @@ public class Gameplay_Dialog : MonoBehaviour
         isnotAFK = true;
     }
 
+    public void WrongOverreact()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
+    }
+
     public IEnumerator PlayerTaunt()
     {
         playerTauntBubble.SetActive(true);
