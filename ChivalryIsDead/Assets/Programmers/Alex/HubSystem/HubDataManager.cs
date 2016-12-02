@@ -69,7 +69,7 @@ public class HubDataManager : MonoBehaviour {
         if (StaticData.currQuest == null)
             UpdateQuests();    
         else
-            PushToHubData(StaticData.currQuest.ReputationChange);
+            PushToHubData(StaticData.currQuest.ReputationChange, -1);
     }
 
     void Start () {
@@ -99,7 +99,7 @@ public class HubDataManager : MonoBehaviour {
     /// Should be used when player returns from a quest.
     /// </summary>
     /// <param name="repChange"></param>
-    public void PushToHubData(float repChange) { PushToHubData(repChange, -1); }
+    public void PushToHubData(float repChange) { PushToHubData(repChange, 0); }
     public void PushToHubData(float repChange, int dayChange)
     {
         var hubData = LoadHubData();
