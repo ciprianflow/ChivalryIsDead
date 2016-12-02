@@ -180,9 +180,6 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (monsterHandle != MonsterHandle.Ranged) {
             anim.SetTrigger("StartCharge");
         }
-        if (monsterHandle == MonsterHandle.Ranged && PlayerPrefs.GetInt("TauntLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1) {
-            return;
-        }
         anim.SetFloat("Speed", 1);
 
 
@@ -466,7 +463,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         originMonster.playerAction.SheepAttacked(originMonster);
     }
 
-    public static bool DoAOEAttack(Vector3 pos, float radius, float force, float playerForce, MonsterAI Monster)
+    public static bool DoAOEAttack(Vector3 pos, float radius, float force, MonsterAI Monster)
     {
         Collider[] Colliders = new Collider[0];
         Colliders = Physics.OverlapSphere(pos, radius);
@@ -489,7 +486,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 //Debug.Log("This on is a player");
                 Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                 if (body)
-                    body.AddExplosionForce(playerForce, pos, radius);
+                    body.AddExplosionForce(force, pos, radius);
 
 
                 PlayerActionController PAC = Colliders[i].gameObject.GetComponent<PlayerActionController>();

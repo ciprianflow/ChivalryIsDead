@@ -392,13 +392,11 @@ public class PlayerScript : MonoBehaviour {
 
         //Debug.Log(ASI.normalizedTime / ASI.length);
 
-        Debug.Log(SceneManager.GetActiveScene().name);
-
         if (ASI.IsTag("Attack1"))
         {
             currentAttack = 2;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0 || SceneManager.GetActiveScene().name == "Introlevel" || PlayerPrefs.GetInt("AttackLevel") == 0) {
+            if (r == 0 || SceneManager.GetActiveScene().name == "IntroLevel") {
                 anim.SetTrigger("Attack2");
             }
             else if(r == 1) {
@@ -412,7 +410,7 @@ public class PlayerScript : MonoBehaviour {
         {
             currentAttack = 1;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0 || SceneManager.GetActiveScene().name == "Introlevel" || PlayerPrefs.GetInt("AttackLevel") == 0) {
+            if (r == 0 || SceneManager.GetActiveScene().name == "IntroLevel") {
                 anim.SetTrigger("Attack1");
             }
             else if (r == 1) {
