@@ -20,7 +20,16 @@ class PlayerBehaviour : ScorePublisher
         switch (handle)
         {
             case "rep":
-                dummyManager.ReputationHandler.Subscribe(this); break;
+                try
+                {
+                    dummyManager.ReputationHandler.Subscribe(this);
+                }
+                catch (NullReferenceException)
+                {
+                    Debug.LogWarning("System manager not found!");
+                    
+                }
+                break;
             case "susp":
                 Debug.Log("NOT SUPPORTED"); break;
             case "days":
@@ -32,6 +41,7 @@ class PlayerBehaviour : ScorePublisher
 
     public void ChangeRepScore(int score)
     {
+        if (dummyManager == null) return;
 
         if (score < 0)
         {
@@ -74,10 +84,11 @@ class PlayerBehaviour : ScorePublisher
     //reset combo
     public void ResetCombo()
     {
-        dummyManager.ResetCombo();
+        if(dummyManager != null)
+        {
+            dummyManager.ResetCombo();
+        }
     }
-
-
 
     public void Invoke()
     {

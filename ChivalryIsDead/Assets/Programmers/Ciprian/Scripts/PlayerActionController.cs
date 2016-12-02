@@ -47,6 +47,9 @@ public class PlayerActionController : MonoBehaviour
     public GameObject ComboParticle;
     public GameObject ComboUpwardParticle;
 
+    public GameObject OverreactGreatParticle;
+    public GameObject OverreactOkParticle;
+
     [HideInInspector]
     public static List<MonsterAI> monstersInScene;
 
@@ -65,7 +68,7 @@ public class PlayerActionController : MonoBehaviour
    
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
-
+    private IEnumerator releaseAttackedCoroutine;
 
     public GameObject hitParticle;
 
@@ -112,11 +115,15 @@ public class PlayerActionController : MonoBehaviour
         pb = new PlayerBehaviour("rep");
 
         //particles
-        pb.RepGainParticle = RepGainParticle;
-        pb.RepLossParticle = RepLossParticle;
+        if(PlayerPrefs.GetInt("AttackLevel") != 0)
+        {
+            pb.RepGainParticle = RepGainParticle;
+            pb.RepLossParticle = RepLossParticle;
 
-        DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
-        DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+            DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
+            DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+        }
+
 
         pb.ResetCombo();
 
@@ -177,9 +184,19 @@ public class PlayerActionController : MonoBehaviour
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
                 if (points > 99)
+                {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
+                    if (OverreactGreatParticle != null)
+                        OverreactGreatParticle.GetComponent<ParticleSystem>().Play();
+
+                }
                 else
+                {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
+                    if (OverreactOkParticle != null)
+                        OverreactOkParticle.GetComponent<ParticleSystem>().Play();
+                }
+                    
 
 
                 pb.ChangeRepScore(-points);
@@ -249,7 +266,8 @@ public class PlayerActionController : MonoBehaviour
     public void PlayerAttacked(MonsterAI monster)
     {
         //AttackedDuration second unlock overreact
-        StartCoroutine(releaseAttacked());
+        releaseAttackedCoroutine = releaseAttacked();
+        StartCoroutine(releaseAttackedCoroutine);
 
         overreactTimestamp = 0;
 
@@ -262,6 +280,7 @@ public class PlayerActionController : MonoBehaviour
         //Player attacked add reputation according to monster base damage
         if (monster)
         {
+            StopCoroutine(releaseAttackedCoroutine);
             pb.ChangeRepScore(monster.GetAttackReputation());
 
             //save last monster attacked
@@ -274,11 +293,11 @@ public class PlayerActionController : MonoBehaviour
     private IEnumerator releaseAttacked()
     {
         yield return new WaitForSeconds(AttackedDuration);
-        
 
         //wait for all attacks to submit change in reputation
         pb.Invoke();
         playerState = PlayerState.IDLE;
+        Debug.Log("PLYAER IDLE NOW");
     }
 
     public PlayerState GetPlayerState()
