@@ -200,7 +200,7 @@ public class PlayerActionController : MonoBehaviour
                     
 
 
-                pb.ChangeRepScore(-points);
+                pb.AddRepScore(-points);
                 Debug.Log("Overreact points:" + -points);
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
@@ -287,7 +287,7 @@ public class PlayerActionController : MonoBehaviour
             //save last monster attacked
             lastMonsterAttacked = monster;
 
-            //pb.Invoke();
+            pb.Invoke();
         }
     }
 
