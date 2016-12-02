@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using System;
@@ -114,8 +115,8 @@ public class PlayerActionController : MonoBehaviour
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
-        //particles
-        if(PlayerPrefs.GetInt("AttackLevel") != 0)
+        //load particles for all levels but intro level
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName("IntroLevel"))
         {
             pb.RepGainParticle = RepGainParticle;
             pb.RepLossParticle = RepLossParticle;

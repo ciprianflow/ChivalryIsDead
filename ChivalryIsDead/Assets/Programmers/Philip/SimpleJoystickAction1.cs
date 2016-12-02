@@ -493,7 +493,7 @@ namespace CnControls
             }
 
             //afk manager-
-            DummyManager.dummyManager.onTouchAction();
+            onTouchAction();
         }
 
         private void action_attack()
@@ -569,7 +569,7 @@ namespace CnControls
             }
 
             //afk manager-
-            DummyManager.dummyManager.onTouchAction();
+            onTouchAction();
         }
 
         /// <summary>
@@ -591,6 +591,18 @@ namespace CnControls
                 xClamp = GetComponent<RectTransform>().rect.width + (transform.parent.GetComponent<RectTransform>().rect.width / 2) - xClamp;
             if (swapped)
                 xClamp = (transform.parent.GetComponent<RectTransform>().rect.width) - xClamp;
+        }
+
+        private void onTouchAction()
+        {
+            try
+            {
+                DummyManager.dummyManager.onTouchAction();
+            }
+            catch (NullReferenceException)
+            {
+                //Debug.LogWarning("No system manager found!");
+            }
         }
     }
 }
