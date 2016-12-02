@@ -105,10 +105,11 @@ public class QuestGenerator
         MQ.Objectives.Add(new TimerObjective(31));
 
         //var hasHouse = MQ.GetAllObjectives().Any(o => (o as BaseObjective).targetID == 22);
-        int AvailableFriendlies = (int)FriendlyTypes.None; // (int)FriendlyTypes.Sheep;
-        AvailableFriendlies += (CurrentDifficulty == Difficulty.Easy || CurrentDifficulty == Difficulty.Medium) ? (int)FriendlyTypes.Bakery : (int)FriendlyTypes.None;
-        AvailableFriendlies += (CurrentDifficulty == Difficulty.Medium || CurrentDifficulty == Difficulty.Hard) ? (int)FriendlyTypes.Farmhouse : (int)FriendlyTypes.None;
-        MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies, (FriendlyTypes)AvailableFriendlies);
+        var AvailableFriendlies = HouseStatusToFriendlyTypes(QuestParameters.DifficultyDefs[(int)CurrentDifficulty].houseStatus);
+        //int AvailableFriendlies = (int)FriendlyTypes.None; // (int)FriendlyTypes.Sheep;
+        //AvailableFriendlies += (CurrentDifficulty == Difficulty.Easy || CurrentDifficulty == Difficulty.Medium) ? (int)FriendlyTypes.Bakery : (int)FriendlyTypes.None;
+        //AvailableFriendlies += (CurrentDifficulty == Difficulty.Medium || CurrentDifficulty == Difficulty.Hard) ? (int)FriendlyTypes.Farmhouse : (int)FriendlyTypes.None;
+        MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies, AvailableFriendlies);
 
         // Adds sheep spawn.
         for (int i = 0; i < numFriendlies; i++) {
@@ -176,6 +177,19 @@ public class QuestGenerator
 
     private bool HasFlag(HouseStatus e, int value)
     {
-        return (e & (HouseStatus)value) == e;
+        return (e & (HouseStatus)value) == (HouseStatus)value;
+    }
+
+    private FriendlyTypes HouseStatusToFriendlyTypes(HouseStatus status)
+    {
+        var retEnum = (FriendlyTypes)0;
+        if (HasFlag(status, (int)HouseStatus.Well))
+            retEnum = retEnum | FriendlyTypes.Well;
+        if (HasFlag(status, (int)HouseStatus.Bakery))
+            retEnum = retEnum | FriendlyTypes.Bakery;
+        if (HasFlag(status, (int)HouseStatus.Farmhouse))
+            retEnum = retEnum | FriendlyTypes.Farmhouse;
+
+        return retEnum;
     }
 }
