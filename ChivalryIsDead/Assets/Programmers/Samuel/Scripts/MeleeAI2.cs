@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
 
 public class MeleeAI2 : MonsterAI
 {
@@ -47,11 +46,13 @@ public class MeleeAI2 : MonsterAI
         //Debug.Log(t1 + " > " + spinAttackDuration);
         if(t1 < spinAttackDuration)
         {
-            //While spin attack
+            if (!hitPlayer)
+                if (DoAOEAttack(transform.position, attackLength, attackForce, this))
+                    hitPlayer = true;
         }
         else
         {
-            //Debug.Log("IM DONE");
+            Debug.Log("IM DONE");
             AttackToMove();
         }
 
@@ -106,12 +107,7 @@ public class MeleeAI2 : MonsterAI
         ResetTimer();
         MoveToAttack();
 
-        Vector3 v1 = (targetObject.position - transform.position).normalized;
-        float dot = Vector3.Dot(transform.forward, v1);
-        float atkDelay = 0.7f - ((dot + 1) / 2.4f);
 
-        //Delays the attack
-        StartCoroutine(DelayAoeAttack(atkDelay));
         Quaternion q = Quaternion.LookRotation(targetObject.transform.position - transform.position);
         //Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
 
@@ -518,14 +514,4 @@ public class MeleeAI2 : MonsterAI
         //If the rotation is not done yet the function returns false
         return Vector3.Angle(v, v3 - v2);
     }
-
-    IEnumerator DelayAoeAttack(float time)
-    {
-        Debug.Log("DELAY ATTACK IMMENENT");
-        yield return new WaitForSeconds(time);
-        if (!hitPlayer)
-            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 40, this))
-                hitPlayer = true;
-    }
-    
 }

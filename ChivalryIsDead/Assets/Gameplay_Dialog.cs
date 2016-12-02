@@ -143,6 +143,16 @@ public class Gameplay_Dialog : MonoBehaviour
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
     }
 
+    public void YouHitSheep()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+    }
+
+    public void SpamingTaunt()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 8);
+    }
+
     public IEnumerator PlayerTaunt()
     {
         playerTauntBubble.SetActive(true);

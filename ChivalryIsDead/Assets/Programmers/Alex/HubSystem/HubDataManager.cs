@@ -3,7 +3,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-//using UnityEditor;
 using System.Collections.Generic;
 using System;
 
@@ -73,6 +72,11 @@ public class HubDataManager : MonoBehaviour {
     }
 
     void Start () {
+
+        //PLAY MUSIC HERE
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+
         isClicked = false;
         checkForWin();
         peasantLineScript.FillPeasantLine();
@@ -177,53 +181,33 @@ public class HubDataManager : MonoBehaviour {
         StaticData.currQuest = (MultiQuest)quest;
         var allObjectives = StaticData.currQuest.GetAllObjectives().ToList();
         //var hasHouse = allObjectives.Any(o => (o as BaseObjective).targetID == 22);
-        var targetType = StaticData.currQuest.Data.PresentFriends; // & (FriendlyTypes.Bakery | FriendlyTypes.Farmhouse);
+        var isBakeryOrFarmHouse = StaticData.currQuest.Data.PresentFriends & (FriendlyTypes.Bakery | FriendlyTypes.Farmhouse);
 
-        List<int> houseIdxs = new List<int>();
+        List<int> houseIdxs;
         // Check whether quest is a protect quest.
         if (StaticData.currQuest.Data.Type == QuestType.Protect)
         {
             // Check what flags are active and create houseIdx list based on the result.
-            if (targetType != FriendlyTypes.None) {
-                if (HasFlag(targetType, (int)FriendlyTypes.Well))
-                    houseIdxs.Add(2);
-                if (HasFlag(targetType, (int)FriendlyTypes.Bakery))
-                    houseIdxs.Add(4);
-                if (HasFlag(targetType, (int)FriendlyTypes.Farmhouse))
-                    houseIdxs.Add(6);
+            // If both flags are active, both levels are possible.
+            if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) && HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Farmhouse)) {
+                houseIdxs = new List<int>() { 4, 6 };
             }
+            // If only one flag is active, reduce to that one flag.
+            else if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) || HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Farmhouse)) {
+                if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery))
+                    houseIdxs = new List<int>() { 4 };
+                else
+                    houseIdxs = new List<int>() { 6 };
+            }
+            // If no flags are active, any non-house level is available.
+            // (Should be unreachable, since a protect quest can only include a house.)
             else {
-                houseIdxs = new List<int>() { 1, 3, 5 };
-                Debug.LogError("Protect quest generated without target!!");
+                houseIdxs = new List<int>() { 1, 2, 3, 5 };
             }
-            /// Wtf was I thinking? 
-            /// Best regards 
-            /// -Alex
-            /// 
-            //// If both flags are active, both levels are possible.
-            //if (HasFlag(targetType, (int)FriendlyTypes.Well) &&
-            //    HasFlag(targetType, (int)FriendlyTypes.Bakery) &&
-            //    HasFlag(targetType, (int)FriendlyTypes.Farmhouse)) {
-            //    houseIdxs = new List<int>() { 2, 4, 6 };
-            //}
-            //else if (targetType == FriendlyTypes.None) {
-            //}
-            //// If only one flag is active, reduce to that one flag.
-            //else {
-            //    if (HasFlag(targetType, (int)FriendlyTypes.Bakery))
-            //        houseIdxs = new List<int>() { 4 };
-            //    else if (HasFlag(targetType, (int)))
-            //        houseIdxs = new List<int>() { 6 };
-            //}
-            //// If no flags are active, any non-house level is available.
-            //// (Should be unreachable, since a protect quest can only include a house.)
-            //else {
-            //    houseIdxs = new List<int>() { 1, 3, 5 };
-            //}
         }
         // If the quest is a Destroy quest, all non-house levels are available.
         else {
-            houseIdxs = new List<int>() { 1, 3, 5 };
+            houseIdxs = new List<int>() { 1, 2, 3, 5 };
         } 
 
         var mapIdx = UnityEngine.Random.Range(0, houseIdxs.Count);
