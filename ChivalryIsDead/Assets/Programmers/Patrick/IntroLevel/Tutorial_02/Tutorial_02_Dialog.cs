@@ -39,7 +39,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        
+        PlayerPrefs.SetInt("Attack", 0);
         count = 0;
         procceed = false;
         learnedToGetHit = true;

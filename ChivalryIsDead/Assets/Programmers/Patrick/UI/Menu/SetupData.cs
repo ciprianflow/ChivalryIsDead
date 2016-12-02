@@ -31,6 +31,7 @@ public class SetupData : MonoBehaviour {
             PlayerPrefs.SetInt("AttackLevel", 0);
             PlayerPrefs.SetInt("TauntLevel", 0);
             PlayerPrefs.SetInt("OverreactLevel", 0);
+            PlayerPrefs.SetInt("SuicideLevel", 0);
 
             //PlayerPrefs.SetInt("Level", 1);
 
