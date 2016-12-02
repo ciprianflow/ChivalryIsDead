@@ -243,6 +243,11 @@ public class PlayerActionController : MonoBehaviour
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
+            
+            if(monster.name == "Sheep(Clone)")
+            {
+                GameDialogUI.YouHitSheep();
+            }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
             GameObject hP = Instantiate(hitParticle) as GameObject;
