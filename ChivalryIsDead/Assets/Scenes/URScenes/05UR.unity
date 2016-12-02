@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6771347, g: 0.7987713, b: 0.882913, a: 1}
+  m_IndirectSpecularColor: {r: 0.68055195, g: 0.8008123, b: 0.87699205, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -55,8 +55,8 @@ LightmapSettings:
   m_LightmapEditorSettings:
     serializedVersion: 4
     m_Resolution: 2
-    m_BakeResolution: 12
-    m_TextureWidth: 64
+    m_BakeResolution: 24
+    m_TextureWidth: 128
     m_TextureHeight: 1024
     m_AO: 1
     m_AOMaxDistance: 1
@@ -2171,6 +2171,109 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae24b485a574b344b8865358bb739d86, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &548813032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 548813034}
+  - 220: {fileID: 548813033}
+  m_Layer: 0
+  m_Name: Light Probe Group
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!220 &548813033
+LightProbeGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 548813032}
+  m_Enabled: 1
+  m_SourcePositions:
+  - {x: -16.173885, y: 3.3702803, z: 18.789078}
+  - {x: -16.26432, y: 3.3702803, z: 11.419226}
+  - {x: -16.173885, y: -1, z: 18.789078}
+  - {x: -16.26432, y: -1, z: 11.419226}
+  - {x: -19.516378, y: 3.3702803, z: 17.75798}
+  - {x: -19.512222, y: 3.3702803, z: 12.098976}
+  - {x: -19.516378, y: -1, z: 17.75798}
+  - {x: -19.512222, y: -1, z: 12.098976}
+  - {x: -6.7906637, y: 3.3702803, z: 18.725124}
+  - {x: -5.657818, y: 3.3702803, z: 15.415461}
+  - {x: -6.7906637, y: -1, z: 18.725124}
+  - {x: -5.657818, y: -1, z: 15.415461}
+  - {x: -13.4967575, y: 3.3702803, z: 15.220875}
+  - {x: -13.4967575, y: -1, z: 15.220875}
+  - {x: -17.458046, y: 3.3702803, z: 4.6194854}
+  - {x: -15.341225, y: 3.3702803, z: -4.463776}
+  - {x: -17.458046, y: -1, z: 4.6194854}
+  - {x: -15.341225, y: -1, z: -4.463776}
+  - {x: -20.791, y: 3.3702803, z: 6.0233936}
+  - {x: -21.039558, y: 3.3702803, z: 2.4140086}
+  - {x: -20.791, y: -1, z: 6.0233936}
+  - {x: -21.039558, y: -1, z: 2.4140086}
+  - {x: -5.335559, y: 3.3702803, z: -0.65080214}
+  - {x: -5.335559, y: -1, z: -0.65080214}
+  - {x: -13.236881, y: 3.3702803, z: -0.69916105}
+  - {x: -10.924587, y: 3.3702803, z: -2.6536994}
+  - {x: -13.236881, y: -1, z: -0.69916105}
+  - {x: -10.924587, y: -1, z: -2.6536994}
+  - {x: 0.77933073, y: 3.3702803, z: 20.228197}
+  - {x: 9.240713, y: 3.3702803, z: 13.234112}
+  - {x: 0.77933073, y: -1, z: 20.228197}
+  - {x: 9.240713, y: -1, z: 13.234112}
+  - {x: 0.48274755, y: 3.3702803, z: 17.895292}
+  - {x: 0.48274755, y: -1, z: 17.895292}
+  - {x: 13.614893, y: 3.3702803, z: 20.668467}
+  - {x: 14.092783, y: 3.3702803, z: 10.79726}
+  - {x: 13.614893, y: -1, z: 20.668467}
+  - {x: 14.092783, y: -1, z: 10.79726}
+  - {x: 8.402537, y: 3.3702803, z: 17.75798}
+  - {x: 14.180262, y: 3.3702803, z: 16.148006}
+  - {x: 8.402537, y: -1, z: 17.75798}
+  - {x: 14.180262, y: -1, z: 16.148006}
+  - {x: 12.859829, y: 3.3702803, z: 0.07264757}
+  - {x: 2.8143797, y: 3.3702803, z: -5.087234}
+  - {x: 12.859829, y: -1, z: 0.07264757}
+  - {x: 2.8143797, y: -1, z: -5.087234}
+  - {x: 3.0460052, y: 3.3702803, z: -0.57539034}
+  - {x: 3.0460052, y: -1, z: -0.57539034}
+  - {x: 14.092783, y: 3.3702803, z: 7.174282}
+  - {x: 14.092783, y: 3.3702803, z: -4.8597903}
+  - {x: 14.092783, y: -1, z: 7.174282}
+  - {x: 14.092783, y: -1, z: -4.8597903}
+  - {x: 10.858538, y: 3.3702803, z: 7.391157}
+  - {x: 9.147524, y: 3.3702803, z: -3.8207564}
+  - {x: 10.858538, y: -1, z: 7.391157}
+  - {x: 9.147524, y: -1, z: -3.8207564}
+  - {x: 11.149443, y: 3.3702803, z: -6.8239245}
+  - {x: 11.149443, y: -1, z: -6.8239245}
+  - {x: -5.6906953, y: 3.3702803, z: -3.9338431}
+  - {x: -5.6906953, y: -1, z: -3.9338431}
+  - {x: -11.508606, y: 3.3702803, z: -5.929047}
+  - {x: -11.508606, y: -1, z: -5.929047}
+  - {x: -19.516378, y: 3.3702803, z: -4.8597903}
+  - {x: -19.516378, y: -1, z: -4.8597903}
+  - {x: -17.602474, y: 3.3702803, z: -0.23243809}
+  - {x: -17.602474, y: -1, z: -0.23243809}
+--- !u!4 &548813034
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 548813032}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.3298817, y: 0.94, z: -6.3760304}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
 --- !u!1001 &564499484
 Prefab:
   m_ObjectHideFlags: 0
@@ -4620,7 +4723,7 @@ Prefab:
   m_IsPrefabParent: 0
 --- !u!1 &1324340884 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1000013612086222, guid: 2d5405dfae1646047a431fc12876b6d5,
+  m_PrefabParentObject: {fileID: 1000013349409214, guid: 2d5405dfae1646047a431fc12876b6d5,
     type: 2}
   m_PrefabInternal: {fileID: 1324340883}
 --- !u!1001 &1340114800
@@ -6386,31 +6489,31 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 433440939}
+  - {fileID: 1364596496}
   - {fileID: 1069159771}
+  - {fileID: 75945740}
+  - {fileID: 433440939}
+  - {fileID: 434890495}
   - {fileID: 228805955}
   - {fileID: 835970218}
-  - {fileID: 75945740}
-  - {fileID: 434890495}
-  - {fileID: 1426571465}
-  - {fileID: 380116550}
-  - {fileID: 1364596496}
-  - {fileID: 2030644955}
-  - {fileID: 487613116}
-  - {fileID: 1469819675}
   - {fileID: 1367003420}
+  - {fileID: 2030644955}
+  - {fileID: 1426571465}
   - {fileID: 360094538}
   - {fileID: 401071463}
-  - {fileID: 340119248}
-  - {fileID: 1136773753}
+  - {fileID: 380116550}
   - {fileID: 283572218}
   - {fileID: 259218443}
   - {fileID: 436991568}
+  - {fileID: 487613116}
   - {fileID: 1690905814}
+  - {fileID: 1469819675}
   - {fileID: 310604143}
   - {fileID: 56873982}
+  - {fileID: 340119248}
   - {fileID: 1654936349}
   - {fileID: 1220664129}
+  - {fileID: 1136773753}
   - {fileID: 1340114801}
   - {fileID: 153595139}
   m_Father: {fileID: 1936623911}

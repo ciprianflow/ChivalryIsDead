@@ -101,6 +101,8 @@ public class SuicideAI : MonsterAI
 
     void Explode()
     {
+        Debug.Log("I'm exploding");
+
         if(explosionObject != null)
         {
             Instantiate(explosionObject, transform.position, Quaternion.identity);
@@ -126,7 +128,6 @@ public class SuicideAI : MonsterAI
                 }
                     
                 base.playerAction.PlayerAttacked(this);
-                Debug.Log("Hit player");
 
             }else if(Colliders[i].tag == "Enemy")
             {
@@ -173,7 +174,10 @@ public class SuicideAI : MonsterAI
 
     void OnTriggerEnter(Collider coll)
     {
-        //Debug.Log("Collided with something exploding");
+        //Suicide should not be able to collide with other suicides
+        MonsterAI m = coll.GetComponent<MonsterAI>();
+        if (m != null && m.GetType().Equals(typeof(SuicideAI)))
+            return;
 
         //EXPLODE WITH EVERYTHING
         if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility)

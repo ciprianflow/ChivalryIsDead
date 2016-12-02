@@ -38,22 +38,6 @@ public class EndScreen : MonoBehaviour {
         data = StaticData.currQuest.Data;
 
         var questDesc = new StringBuilder();
-        if (data.Type == QuestType.Destroy)
-        {
-
-            //questDesc.Append(string.Format("Destroy quest!" + Environment.NewLine));
-
-            //questDesc.Append(string.Format(" - 0/{0} enemies slain." + Environment.NewLine, data.EnemyCount, PresentMonsters(data.PresentEnemies)));
-        }
-        else if (data.Type == QuestType.Protect)
-        {
-            //questDesc.Append(string.Format("Protect the objective!" + Environment.NewLine));
-
-            //questDesc.Append(string.Format(" - 0/{0} enemies slain." + Environment.NewLine, data.EnemyCount, PresentMonsters(data.PresentEnemies)));
-            //questDesc.Append(string.Format(" - 0/{0} sheep to protect." + Environment.NewLine, data.FriendlyCount));
-        }
-
-        
 
         int localScore = StaticIngameData.dummyManager.GetLocalScore();
         if (localScore >= 0)
@@ -76,8 +60,7 @@ public class EndScreen : MonoBehaviour {
 	
     void Update()
     {
-       
-       
+        
     }
 
 	// Update is called once per frame
@@ -86,13 +69,12 @@ public class EndScreen : MonoBehaviour {
         List<MonsterAI> list = StaticIngameData.mapManager.GetObjectiveManager().GetMonsters();
 
 
-
-         int deadFishmen = 0, deadTrolls = 0, deadGnomes = 0, deadSheep = 0;
-         int totalFishmen = 0, totalTrolls = 0, totalGnomes = 0, totalSheep = 0;
+        int deadFishmen = 0, deadTrolls = 0, deadGnomes = 0, deadSheep = 0;
+        int totalFishmen = 0, totalTrolls = 0, totalGnomes = 0, totalSheep = 0;
         //better ways
         foreach (MonsterAI monster in list)
         {
-
+            
             switch (monster.GetType().ToString())
             {
                 
@@ -110,7 +92,7 @@ public class EndScreen : MonoBehaviour {
                         deadGnomes++;
                     }
                     break;
-                case "MeleeAI":
+                case "MeleeAI2":
                     totalFishmen++;
                     if (monster.getState() == State.Death)
                     {

@@ -102,8 +102,8 @@ public class DummyManager : MonoBehaviour
 
     public int GetComboMultiplier(int score)
     {
-        //combo multiplier
-        return score * (ComboMultiplier[combo] / 100 + 1);
+        float rep = score * (ComboMultiplier[combo] / 100f + 1f);
+        return (int) rep;
     }
 
     public void IncreaseCombo()
@@ -174,16 +174,17 @@ public class DummyManager : MonoBehaviour
 
     public void ResetCombo()
     {
-        if ( combo != oldCombo)
-        {
-            WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
-            oldCombo = combo;
-        }
+
 
         comboModifierActions = 0;
         combo = 0;
         ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
         ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
+        if (combo != oldCombo)
+        {
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
+            oldCombo = combo;
+        }
 
     }
     
