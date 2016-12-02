@@ -51,7 +51,7 @@ public class MeleeAI2 : MonsterAI
         }
         else
         {
-            //Debug.Log("IM DONE");
+            Debug.Log("IM DONE");
             AttackToMove();
         }
 

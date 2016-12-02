@@ -10,6 +10,9 @@ class TauntAction: MonoBehaviour
     public float TauntRadius;
     public float TauntCooldown = 5f;
 
+    [Header("Other stuff")]
+    public Gameplay_Dialog GameDialogUI;
+
     //used for cooldown i guess
     private bool alreadyTaunting = false;
 
@@ -17,10 +20,11 @@ class TauntAction: MonoBehaviour
     private float currentTauntDuration;
     private float overTime;
 
-
     private PlayerScript playerBase;
 
     private GameObject playerTauntBubble;
+
+    private int tauntAttemptCounter;
 
     void Awake()
     {
@@ -34,6 +38,7 @@ class TauntAction: MonoBehaviour
     void Start()
     {
         playerTauntBubble.SetActive(false);
+        tauntAttemptCounter = 0;
         currentTauntRadius = TauntRadius;
     }
 
@@ -101,15 +106,26 @@ class TauntAction: MonoBehaviour
     //TAUNT Action
     public void Taunt()
     {
-
+        
         //Debug.Log("TAUNT CAN: " + playerBase.canDoAction(PlayerActions.TAUNT));
         if (getCoolDown() && playerBase.canDoAction(PlayerActions.TAUNT))
         {
+            tauntAttemptCounter = 0;
             WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.Taunt, this.gameObject);
             
             startTaunt(currentTauntRadius, this.transform.position);
             playerBase.taunt();
             //shrinkTauntArea();
+        }
+        else if (!getCoolDown())
+        {
+            tauntAttemptCounter++;
+            if(tauntAttemptCounter > 2)
+            {
+                if (GameDialogUI != null)
+                    GameDialogUI.SpamingTaunt();
+            }
+
         }
         /*
         //just change aggro radius 

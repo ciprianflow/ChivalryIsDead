@@ -15,16 +15,12 @@ public class Gameplay_Dialog : MonoBehaviour
 
     string princessMood;
     string swordMood;
-    bool isnotAFK;
-
-    public GameObject skipBtn;
 
     // Use this for initialization
     void Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
-        isnotAFK = false;
     }
 
     // Update is called once per frame
@@ -111,31 +107,16 @@ public class Gameplay_Dialog : MonoBehaviour
         TimerObjectScript.isReminded = true;
     }
 
-    public IEnumerator WakeUp()
+    public void WakeUp()
     {
-        Vector3 startingPos = player.transform.position;
-        
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
-        skipBtn.SetActive(false);
-        while (!isnotAFK)
-        {
-            if (Vector3.Distance(startingPos, player.transform.position) > 0.01f)
-                isNotAFK();
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitUntil(HaveProceeded);
-        gameObject.GetComponent<DialogObject>().StopDialog();
-        isnotAFK = false;
     }
 
-    bool HaveProceeded()
-    {
-        return isnotAFK;
-    }
 
-    void isNotAFK()
+
+    public void SpamingTaunt()
     {
-        isnotAFK = true;
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 8);
     }
 
     public IEnumerator PlayerTaunt()
