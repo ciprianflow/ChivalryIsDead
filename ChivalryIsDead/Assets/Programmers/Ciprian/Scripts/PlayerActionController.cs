@@ -43,6 +43,7 @@ public class PlayerActionController : MonoBehaviour
     public float TauntCooldown = 5f;
 
     [Header("Other stuff")]
+    public Gameplay_Dialog GameDialogUI;
     public GameObject RepGainParticle;
     public GameObject RepLossParticle;
     public GameObject ComboParticle;
@@ -184,6 +185,7 @@ public class PlayerActionController : MonoBehaviour
                 int points = (int)((AttackedDuration - overreactTimestamp) * 100);
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
+                // perfect overreact
                 if (points > 99)
                 {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
@@ -195,6 +197,7 @@ public class PlayerActionController : MonoBehaviour
                         
 
                 }
+                // ok overreact
                 else
                 {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
@@ -219,7 +222,8 @@ public class PlayerActionController : MonoBehaviour
             else
             {
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
-
+                if(GameDialogUI != null)
+                    GameDialogUI.WrongOverreact();
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
@@ -239,6 +243,11 @@ public class PlayerActionController : MonoBehaviour
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
+            
+            if(monster.name == "Sheep(Clone)")
+            {
+                GameDialogUI.YouHitSheep();
+            }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
             GameObject hP = Instantiate(hitParticle) as GameObject;

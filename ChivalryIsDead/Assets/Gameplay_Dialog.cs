@@ -138,6 +138,16 @@ public class Gameplay_Dialog : MonoBehaviour
         isnotAFK = true;
     }
 
+    public void WrongOverreact()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
+    }
+
+    public void YouHitSheep()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+    }
+
     public IEnumerator PlayerTaunt()
     {
         playerTauntBubble.SetActive(true);
