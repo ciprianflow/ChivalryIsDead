@@ -74,6 +74,8 @@ public class PlayerActionController : MonoBehaviour
 
     public GameObject hitParticle;
 
+    private int countAttacks;
+
     void OnDrawGizmos()
     {
 
@@ -112,7 +114,7 @@ public class PlayerActionController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-
+        countAttacks = 0;
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
@@ -243,11 +245,17 @@ public class PlayerActionController : MonoBehaviour
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
-            
-            if(monster.GetType() == typeof(SheepAI))
+
+            if (monster.GetType() == typeof(SheepAI))
             {
                 if (GameDialogUI != null)
                     GameDialogUI.YouHitSheep();
+            }
+            else
+            {
+                countAttacks++;
+                if (countAttacks > 2 && GameDialogUI != null)
+                    GameDialogUI.StopAttacking();
             }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);

@@ -148,9 +148,19 @@ public class Gameplay_Dialog : MonoBehaviour
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
     }
 
+    public void StopAttacking()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+    }
+
     public void SpamingTaunt()
     {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 8);
+    }
+
+    public void LowCombo()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 10);
     }
 
     public IEnumerator PlayerTaunt()
