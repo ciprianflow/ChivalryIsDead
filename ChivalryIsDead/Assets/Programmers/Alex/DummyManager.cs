@@ -83,16 +83,16 @@ public class DummyManager : MonoBehaviour
             handleAFK(antiAfkTimestamp);
         }
 
-        if(!lowCombo)
-        {
-            if (combo < 3)
-            {
-                lowCombo = true;
-                if (GameDialogUI != null)
-                    GameDialogUI.StartCoroutine("LowCombo");
-            }
+        //if(!lowCombo)
+        //{
+        //    if (combo < 3)
+        //    {
+        //        lowCombo = true;
+        //        if (GameDialogUI != null)
+        //            GameDialogUI.StartCoroutine("LowCombo");
+        //    }
             
-        }
+        //}
 
     }
 
