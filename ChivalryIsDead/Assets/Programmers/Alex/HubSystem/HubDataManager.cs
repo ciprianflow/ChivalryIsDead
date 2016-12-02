@@ -69,7 +69,7 @@ public class HubDataManager : MonoBehaviour {
         if (StaticData.currQuest == null)
             UpdateQuests();    
         else
-            PushToHubData(StaticData.currQuest.ReputationChange, -1);
+            PushToHubData(StaticData.currQuest.ReputationChange);
     }
 
     void Start () {
@@ -99,7 +99,7 @@ public class HubDataManager : MonoBehaviour {
     /// Should be used when player returns from a quest.
     /// </summary>
     /// <param name="repChange"></param>
-    public void PushToHubData(float repChange) { PushToHubData(repChange, 0); }
+    public void PushToHubData(float repChange) { PushToHubData(repChange, -1); }
     public void PushToHubData(float repChange, int dayChange)
     {
         var hubData = LoadHubData();
@@ -176,28 +176,60 @@ public class HubDataManager : MonoBehaviour {
 
         StaticData.currQuest = (MultiQuest)quest;
         var allObjectives = StaticData.currQuest.GetAllObjectives().ToList();
-        var hasHouse = allObjectives.Any(o => (o as BaseObjective).targetID == 22);
-        var isBakeryOrFarmHouse = StaticData.currQuest.Data.PresentFriends & (FriendlyTypes.Bakery | FriendlyTypes.Farmhouse);
+        //var hasHouse = allObjectives.Any(o => (o as BaseObjective).targetID == 22);
+        var targetType = StaticData.currQuest.Data.PresentFriends; // & (FriendlyTypes.Bakery | FriendlyTypes.Farmhouse);
 
-        List<int> houseIdxs;
-        if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) && HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Farmhouse)) {
-            // Reduce to one or the other
-            if (Convert.ToBoolean(UnityEngine.Random.Range(0, 2))) {
-                houseIdxs = new List<int>() { 6 };
-            } else {
-                houseIdxs = new List<int>() { 4 };
+        List<int> houseIdxs = new List<int>();
+        // Check whether quest is a protect quest.
+        if (StaticData.currQuest.Data.Type == QuestType.Protect)
+        {
+            // Check what flags are active and create houseIdx list based on the result.
+            if (targetType != FriendlyTypes.None) {
+                if (HasFlag(targetType, (int)FriendlyTypes.Well))
+                    houseIdxs.Add(2);
+                if (HasFlag(targetType, (int)FriendlyTypes.Bakery))
+                    houseIdxs.Add(4);
+                if (HasFlag(targetType, (int)FriendlyTypes.Farmhouse))
+                    houseIdxs.Add(6);
             }
-        } else if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery) || HasFlag(isBakeryOrFarmHouse, (int) FriendlyTypes.Farmhouse)) {
-            if (HasFlag(isBakeryOrFarmHouse, (int)FriendlyTypes.Bakery))
-                houseIdxs = new List<int>() { 4 };
-            else
-                houseIdxs = new List<int>() { 6 };
-        } else {
-            houseIdxs = new List<int>() { 1, 2, 3, 5 };
+            else {
+                houseIdxs = new List<int>() { 1, 3, 5 };
+                Debug.LogError("Protect quest generated without target!!");
+            }
+            /// Wtf was I thinking? 
+            /// Best regards 
+            /// -Alex
+            /// 
+            //// If both flags are active, both levels are possible.
+            //if (HasFlag(targetType, (int)FriendlyTypes.Well) &&
+            //    HasFlag(targetType, (int)FriendlyTypes.Bakery) &&
+            //    HasFlag(targetType, (int)FriendlyTypes.Farmhouse)) {
+            //    houseIdxs = new List<int>() { 2, 4, 6 };
+            //}
+            //else if (targetType == FriendlyTypes.None) {
+            //}
+            //// If only one flag is active, reduce to that one flag.
+            //else {
+            //    if (HasFlag(targetType, (int)FriendlyTypes.Bakery))
+            //        houseIdxs = new List<int>() { 4 };
+            //    else if (HasFlag(targetType, (int)))
+            //        houseIdxs = new List<int>() { 6 };
+            //}
+            //// If no flags are active, any non-house level is available.
+            //// (Should be unreachable, since a protect quest can only include a house.)
+            //else {
+            //    houseIdxs = new List<int>() { 1, 3, 5 };
+            //}
+        }
+        // If the quest is a Destroy quest, all non-house levels are available.
+        else {
+            houseIdxs = new List<int>() { 1, 3, 5 };
         } 
 
         var mapIdx = UnityEngine.Random.Range(0, houseIdxs.Count);
         var mapNum = houseIdxs[mapIdx];
+        
+        //int mapIndex = UnityEngine.Random.Range(1, 7);
         SceneManager.LoadScene("0" + mapNum.ToString() + "UR");
         //SceneManager.LoadScene(7);
 
@@ -309,6 +341,6 @@ public class HubDataManager : MonoBehaviour {
 
     private bool HasFlag(FriendlyTypes e, int value)
     {
-        return (e & (FriendlyTypes)value) == e;
+        return (e & (FriendlyTypes)value) == (FriendlyTypes)value;
     }
 }
