@@ -76,6 +76,11 @@ public class PlayerActionController : MonoBehaviour
 
     private int countAttacks = 0;
     private int countAttackedMonstr;
+    private bool isNeverAttacked;
+    private bool isNeverTaunt;
+    private bool isNeverOverreact;
+    private bool noSheepKilled;
+    private float countTime;
 
     void OnDrawGizmos()
     {
@@ -116,6 +121,10 @@ public class PlayerActionController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         countAttackedMonstr = 0;
+        isNeverAttacked = true;
+        isNeverTaunt = true;
+        isNeverOverreact = true;
+        noSheepKilled = true;
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
@@ -162,6 +171,46 @@ public class PlayerActionController : MonoBehaviour
 
         overreactTimestamp += Time.deltaTime;
 
+        if(isNeverAttacked || isNeverTaunt || isNeverOverreact || noSheepKilled)
+        {
+            countTime += Time.deltaTime;
+            Debug.Log(countTime);
+            if (countTime > 10)
+            {
+                if (isNeverAttacked)
+                {
+                    GameDialogUI.StartCoroutine("NoGettingHit");
+                    isNeverAttacked = false;
+               }
+            }
+            if(countTime > 15)
+            {
+                if (noSheepKilled)
+                {
+                    GameDialogUI.StartCoroutine("NoSheepKilled");
+                    noSheepKilled = false;
+                }
+                
+            }
+             if(countTime > 20)
+            {
+                if (isNeverTaunt)
+                {
+                    GameDialogUI.StartCoroutine("NoTaunting");
+                    isNeverTaunt = false;
+                }
+            }               
+            if(countTime > 25)
+            {
+                if (isNeverOverreact)
+                {
+                    GameDialogUI.StartCoroutine("NoOverreacting");
+                    isNeverOverreact = false;
+                }
+            }
+
+        }
+
     }
 
 
@@ -170,7 +219,7 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
-
+        isNeverTaunt = false;
         //otherwhise taunt
         tauntAction.Taunt();
     }
@@ -178,7 +227,7 @@ public class PlayerActionController : MonoBehaviour
     //REFACTOR ACTIONS
     public void HandleOverreact()
     {
-        
+        isNeverOverreact = false;
         //Player overreacted checks cooldown from the action
         if (overreactAction.Overreact()) {
 
@@ -289,7 +338,7 @@ public class PlayerActionController : MonoBehaviour
     public void SheepAttacked(MonsterAI monster)
     {
         Debug.Log("Sheep attacked " + monster.name);
-
+        noSheepKilled = false;
         pb.ChangeRepScore(monster.GetSheepAttackReputation());
         pb.Invoke();
 
@@ -299,6 +348,7 @@ public class PlayerActionController : MonoBehaviour
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
     {
+        isNeverAttacked = false;
         //AttackedDuration second unlock overreact
         releaseAttackedCoroutine = releaseAttacked();
         StartCoroutine(releaseAttackedCoroutine);

@@ -168,6 +168,28 @@ public class Gameplay_Dialog : MonoBehaviour
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 10);
     }
 
+    public IEnumerator NoSheepKilled()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+    }
+
+    public IEnumerator NoTaunting()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 6);
+    }
+
+    public IEnumerator NoOverreacting()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
+    }
+    public IEnumerator NoGettingHit()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 9);
+    }
 
 
 
