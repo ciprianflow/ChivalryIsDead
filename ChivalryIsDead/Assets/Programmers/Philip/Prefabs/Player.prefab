@@ -4252,10 +4252,6 @@ GameObject:
   - 114: {fileID: 114000013925620474}
   - 114: {fileID: 114000013127642376}
   - 114: {fileID: 114000012165979270}
-  - 114: {fileID: 114000010955656062}
-  - 114: {fileID: 114000011371101076}
-  - 114: {fileID: 114000010507687548}
-  - 114: {fileID: 114000011190553982}
   - 114: {fileID: 114000012139313778}
   m_Layer: 0
   m_Name: Player
@@ -10060,6 +10056,8 @@ MonoBehaviour:
   RepLossParticle: {fileID: 1000010174077652}
   ComboParticle: {fileID: 1000010167702526}
   ComboUpwardParticle: {fileID: 1000012915279122}
+  OverreactGreatParticle: {fileID: 0}
+  OverreactOkParticle: {fileID: 0}
   hitParticle: {fileID: 1000014194934342, guid: bfbed7d8566cb7645a20009fabc231db,
     type: 2}
 --- !u!114 &114000010392705832
@@ -10177,18 +10175,6 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorFromParticleSystem: 1
   cachedColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &114000010507687548
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013612086222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf39da458ca5e6b4795fd4827f4974a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OverreactCooldown: 0
 --- !u!114 &114000010902526332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10292,18 +10278,6 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorFromParticleSystem: 1
   cachedColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &114000010955656062
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013612086222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a2ac17a00aceb478813cdd802cc0f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AggroRadius: 0
 --- !u!114 &114000010986138994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10352,32 +10326,6 @@ MonoBehaviour:
     useDensity: 0
     density: 50
     densityCachedEmissionRate: 50
---- !u!114 &114000011190553982
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013612086222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab207ace394562a41a8e4f316ab5dfc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackCooldown: 5
---- !u!114 &114000011371101076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013612086222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f0efbb4e7b80c24b8a31c271d4346cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TauntDuration: 0
-  TauntRadius: 0
-  TauntCooldown: 5
 --- !u!114 &114000011877194170
 MonoBehaviour:
   m_ObjectHideFlags: 1
