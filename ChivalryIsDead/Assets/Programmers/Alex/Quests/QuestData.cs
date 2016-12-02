@@ -17,7 +17,7 @@ public enum EnemyTypes
 [Flags]
 public enum FriendlyTypes
 {
-    None, Sheep, Bakery, Farmhouse = 4
+    None, Well, Bakery, Farmhouse = 4
 }
 
 public struct QuestData
