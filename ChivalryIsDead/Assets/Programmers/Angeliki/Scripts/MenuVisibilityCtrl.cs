@@ -9,6 +9,7 @@ public class MenuVisibilityCtrl : MonoBehaviour
     GameObject _myGameObj;
     GameObject _invisibleBG;
     public GameObject menu;
+    public GameObject dampenLightPanel;
 
     void Awake()
     {
@@ -54,6 +55,10 @@ public class MenuVisibilityCtrl : MonoBehaviour
         }
         
         _invisibleBG.SetActive(false);
+        if(dampenLightPanel != null)
+        {
+            dampenLightPanel.SetActive(false);
+        }
 
 
     }
