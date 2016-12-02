@@ -244,9 +244,10 @@ public class PlayerActionController : MonoBehaviour
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
             
-            if(monster.name == "Sheep(Clone)")
+            if(monster.GetType() == typeof(SheepAI))
             {
-                GameDialogUI.YouHitSheep();
+                if (GameDialogUI != null)
+                    GameDialogUI.YouHitSheep();
             }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
