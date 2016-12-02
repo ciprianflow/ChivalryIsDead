@@ -180,6 +180,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (monsterHandle != MonsterHandle.Ranged) {
             anim.SetTrigger("StartCharge");
         }
+        if (monsterHandle == MonsterHandle.Ranged && PlayerPrefs.GetInt("TauntLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1) {
+            return;
+        }
         anim.SetFloat("Speed", 1);
 
 
