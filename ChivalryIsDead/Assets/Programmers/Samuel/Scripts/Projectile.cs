@@ -12,8 +12,9 @@ public class Projectile : MonoBehaviour {
 
     public float ExplosionRadius = 1f;
     public float ExplosionForce = 500f;
+    public float PlayerExplosionForce = 5000f;
 
-	void OnCollisionEnter(Collision col)
+    void OnCollisionEnter(Collision col)
     {
         if (!hitGround && col.transform.CompareTag("Ground"))
             HitGround();
@@ -35,7 +36,7 @@ public class Projectile : MonoBehaviour {
 
         WwiseInterface.Instance.PlayCombatSound(CombatHandle.ImpactStone, this.gameObject);
 
-        MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, originMonster);
+        MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, PlayerExplosionForce, originMonster);
     }
 
     void ProjectileCollision(GameObject collObj)
@@ -79,6 +80,11 @@ public class Projectile : MonoBehaviour {
         if (collObj.CompareTag("Player"))
         {
             collObj.GetComponent<PlayerActionController>().PlayerAttacked(originMonster);
+            Rigidbody body = collObj.GetComponent<Rigidbody>();
+            if (body)
+            {
+                body.AddExplosionForce(PlayerExplosionForce, transform.position, ExplosionRadius, 0f);
+            }
         }
     }
 

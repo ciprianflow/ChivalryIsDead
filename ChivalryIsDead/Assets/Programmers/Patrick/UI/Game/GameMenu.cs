@@ -53,6 +53,11 @@ public class GameMenu : MonoBehaviour {
     void Start () {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
+        //play the in game music here
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+
+
         endLetter.SetActive(false);
         introLetter.SetActive(false);
         //sword.SetActive(false);

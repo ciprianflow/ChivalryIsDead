@@ -54,8 +54,8 @@ public struct QuestData
     public IEnumerable<string> GetFriends()
     {
         List<string> friendTypes = new List<string>();
-        if ((PresentFriends & FriendlyTypes.Sheep) == FriendlyTypes.Sheep)
-            friendTypes.Add("Sheep");
+        if ((PresentFriends & FriendlyTypes.Well) == FriendlyTypes.Well)
+            friendTypes.Add("Well");
         if ((PresentFriends & FriendlyTypes.Bakery) == FriendlyTypes.Bakery)
             friendTypes.Add("Bakery");
         if ((PresentFriends & FriendlyTypes.Farmhouse) == FriendlyTypes.Farmhouse)
