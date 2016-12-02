@@ -123,7 +123,7 @@ class TauntAction: MonoBehaviour
             if(tauntAttemptCounter > 2)
             {
                 if (GameDialogUI != null)
-                    GameDialogUI.SpamingTaunt();
+                    GameDialogUI.StartCoroutine("SpamingTaunt");
             }
 
         }

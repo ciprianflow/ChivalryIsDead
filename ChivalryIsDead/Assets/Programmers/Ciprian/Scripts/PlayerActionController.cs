@@ -74,7 +74,8 @@ public class PlayerActionController : MonoBehaviour
 
     public GameObject hitParticle;
 
-    private int countAttacks;
+    private int countAttacks = 0;
+    private int countAttackedMonstr;
 
     void OnDrawGizmos()
     {
@@ -114,7 +115,7 @@ public class PlayerActionController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-        countAttacks = 0;
+        countAttackedMonstr = 0;
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
@@ -225,7 +226,7 @@ public class PlayerActionController : MonoBehaviour
             {
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
                 if(GameDialogUI != null)
-                    GameDialogUI.WrongOverreact();
+                    GameDialogUI.StartCoroutine("WrongOverreact");
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
@@ -240,7 +241,8 @@ public class PlayerActionController : MonoBehaviour
     {
         //attackAction.NormalAttack(TauntRadius, this.transform);
         List<Collider> enemiesInRange = attackAction.ConeAttack();
-
+        countAttacks++;
+       
         //add reputation
         foreach (Collider enemy in enemiesInRange)
         {
@@ -249,13 +251,17 @@ public class PlayerActionController : MonoBehaviour
             if (monster.GetType() == typeof(SheepAI))
             {
                 if (GameDialogUI != null)
-                    GameDialogUI.YouHitSheep();
+                    GameDialogUI.StartCoroutine("YouHitSheep");
             }
             else
             {
-                countAttacks++;
-                if (countAttacks > 2 && GameDialogUI != null)
-                    GameDialogUI.StopAttacking();
+                countAttackedMonstr++;
+                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null)
+                {
+                    GameDialogUI.StartCoroutine("StopAttacking");
+                    countAttackedMonstr = 0;
+                    countAttacks = 0;
+                }
             }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);

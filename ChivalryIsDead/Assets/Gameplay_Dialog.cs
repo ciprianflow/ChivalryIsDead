@@ -138,30 +138,38 @@ public class Gameplay_Dialog : MonoBehaviour
         isnotAFK = true;
     }
 
-    public void WrongOverreact()
+    public IEnumerator WrongOverreact()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
     }
 
-    public void YouHitSheep()
+    public IEnumerator YouHitSheep()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
     }
 
-    public void StopAttacking()
+    public IEnumerator StopAttacking()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
     }
 
-    public void SpamingTaunt()
+    public IEnumerator SpamingTaunt()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 8);
     }
 
-    public void LowCombo()
+    public IEnumerator LowCombo()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 10);
     }
+
+
+
 
     public IEnumerator PlayerTaunt()
     {

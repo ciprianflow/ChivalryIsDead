@@ -89,7 +89,7 @@ public class DummyManager : MonoBehaviour
             {
                 lowCombo = true;
                 if (GameDialogUI != null)
-                    GameDialogUI.LowCombo();
+                    GameDialogUI.StartCoroutine("LowCombo");
             }
             
         }
@@ -138,7 +138,7 @@ public class DummyManager : MonoBehaviour
 
         //if(combo < 3)
         //    if(GameDialogUI != null)
-        //        GameDialogUI.LowCombo();
+        //        GameDialogUI.StartCoroutine("LowCombo");
 
 
     }
