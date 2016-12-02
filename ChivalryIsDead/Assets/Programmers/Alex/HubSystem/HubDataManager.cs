@@ -72,6 +72,11 @@ public class HubDataManager : MonoBehaviour {
     }
 
     void Start () {
+
+        //PLAY MUSIC HERE
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+
         isClicked = false;
         checkForWin();
         peasantLineScript.FillPeasantLine();
