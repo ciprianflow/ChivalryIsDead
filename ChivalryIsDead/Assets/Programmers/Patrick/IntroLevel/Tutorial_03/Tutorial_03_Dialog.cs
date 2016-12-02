@@ -85,20 +85,33 @@ public class Tutorial_03_Dialog : MonoBehaviour
             }
         }
 
-       
 
-        
-        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death
-            && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[4].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[5].GetComponent<MonsterAI>().getState() == State.Death)
+        int countSheep = 0;
+        if (deadSheep)
         {
-            if (deadSheep)
+            foreach (GameObject sheep in Sheeps)
+            {
+                if (sheep.GetComponent<MonsterAI>().getState() == State.Death)
+                    countSheep++;
+            }
+            if (countSheep == Sheeps.Length)
             {
                 StartCoroutine("DialogSix");
                 deadSheep = false;
             }
         }
 
-        
+        //if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death
+        //    && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[4].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[5].GetComponent<MonsterAI>().getState() == State.Death)
+        //{
+        //    if (deadSheep)
+        //    {
+        //        StartCoroutine("DialogSix");
+        //        deadSheep = false;
+        //    }
+        //}
+
+
 
     }
 
@@ -216,6 +229,8 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
     public IEnumerator DialogThree()
     {
+        yield return new WaitForSeconds(2f);
+
         procceed = false;
         ControlMove.SetActive(false);
 
@@ -262,7 +277,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //princessAnimator.speed = 10f;
         //skipAnimator.speed = 10f;
         //handAnimator.speed = 10f;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         learnedToOverreact = false;
         //yield return new WaitForSeconds(0.2f);
@@ -367,8 +382,9 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //ControlMove.SetActive(true);
         //ControlHit.SetActive(true);
 
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(9f);
         PlayerPrefs.SetInt("OverreactLevel", 1);
+        PlayerPrefs.SetInt("Attack", 1);
         SceneManager.LoadScene("ProtoHubWorld 1");
 
     }

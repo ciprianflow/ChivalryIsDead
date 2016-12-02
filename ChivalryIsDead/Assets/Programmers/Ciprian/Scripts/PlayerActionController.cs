@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using System;
@@ -114,12 +115,16 @@ public class PlayerActionController : MonoBehaviour
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
-        //particles
-        pb.RepGainParticle = RepGainParticle;
-        pb.RepLossParticle = RepLossParticle;
+        //load particles for all levels but intro level
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName("IntroLevel"))
+        {
+            pb.RepGainParticle = RepGainParticle;
+            pb.RepLossParticle = RepLossParticle;
 
-        DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
-        DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+            DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
+            DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+        }
+
 
         pb.ResetCombo();
 
@@ -195,7 +200,7 @@ public class PlayerActionController : MonoBehaviour
                     
 
 
-                pb.ChangeRepScore(-points);
+                pb.AddRepScore(-points);
                 Debug.Log("Overreact points:" + -points);
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
@@ -282,7 +287,7 @@ public class PlayerActionController : MonoBehaviour
             //save last monster attacked
             lastMonsterAttacked = monster;
 
-            //pb.Invoke();
+            pb.Invoke();
         }
     }
 

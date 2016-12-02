@@ -2719,7 +2719,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -784, y: 600.95}
+  m_AnchoredPosition: {x: -785, y: -500}
   m_SizeDelta: {x: 415, y: 334.11}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1154923110
@@ -2755,6 +2755,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1154923108}
+--- !u!1 &1171663928 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012231333696, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2,
+    type: 2}
+  m_PrefabInternal: {fileID: 2044732249}
 --- !u!1 &1178152169
 GameObject:
   m_ObjectHideFlags: 0
@@ -3548,7 +3553,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1573615782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3784,7 +3789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c1: {r: 1, g: 0.9215687, b: 0.4784314, a: 1}
-  c2: {r: 1, g: 1, b: 1, a: 0}
+  c2: {r: 1, g: 0.9215687, b: 0.4784314, a: 0}
   transistionTime: 2
 --- !u!114 &1658779705
 MonoBehaviour:
@@ -4420,11 +4425,20 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114000011892599190, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2,
+    - target: {fileID: 114000010665784194, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2,
         type: 2}
-      propertyPath: hdManager
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 39018357}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013432794740, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000011935199550, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2,
+        type: 2}
+      propertyPath: skipBtn
+      value: 
+      objectReference: {fileID: 1171663928}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2, type: 2}
   m_IsPrefabParent: 0

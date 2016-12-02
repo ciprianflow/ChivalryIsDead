@@ -23,6 +23,8 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     float duration;
     public HubDataManager hdManager;
 
+    public GameObject dampenLightPanel;
+
     // Use this for initialization
     void Start()
     {
@@ -55,8 +57,8 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     public IEnumerator DialogOne()
     {
-        if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
-            skipBtn.SetActive(true);
+        //if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
+        //    skipBtn.SetActive(true);
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
 
@@ -122,11 +124,11 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     public IEnumerator DialogNineAndThreeQuarters()
     {
-        if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
-        {
-            //UI.GetComponent<GameMenu>().Sword();
-            skipBtn.SetActive(true);
-        }
+        //if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
+        //{
+        //    //UI.GetComponent<GameMenu>().Sword();
+        //    skipBtn.SetActive(true);
+        //}
           
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
@@ -140,32 +142,42 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         procceed = false;
         BlackScreenAnimator.SetTrigger("fadeOut");
         //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
+        //yield return new WaitForSeconds(4f);
+        //StartCoroutine("DialogTwo");
         yield return new WaitForSeconds(4f);
-        StartCoroutine("DialogTwo");
-
+        blackScreen.SetActive(false);
     }
 
     public void LoadTutorial2()
     {
         handAnimator.SetBool("handHub", false);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         SceneManager.LoadScene("Tutorial_02");
     }
 
     public void LoadTutorial3()
     {
         handAnimator.SetBool("handHub", false);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         SceneManager.LoadScene("Tutorial_03");
     }
 
     public void removeBubble()
     {
-        GameObject swBub = GameObject.FindGameObjectWithTag("SwordBubble");
-        if(swBub != null)
-        {
-            swBub.SetActive(false);
-            GameObject.FindGameObjectWithTag("Sword").SetActive(false);
-        }
+        gameObject.GetComponent<DialogObject>().StopDialog();
+        //GameObject swBub = GameObject.FindGameObjectWithTag("SwordBubble");
+        //if(swBub != null)
+        //{
+        //    swBub.SetActive(false);
+        //    GameObject.FindGameObjectWithTag("Sword").SetActive(false);
+        //}
 
+    }
+
+    public void CoolDampenLight()
+    {
+        skipBtn.SetActive(false);
+        dampenLightPanel.SetActive(true);
     }
 
 
