@@ -45,7 +45,7 @@ public class DummyManager : MonoBehaviour
     private float antiAfkTimestamp;
     private int antiAfkPoints = 10;
     private int antiAFKTime;
-
+    private bool firstTimeAFK;
 
     void Awake()
     {
@@ -61,6 +61,7 @@ public class DummyManager : MonoBehaviour
         {
             Debug.LogError("Combo cooldown must have the same size as Combo Multiplier");
         }
+        firstTimeAFK = true;
     }
 
 
@@ -85,17 +86,19 @@ public class DummyManager : MonoBehaviour
     private void handleAFK(float timestamp)
     {
         int secondsAFK = (int) Math.Floor(timestamp);
-
-        if (GameDialogUI != null && secondsAFK == StartAFKSeconds)
+        Debug.Log("AFK");
+        if (GameDialogUI != null && firstTimeAFK && secondsAFK == StartAFKSeconds)
         {
+            Debug.Log("wakeup");
             GameDialogUI.WakeUp();
+            firstTimeAFK = false;
         }
 
         if (antiAFKTime < secondsAFK && secondsAFK > StartAFKSeconds)
         {
             antiAFKTime = secondsAFK;
             ReputationHandler.Score += antiAfkPoints;
-        
+            
         }
 
     }
@@ -185,7 +188,6 @@ public class DummyManager : MonoBehaviour
             WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
             oldCombo = combo;
         }
-
     }
     
     //cooldown
@@ -263,5 +265,6 @@ public class DummyManager : MonoBehaviour
         antiAFKTime = 0;
         antiAfkTimestamp = 0;
         antiAfkPoints = AFKPointsDec;
+        firstTimeAFK = true;
     }
 }
