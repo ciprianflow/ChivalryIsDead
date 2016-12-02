@@ -7,8 +7,7 @@ using UnityEngine;
 [Flags]
 public enum HouseStatus
 {
-    /*Random,*/ Bakery, Farmhouse
-    //Random, Never, Always
+    Well, Bakery, Farmhouse
 }
 
 [Serializable]
@@ -16,7 +15,6 @@ public class ReputationOverride
 {
     public EnemyTypes enemyType; // Should be only one enemy type!
     public int RepMarker;
-    //public int minOverride, maxOverride;
 }
 
 [Serializable]
