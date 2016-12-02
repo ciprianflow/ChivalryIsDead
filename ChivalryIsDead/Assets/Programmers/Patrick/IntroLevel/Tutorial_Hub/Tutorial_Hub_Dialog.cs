@@ -55,8 +55,8 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     public IEnumerator DialogOne()
     {
-        if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
-            skipBtn.SetActive(true);
+        //if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
+        //    skipBtn.SetActive(true);
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
 
@@ -122,11 +122,11 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     public IEnumerator DialogNineAndThreeQuarters()
     {
-        if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
-        {
-            //UI.GetComponent<GameMenu>().Sword();
-            skipBtn.SetActive(true);
-        }
+        //if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
+        //{
+        //    //UI.GetComponent<GameMenu>().Sword();
+        //    skipBtn.SetActive(true);
+        //}
           
         //yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
@@ -148,12 +148,14 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     public void LoadTutorial2()
     {
         handAnimator.SetBool("handHub", false);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         SceneManager.LoadScene("Tutorial_02");
     }
 
     public void LoadTutorial3()
     {
         handAnimator.SetBool("handHub", false);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         SceneManager.LoadScene("Tutorial_03");
     }
 

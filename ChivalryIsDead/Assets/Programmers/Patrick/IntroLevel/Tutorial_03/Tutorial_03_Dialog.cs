@@ -85,20 +85,33 @@ public class Tutorial_03_Dialog : MonoBehaviour
             }
         }
 
-       
 
-        
-        if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death
-            && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[4].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[5].GetComponent<MonsterAI>().getState() == State.Death)
+        int countSheep = 0;
+        if (deadSheep)
         {
-            if (deadSheep)
+            foreach (GameObject sheep in Sheeps)
+            {
+                if (sheep.GetComponent<MonsterAI>().getState() == State.Death)
+                    countSheep++;
+            }
+            if (countSheep == Sheeps.Length)
             {
                 StartCoroutine("DialogSix");
                 deadSheep = false;
             }
         }
 
-        
+        //if (Sheeps[0].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[1].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[2].GetComponent<MonsterAI>().getState() == State.Death
+        //    && Sheeps[3].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[4].GetComponent<MonsterAI>().getState() == State.Death && Sheeps[5].GetComponent<MonsterAI>().getState() == State.Death)
+        //{
+        //    if (deadSheep)
+        //    {
+        //        StartCoroutine("DialogSix");
+        //        deadSheep = false;
+        //    }
+        //}
+
+
 
     }
 

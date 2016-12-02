@@ -174,16 +174,17 @@ public class DummyManager : MonoBehaviour
 
     public void ResetCombo()
     {
-        if ( combo != oldCombo)
-        {
-            WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
-            oldCombo = combo;
-        }
+
 
         comboModifierActions = 0;
         combo = 0;
         ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
         ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
+        if (combo != oldCombo)
+        {
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
+            oldCombo = combo;
+        }
 
     }
     
