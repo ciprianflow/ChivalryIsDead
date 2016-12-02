@@ -47,7 +47,7 @@ public class MeleeAI2 : MonsterAI
         if(t1 < spinAttackDuration)
         {
             if (!hitPlayer)
-                if (DoAOEAttack(transform.position, attackLength, attackForce, this))
+                if (DoAOEAttack(transform.position, attackLength, attackForce, attackForce, this))
                     hitPlayer = true;
         }
         else
