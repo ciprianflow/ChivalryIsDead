@@ -386,6 +386,15 @@ public class MeleeAI2 : MonsterAI
                 QO.takeDamage(GetBaseAttackDamage(), true);
                 base.playerAction.ObjectiveAttacked(this);
                 ChargeToMove();
+            }else if (m.GetType() == typeof(MeleeAI2))
+            {
+                Debug.Log(Vector3.Dot(m.gameObject.transform.forward, transform.forward));
+                if(Vector3.Dot(m.gameObject.transform.forward, transform.forward) > 0.5)
+
+
+                anim.SetTrigger("HitObject");
+                Debug.Log("hit another monster");
+                ChargeToMove();
             }else
             {
                 anim.SetTrigger("HitObject");
