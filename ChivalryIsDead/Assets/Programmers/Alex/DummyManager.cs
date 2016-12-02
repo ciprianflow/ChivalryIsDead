@@ -46,6 +46,7 @@ public class DummyManager : MonoBehaviour
     private int antiAfkPoints = 10;
     private int antiAFKTime;
     private bool firstTimeAFK;
+    private bool lowCombo;
 
     void Awake()
     {
@@ -62,6 +63,7 @@ public class DummyManager : MonoBehaviour
             Debug.LogError("Combo cooldown must have the same size as Combo Multiplier");
         }
         firstTimeAFK = true;
+        lowCombo = false;
     }
 
 
@@ -79,6 +81,17 @@ public class DummyManager : MonoBehaviour
         if (antiAfkTimestamp > StartAFKSeconds)
         {
             handleAFK(antiAfkTimestamp);
+        }
+
+        if(!lowCombo)
+        {
+            if (combo < 3)
+            {
+                lowCombo = true;
+                if (GameDialogUI != null)
+                    GameDialogUI.LowCombo();
+            }
+            
         }
 
     }
@@ -122,6 +135,10 @@ public class DummyManager : MonoBehaviour
                 Debug.LogError(e.Message + " Combo Modifier Actions -> check DummyManager prefab");
             }
         }
+
+        //if(combo < 3)
+        //    if(GameDialogUI != null)
+        //        GameDialogUI.LowCombo();
 
 
     }
