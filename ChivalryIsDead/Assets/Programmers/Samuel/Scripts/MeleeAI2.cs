@@ -12,6 +12,7 @@ public class MeleeAI2 : MonsterAI
     public float attackAngleWidth = 0.6f;
     public float chargeForce = 250f;
     public float attackForce = 5000;
+    public float attackForceOnOtherMonsters = 1000000;
     public float spinAttackDuration = 0.9f;
     public float spinAttackColddown = 3f;
 
@@ -71,10 +72,13 @@ public class MeleeAI2 : MonsterAI
 
                 if(m != null && m != this)
                 {
+                    Debug.Log("OK I HIT A MONSTERS");
                     m.Hit(1);
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
-                        body.AddExplosionForce(attackForce, transform.position, attackLength);
+                    {
+                        body.AddExplosionForce(attackForceOnOtherMonsters, transform.position, attackLength + 50);
+                    }   
                 }
 
                 if (Colliders[i].tag == "Player")
