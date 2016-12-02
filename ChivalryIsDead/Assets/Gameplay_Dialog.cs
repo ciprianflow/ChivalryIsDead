@@ -103,7 +103,8 @@ public class Gameplay_Dialog : MonoBehaviour
 
     public void HalfTime()
     {
-            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
+        TimerObjectScript.isReminded = true;
     }
 
     public void WakeUp()
