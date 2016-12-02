@@ -296,8 +296,8 @@ namespace CnControls
                 Hide(true);
             }
 
-            //afk manager-
-            DummyManager.dummyManager.onTouchAction();
+            //afk manager
+            onTouchAction();
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -362,8 +362,9 @@ namespace CnControls
 
             }
 
+
             //afk manager-
-            DummyManager.dummyManager.onTouchAction();
+            onTouchAction();
 
         }
 
@@ -387,5 +388,17 @@ namespace CnControls
 
         }
 
+
+        private void onTouchAction()
+        {
+            try
+            {
+                DummyManager.dummyManager.onTouchAction();
+            }
+            catch (NullReferenceException)
+            {
+                //Debug.LogWarning("No system manager found!");
+            }
+        }
     }
 }

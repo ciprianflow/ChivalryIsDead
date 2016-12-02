@@ -64,22 +64,24 @@ public class MeleeAI2 : MonsterAI
         Colliders = Physics.OverlapSphere(transform.position, attackLength);
         for (int i = 0; i < Colliders.Length; i++)
         {
-            MonsterAI m = Colliders[i].GetComponent<MonsterAI>();
-
-            if(m != null && m != this)
+            Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
+            if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
             {
-                m.Hit(1);
-                Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
-                if (body)
-                    body.AddExplosionForce(attackForce, transform.position, attackLength);
-            }
 
-            if (Colliders[i].tag == "Player")
-            {
-                //Debug.Log("This on is a player");
-                Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
-                if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
+                MonsterAI m = Colliders[i].GetComponent<MonsterAI>();
+
+                if(m != null && m != this)
                 {
+                    m.Hit(1);
+                    Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                    if (body)
+                        body.AddExplosionForce(attackForce, transform.position, attackLength);
+                }
+
+                if (Colliders[i].tag == "Player")
+                {
+                    //Debug.Log("This on is a player");
+                
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
                         body.AddExplosionForce(attackForce * 5, transform.position, attackLength);
@@ -388,9 +390,9 @@ public class MeleeAI2 : MonsterAI
                 ChargeToMove();
             }else if (m.GetType() == typeof(MeleeAI2))
             {
-                Debug.Log(Vector3.Dot(m.gameObject.transform.forward, transform.forward));
-                if(Vector3.Dot(m.gameObject.transform.forward, transform.forward) > 0.5)
-
+                Debug.Log("Melee's collided with angle : " + Vector3.Dot(m.gameObject.transform.forward, transform.forward));
+                if (m.getState() == State.Charge && Vector3.Dot(m.gameObject.transform.forward, transform.forward) > 0.8)
+                    return;
 
                 anim.SetTrigger("HitObject");
                 Debug.Log("hit another monster");

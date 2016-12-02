@@ -48,21 +48,10 @@ class PlayerBehaviour : ScorePublisher
             RepLossParticle.SetActive(false);
 
             ScoreChange = dummyManager.GetComboMultiplier(score);
-
             //increase combo
             dummyManager.IncreaseCombo();
             //reset cooldown
             dummyManager.resetCooldown();
-
-            //@@HARDCODED 
-            if (dummyManager.GetComboValue() > 7)
-                WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
-            else if ((ScoreChange * -1) > 200)
-                WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost); // Previously "RewardHandle.Big"
-            else
-                WwiseInterface.Instance.PlayRewardSound(RewardHandle.Small);
-
-
 
             //particle effect
             RepLossParticle.SetActive(true);
@@ -74,11 +63,26 @@ class PlayerBehaviour : ScorePublisher
             RepGainParticle.SetActive(true);
             ResetCombo();
 
-            WwiseInterface.Instance.PlayRewardSound(RewardHandle.Fail);
             ScoreChange = dummyManager.GetComboMultiplier(score);
            
-        }
-        
+        }   
+    }
+
+    public void AddRepScore(int score)
+    {
+
+        RepLossParticle.SetActive(false);
+
+        ScoreChange += dummyManager.GetComboMultiplier(score);
+        //increase combo
+        dummyManager.IncreaseCombo();
+        //reset cooldown
+        dummyManager.resetCooldown();
+
+        //particle effect
+        RepLossParticle.SetActive(true);
+
+        Invoke();
     }
 
     //reset combo
@@ -94,7 +98,6 @@ class PlayerBehaviour : ScorePublisher
     {
         OnChangeScoreEvent(new ScoreEventArgs(ScoreChange));
     }
-
 
 
 

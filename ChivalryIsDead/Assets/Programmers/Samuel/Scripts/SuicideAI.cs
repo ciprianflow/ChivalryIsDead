@@ -101,6 +101,8 @@ public class SuicideAI : MonsterAI
 
     void Explode()
     {
+        Debug.Log("I'm exploding");
+
         if(explosionObject != null)
         {
             Instantiate(explosionObject, transform.position, Quaternion.identity);
@@ -126,7 +128,6 @@ public class SuicideAI : MonsterAI
                 }
                     
                 base.playerAction.PlayerAttacked(this);
-                Debug.Log("Hit player");
 
             }else if(Colliders[i].tag == "Enemy")
             {

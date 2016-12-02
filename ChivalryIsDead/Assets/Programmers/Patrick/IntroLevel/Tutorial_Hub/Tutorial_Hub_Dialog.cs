@@ -23,6 +23,8 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     float duration;
     public HubDataManager hdManager;
 
+    public GameObject dampenLightPanel;
+
     // Use this for initialization
     void Start()
     {
@@ -140,9 +142,10 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         procceed = false;
         BlackScreenAnimator.SetTrigger("fadeOut");
         //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
+        //yield return new WaitForSeconds(4f);
+        //StartCoroutine("DialogTwo");
         yield return new WaitForSeconds(4f);
-        StartCoroutine("DialogTwo");
-
+        blackScreen.SetActive(false);
     }
 
     public void LoadTutorial2()
@@ -161,13 +164,20 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     public void removeBubble()
     {
-        GameObject swBub = GameObject.FindGameObjectWithTag("SwordBubble");
-        if(swBub != null)
-        {
-            swBub.SetActive(false);
-            GameObject.FindGameObjectWithTag("Sword").SetActive(false);
-        }
+        gameObject.GetComponent<DialogObject>().StopDialog();
+        //GameObject swBub = GameObject.FindGameObjectWithTag("SwordBubble");
+        //if(swBub != null)
+        //{
+        //    swBub.SetActive(false);
+        //    GameObject.FindGameObjectWithTag("Sword").SetActive(false);
+        //}
 
+    }
+
+    public void CoolDampenLight()
+    {
+        skipBtn.SetActive(false);
+        dampenLightPanel.SetActive(true);
     }
 
 
