@@ -108,8 +108,8 @@ public class MeleeAI2 : MonsterAI
         MoveToAttack();
 
         Vector3 v1 = targetObject.transform.position - transform.position;
-        float dot = Vector3.Dot(v1, transform.forward);
-        float delay = 0.7f - ((dot + 1) / 2.4f);
+        float dot = Vector3.Dot(transform.forward, v1);
+        float delay = 0.4f - ((dot + 1) / 3f);
         StartCoroutine(DelayAttack(delay));
 
         Quaternion q = Quaternion.LookRotation(targetObject.transform.position - transform.position);
@@ -462,12 +462,9 @@ public class MeleeAI2 : MonsterAI
             return;
 
         if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
-            Debug.Log("RIGHT");
             anim.SetTrigger("StartTurnRight");
         }
         else {
-            Debug.Log("LEFT");
-
             anim.SetTrigger("StartTurnLeft");
         }
     }
@@ -523,7 +520,7 @@ public class MeleeAI2 : MonsterAI
     {
         yield return new WaitForSeconds(f);
         if (!hitPlayer)
-            if (DoAOEAttack(transform.position, attackLength, attackForce, attackForce, this))
+            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 30, this))
                 hitPlayer = true;
     }
 

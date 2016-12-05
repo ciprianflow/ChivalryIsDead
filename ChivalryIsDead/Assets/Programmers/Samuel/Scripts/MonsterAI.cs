@@ -486,8 +486,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 //Debug.Log("This on is a player");
                 Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                 if (body)
+                {
+                    Debug.Log(playerForce);
                     body.AddExplosionForce(playerForce, pos, radius);
-
+                }
 
                 PlayerActionController PAC = Colliders[i].gameObject.GetComponent<PlayerActionController>();
                 PAC.PlayerAttacked(Monster);

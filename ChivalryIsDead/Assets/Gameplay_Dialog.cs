@@ -138,20 +138,60 @@ public class Gameplay_Dialog : MonoBehaviour
         isnotAFK = true;
     }
 
-    public void WrongOverreact()
+    public IEnumerator WrongOverreact()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
     }
 
-    public void YouHitSheep()
+    public IEnumerator YouHitSheep()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
     }
 
-    public void SpamingTaunt()
+    public IEnumerator StopAttacking()
     {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+    }
+
+    public IEnumerator SpamingTaunt()
+    {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 8);
     }
+
+    public IEnumerator LowCombo()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 10);
+    }
+
+    public IEnumerator NoSheepKilled()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
+    }
+
+    public IEnumerator NoTaunting()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 6);
+    }
+
+    public IEnumerator NoOverreacting()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
+    }
+    public IEnumerator NoGettingHit()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 9);
+    }
+
+
 
     public IEnumerator PlayerTaunt()
     {
