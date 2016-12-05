@@ -81,6 +81,7 @@ public class PlayerActionController : MonoBehaviour
     private bool isNeverOverreact;
     private bool noSheepKilled;
     private float countTime;
+    private bool isTutorial;
 
     void OnDrawGizmos()
     {
@@ -125,6 +126,10 @@ public class PlayerActionController : MonoBehaviour
         isNeverTaunt = true;
         isNeverOverreact = true;
         noSheepKilled = true;
+        if(SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
+        {
+            isTutorial = true;
+        }
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
@@ -171,10 +176,9 @@ public class PlayerActionController : MonoBehaviour
 
         overreactTimestamp += Time.deltaTime;
 
-        if(isNeverAttacked || isNeverTaunt || isNeverOverreact || noSheepKilled)
+        if((isNeverAttacked || isNeverTaunt || isNeverOverreact || noSheepKilled) && !isTutorial)
         {
             countTime += Time.deltaTime;
-            //Debug.Log(countTime);
             if (countTime > 10)
             {
                 if (isNeverAttacked)
