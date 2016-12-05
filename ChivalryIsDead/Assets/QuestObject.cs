@@ -16,7 +16,6 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
     // Use this for initialization
     void Awake()
     {
-        Debug.Log("ok");
         //healthScript = transform.GetComponent<HealthScript>();
         healthScript = new HealthScript(health);
         //pb = new PlayerBehaviour("rep");
