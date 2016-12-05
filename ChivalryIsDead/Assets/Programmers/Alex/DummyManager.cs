@@ -64,6 +64,7 @@ public class DummyManager : MonoBehaviour
             Debug.LogError("Combo cooldown must have the same size as Combo Multiplier");
         }
         firstTimeAFK = true;
+
         if (PlayerPrefs.HasKey("lowCombo"))
             lowCombo = PlayerPrefs.GetInt("lowCombo");
         else

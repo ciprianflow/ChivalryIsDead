@@ -76,12 +76,13 @@ public class PlayerActionController : MonoBehaviour
 
     private int countAttacks = 0;
     private int countAttackedMonstr;
-    private bool isNeverAttacked;
-    private bool isNeverTaunt;
-    private bool isNeverOverreact;
-    private bool noSheepKilled;
+    private int isNeverAttacked;
+    private int isNeverTaunt;
+    private int isNeverOverreact;
+    private int noSheepKilled;
     private float countTime;
     private bool isTutorial;
+    private bool thisLevel;
 
     void OnDrawGizmos()
     {
@@ -122,11 +123,24 @@ public class PlayerActionController : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         countAttackedMonstr = 0;
-        isNeverAttacked = true;
-        isNeverTaunt = true;
-        isNeverOverreact = true;
-        noSheepKilled = true;
-        if(SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
+        if (PlayerPrefs.HasKey("noGetHit"))
+            isNeverAttacked = PlayerPrefs.GetInt("noGetHit");
+        else
+            isNeverAttacked = 1;
+        if (PlayerPrefs.HasKey("noTaunt"))
+            isNeverTaunt = PlayerPrefs.GetInt("noTaunt");
+        else
+            isNeverTaunt = 1;
+        if (PlayerPrefs.HasKey("noOverreact"))
+            isNeverOverreact = PlayerPrefs.GetInt("noOverreact");
+        else
+            isNeverOverreact = 1;
+        if (PlayerPrefs.HasKey("noSheepKill"))
+            noSheepKilled = PlayerPrefs.GetInt("noSheepKill");
+        else
+            noSheepKilled = 1;
+        thisLevel = false;
+        if (SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
         {
             isTutorial = true;
         }
@@ -176,40 +190,48 @@ public class PlayerActionController : MonoBehaviour
 
         overreactTimestamp += Time.deltaTime;
 
-        if((isNeverAttacked || isNeverTaunt || isNeverOverreact || noSheepKilled) && !isTutorial)
+        if((isNeverAttacked == 1 || isNeverTaunt == 1 || isNeverOverreact == 1 || noSheepKilled == 1) && !isTutorial && !thisLevel)
         {
             countTime += Time.deltaTime;
             if (countTime > 10)
             {
-                if (isNeverAttacked)
+                if (isNeverAttacked == 1)
                 {
                     GameDialogUI.StartCoroutine("NoGettingHit");
-                    isNeverAttacked = false;
+                    isNeverAttacked = 0;
+                    PlayerPrefs.SetInt("noGetHit", isNeverAttacked);
+                    thisLevel = true;
                }
             }
             if(countTime > 15)
             {
-                if (noSheepKilled)
+                if (noSheepKilled == 1)
                 {
                     GameDialogUI.StartCoroutine("NoSheepKilled");
-                    noSheepKilled = false;
+                    noSheepKilled = 0;
+                    PlayerPrefs.SetInt("noSheepKill", noSheepKilled);
+                    thisLevel = true;
                 }
                 
             }
              if(countTime > 20)
             {
-                if (isNeverTaunt)
+                if (isNeverTaunt == 1)
                 {
                     GameDialogUI.StartCoroutine("NoTaunting");
-                    isNeverTaunt = false;
+                    isNeverTaunt = 0;
+                    PlayerPrefs.SetInt("noTaunt", isNeverTaunt);
+                    thisLevel = true;
                 }
             }               
             if(countTime > 25)
             {
-                if (isNeverOverreact)
+                if (isNeverOverreact == 1)
                 {
                     GameDialogUI.StartCoroutine("NoOverreacting");
-                    isNeverOverreact = false;
+                    isNeverOverreact = 0;
+                    PlayerPrefs.SetInt("noOverreact", isNeverOverreact);
+                    thisLevel = true;
                 }
             }
 
@@ -223,7 +245,8 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
-        isNeverTaunt = false;
+        isNeverTaunt = 0;
+        PlayerPrefs.SetInt("noTaunt", isNeverTaunt);
         //otherwhise taunt
         tauntAction.Taunt();
     }
@@ -231,7 +254,8 @@ public class PlayerActionController : MonoBehaviour
     //REFACTOR ACTIONS
     public void HandleOverreact()
     {
-        isNeverOverreact = false;
+        isNeverOverreact = 0;
+        PlayerPrefs.SetInt("noOverreact", isNeverOverreact);
         //Player overreacted checks cooldown from the action
         if (overreactAction.Overreact()) {
 
@@ -342,7 +366,8 @@ public class PlayerActionController : MonoBehaviour
     public void SheepAttacked(MonsterAI monster)
     {
         Debug.Log("Sheep attacked " + monster.name);
-        noSheepKilled = false;
+        noSheepKilled = 0;
+        PlayerPrefs.SetInt("noSheepKill", noSheepKilled);
         pb.ChangeRepScore(monster.GetSheepAttackReputation());
         pb.Invoke();
 
@@ -352,7 +377,8 @@ public class PlayerActionController : MonoBehaviour
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
     {
-        isNeverAttacked = false;
+        isNeverAttacked = 0;
+        PlayerPrefs.SetInt("noGetHit", isNeverAttacked);
         //AttackedDuration second unlock overreact
         releaseAttackedCoroutine = releaseAttacked();
         StartCoroutine(releaseAttackedCoroutine);

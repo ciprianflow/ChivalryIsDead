@@ -13,6 +13,9 @@ public class Gameplay_Dialog : MonoBehaviour
     public GameObject playerTauntBubble;
     public GameObject enemyTauntBubble;
 
+    public GameObject suicideTut;
+    Animator suicideTutAnim;
+
     string princessMood;
     string swordMood;
     bool isnotAFK;
@@ -25,6 +28,18 @@ public class Gameplay_Dialog : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
         isnotAFK = false;
+
+        if (PlayerPrefs.GetInt("SuicideTut") == 1)
+        {
+
+            suicideTut.SetActive(true);
+            suicideTutAnim = suicideTut.GetComponent<Animator>();
+            suicideTutAnim.speed = 1f;
+            suicideTutAnim.SetBool("playLearnSuicide", true);
+
+            PlayerPrefs.SetInt("SuicideTut", 0);
+        }
+
     }
 
     // Update is called once per frame
