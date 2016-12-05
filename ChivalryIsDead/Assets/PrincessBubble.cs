@@ -7,7 +7,7 @@ public class PrincessBubble : MonoBehaviour {
     public Renderer textMat;
     // Use this for initialization
     void Awake () {
-        if (PlayerPrefs.GetString("Language") == "Dansk" || 1 == 1) {
+        if (PlayerPrefs.GetString("Language") == "Dansk") {
             textMat.material.SetTexture("_MainTex", DanishBubble);
         }
 
