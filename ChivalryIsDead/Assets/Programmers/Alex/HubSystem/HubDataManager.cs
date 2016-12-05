@@ -322,6 +322,11 @@ public class HubDataManager : MonoBehaviour {
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
     #endregion
 
     private bool HasFlag(FriendlyTypes e, int value)
