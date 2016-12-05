@@ -462,12 +462,9 @@ public class MeleeAI2 : MonsterAI
             return;
 
         if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
-            Debug.Log("RIGHT");
             anim.SetTrigger("StartTurnRight");
         }
         else {
-            Debug.Log("LEFT");
-
             anim.SetTrigger("StartTurnLeft");
         }
     }

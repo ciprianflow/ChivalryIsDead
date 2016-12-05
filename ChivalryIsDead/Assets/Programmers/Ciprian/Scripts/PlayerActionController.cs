@@ -74,6 +74,15 @@ public class PlayerActionController : MonoBehaviour
 
     public GameObject hitParticle;
 
+    private int countAttacks = 0;
+    private int countAttackedMonstr;
+    private bool isNeverAttacked;
+    private bool isNeverTaunt;
+    private bool isNeverOverreact;
+    private bool noSheepKilled;
+    private float countTime;
+    private bool isTutorial;
+
     void OnDrawGizmos()
     {
 
@@ -112,7 +121,15 @@ public class PlayerActionController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-
+        countAttackedMonstr = 0;
+        isNeverAttacked = true;
+        isNeverTaunt = true;
+        isNeverOverreact = true;
+        noSheepKilled = true;
+        if(SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
+        {
+            isTutorial = true;
+        }
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
@@ -159,6 +176,45 @@ public class PlayerActionController : MonoBehaviour
 
         overreactTimestamp += Time.deltaTime;
 
+        if((isNeverAttacked || isNeverTaunt || isNeverOverreact || noSheepKilled) && !isTutorial)
+        {
+            countTime += Time.deltaTime;
+            if (countTime > 10)
+            {
+                if (isNeverAttacked)
+                {
+                    GameDialogUI.StartCoroutine("NoGettingHit");
+                    isNeverAttacked = false;
+               }
+            }
+            if(countTime > 15)
+            {
+                if (noSheepKilled)
+                {
+                    GameDialogUI.StartCoroutine("NoSheepKilled");
+                    noSheepKilled = false;
+                }
+                
+            }
+             if(countTime > 20)
+            {
+                if (isNeverTaunt)
+                {
+                    GameDialogUI.StartCoroutine("NoTaunting");
+                    isNeverTaunt = false;
+                }
+            }               
+            if(countTime > 25)
+            {
+                if (isNeverOverreact)
+                {
+                    GameDialogUI.StartCoroutine("NoOverreacting");
+                    isNeverOverreact = false;
+                }
+            }
+
+        }
+
     }
 
 
@@ -167,7 +223,7 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
-
+        isNeverTaunt = false;
         //otherwhise taunt
         tauntAction.Taunt();
     }
@@ -175,7 +231,7 @@ public class PlayerActionController : MonoBehaviour
     //REFACTOR ACTIONS
     public void HandleOverreact()
     {
-        
+        isNeverOverreact = false;
         //Player overreacted checks cooldown from the action
         if (overreactAction.Overreact()) {
 
@@ -223,7 +279,7 @@ public class PlayerActionController : MonoBehaviour
             {
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
                 if(GameDialogUI != null)
-                    GameDialogUI.WrongOverreact();
+                    GameDialogUI.StartCoroutine("WrongOverreact");
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
@@ -238,16 +294,27 @@ public class PlayerActionController : MonoBehaviour
     {
         //attackAction.NormalAttack(TauntRadius, this.transform);
         List<Collider> enemiesInRange = attackAction.ConeAttack();
-
+        countAttacks++;
+       
         //add reputation
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
-            
-            if(monster.GetType() == typeof(SheepAI))
+
+            if (monster.GetType() == typeof(SheepAI))
             {
                 if (GameDialogUI != null)
-                    GameDialogUI.YouHitSheep();
+                    GameDialogUI.StartCoroutine("YouHitSheep");
+            }
+            else
+            {
+                countAttackedMonstr++;
+                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null)
+                {
+                    GameDialogUI.StartCoroutine("StopAttacking");
+                    countAttackedMonstr = 0;
+                    countAttacks = 0;
+                }
             }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
@@ -275,7 +342,7 @@ public class PlayerActionController : MonoBehaviour
     public void SheepAttacked(MonsterAI monster)
     {
         Debug.Log("Sheep attacked " + monster.name);
-
+        noSheepKilled = false;
         pb.ChangeRepScore(monster.GetSheepAttackReputation());
         pb.Invoke();
 
@@ -285,6 +352,7 @@ public class PlayerActionController : MonoBehaviour
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
     {
+        isNeverAttacked = false;
         //AttackedDuration second unlock overreact
         releaseAttackedCoroutine = releaseAttacked();
         StartCoroutine(releaseAttackedCoroutine);
