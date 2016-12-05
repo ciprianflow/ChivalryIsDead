@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 public class MeleeAI2 : MonsterAI
 {
@@ -11,6 +12,8 @@ public class MeleeAI2 : MonsterAI
     public float attackAngleWidth = 0.6f;
     public float chargeForce = 250f;
     public float attackForce = 5000;
+    public float playerAttackForce = 25000;
+    public float attackForceOnOtherMonsters = 1000000;
     public float spinAttackDuration = 0.9f;
     public float spinAttackColddown = 3f;
 
@@ -45,9 +48,7 @@ public class MeleeAI2 : MonsterAI
         //Debug.Log(t1 + " > " + spinAttackDuration);
         if(t1 < spinAttackDuration)
         {
-            if (!hitPlayer)
-                if (DoAOEAttack(transform.position, attackLength, attackForce, this))
-                    hitPlayer = true;
+            
         }
         else
         {
@@ -72,10 +73,13 @@ public class MeleeAI2 : MonsterAI
 
                 if(m != null && m != this)
                 {
+                    Debug.Log("OK I HIT A MONSTERS");
                     m.Hit(1);
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
-                        body.AddExplosionForce(attackForce, transform.position, attackLength);
+                    {
+                        body.AddExplosionForce(attackForceOnOtherMonsters, transform.position, attackLength + 50);
+                    }   
                 }
 
                 if (Colliders[i].tag == "Player")
@@ -103,6 +107,10 @@ public class MeleeAI2 : MonsterAI
         ResetTimer();
         MoveToAttack();
 
+        Vector3 v1 = targetObject.transform.position - transform.position;
+        float dot = Vector3.Dot(transform.forward, v1);
+        float delay = 0.4f - ((dot + 1) / 3f);
+        StartCoroutine(DelayAttack(delay));
 
         Quaternion q = Quaternion.LookRotation(targetObject.transform.position - transform.position);
         //Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
@@ -454,12 +462,9 @@ public class MeleeAI2 : MonsterAI
             return;
 
         if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
-            Debug.Log("RIGHT");
             anim.SetTrigger("StartTurnRight");
         }
         else {
-            Debug.Log("LEFT");
-
             anim.SetTrigger("StartTurnLeft");
         }
     }
@@ -510,4 +515,14 @@ public class MeleeAI2 : MonsterAI
         //If the rotation is not done yet the function returns false
         return Vector3.Angle(v, v3 - v2);
     }
+
+    IEnumerator DelayAttack(float f)
+    {
+        yield return new WaitForSeconds(f);
+        if (!hitPlayer)
+            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 30, this))
+                hitPlayer = true;
+    }
+
+
 }

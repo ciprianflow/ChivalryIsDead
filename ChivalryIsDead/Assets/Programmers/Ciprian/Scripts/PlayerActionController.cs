@@ -43,6 +43,7 @@ public class PlayerActionController : MonoBehaviour
     public float TauntCooldown = 5f;
 
     [Header("Other stuff")]
+    public Gameplay_Dialog GameDialogUI;
     public GameObject RepGainParticle;
     public GameObject RepLossParticle;
     public GameObject ComboParticle;
@@ -72,6 +73,14 @@ public class PlayerActionController : MonoBehaviour
     private IEnumerator releaseAttackedCoroutine;
 
     public GameObject hitParticle;
+
+    private int countAttacks = 0;
+    private int countAttackedMonstr;
+    private bool isNeverAttacked;
+    private bool isNeverTaunt;
+    private bool isNeverOverreact;
+    private bool noSheepKilled;
+    private float countTime;
 
     void OnDrawGizmos()
     {
@@ -111,7 +120,11 @@ public class PlayerActionController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-
+        countAttackedMonstr = 0;
+        isNeverAttacked = true;
+        isNeverTaunt = true;
+        isNeverOverreact = true;
+        noSheepKilled = true;
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
@@ -158,6 +171,46 @@ public class PlayerActionController : MonoBehaviour
 
         overreactTimestamp += Time.deltaTime;
 
+        if(isNeverAttacked || isNeverTaunt || isNeverOverreact || noSheepKilled)
+        {
+            countTime += Time.deltaTime;
+            Debug.Log(countTime);
+            if (countTime > 10)
+            {
+                if (isNeverAttacked)
+                {
+                    GameDialogUI.StartCoroutine("NoGettingHit");
+                    isNeverAttacked = false;
+               }
+            }
+            if(countTime > 15)
+            {
+                if (noSheepKilled)
+                {
+                    GameDialogUI.StartCoroutine("NoSheepKilled");
+                    noSheepKilled = false;
+                }
+                
+            }
+             if(countTime > 20)
+            {
+                if (isNeverTaunt)
+                {
+                    GameDialogUI.StartCoroutine("NoTaunting");
+                    isNeverTaunt = false;
+                }
+            }               
+            if(countTime > 25)
+            {
+                if (isNeverOverreact)
+                {
+                    GameDialogUI.StartCoroutine("NoOverreacting");
+                    isNeverOverreact = false;
+                }
+            }
+
+        }
+
     }
 
 
@@ -166,7 +219,7 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
-
+        isNeverTaunt = false;
         //otherwhise taunt
         tauntAction.Taunt();
     }
@@ -174,7 +227,7 @@ public class PlayerActionController : MonoBehaviour
     //REFACTOR ACTIONS
     public void HandleOverreact()
     {
-        
+        isNeverOverreact = false;
         //Player overreacted checks cooldown from the action
         if (overreactAction.Overreact()) {
 
@@ -184,6 +237,7 @@ public class PlayerActionController : MonoBehaviour
                 int points = (int)((AttackedDuration - overreactTimestamp) * 100);
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
+                // perfect overreact
                 if (points > 99)
                 {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
@@ -195,6 +249,7 @@ public class PlayerActionController : MonoBehaviour
                         
 
                 }
+                // ok overreact
                 else
                 {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
@@ -219,7 +274,8 @@ public class PlayerActionController : MonoBehaviour
             else
             {
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
-
+                if(GameDialogUI != null)
+                    GameDialogUI.StartCoroutine("WrongOverreact");
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
@@ -234,11 +290,28 @@ public class PlayerActionController : MonoBehaviour
     {
         //attackAction.NormalAttack(TauntRadius, this.transform);
         List<Collider> enemiesInRange = attackAction.ConeAttack();
-
+        countAttacks++;
+       
         //add reputation
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
+
+            if (monster.GetType() == typeof(SheepAI))
+            {
+                if (GameDialogUI != null)
+                    GameDialogUI.StartCoroutine("YouHitSheep");
+            }
+            else
+            {
+                countAttackedMonstr++;
+                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null)
+                {
+                    GameDialogUI.StartCoroutine("StopAttacking");
+                    countAttackedMonstr = 0;
+                    countAttacks = 0;
+                }
+            }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
             GameObject hP = Instantiate(hitParticle) as GameObject;
@@ -265,7 +338,7 @@ public class PlayerActionController : MonoBehaviour
     public void SheepAttacked(MonsterAI monster)
     {
         Debug.Log("Sheep attacked " + monster.name);
-
+        noSheepKilled = false;
         pb.ChangeRepScore(monster.GetSheepAttackReputation());
         pb.Invoke();
 
@@ -275,6 +348,7 @@ public class PlayerActionController : MonoBehaviour
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
     {
+        isNeverAttacked = false;
         //AttackedDuration second unlock overreact
         releaseAttackedCoroutine = releaseAttacked();
         StartCoroutine(releaseAttackedCoroutine);

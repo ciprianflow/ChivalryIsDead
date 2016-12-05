@@ -208,8 +208,8 @@ public class DialogObject : MonoBehaviour {
         {
             d = d_Dansk;
         }
-        //if (d == null)
-        //    yield break;
+        if (d == null)
+            yield break;
 
         d.Dialog = d.Name.Length; // Throws NullReferenceException (d can be null)
 
