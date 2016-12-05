@@ -26,7 +26,7 @@ public class HubData
 
     public void GenerateQuests()
     {
-        var curDay = StaticData.TotalDays - DaysLeft;
+        var curDay = StaticData.maxDays - DaysLeft;
         QuestGenerator QG = new QuestGenerator(curDay, (int)GlobalReputation, RandomSeed);
 
         if (AvailableQuests == null)

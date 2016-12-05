@@ -71,12 +71,15 @@ public class MapManager : MonoBehaviour {
             TranslateQuest(spawn);
         }
 
-        //Deletes the healthbar is there is no protect target
+        //Deletes the healthbar and the protect target if there is no protect target
         if (!hasProtectTarget)
         {
             GameObject obj = GameObject.Find("WorldCanvas");
             if (obj != null)
                 obj.SetActive(false);
+
+            if (QuestTarget != null)
+                QuestTarget.gameObject.SetActive(false);
         }
     }
 
