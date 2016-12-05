@@ -168,7 +168,8 @@ public class DummyManager : MonoBehaviour
                 switch(combo)
                 {
                     case 1:
-                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
+                        //DIS BROKEN
+                        //WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
                         break;
                     case 2:
                         WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost);

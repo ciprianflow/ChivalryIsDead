@@ -40,16 +40,27 @@ public class EndScreen : MonoBehaviour {
         var questDesc = new StringBuilder();
 
         int localScore = StaticIngameData.dummyManager.GetLocalScore();
-        if (localScore >= 0)
+
+        if (TimerObjectScript.Instance.GetElapsedTime() <= 0.01)
         {
-            questDesc.Append(string.Format("YOU FAILED..." + Environment.NewLine));
-            questDesc.Append(string.Format("Reputation gained: " + localScore));
+            title.text = "CONDOLENCES!";
+            questDesc.Append(string.Format("YOU WERE TOO SLOW!" + Environment.NewLine));
+
+        }
+        else if (localScore >= 0)
+        {
+            title.text = "CONDOLENCES!";
+            questDesc.Append(string.Format("YOU DIDN'T FAIL!" + Environment.NewLine));
+
         }
         else
         {
-            questDesc.Append(string.Format("YOU WIN THIS BATTLE!" + Environment.NewLine));
-            questDesc.Append(string.Format("Reputation lost: " + localScore));
+            title.text = "CONGRATULATIONS!";
+            questDesc.Append(string.Format("YOU FAILED!" + Environment.NewLine));
+
         }
+
+        //            questDesc.Append(string.Format("Reputation gained: " + localScore));
 
 
 
