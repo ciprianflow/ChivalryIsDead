@@ -461,6 +461,14 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         SceneManager.LoadScene("TutHubWorld 2");
 
     }
+
+    public void RestoreAllAnimators()
+    {
+        swordAnimator.speed = 1f;
+        skipAnimator.speed = 1f;
+        handAnimator.speed = 1f;
+        tutImgAnimator.speed = 1f;
+    }
    
 
 }

@@ -259,7 +259,13 @@ public class IntroLevelDialog : MonoBehaviour {
 
 
 
-
+    public void RestoreAllAnimators()
+    {
+        swordAnimator.speed = 1f;
+        //skipAnimator.speed = 1f;
+        handAnimator.speed = 1f;
+        //tutImgAnimator.speed = 1f;
+    }
 
 
 
