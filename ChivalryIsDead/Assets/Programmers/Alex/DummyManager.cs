@@ -46,7 +46,7 @@ public class DummyManager : MonoBehaviour
     private int antiAfkPoints = 10;
     private int antiAFKTime;
     private bool firstTimeAFK;
-    private bool lowCombo;
+    private int lowCombo;
     private float comboTime;
 
     void Awake()
@@ -64,7 +64,11 @@ public class DummyManager : MonoBehaviour
             Debug.LogError("Combo cooldown must have the same size as Combo Multiplier");
         }
         firstTimeAFK = true;
-        lowCombo = false;
+
+        if (PlayerPrefs.HasKey("lowCombo"))
+            lowCombo = PlayerPrefs.GetInt("lowCombo");
+        else
+            lowCombo = 0;
         comboTime = 0;
     }
 
@@ -85,17 +89,17 @@ public class DummyManager : MonoBehaviour
             handleAFK(antiAfkTimestamp);
         }
 
-        if (!lowCombo)
+        if (lowCombo == 0) 
         {
             comboTime += Time.deltaTime; 
             if (comboTime > 30 && combo < 3)
             {
                 if(combo > 3)
                 {
-                    Debug.Log("lowcombo stuff");
                     if (GameDialogUI != null)
                         GameDialogUI.StartCoroutine("LowCombo");
-                    lowCombo = true;
+                    lowCombo = 1;
+                    PlayerPrefs.SetInt("lowCombo", lowCombo);
                 }
                 
             }
@@ -164,13 +168,15 @@ public class DummyManager : MonoBehaviour
                 switch(combo)
                 {
                     case 1:
-                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
+                        //DIS BROKEN
+                        //WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
                         break;
                     case 2:
                         WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost);
                         break;
                     case 3:
-                        lowCombo = true;
+                        lowCombo = 1;
+                        PlayerPrefs.SetInt("lowCombo", lowCombo);
                         WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost2);
                         break;
                     case 4:

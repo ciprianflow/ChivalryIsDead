@@ -180,6 +180,7 @@ public class HubDataManager : MonoBehaviour {
 
         StaticData.currQuest = (MultiQuest)quest;
         var allObjectives = StaticData.currQuest.GetAllObjectives().ToList();
+       
         //var hasHouse = allObjectives.Any(o => (o as BaseObjective).targetID == 22);
         var targetType = StaticData.currQuest.Data.PresentFriends; // & (FriendlyTypes.Bakery | FriendlyTypes.Farmhouse);
 
