@@ -174,7 +174,7 @@ public class PlayerActionController : MonoBehaviour
         if(isNeverAttacked || isNeverTaunt || isNeverOverreact || noSheepKilled)
         {
             countTime += Time.deltaTime;
-            Debug.Log(countTime);
+            //Debug.Log(countTime);
             if (countTime > 10)
             {
                 if (isNeverAttacked)
