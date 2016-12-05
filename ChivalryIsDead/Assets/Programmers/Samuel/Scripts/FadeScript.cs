@@ -7,14 +7,18 @@ public class FadeScript : MonoBehaviour {
 
     public float stayTime = 2f;
     public float fadeTime = 1f;
+    public GameObject howToPlay;
 
     float timer = 0;
 
     CanvasGroup CG;
 
 	// Use this for initialization
-	void Start ()
+	IEnumerator Start ()
     {
+        howToPlay.SetActive(true);
+        yield return new WaitForSeconds(4f);
+        howToPlay.SetActive(false);
         this.gameObject.SetActive(true);
         CG = GetComponent<CanvasGroup>();
         StartCoroutine(stay());
