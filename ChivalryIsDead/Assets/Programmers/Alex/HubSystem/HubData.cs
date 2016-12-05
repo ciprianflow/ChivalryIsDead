@@ -14,8 +14,8 @@ public class HubData
     public HubData()
     {
         //RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
-        DaysLeft = 14;
-        GlobalReputation = 100;
+        DaysLeft = 12;
+        GlobalReputation = 80;
     }
 
     public HubData(int daysLeft, float reputation)
