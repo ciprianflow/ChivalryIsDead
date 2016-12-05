@@ -124,6 +124,8 @@ public class MeleeAI2 : MonsterAI
             anim.SetTrigger("attackLeft");
         }
 
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Attack, this.gameObject);
+
 
     }
 
