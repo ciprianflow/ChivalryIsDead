@@ -20,6 +20,8 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     Animator BlackScreenAnimator;
     public GameObject blackScreen;
+    public GameObject endCinematic;
+    bool hideButton;
     float duration;
     public HubDataManager hdManager;
 
@@ -30,8 +32,10 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     {
         //gameMenu = UI.GetComponent<GameMenu>();
         BlackScreenAnimator = blackScreen.GetComponent<Animator>();
+        BlackScreenAnimator.SetTrigger("fadeOut");
         count = 0;
         procceed = false;
+        hideButton = false;
         waitforClick = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
         if (SceneManager.GetActiveScene().name == "TutHubWorld 1")
@@ -43,6 +47,11 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
+        if(hideButton)
+        {
+            skipBtn.SetActive(false);
+        }
         //if (!waitforClick)
         //{
         //    if (hdManager.isClicked)
@@ -55,20 +64,43 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //}
     }
 
+    public IEnumerator DialogIntro()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
+        yield return new WaitForSeconds(5.5f);
+        StartCoroutine("DialogOne");
+    }
+
+
     public IEnumerator DialogOne()
     {
         //if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
         //    skipBtn.SetActive(true);
-        //yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(5.5f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+        skipBtn.SetActive(false);
 
-        while (count < 5)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        Invoke("CallableSkip", 21f);
+        hideButton = true;
+
+        //while (count < 5)
+        //{
+        //    skipBtn.SetActive(false);
+        //    yield return new WaitForEndOfFrame();
+        //}
         yield return new WaitUntil(SkipAndPlay);
 
+        hideButton = false;
         procceed = false;
+
+        BlackScreenAnimator.SetTrigger("fadeIn");
+        yield return new WaitForSeconds(5f);
+        blackScreen.SetActive(false);
+        endCinematic.SetActive(false);
+
+        blackScreen.SetActive(true);
+
+
         BlackScreenAnimator.SetTrigger("fadeOut");
         //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
         yield return new WaitForSeconds(4f);
