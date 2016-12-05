@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour {
     private GameObject endLetter;
 
     bool hasProtectTarget = false;
+    private bool isQuestDone = false;
 
     internal void SetQuestObject(Transform transform)
     {
@@ -163,6 +164,13 @@ public class MapManager : MonoBehaviour {
 
     private void EndQuest()
     {
+        if (isQuestDone)
+        {
+            return;
+        }
+
+        isQuestDone = true;
+
         //SET THE DAYS LEFT
         StaticData.daysLeft--;
 

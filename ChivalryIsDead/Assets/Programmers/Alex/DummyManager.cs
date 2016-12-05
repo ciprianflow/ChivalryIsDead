@@ -273,6 +273,10 @@ public class DummyManager : MonoBehaviour
         return (score + bonus);
     }
 
+    public int GetLocalScoreWithoutBonus()
+    {
+        return ReputationHandler.Score;
+    }
     public int GetLocalScore()
     {
         return (int) repGain;

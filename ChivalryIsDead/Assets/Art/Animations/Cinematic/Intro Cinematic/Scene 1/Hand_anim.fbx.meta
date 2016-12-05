@@ -44,7 +44,57 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Hand_anim
+      takeName: Hand_anim
+      firstFrame: 1
+      lastFrame: 1350
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.69697475
+        functionName: nextImage
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: cc46a0040a4cbde4aa6a094f9c727675,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: grp_controls
+        weight: 1
+      - path: grp_controls/anim_root_01
+        weight: 1
+      - path: grp_mesh
+        weight: 1
+      - path: grp_mesh/geo_pPlane1
+        weight: 1
+      - path: grp_rig
+        weight: 1
+      - path: grp_rig/bind_root_01
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
