@@ -55,7 +55,7 @@ public class GameMenu : MonoBehaviour {
 
         //play the in game music here
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicQuest);
 
 
         endLetter.SetActive(false);
