@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CinematicTextEvents : MonoBehaviour {
 
@@ -27,5 +28,9 @@ public class CinematicTextEvents : MonoBehaviour {
             textMat.material.SetTexture("_MainTex", speechBubbles_English[curTex]);
         else
             textMat.material.SetTexture("_MainTex", speechBubbles_Danish[curTex]);
+    }
+
+    public void nextScene() {
+        SceneManager.LoadScene(3);
     }
 }
