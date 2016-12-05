@@ -10,10 +10,21 @@ public class SuicideAI : MonsterAI
     public float deSpawnRange = 8f;
     [Space]
     public float explosionForce = 750f;
+    public float explosionForcePlayer = 15000f;
     public float explosionRange = 4f;
+    public float explosionTriggerRange = 1f;
     public GameObject explosionObject;
 
     bool taunted = false;
+
+    void Start()
+    {
+        if(PlayerPrefs.GetInt("SuicideLevel") == 0)
+        {
+            PlayerPrefs.SetInt("SuicideTut", 1);
+            PlayerPrefs.SetInt("SuicideLevel", 1);
+        }
+    }
 
     void OnDrawGizmos()
     {
@@ -50,7 +61,7 @@ public class SuicideAI : MonsterAI
         obj.transform.SetParent(this.transform, false);
         SphereCollider col = obj.AddComponent<SphereCollider>();
         col.center = new Vector3(0, 0);
-        col.radius = explosionRange;
+        col.radius = explosionTriggerRange;
         col.isTrigger = true;
     }
 
@@ -124,7 +135,7 @@ public class SuicideAI : MonsterAI
                 Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                 if (body)
                 {
-                    body.AddExplosionForce(explosionForce * 15, transform.position, explosionRange, 0.5f);
+                    body.AddExplosionForce(explosionForcePlayer, transform.position, explosionRange, 1f);
                 }
                     
                 base.playerAction.PlayerAttacked(this);
@@ -148,7 +159,7 @@ public class SuicideAI : MonsterAI
                         Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                         if (body)
                         {
-                            body.AddExplosionForce(explosionForce, transform.position, explosionRange, 0f);
+                            body.AddExplosionForce(explosionForcePlayer * 4, transform.position, explosionRange + 2, 0f);
                         }
                     }
                 }
