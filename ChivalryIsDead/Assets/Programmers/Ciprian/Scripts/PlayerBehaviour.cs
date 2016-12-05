@@ -45,6 +45,9 @@ class PlayerBehaviour : ScorePublisher
 
         if (score < 0)
         {
+
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.Small);
+
             RepLossParticle.SetActive(false);
 
             ScoreChange = dummyManager.GetComboMultiplier(score);
@@ -58,6 +61,8 @@ class PlayerBehaviour : ScorePublisher
         }
         else
         {
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.Fail);
+
             RepGainParticle.SetActive(false);
             //particle effect
             RepGainParticle.SetActive(true);
