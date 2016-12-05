@@ -126,7 +126,7 @@ public class PlayerActionController : MonoBehaviour
         isNeverTaunt = true;
         isNeverOverreact = true;
         noSheepKilled = true;
-        if(SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
+        if(SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel" || SceneManager.GetActiveScene().name == "SandraCopy")
         {
             isTutorial = true;
         }
