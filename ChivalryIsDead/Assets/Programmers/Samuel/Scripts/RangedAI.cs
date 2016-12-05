@@ -44,7 +44,7 @@ public class RangedAI : MonsterAI
     public override void Move()
     {
 
-        if (RangeCheckNavMesh())
+        if (RangeCheck())
             UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
