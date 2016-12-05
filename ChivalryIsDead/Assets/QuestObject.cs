@@ -48,7 +48,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
     public void takeDamage(int dmg, bool destroy)
     {
         
-        Debug.Log("IM hit ");
+        Debug.Log("IM hit " + transform.name);
 
         if (healthScript.takeDamage(dmg))
         {   
