@@ -16,8 +16,9 @@ public class MainMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        // Start the background music.
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         if (PlayerPrefs.GetInt("AttackLevel") == 0)
