@@ -24,6 +24,10 @@ public class SetupData : MonoBehaviour {
 
             // Gameplay
             PlayerPrefs.SetInt("lowCombo", 0);
+            PlayerPrefs.SetInt("noGetHit", 0);
+            PlayerPrefs.SetInt("noSheepKill", 0);
+            PlayerPrefs.SetInt("noTaunt", 0);
+            PlayerPrefs.SetInt("noOverreact", 0);
 
             PlayerPrefs.SetInt("SuicideLevel", 0);
             PlayerPrefs.SetInt("SuicideTut", 0);
