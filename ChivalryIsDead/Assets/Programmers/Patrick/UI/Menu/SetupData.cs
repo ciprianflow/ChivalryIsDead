@@ -22,6 +22,16 @@ public class SetupData : MonoBehaviour {
             PlayerPrefs.SetFloat("SoundSound", 1);
             PlayerPrefs.SetInt("Swapped", 0);
 
+            // Gameplay
+            PlayerPrefs.SetInt("lowCombo", 0);
+            PlayerPrefs.SetInt("noGetHit", 1); //yes patrick 1 is the correct one
+            PlayerPrefs.SetInt("noSheepKill", 1);
+            PlayerPrefs.SetInt("noTaunt", 1);
+            PlayerPrefs.SetInt("noOverreact", 1);
+
+            PlayerPrefs.SetInt("SuicideLevel", 0);
+            PlayerPrefs.SetInt("SuicideTut", 0);
+
             // Player Controls
             PlayerPrefs.SetInt("Attack", 0);
             PlayerPrefs.SetInt("Taunt", 0);
@@ -31,7 +41,7 @@ public class SetupData : MonoBehaviour {
             PlayerPrefs.SetInt("AttackLevel", 0);
             PlayerPrefs.SetInt("TauntLevel", 0);
             PlayerPrefs.SetInt("OverreactLevel", 0);
-            PlayerPrefs.SetInt("SuicideLevel", 0);
+            
 
             //PlayerPrefs.SetInt("Level", 1);
 

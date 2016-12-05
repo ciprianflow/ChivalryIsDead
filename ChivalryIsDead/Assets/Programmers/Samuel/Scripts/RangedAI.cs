@@ -7,6 +7,7 @@ public class RangedAI : MonsterAI
     [Header("Ranged Specific Values")]
     public GameObject projectile;
     public GameObject targetSprite;
+    public Sprite tauntedTarget;
 
     Transform targetObj;
 
@@ -43,7 +44,7 @@ public class RangedAI : MonsterAI
     public override void Move()
     {
 
-        if (RangeCheckNavMesh())
+        if (RangeCheck())
             UpdateNavMeshPathDelayed();
         else
             MoveToAttack();
@@ -75,9 +76,19 @@ public class RangedAI : MonsterAI
         Vector3 targetPos = GetTargetPosition();
         Vector3 velocity = Vector3.zero;
 
+        if (targetSprite == null) {
+            return;
+        }
+
+        targetObj = Instantiate(targetSprite).transform;
+        //GameObject vrsdagrse = Instantiate(projectile);
+
+        targetObj.name = "ROCKTARGET";
+
         if (taunted)
         {
             velocity = BallisticVel(targetPos, obj.transform.position, 10);
+            targetObj.GetComponent<SpriteRenderer>().sprite = tauntedTarget;
             taunted = false;
         }
         else
@@ -90,14 +101,7 @@ public class RangedAI : MonsterAI
         objRigidBody.velocity = velocity;
         objRigidBody.AddTorque(velocity * 5);
 
-        if (targetSprite == null) {
-            return;
-        }
 
-        targetObj = Instantiate(targetSprite).transform;
-        //GameObject vrsdagrse = Instantiate(projectile);
-
-        targetObj.name = "ROCKTARGET";
 
         anim.SetBool("Taunted", false);
         targetObj.position = targetPos;//hit.point + new Vector3(0, 0.5f, 0);
