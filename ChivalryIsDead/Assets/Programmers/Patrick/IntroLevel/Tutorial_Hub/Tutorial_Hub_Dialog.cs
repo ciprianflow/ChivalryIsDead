@@ -41,7 +41,11 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         if (SceneManager.GetActiveScene().name == "TutHubWorld 1")
             StartCoroutine("DialogOne");
         else if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
+        {
+            endCinematic.SetActive(false);
             StartCoroutine("DialogNineAndThreeQuarters");
+        }
+            
     }
 
     // Update is called once per frame

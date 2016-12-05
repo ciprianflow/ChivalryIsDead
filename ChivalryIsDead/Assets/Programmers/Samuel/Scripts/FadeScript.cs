@@ -16,7 +16,11 @@ public class FadeScript : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start ()
     {
-        howToPlay.SetActive(true);
+        if(!PlayerPrefs.HasKey("Setup"))
+        {
+            howToPlay.SetActive(true);
+        }
+        
         yield return new WaitForSeconds(4f);
         howToPlay.SetActive(false);
         this.gameObject.SetActive(true);
