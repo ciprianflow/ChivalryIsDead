@@ -170,7 +170,7 @@ public class SuicideAI : MonsterAI
                 if (QO != null)
                 {
                     Debug.Log("Hit static quest object");
-                    QO.takeDamage(GetBaseAttackDamage(), true);
+                    QO.takeDamage(5, true);
                     base.playerAction.ObjectiveAttacked(this);
                 }
             }

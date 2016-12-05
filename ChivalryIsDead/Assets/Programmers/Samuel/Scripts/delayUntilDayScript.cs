@@ -8,7 +8,7 @@ public class delayUntilDayScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        if (appearAfterDay > (StaticData.maxDaysLeft - StaticData.daysLeft))
+        if (appearAfterDay > (StaticData.maxDays - StaticData.daysLeft))
             gameObject.SetActive(false);
 
 	}

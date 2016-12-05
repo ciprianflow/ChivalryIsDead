@@ -378,11 +378,11 @@ public class MeleeAI2 : MonsterAI
 
         
         MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
+        QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
         //If collision happened with a quest object
         if (m != null)
         {
             //If AI hit a sheep invoke the sheep hit function
-            QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
             if (QO != null && m.GetType() == typeof(SheepAI))
             {
                 Debug.Log("I HIT A SHEEP");
@@ -405,12 +405,14 @@ public class MeleeAI2 : MonsterAI
                 anim.SetTrigger("HitObject");
                 Debug.Log("hit another monster");
                 ChargeToMove();
-            }else
-            {
-                anim.SetTrigger("HitObject");
-                Debug.Log("hit another monster");
-                ChargeToMove();
             }
+        }
+        else if(QO != null)
+        {
+            anim.SetTrigger("HitObject");
+            Debug.Log("Hit quest object");
+            QO.takeDamage(1, true);
+            ChargeToMove();
         }
         else {
             anim.SetTrigger("HitObject");
