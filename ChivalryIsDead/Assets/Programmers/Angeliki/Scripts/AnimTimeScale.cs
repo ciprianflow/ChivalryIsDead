@@ -9,6 +9,11 @@ public class AnimTimeScale : MonoBehaviour {
         anim.speed = 10f;
 	}
 	
+    void Start()
+    {
+       
+    }
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -16,7 +21,7 @@ public class AnimTimeScale : MonoBehaviour {
 
     public void CloseWindow()
     {
-        anim.SetBool("playGetHit", false);
+        //anim.SetBool("playGetHit", false);
         gameObject.SetActive(false);
     }
 }

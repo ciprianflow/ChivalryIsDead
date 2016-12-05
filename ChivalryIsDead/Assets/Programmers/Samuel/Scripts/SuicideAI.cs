@@ -17,6 +17,15 @@ public class SuicideAI : MonsterAI
 
     bool taunted = false;
 
+    void Start()
+    {
+        if(PlayerPrefs.GetInt("SuicideLevel") == 0)
+        {
+            PlayerPrefs.SetInt("SuicideTut", 1);
+            PlayerPrefs.SetInt("SuicideLevel", 1);
+        }
+    }
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
