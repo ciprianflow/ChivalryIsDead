@@ -254,7 +254,7 @@ public class DummyManager : MonoBehaviour
         //calculate bonus
         repGain = getLocalScore(ReputationHandler.Score);
         
-        float repGainDivision = 50;
+        float repGainDivision = 300;
         return repGain / repGainDivision;
 
     }
@@ -293,7 +293,7 @@ public class DummyManager : MonoBehaviour
         }
 
         //Debug.Log("REP: " + score + " BONUS: " + bonus + " time: " + time + " TOTAL REP GAINED: " + score + bonus);
-        return (score + bonus);
+        return (score - bonus);
     }
 
     public int GetLocalScoreWithoutBonus()
