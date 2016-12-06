@@ -152,12 +152,14 @@ public class SuicideAI : MonsterAI
                     }else
                     {
                         //Other monsters
+                        base.playerAction.MonsterAttackedMonster(this);
                         m.Hit(1);
                         Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                         if (body)
                         {
                             body.AddExplosionForce(explosionForcePlayer * 4, transform.position, explosionRange + 2, 0f);
                         }
+
                     }
                 }
             }

@@ -17,6 +17,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public int attackDamage = 2;
     public float attackTime = 3f;
     public float attackRange = 5f;
+    
 
     [Space]
     public PlayerActionController playerAction;
@@ -35,6 +36,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public int OverreactRep = -60;
     public int ObjectiveAttackRep = -20;
     public int ObjectiveSheepRep = -100;
+    public int MonsterRep = 50;
     //KNIGHT ATTACk REP
     public int PlayerAttackRep = 30;
 
@@ -392,6 +394,15 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         return ObjectiveSheepRep;
     }
 
+    public int HitMonsterReputation()
+    {
+        if (StaticData.currQuest.Data.Type == QuestType.Destroy)
+        {
+            return -(MonsterRep);
+        }
+        return MonsterRep;
+    }
+
     public void Hit(int damage)
     {
 
@@ -483,6 +494,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 if (m.GetType().Equals(typeof(SheepAI)))
                 {
                     Monster.HitSheep(m.GetComponent<QuestObject>(), m, m.gameObject, force, false, Monster);
+                }
+                else
+                {
+                    //hit monster
+                    Monster.playerAction.MonsterAttackedMonster(Monster);
                 }
             }
 
