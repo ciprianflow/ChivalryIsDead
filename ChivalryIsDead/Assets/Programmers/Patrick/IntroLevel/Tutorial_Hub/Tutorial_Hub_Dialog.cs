@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     public GameObject UI;
+    public GameObject loadingScreen;
     //GameMenu gameMenu;
 
     bool procceed;
@@ -188,6 +189,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     {
         handAnimator.SetBool("handHub", false);
         WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene("Tutorial_02");
     }
 
@@ -195,6 +197,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     {
         handAnimator.SetBool("handHub", false);
         WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene("Tutorial_03");
     }
 
