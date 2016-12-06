@@ -149,7 +149,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         //Invoke("CallableSkip", 5f);
-        while (count < 4)
+        while (count < 2)
         {
             yield return new WaitForEndOfFrame();
         }
