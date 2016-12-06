@@ -101,7 +101,7 @@ public class EndScreen : MonoBehaviour {
             scoreMultiplier += (Time.realtimeSinceStartup - timeNow) * 0.001f;
 
             float xsc = Mathf.Round(Mathf.Lerp(0, score, scoreMultiplier));
-            //Debug.Log("deaded sheep: " + deadSheep);
+            //Debug.Log("deaded sheep: " + deadGnomes);
             if (totalSheep > 0)
             {
                 if (deadSheep >= xsc)
@@ -183,7 +183,8 @@ public class EndScreen : MonoBehaviour {
         //better ways
         foreach (MonsterAI monster in list)
         {
-            
+            monster.GetComponent<ExclamationMark>().DisableMark();
+
             switch (monster.GetType().ToString())
             {
                 

@@ -83,7 +83,10 @@ class TauntAction: MonoBehaviour
         yield return new WaitForSeconds(2f);
         playerTauntBubble.SetActive(false);
         foreach (GameObject exmark in exmarks)
+        {
             exmark.SetActive(false);
+        }
+
     }
 
     /*
