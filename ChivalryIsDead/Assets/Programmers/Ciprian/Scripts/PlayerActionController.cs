@@ -83,6 +83,9 @@ public class PlayerActionController : MonoBehaviour
     private float countTime;
     private bool isTutorial;
     private bool thisLevel;
+    //private int numDay;
+    [HideInInspector]
+    public static int globalCooldown;
 
     void OnDrawGizmos()
     {
@@ -122,6 +125,8 @@ public class PlayerActionController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
+        //numDay = PlayerPrefs.GetInt("numDay");
+        globalCooldown = 0;
         countAttackedMonstr = 0;
         if (PlayerPrefs.HasKey("noGetHit"))
             isNeverAttacked = PlayerPrefs.GetInt("noGetHit");
@@ -189,51 +194,65 @@ public class PlayerActionController : MonoBehaviour
     {
 
         overreactTimestamp += Time.deltaTime;
-
-        if((isNeverAttacked == 1 || isNeverTaunt == 1 || isNeverOverreact == 1 || noSheepKilled == 1) && !isTutorial && !thisLevel)
+        countTime += Time.deltaTime;
+        //Debug.Log(countTime);
+        //Debug.Log(globalCooldown);
+        if (/*(isNeverAttacked == 1 || isNeverTaunt == 1 || isNeverOverreact == 1 || noSheepKilled == 1) &&*/ !isTutorial && !thisLevel)
         {
-            countTime += Time.deltaTime;
-            if (countTime > 10)
+            //countTime += Time.deltaTime;
+            if(countTime > globalCooldown)
             {
-                if (isNeverAttacked == 1)
+                if (countTime > 27)
                 {
-                    GameDialogUI.StartCoroutine("NoGettingHit");
-                    isNeverAttacked = 0;
-                    PlayerPrefs.SetInt("noGetHit", isNeverAttacked);
-                    thisLevel = true;
-               }
-            }
-            if(countTime > 15)
-            {
-                if (noSheepKilled == 1)
-                {
-                    GameDialogUI.StartCoroutine("NoSheepKilled");
-                    noSheepKilled = 0;
-                    PlayerPrefs.SetInt("noSheepKill", noSheepKilled);
-                    thisLevel = true;
+                    if (isNeverAttacked == 1)
+                    {
+                        globalCooldown += 30;
+                        GameDialogUI.StartCoroutine("NoGettingHit");
+                        isNeverAttacked = 0;
+                        PlayerPrefs.SetInt("noGetHit", isNeverAttacked);
+                        thisLevel = true;
+                        
+                    }
                 }
-                
-            }
-             if(countTime > 20)
-            {
-                if (isNeverTaunt == 1)
+                if (countTime > 34)
                 {
-                    GameDialogUI.StartCoroutine("NoTaunting");
-                    isNeverTaunt = 0;
-                    PlayerPrefs.SetInt("noTaunt", isNeverTaunt);
-                    thisLevel = true;
+                    if (noSheepKilled == 1)
+                    {
+                        globalCooldown += 30;
+                        GameDialogUI.StartCoroutine("NoSheepKilled");
+                        noSheepKilled = 0;
+                        PlayerPrefs.SetInt("noSheepKill", noSheepKilled);
+                        thisLevel = true;
+                        
+                    }
+
                 }
-            }               
-            if(countTime > 25)
-            {
-                if (isNeverOverreact == 1)
+                if (countTime > 28)
                 {
-                    GameDialogUI.StartCoroutine("NoOverreacting");
-                    isNeverOverreact = 0;
-                    PlayerPrefs.SetInt("noOverreact", isNeverOverreact);
-                    thisLevel = true;
+                    if (isNeverTaunt == 1)
+                    {
+                        globalCooldown += 30;
+                        GameDialogUI.StartCoroutine("NoTaunting");
+                        isNeverTaunt = 0;
+                        PlayerPrefs.SetInt("noTaunt", isNeverTaunt);
+                        thisLevel = true;
+                        
+                    }
+                }
+                if (countTime > 29)
+                {
+                    if (isNeverOverreact == 1)
+                    {
+                        globalCooldown += 30;
+                        GameDialogUI.StartCoroutine("NoOverreacting");
+                        isNeverOverreact = 0;
+                        PlayerPrefs.SetInt("noOverreact", isNeverOverreact);
+                        thisLevel = true;
+                        
+                    }
                 }
             }
+            
 
         }
 
@@ -302,8 +321,12 @@ public class PlayerActionController : MonoBehaviour
             else
             {
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
-                if(GameDialogUI != null)
+                if(GameDialogUI != null && countTime > globalCooldown)
+                {
+                    globalCooldown += 30;
                     GameDialogUI.StartCoroutine("WrongOverreact");
+                    
+                }
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
@@ -327,15 +350,20 @@ public class PlayerActionController : MonoBehaviour
 
             if (monster.GetType() == typeof(SheepAI))
             {
-                if (GameDialogUI != null)
+                if (GameDialogUI != null && countTime > globalCooldown)
+                {
+                    globalCooldown += 30;
                     GameDialogUI.StartCoroutine("YouHitSheep");
+                    
+                }
             }
             else
             {
                 countAttackedMonstr++;
-                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null)
+                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null && countTime > globalCooldown)
                 {
                     GameDialogUI.StartCoroutine("StopAttacking");
+                    globalCooldown += 30;
                     countAttackedMonstr = 0;
                     countAttacks = 0;
                 }

@@ -187,21 +187,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224000011467601524, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012607948148, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_RaycastTarget
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114000012427048522, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ff69020aa975004c9243b16a7dd5d44, type: 2}
   m_IsPrefabParent: 0
@@ -781,6 +766,14 @@ Prefab:
       propertyPath: dampenLightPanel
       value: 
       objectReference: {fileID: 483627837}
+    - target: {fileID: 1000012626692292, guid: 6c6dcf5351397214c8a7238e0efda866, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011542035782, guid: 6c6dcf5351397214c8a7238e0efda866, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c6dcf5351397214c8a7238e0efda866, type: 2}
   m_IsPrefabParent: 0
@@ -3204,6 +3197,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1714313100}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!224 &974502907
@@ -4535,6 +4539,11 @@ CanvasRenderer:
 --- !u!1 &1714313098 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000011822690370, guid: 1ff69020aa975004c9243b16a7dd5d44,
+    type: 2}
+  m_PrefabInternal: {fileID: 2719800}
+--- !u!95 &1714313100 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 95000013903340206, guid: 1ff69020aa975004c9243b16a7dd5d44,
     type: 2}
   m_PrefabInternal: {fileID: 2719800}
 --- !u!1 &1959664568

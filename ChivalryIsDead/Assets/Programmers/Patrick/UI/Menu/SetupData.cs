@@ -23,6 +23,7 @@ public class SetupData : MonoBehaviour {
             PlayerPrefs.SetInt("Swapped", 0);
 
             // Gameplay
+            //PlayerPrefs.SetInt("numDay", 0);
             PlayerPrefs.SetInt("lowCombo", 0);
             PlayerPrefs.SetInt("noGetHit", 1); //yes patrick 1 is the correct one
             PlayerPrefs.SetInt("noSheepKill", 1);
