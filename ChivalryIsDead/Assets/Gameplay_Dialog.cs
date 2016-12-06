@@ -140,7 +140,23 @@ public class Gameplay_Dialog : MonoBehaviour
 
     public void HalfTime()
     {
-        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
+        if (SceneGetter.Instance.isDestroyQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 20);
+
+        }
+        else if (SceneGetter.Instance.isWellQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 19);
+        }
+        else if (SceneGetter.Instance.isBakeryQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 18);
+        }
+        else if (SceneGetter.Instance.isFarmhouseQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 17);
+        }
         TimerObjectScript.isReminded = true;
     }
 
