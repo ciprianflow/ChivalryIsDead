@@ -7,9 +7,12 @@ using System.Collections.Generic;
 
 public class EndScreen : MonoBehaviour {
 
+    public GameObject loadingScreen;
+
     public GameObject killLine;
     public Text title;
     public Text info;
+    public Text reptutation;
 
     public Sprite SheepSprite;
     public Sprite meleeSprite;
@@ -22,6 +25,16 @@ public class EndScreen : MonoBehaviour {
     public GameObject Timer;
 
 
+
+    private Text deadSheepText;
+    private Text deadFishmenText;
+    private Text deadGnomesText;
+    private Text deadTrollsText;
+    private bool startMonsters = false;
+
+    private int scoreWithoutBonus = 0;
+    private int localScore = 0;
+    private float timeNow;
     private QuestData data;
 
     void Awake()
@@ -31,6 +44,7 @@ public class EndScreen : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
+
         if (FadeOut != null)
             FadeOut.SetActive(true);
 
@@ -39,7 +53,8 @@ public class EndScreen : MonoBehaviour {
 
         var questDesc = new StringBuilder();
 
-        int localScore = StaticIngameData.dummyManager.GetLocalScore();
+        scoreWithoutBonus = StaticIngameData.dummyManager.GetLocalScoreWithoutBonus();
+        localScore = StaticIngameData.dummyManager.GetLocalScore();
 
         if (TimerObjectScript.Instance.GetElapsedTime() <= 0.01)
         {
@@ -60,28 +75,111 @@ public class EndScreen : MonoBehaviour {
 
         }
 
-        //            questDesc.Append(string.Format("Reputation gained: " + localScore));
-
 
 
         info.text = questDesc.ToString();
         showMonsters();
 
     }
-	
+
+    private int currentSheep, currentRanged, currentMelee, currentSuicide = 0;
+    private int deadFishmen, deadTrolls, deadGnomes, deadSheep = 0;
+    private int totalFishmen, totalTrolls, totalGnomes, totalSheep = 0;
+
+    private int score = 50;
+    private float textBaseScoreIncreaseAnimationSpeed = 5.0f;
+    private int scoreAddRound = 0;
+    private float scoreMultiplier, scoreMultiplier2, scoreMultiplier3 = 0;
+    private bool startTimer = false;
+
+
     void Update()
+    {        
+        if (startMonsters)
+        {
+            //Debug.Log("realtiem: " + Time.realtimeSinceStartup + " - " + timeNow);
+            scoreMultiplier += (Time.realtimeSinceStartup - timeNow) * 0.001f;
+
+            float xsc = Mathf.Round(Mathf.Lerp(0, score, scoreMultiplier));
+            //Debug.Log("deaded sheep: " + deadSheep);
+            if (totalSheep > 0)
+            {
+                if (deadSheep >= xsc)
+                {
+                    deadSheepText.text = "X " + xsc;
+                }
+
+            }
+
+            if (totalFishmen > 0)
+            {
+                if (deadFishmen >= xsc)
+                {
+                    deadFishmenText.text = "X " + xsc;
+                }
+
+            }
+            if (totalGnomes > 0)
+            {
+                if (deadGnomes >= xsc)
+                {
+                    deadGnomesText.text = "X " + xsc;
+                }
+
+            }
+            if (totalTrolls > 0)
+            {
+                if (deadTrolls >= xsc)
+                {
+                    deadTrollsText.text = "X " + xsc;
+                }
+            }
+
+            scoreMultiplier2 += (Time.realtimeSinceStartup - timeNow) * 0.005f;
+            float tsc = Mathf.Round(Mathf.Lerp(0, scoreWithoutBonus, scoreMultiplier2));
+            reptutation.text = "Reputation: " + tsc;
+
+            if(tsc >= scoreWithoutBonus || xsc >= 20f)
+            {
+
+                startMonsters = false;
+                StartCoroutine(startTimerBonus());
+
+            }
+        }
+
+        if (startTimer)
+        {
+            scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.004f;
+            float bsc = Mathf.Round(Mathf.Lerp(scoreWithoutBonus, localScore, scoreMultiplier3));
+
+            reptutation.text = "Reputation: " + bsc;
+        }
+
+    }
+
+    private IEnumerator startTimerBonus()
     {
-        
+        yield return new WaitForSeconds(0.3f);
+        Time.timeScale = 0f;
+        startTimer = true;
+        Timer.SetActive(true);
+
+        if (TimerObjectScript.Instance != null)
+        {
+            float timer = TimerObjectScript.Instance.GetTimer();
+
+            Timer.GetComponentInChildren<Text>().text = secondsToMinutes((int)Math.Round(timer));            
+        }
+        timeNow = Time.realtimeSinceStartup;
     }
 
 	// Update is called once per frame
 	void showMonsters () {
 
         List<MonsterAI> list = StaticIngameData.mapManager.GetObjectiveManager().GetMonsters();
-
-
-        int deadFishmen = 0, deadTrolls = 0, deadGnomes = 0, deadSheep = 0;
-        int totalFishmen = 0, totalTrolls = 0, totalGnomes = 0, totalSheep = 0;
+        
+        
         //better ways
         foreach (MonsterAI monster in list)
         {
@@ -121,51 +219,63 @@ public class EndScreen : MonoBehaviour {
         }
 
 
-        if (TimerObjectScript.Instance != null)
-        {
-            float timer = TimerObjectScript.Instance.GetTimer();
-
-            Timer.GetComponentInChildren<Text>().text = secondsToMinutes((int) Math.Round(timer));
-        }
 
         if (totalSheep > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.GetComponentInChildren<Text>().text = "X " + deadSheep;
-            hh.GetComponentInChildren<Image>().sprite = SheepSprite;
             hh.SetActive(true);
+            deadSheepText = hh.GetComponentInChildren<Text>();
+            deadSheepText.text = "X 0";
+            //hh.GetComponentInChildren<Text>().text = "X " + deadSheep;
+            hh.GetComponentInChildren<Image>().sprite = SheepSprite;
+            
         }
         if (totalFishmen > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-
-            hh.GetComponentInChildren<Text>().text = "X " + deadFishmen;
-            hh.GetComponentInChildren<Image>().sprite = meleeSprite;
             hh.SetActive(true);
-        }
+            deadFishmenText = hh.GetComponentInChildren<Text>();
+            deadFishmenText.text = "X 0";
+            //hh.GetComponentInChildren<Text>().text = "X " + deadFishmen;
+            hh.GetComponentInChildren<Image>().sprite = meleeSprite;
 
+        }
         if (totalGnomes > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.GetComponentInChildren<Text>().text = "X " + deadGnomes;
-            //hh.GetComponentInChildren<Image>().sprite =;
             hh.SetActive(true);
-        }
+            deadGnomesText = hh.GetComponentInChildren<Text>();
+            deadGnomesText.text = "X 0";
+            //hh.GetComponentInChildren<Text>().text = "X " + deadGnomes;
+            hh.GetComponentInChildren<Image>().sprite = suicideSprite;
 
+        }
         if (totalTrolls > 0)
         {
             GameObject hh = Instantiate(killLine, killLine.transform.parent, killLine.transform) as GameObject;
-            hh.GetComponentInChildren<Text>().text = "X " + deadTrolls;
-            hh.GetComponentInChildren<Image>().sprite = rangedSprite;
             hh.SetActive(true);
+            deadTrollsText = hh.GetComponentInChildren<Text>();
+            deadTrollsText.text = "X 0";
+            //hh.GetComponentInChildren<Text>().text = "X " + deadTrolls;
+            hh.GetComponentInChildren<Image>().sprite = rangedSprite;
+
         }
 
 
 
+        timeNow = Time.realtimeSinceStartup;
+        startMonsters = true;
+
+
+
+        Debug.Log("startshowmosnters");
+
     }
+
 
     public void GoToHubWorld()
     {
+        loadingScreen.SetActive(true);
         StaticIngameData.mapManager.LoadHubArea();
     }
 

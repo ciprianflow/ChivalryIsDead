@@ -1812,6 +1812,9 @@ GameObject:
   - 114: {fileID: 114000014015430878}
   - 114: {fileID: 114000011664742568}
   - 114: {fileID: 114000011461743662}
+  - 114: {fileID: 114000013970644064}
+  - 114: {fileID: 114000012743887220}
+  - 114: {fileID: 114000011497700508}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Enemy
@@ -4262,6 +4265,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exclMark: {fileID: 1000010316292184}
+--- !u!114 &114000011497700508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013317938470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec744210434a4664bb8d32b471c6b196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: 
+  useOtherObject: 0
+  valueGuid: a22a7f1547746d458787632b57432150
+  eventID: -1937375323
+  soundEmitterObject: {fileID: 0}
+  enableActionOnEvent: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  transitionDuration: 0
+  m_callbackData: {fileID: 0}
+  playingId: 0
+  multiPositionTypeLabel: 0
+  multiPositionArray: []
 --- !u!114 &114000011519477888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4337,6 +4364,30 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114000012743887220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013317938470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec744210434a4664bb8d32b471c6b196, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerList: 
+  useOtherObject: 0
+  valueGuid: 357441e37e662e448da2b5a7617f6189
+  eventID: 1684621815
+  soundEmitterObject: {fileID: 0}
+  enableActionOnEvent: 0
+  actionOnEventType: 0
+  curveInterpolation: 4
+  transitionDuration: 0
+  m_callbackData: {fileID: 0}
+  playingId: 0
+  multiPositionTypeLabel: 0
+  multiPositionArray: []
 --- !u!114 &114000013267364084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4505,6 +4556,23 @@ MonoBehaviour:
   PlayerAttackRep: 0
   monsterHandle: 0
   aggroTime: 10
+--- !u!114 &114000013970644064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013317938470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 147771896c0eaee428a1badfe594ce86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_positionOffsetData:
+    positionOffset: {x: 0, y: 0, z: 0}
+    KeepMe: 0
+  isEnvironmentAware: 1
+  listenerMask: 1
+  isStaticObject: 0
 --- !u!114 &114000014015430878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4519,6 +4587,7 @@ MonoBehaviour:
   id: 21
   health: 1
   ForceDestroyOnDeath: 0
+  healthBar: {fileID: 0}
 --- !u!114 &114000014171382046
 MonoBehaviour:
   m_ObjectHideFlags: 1

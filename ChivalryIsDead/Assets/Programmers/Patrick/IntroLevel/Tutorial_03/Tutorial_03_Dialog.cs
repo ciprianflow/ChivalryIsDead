@@ -11,6 +11,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
     public GameObject[] Sheeps;
     public GameObject enemy;
     public GameObject UI;
+    public GameObject loadingScreen;
     public GameObject ControlMove;
     public GameObject ControlHit;
     public GameObject InvisWallOne;
@@ -148,7 +149,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
 
         //Invoke("CallableSkip", 5f);
-        while (count < 4)
+        while (count < 2)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -385,6 +386,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         yield return new WaitForSeconds(9f);
         PlayerPrefs.SetInt("OverreactLevel", 1);
         PlayerPrefs.SetInt("Attack", 1);
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene("ProtoHubWorld 1");
 
     }
