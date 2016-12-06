@@ -16,6 +16,8 @@ public class MainMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
+        SetVolumes();
+
         // Start the background music.
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
 
@@ -106,6 +108,23 @@ public class MainMenu : MonoBehaviour {
         loading.SetActive(true);
         yield return async;
         Debug.Log("Loading complete");
+    }
+
+    private void SetVolumes()
+    {
+        var hasAudio = System.Convert.ToBoolean(PlayerPrefs.GetInt("Sound"));
+        float sfxVol, musicVol;
+        if (hasAudio) {
+            sfxVol = PlayerPrefs.GetFloat("SoundVolume") * 100;
+            musicVol = PlayerPrefs.GetFloat("MusicVolume") * 100;
+        }
+        else {
+            sfxVol = 0;
+            musicVol = 0;
+        }
+
+        WwiseInterface.Instance.SetVolume(sfxVol, VolumeHandle.SFX);
+        WwiseInterface.Instance.SetVolume(musicVol, VolumeHandle.Music);
     }
 
 }

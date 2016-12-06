@@ -20,11 +20,7 @@ public class SuicideAI : MonsterAI
 
     void Start()
     {
-        if(PlayerPrefs.GetInt("SuicideLevel") == 0)
-        {
-            PlayerPrefs.SetInt("SuicideTut", 1);
-            PlayerPrefs.SetInt("SuicideLevel", 1);
-        }
+
     }
 
     void OnDrawGizmos()
@@ -149,7 +145,7 @@ public class SuicideAI : MonsterAI
                 {
                     if(m.GetType().Equals(typeof(SheepAI)))
                     {
-                        //Sheeps
+                        //Sheep
                         Debug.Log("I HIT A SHEEP");
                         HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true, this);
 
@@ -193,8 +189,20 @@ public class SuicideAI : MonsterAI
             return;
 
         //EXPLODE WITH EVERYTHING
-        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility)
+        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility) {
+            if (coll.CompareTag("Player")) {
+                //ANGELIKI PUT THE THINGYMOJIGGI HERE
+                Debug.Log("EXPLODE ON PLAYER");
+
+                if (PlayerPrefs.GetInt("SuicideTut") == 0) {
+
+                    PlayerPrefs.SetInt("SuicideTut", 1);
+                }
+
+            }
             Explode();
+
+        }
 
         Debug.Log("Collided with something");
 

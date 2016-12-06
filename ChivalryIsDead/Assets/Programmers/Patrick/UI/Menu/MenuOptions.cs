@@ -10,7 +10,6 @@ public class MenuOptions : MonoBehaviour {
     public GameObject areYouSure;
 
     public GameObject muteSound;
-    public Slider masterVolume;
     public Slider soundVolume;
     public Slider musicVolume;
 
@@ -23,7 +22,6 @@ public class MenuOptions : MonoBehaviour {
     void Start () {
 
         // Check Volume Sliders
-        masterVolume.value = PlayerPrefs.GetFloat("MasterVolume");
         soundVolume.value = PlayerPrefs.GetFloat("SoundVolume");
         musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
 
@@ -32,7 +30,9 @@ public class MenuOptions : MonoBehaviour {
         if (PlayerPrefs.GetInt("Sound") == 0)
         {
             muteSound.GetComponent<Image>().color = Color.red;
-            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
+            //WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.SFX);
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Music);
         }
         else if (PlayerPrefs.GetInt("Sound") == 1)
         {
@@ -45,7 +45,7 @@ public class MenuOptions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (!IsMuted) { 
-            WwiseInterface.Instance.SetVolume(masterVolume.value * 100, VolumeHandle.Master);
+            //WwiseInterface.Instance.SetVolume(masterVolume.value * 100, VolumeHandle.Master);
             WwiseInterface.Instance.SetVolume(soundVolume.value * 100, VolumeHandle.SFX);
             WwiseInterface.Instance.SetVolume(musicVolume.value * 100, VolumeHandle.Music);
         }
@@ -75,7 +75,7 @@ public class MenuOptions : MonoBehaviour {
 
     public void MasterVolume()
     {
-        PlayerPrefs.SetFloat("MasterVolume", masterVolume.value);
+        //PlayerPrefs.SetFloat("MasterVolume", masterVolume.value);
     }
 
     public void SoundMute()
@@ -84,7 +84,8 @@ public class MenuOptions : MonoBehaviour {
         {
             WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
             PlayerPrefs.SetInt("Sound", 0);
-            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.SFX);
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Music);
             muteSound.GetComponent<Image>().color = Color.red;
         }
         else if (PlayerPrefs.GetInt("Sound") == 0)

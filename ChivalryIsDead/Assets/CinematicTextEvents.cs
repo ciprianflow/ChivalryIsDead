@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class CinematicTextEvents : MonoBehaviour {
 
     public Renderer textMat;
-    public Texture tex;
     public List<Texture> speechBubbles_English;
     public List<Texture> speechBubbles_Danish;
+    public GameObject firstScene;
 
     int curTex = -1;
 	// Use this for initialization
@@ -32,5 +32,9 @@ public class CinematicTextEvents : MonoBehaviour {
 
     public void nextScene() {
         SceneManager.LoadScene(3);
+    }
+
+    public void halfScene() {
+        firstScene.SetActive(false);
     }
 }
