@@ -193,8 +193,14 @@ public class SuicideAI : MonsterAI
             return;
 
         //EXPLODE WITH EVERYTHING
-        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility)
+        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility) {
+            if (coll.CompareTag("Player")) {
+                //ANGELIKI PUT THE THINGYMOJIGGI HERE
+                Debug.Log("EXPLODE ON PLAYER");
+            }
             Explode();
+
+        }
 
         Debug.Log("Collided with something");
 
