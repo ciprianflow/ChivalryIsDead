@@ -63,9 +63,14 @@ public class HubDataManager : MonoBehaviour {
 
     void Awake()
     {
+        Debug.Log("stop the music!");
+        //AkSoundEngine.PostEvent("musicStop", gameObject);
+        //AkSoundEngine.PostEvent("start_hub_ambience", gameObject);
+        Time.timeScale = 1f;
+
+
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
         WwiseInterface.Instance.SetAmbience(AmbienceHandle.Hub);
-        Time.timeScale = 1f;
 
         hubDataPath = Application.persistentDataPath + "/HubData.json";
 
@@ -80,7 +85,6 @@ public class HubDataManager : MonoBehaviour {
 
     void Start () {
         // Playing Hub Music.
-        //WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
 
         isClicked = false;
         checkForWin();
