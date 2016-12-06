@@ -15227,13 +15227,33 @@
 							<ChildrenList>
 								<AudioFileSource Name="cinematic intro v1" ID="{230E65D6-306E-4866-AF27-ADB2715D841E}" ShortID="871057150">
 									<PropertyList>
-										<Property Name="LoopBegin" Type="Real64" Value="54.7988376116071"/>
+										<Property Name="FadeOutDuration" Type="Real64" Value="15.3336196986607"/>
+										<Property Name="FadeOutShape" Type="int16" Value="6"/>
+										<Property Name="LoopBegin" Type="Real64" Value="58.4018192894345"/>
 										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
 									</PropertyList>
 									<Language>SFX</Language>
 									<AudioFile>cinematic intro v1.wav</AudioFile>
 								</AudioFileSource>
 							</ChildrenList>
+							<StateInfo>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="cinematicState" ID="{392A0687-012D-4386-9178-AADE746AF40E}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="fade" ID="{2B9901F6-22E3-4F41-947B-B8ECBFA85CC7}"/>
+										<State Name="Custom State" ID="{B46C3189-B4A9-49F7-97C1-B046A1059A77}" ShortID="439890314">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16" Value="65"/>
+												<Property Name="Volume" Type="Real64" Value="-15"/>
+											</PropertyList>
+										</State>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
 							<ActiveSourceList>
 								<ActiveSource Name="cinematic intro v1" ID="{230E65D6-306E-4866-AF27-ADB2715D841E}" Platform="Linked"/>
 							</ActiveSourceList>
