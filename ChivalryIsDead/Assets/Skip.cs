@@ -22,6 +22,7 @@ public class Skip : MonoBehaviour, IPointerUpHandler, IPointerDownHandler {
             //texttext.text = "Hold for " + (int)(t + 0.99f) + " sec";
             texttext.text = "Hold for " + Mathf.Ceil(t) + " sec";
             if (t <= 0) {
+                AkSoundEngine.PostEvent("stopCinematic", gameObject);
                 SceneManager.LoadScene(3);
             }
         }

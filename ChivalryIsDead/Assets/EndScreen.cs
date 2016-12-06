@@ -97,11 +97,12 @@ public class EndScreen : MonoBehaviour {
     {        
         if (startMonsters)
         {
-            //Debug.Log("realtiem: " + Time.realtimeSinceStartup + " - " + timeNow);
-            scoreMultiplier += (Time.realtimeSinceStartup - timeNow) * 0.001f;
-
+            
+            scoreMultiplier += (Time.realtimeSinceStartup - timeNow) * 0.2f;
+           
             float xsc = Mathf.Round(Mathf.Lerp(0, score, scoreMultiplier));
-            //Debug.Log("deaded sheep: " + deadSheep);
+           
+
             if (totalSheep > 0)
             {
                 if (deadSheep >= xsc)
@@ -135,22 +136,24 @@ public class EndScreen : MonoBehaviour {
                 }
             }
 
-            scoreMultiplier2 += (Time.realtimeSinceStartup - timeNow) * 0.005f;
+            scoreMultiplier2 += (Time.realtimeSinceStartup - timeNow) * 0.4f;
             float tsc = Mathf.Round(Mathf.Lerp(0, scoreWithoutBonus, scoreMultiplier2));
             reptutation.text = "Reputation: " + tsc;
 
-            if(tsc >= scoreWithoutBonus || xsc >= 20f)
+            if(tsc >= scoreWithoutBonus && xsc >= 20f)
             {
 
                 startMonsters = false;
                 StartCoroutine(startTimerBonus());
 
             }
+
+            timeNow = Time.realtimeSinceStartup;
         }
 
         if (startTimer)
         {
-            scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.004f;
+            scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.3f;
             float bsc = Mathf.Round(Mathf.Lerp(scoreWithoutBonus, localScore, scoreMultiplier3));
 
             reptutation.text = "Reputation: " + bsc;
@@ -160,7 +163,7 @@ public class EndScreen : MonoBehaviour {
 
     private IEnumerator startTimerBonus()
     {
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.15f);
         Time.timeScale = 0f;
         startTimer = true;
         Timer.SetActive(true);
@@ -183,7 +186,8 @@ public class EndScreen : MonoBehaviour {
         //better ways
         foreach (MonsterAI monster in list)
         {
-            
+            monster.GetComponent<ExclamationMark>().DisableMark();
+
             switch (monster.GetType().ToString())
             {
                 
