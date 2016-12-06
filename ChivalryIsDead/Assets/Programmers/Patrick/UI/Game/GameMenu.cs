@@ -48,16 +48,22 @@ public class GameMenu : MonoBehaviour {
         settingManager = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsMngr>();
 
         StaticIngameData.gameMenu = this;
+
     } 
 
     void Start () {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
+        // Start the background music.
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+
+
         endLetter.SetActive(false);
         introLetter.SetActive(false);
-        sword.SetActive(false);
+        //sword.SetActive(false);
         princess.SetActive(false);
-        skipBtn.SetActive(false);
+        //if(SceneManager.GetActiveScene().name != "TutHubWorld 1" && SceneManager.GetActiveScene().name != "TutHubWorld 2")
+        //    skipBtn.SetActive(false);
 
         //Princess();
         //Sword();
@@ -143,6 +149,12 @@ public class GameMenu : MonoBehaviour {
             paused = false;
             //pauseBtn.SetActive(true);
             //pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
+            if (SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Introlevel")
+                dialogSystem.GetComponent<IntroLevelDialog>().RestoreAllAnimators();
+            if (SceneManager.GetActiveScene().name == "Tutorial_02")
+                dialogSystem.GetComponent<Tutorial_02_Dialog>().RestoreAllAnimators();
+            else if(SceneManager.GetActiveScene().name == "Tutorial_03")
+                dialogSystem.GetComponent<Tutorial_03_Dialog>().RestoreAllAnimators();
             Time.timeScale = 1f;
         }
     }

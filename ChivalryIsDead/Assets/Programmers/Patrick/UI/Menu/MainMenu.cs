@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
 
@@ -8,15 +9,23 @@ public class MainMenu : MonoBehaviour {
     public GameObject options;
     public GameObject loading;
 
+    public GameObject ContinueButton;
+
     Scene testGame;
 
 	// Use this for initialization
 	void Start ()
     {
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        // Start the background music.
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
+        if (PlayerPrefs.GetInt("AttackLevel") == 0)
+        {
+            ContinueButton.GetComponent<Image>().color = Color.red;
+        }
+        
     }
 	
 	// Update is called once per frame
@@ -28,12 +37,44 @@ public class MainMenu : MonoBehaviour {
     }
 
 
-    public void Continue()
+    public void DevPlay()
     {
         WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         //Application.OpenURL("https://www.youtube.com/watch?v=AuRXVMSG3po");
 
+        PlayerPrefs.SetInt("Attack", 1);
+        PlayerPrefs.SetInt("Taunt", 1);
+        PlayerPrefs.SetInt("Overreact", 1);
+
         SceneManager.LoadScene("ProtoHubWorld 1");
+    }
+
+
+    public void Continue()
+    {
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+        
+        if (PlayerPrefs.GetInt("TauntLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1)
+        {
+            Debug.Log("Level2");
+            PlayerPrefs.SetInt("Attack", 0);
+            PlayerPrefs.SetInt("Taunt", 0);
+            PlayerPrefs.SetInt("Overreact", 0);
+            StartCoroutine("LoadLevel", "TutHubWorld 1");
+
+        }
+        else if (PlayerPrefs.GetInt("OverreactLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1)
+        {
+            Debug.Log("Level3");
+            PlayerPrefs.SetInt("Attack", 0);
+            PlayerPrefs.SetInt("Taunt", 1);
+            PlayerPrefs.SetInt("Overreact", 0);
+            StartCoroutine("LoadLevel", "Tutorial_03");
+
+        } else if(PlayerPrefs.GetInt("AttackLevel") == 1 && PlayerPrefs.GetInt("TauntLevel") == 1 && PlayerPrefs.GetInt("OverreactLevel") == 1)
+        {
+            SceneManager.LoadScene("ProtoHubWorld 1");
+        }
     }
 
 
@@ -41,8 +82,14 @@ public class MainMenu : MonoBehaviour {
     {
         WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
         HubDataManager.ResetHubData();
-        StartCoroutine("LoadLevel");
-        
+    
+        PlayerPrefs.SetInt("AttackLevel", 0);
+        PlayerPrefs.SetInt("TauntLevel", 0);
+        PlayerPrefs.SetInt("OverreactLevel", 0);
+
+        StartCoroutine("LoadLevel", "Introlevel");
+
+
     }
 
     public void Options()
@@ -53,9 +100,9 @@ public class MainMenu : MonoBehaviour {
     }
 
 
-    IEnumerator LoadLevel()
+    IEnumerator LoadLevel(string level)
     {
-        AsyncOperation async = SceneManager.LoadSceneAsync(1);
+        AsyncOperation async = SceneManager.LoadSceneAsync(level);
         loading.SetActive(true);
         yield return async;
         Debug.Log("Loading complete");

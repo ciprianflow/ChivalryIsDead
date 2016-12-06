@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 
 public class MeleeAI2 : MonsterAI
 {
@@ -11,6 +12,8 @@ public class MeleeAI2 : MonsterAI
     public float attackAngleWidth = 0.6f;
     public float chargeForce = 250f;
     public float attackForce = 5000;
+    public float playerAttackForce = 25000;
+    public float attackForceOnOtherMonsters = 1000000;
     public float spinAttackDuration = 0.9f;
     public float spinAttackColddown = 3f;
 
@@ -45,9 +48,7 @@ public class MeleeAI2 : MonsterAI
         //Debug.Log(t1 + " > " + spinAttackDuration);
         if(t1 < spinAttackDuration)
         {
-            if (!hitPlayer)
-                if (DoAOEAttack(transform.position, attackLength, attackForce, this))
-                    hitPlayer = true;
+            
         }
         else
         {
@@ -64,22 +65,27 @@ public class MeleeAI2 : MonsterAI
         Colliders = Physics.OverlapSphere(transform.position, attackLength);
         for (int i = 0; i < Colliders.Length; i++)
         {
-            MonsterAI m = Colliders[i].GetComponent<MonsterAI>();
-
-            if(m != null && m != this)
+            Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
+            if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
             {
-                m.Hit(1);
-                Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
-                if (body)
-                    body.AddExplosionForce(attackForce, transform.position, attackLength);
-            }
 
-            if (Colliders[i].tag == "Player")
-            {
-                //Debug.Log("This on is a player");
-                Vector3 vectorToCollider = (Colliders[i].transform.position - transform.position).normalized;
-                if (Vector3.Dot(vectorToCollider, transform.forward) > attackAngleWidth)
+                MonsterAI m = Colliders[i].GetComponent<MonsterAI>();
+
+                if(m != null && m != this)
                 {
+                    Debug.Log("OK I HIT A MONSTERS");
+                    m.Hit(1);
+                    Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
+                    if (body)
+                    {
+                        body.AddExplosionForce(attackForceOnOtherMonsters, transform.position, attackLength + 50);
+                    }   
+                }
+
+                if (Colliders[i].tag == "Player")
+                {
+                    //Debug.Log("This on is a player");
+                
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
                         body.AddExplosionForce(attackForce * 5, transform.position, attackLength);
@@ -101,6 +107,10 @@ public class MeleeAI2 : MonsterAI
         ResetTimer();
         MoveToAttack();
 
+        Vector3 v1 = targetObject.transform.position - transform.position;
+        float dot = Vector3.Dot(transform.forward, v1);
+        float delay = 0.4f - ((dot + 1) / 3f);
+        StartCoroutine(DelayAttack(delay));
 
         Quaternion q = Quaternion.LookRotation(targetObject.transform.position - transform.position);
         //Debug.Log((q.eulerAngles.y - transform.eulerAngles.y));
@@ -113,6 +123,8 @@ public class MeleeAI2 : MonsterAI
 
             anim.SetTrigger("attackLeft");
         }
+
+        WwiseInterface.Instance.PlayGeneralMonsterSound(MonsterHandle.Melee, MonsterAudioHandle.Attack, this.gameObject);
 
 
     }
@@ -368,11 +380,11 @@ public class MeleeAI2 : MonsterAI
 
         
         MonsterAI m = coll.gameObject.GetComponent<MonsterAI>();
+        QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
         //If collision happened with a quest object
         if (m != null)
         {
             //If AI hit a sheep invoke the sheep hit function
-            QuestObject QO = coll.gameObject.GetComponent<QuestObject>();
             if (QO != null && m.GetType() == typeof(SheepAI))
             {
                 Debug.Log("I HIT A SHEEP");
@@ -386,12 +398,23 @@ public class MeleeAI2 : MonsterAI
                 QO.takeDamage(GetBaseAttackDamage(), true);
                 base.playerAction.ObjectiveAttacked(this);
                 ChargeToMove();
-            }else
+            }else if (m.GetType() == typeof(MeleeAI2))
             {
+                Debug.Log("Melee's collided with angle : " + Vector3.Dot(m.gameObject.transform.forward, transform.forward));
+                if (m.getState() == State.Charge && Vector3.Dot(m.gameObject.transform.forward, transform.forward) > 0.8)
+                    return;
+
                 anim.SetTrigger("HitObject");
                 Debug.Log("hit another monster");
                 ChargeToMove();
             }
+        }
+        else if(QO != null)
+        {
+            anim.SetTrigger("HitObject");
+            Debug.Log("Hit quest object");
+            QO.takeDamage(1, true);
+            ChargeToMove();
         }
         else {
             anim.SetTrigger("HitObject");
@@ -435,6 +458,7 @@ public class MeleeAI2 : MonsterAI
         StopNavMeshAgent();
         state = State.Turn;
         stateFunc = Turn;
+        rotated = false;
 
         Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
 
@@ -442,19 +466,15 @@ public class MeleeAI2 : MonsterAI
             return;
 
         if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
-            Debug.Log("RIGHT");
             anim.SetTrigger("StartTurnRight");
         }
         else {
-            Debug.Log("LEFT");
-
             anim.SetTrigger("StartTurnLeft");
         }
     }
 
     public override void Turn()
     {
-
         if ( ControlledRotation() )
         {
             ToMove();
@@ -468,21 +488,23 @@ public class MeleeAI2 : MonsterAI
     {
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
-        Vector3 v3 = targetPoint;
+        Vector3 v3 = agent.steeringTarget;
         v.y = 0;
         v2.y = 0;
         v3.y = 0;
         //If the rotation is not done yet the function returns false
-        if (Vector3.Angle(v, v3 - v2) < 20f)
+        if (!rotated && Vector3.Angle(v, v3 - v2) < 20f)
         {
             anim.SetTrigger("Rotate");
+            rotated = true;
         }
 
         if (Vector3.Angle(v, v3 - v2) > 1f)
         {
-            RotateTowardsTarget();
+            RotateTowardsTarget(agent.steeringTarget);
             return false;
         }
+        rotated = false;
         return true;
     }
 
@@ -490,11 +512,21 @@ public class MeleeAI2 : MonsterAI
     {
         Vector3 v = transform.forward;
         Vector3 v2 = transform.position;
-        Vector3 v3 = targetPoint;
+        Vector3 v3 = agent.steeringTarget;
         v.y = 0;
         v2.y = 0;
         v3.y = 0;
         //If the rotation is not done yet the function returns false
         return Vector3.Angle(v, v3 - v2);
     }
+
+    IEnumerator DelayAttack(float f)
+    {
+        yield return new WaitForSeconds(f);
+        if (!hitPlayer)
+            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 30, this))
+                hitPlayer = true;
+    }
+
+
 }

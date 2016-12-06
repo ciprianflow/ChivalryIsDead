@@ -2463,11 +2463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 1000012152702488}
-  dialog:
-  - {fileID: 11400000, guid: 817e2e48fb7139645b5648d598addb2c, type: 2}
-  - {fileID: 11400000, guid: 82eb5c000a412bf4d86b54db251bd7c7, type: 2}
-  - {fileID: 11400000, guid: 0ade621addfac1b4faca3af2e152d64b, type: 2}
-  - {fileID: 11400000, guid: 284263cabf95c2142a4c5a70899fe61d, type: 2}
+  dialogEnglish: []
+  dialogDansk: []
   playerText: {fileID: 1000013950056352}
   playerBubble: {fileID: 1000013437805530}
   swordText: {fileID: 1000010238253688}
@@ -2481,6 +2478,7 @@ MonoBehaviour:
   peasantBBubble: {fileID: 1000011575388804}
   peasantBText: {fileID: 1000012631274922}
   SwordParticle: {fileID: 0}
+  skipBtn: {fileID: 0}
 --- !u!114 &114000011917887330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3006,14 +3004,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db14317ff4367254cab61ac8f077ad60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animCam: {fileID: 0}
+  mainCam: {fileID: 0}
   Player: {fileID: 0}
+  enemyBillboard: {fileID: 0}
+  TrollA: {fileID: 0}
+  TrollB: {fileID: 0}
+  Sheeps: []
   UI: {fileID: 1000012152702488}
   ControlMove: {fileID: 0}
   ControlHit: {fileID: 0}
   InvisWallOne: {fileID: 0}
-  InvisWallTwo: {fileID: 0}
   HandCanvas: {fileID: 0}
+  ScreenFreeze: {fileID: 0}
   swordAnimator: {fileID: 95000014230914578}
+  skipAnimator: {fileID: 0}
+  skipBtn: {fileID: 0}
+  tutImage: {fileID: 0}
+  tutImgAnimator: {fileID: 0}
 --- !u!114 &114000012535673284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3326,7 +3334,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2048, y: 1536}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3527,6 +3535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldStartVisible: 1
   menu: {fileID: 1000012152702488}
+  dampenLightPanel: {fileID: 0}
 --- !u!114 &114000013304911792
 MonoBehaviour:
   m_ObjectHideFlags: 1

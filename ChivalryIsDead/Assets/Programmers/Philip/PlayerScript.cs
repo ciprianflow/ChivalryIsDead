@@ -66,7 +66,7 @@ public class PlayerScript : MonoBehaviour {
         switch(action)
         {
             case PlayerActions.ATTACK:
-                if (taunting || overreacting)
+                if (overreacting)
                 {
                     return false;
                 }
@@ -108,7 +108,6 @@ public class PlayerScript : MonoBehaviour {
             DustParticle.SetActive(true);
         }
 
-        //Debug.Log(LastXY.sqrMagnitude + " " + LastXY.magnitude);
 
         LastXY = new Vector2(x, y);
         if (zVel < LastXY.sqrMagnitude - 0.05f) {
@@ -154,23 +153,6 @@ public class PlayerScript : MonoBehaviour {
         if (Input.GetButtonDown("Jump")) {
             anim.SetLayerWeight(8, 0);
         }
-
-        //Debug.Log(anim.GetCurrentAnimatorStateInfo(1).normalizedTime);
-
-
-        //if (attacking)
-        //{
-        //    animate( ref attacking, "attacking");
-        //}
-        //if (taunting)
-        //{
-        //    animate( ref taunting, "taunting");
-        //}
-
-        //if (overreacting)
-        //{
-        //    animate(ref overreacting, "overreacting");
-        //}
         if (Input.GetKeyDown(KeyCode.M))
         {
             taunt();
@@ -295,7 +277,6 @@ public class PlayerScript : MonoBehaviour {
             yield return new WaitForSeconds(0.01f);
         }
         while (reachedFullWeight && !Attackended) {
-            //Debug.Log("does this even happen");
             if (zVel == 0 && attackLowerWeight < 1) {
                 attackLowerWeight += 0.05f;
             }
@@ -334,7 +315,6 @@ public class PlayerScript : MonoBehaviour {
     public void EndState(int a) {
         if (a == currentAttack) {
             Attackended = true;
-            //Debug.Log("STATE ENDED");
         }
     }
 
@@ -354,7 +334,6 @@ public class PlayerScript : MonoBehaviour {
 
         Attackended = false;
 
-        //Debug.Log("isattacking = " + attacking);
         if (overreacting)
             return;
 
@@ -388,15 +367,13 @@ public class PlayerScript : MonoBehaviour {
 
 
         AnimatorStateInfo ASI = anim.GetCurrentAnimatorStateInfo(1);
-        //AnimatorStateInfo ASI = anim.GetNextAnimatorStateInfo(1);
 
-        //Debug.Log(ASI.normalizedTime / ASI.length);
 
         if (ASI.IsTag("Attack1"))
         {
             currentAttack = 2;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0 || SceneManager.GetActiveScene().name == "IntroLevel") {
+            if (r == 0 || SceneManager.GetActiveScene().name == "Introlevel" || PlayerPrefs.GetInt("AttackLevel") == 0) {
                 anim.SetTrigger("Attack2");
             }
             else if(r == 1) {
@@ -410,7 +387,7 @@ public class PlayerScript : MonoBehaviour {
         {
             currentAttack = 1;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0 || SceneManager.GetActiveScene().name == "IntroLevel") {
+            if (r == 0 || SceneManager.GetActiveScene().name == "Introlevel" || PlayerPrefs.GetInt("AttackLevel") == 0) {
                 anim.SetTrigger("Attack1");
             }
             else if (r == 1) {

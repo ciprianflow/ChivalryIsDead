@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using System;
@@ -42,10 +43,14 @@ public class PlayerActionController : MonoBehaviour
     public float TauntCooldown = 5f;
 
     [Header("Other stuff")]
+    public Gameplay_Dialog GameDialogUI;
     public GameObject RepGainParticle;
     public GameObject RepLossParticle;
     public GameObject ComboParticle;
     public GameObject ComboUpwardParticle;
+
+    public GameObject OverreactGreatParticle;
+    public GameObject OverreactOkParticle;
 
     [HideInInspector]
     public static List<MonsterAI> monstersInScene;
@@ -65,9 +70,19 @@ public class PlayerActionController : MonoBehaviour
    
     private PlayerBehaviour pb;
     private MonsterAI lastMonsterAttacked;
-
+    private IEnumerator releaseAttackedCoroutine;
 
     public GameObject hitParticle;
+
+    private int countAttacks = 0;
+    private int countAttackedMonstr;
+    private int isNeverAttacked;
+    private int isNeverTaunt;
+    private int isNeverOverreact;
+    private int noSheepKilled;
+    private float countTime;
+    private bool isTutorial;
+    private bool thisLevel;
 
     void OnDrawGizmos()
     {
@@ -107,16 +122,41 @@ public class PlayerActionController : MonoBehaviour
 
 	// Use this for initialization
 	void Start () {
-
+        countAttackedMonstr = 0;
+        if (PlayerPrefs.HasKey("noGetHit"))
+            isNeverAttacked = PlayerPrefs.GetInt("noGetHit");
+        else
+            isNeverAttacked = 1;
+        if (PlayerPrefs.HasKey("noTaunt"))
+            isNeverTaunt = PlayerPrefs.GetInt("noTaunt");
+        else
+            isNeverTaunt = 1;
+        if (PlayerPrefs.HasKey("noOverreact"))
+            isNeverOverreact = PlayerPrefs.GetInt("noOverreact");
+        else
+            isNeverOverreact = 1;
+        if (PlayerPrefs.HasKey("noSheepKill"))
+            noSheepKilled = PlayerPrefs.GetInt("noSheepKill");
+        else
+            noSheepKilled = 1;
+        thisLevel = false;
+        if (SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
+        {
+            isTutorial = true;
+        }
         //subscribe to the reputation system
         pb = new PlayerBehaviour("rep");
 
-        //particles
-        pb.RepGainParticle = RepGainParticle;
-        pb.RepLossParticle = RepLossParticle;
+        //load particles for all levels but intro level
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByName("IntroLevel"))
+        {
+            pb.RepGainParticle = RepGainParticle;
+            pb.RepLossParticle = RepLossParticle;
 
-        DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
-        DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+            DummyManager.dummyManager.ComboBaseParticle = ComboParticle;
+            DummyManager.dummyManager.ComboUpwardParticle = ComboUpwardParticle;
+        }
+
 
         pb.ResetCombo();
 
@@ -150,6 +190,53 @@ public class PlayerActionController : MonoBehaviour
 
         overreactTimestamp += Time.deltaTime;
 
+        if((isNeverAttacked == 1 || isNeverTaunt == 1 || isNeverOverreact == 1 || noSheepKilled == 1) && !isTutorial && !thisLevel)
+        {
+            countTime += Time.deltaTime;
+            if (countTime > 10)
+            {
+                if (isNeverAttacked == 1)
+                {
+                    GameDialogUI.StartCoroutine("NoGettingHit");
+                    isNeverAttacked = 0;
+                    PlayerPrefs.SetInt("noGetHit", isNeverAttacked);
+                    thisLevel = true;
+               }
+            }
+            if(countTime > 15)
+            {
+                if (noSheepKilled == 1)
+                {
+                    GameDialogUI.StartCoroutine("NoSheepKilled");
+                    noSheepKilled = 0;
+                    PlayerPrefs.SetInt("noSheepKill", noSheepKilled);
+                    thisLevel = true;
+                }
+                
+            }
+             if(countTime > 20)
+            {
+                if (isNeverTaunt == 1)
+                {
+                    GameDialogUI.StartCoroutine("NoTaunting");
+                    isNeverTaunt = 0;
+                    PlayerPrefs.SetInt("noTaunt", isNeverTaunt);
+                    thisLevel = true;
+                }
+            }               
+            if(countTime > 25)
+            {
+                if (isNeverOverreact == 1)
+                {
+                    GameDialogUI.StartCoroutine("NoOverreacting");
+                    isNeverOverreact = 0;
+                    PlayerPrefs.SetInt("noOverreact", isNeverOverreact);
+                    thisLevel = true;
+                }
+            }
+
+        }
+
     }
 
 
@@ -158,7 +245,8 @@ public class PlayerActionController : MonoBehaviour
     /// </summary>
     public void HandleTaunt()
     {
-
+        isNeverTaunt = 0;
+        PlayerPrefs.SetInt("noTaunt", isNeverTaunt);
         //otherwhise taunt
         tauntAction.Taunt();
     }
@@ -166,7 +254,8 @@ public class PlayerActionController : MonoBehaviour
     //REFACTOR ACTIONS
     public void HandleOverreact()
     {
-        
+        isNeverOverreact = 0;
+        PlayerPrefs.SetInt("noOverreact", isNeverOverreact);
         //Player overreacted checks cooldown from the action
         if (overreactAction.Overreact()) {
 
@@ -176,13 +265,34 @@ public class PlayerActionController : MonoBehaviour
                 int points = (int)((AttackedDuration - overreactTimestamp) * 100);
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
+                // perfect overreact
                 if (points > 99)
+                {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
+                    if (OverreactGreatParticle != null)
+                    {
+                        OverreactGreatParticle.SetActive(false);
+                        OverreactGreatParticle.SetActive(true);
+                    }
+                        
+
+                }
+                // ok overreact
                 else
+                {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactGreat, this.gameObject);
+                    if (OverreactOkParticle != null)
+                    {
+                        OverreactOkParticle.SetActive(false);
+                        OverreactOkParticle.SetActive(true);
+                        
+                    }
+                        
+                }
+                    
 
 
-                pb.ChangeRepScore(-points);
+                pb.AddRepScore(-points);
                 Debug.Log("Overreact points:" + -points);
                 //pb.Invoke();
                 //change player state to IDLE after overreacting
@@ -192,7 +302,8 @@ public class PlayerActionController : MonoBehaviour
             else
             {
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
-
+                if(GameDialogUI != null)
+                    GameDialogUI.StartCoroutine("WrongOverreact");
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
                 Debug.Log("Overreact points: 0");
                 pb.ChangeRepScore(0);
@@ -207,11 +318,28 @@ public class PlayerActionController : MonoBehaviour
     {
         //attackAction.NormalAttack(TauntRadius, this.transform);
         List<Collider> enemiesInRange = attackAction.ConeAttack();
-
+        countAttacks++;
+       
         //add reputation
         foreach (Collider enemy in enemiesInRange)
         {
             MonsterAI monster = enemy.GetComponent<MonsterAI>();
+
+            if (monster.GetType() == typeof(SheepAI))
+            {
+                if (GameDialogUI != null)
+                    GameDialogUI.StartCoroutine("YouHitSheep");
+            }
+            else
+            {
+                countAttackedMonstr++;
+                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null)
+                {
+                    GameDialogUI.StartCoroutine("StopAttacking");
+                    countAttackedMonstr = 0;
+                    countAttacks = 0;
+                }
+            }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
             Vector3 hitPoint = monster.transform.position + (midVec * 0.2f);
             GameObject hP = Instantiate(hitParticle) as GameObject;
@@ -238,7 +366,8 @@ public class PlayerActionController : MonoBehaviour
     public void SheepAttacked(MonsterAI monster)
     {
         Debug.Log("Sheep attacked " + monster.name);
-
+        noSheepKilled = 0;
+        PlayerPrefs.SetInt("noSheepKill", noSheepKilled);
         pb.ChangeRepScore(monster.GetSheepAttackReputation());
         pb.Invoke();
 
@@ -248,8 +377,11 @@ public class PlayerActionController : MonoBehaviour
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
     {
+        isNeverAttacked = 0;
+        PlayerPrefs.SetInt("noGetHit", isNeverAttacked);
         //AttackedDuration second unlock overreact
-        StartCoroutine(releaseAttacked());
+        releaseAttackedCoroutine = releaseAttacked();
+        StartCoroutine(releaseAttackedCoroutine);
 
         overreactTimestamp = 0;
 
@@ -262,23 +394,24 @@ public class PlayerActionController : MonoBehaviour
         //Player attacked add reputation according to monster base damage
         if (monster)
         {
+            StopCoroutine(releaseAttackedCoroutine);
             pb.ChangeRepScore(monster.GetAttackReputation());
 
             //save last monster attacked
             lastMonsterAttacked = monster;
 
-            //pb.Invoke();
+            pb.Invoke();
         }
     }
 
     private IEnumerator releaseAttacked()
     {
         yield return new WaitForSeconds(AttackedDuration);
-        
 
         //wait for all attacks to submit change in reputation
         pb.Invoke();
         playerState = PlayerState.IDLE;
+        Debug.Log("PLYAER IDLE NOW");
     }
 
     public PlayerState GetPlayerState()

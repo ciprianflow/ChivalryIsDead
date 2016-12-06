@@ -37,6 +37,7 @@ public class DummyManager : MonoBehaviour
     private float comboTimeStamp = 0;
 
     private int combo = 0;
+    private int oldCombo = 0;
     //used to track actions that modify the combo
     private int comboModifierActions = 0;
 
@@ -44,7 +45,9 @@ public class DummyManager : MonoBehaviour
     private float antiAfkTimestamp;
     private int antiAfkPoints = 10;
     private int antiAFKTime;
-
+    private bool firstTimeAFK;
+    private int lowCombo;
+    private float comboTime;
 
     void Awake()
     {
@@ -60,6 +63,13 @@ public class DummyManager : MonoBehaviour
         {
             Debug.LogError("Combo cooldown must have the same size as Combo Multiplier");
         }
+        firstTimeAFK = true;
+
+        if (PlayerPrefs.HasKey("lowCombo"))
+            lowCombo = PlayerPrefs.GetInt("lowCombo");
+        else
+            lowCombo = 0;
+        comboTime = 0;
     }
 
 
@@ -79,33 +89,47 @@ public class DummyManager : MonoBehaviour
             handleAFK(antiAfkTimestamp);
         }
 
-        Debug.Log(Input.touchCount);
+        if (lowCombo == 0) 
+        {
+            comboTime += Time.deltaTime; 
+            if (comboTime > 30 && combo < 3)
+            {
+                if(combo > 3)
+                {
+                    if (GameDialogUI != null)
+                        GameDialogUI.StartCoroutine("LowCombo");
+                    lowCombo = 1;
+                    PlayerPrefs.SetInt("lowCombo", lowCombo);
+                }
+                
+            }
 
+        }
 
     }
 
     private void handleAFK(float timestamp)
     {
         int secondsAFK = (int) Math.Floor(timestamp);
-
-        if (GameDialogUI != null && secondsAFK == StartAFKSeconds)
+        if (GameDialogUI != null && firstTimeAFK && secondsAFK == StartAFKSeconds)
         {
             GameDialogUI.WakeUp();
+            firstTimeAFK = false;
         }
 
         if (antiAFKTime < secondsAFK && secondsAFK > StartAFKSeconds)
         {
             antiAFKTime = secondsAFK;
             ReputationHandler.Score += antiAfkPoints;
-        
+            
         }
 
     }
 
     public int GetComboMultiplier(int score)
     {
-        //combo multiplier
-        return score * (ComboMultiplier[combo] / 100 + 1);
+        float rep = score * (ComboMultiplier[combo] / 100f + 1f);
+        return (int) rep;
     }
 
     public void IncreaseCombo()
@@ -123,8 +147,6 @@ public class DummyManager : MonoBehaviour
                 Debug.LogError(e.Message + " Combo Modifier Actions -> check DummyManager prefab");
             }
         }
-
-
     }
 
     private void handleComboChange(int comboValue)
@@ -138,6 +160,31 @@ public class DummyManager : MonoBehaviour
             ComboBaseParticle.GetComponent<ParticleSystem>().startSize = combo;
 
             ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.1f + (combo * 2f) / 100f;
+
+
+            if (oldCombo < combo)
+            {
+
+                switch(combo)
+                {
+                    case 1:
+                        //DIS BROKEN
+                        //WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
+                        break;
+                    case 2:
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost);
+                        break;
+                    case 3:
+                        lowCombo = 1;
+                        PlayerPrefs.SetInt("lowCombo", lowCombo);
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost2);
+                        break;
+                    case 4:
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost3);
+                        break;
+                }
+                oldCombo = combo;
+            }
         }
     }
 
@@ -154,11 +201,17 @@ public class DummyManager : MonoBehaviour
 
     public void ResetCombo()
     {
+
+
         comboModifierActions = 0;
         combo = 0;
         ComboBaseParticle.GetComponent<ParticleSystem>().startSize = 0.1f;
         ComboUpwardParticle.GetComponent<ParticleSystem>().startSize = 0.01f;
-
+        if (combo != oldCombo)
+        {
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
+            oldCombo = combo;
+        }
     }
     
     //cooldown
@@ -206,7 +259,7 @@ public class DummyManager : MonoBehaviour
 
         float time = 0;
         if (TimerObjectScript.Instance != null)
-            time = TimerObjectScript.Instance.GetTimer();
+            time = TimerObjectScript.Instance.GetElapsedTime();
         // bonus
         //get time from  quest timer
         float bonus = score * Mathf.Exp(time * 3) * 0.15f;
@@ -220,6 +273,10 @@ public class DummyManager : MonoBehaviour
         return (score + bonus);
     }
 
+    public int GetLocalScoreWithoutBonus()
+    {
+        return ReputationHandler.Score;
+    }
     public int GetLocalScore()
     {
         return (int) repGain;
@@ -236,5 +293,6 @@ public class DummyManager : MonoBehaviour
         antiAFKTime = 0;
         antiAfkTimestamp = 0;
         antiAfkPoints = AFKPointsDec;
+        firstTimeAFK = true;
     }
 }

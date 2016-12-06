@@ -20,53 +20,94 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
 
     Animator BlackScreenAnimator;
     public GameObject blackScreen;
+    public GameObject endCinematic;
+    bool hideButton;
     float duration;
     public HubDataManager hdManager;
+
+    public GameObject dampenLightPanel;
 
     // Use this for initialization
     void Start()
     {
         //gameMenu = UI.GetComponent<GameMenu>();
         BlackScreenAnimator = blackScreen.GetComponent<Animator>();
+        BlackScreenAnimator.SetTrigger("fadeOut");
         count = 0;
         procceed = false;
+        hideButton = false;
         waitforClick = true;
         handAnimator = HandCanvas.GetComponent<Animator>();
-        StartCoroutine("DialogOne");
+        if (SceneManager.GetActiveScene().name == "TutHubWorld 1")
+            StartCoroutine("DialogOne");
+        else if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
+        {
+            endCinematic.SetActive(false);
+            StartCoroutine("DialogNineAndThreeQuarters");
+        }
+            
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!waitforClick)
+
+        if(hideButton)
         {
-            if (hdManager.isClicked)
-            {
-                gameObject.GetComponent<DialogObject>().StopDialog();
-                StartCoroutine("DialogThree");
-                waitforClick = true;
-                hdManager.isClicked = false;
-            }
+            skipBtn.SetActive(false);
         }
+        //if (!waitforClick)
+        //{
+        //    if (hdManager.isClicked)
+        //    {
+        //        gameObject.GetComponent<DialogObject>().StopDialog();
+        //        StartCoroutine("DialogThree");
+        //        waitforClick = true;
+        //        hdManager.isClicked = false;
+        //    }
+        //}
     }
+
+    public IEnumerator DialogIntro()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
+        yield return new WaitForSeconds(5.5f);
+        StartCoroutine("DialogOne");
+    }
+
 
     public IEnumerator DialogOne()
     {
-        if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
-            skipBtn.SetActive(true);
-        //yield return new WaitForSeconds(1f);
+        //if(SceneManager.GetActiveScene().name == "TutHubWorld 1")
+        //    skipBtn.SetActive(true);
+        yield return new WaitForSeconds(5.5f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
+        skipBtn.SetActive(false);
 
-        while (count < 1)
-        {
-            yield return new WaitForEndOfFrame();
-        }
+        Invoke("CallableSkip", 21f);
+        hideButton = true;
+
+        //while (count < 5)
+        //{
+        //    skipBtn.SetActive(false);
+        //    yield return new WaitForEndOfFrame();
+        //}
         yield return new WaitUntil(SkipAndPlay);
 
+        hideButton = false;
         procceed = false;
+
+        BlackScreenAnimator.SetTrigger("fadeIn");
+        yield return new WaitForSeconds(5f);
+        blackScreen.SetActive(false);
+        endCinematic.SetActive(false);
+
+        blackScreen.SetActive(true);
+
+
         BlackScreenAnimator.SetTrigger("fadeOut");
-        duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
-        yield return new WaitForSeconds(duration);
+        //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(4f);
         StartCoroutine("DialogTwo");
 
     }
@@ -85,20 +126,19 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     public IEnumerator DialogTwo()
     {
         //yield return new WaitForSeconds(1f);
+        blackScreen.SetActive(false);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        skipBtn.SetActive(false);
 
-        //count = 0;
-        //while (count < 1)
-        //{
-        //    yield return new WaitForEndOfFrame();
-        //}
-        //yield return new WaitUntil(SkipAndPlay);
+        count = 0;
+        while (count < 3)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
 
         procceed = false;
-        blackScreen.SetActive(false);
-        waitforClick = false;
-        yield return null;
+        //waitforClick = false;
+        //StartCoroutine("DialogThree");
     }
 
     public IEnumerator DialogThree()
@@ -114,14 +154,66 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //}
         //yield return new WaitUntil(SkipAndPlay);
         procceed = false;
-        handAnimator.SetBool("handHub", true);
+        //handAnimator.SetBool("handHub", true);
   
+    }
+
+    public IEnumerator DialogNineAndThreeQuarters()
+    {
+        //if (SceneManager.GetActiveScene().name == "TutHubWorld 2")
+        //{
+        //    //UI.GetComponent<GameMenu>().Sword();
+        //    skipBtn.SetActive(true);
+        //}
+          
+        //yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+
+        while (count < 3)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        yield return new WaitUntil(SkipAndPlay);
+
+        procceed = false;
+        BlackScreenAnimator.SetTrigger("fadeOut");
+        //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
+        //yield return new WaitForSeconds(4f);
+        //StartCoroutine("DialogTwo");
+        yield return new WaitForSeconds(4f);
+        blackScreen.SetActive(false);
     }
 
     public void LoadTutorial2()
     {
         handAnimator.SetBool("handHub", false);
-        SceneManager.LoadScene(4);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+        SceneManager.LoadScene("Tutorial_02");
+    }
+
+    public void LoadTutorial3()
+    {
+        handAnimator.SetBool("handHub", false);
+        WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
+        SceneManager.LoadScene("Tutorial_03");
+    }
+
+    public void removeBubble()
+    {
+        gameObject.GetComponent<DialogObject>().StopDialog();
+        //GameObject swBub = GameObject.FindGameObjectWithTag("SwordBubble");
+        //if(swBub != null)
+        //{
+        //    swBub.SetActive(false);
+        //    GameObject.FindGameObjectWithTag("Sword").SetActive(false);
+        //}
+
+    }
+
+    public void CoolDampenLight()
+    {
+        skipBtn.SetActive(false);
+        dampenLightPanel.SetActive(true);
     }
 
 

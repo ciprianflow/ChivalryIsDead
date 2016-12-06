@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -18,7 +18,7 @@ public enum MenuHandle
 
 public enum CombatHandle
 {
-    ImpactFlesh, ImpactArmor
+    ImpactFlesh, ImpactArmor, ImpactStone
 }
 
 #region Characters
@@ -68,14 +68,19 @@ public enum SwordDialogueHandle
 }
 #endregion
 
+public enum VolumeHandle
+{
+    Master, SFX, Music
+}
+
 public enum MusicHandle
 {
-    MusicOnePlay, MusicStop
+    MusicStop, MusicQuest, MusicOnePlay
 }
 
 public enum RewardHandle
 {
-    ComboBoost, ComboStart, ComboEnd, Big, Small, Fail
+    ComboBoost, ComboBoost2, ComboBoost3, ComboStart, ComboEnd, /*Big,*/ Small, Fail
 }
 
 public enum SheepAudioHandle
@@ -86,6 +91,11 @@ public enum SheepAudioHandle
 public enum AmbienceHandle
 {
     Hub, WorldOne
+}
+
+public enum GameStateHandle
+{
+    Paused, Unpaused
 }
 #endregion
 
@@ -103,6 +113,11 @@ public enum PeasantDialogueHandle
 
 public interface IWwiseInterface
 {
+    MusicHandle CurrentlyPlaying { get; }
+
+    // Audio settings
+    void SetVolume(float volume, VolumeHandle handle);
+
     // Non-Targeted audio.
     void SetAmbience(AmbienceHandle handle);
     void SetMusic(MusicHandle handle);
@@ -138,6 +153,8 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
 {
     public static IWwiseInterface Instance;
 
+    public MusicHandle CurrentlyPlaying { get; private set; }
+
     void Awake()
     {
         var interfaces = FindObjectsOfType<WwiseInterface>();
@@ -152,17 +169,29 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         //DontDestroyOnLoad(gameObject);
     }
 
-    #region Non-Targeted Audio
-    public void SetMusic(MusicHandle handle)
+    #region Audio settings
+    public void SetVolume(float volume, VolumeHandle type)
     {
-        switch (handle) {
-            case MusicHandle.MusicOnePlay:
-                AkSoundEngine.PostEvent("music1Play", gameObject); break;
-            case MusicHandle.MusicStop:
-                AkSoundEngine.PostEvent("musicStop", gameObject); break;
-            default:
-                DebugError(handle); return;
-        }
+        volume = Mathf.Clamp(volume, 0, 100);
+        var eventBuilder = new StringBuilder("_volume");
+        eventBuilder.Insert(0, HandleToEventString(type));
+        AkSoundEngine.SetRTPCValue(eventBuilder.ToString(), volume);
+    }
+    #endregion
+
+    #region Non-Targeted Audio
+    /// <summary>
+    /// Sets the currently running background music loop.
+    /// The method will first stop any currently playing music (if it is not the same), and start the new music loop.
+    /// Stopping the music will stop it in it's entirety.
+    /// </summary>
+    /// <param name="delay">The desired delay (in seconds) before starting the new music.</param>
+    /// <param name="handle">The desired music. MusicOne is used for the menus and quest hub, MusicQuest is used for the battle board.</param>
+    public void SetMusic(MusicHandle handle) { SetMusic(handle, 0.33f); }
+    public void SetMusic(MusicHandle handle, float delay)
+    {
+        if (CurrentlyPlaying != handle)
+            StartCoroutine(SwitchMusic(handle, 0.33f));
     }
 
     public void SetAmbience(AmbienceHandle handle)
@@ -173,7 +202,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
             case AmbienceHandle.WorldOne:
                 AkSoundEngine.PostEvent("start_world_1_ambience", gameObject); break;
             default:
-                DebugError(handle); return;
+                LogError(handle); return;
         }
     }
 
@@ -201,7 +230,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
             case UIHandle.WorldTransition:
                 AkSoundEngine.PostEvent("world_transition", gameObject); break;
             default:
-                DebugError(handle); return;
+                LogError(handle); return;
         }
     }
 
@@ -215,7 +244,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
             case MenuHandle.PlayButtonPressed:
                 AkSoundEngine.PostEvent("play_button_pressed", gameObject); break;
             default:
-                DebugError(handle); return;
+                LogError(handle); return;
         }
     }
 
@@ -333,7 +362,7 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
     private string HandleToEventString(Enum handle)
     {
         var enumName = Enum.GetName(handle.GetType(), handle);
-        Regex pattern = new Regex(@"([A-Z][a-z]+)");
+        Regex pattern = new Regex(@"([A-Z]+[a-z]*\d*)");
         MatchCollection matches = pattern.Matches(enumName);
 
         string[] matchesArray = new string[matches.Count];
@@ -343,24 +372,36 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         return string.Join("_", matchesArray);
     }
 
-    private string HandleToEventStringCamel(Enum handle)
+    /// <summary>
+    /// Switches the music with a minor delay.
+    /// </summary>
+    /// <param name="delay">The delay (in seconds) between stopping the music and starting the next piece.</param>
+    /// <param name="handle">The handle of the desired music loop.</param>
+    /// <returns>Nothing.</returns>
+    private IEnumerator SwitchMusic(MusicHandle handle, float delay)
     {
-        // THIS IS WHY YOU MAINTAIN NAMING CONVENTIONS!!
-        // Staight ripped from HandleToEventString method.
-        // Adjustments made to control for camelcasing instead of underscores.
-        var enumName = Enum.GetName(handle.GetType(), handle);
-        Regex pattern = new Regex(@"([A-Z][a-z]+)");
-        MatchCollection matches = pattern.Matches(enumName);
+        AkSoundEngine.PostEvent("musicStop", gameObject);
+        CurrentlyPlaying = MusicHandle.MusicStop;
 
-        string[] matchesArray = new string[matches.Count];
-        matchesArray[0] = matches[0].ToString().ToLower();
-        for (int i = 1; i < matches.Count; i++)
-            matchesArray[i] = matches[i].ToString();
+        yield return new WaitForSeconds(delay);
 
-        return string.Join("", matchesArray);
+        switch (handle) {
+            case MusicHandle.MusicOnePlay:
+                AkSoundEngine.PostEvent("music1Play", gameObject);
+                CurrentlyPlaying = MusicHandle.MusicOnePlay;
+                break;
+            case MusicHandle.MusicQuest:
+                AkSoundEngine.PostEvent("musicquest", gameObject);
+                CurrentlyPlaying = MusicHandle.MusicQuest;
+                break;
+            case MusicHandle.MusicStop:
+                break;
+            default:
+                LogError(handle); break;
+        }
     }
 
-    private void DebugError(Enum handle)
+    private void LogError(Enum handle)
     {
         Debug.LogWarning(
             string.Format("Handle of type '{0}' has no defined sound for value '{1}'.",

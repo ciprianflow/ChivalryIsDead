@@ -11,13 +11,13 @@ public enum QuestType
 [Flags]
 public enum EnemyTypes
 {
-    None, HasMelee, HasRanged, HasSuicide = 4
+    /*None, */HasMelee = 1, HasRanged = 2, HasSuicide = 4
 }
 
 [Flags]
 public enum FriendlyTypes
 {
-    None, Sheep, Bakery, Farmhouse = 4
+    None, Well, Bakery, Farmhouse = 4
 }
 
 public struct QuestData
@@ -54,8 +54,8 @@ public struct QuestData
     public IEnumerable<string> GetFriends()
     {
         List<string> friendTypes = new List<string>();
-        if ((PresentFriends & FriendlyTypes.Sheep) == FriendlyTypes.Sheep)
-            friendTypes.Add("Sheep");
+        if ((PresentFriends & FriendlyTypes.Well) == FriendlyTypes.Well)
+            friendTypes.Add("Well");
         if ((PresentFriends & FriendlyTypes.Bakery) == FriendlyTypes.Bakery)
             friendTypes.Add("Bakery");
         if ((PresentFriends & FriendlyTypes.Farmhouse) == FriendlyTypes.Farmhouse)

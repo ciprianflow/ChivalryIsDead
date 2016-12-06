@@ -8,6 +8,11 @@
 						<BlendContainer Name="knight_footsteps" ID="{5A09696E-28CE-4964-9DF2-A9D9BA5C403D}" ShortID="705790780">
 							<PropertyList>
 								<Property Name="PositioningType" Type="int16" Value="1"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Attenuation">
@@ -1639,6 +1644,7 @@
 										<Value>40</Value>
 									</ValueList>
 								</Property>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
 								<Property Name="UserAuxSendVolume0" Type="Real64">
 									<ValueList>
 										<Value>-10</Value>
@@ -1646,11 +1652,14 @@
 								</Property>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-12</Value>
+										<Value>-7</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 								</Reference>
@@ -2839,8 +2848,7 @@
 												<AudioFileSource Name="knight_taunt-02" ID="{2601E49D-5FC5-42D0-A8E1-8F7733BB0714}" ShortID="390459741">
 													<PropertyList>
 														<Property Name="FadeInDuration" Type="Real64" Value="1.10895647321429E-02"/>
-														<Property Name="FadeOutDuration" Type="Real64" Value="3.77045200892857E-02"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.373718331473214"/>
+														<Property Name="FadeOutDuration" Type="Real64" Value="0.102023995535714"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>knight_taunt-02.wav</AudioFile>
@@ -2866,7 +2874,7 @@
 														<Property Name="FadeOutDuration" Type="Real64" Value="0.173416057752423"/>
 														<Property Name="FadeOutShape" Type="int16" Value="3"/>
 														<Property Name="TrimBegin" Type="Real64" Value="0.117088006017505"/>
-														<Property Name="TrimEnd" Type="Real64" Value="0.739100167410714"/>
+														<Property Name="TrimEnd" Type="Real64" Value="0.788101283482143"/>
 													</PropertyList>
 													<Language>SFX</Language>
 													<AudioFile>knight_taunt-03.wav</AudioFile>
@@ -2923,6 +2931,206 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="knight_taunt-05" ID="{0994CCF7-9FAC-4A3F-ACC1-D655C9902C08}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 1 (bedst)" ID="{CC5ADBC5-6ECE-49C8-A148-62420C9276EB}" ShortID="896449188" Type="SoundFX">
+											<PropertyList>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="UserAuxSendVolume0" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" ShortID="959807863">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="8.42436165047329E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="6.17786521034708E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 1 (bedst).wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 2" ID="{2B65764E-5CE3-45AF-B0DC-0890CCBCF4F1}" ShortID="705859713" Type="SoundFX">
+											<PropertyList>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="UserAuxSendVolume0" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" ShortID="722408829">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="7.60911968417487E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="0.130442051728712"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 2.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 3" ID="{156DD665-9622-4FB9-903E-4C9463A1F09F}" ShortID="536856794" Type="SoundFX">
+											<PropertyList>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="UserAuxSendVolume0" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" ShortID="1043680727">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="5.7974467687492E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="5.21770209187428E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 3.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 4" ID="{D5161DAE-865E-4739-AFED-5CFB07B6C558}" ShortID="619135280" Type="SoundFX">
+											<PropertyList>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="UserAuxSendVolume0" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" ShortID="275380279">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="6.15979136319723E-03"/>
+														<Property Name="TrimBegin" Type="Real64" Value="2.15592697711903E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 4.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" Platform="Linked"/>
+											</ActiveSourceList>
+										</Sound>
+										<Sound Name="pift 5" ID="{809A09FB-1AA5-47DA-B72E-45AB20968A9F}" ShortID="43965556" Type="SoundFX">
+											<PropertyList>
+												<Property Name="PositioningType" Type="int16" Value="1"/>
+												<Property Name="UserAuxSendVolume0" Type="Real64">
+													<ValueList>
+														<Value>-10</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
+											<ReferenceList>
+												<Reference Name="Attenuation">
+													<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+												</Reference>
+												<Reference Name="Conversion">
+													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+												</Reference>
+												<Reference Name="Effect0" PluginName="Wwise Matrix Reverb" CompanyID="0" PluginID="115" PluginType="3">
+													<ObjectRef Name="Small_Tiled_Room1" ID="{41EEE722-3009-4B3F-8820-F414623783E3}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+												</Reference>
+												<Reference Name="OutputBus">
+													<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+												<Reference Name="UserAuxSend0">
+													<ObjectRef Name="rvb_outside" ID="{B3690A7A-0835-434E-B5B3-0FF86756E6CF}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+												</Reference>
+											</ReferenceList>
+											<ChildrenList>
+												<AudioFileSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" ShortID="990310578">
+													<PropertyList>
+														<Property Name="FadeInDuration" Type="Real64" Value="1.35877554357529E-02"/>
+														<Property Name="TrimBegin" Type="Real64" Value="1.35877554357529E-02"/>
+													</PropertyList>
+													<Language>SFX</Language>
+													<AudioFile>pift 5.wav</AudioFile>
+												</AudioFileSource>
+											</ChildrenList>
+											<ActiveSourceList>
+												<ActiveSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -3037,133 +3245,6 @@
 											</ChildrenList>
 											<ActiveSourceList>
 												<ActiveSource Name="knight_overreact_fail-05" ID="{5E4A6176-7240-4529-8021-440A0CAC2DEA}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-									</ChildrenList>
-								</RandomSequenceContainer>
-								<RandomSequenceContainer Name="knight_taunt_pift" ID="{C1F914DE-AE49-440A-AED4-88355469743D}" ShortID="507351883">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<Sound Name="pift 1 (bedst)" ID="{CC5ADBC5-6ECE-49C8-A148-62420C9276EB}" ShortID="896449188" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" ShortID="959807863">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="8.42436165047329E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="6.17786521034708E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 1 (bedst).wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 1 (bedst)" ID="{57AC0F67-A28F-4AA5-876D-E4F5041661E8}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 2" ID="{2B65764E-5CE3-45AF-B0DC-0890CCBCF4F1}" ShortID="705859713" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" ShortID="722408829">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="7.60911968417487E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="0.130442051728712"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 2.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 2" ID="{4EFD3A31-E56E-4704-A955-CDF8B802A580}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 3" ID="{156DD665-9622-4FB9-903E-4C9463A1F09F}" ShortID="536856794" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" ShortID="1043680727">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="5.7974467687492E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="5.21770209187428E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 3.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 3" ID="{F5E538A1-73B2-4413-AA44-C3ABD3CFFC07}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 4" ID="{D5161DAE-865E-4739-AFED-5CFB07B6C558}" ShortID="619135280" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" ShortID="275380279">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="6.15979136319723E-03"/>
-														<Property Name="TrimBegin" Type="Real64" Value="2.15592697711903E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 4.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 4" ID="{E2035D19-3335-4789-A460-C6FCCA9772E7}" Platform="Linked"/>
-											</ActiveSourceList>
-										</Sound>
-										<Sound Name="pift 5" ID="{809A09FB-1AA5-47DA-B72E-45AB20968A9F}" ShortID="43965556" Type="SoundFX">
-											<ReferenceList>
-												<Reference Name="Conversion">
-													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-												</Reference>
-												<Reference Name="OutputBus">
-													<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-												</Reference>
-											</ReferenceList>
-											<ChildrenList>
-												<AudioFileSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" ShortID="990310578">
-													<PropertyList>
-														<Property Name="FadeInDuration" Type="Real64" Value="1.35877554357529E-02"/>
-														<Property Name="TrimBegin" Type="Real64" Value="1.35877554357529E-02"/>
-													</PropertyList>
-													<Language>SFX</Language>
-													<AudioFile>pift 5.wav</AudioFile>
-												</AudioFileSource>
-											</ChildrenList>
-											<ActiveSourceList>
-												<ActiveSource Name="pift 5" ID="{97E1696D-D7FB-43CD-8198-AAAA2DEA1AC1}" Platform="Linked"/>
 											</ActiveSourceList>
 										</Sound>
 									</ChildrenList>
@@ -4916,9 +4997,21 @@
 					<ChildrenList>
 						<Sound Name="taunt sound" ID="{84509ABE-A70F-47F6-BA6C-6093D2333915}" ShortID="549260623" Type="SoundFX">
 							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
 								<Property Name="Pitch" Type="int32">
 									<ValueList>
 										<Value>300</Value>
+									</ValueList>
+								</Property>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
 									</ValueList>
 								</Property>
 								<Property Name="Volume" Type="Real64">
@@ -4959,6 +5052,11 @@
 								<Property Name="Lowpass" Type="int16">
 									<ValueList>
 										<Value>20</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -7083,6 +7181,13 @@
 									</ChildrenList>
 								</BlendContainer>
 								<ActorMixer Name="death" ID="{D29B7A23-381B-425F-B3B0-1EF37A480BDF}" ShortID="393760917">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>7</Value>
+											</ValueList>
+										</Property>
+									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -7191,7 +7296,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-18</Value>
+														<Value>-6</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7217,7 +7322,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-6</Value>
+														<Value>-5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7246,7 +7351,7 @@
 											<PropertyList>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-10</Value>
+														<Value>-5</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -7415,6 +7520,13 @@
 											</ChildrenList>
 										</RandomSequenceContainer>
 										<RandomSequenceContainer Name="melee_weapon_charge" ID="{1DA925FB-2DAB-4672-8348-A117FCFA7A35}" ShortID="1071439996">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>6</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -9363,7 +9475,7 @@
 												</Property>
 												<Property Name="Volume" Type="Real64">
 													<ValueList>
-														<Value>-6</Value>
+														<Value>-15</Value>
 													</ValueList>
 												</Property>
 											</PropertyList>
@@ -10317,6 +10429,11 @@
 										</ModifierInfo>
 									</ModifierList>
 								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -10764,6 +10881,11 @@
 												</ModifierInfo>
 											</ModifierList>
 										</Property>
+										<Property Name="Volume" Type="Real64">
+											<ValueList>
+												<Value>-5</Value>
+											</ValueList>
+										</Property>
 									</PropertyList>
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -11051,6 +11173,11 @@
 						<RandomSequenceContainer Name="comboboost" ID="{20D59C66-B549-4053-BD49-E39B9D7E3063}" ShortID="207329286">
 							<PropertyList>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-2</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -11074,8 +11201,8 @@
 										<AudioFileSource Name="combo reward 1" ID="{A2C4DD80-0A62-472F-8096-248C521BDA57}" ShortID="551200171">
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="0.0546875"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="1.3515625"/>
-												<Property Name="TrimEnd" Type="Real64" Value="6.1328125"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.9765625"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.9765625"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>combo reward 1.wav</AudioFile>
@@ -11105,7 +11232,8 @@
 										<AudioFileSource Name="combo reward 2" ID="{F7DB163B-B3B2-4EB3-A55A-B6EE4F8B56D1}" ShortID="949605462">
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="0.120535714285714"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.897321428571428"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.74107142857143"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.80133928571429"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>combo reward 2.wav</AudioFile>
@@ -11128,8 +11256,8 @@
 										<AudioFileSource Name="combo reward 3" ID="{D1A23320-2EE3-4880-8055-0EBEBFB64D8F}" ShortID="53526493">
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="4.35267857142857E-02"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="1.30580357142857"/>
-												<Property Name="TrimEnd" Type="Real64" Value="6.14453125"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.54520089285714"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.81361607142857"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>combo reward 3.wav</AudioFile>
@@ -11152,8 +11280,8 @@
 										<AudioFileSource Name="combo reward 4" ID="{74998F43-E21B-4E69-85C9-80040BFE9FB7}" ShortID="264590207">
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="4.35267857142857E-02"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.906808035714286"/>
-												<Property Name="TrimEnd" Type="Real64" Value="5.62220982142857"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.69029017857143"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.69029017857143"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>combo reward 4.wav</AudioFile>
@@ -11176,8 +11304,8 @@
 										<AudioFileSource Name="combo reward 5" ID="{6ECF3C2F-9E10-4E54-98BD-C7081DFE0C85}" ShortID="335679014">
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="7.25446428571429E-02"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.993861607142857"/>
-												<Property Name="TrimEnd" Type="Real64" Value="5.95591517857143"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.67578125"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.67578125"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>combo reward 5.wav</AudioFile>
@@ -11200,8 +11328,8 @@
 										<AudioFileSource Name="combo reward 6" ID="{9BD73B8A-A7EF-415E-B2CD-FF1ED473D8E4}" ShortID="875786080">
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="7.25446428571428E-02"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.957589285714286"/>
-												<Property Name="TrimEnd" Type="Real64" Value="5.76004464285714"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.69029017857143"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.69029017857143"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>combo reward 6.wav</AudioFile>
@@ -11224,8 +11352,8 @@
 										<AudioFileSource Name="combo reward 7" ID="{226A8626-26A6-4356-9931-FD95BF03847F}" ShortID="629075818">
 											<PropertyList>
 												<Property Name="FadeInDuration" Type="Real64" Value="6.52901785714285E-02"/>
-												<Property Name="FadeOutDuration" Type="Real64" Value="0.943080357142858"/>
-												<Property Name="TrimEnd" Type="Real64" Value="5.85435267857143"/>
+												<Property Name="FadeOutDuration" Type="Real64" Value="1.69754464285714"/>
+												<Property Name="TrimEnd" Type="Real64" Value="1.69754464285714"/>
 											</PropertyList>
 											<Language>SFX</Language>
 											<AudioFile>combo reward 7.wav</AudioFile>
@@ -11249,6 +11377,11 @@
 						<RandomSequenceContainer Name="reward trumpet" ID="{92E0BB58-6DD5-41F8-B16B-AE407358D80F}" ShortID="557904956">
 							<PropertyList>
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-3</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -11406,6 +11539,11 @@
 						<RandomSequenceContainer Name="small reward" ID="{971A2097-909D-4B4A-AD17-048E6268D440}" ShortID="528818968">
 							<PropertyList>
 								<Property Name="RandomAvoidRepeatingCount" Type="int32" Value="2"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-5</Value>
+									</ValueList>
+								</Property>
 							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
@@ -11467,7 +11605,7 @@
 								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-10</Value>
+										<Value>-3</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -11490,6 +11628,13 @@
 							</ActiveSourceList>
 						</Sound>
 						<RandomSequenceContainer Name="bigreward" ID="{1DC5B81B-2CD8-4B93-A914-51C842193214}" ShortID="217655011">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-1</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -11524,6 +11669,25 @@
 							</ChildrenList>
 						</RandomSequenceContainer>
 						<Sound Name="fail sound hurtig modulated" ID="{8872F418-3916-400A-9472-299CCD90F3F8}" ShortID="53597349" Type="SoundFX">
+							<PropertyList>
+								<Property Name="IsGlobalLimit" Type="int16" Value="1"/>
+								<Property Name="MaxSoundPerInstance" Type="int16">
+									<ValueList>
+										<Value>1</Value>
+									</ValueList>
+								</Property>
+								<Property Name="OverrideMaxSoundInstance" Type="bool" Value="True"/>
+								<Property Name="UseMaxSoundPerInstance" Type="bool">
+									<ValueList>
+										<Value>True</Value>
+									</ValueList>
+								</Property>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-6</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -11769,7 +11933,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-10</Value>
+										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -13010,7 +13174,7 @@
 							<PropertyList>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-5</Value>
+										<Value>-14</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>

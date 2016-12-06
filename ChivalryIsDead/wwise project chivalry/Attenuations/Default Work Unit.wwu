@@ -4,6 +4,9 @@
 		<WorkUnit Name="Default Work Unit" ID="{F6989FA3-E18B-41CD-8F73-3810853709BF}" PersistMode="Standalone">
 			<ChildrenList>
 				<Attenuation Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" ShortID="638456796">
+					<PropertyList>
+						<Property Name="RadiusMax" Type="Real64" Value="25"/>
+					</PropertyList>
 					<CurveUsageInfoList>
 						<VolumeDryUsage>
 							<CurveUsageInfo Platform="Linked" CurveToUse="Custom">
@@ -16,10 +19,16 @@
 											<XPos>0</XPos>
 											<YPos>0</YPos>
 											<Flags>5</Flags>
-											<SegmentShape>Exp2</SegmentShape>
+											<SegmentShape>Exp3</SegmentShape>
 										</Point>
 										<Point>
-											<XPos>100</XPos>
+											<XPos>9.64285833333333</XPos>
+											<YPos>0</YPos>
+											<Flags>0</Flags>
+											<SegmentShape>Exp3</SegmentShape>
+										</Point>
+										<Point>
+											<XPos>25</XPos>
 											<YPos>-200</YPos>
 											<Flags>37</Flags>
 										</Point>

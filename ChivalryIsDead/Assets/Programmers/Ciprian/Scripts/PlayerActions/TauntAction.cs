@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -9,6 +10,9 @@ class TauntAction: MonoBehaviour
     public float TauntRadius;
     public float TauntCooldown = 5f;
 
+    [Header("Other stuff")]
+    public Gameplay_Dialog GameDialogUI;
+
     //used for cooldown i guess
     private bool alreadyTaunting = false;
 
@@ -16,11 +20,15 @@ class TauntAction: MonoBehaviour
     private float currentTauntDuration;
     private float overTime;
 
-
     private PlayerScript playerBase;
+
+    private GameObject playerTauntBubble;
+
+    private int tauntAttemptCounter;
 
     void Awake()
     {
+        playerTauntBubble = GameObject.FindGameObjectWithTag("PlayerTauntBubble");
         playerBase = GetComponent<PlayerScript>();
     }
 
@@ -29,6 +37,8 @@ class TauntAction: MonoBehaviour
 
     void Start()
     {
+        playerTauntBubble.SetActive(false);
+        tauntAttemptCounter = 0;
         currentTauntRadius = TauntRadius;
     }
 
@@ -52,19 +62,31 @@ class TauntAction: MonoBehaviour
         //10 layer - Monster
         //Collider[] hitColliders = Physics.OverlapSphere(position, radius);
         Collider[] hitColliders = GetTauntedColliders();
+        List<GameObject> exmarks = new List<GameObject>();
+        playerTauntBubble.SetActive(true);
         int i = 0;
         while (i < hitColliders.Length)
         {
             
             if (hitColliders[i].CompareTag("Enemy"))
             {
-
                 checkStateAndTaunt(hitColliders[i].GetComponent<MonsterAI>());
+                exmarks.Add(hitColliders[i].GetComponent<ExclamationMark>().ExclaMark());
             }
 
             i++;
         }
+        StartCoroutine("NoExclMarks", exmarks);
     }
+
+    IEnumerator NoExclMarks(List<GameObject> exmarks)
+    {
+        yield return new WaitForSeconds(2f);
+        playerTauntBubble.SetActive(false);
+        foreach (GameObject exmark in exmarks)
+            exmark.SetActive(false);
+    }
+
 
     public Collider[] GetTauntedColliders()
     {
@@ -84,15 +106,26 @@ class TauntAction: MonoBehaviour
     //TAUNT Action
     public void Taunt()
     {
-
+        
         //Debug.Log("TAUNT CAN: " + playerBase.canDoAction(PlayerActions.TAUNT));
         if (getCoolDown() && playerBase.canDoAction(PlayerActions.TAUNT))
         {
+            tauntAttemptCounter = 0;
             WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.Taunt, this.gameObject);
             
             startTaunt(currentTauntRadius, this.transform.position);
             playerBase.taunt();
             //shrinkTauntArea();
+        }
+        else if (!getCoolDown())
+        {
+            tauntAttemptCounter++;
+            if(tauntAttemptCounter > 2)
+            {
+                if (GameDialogUI != null)
+                    GameDialogUI.StartCoroutine("SpamingTaunt");
+            }
+
         }
         /*
         //just change aggro radius 

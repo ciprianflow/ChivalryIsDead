@@ -317,7 +317,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1000012115709112
 GameObject:
   m_ObjectHideFlags: 1
@@ -769,14 +769,14 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 86398f4ffb40b4d43987e31a0c106e7f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93ef46e1037558a4ab40d7280162bad1, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 2
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 3
+  m_FillOrigin: 1
 --- !u!114 &114000010725836706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -856,11 +856,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a80b2611581ca644caa2c47987d7ec05, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b30cda8722f6de44fa2b09de161f5cd0, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 1
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1059,14 +1059,14 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: ff35f46c2e633394795bc4849c9a62ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2273ad16d9a468e43bebfb264cc4cad8, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 2
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 2
 --- !u!114 &114000011510791240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1167,19 +1167,16 @@ MonoBehaviour:
   SnapsToFinger: 1
   JoystickMoveAxis: 3
   ActionUI: {fileID: 1000012071097666}
-  ActionTop: {fileID: 114000011510791240}
-  attackRdy: {fileID: 21300000, guid: a80b2611581ca644caa2c47987d7ec05, type: 3}
-  Action1: {fileID: 21300000, guid: bd759817536c6104cb9bd9c2fade92e6, type: 3}
-  Action2: {fileID: 21300000, guid: a0b4216894817c34aa62b225711335e6, type: 3}
-  Action3: {fileID: 21300000, guid: 9c2fbd437815c12478196d708af7221c, type: 3}
-  Action4: {fileID: 21300000, guid: 2fe43ded0042cc142aa3ed4cf7e13b31, type: 3}
-  Action5: {fileID: 21300000, guid: 1837010f13f5b0d429b7e86dd6afe5ed, type: 3}
+  ActionTop: {fileID: 114000010837925978}
+  attackRdy: {fileID: 21300000, guid: b30cda8722f6de44fa2b09de161f5cd0, type: 3}
+  attackCd: {fileID: 21300000, guid: 03a05481129df924aa399d4037a4e337, type: 3}
   RW: {fileID: 0}
-  ActionBottom: {fileID: 114000010837925978}
   ActionLeft: {fileID: 114000011487969832}
+  tauntRdy: {fileID: 21300000, guid: 2273ad16d9a468e43bebfb264cc4cad8, type: 3}
+  tauntCd: {fileID: 21300000, guid: 9881f607287cb1344810269afe123621, type: 3}
   ActionRight: {fileID: 114000010599793992}
-  ActionCenter: {fileID: 114000011268009224}
-  ActionCenterPushed: {fileID: 114000010383544770}
+  overreactRdy: {fileID: 21300000, guid: 93ef46e1037558a4ab40d7280162bad1, type: 3}
+  overreactCd: {fileID: 21300000, guid: 65b3d69ae30ba214b9ff4170faa6d1cf, type: 3}
   Stick: {fileID: 114000011280929390}
   monster1: {fileID: 0}
   monster2: {fileID: 0}
@@ -1401,7 +1398,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2048, y: 1536}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

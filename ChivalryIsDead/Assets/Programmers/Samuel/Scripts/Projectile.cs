@@ -12,8 +12,9 @@ public class Projectile : MonoBehaviour {
 
     public float ExplosionRadius = 1f;
     public float ExplosionForce = 500f;
+    public float PlayerExplosionForce = 5000f;
 
-	void OnCollisionEnter(Collision col)
+    void OnCollisionEnter(Collision col)
     {
         if (!hitGround && col.transform.CompareTag("Ground"))
             HitGround();
@@ -33,21 +34,22 @@ public class Projectile : MonoBehaviour {
             hitGround = true;
         }
 
-        MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, originMonster);
+        WwiseInterface.Instance.PlayCombatSound(CombatHandle.ImpactStone, this.gameObject);
+
+        MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, PlayerExplosionForce, originMonster);
     }
 
     void ProjectileCollision(GameObject collObj)
     {
         DestroyTarget();
         setToDestroy = true;
-
         
         MonsterAI m = collObj.gameObject.GetComponent<MonsterAI>();
+        QuestObject questObj = collObj.GetComponent<QuestObject>();
         if (m != null)
         {
 
             //other monsters
-            QuestObject questObj = collObj.GetComponent<QuestObject>();
             if (m.GetType() == typeof(SheepAI))
             {
                 //let player know objective is attacked
@@ -64,19 +66,25 @@ public class Projectile : MonoBehaviour {
                     body.AddExplosionForce(ExplosionForce, transform.position, ExplosionRadius, 0f);
                 }
             }
+        }
 
-            if(questObj != null)
-            {
-                questObj.takeDamage(1, false);
-                //let player know objective is attacked
-                originMonster.playerAction.ObjectiveAttacked(originMonster);
-            }
+        if (questObj != null)
+        {
+            Debug.Log("QuestObject hitttiittitiit");
+            questObj.takeDamage(3, false);
+            //let player know objective is attacked
+            originMonster.playerAction.ObjectiveAttacked(originMonster);
         }
 
         //monster should make daamge not the projectile??
         if (collObj.CompareTag("Player"))
         {
             collObj.GetComponent<PlayerActionController>().PlayerAttacked(originMonster);
+            Rigidbody body = collObj.GetComponent<Rigidbody>();
+            if (body)
+            {
+                body.AddExplosionForce(PlayerExplosionForce, transform.position, ExplosionRadius, 0f);
+            }
         }
     }
 

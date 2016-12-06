@@ -10,6 +10,9 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     float timer = 0;
     float maxTime = 120;
 
+    float halfTime;
+    public static bool isReminded;
+
     Image timerImage;
     GameObject Dsystem;
     public static TimerObjectScript Instance;
@@ -22,6 +25,8 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     void Start()
     {
         Instance = this;
+        halfTime = maxTime / 2;
+        isReminded = false;
     }
 
     void Update()
@@ -33,14 +38,20 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
         if (timerImage != null)
             timerImage.fillAmount = 1 - timer / maxTime;
 
-        if (timer > maxTime / 2)
+        if (!isReminded && timer > halfTime)
         {
             Dsystem = GameObject.FindGameObjectWithTag("DialogSystem");
             Dsystem.GetComponent<Gameplay_Dialog>().HalfTime();
+            isReminded = true;
         }
+
     }
 
     public float GetTimer()
+    {
+        return timer;
+    }
+    public float GetElapsedTime()
     {
 
         return 1 - timer / maxTime;

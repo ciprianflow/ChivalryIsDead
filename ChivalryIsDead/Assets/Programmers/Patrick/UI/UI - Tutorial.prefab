@@ -563,7 +563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000011878462734
 GameObject:
   m_ObjectHideFlags: 1
@@ -1262,7 +1262,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1000014251001564
 GameObject:
   m_ObjectHideFlags: 1
@@ -1276,11 +1276,11 @@ GameObject:
   - 95: {fileID: 95000013100367276}
   m_Layer: 5
   m_Name: PlayerTaunt
-  m_TagString: PlayerBubble
+  m_TagString: PlayerTauntBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4000010422605852
 Transform:
   m_ObjectHideFlags: 1
@@ -2162,7 +2162,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6f0391b4db6c3e42aaa32b0144d6269, type: 2}
   - {fileID: 11400000, guid: 1125d1462123d5542822e1c8e2fcc617, type: 2}
   - {fileID: 11400000, guid: ec840884de5940a47bef8a4d063bd9b6, type: 2}
-  - {fileID: 11400000, guid: 73de5fe3954fbfd40a294e3ae6bf27b8, type: 2}
+  - {fileID: 0}
   dialogDansk:
   - {fileID: 11400000, guid: 19cf835d1c44dff42815316915be1cf4, type: 2}
   - {fileID: 11400000, guid: 72e40bfbf50889e4fa6e795f1214683c, type: 2}
@@ -2172,14 +2172,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: da7a928b9fe17f347af435221938d25a, type: 2}
   playerText: {fileID: 1000010500786738}
   playerBubble: {fileID: 1000013854848194}
-  playerTauntBubble: {fileID: 1000014251001564}
   swordText: {fileID: 1000013821041018}
   swordBubble: {fileID: 1000013472790120}
   princessText: {fileID: 1000012473750776}
   princessBubble: {fileID: 1000011478621102}
   kingText: {fileID: 1000014076174794}
   kingBubble: {fileID: 1000013582935176}
-  enemyTauntBubble: {fileID: 1000010608173032}
   peasantABubble: {fileID: 1000012270216638}
   peasantAText: {fileID: 1000010583336924}
   peasantBBubble: {fileID: 1000012146272966}
@@ -2289,6 +2287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldStartVisible: 1
   menu: {fileID: 1000013809427288}
+  dampenLightPanel: {fileID: 0}
 --- !u!114 &114000011013086234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2877,7 +2876,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2048, y: 1536}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3810,6 +3809,7 @@ MonoBehaviour:
   skipBtn: {fileID: 1000011757258766}
   halfScreen: {fileID: 0}
   TrollA: {fileID: 0}
+  howToPlay: {fileID: 0}
 --- !u!114 &114000013747371150
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5031,7 +5031,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014251001564}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 11.899407}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.02, y: 0.02, z: 0.02}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -5042,7 +5042,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 96.838135, y: -25.183228}
+  m_AnchoredPosition: {x: 7.5, y: 1}
   m_SizeDelta: {x: 548, y: 402}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000011264579868
@@ -5421,7 +5421,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014133939842}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.04, y: 0.04, z: 0.01}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -5429,7 +5429,7 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.699951, y: 6}
+  m_AnchoredPosition: {x: 0, y: 7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224000013124267446

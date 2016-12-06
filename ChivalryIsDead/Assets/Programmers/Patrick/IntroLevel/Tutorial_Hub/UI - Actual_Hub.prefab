@@ -536,7 +536,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010411620198}
   - 114: {fileID: 114000010154445690}
-  - 114: {fileID: 114000011892599190}
+  - 114: {fileID: 114000011935199550}
   m_Layer: 0
   m_Name: DialogSystem
   m_TagString: DialogSystem
@@ -1482,23 +1482,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UI: {fileID: 1000013651661000}
   dialogEnglish:
-  - {fileID: 11400000, guid: 8e1efba494317c6458434f1e238c4420, type: 2}
-  - {fileID: 11400000, guid: ae35e39a99452564b9a2078505c8e282, type: 2}
-  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 561b010382d675a49b89456c5eaa28b8, type: 2}
+  - {fileID: 11400000, guid: 76b8468eb83941c4abc2031ff4bb9dbf, type: 2}
+  - {fileID: 11400000, guid: fd04c3a3da922dd4d91f35aac05e5086, type: 2}
+  - {fileID: 11400000, guid: a9e3431e940fd454babdde4e8b24418f, type: 2}
+  - {fileID: 11400000, guid: d061b1b847abae94a95b9205ec848c75, type: 2}
+  - {fileID: 11400000, guid: 881fc4ce860926e43a64ad5c765c884e, type: 2}
+  - {fileID: 11400000, guid: f8bd7e9ae55000f4bbcda1b6675aa38d, type: 2}
+  - {fileID: 11400000, guid: 68e93a66cdaacd840a8f1ca50732f934, type: 2}
+  - {fileID: 11400000, guid: 1e0eb55e34e110e4bb3a395b591eafb9, type: 2}
+  - {fileID: 11400000, guid: bdaf2d21d63c32843aed803c12e163fc, type: 2}
   dialogDansk:
   - {fileID: 11400000, guid: 8e1efba494317c6458434f1e238c4420, type: 2}
   - {fileID: 11400000, guid: ae35e39a99452564b9a2078505c8e282, type: 2}
   - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
+  - {fileID: 11400000, guid: 01bd2856494edf94da63982a95293df2, type: 2}
   playerText: {fileID: 1000010737973690}
   playerBubble: {fileID: 1000010188592720}
-  playerTauntBubble: {fileID: 1000013567144504}
   swordText: {fileID: 1000012423722788}
   swordBubble: {fileID: 1000012208034016}
   princessText: {fileID: 1000013459190112}
   princessBubble: {fileID: 1000012449426382}
   kingText: {fileID: 1000012376864520}
   kingBubble: {fileID: 1000013443438642}
-  enemyTauntBubble: {fileID: 1000013567144504}
   peasantABubble: {fileID: 1000010088702486}
   peasantAText: {fileID: 1000014260513896}
   peasantBBubble: {fileID: 1000013271977078}
@@ -1828,7 +1840,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 114000011892599190}
+      - m_Target: {fileID: 0}
         m_MethodName: CallableSkip
         m_Mode: 1
         m_Arguments:
@@ -1953,6 +1965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shouldStartVisible: 1
   menu: {fileID: 1000013651661000}
+  dampenLightPanel: {fileID: 0}
 --- !u!114 &114000010866450662
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2621,7 +2634,7 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
---- !u!114 &114000011892599190
+--- !u!114 &114000011935199550
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2629,17 +2642,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011820268372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc31a3c9cdaaa940a4344fae0cbf2f7, type: 3}
+  m_Script: {fileID: 11500000, guid: 04a2cb1bb54a79045ab95d4395be8d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UI: {fileID: 1000013651661000}
-  HandCanvas: {fileID: 1000013567144504}
-  ScreenFreeze: {fileID: 1000013567144504}
-  swordAnimator: {fileID: 95000012360479856}
-  skipAnimator: {fileID: 95000011995841384}
-  skipBtn: {fileID: 1000012231333696}
-  blackScreen: {fileID: 1000013567144504}
-  hdManager: {fileID: 0}
+  skipBtn: {fileID: 0}
 --- !u!114 &114000011977711688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2823,7 +2829,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 2048, y: 1536}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

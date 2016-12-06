@@ -19,7 +19,7 @@ public class CallVid : MonoBehaviour {
     private IEnumerator PlayStreamingVideo(string url)
     {
         Debug.Log("Starting Movie");
-        Handheld.PlayFullScreenMovie(url, Color.black, FullScreenMovieControlMode.CancelOnInput, FullScreenMovieScalingMode.AspectFit);
+        //Handheld.PlayFullScreenMovie(url, Color.black, FullScreenMovieControlMode.CancelOnInput, FullScreenMovieScalingMode.AspectFit);
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
         Debug.Log("Movie stopped");

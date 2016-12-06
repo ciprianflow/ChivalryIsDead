@@ -32,6 +32,7 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject halfScreen;
 
     public GameObject TrollA;
+    public GameObject howToPlay;
 
     // Use this for initialization
     void Awake () {
@@ -47,7 +48,7 @@ public class IntroLevelDialog : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log(PlayerPrefs.GetInt("Attack"));
+ 
             
         if (!learnedToMove)
         {
@@ -251,12 +252,20 @@ public class IntroLevelDialog : MonoBehaviour {
         //yield return new WaitForSeconds(2);
         //UI.GetComponent<GameMenu>().Sword();
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(2);
+        PlayerPrefs.SetInt("Attack", 0);
+        PlayerPrefs.SetInt("AttackLevel", 1);
+        SceneManager.LoadScene("Cinematic");
     }
 
 
 
-
+    public void RestoreAllAnimators()
+    {
+        swordAnimator.speed = 1f;
+        //skipAnimator.speed = 1f;
+        handAnimator.speed = 1f;
+        //tutImgAnimator.speed = 1f;
+    }
 
 
 
