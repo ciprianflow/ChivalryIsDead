@@ -444,7 +444,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //Check the Quest Objective for nullpointer and if not make the sheep deed
         if (QO != null)
         {
-            QO.takeDamage(999, false);
+            QO.takeDamage(999, false, Vector3.zero);
             playerAction.ObjectiveAttacked(this);
         }
 
