@@ -323,7 +323,8 @@ public class HubDataManager : MonoBehaviour {
         //QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
         QuestLetter.SetActive(boolean);
         DampenLightObject.SetActive(boolean);
-        //GameObject.FindGameObjectWithTag("HandCanvas").GetComponent<Animator>().SetTrigger("handhub");
+       
+        //GameObject.FindGameObjectWithTag("HandCanvas").GetComponent<Animator>().SetBool("playPeasant", false);
         isClicked = boolean;
     }
 
