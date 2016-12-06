@@ -62,6 +62,7 @@ public class HubDataManager : MonoBehaviour {
 
     void Awake()
     {
+        AkSoundEngine.PostEvent("start_hub_ambience", gameObject);
         Time.timeScale = 1f;
 
         hubDataPath = Application.persistentDataPath + "/HubData.json";
