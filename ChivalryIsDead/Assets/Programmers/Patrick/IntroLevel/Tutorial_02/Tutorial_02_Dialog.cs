@@ -31,6 +31,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public GameObject ScreenFreeze;
     Animator handAnimator;
     public Animator swordAnimator;
+    public Animator swordBubbleAnimator;
     public Animator skipAnimator;
     public GameObject skipBtn;
     int count;
@@ -103,6 +104,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
                 learnedToUseTaunt = true;
                 handAnimator.speed = 1f;
                 swordAnimator.speed = 1f;
+                swordBubbleAnimator.speed = 1f;
                 skipAnimator.speed = 1f;
                 Time.timeScale = 1f;
                 StartCoroutine("DialogSix");
@@ -139,6 +141,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         handAnimator.SetBool("playTaunt", false);
         handAnimator.speed = 100f;
         swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
         skipAnimator.speed = 1f;
         Time.timeScale = 1f;
         ScreenFreeze.SetActive(false);
@@ -184,6 +187,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         Time.timeScale = 1f;
         swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
         skipAnimator.speed = 1f;
 
 
@@ -226,6 +230,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         ControlMove.SetActive(false);
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
+        swordBubbleAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         //enemyBillboard.GetComponent<CameraBillboard>().speaker = TrollA;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
@@ -244,6 +249,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         procceed = false;
         skipAnimator.speed = 1f;
         swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
         Time.timeScale = 1f;
         ControlMove.SetActive(true);
 
@@ -331,6 +337,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
+        swordBubbleAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         handAnimator.speed = 10f;
 
@@ -362,6 +369,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
+        swordBubbleAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         handAnimator.speed = 10f;
 
@@ -468,6 +476,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public void RestoreAllAnimators()
     {
         swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
         skipAnimator.speed = 1f;
         handAnimator.speed = 1f;
         tutImgAnimator.speed = 1f;

@@ -80,7 +80,7 @@ public enum MusicHandle
 
 public enum RewardHandle
 {
-    ComboBoost, ComboBoost2, ComboBoost3, ComboStart, ComboEnd, /*Big,*/ Small, Fail
+    PointCounter, ComboBoost, ComboBoost2, ComboBoost3, ComboStart, ComboEnd, Small, Fail
 }
 
 public enum SheepAudioHandle
@@ -208,6 +208,10 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
 
     public void PlayRewardSound(RewardHandle handle)
     {
+        if (handle == RewardHandle.PointCounter) {
+            AkSoundEngine.PostEvent("pointCounter", gameObject);
+            return;
+        }
         StringBuilder eventBuilder = new StringBuilder("reward_");
         eventBuilder.Append(HandleToEventString(handle));
 
