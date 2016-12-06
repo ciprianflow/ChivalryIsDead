@@ -385,7 +385,6 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
     private IEnumerator SwitchMusic(MusicHandle handle, float delay)
     {
         AkSoundEngine.PostEvent("musicStop", gameObject);
-        CurrentlyPlaying = MusicHandle.MusicStop;
 
         yield return new WaitForSeconds(delay);
 
@@ -399,6 +398,9 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
                 CurrentlyPlaying = MusicHandle.MusicQuest;
                 break;
             case MusicHandle.MusicStop:
+                Debug.Log("PLZ STOP");
+
+                CurrentlyPlaying = MusicHandle.MusicStop;
                 break;
             default:
                 LogError(handle); break;
