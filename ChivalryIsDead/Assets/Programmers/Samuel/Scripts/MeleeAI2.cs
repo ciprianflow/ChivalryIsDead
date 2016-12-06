@@ -80,7 +80,9 @@ public class MeleeAI2 : MonsterAI
                     {
                         Debug.Log((accelTime / accelTimer));
                         body.AddExplosionForce(attackForceOnOtherMonsters, transform.position, attackLength + 5);
-                    }   
+                    }
+                    base.playerAction.MonsterAttackedMonster(this);
+
                 }
 
                 if (Colliders[i].tag == "Player")

@@ -42,7 +42,7 @@ public class EndScreen : MonoBehaviour {
     {
         if (FadeOut != null)
             FadeOut.SetActive(true);
-
+        
         if (StaticData.currQuest == null) return;
         data = StaticData.currQuest.Data;
 
@@ -51,7 +51,6 @@ public class EndScreen : MonoBehaviour {
         scoreWithoutBonus = StaticIngameData.dummyManager.GetLocalScoreWithoutBonus();
         localScore = StaticIngameData.dummyManager.GetLocalScore();
 
-        Debug.Log(localScore + " - " + scoreWithoutBonus);
 
         if (TimerObjectScript.Instance.GetElapsedTime() <= 0.01)
         {
@@ -141,6 +140,8 @@ public class EndScreen : MonoBehaviour {
                 startMonsters = false;
                 Reputation.SetActive(true);
                 showReputation = true;
+
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.PointCounter);
                 
                 //reptutation.setA
             }
@@ -194,6 +195,7 @@ public class EndScreen : MonoBehaviour {
             Timer.GetComponentInChildren<Text>().text = secondsToMinutes((int)Math.Round(timer));            
         }
         timeNow = Time.realtimeSinceStartup;
+        WwiseInterface.Instance.PlayRewardSound(RewardHandle.PointCounter);
     }
 
 	// Update is called once per frame
@@ -289,6 +291,7 @@ public class EndScreen : MonoBehaviour {
         timeNow = Time.realtimeSinceStartup;
         startMonsters = true;
 
+        WwiseInterface.Instance.PlayRewardSound(RewardHandle.PointCounter);
 
 
         Debug.Log("startshowmosnters");

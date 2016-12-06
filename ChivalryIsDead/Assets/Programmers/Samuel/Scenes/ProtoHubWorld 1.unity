@@ -360,6 +360,7 @@ MonoBehaviour:
     type: 2}
   QuestLetter: {fileID: 550732167}
   DampenLightObject: {fileID: 1993158705}
+  DialogSystem: {fileID: 1357603873}
   WinScreen: {fileID: 1291028421}
   LoseScreen: {fileID: 2137586137}
   DaysLeftText: {fileID: 1102394998}
@@ -1817,7 +1818,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Thank you
+  m_Text: 
 --- !u!222 &655025129
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2706,6 +2707,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000011935199550, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2,
+        type: 2}
+      propertyPath: winScreen
+      value: 
+      objectReference: {fileID: 1291028421}
+    - target: {fileID: 114000011935199550, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2,
+        type: 2}
+      propertyPath: loseScreen
+      value: 
+      objectReference: {fileID: 2137586137}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2, type: 2}
   m_IsPrefabParent: 0
@@ -3652,6 +3663,11 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1336278231}
+--- !u!1 &1357603873 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000011820268372, guid: 5da9c7c9c3fdc9f4eacb079f576b54b2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1072236367}
 --- !u!1 &1370614770
 GameObject:
   m_ObjectHideFlags: 0
@@ -4034,7 +4050,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -19, y: 285}
-  m_SizeDelta: {x: 750, y: 273.5}
+  m_SizeDelta: {x: 900, y: 273.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1589670616
 MonoBehaviour:
@@ -4058,7 +4074,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6b2673475a3823b46a296b2df5193dd9, type: 3}
-    m_FontSize: 44
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 3

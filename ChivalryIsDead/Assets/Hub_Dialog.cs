@@ -5,8 +5,13 @@ public class Hub_Dialog : MonoBehaviour {
 
     public GameObject skipBtn;
 
+    public GameObject winScreen;
+    public GameObject loseScreen;
+
 	// Use this for initialization
 	IEnumerator Start () {
+
+        yield return new WaitForSeconds(0.5f);
 
         if (StaticData.Reputation <= 110 && StaticData.Reputation > 100)
         {
@@ -88,4 +93,22 @@ public class Hub_Dialog : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public IEnumerator Win()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
+        yield return new WaitForSeconds(10f);
+        HubDataManager.ResetHubData();
+        PlayerPrefs.DeleteAll();
+        winScreen.SetActive(true);
+    }
+
+    public IEnumerator Lose()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 12);
+        yield return new WaitForSeconds(10f);
+        HubDataManager.ResetHubData();
+        PlayerPrefs.DeleteAll();
+        loseScreen.SetActive(true);
+    }
 }
