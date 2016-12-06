@@ -36,7 +36,8 @@ public class Gameplay_Dialog : MonoBehaviour
             suicideTutAnim = suicideTut.GetComponent<Animator>();
             suicideTutAnim.speed = 1f;
             suicideTutAnim.SetBool("playLearnSuicide", true);
-
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
+            skipBtn.SetActive(false);
             PlayerPrefs.SetInt("SuicideTut", 0);
         }
 

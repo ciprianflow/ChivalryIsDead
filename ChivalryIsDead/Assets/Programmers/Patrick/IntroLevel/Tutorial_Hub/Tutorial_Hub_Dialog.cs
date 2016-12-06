@@ -129,11 +129,13 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //yield return new WaitForSeconds(1f);
         blackScreen.SetActive(false);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 1);
-        handAnimator.SetBool("playPeasant", true);
         count = 0;
-        while (count < 3)
+        while (count < 2)
         {
             yield return new WaitForEndOfFrame();
+            if(count == 1)
+                handAnimator.SetBool("playPeasant", true);
+
         }
         yield return new WaitUntil(SkipAndPlay);
 
