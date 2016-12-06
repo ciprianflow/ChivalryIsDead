@@ -53,6 +53,10 @@ public class PlayerScript : MonoBehaviour {
 
         StaticIngameData.player = this.transform;
 
+        AkSoundEngine.PostEvent("musicquest", gameObject);
+        AkSoundEngine.PostEvent("start_world_1_ambience", gameObject);
+
+
     }
 
     public void move(float x, float y) {

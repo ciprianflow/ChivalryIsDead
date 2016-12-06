@@ -87,7 +87,7 @@ public class MainMenu : MonoBehaviour {
         PlayerPrefs.SetInt("TauntLevel", 0);
         PlayerPrefs.SetInt("OverreactLevel", 0);
 
-        StartCoroutine("LoadLevel", "Introlevel");
+        StartCoroutine("LoadLevel", "Cinematic");
 
 
     }
