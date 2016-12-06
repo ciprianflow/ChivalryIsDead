@@ -160,65 +160,103 @@
 						</MusicPlaylistItem>
 					</Playlist>
 				</MusicPlaylistContainer>
-				<MusicSegment Name="music quest zone" ID="{4CD36D03-C29A-4792-956B-91C03009BE85}" ShortID="655595828">
-					<PropertyList>
-						<Property Name="EndPosition" Type="Real64" Value="88846.1666666667"/>
-					</PropertyList>
+				<MusicPlaylistContainer Name="music quest" ID="{53EDB2CF-21CD-4FF7-81F4-8F2A13EDCD9B}" ShortID="1024989085">
 					<ReferenceList>
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+							<ObjectRef Name="music" ID="{7EFE008D-A9E9-43E9-9384-DF07EDA22C6A}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
-						<MusicTrack Name="music quest zone" ID="{A59C4BF2-90F5-498A-BE9C-531D57C25829}" ShortID="548604385">
+						<MusicSegment Name="music quest zone" ID="{4CD36D03-C29A-4792-956B-91C03009BE85}" ShortID="655595828">
+							<PropertyList>
+								<Property Name="EndPosition" Type="Real64" Value="88846.1666666667"/>
+							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
 								<Reference Name="OutputBus">
-									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+									<ObjectRef Name="music" ID="{7EFE008D-A9E9-43E9-9384-DF07EDA22C6A}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<AudioFileSource Name="music quest zone" ID="{28A8F873-7C6B-4031-9165-EF42DB35FFC2}" ShortID="570015443">
-									<Language>SFX</Language>
-									<AudioFile>music quest zone.wav</AudioFile>
-								</AudioFileSource>
+								<MusicTrack Name="music quest zone" ID="{A59C4BF2-90F5-498A-BE9C-531D57C25829}" ShortID="548604385">
+									<ReferenceList>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="music quest zone" ID="{28A8F873-7C6B-4031-9165-EF42DB35FFC2}" ShortID="570015443">
+											<Language>SFX</Language>
+											<AudioFile>music quest zone.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<TransitionList>
+										<MusicTransition Name="Root" ID="{691DCDC7-5372-42ED-A29E-406BEAEF4618}">
+											<PropertyList>
+												<Property Name="IsFolder" Type="bool" Value="True"/>
+											</PropertyList>
+											<TransitionInfo/>
+										</MusicTransition>
+									</TransitionList>
+									<SequenceList>
+										<MusicTrackSequence Name="" ID="{9E0FF67A-28FD-4534-AFCA-D709B4DA043A}">
+											<ClipList>
+												<MusicClip Name="music quest zone" ID="{324697CC-C496-4734-9DE2-8B2209931290}">
+													<PropertyList>
+														<Property Name="EndTrimOffset" Type="Real64" Value="88846.1666666667"/>
+														<Property Name="FadeInMode" Type="int16" Value="0"/>
+														<Property Name="FadeOutMode" Type="int16" Value="0"/>
+													</PropertyList>
+													<AudioSourceRef Name="music quest zone" ID="{28A8F873-7C6B-4031-9165-EF42DB35FFC2}"/>
+												</MusicClip>
+											</ClipList>
+										</MusicTrackSequence>
+									</SequenceList>
+								</MusicTrack>
 							</ChildrenList>
-							<TransitionList>
-								<MusicTransition Name="Root" ID="{691DCDC7-5372-42ED-A29E-406BEAEF4618}">
+							<CueList>
+								<MusicCue Name="Entry Cue" ID="{0A709256-B7AC-401D-B5EF-0FF7BF06D955}"/>
+								<MusicCue Name="Exit Cue" ID="{314A1CB5-1477-4D24-8831-C576202BC7C8}">
 									<PropertyList>
-										<Property Name="IsFolder" Type="bool" Value="True"/>
+										<Property Name="CueType" Type="int16" Value="1"/>
+										<Property Name="TimeMs" Type="Real64" Value="88846.1666666667"/>
 									</PropertyList>
+								</MusicCue>
+							</CueList>
+						</MusicSegment>
+					</ChildrenList>
+					<TransitionList>
+						<MusicTransition Name="Root" ID="{3E3FA41B-330C-48A4-A52E-8303931B1193}">
+							<PropertyList>
+								<Property Name="IsFolder" Type="bool" Value="True"/>
+							</PropertyList>
+							<ChildrenList>
+								<MusicTransition Name="Transition" ID="{84863046-8141-41C0-8A93-E901EB74B6B3}">
 									<TransitionInfo/>
 								</MusicTransition>
-							</TransitionList>
-							<SequenceList>
-								<MusicTrackSequence Name="" ID="{9E0FF67A-28FD-4534-AFCA-D709B4DA043A}">
-									<ClipList>
-										<MusicClip Name="music quest zone" ID="{324697CC-C496-4734-9DE2-8B2209931290}">
-											<PropertyList>
-												<Property Name="EndTrimOffset" Type="Real64" Value="88846.1666666667"/>
-												<Property Name="FadeInMode" Type="int16" Value="0"/>
-												<Property Name="FadeOutMode" Type="int16" Value="0"/>
-											</PropertyList>
-											<AudioSourceRef Name="music quest zone" ID="{28A8F873-7C6B-4031-9165-EF42DB35FFC2}"/>
-										</MusicClip>
-									</ClipList>
-								</MusicTrackSequence>
-							</SequenceList>
-						</MusicTrack>
-					</ChildrenList>
-					<CueList>
-						<MusicCue Name="Entry Cue" ID="{0A709256-B7AC-401D-B5EF-0FF7BF06D955}"/>
-						<MusicCue Name="Exit Cue" ID="{314A1CB5-1477-4D24-8831-C576202BC7C8}">
-							<PropertyList>
-								<Property Name="CueType" Type="int16" Value="1"/>
-								<Property Name="TimeMs" Type="Real64" Value="88846.1666666667"/>
-							</PropertyList>
-						</MusicCue>
-					</CueList>
-				</MusicSegment>
+							</ChildrenList>
+							<TransitionInfo/>
+						</MusicTransition>
+					</TransitionList>
+					<Playlist>
+						<MusicPlaylistItem Name="" ID="{A908730B-E888-4D4E-BACE-40A4A9642182}" ShortID="480230062">
+							<ChildrenList>
+								<MusicPlaylistItem Name="" ID="{E2535509-C5B1-4663-9603-E582A6801323}" ShortID="788272517">
+									<PropertyList>
+										<Property Name="LoopCount" Type="int16" Value="0"/>
+										<Property Name="PlaylistItemType" Type="int16" Value="1"/>
+									</PropertyList>
+									<SegmentRef Name="music quest zone" ID="{4CD36D03-C29A-4792-956B-91C03009BE85}"/>
+								</MusicPlaylistItem>
+							</ChildrenList>
+						</MusicPlaylistItem>
+					</Playlist>
+				</MusicPlaylistContainer>
 			</ChildrenList>
 		</WorkUnit>
 	</InteractiveMusic>
