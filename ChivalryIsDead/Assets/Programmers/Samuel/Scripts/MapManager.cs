@@ -182,6 +182,7 @@ public class MapManager : MonoBehaviour {
         //Load Quest Hub Manager
         if (endLetter != null)
         {
+            WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboEnd);
             endLetter.SetActive(true);
             Time.timeScale = 0.1f;
         }
