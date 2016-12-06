@@ -80,6 +80,7 @@ public class PlayerActionController : MonoBehaviour
     private int isNeverTaunt;
     private int isNeverOverreact;
     private int noSheepKilled;
+    private int poorlyOverreact;
     private float countTime;
     private bool isTutorial;
     private bool thisLevel;
@@ -144,6 +145,10 @@ public class PlayerActionController : MonoBehaviour
             noSheepKilled = PlayerPrefs.GetInt("noSheepKill");
         else
             noSheepKilled = 1;
+        if (PlayerPrefs.HasKey("poorlyOverreact"))
+            poorlyOverreact = PlayerPrefs.GetInt("poorlyOverreact");
+        else
+            poorlyOverreact = 1;
         thisLevel = false;
         if (SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
         {
@@ -323,8 +328,14 @@ public class PlayerActionController : MonoBehaviour
                 WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactOk, this.gameObject);
                 if(GameDialogUI != null && countTime > globalCooldown)
                 {
-                    globalCooldown += 30;
-                    GameDialogUI.StartCoroutine("WrongOverreact");
+                    if(poorlyOverreact == 1)
+                    {
+                        globalCooldown += 30;
+                        GameDialogUI.StartCoroutine("WrongOverreact");
+                        poorlyOverreact = 0;
+                        PlayerPrefs.SetInt("poorlyOverreact", poorlyOverreact);
+                    }
+                    
                     
                 }
                 //ASK JONAHTAN 0 POINTS IF OUT OF ATTACKED TIME FRAME
