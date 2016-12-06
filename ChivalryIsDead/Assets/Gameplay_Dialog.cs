@@ -41,6 +41,23 @@ public class Gameplay_Dialog : MonoBehaviour
             PlayerPrefs.SetInt("SuicideTut", 0);
         }
 
+        if (SceneGetter.Instance.isDestroyQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 16);
+
+        }
+        else if (SceneGetter.Instance.isWellQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 15);
+        }
+        else if (SceneGetter.Instance.isBakeryQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 14);
+        }
+        else if (SceneGetter.Instance.isFarmhouseQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 13);
+        }
     }
 
     // Update is called once per frame
