@@ -39,7 +39,6 @@ class TauntAction: MonoBehaviour
     {
         playerTauntBubble.SetActive(false);
         tauntAttemptCounter = 0;
-        currentTauntRadius = TauntRadius;
     }
 
     void Update()
@@ -56,12 +55,12 @@ class TauntAction: MonoBehaviour
 
     private void startTaunt(float radius, Vector3 position)
     {
-
+        //Debug.Log(radius);
         cooldownTimeStamp = Time.time + TauntCooldown;
 
         //10 layer - Monster
-        //Collider[] hitColliders = Physics.OverlapSphere(position, radius);
-        Collider[] hitColliders = GetTauntedColliders();
+        Collider[] hitColliders = Physics.OverlapSphere(position, radius);
+        //Collider[] hitColliders = GetTauntedColliders();
         List<GameObject> exmarks = new List<GameObject>();
         playerTauntBubble.SetActive(true);
         int i = 0;
@@ -87,11 +86,12 @@ class TauntAction: MonoBehaviour
             exmark.SetActive(false);
     }
 
-
+    /*
     public Collider[] GetTauntedColliders()
     {
         return Physics.OverlapSphere(this.transform.position, currentTauntRadius); 
     }
+    */
 
     private void checkStateAndTaunt(MonsterAI monster)
     {
@@ -113,7 +113,7 @@ class TauntAction: MonoBehaviour
             tauntAttemptCounter = 0;
             WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.Taunt, this.gameObject);
             
-            startTaunt(currentTauntRadius, this.transform.position);
+            startTaunt(TauntRadius, this.transform.position);
             playerBase.taunt();
             //shrinkTauntArea();
         }

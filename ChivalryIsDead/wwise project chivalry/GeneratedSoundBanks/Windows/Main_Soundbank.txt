@@ -10,6 +10,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	521065176	ranged_walk			\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_walk	
 	523500532	peasant_happy			\Default Work Unit\characters\peasant\peasant_happy	
 	533425982	peasant_scared			\Default Work Unit\characters\peasant\peasant_scared	
+	591649144	stopCinematic			\Default Work Unit\cinematic\stopCinematic	
 	712766695	ranged_aggro			\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_aggro	
 	808353447	ranged_death			\Default Work Unit\characters\enemies\ranged (big troll type)\ranged_death	
 	851904728	melee_spear_splat			\Default Work Unit\characters\enemies\melee (merman type)\death\melee_spear_splat	
@@ -98,15 +99,20 @@ Switch	ID	Name	Switch Group			Notes
 	4248645337	grass	footsteps			
 
 State Group	ID	Name			Wwise Object Path	Notes
+	825123751	cinematicState			\Default Work Unit\cinematicState	
 	3092587493	pause			\Default Work Unit\pause	
 
 State	ID	Name	State Group			Notes
+	748895195	None	cinematicState			
+	1789884234	dontfade	cinematicState			
+	2646605403	fade	cinematicState			
 	319258907	paused	pause			
 	748895195	None	pause			
 	1365518790	unpaused	pause			
 
 Custom State	ID	Name	State Group	Owner		Notes
 	174233489	paused	pause	\Master-Mixer Hierarchy\Default Work Unit\Master Audio Bus		
+	439890314	fade	cinematicState	\Actor-Mixer Hierarchy\Default Work Unit\cinematic\cinematic intro v1		
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1006694123	music_volume			\Default Work Unit\music_volume	
@@ -530,7 +536,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	865953537	fishman_getting_hit-06	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\fishman_getting_hit-06_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\melee (merman type)\melee_attacked\fishman_getting_hit-06		2819
 	867562747	chicken_4	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\chicken_4_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\ambience\hub_world\chicken\chicken_4		58362
 	870326261	knight_overreact_perfect-04	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\knight_overreact_perfect-04_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\knight\combat voice\knight_overreact_perfect\knight_overreact_perfect-04		26562
-	871057150	cinematic intro v1	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\cinematic intro v1_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\cinematic\cinematic intro v1		1313110
+	871057150	cinematic intro v1	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\cinematic intro v1_64A5DC86.wem		\Actor-Mixer Hierarchy\Default Work Unit\cinematic\cinematic intro v1		1288993
 	871617869	look_for_rock_2	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\look_for_rock_2_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_pickup_stone\look_for_stone\look_for_rock_2		8652
 	875745377	troll_getting_hit-06	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\troll_getting_hit-06_645155D0.wem		\Actor-Mixer Hierarchy\Default Work Unit\enemies\ranged (big troll type)\ranged_attacked\troll_getting_hit-06		6028
 	875786080	combo reward 6	C:\Users\dadiu\Documents\WurstKnight\ChivalryIsDead\wwise project chivalry\.cache\Windows\SFX\combo reward 6_C79CB650.wem		\Actor-Mixer Hierarchy\Default Work Unit\reward\comboboost\combo reward 6		26589
