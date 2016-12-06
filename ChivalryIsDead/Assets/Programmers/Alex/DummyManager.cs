@@ -254,7 +254,7 @@ public class DummyManager : MonoBehaviour
         //calculate bonus
         repGain = getLocalScore(ReputationHandler.Score);
         
-        float repGainDivision = 50;
+        float repGainDivision = 300;
         return repGain / repGainDivision;
 
     }
