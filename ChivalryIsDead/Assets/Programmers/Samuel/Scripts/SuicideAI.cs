@@ -18,9 +18,12 @@ public class SuicideAI : MonsterAI
     bool taunted = false;
     SphereCollider col;
 
+    public Gameplay_Dialog GameDialogUI;
+
+
     void Start()
     {
-
+        GameDialogUI = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<Gameplay_Dialog>();
     }
 
     void OnDrawGizmos()
@@ -194,13 +197,13 @@ public class SuicideAI : MonsterAI
         if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility) {
             if (coll.CompareTag("Player")) {
                 //ANGELIKI PUT THE THINGYMOJIGGI HERE
+                
                 Debug.Log("EXPLODE ON PLAYER");
 
                 if (PlayerPrefs.GetInt("SuicideTut") == 0) {
-
+                    GameDialogUI.StartCoroutine("TauntSuicide");
                     PlayerPrefs.SetInt("SuicideTut", 1);
                 }
-
             }
             Explode();
 

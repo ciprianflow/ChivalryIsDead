@@ -59,35 +59,35 @@ public class TextGeneration : MonoBehaviour {
     public string CreateQuestText(QuestData data)
     {
         var questDesc = new StringBuilder();
-        if (data.Type == QuestType.Destroy) {
+        if (data.Type == QuestType.Destroy) { //Dræb de {0} fjender. (Der er 2 __)
             questDesc.Append(string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                 data.EnemyCount,
                 string.Join(", ", data.GetEnemies().ToArray()))
-            );
+            );                                     //Brug de {0} fjender til at miste omdømme
             swordQuestDesc.Append(string.Format("• Use the {0} enemies to lose reputation" + Environment.NewLine,
                 data.EnemyCount)
             );
         } else if (data.Type == QuestType.Protect) {
-            questDesc.Append(
+            questDesc.Append(   //Dræb de {0} fjender. (Der er {1})
                 string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                     data.EnemyCount,
                     string.Join(", ", data.GetEnemies().ToArray()))
             );
-            swordQuestDesc.Append(
+            swordQuestDesc.Append( //Brug de {0} fjender
                 string.Format("• Use the {0} enemies" + Environment.NewLine,
                     data.EnemyCount)
             );
-            questDesc.Append(
+            questDesc.Append(   //Beskyt de {0} venlige. (Der er {1})
                 string.Format("• Protect the {0} friendlies. (There are {1})" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
-            swordQuestDesc.Append(
+            swordQuestDesc.Append(  //til at ødelægge {0} {1}                   og miste ømdømme
                 string.Format("to destroy the {0} {1}" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
-        }
+        }                //Du har 150 sekunder.
         questDesc.Append("You have 150 seconds." + Environment.NewLine);
         //questDesc.Append(Environment.NewLine + "NOTE FROM SWORD: Remember that you wanna lose the quest, not win it!");
         return questDesc.ToString();
@@ -140,19 +140,11 @@ public class TextGeneration : MonoBehaviour {
             shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i].text, 1);
         }
 
-        if(QuestDifficulty == "Easy")
-        {
-            TitleGenerator(shuffleBags[14]);
-            TitleGenerator(shuffleBags[15]);
-        }
-        else
-        {
-            TitleGenerator(shuffleBags[1]);
-            TitleGenerator(shuffleBags[2]);
-        }
-
        
-        EndTitleGenerator(shuffleBags[11]);
+        TitleGenerator(shuffleBags[1]);
+        TitleGenerator(shuffleBags[2]);
+        
+        //EndTitleGenerator(shuffleBags[3]);
 
         if (gameObject.tag == "EndLetter")
             initTextBags(NewBagInitializer);
@@ -241,19 +233,37 @@ public class TextGeneration : MonoBehaviour {
     List<int> TxtChooserStartQuest(String diff)
     {
         List<int> sequence = new List<int>();
-
-        if (diff == "Easy")
+        if(PlayerPrefs.GetString("Language") == "English")
         {
-            sequence.Add(16);
-            sequence.Add(17);
-            sequence.Add(13);
+            if (diff == "Easy")
+            {
+                sequence.Add(4);
+            }
+            else if (diff == "Medium")
+            {
+                sequence.Add(5);
+            }
+            else
+            {
+                sequence.Add(6);
+            }
         }
         else
         {
-            sequence.Add(7);
-            sequence.Add(12);
-            sequence.Add(13);
+            if (diff == "Easy")
+            {
+                sequence.Add(7);
+            }
+            else if (diff == "Medium")
+            {
+                sequence.Add(8);
+            }
+            else
+            {
+                sequence.Add(9);
+            }
         }
+        
 
         return sequence;
     }

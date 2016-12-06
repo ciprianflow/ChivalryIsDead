@@ -81,7 +81,8 @@ public class HubDataManager : MonoBehaviour {
 
         isClicked = false;
         checkForWin();
-        peasantLineScript.FillPeasantLine();
+        if(!SceneGetter.Instance.isTutHubWorld())
+            peasantLineScript.FillPeasantLine();
         UpdateUIText();
         UpdateUI();
         CreateQuestUIElements();
@@ -139,7 +140,8 @@ public class HubDataManager : MonoBehaviour {
         for(int i = 0; i < 1; i++) { 
         //foreach (IObjective o in AvailableQuests) {
             BaseQuest oAsQuest = (BaseQuest)AvailableQuests[i];
-            peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
+            if(!SceneGetter.Instance.isTutHubWorld())
+                peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
         }
 
         //GenerateDLCQuest();
