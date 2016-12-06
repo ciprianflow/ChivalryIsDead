@@ -140,8 +140,8 @@ public class DummyManager : MonoBehaviour
     public void IncreaseCombo()
     {
         comboModifierActions++;
-
-        if (comboModifierActions < ComboActionModifier.Length - 1)
+        //Debug.Log("Actions: " + comboModifierActions);
+        if (comboModifierActions < ComboActionModifier.Length)
         {
             try
             {

@@ -86,9 +86,18 @@ class AttackAction : MonoBehaviour
 
         foreach (Collider collider in colliders)
         {
-            collider.GetComponent<MonsterAI>().Hit(attackDamage);
-            //attack force
-            collider.GetComponent<Rigidbody>().AddExplosionForce(100000f, transform.position, 5000f);
+            MonsterAI m = collider.GetComponent<MonsterAI>();
+            if (m.GetType().Equals(typeof(SheepAI)))
+            {
+                m.HitSheep(collider.GetComponent<QuestObject>(), m, collider.gameObject, 750f, false, null);
+            }
+            else
+            {
+                m.Hit(attackDamage);
+                //attack force
+                collider.GetComponent<Rigidbody>().AddExplosionForce(100000f, transform.position, 5000f);
+            }
+           
         }
 
 

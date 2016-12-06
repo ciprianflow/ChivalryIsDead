@@ -393,14 +393,7 @@ public class MeleeAI2 : MonsterAI
                 return;
             }
             //If its not a sheep it must be a static questObjective
-            else if(QO != null)
-            {
-                Debug.Log("Hit static quest object");
-                anim.SetTrigger("HitObject");
-                QO.takeDamage(GetBaseAttackDamage(), true);
-                base.playerAction.ObjectiveAttacked(this);
-                ChargeToMove();
-            }else if (m.GetType() == typeof(MeleeAI2))
+            else if (m.GetType() == typeof(MeleeAI2))
             {
                 Debug.Log("Melee's collided with angle : " + Vector3.Dot(m.gameObject.transform.forward, transform.forward));
                 if (m.getState() == State.Charge && Vector3.Dot(m.gameObject.transform.forward, transform.forward) > 0.8)
@@ -415,7 +408,8 @@ public class MeleeAI2 : MonsterAI
         {
             anim.SetTrigger("HitObject");
             Debug.Log("Hit quest object");
-            QO.takeDamage(1, true);
+            QO.takeDamage(1, true, coll.contacts[0].point);
+            base.playerAction.ObjectiveAttacked(this);
             ChargeToMove();
         }
         else {

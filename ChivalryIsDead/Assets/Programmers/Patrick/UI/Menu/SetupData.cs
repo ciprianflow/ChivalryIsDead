@@ -16,6 +16,8 @@ public class SetupData : MonoBehaviour {
 
         if (!PlayerPrefs.HasKey("Setup"))
         {
+            PlayerPrefs.SetString("Language", "Dansk"); // Altid start med dansk
+
             PlayerPrefs.SetInt("Sound", 1);
             PlayerPrefs.SetFloat("SoundVolume", 1);
             PlayerPrefs.SetFloat("SoundMusic", 1);
@@ -49,7 +51,7 @@ public class SetupData : MonoBehaviour {
 
 
 
-            language.SetActive(true);
+            menu.SetActive(true);
 
             PlayerPrefs.SetString("Setup", "Done");
             Debug.Log("Data Saved");

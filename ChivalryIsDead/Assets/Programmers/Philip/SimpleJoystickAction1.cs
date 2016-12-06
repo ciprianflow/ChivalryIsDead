@@ -410,7 +410,7 @@ namespace CnControls
 
                 //updateActionUI();
             }
-            if (PlayerPrefs.GetInt("AttackLevel") == 0)
+            if (SceneGetter.Instance.isTutorial1())
                 return;
             if (tauntCooldownfill < 1)
             {
