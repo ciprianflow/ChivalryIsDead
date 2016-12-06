@@ -458,7 +458,7 @@ public class Tutorial_02_Dialog : MonoBehaviour {
         //Time.timeScale = 1f;
 
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
         PlayerPrefs.SetInt("TauntLevel", 1);
         loadingScreen.SetActive(true);
         SceneManager.LoadScene("TutHubWorld 2");

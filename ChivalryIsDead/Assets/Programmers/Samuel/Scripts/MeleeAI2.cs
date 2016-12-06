@@ -78,7 +78,8 @@ public class MeleeAI2 : MonsterAI
                     Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                     if (body)
                     {
-                        body.AddExplosionForce(attackForceOnOtherMonsters, transform.position, attackLength + 50);
+                        Debug.Log((accelTime / accelTimer));
+                        body.AddExplosionForce(attackForceOnOtherMonsters, transform.position, attackLength + 5);
                     }   
                 }
 
@@ -389,6 +390,7 @@ public class MeleeAI2 : MonsterAI
             {
                 Debug.Log("I HIT A SHEEP");
                 HitSheep(QO, m, coll.gameObject, chargeForce * (accelTimer / accelTime), false, this);
+                return;
             }
             //If its not a sheep it must be a static questObjective
             else if(QO != null)

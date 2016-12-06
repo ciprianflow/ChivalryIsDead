@@ -92,14 +92,19 @@ public class DummyManager : MonoBehaviour
         if (lowCombo == 0) 
         {
             comboTime += Time.deltaTime; 
-            if (comboTime > 30 && combo < 3)
+            if (comboTime > 32)
             {
-                if(combo > 3)
+                if(combo < 3)
                 {
-                    if (GameDialogUI != null)
+                    if (GameDialogUI != null && comboTime > PlayerActionController.globalCooldown)
+                    {
+                        PlayerActionController.globalCooldown += 30;
                         GameDialogUI.StartCoroutine("LowCombo");
-                    lowCombo = 1;
-                    PlayerPrefs.SetInt("lowCombo", lowCombo);
+                        lowCombo = 1;
+                        PlayerPrefs.SetInt("lowCombo", lowCombo);
+                        
+                    }
+                    
                 }
                 
             }
@@ -169,7 +174,7 @@ public class DummyManager : MonoBehaviour
                 {
                     case 1:
                         //DIS BROKEN
-                        //WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
+                        WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboStart);
                         break;
                     case 2:
                         WwiseInterface.Instance.PlayRewardSound(RewardHandle.ComboBoost);
