@@ -5,7 +5,7 @@ public class Hand_Event : MonoBehaviour {
 
     public Texture handBlood;
     public Renderer textMat;
-
+    public GameObject DeadKnight;
     // Use this for initialization
     void Start () {
 	
@@ -18,5 +18,6 @@ public class Hand_Event : MonoBehaviour {
 
     public void nextImage() {
         textMat.material.SetTexture("_MainTex", handBlood);
+        DeadKnight.SetActive(false);
     }
 }
