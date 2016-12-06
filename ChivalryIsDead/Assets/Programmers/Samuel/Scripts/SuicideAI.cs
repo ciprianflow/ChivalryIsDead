@@ -20,11 +20,7 @@ public class SuicideAI : MonsterAI
 
     void Start()
     {
-        if(PlayerPrefs.GetInt("SuicideLevel") == 0)
-        {
-            PlayerPrefs.SetInt("SuicideTut", 1);
-            PlayerPrefs.SetInt("SuicideLevel", 1);
-        }
+
     }
 
     void OnDrawGizmos()
@@ -171,7 +167,7 @@ public class SuicideAI : MonsterAI
                 if (QO != null)
                 {
                     Debug.Log("Hit static quest object");
-                    QO.takeDamage(5, true);
+                    QO.takeDamage(5, true, Vector3.zero);
                     base.playerAction.ObjectiveAttacked(this);
                 }
             }
@@ -193,8 +189,20 @@ public class SuicideAI : MonsterAI
             return;
 
         //EXPLODE WITH EVERYTHING
-        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility)
+        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility) {
+            if (coll.CompareTag("Player")) {
+                //ANGELIKI PUT THE THINGYMOJIGGI HERE
+                Debug.Log("EXPLODE ON PLAYER");
+
+                if (PlayerPrefs.GetInt("SuicideTut") == 0) {
+
+                    PlayerPrefs.SetInt("SuicideTut", 1);
+                }
+
+            }
             Explode();
+
+        }
 
         Debug.Log("Collided with something");
 

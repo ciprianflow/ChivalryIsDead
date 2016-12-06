@@ -11323,6 +11323,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="combo reward 6" ID="{75B44D97-B54C-444E-AAA5-1E39B49C20FB}" ShortID="707397712" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Windows</Platform>
+									</ExcludedPlatformList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -11386,7 +11389,7 @@
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-3</Value>
+										<Value>-5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -11495,6 +11498,9 @@
 									</ActiveSourceList>
 								</Sound>
 								<Sound Name="trumpet reward6" ID="{5E395F86-766D-4E4B-AB07-4DD404BC9F41}" ShortID="1068771604" Type="SoundFX">
+									<ExcludedPlatformList>
+										<Platform>Windows</Platform>
+									</ExcludedPlatformList>
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -12240,7 +12246,7 @@
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-15</Value>
+										<Value>-10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -12362,7 +12368,7 @@
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-15</Value>
+										<Value>-10</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -12479,6 +12485,25 @@
 								<ItemRef Name="fail synth5" ID="{21E18B91-4995-47DF-A01D-C8D8B1953B02}"/>
 							</Playlist>
 						</RandomSequenceContainer>
+						<Sound Name="point counter" ID="{A3E85BC2-559D-49D2-941B-342763A73D54}" ShortID="395154883" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="point counter" ID="{AEAA914D-9095-4838-9184-B4359F595FE6}" ShortID="733295631">
+									<Language>SFX</Language>
+									<AudioFile>point counter.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="point counter" ID="{AEAA914D-9095-4838-9184-B4359F595FE6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</ActorMixer>
 				<ActorMixer Name="princess" ID="{C43FBF82-2D70-4FDE-8026-B4DFE99127F5}" ShortID="718294155">
@@ -13489,12 +13514,22 @@
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 						</Reference>
+						<Reference Name="Effect0" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
+							<ObjectRef Name="Dialog_Leveler_Hard" ID="{865FB36F-8717-4D30-AD05-14E56375CD40}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
+						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
 						<RandomSequenceContainer Name="angry" ID="{01C2CA74-6FD9-4208-BEEF-DF9802A2DF85}" ShortID="13369048">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>3</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -13504,118 +13539,118 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="talking sword angry1" ID="{572E1DFC-036D-4B1F-9932-9A29641BC761}" ShortID="266041175" Type="SoundFX">
+								<Sound Name="talking sword angry1_01" ID="{31E56E67-C641-4069-B582-2FED02236455}" ShortID="892591609" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword angry1" ID="{F427D035-53EE-463B-BD9A-5E29D993FE37}" ShortID="765695404">
+										<AudioFileSource Name="talking sword angry1_01" ID="{D245C112-D6D7-48A1-85A5-BE5277D78694}" ShortID="674924799">
 											<Language>SFX</Language>
-											<AudioFile>talking sword angry1.wav</AudioFile>
+											<AudioFile>removed rvb\talking sword angry1.01.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword angry1" ID="{F427D035-53EE-463B-BD9A-5E29D993FE37}" Platform="Linked"/>
+										<ActiveSource Name="talking sword angry1_01" ID="{D245C112-D6D7-48A1-85A5-BE5277D78694}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword angry2" ID="{2E0B381A-2460-4D8D-95E6-7B68C1CFA966}" ShortID="1056638113" Type="SoundFX">
+								<Sound Name="talking sword angry2" ID="{1EB3765D-6B6F-4668-B40B-0112944D7230}" ShortID="351241833" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword angry2" ID="{FF3A8307-13B4-4F43-ACC4-179E2D8653DF}" ShortID="616165439">
+										<AudioFileSource Name="talking sword angry2" ID="{635964F8-944F-428D-A3BE-40B94A368573}" ShortID="299165127">
 											<Language>SFX</Language>
-											<AudioFile>talking sword angry2.wav</AudioFile>
+											<AudioFile>removed rvb\talking sword angry2.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword angry2" ID="{FF3A8307-13B4-4F43-ACC4-179E2D8653DF}" Platform="Linked"/>
+										<ActiveSource Name="talking sword angry2" ID="{635964F8-944F-428D-A3BE-40B94A368573}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword angry3" ID="{98A49489-3582-41E4-9A0B-C17683E8A77F}" ShortID="40795435" Type="SoundFX">
+								<Sound Name="talking sword angry3" ID="{8A6F3320-753A-4CC9-A2C6-02EA4A565D8F}" ShortID="353412463" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword angry3" ID="{653BCA1C-B975-4B92-BECA-D868EB505FD0}" ShortID="397159035">
+										<AudioFileSource Name="talking sword angry3" ID="{22B64B0F-7634-4B05-BA18-3A0A2F84264B}" ShortID="601247632">
 											<Language>SFX</Language>
-											<AudioFile>talking sword angry3.wav</AudioFile>
+											<AudioFile>removed rvb\talking sword angry3.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword angry3" ID="{653BCA1C-B975-4B92-BECA-D868EB505FD0}" Platform="Linked"/>
+										<ActiveSource Name="talking sword angry3" ID="{22B64B0F-7634-4B05-BA18-3A0A2F84264B}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword angry4" ID="{DF106B2A-07CA-46FF-A1E2-ADE1B33D7898}" ShortID="1063778336" Type="SoundFX">
+								<Sound Name="talking sword angry4" ID="{A68D7945-953D-44B1-A4D2-B83BEBB5F9BD}" ShortID="1042141419" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword angry4" ID="{F201D5A7-B089-4D74-A48E-670DAC463B9B}" ShortID="588985119">
+										<AudioFileSource Name="talking sword angry4" ID="{03E967ED-A448-4BF8-8075-0BDC8DB41C2A}" ShortID="379675181">
 											<Language>SFX</Language>
-											<AudioFile>talking sword angry4.wav</AudioFile>
+											<AudioFile>removed rvb\talking sword angry4.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword angry4" ID="{F201D5A7-B089-4D74-A48E-670DAC463B9B}" Platform="Linked"/>
+										<ActiveSource Name="talking sword angry4" ID="{03E967ED-A448-4BF8-8075-0BDC8DB41C2A}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword angry5" ID="{447863A1-1211-4593-A446-8CC5DE2E42DB}" ShortID="403190542" Type="SoundFX">
+								<Sound Name="talking sword angry5" ID="{5935DFC6-FF70-4A73-8B37-76C95FCBC597}" ShortID="89177248" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword angry5" ID="{9CDB06E4-74A7-4B1E-9B75-36C8DD596CD0}" ShortID="396995117">
+										<AudioFileSource Name="talking sword angry5" ID="{806432F6-D085-48E2-900B-AFE4013A834D}" ShortID="872767218">
 											<Language>SFX</Language>
-											<AudioFile>talking sword angry5.wav</AudioFile>
+											<AudioFile>removed rvb\talking sword angry5.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword angry5" ID="{9CDB06E4-74A7-4B1E-9B75-36C8DD596CD0}" Platform="Linked"/>
+										<ActiveSource Name="talking sword angry5" ID="{806432F6-D085-48E2-900B-AFE4013A834D}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword angry6" ID="{00D663EC-66CC-4688-804F-D03C66CD488D}" ShortID="448046411" Type="SoundFX">
+								<Sound Name="talking sword angry6" ID="{CB57CE05-C3ED-4014-BF43-C6D0CE5EF0C9}" ShortID="451513847" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword angry6" ID="{3D013617-6EB1-494C-A7BA-A3083A14F1CB}" ShortID="8702143">
+										<AudioFileSource Name="talking sword angry6" ID="{687E17E4-E117-4275-BAED-D2E19F07AA15}" ShortID="1001554098">
 											<Language>SFX</Language>
-											<AudioFile>talking sword angry6.wav</AudioFile>
+											<AudioFile>removed rvb\talking sword angry6.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword angry6" ID="{3D013617-6EB1-494C-A7BA-A3083A14F1CB}" Platform="Linked"/>
+										<ActiveSource Name="talking sword angry6" ID="{687E17E4-E117-4275-BAED-D2E19F07AA15}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -13766,6 +13801,13 @@
 							</ChildrenList>
 						</RandomSequenceContainer>
 						<RandomSequenceContainer Name="determined" ID="{A672F662-C894-47DD-88D1-BF8422B20DD6}" ShortID="893313625">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>5</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
@@ -13794,25 +13836,6 @@
 										<ActiveSource Name="talking sword determined1" ID="{30AF8FEC-A0F4-46F7-88D6-93A31C945BAA}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword determined2" ID="{E35D12C4-12A1-4799-9924-240419C1DC8E}" ShortID="625913969" Type="SoundFX">
-									<ReferenceList>
-										<Reference Name="Conversion">
-											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
-										</Reference>
-										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
-										</Reference>
-									</ReferenceList>
-									<ChildrenList>
-										<AudioFileSource Name="talking sword determined2" ID="{1AB4E571-199D-44A8-84C3-AE58D8E29F0F}" ShortID="395151832">
-											<Language>SFX</Language>
-											<AudioFile>talking sword determined2.wav</AudioFile>
-										</AudioFileSource>
-									</ChildrenList>
-									<ActiveSourceList>
-										<ActiveSource Name="talking sword determined2" ID="{1AB4E571-199D-44A8-84C3-AE58D8E29F0F}" Platform="Linked"/>
-									</ActiveSourceList>
-								</Sound>
 								<Sound Name="talking sword determined3" ID="{FC4E91AE-6FC0-438E-9CBE-B179C055CD4C}" ShortID="389952032" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
@@ -13832,61 +13855,80 @@
 										<ActiveSource Name="talking sword determined3" ID="{112E3146-99AC-4572-8FB3-C433F40D58EA}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword determined4" ID="{7BE7C493-EF88-402C-BD1A-EF305E2E7906}" ShortID="639322721" Type="SoundFX">
+								<Sound Name="talking sword determined2" ID="{E4D30654-F2E5-4DB5-8A17-7E1F20275B3D}" ShortID="335126096" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword determined4" ID="{BDA34DB0-FAAD-4CE6-9B2B-0D0CF9D2D673}" ShortID="91359243">
+										<AudioFileSource Name="talking sword determined2" ID="{A8F6BFB2-73B0-4F4C-BFA9-D28993E95A94}" ShortID="615446128">
 											<Language>SFX</Language>
-											<AudioFile>talking sword determined4.wav</AudioFile>
+											<AudioFile>rvb removed\talking sword determined2.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword determined4" ID="{BDA34DB0-FAAD-4CE6-9B2B-0D0CF9D2D673}" Platform="Linked"/>
+										<ActiveSource Name="talking sword determined2" ID="{A8F6BFB2-73B0-4F4C-BFA9-D28993E95A94}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword determined5" ID="{B0D73507-F8EF-4AC4-80E6-BD1A69788807}" ShortID="491961114" Type="SoundFX">
+								<Sound Name="talking sword determined4" ID="{AB061030-9557-40C2-A513-58297A1AB29E}" ShortID="485586593" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword determined5" ID="{34132A4D-BF5B-4B7E-90B2-78AD9148F3DF}" ShortID="542416313">
+										<AudioFileSource Name="talking sword determined4" ID="{03360F68-7291-4B0D-8838-6BA11AD55982}" ShortID="453214241">
 											<Language>SFX</Language>
-											<AudioFile>talking sword determined5.wav</AudioFile>
+											<AudioFile>rvb removed\talking sword determined4.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword determined5" ID="{34132A4D-BF5B-4B7E-90B2-78AD9148F3DF}" Platform="Linked"/>
+										<ActiveSource Name="talking sword determined4" ID="{03360F68-7291-4B0D-8838-6BA11AD55982}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword determined6" ID="{351C8E82-5AEF-479E-8CCB-28350444F975}" ShortID="307865409" Type="SoundFX">
+								<Sound Name="talking sword determined5" ID="{9AAF3665-BECC-4933-864F-40D0FB281361}" ShortID="614551327" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword determined6" ID="{F5FC6E4E-1B3D-4069-B47C-ECABD57A774C}" ShortID="173662297">
+										<AudioFileSource Name="talking sword determined5" ID="{A4348E73-4685-4532-BFBA-1091F119CAD2}" ShortID="979128148">
 											<Language>SFX</Language>
-											<AudioFile>talking sword determined6.wav</AudioFile>
+											<AudioFile>rvb removed\talking sword determined5.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword determined6" ID="{F5FC6E4E-1B3D-4069-B47C-ECABD57A774C}" Platform="Linked"/>
+										<ActiveSource Name="talking sword determined5" ID="{A4348E73-4685-4532-BFBA-1091F119CAD2}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="talking sword determined6_2" ID="{67388CE8-1CA9-44B0-96F7-E4A034998008}" ShortID="363154859" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="talking sword determined6_2" ID="{67B71F10-CC98-4228-92C8-B02C69BB3BB6}" ShortID="392963574">
+											<Language>SFX</Language>
+											<AudioFile>rvb removed\talking sword determined6.2.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="talking sword determined6_2" ID="{67B71F10-CC98-4228-92C8-B02C69BB3BB6}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
@@ -14310,199 +14352,216 @@
 								</Reference>
 							</ReferenceList>
 							<ChildrenList>
-								<Sound Name="talking sword neutral1" ID="{0E2B3575-C938-4382-8193-DD789AA6518D}" ShortID="367064485" Type="SoundFX">
+								<Sound Name="talking sword neutral1" ID="{31B45DF2-4971-487F-AAB2-5B04DED92755}" ShortID="948311259" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral1" ID="{680ADB51-7C8C-47E0-BA04-43EFD64FB2D6}" ShortID="645242868">
+										<AudioFileSource Name="talking sword neutral1" ID="{251C8C4D-CFE7-4622-8E9F-149BC84F0552}" ShortID="903630574">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral1.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral1.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral1" ID="{680ADB51-7C8C-47E0-BA04-43EFD64FB2D6}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral1" ID="{251C8C4D-CFE7-4622-8E9F-149BC84F0552}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral2" ID="{69835F72-70E5-41B5-A353-C8B483969BC4}" ShortID="7707106" Type="SoundFX">
+								<Sound Name="talking sword neutral10" ID="{67619F08-F44E-4A07-9461-4D349472564F}" ShortID="616578951" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral2" ID="{B3FF1B2B-36E4-42A6-9DCF-697830EE7626}" ShortID="362784760">
+										<AudioFileSource Name="talking sword neutral10" ID="{D27973EF-EA92-436B-9E1C-B8CDBC889F60}" ShortID="956810484">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral2.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral10.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral2" ID="{B3FF1B2B-36E4-42A6-9DCF-697830EE7626}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral10" ID="{D27973EF-EA92-436B-9E1C-B8CDBC889F60}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral3" ID="{6E2D3181-75D4-4246-9708-90158F9167EB}" ShortID="348450922" Type="SoundFX">
+								<Sound Name="talking sword neutral2" ID="{E9C0C733-4B3E-45CD-9629-C1AAE11E63AB}" ShortID="126020115" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral3" ID="{274A1F5F-EDE2-4EF3-BCBA-9EEFE1D81CBF}" ShortID="275620395">
+										<AudioFileSource Name="talking sword neutral2" ID="{C5546117-636C-494C-8119-B07FB4EBCE65}" ShortID="142898115">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral3.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral2.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral3" ID="{274A1F5F-EDE2-4EF3-BCBA-9EEFE1D81CBF}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral2" ID="{C5546117-636C-494C-8119-B07FB4EBCE65}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral4" ID="{D0C129DC-D4BD-4B49-8E60-15123F6FF9DD}" ShortID="488189439" Type="SoundFX">
+								<Sound Name="talking sword neutral3" ID="{01A44C99-852A-4047-834B-AB0B37BF801A}" ShortID="735741910" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral4" ID="{97677127-33E3-4F6D-AE13-163713B7D59B}" ShortID="949048099">
+										<AudioFileSource Name="talking sword neutral3" ID="{27C36EE8-6D1B-4B93-AD05-68B9217723B9}" ShortID="389182458">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral4.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral3.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral4" ID="{97677127-33E3-4F6D-AE13-163713B7D59B}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral3" ID="{27C36EE8-6D1B-4B93-AD05-68B9217723B9}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral5" ID="{92262880-FE70-4B44-B5A4-37F532A8311D}" ShortID="685195519" Type="SoundFX">
+								<Sound Name="talking sword neutral4" ID="{D13C0DC2-6A0A-433B-9F94-371F2C9CF35F}" ShortID="515724739" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral5" ID="{D7BD81CA-2010-4544-B4ED-F718D155B097}" ShortID="209605840">
+										<AudioFileSource Name="talking sword neutral4" ID="{D52D1F47-ABEA-4C1B-AB0C-DEB694DEE92A}" ShortID="265336868">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral5.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral4.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral5" ID="{D7BD81CA-2010-4544-B4ED-F718D155B097}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral4" ID="{D52D1F47-ABEA-4C1B-AB0C-DEB694DEE92A}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral6" ID="{52CC4C18-62F6-45DE-80EE-B7FADB4FC95A}" ShortID="342117673" Type="SoundFX">
+								<Sound Name="talking sword neutral5" ID="{11140E6A-C1A4-45B2-98E8-307C1817E111}" ShortID="1056677568" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral6" ID="{CFFB0537-9E18-455E-92BA-72457326E50A}" ShortID="497168476">
+										<AudioFileSource Name="talking sword neutral5" ID="{0B15BA00-2A2A-4DF4-8BD5-3BDF49193311}" ShortID="607904375">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral6.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral5.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral6" ID="{CFFB0537-9E18-455E-92BA-72457326E50A}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral5" ID="{0B15BA00-2A2A-4DF4-8BD5-3BDF49193311}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral7" ID="{8A4808A6-4CAC-4D88-8201-2E5137B8A13E}" ShortID="106220713" Type="SoundFX">
+								<Sound Name="talking sword neutral6" ID="{C3BCCDAF-5175-442C-8A9C-299696678E9F}" ShortID="840508572" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral7" ID="{568931E3-6FCF-4976-BBBA-FBF726422275}" ShortID="421378269">
+										<AudioFileSource Name="talking sword neutral6" ID="{0B31CBA3-D229-4140-8BA9-D915CE014892}" ShortID="815403137">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral7.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral6.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral7" ID="{568931E3-6FCF-4976-BBBA-FBF726422275}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral6" ID="{0B31CBA3-D229-4140-8BA9-D915CE014892}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral8" ID="{6DCBFCF1-AFE5-4241-A1A6-A3833369C249}" ShortID="1015105721" Type="SoundFX">
+								<Sound Name="talking sword neutral7" ID="{8052F38A-DCCF-4450-BE47-D67CA0A1BC9B}" ShortID="95355027" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral8" ID="{9345EDD5-E387-4A02-92C4-47DEE364D5CE}" ShortID="89815599">
+										<AudioFileSource Name="talking sword neutral7" ID="{1DD90943-B2D0-42AF-947B-580AE2043266}" ShortID="795795119">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral8.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral7.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral8" ID="{9345EDD5-E387-4A02-92C4-47DEE364D5CE}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral7" ID="{1DD90943-B2D0-42AF-947B-580AE2043266}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral9" ID="{1F348B45-5F6F-4C89-B221-3314A8E847F7}" ShortID="156941721" Type="SoundFX">
+								<Sound Name="talking sword neutral8" ID="{E79E997C-9F5A-4C07-AF7D-D55CDFC18E2F}" ShortID="130610363" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral9" ID="{D113C458-5E99-488D-B282-EB0399CA85FC}" ShortID="88919798">
+										<AudioFileSource Name="talking sword neutral8" ID="{7ABC5423-068E-4BCC-9E2A-6B12E3A33920}" ShortID="936224558">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral9.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral8.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral9" ID="{D113C458-5E99-488D-B282-EB0399CA85FC}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral8" ID="{7ABC5423-068E-4BCC-9E2A-6B12E3A33920}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
-								<Sound Name="talking sword neutral10" ID="{87CD0AA3-7032-4D54-8693-EBCCE5CA6BD4}" ShortID="951261497" Type="SoundFX">
+								<Sound Name="talking sword neutral9" ID="{6CC527DF-8589-45F3-9DB8-590CA4D42F69}" ShortID="447337234" Type="SoundFX">
 									<ReferenceList>
 										<Reference Name="Conversion">
 											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 										</Reference>
 										<Reference Name="OutputBus">
-											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+											<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 										</Reference>
 									</ReferenceList>
 									<ChildrenList>
-										<AudioFileSource Name="talking sword neutral10" ID="{DD295D0C-51A3-49F7-BB55-480533D284AC}" ShortID="297655908">
+										<AudioFileSource Name="talking sword neutral9" ID="{C5BBDBC2-43D3-4251-9D2F-BC546EF149FC}" ShortID="283772220">
 											<Language>SFX</Language>
-											<AudioFile>talking sword neutral10.wav</AudioFile>
+											<AudioFile>neutral\rvb removed\talking sword neutral9.wav</AudioFile>
 										</AudioFileSource>
 									</ChildrenList>
 									<ActiveSourceList>
-										<ActiveSource Name="talking sword neutral10" ID="{DD295D0C-51A3-49F7-BB55-480533D284AC}" Platform="Linked"/>
+										<ActiveSource Name="talking sword neutral9" ID="{C5BBDBC2-43D3-4251-9D2F-BC546EF149FC}" Platform="Linked"/>
 									</ActiveSourceList>
 								</Sound>
 							</ChildrenList>
 						</RandomSequenceContainer>
 					</ChildrenList>
+					<StateInfo>
+						<StateGroupList>
+							<StateGroupInfo>
+								<StateGroupRef Name="dialogLevel" ID="{47B328A2-0AA1-456E-9628-518066FB7B63}"/>
+							</StateGroupInfo>
+						</StateGroupList>
+						<CustomStateList>
+							<CustomState>
+								<StateRef Name="cinematic" ID="{457348A5-4628-451A-9691-6F92BE8C88D1}"/>
+								<State Name="Custom State" ID="{8E06D609-037D-4764-B80A-17EC9FB48368}" ShortID="461034708">
+									<PropertyList>
+										<Property Name="Volume" Type="Real64" Value="7"/>
+									</PropertyList>
+								</State>
+							</CustomState>
+						</CustomStateList>
+					</StateInfo>
 				</ActorMixer>
 				<ActorMixer Name="ambience" ID="{7F18ABA5-B3AB-45B1-877B-76CA84782EEE}" ShortID="613888913">
 					<ReferenceList>
