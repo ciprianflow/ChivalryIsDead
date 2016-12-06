@@ -54,6 +54,7 @@ public class HubDataManager : MonoBehaviour {
     public GameObject QuestButton;
     public GameObject QuestLetter;
     public GameObject DampenLightObject;
+    public GameObject DialogSystem;
     public GameObject WinScreen;
     public GameObject LoseScreen;
     public Text DaysLeftText;
@@ -75,7 +76,7 @@ public class HubDataManager : MonoBehaviour {
     }
 
     void Start () {
-
+        DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Lose");
         // Playing Hub Music.
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
 
@@ -250,8 +251,8 @@ public class HubDataManager : MonoBehaviour {
         {
             StaticData.Reputation = StaticData.MaxReputation;
             StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
-            WinScreen.SetActive(true);
-
+            //WinScreen.SetActive(true);
+            DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Win");
             return;
         }
 
@@ -259,7 +260,8 @@ public class HubDataManager : MonoBehaviour {
         if (StaticData.daysLeft < 1)
         {            
             StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
-            LoseScreen.SetActive(true);
+            //LoseScreen.SetActive(true);
+            DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Lose");
         }
     }
 
