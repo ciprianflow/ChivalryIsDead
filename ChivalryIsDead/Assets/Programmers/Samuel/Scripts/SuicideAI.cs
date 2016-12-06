@@ -16,6 +16,7 @@ public class SuicideAI : MonsterAI
     public GameObject explosionObject;
 
     bool taunted = false;
+    SphereCollider col;
 
     void Start()
     {
@@ -59,7 +60,7 @@ public class SuicideAI : MonsterAI
     {
         GameObject obj = new GameObject("ExplosionTrigger");
         obj.transform.SetParent(this.transform, false);
-        SphereCollider col = obj.AddComponent<SphereCollider>();
+        col = obj.AddComponent<SphereCollider>();
         col.center = new Vector3(0, 0);
         col.radius = explosionTriggerRange;
         col.isTrigger = true;
@@ -186,8 +187,9 @@ public class SuicideAI : MonsterAI
     void OnTriggerEnter(Collider coll)
     {
         //Suicide should not be able to collide with other suicides
-        MonsterAI m = coll.GetComponent<MonsterAI>();
-        if (m != null && m.GetType().Equals(typeof(SuicideAI)))
+        //MonsterAI m = coll.GetComponent<MonsterAI>();
+        //if (m != null && m.GetType().Equals(typeof(SuicideAI)))
+        if((!coll.CompareTag("Player")) == (state != State.Utility))
             return;
 
         //EXPLODE WITH EVERYTHING
@@ -236,6 +238,7 @@ public class SuicideAI : MonsterAI
 
         if (this.gameObject.activeSelf)
         {
+            col.radius = 2f;
             EnterUtilityState();
             StartCoroutine(DelayedExplosion());
         }

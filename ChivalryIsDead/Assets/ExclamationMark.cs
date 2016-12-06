@@ -25,4 +25,9 @@ public class ExclamationMark : MonoBehaviour {
         return exclMark;
     }
 
+    public void DisableMark()
+    {
+        exclMark.SetActive(false);
+    }
+
 }
