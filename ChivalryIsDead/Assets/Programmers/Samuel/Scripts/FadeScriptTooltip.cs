@@ -3,29 +3,25 @@ using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class FadeScript : MonoBehaviour {
+public class FadeScriptTooltip : MonoBehaviour {
 
     public float stayTime = 2f;
     public float fadeTime = 1f;
-    public GameObject howToPlay;
 
     float timer = 0;
 
     CanvasGroup CG;
 
 	// Use this for initialization
-	IEnumerator Start ()
+	void OnEnable()
     {
-        if(!PlayerPrefs.HasKey("Setup"))
-        {
-            yield return new WaitForSeconds(4f);
-            howToPlay.SetActive(true);
-        }
-
-        howToPlay.SetActive(false);
-        this.gameObject.SetActive(true);
         CG = GetComponent<CanvasGroup>();
         StartCoroutine(stay());
+    }
+
+    void OnDisable()
+    {
+        timer = 0f;
     }
 	
     IEnumerator stay()
@@ -43,12 +39,9 @@ public class FadeScript : MonoBehaviour {
         while(timer < fadeTime)
         {
             timer += Time.deltaTime;
-            CG.alpha = 1 - timer / fadeTime;
+            CG.alpha = timer / fadeTime;
             yield return new WaitForSeconds(Time.deltaTime);
 
         }
-
-        this.gameObject.SetActive(false);
-
     }
 }
