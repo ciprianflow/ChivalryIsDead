@@ -350,6 +350,19 @@ public class PlayerScript : MonoBehaviour {
 
         SwordTrail.SetActive(true);
 
+        //if (SceneGetter.Instance.isTutorial1()) {
+        //    Debug.Log("THIS ISL TUT 1");
+        //}
+        //if (SceneGetter.Instance.isTutorial2()) {
+        //    Debug.Log("THIS ISL TUT 2");
+        //}
+        //if (SceneGetter.Instance.isTutorial3()) {
+        //    Debug.Log("THIS ISL TUT 3");
+        //}
+        //if (SceneGetter.Instance.isMainQuest()) {
+        //    Debug.Log("THIS IS MAIN QUEST");
+        //}
+
 
         if (!attacking)
         {
@@ -377,7 +390,8 @@ public class PlayerScript : MonoBehaviour {
         {
             currentAttack = 2;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0 || SceneManager.GetActiveScene().name == "Introlevel" || PlayerPrefs.GetInt("AttackLevel") == 0) {
+            //if (r == 0 || SceneManager.GetActiveScene().name == "Introlevel" || PlayerPrefs.GetInt("AttackLevel") == 0) {
+            if (r == 0 || SceneGetter.Instance.isTutorial1()) {
                 anim.SetTrigger("Attack2");
             }
             else if(r == 1) {
@@ -391,7 +405,7 @@ public class PlayerScript : MonoBehaviour {
         {
             currentAttack = 1;
             int r = (int)UnityEngine.Random.Range(0, 3);
-            if (r == 0 || SceneManager.GetActiveScene().name == "Introlevel" || PlayerPrefs.GetInt("AttackLevel") == 0) {
+            if (r == 0 || SceneGetter.Instance.isTutorial1()) {
                 anim.SetTrigger("Attack1");
             }
             else if (r == 1) {
