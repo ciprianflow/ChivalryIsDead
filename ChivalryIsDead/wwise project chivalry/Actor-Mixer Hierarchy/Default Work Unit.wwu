@@ -11386,7 +11386,7 @@
 								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
 								<Property Name="Volume" Type="Real64">
 									<ValueList>
-										<Value>-3</Value>
+										<Value>5</Value>
 									</ValueList>
 								</Property>
 							</PropertyList>
@@ -12479,6 +12479,25 @@
 								<ItemRef Name="fail synth5" ID="{21E18B91-4995-47DF-A01D-C8D8B1953B02}"/>
 							</Playlist>
 						</RandomSequenceContainer>
+						<Sound Name="point counter" ID="{A3E85BC2-559D-49D2-941B-342763A73D54}" ShortID="395154883" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="point counter" ID="{AEAA914D-9095-4838-9184-B4359F595FE6}" ShortID="733295631">
+									<Language>SFX</Language>
+									<AudioFile>point counter.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="point counter" ID="{AEAA914D-9095-4838-9184-B4359F595FE6}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</ActorMixer>
 				<ActorMixer Name="princess" ID="{C43FBF82-2D70-4FDE-8026-B4DFE99127F5}" ShortID="718294155">

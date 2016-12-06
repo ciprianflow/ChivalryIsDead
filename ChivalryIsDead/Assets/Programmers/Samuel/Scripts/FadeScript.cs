@@ -18,10 +18,10 @@ public class FadeScript : MonoBehaviour {
     {
         if(!PlayerPrefs.HasKey("Setup"))
         {
+            yield return new WaitForSeconds(4f);
             howToPlay.SetActive(true);
         }
-        
-        yield return new WaitForSeconds(4f);
+
         howToPlay.SetActive(false);
         this.gameObject.SetActive(true);
         CG = GetComponent<CanvasGroup>();

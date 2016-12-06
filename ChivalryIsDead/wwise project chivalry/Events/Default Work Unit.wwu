@@ -461,16 +461,19 @@
 										<Event Name="suicide_attacked" ID="{C678101F-57FB-431E-A33D-C5BFD50EBA3C}">
 											<ChildrenList>
 												<Action Name="Play" ID="{A2961672-B0DC-4126-AEE4-BA785EFA5797}" ShortID="950609897" Type="Play" Scope="One" Global="false">
+													<PropertyList>
+														<Property Name="Delay" Type="Real64" Value="0.05"/>
+													</PropertyList>
 													<ElementList>
 														<Element ID="{3C5EE789-6531-441F-AEF4-D9203AC3D4D6}" Global="false">
 															<ObjectRef Name="suicide_attacked" ID="{B7828EAD-8BB2-4D43-AF9D-3E5E58CA3E8E}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
-												<Action Name="Post Event" ID="{DCE1FD3C-61E0-44D6-A757-A6A39DD9AD38}" ShortID="338327993" Type="PlayEvent" Scope="One" Global="false">
+												<Action Name="Play" ID="{05483085-4200-406D-9424-E444E2780CF0}" ShortID="783703715" Type="Play" Scope="One" Global="false">
 													<ElementList>
-														<Element ID="{D1FCD6DB-6D10-4FF7-A1B3-5A321543F521}" Global="false">
-															<ObjectRef Name="suicide_explosion" ID="{68940B44-3F99-4B04-A753-6A5DE5DA6539}" WorkUnitID="{9B29BA35-C9B1-4161-9FA2-CFBEB322F9FA}"/>
+														<Element ID="{E1F072A8-858D-4BA6-9475-08BEB219CB53}" Global="false">
+															<ObjectRef Name="armor_impact_1" ID="{45F06CC2-E672-4D00-B67D-BCE2DFD70F4B}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 														</Element>
 													</ElementList>
 												</Action>
@@ -1201,6 +1204,24 @@
 								</Action>
 							</ChildrenList>
 						</Event>
+						<Event Name="pointCounter" ID="{33904CD1-1D55-4DCF-A4D3-70F4594A66E8}">
+							<ChildrenList>
+								<Action Name="Stop" ID="{ACD08BE9-C006-4A3A-BFE0-1C448C62A2F8}" ShortID="166267712" Type="Stop" Scope="One" Global="true">
+									<ElementList>
+										<Element ID="{59F7557E-2576-4EB2-8FA3-DBE3047B09B5}" Global="true">
+											<ObjectRef Name="point counter" ID="{A3E85BC2-559D-49D2-941B-342763A73D54}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{59D55A22-E5F5-4F18-AED1-3253307462AA}" ShortID="782082969" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{FB4BAD3B-92A1-4EE5-B965-80B8951AB2DE}" Global="false">
+											<ObjectRef Name="point counter" ID="{A3E85BC2-559D-49D2-941B-342763A73D54}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 				<Folder Name="music" ID="{7754FF37-10D2-4997-BB3A-89F07390234F}" ShortID="247604893">
@@ -1217,7 +1238,7 @@
 								<Action Name="Stop" ID="{3FEAAFCC-333E-4DF5-AB35-D62CA95AFB41}" ShortID="472370038" Type="Stop" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{5E0D4463-4610-4DB8-B78C-95E6845A469F}" Global="false">
-											<ObjectRef Name="music quest zone" ID="{4CD36D03-C29A-4792-956B-91C03009BE85}" WorkUnitID="{BFA04094-2C33-42D1-BC69-0B51752965D1}"/>
+											<ObjectRef Name="music quest" ID="{53EDB2CF-21CD-4FF7-81F4-8F2A13EDCD9B}" WorkUnitID="{BFA04094-2C33-42D1-BC69-0B51752965D1}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -1249,7 +1270,7 @@
 								<Action Name="Play" ID="{2A1EACF3-2D2B-4B63-B026-FD54DE265E51}" ShortID="658158759" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{4FFC5769-270D-4666-BB9A-9B68C0BC674E}" Global="false">
-											<ObjectRef Name="music quest zone" ID="{4CD36D03-C29A-4792-956B-91C03009BE85}" WorkUnitID="{BFA04094-2C33-42D1-BC69-0B51752965D1}"/>
+											<ObjectRef Name="music quest" ID="{53EDB2CF-21CD-4FF7-81F4-8F2A13EDCD9B}" WorkUnitID="{BFA04094-2C33-42D1-BC69-0B51752965D1}"/>
 										</Element>
 									</ElementList>
 								</Action>
