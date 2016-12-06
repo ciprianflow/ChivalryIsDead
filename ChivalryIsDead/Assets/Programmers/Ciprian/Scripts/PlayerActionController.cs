@@ -424,6 +424,13 @@ public class PlayerActionController : MonoBehaviour
 
     }
 
+    public void MonsterAttackedMonster(MonsterAI monster)
+    {
+        Debug.Log("MONSTER ATACKED MONSTER" + monster.name);
+
+        pb.ChangeRepScore(monster.HitMonsterReputation());
+        pb.Invoke();
+    }
     
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
