@@ -388,4 +388,12 @@ public class Tutorial_03_Dialog : MonoBehaviour
         SceneManager.LoadScene("ProtoHubWorld 1");
 
     }
+
+    public void RestoreAllAnimators()
+    {
+        swordAnimator.speed = 1f;
+        skipAnimator.speed = 1f;
+        handAnimator.speed = 1f;
+        tutImgAnimator.speed = 1f;
+    }
 }
