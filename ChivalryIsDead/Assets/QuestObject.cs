@@ -6,6 +6,8 @@ using System;
 public class QuestObject : MonoBehaviour, IObjectiveTarget
 {
 
+    public GameObject DestroyedVersion;
+    public GameObject damageParticles;
     public int id = 22;
     public int health = 2;
     public bool ForceDestroyOnDeath = false;
@@ -48,9 +50,15 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
 
     public bool IsChecked { get; set; }
     //need monster state too
-    public void takeDamage(int dmg, bool destroy)
+    public void takeDamage(int dmg, bool destroy, Vector3 pos)
     {
-        
+
+        if (pos != Vector3.zero && damageParticles != null)
+        {
+            GameObject obj = Instantiate(damageParticles);
+            obj.transform.position = pos;
+        }
+
         Debug.Log("IM hit " + transform.name);
 
         if (healthScript.takeDamage(dmg))
@@ -59,7 +67,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
             {
                 if(healthBar != null)
                     Destroy(healthBar.transform.parent.gameObject);
-                gameObject.SetActive(false);
+                ActivateDestroyedVersion();
             }
 
             Debug.Log("Quest Objective died");
@@ -73,5 +81,13 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
         //add reputation
         //pb.ScoreChange -= dmg;
         //pb.Invoke();
+    }
+
+
+    void ActivateDestroyedVersion()
+    {
+        if(DestroyedVersion != null)
+            DestroyedVersion.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }

@@ -26,7 +26,9 @@ public class Tutorial_03_Dialog : MonoBehaviour
     public GameObject ScreenFreeze;
     Animator handAnimator;
     public Animator swordAnimator;
+    public Animator swordBubbleAnimator;
     public Animator princessAnimator;
+    public Animator princessBubbleAnimator;
     public Animator skipAnimator;
     public GameObject skipBtn;
     public GameObject tutImage;
@@ -122,7 +124,9 @@ public class Tutorial_03_Dialog : MonoBehaviour
         Time.timeScale = 1f;
         handAnimator.speed = 1f;
         swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
         princessAnimator.speed = 1f;
+        princessBubbleAnimator.speed = 1f;
         skipAnimator.speed = 1f;
         ScreenFreeze.SetActive(false);
         ControlMove.SetActive(true);
@@ -139,7 +143,9 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         Time.timeScale = 0.1f;      
         swordAnimator.speed = 10f;
+        swordBubbleAnimator.speed = 10f;
         princessAnimator.speed = 10f;
+        princessBubbleAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
@@ -163,7 +169,9 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         Time.timeScale = 1f;
         swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
         princessAnimator.speed = 1f;
+        princessBubbleAnimator.speed = 1f;
         skipAnimator.speed = 1f;
         handAnimator.speed = 1f;
 
@@ -237,7 +245,9 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         Time.timeScale = 0.1f;
         swordAnimator.speed = 10f;
+        swordBubbleAnimator.speed = 10f;
         princessAnimator.speed = 10f;
+        princessBubbleAnimator.speed = 10f;
         skipAnimator.speed = 10f;
         handAnimator.speed = 10f;
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
@@ -394,6 +404,9 @@ public class Tutorial_03_Dialog : MonoBehaviour
     public void RestoreAllAnimators()
     {
         swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
+        princessAnimator.speed = 1f;
+        princessBubbleAnimator.speed = 1f;
         skipAnimator.speed = 1f;
         handAnimator.speed = 1f;
         tutImgAnimator.speed = 1f;
