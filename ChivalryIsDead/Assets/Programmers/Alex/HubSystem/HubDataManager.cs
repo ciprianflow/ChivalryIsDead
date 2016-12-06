@@ -69,8 +69,11 @@ public class HubDataManager : MonoBehaviour {
 
         hubDataPath = Application.persistentDataPath + "/HubData.json";
 
-        if (StaticData.currQuest == null)
-            UpdateQuests();    
+        if (StaticData.currQuest == null  || StaticData.pressedContinue)
+        { 
+            UpdateQuests();
+            StaticData.pressedContinue = false;
+        }
         else
             PushToHubData(StaticData.currQuest.ReputationChange);
     }
