@@ -169,7 +169,7 @@ public class EndScreen : MonoBehaviour {
 
         if (startTimer)
         {
-            scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.15f;
+            scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.4f;
             float bsc = Mathf.Round(Mathf.Lerp(scoreWithoutBonus, localScore, scoreMultiplier3));
 
 
