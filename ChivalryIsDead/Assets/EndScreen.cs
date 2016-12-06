@@ -23,6 +23,7 @@ public class EndScreen : MonoBehaviour {
     public GameObject Grid;
     public GameObject FadeOut;
     public GameObject Timer;
+    public GameObject Reputation;
 
 
 
@@ -39,15 +40,9 @@ public class EndScreen : MonoBehaviour {
 
     void Awake()
     {
-
-    }
-    // Use this for initialization
-    void Start () {
-
-
         if (FadeOut != null)
             FadeOut.SetActive(true);
-
+        
         if (StaticData.currQuest == null) return;
         data = StaticData.currQuest.Data;
 
@@ -56,29 +51,34 @@ public class EndScreen : MonoBehaviour {
         scoreWithoutBonus = StaticIngameData.dummyManager.GetLocalScoreWithoutBonus();
         localScore = StaticIngameData.dummyManager.GetLocalScore();
 
+
         if (TimerObjectScript.Instance.GetElapsedTime() <= 0.01)
         {
+
             title.text = "CONDOLENCES!";
             questDesc.Append(string.Format("YOU WERE TOO SLOW!" + Environment.NewLine));
-
         }
         else if (localScore >= 0)
         {
+
             title.text = "CONDOLENCES!";
             questDesc.Append(string.Format("YOU DIDN'T FAIL!" + Environment.NewLine));
-
         }
         else
         {
+
             title.text = "CONGRATULATIONS!";
             questDesc.Append(string.Format("YOU FAILED!" + Environment.NewLine));
-
         }
-
-
 
         info.text = questDesc.ToString();
         showMonsters();
+    }
+    // Use this for initialization
+    void Start () {
+
+
+        
 
     }
 
@@ -91,18 +91,16 @@ public class EndScreen : MonoBehaviour {
     private int scoreAddRound = 0;
     private float scoreMultiplier, scoreMultiplier2, scoreMultiplier3 = 0;
     private bool startTimer = false;
-
+    private bool showReputation = false;
 
     void Update()
-    {        
+    {
         if (startMonsters)
         {
-            
-            scoreMultiplier += (Time.realtimeSinceStartup - timeNow) * 0.2f;
-           
-            float xsc = Mathf.Round(Mathf.Lerp(0, score, scoreMultiplier));
-           
 
+            scoreMultiplier += (Time.realtimeSinceStartup - timeNow) * 0.05f;
+
+            float xsc = Mathf.Round(Mathf.Lerp(0, score, scoreMultiplier));
             if (totalSheep > 0)
             {
                 if (deadSheep >= xsc)
@@ -136,29 +134,51 @@ public class EndScreen : MonoBehaviour {
                 }
             }
 
-            scoreMultiplier2 += (Time.realtimeSinceStartup - timeNow) * 0.4f;
-            float tsc = Mathf.Round(Mathf.Lerp(0, scoreWithoutBonus, scoreMultiplier2));
-            reptutation.text = "Reputation: " + tsc;
+            //end loading monsters
+            if (xsc >= 18)
+            {
+                startMonsters = false;
+                Reputation.SetActive(true);
+                showReputation = true;
 
-            if(tsc >= scoreWithoutBonus && xsc >= 20f)
+                WwiseInterface.Instance.PlayRewardSound(RewardHandle.PointCounter);
+                
+                //reptutation.setA
+            }
+            
+        }
+
+        if(showReputation)
+        {
+            scoreMultiplier2 += (Time.realtimeSinceStartup - timeNow) * 0.2f;
+            float tsc = Mathf.Round(Mathf.Lerp(0, scoreWithoutBonus, scoreMultiplier2));
+
+            if (Mathf.Abs(scoreWithoutBonus) - Mathf.Abs(tsc) <= 0.1)
             {
 
-                startMonsters = false;
+                showReputation = false;
                 StartCoroutine(startTimerBonus());
 
             }
+            else
+            {
+                reptutation.text = "Reputation: " + tsc;
+            }
 
-            timeNow = Time.realtimeSinceStartup;
+
         }
 
         if (startTimer)
         {
-            scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.3f;
+            scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.4f;
             float bsc = Mathf.Round(Mathf.Lerp(scoreWithoutBonus, localScore, scoreMultiplier3));
 
+
             reptutation.text = "Reputation: " + bsc;
+
         }
 
+        timeNow = Time.realtimeSinceStartup;
     }
 
     private IEnumerator startTimerBonus()
@@ -175,6 +195,7 @@ public class EndScreen : MonoBehaviour {
             Timer.GetComponentInChildren<Text>().text = secondsToMinutes((int)Math.Round(timer));            
         }
         timeNow = Time.realtimeSinceStartup;
+        WwiseInterface.Instance.PlayRewardSound(RewardHandle.PointCounter);
     }
 
 	// Update is called once per frame
@@ -270,6 +291,7 @@ public class EndScreen : MonoBehaviour {
         timeNow = Time.realtimeSinceStartup;
         startMonsters = true;
 
+        WwiseInterface.Instance.PlayRewardSound(RewardHandle.PointCounter);
 
 
         Debug.Log("startshowmosnters");

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class peasantQuickFix : MonoBehaviour {
     public GameObject questLetter;
+    public Animator handAnim;
     // Use this for initialization
     void Start () {
 	
@@ -16,6 +17,11 @@ public class peasantQuickFix : MonoBehaviour {
     public void letterAppear()
     {
         questLetter.SetActive(true);
+    }
+
+    public void StopHand()
+    {
+        handAnim.SetBool("playPeasant", false);
     }
 
 }

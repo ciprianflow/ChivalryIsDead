@@ -140,8 +140,8 @@ public class DummyManager : MonoBehaviour
     public void IncreaseCombo()
     {
         comboModifierActions++;
-
-        if (comboModifierActions < ComboActionModifier.Length - 1)
+        //Debug.Log("Actions: " + comboModifierActions);
+        if (comboModifierActions < ComboActionModifier.Length)
         {
             try
             {
@@ -269,7 +269,12 @@ public class DummyManager : MonoBehaviour
         //get time from  quest timer
         float bonus = score * Mathf.Exp(time * 3) * 0.15f;
 
-        if (time == 0 || score > 0)
+        if (time == 0)
+        {
+            score = 5000;
+        }
+
+        if (score > 0)
         {
             bonus = 0;
         }

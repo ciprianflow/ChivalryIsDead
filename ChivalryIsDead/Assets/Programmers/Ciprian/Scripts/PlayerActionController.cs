@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using System;
-
+using UnityEngine.UI;
 
 public enum PlayerState
 {
@@ -52,6 +52,9 @@ public class PlayerActionController : MonoBehaviour
     public GameObject OverreactGreatParticle;
     public GameObject OverreactOkParticle;
 
+    public GameObject OverreactTimer;
+
+
     [HideInInspector]
     public static List<MonsterAI> monstersInScene;
 
@@ -84,6 +87,8 @@ public class PlayerActionController : MonoBehaviour
     private float countTime;
     private bool isTutorial;
     private bool thisLevel;
+    private bool hasAttacked3;
+    private bool hasHitSheep;
     //private int numDay;
     [HideInInspector]
     public static int globalCooldown;
@@ -122,6 +127,9 @@ public class PlayerActionController : MonoBehaviour
         attackAction = gameObject.GetComponent<AttackAction>();
 
         StaticIngameData.playerAction = this;
+
+        OverreactTimer = GameObject.FindGameObjectWithTag("OverreactTimer");
+        OverreactTimer.SetActive(false);
     }
 
 	// Use this for initialization
@@ -150,6 +158,8 @@ public class PlayerActionController : MonoBehaviour
         else
             poorlyOverreact = 1;
         thisLevel = false;
+        hasAttacked3 = false;
+        hasHitSheep = false;
         if (SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
         {
             isTutorial = true;
@@ -198,7 +208,13 @@ public class PlayerActionController : MonoBehaviour
     void Update()
     {
 
-        overreactTimestamp += Time.deltaTime;
+
+        if ((AttackedDuration - overreactTimestamp) > 0) {
+            overreactTimestamp += Time.deltaTime;
+
+            OverreactTimer.GetComponent<Image>().color = new Color(1, 1, 1, 1 - overreactTimestamp / AttackedDuration);
+        }
+
         countTime += Time.deltaTime;
         //Debug.Log(countTime);
         //Debug.Log(globalCooldown);
@@ -361,22 +377,23 @@ public class PlayerActionController : MonoBehaviour
 
             if (monster.GetType() == typeof(SheepAI))
             {
-                if (GameDialogUI != null && countTime > globalCooldown)
+                if (GameDialogUI != null && countTime > globalCooldown && !hasHitSheep)
                 {
                     globalCooldown += 30;
                     GameDialogUI.StartCoroutine("YouHitSheep");
-                    
+                    hasHitSheep = true;
                 }
             }
             else
             {
                 countAttackedMonstr++;
-                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null && countTime > globalCooldown)
+                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null && countTime > globalCooldown && !hasAttacked3)
                 {
                     GameDialogUI.StartCoroutine("StopAttacking");
                     globalCooldown += 30;
                     countAttackedMonstr = 0;
                     countAttacks = 0;
+                    hasAttacked3 = true;
                 }
             }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
@@ -412,6 +429,13 @@ public class PlayerActionController : MonoBehaviour
 
     }
 
+    public void MonsterAttackedMonster(MonsterAI monster)
+    {
+        Debug.Log("MONSTER ATACKED MONSTER" + monster.name);
+
+        pb.ChangeRepScore(monster.HitMonsterReputation());
+        pb.Invoke();
+    }
     
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
@@ -423,6 +447,8 @@ public class PlayerActionController : MonoBehaviour
         StartCoroutine(releaseAttackedCoroutine);
 
         overreactTimestamp = 0;
+
+        OverreactTimer.SetActive(true);
 
         //can overreact
         playerState = PlayerState.HIT;
@@ -445,6 +471,7 @@ public class PlayerActionController : MonoBehaviour
 
     private IEnumerator releaseAttacked()
     {
+
         yield return new WaitForSeconds(AttackedDuration);
 
         //wait for all attacks to submit change in reputation

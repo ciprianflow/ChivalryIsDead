@@ -30,4 +30,8 @@ public class Knight_Events : MonoBehaviour {
         //WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.Attack, this.gameObject);
         //WwiseInterface.Instance.PlayKnightCombatSound(KnightCombatHandle., transform.parent.gameObject);
     }
+
+    void takeDamage() {
+        AkSoundEngine.PostEvent("impact_armor", gameObject);  
+    }
 }

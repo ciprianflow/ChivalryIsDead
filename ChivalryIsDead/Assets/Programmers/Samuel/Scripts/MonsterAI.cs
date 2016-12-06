@@ -17,6 +17,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public int attackDamage = 2;
     public float attackTime = 3f;
     public float attackRange = 5f;
+    
 
     [Space]
     public PlayerActionController playerAction;
@@ -35,6 +36,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public int OverreactRep = -60;
     public int ObjectiveAttackRep = -20;
     public int ObjectiveSheepRep = -100;
+    public int MonsterRep = 50;
     //KNIGHT ATTACk REP
     public int PlayerAttackRep = 30;
 
@@ -392,6 +394,15 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         return ObjectiveSheepRep;
     }
 
+    public int HitMonsterReputation()
+    {
+        if (StaticData.currQuest.Data.Type == QuestType.Destroy)
+        {
+            return -(MonsterRep);
+        }
+        return MonsterRep;
+    }
+
     public void Hit(int damage)
     {
 
@@ -445,7 +456,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (QO != null)
         {
             QO.takeDamage(999, false, Vector3.zero);
-            playerAction.ObjectiveAttacked(this);
+            if(originMonster != null)
+                playerAction.ObjectiveAttacked(this);
         }
 
         //sheep goes fly
@@ -464,7 +476,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         g.GetComponentInChildren<Animator>().SetTrigger("Flying");
         g.GetComponent<Sheep_flying>().flying = true;
 
-        originMonster.playerAction.SheepAttacked(originMonster);
+        if(originMonster != null)
+            originMonster.playerAction.SheepAttacked(originMonster);
     }
 
     public static bool DoAOEAttack(Vector3 pos, float radius, float force, float playerForce, MonsterAI Monster)
@@ -481,6 +494,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 if (m.GetType().Equals(typeof(SheepAI)))
                 {
                     Monster.HitSheep(m.GetComponent<QuestObject>(), m, m.gameObject, force, false, Monster);
+                }
+                else
+                {
+                    //hit monster
+                    Monster.playerAction.MonsterAttackedMonster(Monster);
                 }
             }
 

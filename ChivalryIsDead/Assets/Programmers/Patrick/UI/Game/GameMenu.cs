@@ -55,8 +55,9 @@ public class GameMenu : MonoBehaviour {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         // Start the background music.
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
-
+        //WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        AkSoundEngine.PostEvent("musicquest", gameObject);
+        AkSoundEngine.PostEvent("start_world_1_ambience", gameObject);
 
         endLetter.SetActive(false);
         introLetter.SetActive(false);

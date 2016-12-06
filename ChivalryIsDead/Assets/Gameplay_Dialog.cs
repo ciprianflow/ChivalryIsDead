@@ -240,6 +240,12 @@ public class Gameplay_Dialog : MonoBehaviour
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 9);
     }
 
+    public IEnumerator TauntSuicide()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 12);
+    }
+
 
 
     public IEnumerator PlayerTaunt()
