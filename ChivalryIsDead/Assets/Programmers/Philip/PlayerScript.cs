@@ -53,9 +53,11 @@ public class PlayerScript : MonoBehaviour {
 
         StaticIngameData.player = this.transform;
 
+
         //AkSoundEngine.PostEvent("musicquest", gameObject);
         //AkSoundEngine.PostEvent("start_world_1_ambience", gameObject);
-
+        //AkSoundEngine.PostEvent("start_hub_ambience", gameObject);
+        //Debug.Log("WHY AM I HERE");
 
     }
 
@@ -328,8 +330,10 @@ public class PlayerScript : MonoBehaviour {
         staticControls = !staticControls;
     }
 
-    public void attack()
-    {
+    public void attack() {
+        //WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        //AkSoundEngine.PostEvent("musicStop", gameObject);
+
         anim.SetLayerWeight(3, 0);
         anim.SetLayerWeight(4, 0);
         anim.SetLayerWeight(7, 0);

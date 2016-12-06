@@ -130,10 +130,17 @@ public class PlayerActionController : MonoBehaviour
 
         OverreactTimer = GameObject.FindGameObjectWithTag("OverreactTimer");
         OverreactTimer.SetActive(false);
+
+
+
+
+
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        WwiseInterface.Instance.SetAmbience(AmbienceHandle.WorldOne);
         //numDay = PlayerPrefs.GetInt("numDay");
         globalCooldown = 0;
         countAttackedMonstr = 0;
