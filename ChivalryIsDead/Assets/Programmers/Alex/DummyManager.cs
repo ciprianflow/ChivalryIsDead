@@ -265,9 +265,22 @@ public class DummyManager : MonoBehaviour
         float time = 0;
         if (TimerObjectScript.Instance != null)
             time = TimerObjectScript.Instance.GetElapsedTime();
+
+        float bonus = 0;
         // bonus
         //get time from  quest timer
-        float bonus = score * Mathf.Exp(time * 3) * 0.15f;
+        //float bonus = score * Mathf.Exp(time * 3) * 0.15f;
+        //new bonus
+        float maxTime = TimerObjectScript.Instance.GetMaxTime();
+        float currentTime = maxTime - TimerObjectScript.Instance.GetTimer();
+        if (currentTime > 45)
+        {
+            bonus = currentTime * 40;
+        }
+        else
+        {
+            bonus = currentTime * 20;
+        }
 
         if (time == 0)
         {
