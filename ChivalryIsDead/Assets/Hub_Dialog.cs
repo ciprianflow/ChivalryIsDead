@@ -7,6 +7,7 @@ public class Hub_Dialog : MonoBehaviour {
 
     public GameObject winScreen;
     public GameObject loseScreen;
+    public GameObject end;
 
 	// Use this for initialization
 	IEnumerator Start () {
@@ -97,7 +98,9 @@ public class Hub_Dialog : MonoBehaviour {
     public IEnumerator Win()
     {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
-        yield return new WaitForSeconds(10f);
+        end.SetActive(true);
+        skipBtn.SetActive(false);
+        yield return new WaitForSeconds(6f);
         HubDataManager.ResetHubData();
         PlayerPrefs.DeleteAll();
         winScreen.SetActive(true);
@@ -106,7 +109,9 @@ public class Hub_Dialog : MonoBehaviour {
     public IEnumerator Lose()
     {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 12);
-        yield return new WaitForSeconds(10f);
+        end.SetActive(true);
+        skipBtn.SetActive(false);
+        yield return new WaitForSeconds(6f);
         HubDataManager.ResetHubData();
         PlayerPrefs.DeleteAll();
         loseScreen.SetActive(true);
