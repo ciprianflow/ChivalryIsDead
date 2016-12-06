@@ -59,36 +59,79 @@ public class TextGeneration : MonoBehaviour {
     public string CreateQuestText(QuestData data)
     {
         var questDesc = new StringBuilder();
-        if (data.Type == QuestType.Destroy) { //Dræb de {0} fjender. (Der er 2 __)
-            questDesc.Append(string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
-                data.EnemyCount,
-                string.Join(", ", data.GetEnemies().ToArray()))
-            );                                     //Brug de {0} fjender til at miste omdømme
-            swordQuestDesc.Append(string.Format("• Use the {0} enemies to lose reputation" + Environment.NewLine,
-                data.EnemyCount)
-            );
-        } else if (data.Type == QuestType.Protect) {
-            questDesc.Append(   //Dræb de {0} fjender. (Der er {1})
-                string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+        if(PlayerPrefs.GetString("Language") == "English")
+        {
+            if (data.Type == QuestType.Destroy)
+            { //Dræb de {0} fjender. (Der er 2 __)
+                questDesc.Append(string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                     data.EnemyCount,
                     string.Join(", ", data.GetEnemies().ToArray()))
-            );
-            swordQuestDesc.Append( //Brug de {0} fjender
-                string.Format("• Use the {0} enemies" + Environment.NewLine,
+                );                                     //Brug de {0} fjender til at miste omdømme
+                swordQuestDesc.Append(string.Format("• Use the {0} enemies to lose reputation" + Environment.NewLine,
                     data.EnemyCount)
-            );
-            questDesc.Append(   //Beskyt de {0} venlige. (Der er {1})
-                string.Format("• Protect the {0} friendlies. (There are {1})" + Environment.NewLine,
-                    data.FriendlyCount,
-                    string.Join(", ", data.GetFriends().ToArray()))
-            );
-            swordQuestDesc.Append(  //til at ødelægge {0} {1}                   og miste ømdømme
-                string.Format("to destroy the {0} {1}" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
-                    data.FriendlyCount,
-                    string.Join(", ", data.GetFriends().ToArray()))
-            );
-        }                //Du har 150 sekunder.
-        questDesc.Append("You have 150 seconds." + Environment.NewLine);
+                );
+            }
+            else if (data.Type == QuestType.Protect)
+            {
+                questDesc.Append(   //Dræb de {0} fjender. (Der er {1})
+                    string.Format("• Destroy the {0} enemies." + Environment.NewLine,
+                        data.EnemyCount,
+                        string.Join(", ", data.GetEnemies().ToArray()))
+                );
+                swordQuestDesc.Append( //Brug de {0} fjender
+                    string.Format("• Use the {0} enemies" + Environment.NewLine,
+                        data.EnemyCount)
+                );
+                questDesc.Append(   //Beskyt de {0} venlige. (Der er {1})
+                    string.Format("• Protect the {0} friendlies." + Environment.NewLine,
+                        data.FriendlyCount,
+                        string.Join(", ", data.GetFriends().ToArray()))
+                );
+                swordQuestDesc.Append(  //til at ødelægge {0} {1}                   og miste ømdømme
+                    string.Format("to destroy the {0} friendlies" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
+                        data.FriendlyCount,
+                        string.Join(", ", data.GetFriends().ToArray()))
+                );
+            }                //Du har 150 sekunder.
+            //questDesc.Append("You have 150 seconds." + Environment.NewLine);
+        }
+        else
+        {
+            if (data.Type == QuestType.Destroy)
+            { //Dræb de {0} fjender. (Der er 2 __)
+                questDesc.Append(string.Format("• Dræb de {0} fjender." + Environment.NewLine,
+                    data.EnemyCount,
+                    string.Join(", ", data.GetEnemies().ToArray()))
+                );                                     //Brug de {0} fjender til at miste omdømme
+                swordQuestDesc.Append(string.Format("• Brug de {0} fjender til at miste omdømme" + Environment.NewLine,
+                    data.EnemyCount)
+                );
+            }
+            else if (data.Type == QuestType.Protect)
+            {
+                questDesc.Append(   //Dræb de {0} fjender. (Der er {1})
+                    string.Format("• Dræb de {0} fjender." + Environment.NewLine,
+                        data.EnemyCount,
+                        string.Join(", ", data.GetEnemies().ToArray()))
+                );
+                swordQuestDesc.Append( //Brug de {0} fjender
+                    string.Format("• Brug de {0} fjender" + Environment.NewLine,
+                        data.EnemyCount)
+                );
+                questDesc.Append(   //Beskyt de {0} venlige. (Der er {1})
+                    string.Format("• Beskyt de {0} venlige." + Environment.NewLine,
+                        data.FriendlyCount,
+                        string.Join(", ", data.GetFriends().ToArray()))
+                );
+                swordQuestDesc.Append(  //til at ødelægge {0} {1}                   og miste ømdømme
+                    string.Format("til at ødelægge {0} venlige" + Environment.NewLine + " og miste ømdømme" + Environment.NewLine,
+                        data.FriendlyCount,
+                        string.Join(", ", data.GetFriends().ToArray()))
+                );
+            }                //Du har 150 sekunder.
+            //questDesc.Append("Du har 150 sekunder." + Environment.NewLine);
+        }
+        
         //questDesc.Append(Environment.NewLine + "NOTE FROM SWORD: Remember that you wanna lose the quest, not win it!");
         return questDesc.ToString();
     }
@@ -155,7 +198,6 @@ public class TextGeneration : MonoBehaviour {
         killString = "12" + " ";
         NumberTextUpdate(killString);
 
-        Debug.Log("diff " + QuestDifficulty);
     }
 
     // Update is called once per frame
