@@ -59,35 +59,35 @@ public class TextGeneration : MonoBehaviour {
     public string CreateQuestText(QuestData data)
     {
         var questDesc = new StringBuilder();
-        if (data.Type == QuestType.Destroy) {
+        if (data.Type == QuestType.Destroy) { //Dræb de {0} fjender. (Der er 2 __)
             questDesc.Append(string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                 data.EnemyCount,
                 string.Join(", ", data.GetEnemies().ToArray()))
-            );
+            );                                     //Brug de {0} fjender til at miste omdømme
             swordQuestDesc.Append(string.Format("• Use the {0} enemies to lose reputation" + Environment.NewLine,
                 data.EnemyCount)
             );
         } else if (data.Type == QuestType.Protect) {
-            questDesc.Append(
+            questDesc.Append(   //Dræb de {0} fjender. (Der er {1})
                 string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                     data.EnemyCount,
                     string.Join(", ", data.GetEnemies().ToArray()))
             );
-            swordQuestDesc.Append(
+            swordQuestDesc.Append( //Brug de {0} fjender
                 string.Format("• Use the {0} enemies" + Environment.NewLine,
                     data.EnemyCount)
             );
-            questDesc.Append(
+            questDesc.Append(   //Beskyt de {0} venlige. (Der er {1})
                 string.Format("• Protect the {0} friendlies. (There are {1})" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
-            swordQuestDesc.Append(
+            swordQuestDesc.Append(  //til at ødelægge {0} {1}                   og miste ømdømme
                 string.Format("to destroy the {0} {1}" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
-        }
+        }                //Du har 150 sekunder.
         questDesc.Append("You have 150 seconds." + Environment.NewLine);
         //questDesc.Append(Environment.NewLine + "NOTE FROM SWORD: Remember that you wanna lose the quest, not win it!");
         return questDesc.ToString();
