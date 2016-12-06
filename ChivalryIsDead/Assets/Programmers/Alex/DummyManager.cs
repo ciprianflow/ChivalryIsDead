@@ -293,7 +293,7 @@ public class DummyManager : MonoBehaviour
         }
 
         //Debug.Log("REP: " + score + " BONUS: " + bonus + " time: " + time + " TOTAL REP GAINED: " + score + bonus);
-        return (score + bonus);
+        return (score - bonus);
     }
 
     public int GetLocalScoreWithoutBonus()
