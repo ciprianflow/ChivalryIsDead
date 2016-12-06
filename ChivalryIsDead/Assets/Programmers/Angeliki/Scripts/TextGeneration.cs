@@ -140,19 +140,11 @@ public class TextGeneration : MonoBehaviour {
             shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i].text, 1);
         }
 
-        if(QuestDifficulty == "Easy")
-        {
-            TitleGenerator(shuffleBags[14]);
-            TitleGenerator(shuffleBags[15]);
-        }
-        else
-        {
-            TitleGenerator(shuffleBags[1]);
-            TitleGenerator(shuffleBags[2]);
-        }
-
        
-        EndTitleGenerator(shuffleBags[11]);
+        TitleGenerator(shuffleBags[1]);
+        TitleGenerator(shuffleBags[2]);
+        
+        //EndTitleGenerator(shuffleBags[3]);
 
         if (gameObject.tag == "EndLetter")
             initTextBags(NewBagInitializer);
@@ -241,19 +233,37 @@ public class TextGeneration : MonoBehaviour {
     List<int> TxtChooserStartQuest(String diff)
     {
         List<int> sequence = new List<int>();
-
-        if (diff == "Easy")
+        if(PlayerPrefs.GetString("Language") == "English")
         {
-            sequence.Add(16);
-            sequence.Add(17);
-            sequence.Add(13);
+            if (diff == "Easy")
+            {
+                sequence.Add(4);
+            }
+            else if (diff == "Medium")
+            {
+                sequence.Add(5);
+            }
+            else
+            {
+                sequence.Add(6);
+            }
         }
         else
         {
-            sequence.Add(7);
-            sequence.Add(12);
-            sequence.Add(13);
+            if (diff == "Easy")
+            {
+                sequence.Add(7);
+            }
+            else if (diff == "Medium")
+            {
+                sequence.Add(8);
+            }
+            else
+            {
+                sequence.Add(9);
+            }
         }
+        
 
         return sequence;
     }
