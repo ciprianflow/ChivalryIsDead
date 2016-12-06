@@ -417,6 +417,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 anim.SetTrigger("Flying");
             }
 
+            Rigidbody body = GetComponent<Rigidbody>();
+            if (body != null)
+                Destroy(body);
+
         }
         else {
             anim.Play("TakeDamage");
