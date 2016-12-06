@@ -145,7 +145,7 @@ public class SuicideAI : MonsterAI
                 {
                     if(m.GetType().Equals(typeof(SheepAI)))
                     {
-                        //Sheeps
+                        //Sheep
                         Debug.Log("I HIT A SHEEP");
                         HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true, this);
 
