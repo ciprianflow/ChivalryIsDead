@@ -14,6 +14,8 @@ public class Tutorial_02_Dialog : MonoBehaviour {
     public GameObject[] Sheeps; 
 
     public GameObject UI;
+    public GameObject loadingScreen;
+
     public GameObject ControlMove;
     public GameObject ControlHit;
 
@@ -458,8 +460,17 @@ public class Tutorial_02_Dialog : MonoBehaviour {
 
         yield return new WaitForSeconds(4f);
         PlayerPrefs.SetInt("TauntLevel", 1);
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene("TutHubWorld 2");
 
+    }
+
+    public void RestoreAllAnimators()
+    {
+        swordAnimator.speed = 1f;
+        skipAnimator.speed = 1f;
+        handAnimator.speed = 1f;
+        tutImgAnimator.speed = 1f;
     }
    
 

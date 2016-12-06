@@ -60,35 +60,35 @@ public class TextGeneration : MonoBehaviour {
     {
         var questDesc = new StringBuilder();
         if (data.Type == QuestType.Destroy) {
-            questDesc.Append(string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+            questDesc.Append(string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                 data.EnemyCount,
                 string.Join(", ", data.GetEnemies().ToArray()))
             );
-            swordQuestDesc.Append(string.Format("- Use the {0} enemies to lose reputation" + Environment.NewLine,
+            swordQuestDesc.Append(string.Format("• Use the {0} enemies to lose reputation" + Environment.NewLine,
                 data.EnemyCount)
             );
         } else if (data.Type == QuestType.Protect) {
             questDesc.Append(
-                string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+                string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                     data.EnemyCount,
                     string.Join(", ", data.GetEnemies().ToArray()))
             );
             swordQuestDesc.Append(
-                string.Format("- Use the {0} enemies" + Environment.NewLine,
+                string.Format("• Use the {0} enemies" + Environment.NewLine,
                     data.EnemyCount)
             );
             questDesc.Append(
-                string.Format("- Protect the {0} friendlies. (There are {1})" + Environment.NewLine,
+                string.Format("• Protect the {0} friendlies. (There are {1})" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
             swordQuestDesc.Append(
-                string.Format(" to kill the {0} {1}" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
+                string.Format("to destroy the {0} {1}" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
         }
-        questDesc.Append("- You have 150 seconds." + Environment.NewLine);
+        questDesc.Append("You have 150 seconds." + Environment.NewLine);
         //questDesc.Append(Environment.NewLine + "NOTE FROM SWORD: Remember that you wanna lose the quest, not win it!");
         return questDesc.ToString();
     }

@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 public class EndScreen : MonoBehaviour {
 
+    public GameObject loadingScreen;
+
     public GameObject killLine;
     public Text title;
     public Text info;
@@ -166,6 +168,7 @@ public class EndScreen : MonoBehaviour {
 
     public void GoToHubWorld()
     {
+        loadingScreen.SetActive(true);
         StaticIngameData.mapManager.LoadHubArea();
     }
 
