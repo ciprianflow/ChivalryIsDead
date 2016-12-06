@@ -52,25 +52,48 @@ public class EndScreen : MonoBehaviour {
         localScore = StaticIngameData.dummyManager.GetLocalScore();
 
 
+
         if (TimerObjectScript.Instance.GetElapsedTime() <= 0.01)
         {
-
-            title.text = "CONDOLENCES!";
-            questDesc.Append(string.Format("YOU WERE TOO SLOW!" + Environment.NewLine));
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                title.text = "CONDOLENCES!";
+                questDesc.Append(string.Format("YOU WERE TOO SLOW!" + Environment.NewLine));
+            }
+            else
+            {
+                title.text = "DET ER JEG KED AF!";
+                questDesc.Append(string.Format("DU VAR FOR LANGSOM!" + Environment.NewLine));
+            }
         }
         else if (localScore >= 0)
         {
-
-            title.text = "CONDOLENCES!";
-            questDesc.Append(string.Format("YOU DIDN'T FAIL!" + Environment.NewLine));
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                title.text = "CONDOLENCES!";
+                questDesc.Append(string.Format("YOU DIDN'T FAIL!" + Environment.NewLine));
+            }
+            else
+            {
+                title.text = "DET ER JEG KED AF!";
+                questDesc.Append(string.Format("DU FEJLEDE IKKE!" + Environment.NewLine));
+            }
         }
         else
         {
-
-            title.text = "CONGRATULATIONS!";
-            questDesc.Append(string.Format("YOU FAILED!" + Environment.NewLine));
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                title.text = "CONGRATULATIONS!";
+                questDesc.Append(string.Format("YOU FAILED!" + Environment.NewLine));
+            }
+            else
+            {
+                title.text = "TILLYKKE!";
+                questDesc.Append(string.Format("DU FEJLEDE!" + Environment.NewLine));
+            }
+            
         }
-
+        
         info.text = questDesc.ToString();
         showMonsters();
     }
@@ -162,7 +185,14 @@ public class EndScreen : MonoBehaviour {
             }
             else
             {
-                reptutation.text = "Reputation: " + tsc;
+                if (PlayerPrefs.GetString("Language") == "English")
+                {
+                    reptutation.text = "Reputation: " + tsc;
+                }
+                else
+                {
+                    reptutation.text = "Omdømme: " + tsc;
+                }
             }
 
 
@@ -173,9 +203,14 @@ public class EndScreen : MonoBehaviour {
             scoreMultiplier3 += (Time.realtimeSinceStartup - timeNow) * 0.4f;
             float bsc = Mathf.Round(Mathf.Lerp(scoreWithoutBonus, localScore, scoreMultiplier3));
 
-
-            reptutation.text = "Reputation: " + bsc;
-
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                reptutation.text = "Reputation: " + bsc;
+            }
+            else
+            {
+                reptutation.text = "Omdømme: " + bsc;
+            }
         }
 
         timeNow = Time.realtimeSinceStartup;
