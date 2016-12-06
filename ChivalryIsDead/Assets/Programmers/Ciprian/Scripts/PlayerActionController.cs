@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using System;
-
+using UnityEngine.UI;
 
 public enum PlayerState
 {
@@ -51,6 +51,9 @@ public class PlayerActionController : MonoBehaviour
 
     public GameObject OverreactGreatParticle;
     public GameObject OverreactOkParticle;
+
+    public GameObject OverreactTimer;
+
 
     [HideInInspector]
     public static List<MonsterAI> monstersInScene;
@@ -122,6 +125,9 @@ public class PlayerActionController : MonoBehaviour
         attackAction = gameObject.GetComponent<AttackAction>();
 
         StaticIngameData.playerAction = this;
+
+        OverreactTimer = GameObject.FindGameObjectWithTag("OverreactTimer");
+        OverreactTimer.SetActive(false);
     }
 
 	// Use this for initialization
@@ -198,7 +204,13 @@ public class PlayerActionController : MonoBehaviour
     void Update()
     {
 
-        overreactTimestamp += Time.deltaTime;
+
+        if ((AttackedDuration - overreactTimestamp) > 0) {
+            overreactTimestamp += Time.deltaTime;
+
+            OverreactTimer.GetComponent<Image>().color = new Color(1, 1, 1, 1 - overreactTimestamp / AttackedDuration);
+        }
+
         countTime += Time.deltaTime;
         //Debug.Log(countTime);
         //Debug.Log(globalCooldown);
@@ -424,6 +436,8 @@ public class PlayerActionController : MonoBehaviour
 
         overreactTimestamp = 0;
 
+        OverreactTimer.SetActive(true);
+
         //can overreact
         playerState = PlayerState.HIT;
         //Debug.Log("HIT");
@@ -445,6 +459,7 @@ public class PlayerActionController : MonoBehaviour
 
     private IEnumerator releaseAttacked()
     {
+
         yield return new WaitForSeconds(AttackedDuration);
 
         //wait for all attacks to submit change in reputation
