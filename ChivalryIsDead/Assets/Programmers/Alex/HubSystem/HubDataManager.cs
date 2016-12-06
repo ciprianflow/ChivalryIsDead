@@ -76,7 +76,6 @@ public class HubDataManager : MonoBehaviour {
     }
 
     void Start () {
-        DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Lose");
         // Playing Hub Music.
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
 
@@ -250,7 +249,7 @@ public class HubDataManager : MonoBehaviour {
         if(StaticData.Reputation <= 0)
         {
             StaticData.Reputation = StaticData.MaxReputation;
-            StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
+            //StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
             //WinScreen.SetActive(true);
             DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Win");
             return;
@@ -259,7 +258,7 @@ public class HubDataManager : MonoBehaviour {
         /* UNCOMMENT TO HAVE THE LOSE SCREEN */
         if (StaticData.daysLeft < 1)
         {            
-            StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
+            //StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
             //LoseScreen.SetActive(true);
             DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Lose");
         }
