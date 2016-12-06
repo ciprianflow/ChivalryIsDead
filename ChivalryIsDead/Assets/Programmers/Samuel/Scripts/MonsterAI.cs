@@ -445,7 +445,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         if (QO != null)
         {
             QO.takeDamage(999, false, Vector3.zero);
-            playerAction.ObjectiveAttacked(this);
+            if(originMonster != null)
+                playerAction.ObjectiveAttacked(this);
         }
 
         //sheep goes fly
@@ -464,7 +465,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         g.GetComponentInChildren<Animator>().SetTrigger("Flying");
         g.GetComponent<Sheep_flying>().flying = true;
 
-        originMonster.playerAction.SheepAttacked(originMonster);
+        if(originMonster != null)
+            originMonster.playerAction.SheepAttacked(originMonster);
     }
 
     public static bool DoAOEAttack(Vector3 pos, float radius, float force, float playerForce, MonsterAI Monster)
