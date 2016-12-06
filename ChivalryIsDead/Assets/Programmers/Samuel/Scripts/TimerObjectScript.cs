@@ -47,6 +47,11 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
 
     }
 
+    public float GetMaxTime()
+    {
+        return maxTime;
+    }
+
     public float GetTimer()
     {
         return timer;

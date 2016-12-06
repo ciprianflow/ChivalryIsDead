@@ -37,6 +37,8 @@ public class MainMenu : MonoBehaviour {
         {
             Application.Quit();
         }
+
+        Debug.Log(PlayerPrefs.GetFloat("MusicVolume"));
     }
 
 
@@ -55,8 +57,10 @@ public class MainMenu : MonoBehaviour {
 
     public void Continue()
     {
+        StaticData.pressedContinue = true;
+
         WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
-        
+
         if (PlayerPrefs.GetInt("TauntLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1)
         {
             Debug.Log("Level2");

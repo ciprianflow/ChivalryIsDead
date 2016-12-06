@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6771347, g: 0.7987713, b: 0.882913, a: 1}
+  m_IndirectSpecularColor: {r: 0.68055195, g: 0.8008123, b: 0.87699205, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -554,8 +554,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!33 &79988158
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2744,8 +2744,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!33 &427841461
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5020,8 +5020,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!33 &764542541
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -5959,8 +5959,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!33 &943226188
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11145,6 +11145,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012670078070, guid: 6e7e5cb727dd2934db6c443bdb67afd5,
+        type: 2}
+      propertyPath: speaker
+      value: 
+      objectReference: {fileID: 348084162}
+    - target: {fileID: 114000012670078070, guid: 6e7e5cb727dd2934db6c443bdb67afd5,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2076890311}
+    - target: {fileID: 114000010516570910, guid: 6e7e5cb727dd2934db6c443bdb67afd5,
+        type: 2}
+      propertyPath: SwordParticle
+      value: 
+      objectReference: {fileID: 1454235174}
     - target: {fileID: 114000013921187760, guid: 6e7e5cb727dd2934db6c443bdb67afd5,
         type: 2}
       propertyPath: mainCam
@@ -11220,21 +11235,6 @@ Prefab:
       propertyPath: ScreenFreeze
       value: 
       objectReference: {fileID: 1396102906}
-    - target: {fileID: 114000010516570910, guid: 6e7e5cb727dd2934db6c443bdb67afd5,
-        type: 2}
-      propertyPath: SwordParticle
-      value: 
-      objectReference: {fileID: 1454235174}
-    - target: {fileID: 114000012670078070, guid: 6e7e5cb727dd2934db6c443bdb67afd5,
-        type: 2}
-      propertyPath: speaker
-      value: 
-      objectReference: {fileID: 348084162}
-    - target: {fileID: 114000012670078070, guid: 6e7e5cb727dd2934db6c443bdb67afd5,
-        type: 2}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 2076890311}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6e7e5cb727dd2934db6c443bdb67afd5, type: 2}
   m_IsPrefabParent: 0

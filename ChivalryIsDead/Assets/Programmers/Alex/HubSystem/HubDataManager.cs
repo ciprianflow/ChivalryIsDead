@@ -54,6 +54,7 @@ public class HubDataManager : MonoBehaviour {
     public GameObject QuestButton;
     public GameObject QuestLetter;
     public GameObject DampenLightObject;
+    public GameObject DialogSystem;
     public GameObject WinScreen;
     public GameObject LoseScreen;
     public Text DaysLeftText;
@@ -73,19 +74,22 @@ public class HubDataManager : MonoBehaviour {
 
         hubDataPath = Application.persistentDataPath + "/HubData.json";
 
-        if (StaticData.currQuest == null)
-            UpdateQuests();    
+        if (StaticData.currQuest == null  || StaticData.pressedContinue)
+        { 
+            UpdateQuests();
+            StaticData.pressedContinue = false;
+        }
         else
             PushToHubData(StaticData.currQuest.ReputationChange);
     }
 
     void Start () {
-
         // Playing Hub Music.
 
         isClicked = false;
         checkForWin();
-        peasantLineScript.FillPeasantLine();
+        if(!SceneGetter.Instance.isTutHubWorld())
+            peasantLineScript.FillPeasantLine();
         UpdateUIText();
         UpdateUI();
         CreateQuestUIElements();
@@ -143,7 +147,8 @@ public class HubDataManager : MonoBehaviour {
         for(int i = 0; i < 1; i++) { 
         //foreach (IObjective o in AvailableQuests) {
             BaseQuest oAsQuest = (BaseQuest)AvailableQuests[i];
-            peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
+            if(!SceneGetter.Instance.isTutHubWorld())
+                peasantLineScript.PushQuestToPeasant(i, i, oAsQuest);
         }
 
         //GenerateDLCQuest();
@@ -251,17 +256,18 @@ public class HubDataManager : MonoBehaviour {
         if(StaticData.Reputation <= 0)
         {
             StaticData.Reputation = StaticData.MaxReputation;
-            StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
-            WinScreen.SetActive(true);
-
+            //StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
+            //WinScreen.SetActive(true);
+            DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Win");
             return;
         }
 
         /* UNCOMMENT TO HAVE THE LOSE SCREEN */
         if (StaticData.daysLeft < 1)
         {            
-            StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
-            LoseScreen.SetActive(true);
+            //StartCoroutine(StaticData.PlayStreamingVideo("ending bad.mp4"));
+            //LoseScreen.SetActive(true);
+            DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Lose");
         }
     }
 

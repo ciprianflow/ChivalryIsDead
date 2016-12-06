@@ -35,7 +35,6 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject halfScreen;
 
     public GameObject TrollA;
-    public GameObject howToPlay;
 
     // Use this for initialization
     void Awake () {

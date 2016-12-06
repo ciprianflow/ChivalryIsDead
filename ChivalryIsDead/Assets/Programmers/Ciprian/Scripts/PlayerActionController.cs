@@ -87,6 +87,8 @@ public class PlayerActionController : MonoBehaviour
     private float countTime;
     private bool isTutorial;
     private bool thisLevel;
+    private bool hasAttacked3;
+    private bool hasHitSheep;
     //private int numDay;
     [HideInInspector]
     public static int globalCooldown;
@@ -163,6 +165,8 @@ public class PlayerActionController : MonoBehaviour
         else
             poorlyOverreact = 1;
         thisLevel = false;
+        hasAttacked3 = false;
+        hasHitSheep = false;
         if (SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Tutorial_02" || SceneManager.GetActiveScene().name == "Tutorial_03" || SceneManager.GetActiveScene().name == "Introlevel")
         {
             isTutorial = true;
@@ -380,22 +384,23 @@ public class PlayerActionController : MonoBehaviour
 
             if (monster.GetType() == typeof(SheepAI))
             {
-                if (GameDialogUI != null && countTime > globalCooldown)
+                if (GameDialogUI != null && countTime > globalCooldown && !hasHitSheep)
                 {
                     globalCooldown += 30;
                     GameDialogUI.StartCoroutine("YouHitSheep");
-                    
+                    hasHitSheep = true;
                 }
             }
             else
             {
                 countAttackedMonstr++;
-                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null && countTime > globalCooldown)
+                if (countAttackedMonstr > 2 && countAttacks > 2 && GameDialogUI != null && countTime > globalCooldown && !hasAttacked3)
                 {
                     GameDialogUI.StartCoroutine("StopAttacking");
                     globalCooldown += 30;
                     countAttackedMonstr = 0;
                     countAttacks = 0;
+                    hasAttacked3 = true;
                 }
             }
             Vector3 midVec = Vector3.Normalize(transform.position - monster.transform.position);
@@ -431,6 +436,13 @@ public class PlayerActionController : MonoBehaviour
 
     }
 
+    public void MonsterAttackedMonster(MonsterAI monster)
+    {
+        Debug.Log("MONSTER ATACKED MONSTER" + monster.name);
+
+        pb.ChangeRepScore(monster.HitMonsterReputation());
+        pb.Invoke();
+    }
     
     //MONSTER ATTACKS PLAYER
     public void PlayerAttacked(MonsterAI monster)
