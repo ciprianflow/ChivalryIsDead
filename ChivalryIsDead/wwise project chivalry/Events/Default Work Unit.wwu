@@ -1130,7 +1130,14 @@
 								<Action Name="Play" ID="{87D3546F-4C96-49D4-BB04-1C1873D1852E}" ShortID="793255466" Type="Play" Scope="One" Global="false">
 									<ElementList>
 										<Element ID="{E7969648-1DD1-4FC3-8CB7-32264B2FFEE9}" Global="false">
-											<ObjectRef Name="fail sound hurtig modulated" ID="{8872F418-3916-400A-9472-299CCD90F3F8}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+											<ObjectRef Name="failhorn" ID="{4BA3B150-3215-40B4-B893-1A8C14177EC0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+								<Action Name="Play" ID="{F155511E-1AF4-417A-A7B9-62FD72A40F46}" ShortID="601904440" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{B08BD97B-31E9-4D05-9AF8-DC5C0436BBD2}" Global="false">
+											<ObjectRef Name="failsynth" ID="{AC5EBAFB-CB67-4410-8403-B5C9B3CBD3A9}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
 								</Action>
@@ -1211,12 +1218,12 @@
 						</Event>
 						<Event Name="musicStop" ID="{E57A100A-C009-47C6-8BA2-335F47C5C268}">
 							<ChildrenList>
-								<Action Name="Stop" ID="{D2197AF9-B712-418D-AC3A-BA991703D258}" ShortID="162962489" Type="Stop" Scope="One" Global="false">
+								<Action Name="Stop" ID="{D2197AF9-B712-418D-AC3A-BA991703D258}" ShortID="162962489" Type="Stop" Scope="One" Global="true">
 									<PropertyList>
 										<Property Name="FadeTime" Type="Real64" Value="1"/>
 									</PropertyList>
 									<ElementList>
-										<Element ID="{7FB4E98C-3C6A-4E9F-BE35-5528520BF572}" Global="false">
+										<Element ID="{7FB4E98C-3C6A-4E9F-BE35-5528520BF572}" Global="true">
 											<ObjectRef Name="music1" ID="{0429355F-7B67-428E-9155-26F4ACE93DAF}" WorkUnitID="{BFA04094-2C33-42D1-BC69-0B51752965D1}"/>
 										</Element>
 									</ElementList>
@@ -1358,6 +1365,35 @@
 										<Group Name="pause" ID="{3A0BA39A-05FE-404D-A626-DD0E30FDACAD}"/>
 										<GroupItem Name="unpaused" ID="{7D7A5713-2685-49DD-AEA4-181882A451F7}"/>
 									</SetItemParam>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="cinematic" ID="{A8AF2EB6-2BA6-492F-BE4C-3294AF077233}" ShortID="859292418">
+					<ChildrenList>
+						<Event Name="cinematicIntro" ID="{2D45B4AB-4985-4C8E-8988-11EEE5554440}">
+							<ChildrenList>
+								<Action Name="Play" ID="{EED0E6E9-E23E-4FF8-AC25-27409B311179}" ShortID="179232047" Type="Play" Scope="One" Global="false">
+									<ElementList>
+										<Element ID="{D7F41169-63E9-4E3A-8F86-25CE497C820E}" Global="false">
+											<ObjectRef Name="cinematic intro v1" ID="{8B57DD09-3A44-4529-AC5F-CF6383586C94}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="stopCinematic" ID="{C2D97CFD-3ADD-450A-B688-DC9EA96B7125}">
+							<ChildrenList>
+								<Action Name="Stop" ID="{4713D553-7B7A-40A5-BCBC-4A57BDC51160}" ShortID="881396684" Type="Stop" Scope="One" Global="true">
+									<PropertyList>
+										<Property Name="FadeTime" Type="Real64" Value="1"/>
+									</PropertyList>
+									<ElementList>
+										<Element ID="{FF97388B-A46C-4BC1-B583-AB38622E8592}" Global="true">
+											<ObjectRef Name="cinematic intro v1" ID="{8B57DD09-3A44-4529-AC5F-CF6383586C94}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
+										</Element>
+									</ElementList>
 								</Action>
 							</ChildrenList>
 						</Event>

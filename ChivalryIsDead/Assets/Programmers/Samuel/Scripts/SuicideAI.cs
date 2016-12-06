@@ -194,6 +194,8 @@ public class SuicideAI : MonsterAI
         if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility)
             Explode();
 
+        Debug.Log("Collided with something");
+
     }
 
     public override int GetAttackReputation()
