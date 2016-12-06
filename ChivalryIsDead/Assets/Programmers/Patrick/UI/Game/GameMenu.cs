@@ -48,6 +48,7 @@ public class GameMenu : MonoBehaviour {
         settingManager = GameObject.FindGameObjectWithTag("SettingsManager").GetComponent<SettingsMngr>();
 
         StaticIngameData.gameMenu = this;
+
     } 
 
     void Start () {
@@ -148,6 +149,12 @@ public class GameMenu : MonoBehaviour {
             paused = false;
             //pauseBtn.SetActive(true);
             //pauseBtn.GetComponent<Image>().sprite = pauseBtn.GetComponent<Button>().spriteState.disabledSprite;
+            if (SceneManager.GetActiveScene().name == "IntroLevel" || SceneManager.GetActiveScene().name == "Introlevel")
+                dialogSystem.GetComponent<IntroLevelDialog>().RestoreAllAnimators();
+            if (SceneManager.GetActiveScene().name == "Tutorial_02")
+                dialogSystem.GetComponent<Tutorial_02_Dialog>().RestoreAllAnimators();
+            else if(SceneManager.GetActiveScene().name == "Tutorial_03")
+                dialogSystem.GetComponent<Tutorial_03_Dialog>().RestoreAllAnimators();
             Time.timeScale = 1f;
         }
     }

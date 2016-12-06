@@ -41,7 +41,7 @@ public class TextGeneration : MonoBehaviour {
     List<int> logSequenceEnd = new List<int>();
 
     GameObject HubDataMan;
-    int QuestNum;
+    //int QuestNum;
 
     private string QuestTitle = "";
     private string QuestDifficulty = "";
@@ -60,35 +60,35 @@ public class TextGeneration : MonoBehaviour {
     {
         var questDesc = new StringBuilder();
         if (data.Type == QuestType.Destroy) {
-            questDesc.Append(string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+            questDesc.Append(string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                 data.EnemyCount,
                 string.Join(", ", data.GetEnemies().ToArray()))
             );
-            swordQuestDesc.Append(string.Format("- Use the {0} enemies to lose reputation" + Environment.NewLine,
+            swordQuestDesc.Append(string.Format("• Use the {0} enemies to lose reputation" + Environment.NewLine,
                 data.EnemyCount)
             );
         } else if (data.Type == QuestType.Protect) {
             questDesc.Append(
-                string.Format("- Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+                string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
                     data.EnemyCount,
                     string.Join(", ", data.GetEnemies().ToArray()))
             );
             swordQuestDesc.Append(
-                string.Format("- Use the {0} enemies" + Environment.NewLine,
+                string.Format("• Use the {0} enemies" + Environment.NewLine,
                     data.EnemyCount)
             );
             questDesc.Append(
-                string.Format("- Protect the {0} friendlies. (There are {1})" + Environment.NewLine,
+                string.Format("• Protect the {0} friendlies. (There are {1})" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
             swordQuestDesc.Append(
-                string.Format(" to kill the {0} {1}" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
+                string.Format("to destroy the {0} {1}" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
                     data.FriendlyCount,
                     string.Join(", ", data.GetFriends().ToArray()))
             );
         }
-        questDesc.Append("- You have 150 seconds." + Environment.NewLine);
+        questDesc.Append("You have 150 seconds." + Environment.NewLine);
         //questDesc.Append(Environment.NewLine + "NOTE FROM SWORD: Remember that you wanna lose the quest, not win it!");
         return questDesc.ToString();
     }
@@ -119,12 +119,13 @@ public class TextGeneration : MonoBehaviour {
         QuestTitleText.text = QuestTitle;
         Description.text = QuestText;
         OurDescription.text = SwordQuestText;
-
+    
         //debugText = gameObject.GetComponent<Text>();
         mainText.text = "";
 
         foreach (TextAsset textFile in Resources.LoadAll("txts", typeof(TextAsset)))
         {
+            
             sentences.Add(textFile);
             //filesNames.Add(textFile.name);
         }
@@ -139,8 +140,18 @@ public class TextGeneration : MonoBehaviour {
             shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i].text, 1);
         }
 
-        TitleGenerator(shuffleBags[1]);
-        TitleGenerator(shuffleBags[2]);
+        if(QuestDifficulty == "Easy")
+        {
+            TitleGenerator(shuffleBags[14]);
+            TitleGenerator(shuffleBags[15]);
+        }
+        else
+        {
+            TitleGenerator(shuffleBags[1]);
+            TitleGenerator(shuffleBags[2]);
+        }
+
+       
         EndTitleGenerator(shuffleBags[11]);
 
         if (gameObject.tag == "EndLetter")
@@ -152,37 +163,12 @@ public class TextGeneration : MonoBehaviour {
         killString = "12" + " ";
         NumberTextUpdate(killString);
 
-        //sb = TextGenerator(shuffleBagHello);
-        //sb = TextGenerator(shuffleBagPal);
-        //for (int i = 0; i < 5; i++)
-        //{
-        //    sb = TextGenerator(shuffleBagHello);
-        //    sb = TextGenerator(shuffleBagPal);
-        //    sb = TextGenerator(shuffleBagState);
-
-        //}
-        //debugText.text = sb.ToString();
-
+        Debug.Log("diff " + QuestDifficulty);
     }
 
     // Update is called once per frame
     void Update () {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-
-        //    sb = new StringBuilder();
-        //    sb = TextGenerator(shuffleBagHello);
-        //    sb = TextGenerator(shuffleBagPal);
-        //    for (int i = 0; i < 5; i++)
-        //    {
-        //        sb = TextGenerator(shuffleBagHello);
-        //        sb = TextGenerator(shuffleBagPal);
-        //        sb = TextGenerator(shuffleBagState);
-
-        //    }
-
-        //    debugText.text = sb.ToString();
-        //}
+      
     }
 
     public void ClearText()
@@ -244,7 +230,7 @@ public class TextGeneration : MonoBehaviour {
     
     public void CallTxtChooserStartQuest()
     {
-        logSequenceStart = TxtChooserStartQuest(QuestNum);
+        logSequenceStart = TxtChooserStartQuest(QuestDifficulty);
         foreach (int seq in logSequenceStart)
         {
             TextGenerator(shuffleBags[seq]);
@@ -252,22 +238,22 @@ public class TextGeneration : MonoBehaviour {
         }
     }
 
-    List<int> TxtChooserStartQuest(int quest)
+    List<int> TxtChooserStartQuest(String diff)
     {
         List<int> sequence = new List<int>();
-        sequence.Add(7);
-        sequence.Add(12);
-        sequence.Add(13);
 
-        //if (quest == 0)
-        //{
-        //    sequence.Add(8);
-        //}
-        //else if (quest == 1)
-        //{
-        //    sequence.Add(9);
-        //}
-
+        if (diff == "Easy")
+        {
+            sequence.Add(16);
+            sequence.Add(17);
+            sequence.Add(13);
+        }
+        else
+        {
+            sequence.Add(7);
+            sequence.Add(12);
+            sequence.Add(13);
+        }
 
         return sequence;
     }

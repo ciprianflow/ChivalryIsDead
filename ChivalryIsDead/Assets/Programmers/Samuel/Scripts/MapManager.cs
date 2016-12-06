@@ -17,6 +17,9 @@ public class MapManager : MonoBehaviour {
 
     private GameObject endLetter;
 
+    bool hasProtectTarget = false;
+    private bool isQuestDone = false;
+
     internal void SetQuestObject(Transform transform)
     {
         QuestTarget = transform;
@@ -27,7 +30,7 @@ public class MapManager : MonoBehaviour {
     {
         var staticProtectObjects = transform.FindChild("StaticProtectObjects");
         if (staticProtectObjects != null)
-            QuestTarget = staticProtectObjects.GetChild(0);
+            QuestTarget = staticProtectObjects.GetChild(0); 
 
         OM = new ObjectiveManager();
 
@@ -68,6 +71,17 @@ public class MapManager : MonoBehaviour {
         foreach(IObjective spawn in StaticData.currQuest.Spawns) {
             TranslateQuest(spawn);
         }
+
+        //Deletes the healthbar and the protect target if there is no protect target
+        if (!hasProtectTarget)
+        {
+            GameObject obj = GameObject.Find("WorldCanvas");
+            if (obj != null)
+                obj.SetActive(false);
+
+            if (QuestTarget != null)
+                QuestTarget.gameObject.SetActive(false);
+        }
     }
 
     void TranslateQuest(IObjective objective)
@@ -91,6 +105,7 @@ public class MapManager : MonoBehaviour {
         //NEED TO CHANGE THIS APROACH
         if (ID == 22)
         {
+            hasProtectTarget = true;
             OM.GetObjectives().Add(QuestTarget.GetComponent<QuestObject>());
             QuestTarget.gameObject.SetActive(true);
             return;
@@ -149,6 +164,13 @@ public class MapManager : MonoBehaviour {
 
     private void EndQuest()
     {
+        if (isQuestDone)
+        {
+            return;
+        }
+
+        isQuestDone = true;
+
         //SET THE DAYS LEFT
         StaticData.daysLeft--;
 

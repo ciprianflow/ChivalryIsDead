@@ -14,8 +14,8 @@ public class HubData
     public HubData()
     {
         //RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
-        DaysLeft = 14;
-        GlobalReputation = 100;
+        DaysLeft = 12;
+        GlobalReputation = 80;
     }
 
     public HubData(int daysLeft, float reputation)
@@ -26,7 +26,7 @@ public class HubData
 
     public void GenerateQuests()
     {
-        var curDay = StaticData.TotalDays - DaysLeft;
+        var curDay = StaticData.maxDays - DaysLeft;
         QuestGenerator QG = new QuestGenerator(curDay, (int)GlobalReputation, RandomSeed);
 
         if (AvailableQuests == null)

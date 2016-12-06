@@ -71,7 +71,7 @@ public class Projectile : MonoBehaviour {
         if (questObj != null)
         {
             Debug.Log("QuestObject hitttiittitiit");
-            questObj.takeDamage(1, false);
+            questObj.takeDamage(3, false);
             //let player know objective is attacked
             originMonster.playerAction.ObjectiveAttacked(originMonster);
         }
