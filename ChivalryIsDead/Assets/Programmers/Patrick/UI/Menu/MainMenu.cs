@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour {
             Application.Quit();
         }
 
-        Debug.Log(PlayerPrefs.GetFloat("MusicVolume"));
+        
     }
 
 
