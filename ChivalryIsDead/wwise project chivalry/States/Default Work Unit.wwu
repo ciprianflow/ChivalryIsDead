@@ -10,6 +10,30 @@
 						<State Name="unpaused" ID="{7D7A5713-2685-49DD-AEA4-181882A451F7}"/>
 					</ChildrenList>
 				</StateGroup>
+				<StateGroup Name="cinematicState" ID="{392A0687-012D-4386-9178-AADE746AF40E}">
+					<PropertyList>
+						<Property Name="DefaultTransitionTime" Type="Real64" Value="3"/>
+					</PropertyList>
+					<ChildrenList>
+						<State Name="None" ID="{94C21257-C9D5-45EC-A8EC-B40542335C2D}"/>
+						<State Name="fade" ID="{2B9901F6-22E3-4F41-947B-B8ECBFA85CC7}"/>
+						<State Name="dontfade" ID="{70C895F4-A52A-47DA-A4E1-1A4C47180193}"/>
+					</ChildrenList>
+					<TransitionList>
+						<Transition>
+							<StartState Name="None" ID="{94C21257-C9D5-45EC-A8EC-B40542335C2D}"/>
+							<EndState Name="fade" ID="{2B9901F6-22E3-4F41-947B-B8ECBFA85CC7}"/>
+							<Time>5</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+						<Transition>
+							<StartState Name="fade" ID="{2B9901F6-22E3-4F41-947B-B8ECBFA85CC7}"/>
+							<EndState Name="dontfade" ID="{70C895F4-A52A-47DA-A4E1-1A4C47180193}"/>
+							<Time>0</Time>
+							<IsShared>false</IsShared>
+						</Transition>
+					</TransitionList>
+				</StateGroup>
 			</ChildrenList>
 		</WorkUnit>
 	</States>

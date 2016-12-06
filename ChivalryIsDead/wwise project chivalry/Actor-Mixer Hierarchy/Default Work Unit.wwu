@@ -4718,7 +4718,14 @@
 							</ActiveSourceList>
 						</Sound>
 						<ActorMixer Name="sheep" ID="{3ABD4B62-2CE7-4B06-9FC9-48ED2D86AD39}" ShortID="642991497">
+							<PropertyList>
+								<Property Name="PositioningType" Type="int16" Value="1"/>
+								<Property Name="Spatialization" Type="bool" Value="False"/>
+							</PropertyList>
 							<ReferenceList>
+								<Reference Name="Attenuation">
+									<ObjectRef Name="distance to camera" ID="{7550BF9C-43F7-4D88-B019-6C2A4D75EBB7}" WorkUnitID="{F6989FA3-E18B-41CD-8F73-3810853709BF}"/>
+								</Reference>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 								</Reference>
@@ -12228,6 +12235,250 @@
 								</ActorMixer>
 							</ChildrenList>
 						</ActorMixer>
+						<RandomSequenceContainer Name="failhorn" ID="{4BA3B150-3215-40B4-B893-1A8C14177EC0}" ShortID="762308525">
+							<PropertyList>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-15</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="fail horn1" ID="{95FBE636-6BFF-4883-A41F-5CC300EF2FD4}" ShortID="65077674" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail horn1" ID="{FC8A1B83-DF1A-4C36-8BDD-5C9BD6687EDE}" ShortID="108088120">
+											<Language>SFX</Language>
+											<AudioFile>fail horn1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail horn1" ID="{FC8A1B83-DF1A-4C36-8BDD-5C9BD6687EDE}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail horn2" ID="{0F4FC360-7FD8-4CB6-8692-8DA93ED76205}" ShortID="69909122" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail horn2" ID="{ACD0131E-11E6-481A-A2CA-8676EF971B73}" ShortID="1038415643">
+											<Language>SFX</Language>
+											<AudioFile>fail horn2.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail horn2" ID="{ACD0131E-11E6-481A-A2CA-8676EF971B73}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail horn3" ID="{419B4230-00F5-4E3E-9E4C-038681BBFE5D}" ShortID="546600705" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail horn3" ID="{A5D26D47-BA1B-4053-B01A-3587F101335C}" ShortID="328428481">
+											<Language>SFX</Language>
+											<AudioFile>fail horn3.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail horn3" ID="{A5D26D47-BA1B-4053-B01A-3587F101335C}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail horn4" ID="{322333A4-7BCA-4CAD-A0EF-49802FE3888E}" ShortID="437106359" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail horn4" ID="{47429374-EDCB-42D8-93C7-09F06016D088}" ShortID="302206138">
+											<Language>SFX</Language>
+											<AudioFile>fail horn4.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail horn4" ID="{47429374-EDCB-42D8-93C7-09F06016D088}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail horn5" ID="{524E11ED-56D0-47B1-8A15-9510F3DDF5C3}" ShortID="996455238" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail horn5" ID="{1BA82911-00F0-403E-AE9E-5DE1C601CB80}" ShortID="57861994">
+											<Language>SFX</Language>
+											<AudioFile>fail horn5.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail horn5" ID="{1BA82911-00F0-403E-AE9E-5DE1C601CB80}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<Playlist>
+								<ItemRef Name="fail horn1" ID="{95FBE636-6BFF-4883-A41F-5CC300EF2FD4}"/>
+								<ItemRef Name="fail horn2" ID="{0F4FC360-7FD8-4CB6-8692-8DA93ED76205}"/>
+								<ItemRef Name="fail horn3" ID="{419B4230-00F5-4E3E-9E4C-038681BBFE5D}"/>
+								<ItemRef Name="fail horn4" ID="{322333A4-7BCA-4CAD-A0EF-49802FE3888E}"/>
+								<ItemRef Name="fail horn5" ID="{524E11ED-56D0-47B1-8A15-9510F3DDF5C3}"/>
+							</Playlist>
+						</RandomSequenceContainer>
+						<RandomSequenceContainer Name="failsynth" ID="{AC5EBAFB-CB67-4410-8403-B5C9B3CBD3A9}" ShortID="79122242">
+							<PropertyList>
+								<Property Name="RandomOrSequence" Type="int16" Value="0"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-15</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="fail synth1" ID="{7EF07CD1-EBED-4A22-99D5-E052B0C43112}" ShortID="294409320" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail synth1" ID="{841BBA79-D61B-45FC-95DC-BBC9054302FD}" ShortID="12271879">
+											<Language>SFX</Language>
+											<AudioFile>fail synth1.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail synth1" ID="{841BBA79-D61B-45FC-95DC-BBC9054302FD}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail synth2" ID="{40704223-D82F-4E67-96D7-B59DFD0D7578}" ShortID="884929721" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail synth2" ID="{4FD5D9C4-CE9A-4AFA-AE5E-80B30FEA93DC}" ShortID="193751613">
+											<Language>SFX</Language>
+											<AudioFile>fail synth2.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail synth2" ID="{4FD5D9C4-CE9A-4AFA-AE5E-80B30FEA93DC}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail synth3" ID="{4715D50A-A052-40DE-9EA2-043BB38E9B6C}" ShortID="516438120" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail synth3" ID="{364E8964-A3F4-4763-84F2-EBF7D69F9BE7}" ShortID="982378075">
+											<Language>SFX</Language>
+											<AudioFile>fail synth3.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail synth3" ID="{364E8964-A3F4-4763-84F2-EBF7D69F9BE7}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail synth4" ID="{15D55A6A-1A6F-4B19-AFBE-205EA1258758}" ShortID="1058761188" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail synth4" ID="{EBB15FF0-DAC3-4AC5-B9DC-A8845E8F4D18}" ShortID="614951480">
+											<Language>SFX</Language>
+											<AudioFile>fail synth4.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail synth4" ID="{EBB15FF0-DAC3-4AC5-B9DC-A8845E8F4D18}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+								<Sound Name="fail synth5" ID="{21E18B91-4995-47DF-A01D-C8D8B1953B02}" ShortID="674416116" Type="SoundFX">
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="fail synth5" ID="{5379C790-B861-413C-B700-5444F26354F3}" ShortID="38330119">
+											<Language>SFX</Language>
+											<AudioFile>fail synth5.wav</AudioFile>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="fail synth5" ID="{5379C790-B861-413C-B700-5444F26354F3}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
+							<Playlist>
+								<ItemRef Name="fail synth1" ID="{7EF07CD1-EBED-4A22-99D5-E052B0C43112}"/>
+								<ItemRef Name="fail synth2" ID="{40704223-D82F-4E67-96D7-B59DFD0D7578}"/>
+								<ItemRef Name="fail synth3" ID="{4715D50A-A052-40DE-9EA2-043BB38E9B6C}"/>
+								<ItemRef Name="fail synth4" ID="{15D55A6A-1A6F-4B19-AFBE-205EA1258758}"/>
+								<ItemRef Name="fail synth5" ID="{21E18B91-4995-47DF-A01D-C8D8B1953B02}"/>
+							</Playlist>
+						</RandomSequenceContainer>
 					</ChildrenList>
 				</ActorMixer>
 				<ActorMixer Name="princess" ID="{C43FBF82-2D70-4FDE-8026-B4DFE99127F5}" ShortID="718294155">
@@ -14952,6 +15203,61 @@
 								</Sound>
 							</ChildrenList>
 						</BlendContainer>
+					</ChildrenList>
+				</ActorMixer>
+				<ActorMixer Name="cinematic" ID="{7E0D6035-2F62-43F7-8D03-FF9728E3659E}" ShortID="111930453">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="cinematic intro v1" ID="{8B57DD09-3A44-4529-AC5F-CF6383586C94}" ShortID="110058772" Type="SoundFX">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="cinematic intro v1" ID="{230E65D6-306E-4866-AF27-ADB2715D841E}" ShortID="871057150">
+									<PropertyList>
+										<Property Name="FadeOutDuration" Type="Real64" Value="15.3336196986607"/>
+										<Property Name="FadeOutShape" Type="int16" Value="6"/>
+										<Property Name="LoopBegin" Type="Real64" Value="58.4018192894345"/>
+										<Property Name="OverrideWavLoop" Type="bool" Value="True"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>cinematic intro v1.wav</AudioFile>
+								</AudioFileSource>
+							</ChildrenList>
+							<StateInfo>
+								<StateGroupList>
+									<StateGroupInfo>
+										<StateGroupRef Name="cinematicState" ID="{392A0687-012D-4386-9178-AADE746AF40E}"/>
+									</StateGroupInfo>
+								</StateGroupList>
+								<CustomStateList>
+									<CustomState>
+										<StateRef Name="fade" ID="{2B9901F6-22E3-4F41-947B-B8ECBFA85CC7}"/>
+										<State Name="Custom State" ID="{B46C3189-B4A9-49F7-97C1-B046A1059A77}" ShortID="439890314">
+											<PropertyList>
+												<Property Name="Lowpass" Type="int16" Value="65"/>
+												<Property Name="Volume" Type="Real64" Value="-15"/>
+											</PropertyList>
+										</State>
+									</CustomState>
+								</CustomStateList>
+							</StateInfo>
+							<ActiveSourceList>
+								<ActiveSource Name="cinematic intro v1" ID="{230E65D6-306E-4866-AF27-ADB2715D841E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</ActorMixer>
 			</ChildrenList>
