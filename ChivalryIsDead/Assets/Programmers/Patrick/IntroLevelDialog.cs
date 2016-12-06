@@ -10,6 +10,8 @@ public class IntroLevelDialog : MonoBehaviour {
     public GameObject AnimCam;
 
     public GameObject UI;
+    public GameObject loadingScreen;
+
     public GameObject ScreenFreeze;
     public GameObject ControlMove;
     public GameObject ControlHit;
@@ -254,6 +256,7 @@ public class IntroLevelDialog : MonoBehaviour {
         yield return new WaitForSeconds(3f);
         PlayerPrefs.SetInt("Attack", 0);
         PlayerPrefs.SetInt("AttackLevel", 1);
+        loadingScreen.SetActive(true);
         SceneManager.LoadScene("Cinematic");
     }
 
