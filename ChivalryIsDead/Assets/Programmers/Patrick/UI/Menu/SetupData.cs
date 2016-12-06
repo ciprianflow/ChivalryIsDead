@@ -29,6 +29,7 @@ public class SetupData : MonoBehaviour {
             PlayerPrefs.SetInt("noSheepKill", 1);
             PlayerPrefs.SetInt("noTaunt", 1);
             PlayerPrefs.SetInt("noOverreact", 1);
+            PlayerPrefs.SetInt("poorlyOverreact", 1);
 
             PlayerPrefs.SetInt("SuicideLevel", 0);
             PlayerPrefs.SetInt("SuicideTut", 0);
