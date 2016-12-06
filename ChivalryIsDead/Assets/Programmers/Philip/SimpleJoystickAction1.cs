@@ -410,6 +410,8 @@ namespace CnControls
 
                 //updateActionUI();
             }
+            if (PlayerPrefs.GetInt("AttackLevel") == 0)
+                return;
             if (tauntCooldownfill < 1)
             {
                 ActionLeft.sprite = tauntCd;
