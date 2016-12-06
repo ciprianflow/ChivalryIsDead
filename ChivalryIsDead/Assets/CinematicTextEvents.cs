@@ -35,6 +35,6 @@ public class CinematicTextEvents : MonoBehaviour {
     }
 
     public void halfScene() {
-
+        firstScene.SetActive(false);
     }
 }
