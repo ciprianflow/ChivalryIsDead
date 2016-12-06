@@ -986,7 +986,7 @@
 								</Action>
 							</ChildrenList>
 						</Event>
-						<Event Name="sheep_taunted" ID="{157F2AA2-7447-456D-8787-632B57432150}">
+						<Event Name="sheep_death" ID="{157F2AA2-7447-456D-8787-632B57432150}">
 							<ChildrenList>
 								<Action Name="Stop" ID="{D29F4AE4-55E2-4507-802E-4F1FE30EFB59}" ShortID="357797890" Type="Stop" Scope="One" Global="false">
 									<ElementList>
@@ -1089,13 +1089,13 @@
 						</Event>
 						<Event Name="reward_combo_end" ID="{D658531B-C58E-40E3-8197-78C48FF8FC4D}">
 							<ChildrenList>
-								<Action Name="Stop" ID="{4A42AC64-1680-4853-81EB-D37521C8C33A}" ShortID="332819943" Type="Stop" Scope="One" Global="false">
+								<Action Name="Stop" ID="{4A42AC64-1680-4853-81EB-D37521C8C33A}" ShortID="332819943" Type="Stop" Scope="One" Global="true">
 									<PropertyList>
 										<Property Name="FadeCurve" Type="int16" Value="5"/>
 										<Property Name="FadeTime" Type="Real64" Value="4"/>
 									</PropertyList>
 									<ElementList>
-										<Element ID="{25C751CE-796A-4BFB-8424-42DD71F92D03}" Global="false">
+										<Element ID="{25C751CE-796A-4BFB-8424-42DD71F92D03}" Global="true">
 											<ObjectRef Name="combo fire" ID="{9362D158-E088-423C-8506-10932F0479E0}" WorkUnitID="{919F3C76-D39B-4F95-9EF2-56EC17D99551}"/>
 										</Element>
 									</ElementList>
