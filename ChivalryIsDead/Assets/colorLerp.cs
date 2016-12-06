@@ -8,19 +8,21 @@ public class colorLerp : MonoBehaviour {
     public float transistionTime = 1f;
 
     float t;
+    float oldTime = 0f;
 
     Image img;
 
-    void Awake()
+    void OnEnable()
     {
         img = GetComponent<Image>();
         img.color = c1;
+        oldTime = Time.realtimeSinceStartup;
     }
 
     // Update is called once per frame
     void Update () {
 
-        t += Time.deltaTime / transistionTime;
+        t += (Time.realtimeSinceStartup - oldTime) / transistionTime;
         img.color = Color.Lerp(c1, c2, t);
 
         if (t >= 1)
@@ -31,6 +33,7 @@ public class colorLerp : MonoBehaviour {
             c2 = c3;
         }
 
+        oldTime = Time.realtimeSinceStartup;
 
-	}
+    }
 }

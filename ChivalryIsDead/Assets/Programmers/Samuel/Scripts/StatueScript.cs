@@ -12,15 +12,18 @@ public class StatueScript : MonoBehaviour {
         if (sprites == null || sprites.Length == 0)
             return;
 
-        float percantage = StaticData.Reputation / 100;
+        float percantage = StaticData.Reputation / StaticData.MaxReputation;
 
+
+        Debug.Log(StaticData.Reputation + " / " + StaticData.MaxReputation);
         float tic = 1f / sprites.Length;
 
         for(int i = 0; i < sprites.Length; i++)
         {
-            if(tic * i > percantage)
+            Debug.Log((i * tic + tic) + " percantage = " + percantage);
+            if(tic * i + tic >= percantage)
             {
-                GetComponent<SpriteRenderer>().sprite = sprites[i];
+                GetComponent<Image>().sprite = sprites[i];
                 break;
             }
         }
