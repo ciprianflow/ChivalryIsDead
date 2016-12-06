@@ -254,7 +254,7 @@ public class DummyManager : MonoBehaviour
         //calculate bonus
         repGain = getLocalScore(ReputationHandler.Score);
         
-        float repGainDivision = 50;
+        float repGainDivision = 300;
         return repGain / repGainDivision;
 
     }
@@ -265,9 +265,22 @@ public class DummyManager : MonoBehaviour
         float time = 0;
         if (TimerObjectScript.Instance != null)
             time = TimerObjectScript.Instance.GetElapsedTime();
+
+        float bonus = 0;
         // bonus
         //get time from  quest timer
-        float bonus = score * Mathf.Exp(time * 3) * 0.15f;
+        //float bonus = score * Mathf.Exp(time * 3) * 0.15f;
+        //new bonus
+        float maxTime = TimerObjectScript.Instance.GetMaxTime();
+        float currentTime = maxTime - TimerObjectScript.Instance.GetTimer();
+        if (currentTime > 45)
+        {
+            bonus = currentTime * 40;
+        }
+        else
+        {
+            bonus = currentTime * 20;
+        }
 
         if (time == 0)
         {
@@ -280,7 +293,7 @@ public class DummyManager : MonoBehaviour
         }
 
         //Debug.Log("REP: " + score + " BONUS: " + bonus + " time: " + time + " TOTAL REP GAINED: " + score + bonus);
-        return (score + bonus);
+        return (score - bonus);
     }
 
     public int GetLocalScoreWithoutBonus()
