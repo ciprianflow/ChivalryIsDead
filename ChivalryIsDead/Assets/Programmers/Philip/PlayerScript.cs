@@ -330,12 +330,9 @@ public class PlayerScript : MonoBehaviour {
         staticControls = !staticControls;
     }
 
-
     public void attack() {
         //WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
         //AkSoundEngine.PostEvent("musicStop", gameObject);
-        //WwiseInterface.Instance.StopEvent("musicquest");
-        //WwiseInterface.Instance.StopEvent("music1Play");
 
         anim.SetLayerWeight(3, 0);
         anim.SetLayerWeight(4, 0);

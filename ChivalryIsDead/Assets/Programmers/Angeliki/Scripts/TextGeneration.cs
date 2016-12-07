@@ -214,7 +214,7 @@ public class TextGeneration : MonoBehaviour {
         }
         else
         {
-            if (SceneGetter.Instance.isHubWorld())
+            if (PlayerPrefs.GetString("Language") == "English")
             {
                 pQuestTitle.text = "Bondemission";
                 ourQuestTitle.text = "Vores mission";

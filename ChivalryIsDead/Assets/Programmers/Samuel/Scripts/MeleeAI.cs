@@ -3,9 +3,6 @@ using System;
 
 public class MeleeAI : MonsterAI
 {
-    #region Overrides
-    public new int AttackRep = -5;
-    #endregion
 
     [Header("Melee Specific Values")]
     public float PreChargeTime = 1f;
@@ -418,7 +415,7 @@ public class MeleeAI : MonsterAI
         //this means taunted..
         if (state == State.Charge)
         {
-            rep *= 3;
+            rep *= 2;
         }
 
         return rep;

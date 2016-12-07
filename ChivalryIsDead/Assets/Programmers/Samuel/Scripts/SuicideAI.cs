@@ -4,9 +4,6 @@ using System;
 
 public class SuicideAI : MonsterAI
 {
-    #region Overrides
-    public new int ObjectiveSheepRep = -100;
-    #endregion
 
     [Header("Suicide Specific Variables")]
     public float tauntTime = 5f;
@@ -27,8 +24,6 @@ public class SuicideAI : MonsterAI
     void Start()
     {
         GameDialogUI = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<Gameplay_Dialog>();
-        if(PlayerPrefs.GetInt("SuicideTut") == 0)
-            PlayerPrefs.SetInt("SuicideLevel", 1); 
     }
 
     void OnDrawGizmos()
@@ -232,11 +227,11 @@ public class SuicideAI : MonsterAI
 
     public override int GetObjectiveAttackReputation()
     {
-        int rep = ObjectiveAttackRep * 2; // Base is 25, 25 * 2 = 50.
+        int rep = ObjectiveAttackRep;
         //this means taunted..
         if (taunted)
         {
-            rep *= 2;                     // Rep is 50, 50 * 2 = 100.
+            rep *= 2;
         }
 
         return rep;
@@ -273,7 +268,6 @@ public class SuicideAI : MonsterAI
 
     void MoveToIdle()
     {
-        Debug.Log("MOVE TO IDLE");
         state = State.Idle;
         stateFunc = Idle;
         StopNavMeshAgent();
