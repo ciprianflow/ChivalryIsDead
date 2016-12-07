@@ -68,6 +68,9 @@ public class HubDataManager : MonoBehaviour {
         //AkSoundEngine.PostEvent("start_hub_ambience", gameObject);
         Time.timeScale = 1f;
 
+        WwiseInterface.Instance.StopEvent("music1Play");
+        WwiseInterface.Instance.StopEvent("musicquest");
+        WwiseInterface.Instance.StopEvent("reward_combo_start");
 
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
         WwiseInterface.Instance.SetAmbience(AmbienceHandle.Hub);
