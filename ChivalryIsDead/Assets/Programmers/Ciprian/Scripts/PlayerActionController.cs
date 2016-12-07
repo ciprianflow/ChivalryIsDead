@@ -142,9 +142,7 @@ public class PlayerActionController : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-        WwiseInterface.Instance.StopEvent("music1Play");
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicQuest);
-        //WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
         WwiseInterface.Instance.SetAmbience(AmbienceHandle.WorldOne);
         //numDay = PlayerPrefs.GetInt("numDay");
         globalCooldown = 0;
@@ -459,8 +457,8 @@ public class PlayerActionController : MonoBehaviour
         StartCoroutine(releaseAttackedCoroutine);
 
         overreactTimestamp = 0;
-
-        OverreactTimer.SetActive(true);
+        if(!SceneGetter.Instance.isTutorial1() && !SceneGetter.Instance.isTutorial2())
+            OverreactTimer.SetActive(true);
 
         //can overreact
         playerState = PlayerState.HIT;

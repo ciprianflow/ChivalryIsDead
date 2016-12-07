@@ -393,62 +393,50 @@ namespace CnControls
             tauntCooldownfill = playerActionController.GetTauntActionCooldown();
             overreactCooldownFill = playerActionController.GetOverreactActionCooldown();
             //Debug.Log((int)(attackCooldownFill / 0.2f));
-            if (!SceneGetter.Instance.isTutorial2() && !SceneGetter.Instance.isTutorial3())
+            if (attackCooldownFill < 1)
             {
-                if (attackCooldownFill < 1)
-                {
-                    ActionTop.sprite = attackCd;
-                    ActionTop.fillAmount = attackCooldownFill;
+                ActionTop.sprite = attackCd;
+                ActionTop.fillAmount = attackCooldownFill;
+            }
+            else {
+                ActionTop.sprite = attackRdy;
+                if (attack) {
+                    ActionTop.color = new Color(1, 1, 1, 1);
                 }
-                else
-                {
-                    ActionTop.sprite = attackRdy;
-                    if (attack)
-                    {
-                        ActionTop.color = new Color(1, 1, 1, 1);
-                    }
-                    else
-                    {
-                        ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
+                else {
+                    ActionTop.color = new Color(0.5f, 0.5f, 0.5f, 1);
 
-                    }
+                }
 
-                    //updateActionUI();
+                //updateActionUI();
+            }
+            if (SceneGetter.Instance.isTutorial1())
+                return;
+            if (tauntCooldownfill < 1)
+            {
+                ActionLeft.sprite = tauntCd;
+                ActionLeft.fillAmount = tauntCooldownfill;
+            }
+            else {
+                ActionLeft.sprite = tauntRdy;
+                if (taunt) {
+                    ActionLeft.color = new Color(1, 1, 1, 1);
                 }
             }
 
-            if (!SceneGetter.Instance.isTutorial1())
+
+            if (overreactCooldownFill < 1)
             {
-                if (tauntCooldownfill < 1)
-                {
-                    ActionLeft.sprite = tauntCd;
-                    ActionLeft.fillAmount = tauntCooldownfill;
-                }
-                else
-                {
-                    ActionLeft.sprite = tauntRdy;
-                    if (taunt)
-                    {
-                        ActionLeft.color = new Color(1, 1, 1, 1);
-                    }
+                ActionRight.sprite = overreactCd;
+                ActionRight.fillAmount = overreactCooldownFill;
+            }
+            else {
+                ActionRight.sprite = overreactRdy;
+                if (overreact) {
+                    ActionRight.color = new Color(1, 1, 1, 1);
                 }
             }
-            if (!SceneGetter.Instance.isTutorial1() && !SceneGetter.Instance.isTutorial2())
-            {
-                if (overreactCooldownFill < 1)
-                {
-                    ActionRight.sprite = overreactCd;
-                    ActionRight.fillAmount = overreactCooldownFill;
-                }
-                else
-                {
-                    ActionRight.sprite = overreactRdy;
-                    if (overreact)
-                    {
-                        ActionRight.color = new Color(1, 1, 1, 1);
-                    }
-                }
-            }
+
         }
 
         public void resetOptions() {
