@@ -27,6 +27,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
     public HubDataManager hdManager;
 
     public GameObject dampenLightPanel;
+    private bool stopIt;
 
     // Use this for initialization
     void Start()
@@ -38,6 +39,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         procceed = false;
         hideButton = false;
         waitforClick = true;
+        stopIt = false;
         handAnimator = HandCanvas.GetComponent<Animator>();
         if (SceneManager.GetActiveScene().name == "TutHubWorld 1")
             StartCoroutine("DialogOne");
@@ -132,10 +134,12 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         count = 0;
         while (count < 2)
         {
-            yield return new WaitForEndOfFrame();
-            if(count == 1)
+            if (count == 1 && stopIt == false)
+            {
                 handAnimator.SetBool("playPeasant", true);
-
+                stopIt = true;
+            }
+            yield return new WaitForEndOfFrame();
         }
         yield return new WaitUntil(SkipAndPlay);
 
@@ -183,7 +187,7 @@ public class Tutorial_Hub_Dialog : MonoBehaviour {
         //duration = BlackScreenAnimator.GetCurrentAnimatorStateInfo(0).length;
         //yield return new WaitForSeconds(4f);
         //StartCoroutine("DialogTwo");
-        yield return new WaitForSeconds(4f);
+        //yield return new WaitForSeconds(4f);
         blackScreen.SetActive(false);
     }
 

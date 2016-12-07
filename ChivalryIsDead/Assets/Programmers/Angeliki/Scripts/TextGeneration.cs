@@ -174,6 +174,7 @@ public class TextGeneration : MonoBehaviour {
         Description = transform.FindChild("QuestDescription").GetComponent<Text>();
         OurDescription = transform.FindChild("OURQuest").GetComponent<Text>();
         endTitle = transform.FindChild("EndTitle").GetComponent<Text>();
+       
         pQuestTitle = transform.FindChild("QuestDescriptionTitle").GetComponent<Text>();
         ourQuestTitle = transform.FindChild("OURQuestTitle").GetComponent<Text>();
 
@@ -203,15 +204,21 @@ public class TextGeneration : MonoBehaviour {
 
         if(PlayerPrefs.GetString("Language") == "English")
         {
-            pQuestTitle.text = "Peasant Quest";
-            ourQuestTitle.text = "Our Quest";
+            if (SceneGetter.Instance.isHubWorld())
+            {
+                pQuestTitle.text = "Peasant Quest";
+                ourQuestTitle.text = "Our Quest";
+            }           
             TitleGenerator(shuffleBags[0]);
             TitleGenerator(shuffleBags[1]);
         }
         else
         {
-            pQuestTitle.text = "Bondemission";
-            ourQuestTitle.text = "Vores mission";
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                pQuestTitle.text = "Bondemission";
+                ourQuestTitle.text = "Vores mission";
+            }             
             TitleGenerator(shuffleBags[5]);
             TitleGenerator(shuffleBags[6]);
         }
