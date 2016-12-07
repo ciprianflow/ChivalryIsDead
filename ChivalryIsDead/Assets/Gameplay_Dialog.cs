@@ -27,9 +27,6 @@ public class Gameplay_Dialog : MonoBehaviour
     // Use this for initialization
     IEnumerator Start()
     {
-        //Remember
-        PlayerPrefs.DeleteAll();
-
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
         isnotAFK = false;
