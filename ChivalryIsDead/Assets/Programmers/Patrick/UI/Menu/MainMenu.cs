@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour {
 
         // Start the background music.
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        //AkSoundEngine.PostEvent("musicquest", gameObject);
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
@@ -37,7 +38,7 @@ public class MainMenu : MonoBehaviour {
             Application.Quit();
         }
 
-        Debug.Log(PlayerPrefs.GetFloat("MusicVolume"));
+        
     }
 
 

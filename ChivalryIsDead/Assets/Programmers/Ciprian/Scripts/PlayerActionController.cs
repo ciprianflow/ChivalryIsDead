@@ -93,6 +93,9 @@ public class PlayerActionController : MonoBehaviour
     [HideInInspector]
     public static int globalCooldown;
 
+    //Overreact Check for TuT
+    public bool OverHit;
+
     void OnDrawGizmos()
     {
 
@@ -113,7 +116,7 @@ public class PlayerActionController : MonoBehaviour
 
     void Awake()
     {
-
+        OverHit = false;
         //aggro taunt overreact
         gameObject.AddComponent<AggroAction>();
         gameObject.AddComponent<TauntAction>();
@@ -130,10 +133,17 @@ public class PlayerActionController : MonoBehaviour
 
         OverreactTimer = GameObject.FindGameObjectWithTag("OverreactTimer");
         OverreactTimer.SetActive(false);
+
+
+
+
+
     }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        WwiseInterface.Instance.SetAmbience(AmbienceHandle.WorldOne);
         //numDay = PlayerPrefs.GetInt("numDay");
         globalCooldown = 0;
         countAttackedMonstr = 0;
@@ -301,7 +311,7 @@ public class PlayerActionController : MonoBehaviour
 
             // if attacked the player can receive points based on time
             if (playerState == PlayerState.HIT && lastMonsterAttacked != null) {
-
+                
                 int points = (int)((AttackedDuration - overreactTimestamp) * 100);
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
@@ -329,8 +339,8 @@ public class PlayerActionController : MonoBehaviour
                     }
                         
                 }
-                    
 
+                OverHit = true;
 
                 pb.AddRepScore(-points);
                 Debug.Log("Overreact points:" + -points);
