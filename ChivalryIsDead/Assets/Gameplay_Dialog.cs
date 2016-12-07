@@ -21,25 +21,20 @@ public class Gameplay_Dialog : MonoBehaviour
     bool isnotAFK;
 
     public GameObject skipBtn;
+    public Animator swordAnimator;
+    public Animator swordBubbleAnimator;
 
     // Use this for initialization
-    void Start()
+    IEnumerator Start()
     {
+        //Remember
+        PlayerPrefs.DeleteAll();
+
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
         isnotAFK = false;
 
-        if (PlayerPrefs.GetInt("SuicideTut") == 1)
-        {
-
-            suicideTut.SetActive(true);
-            suicideTutAnim = suicideTut.GetComponent<Animator>();
-            suicideTutAnim.speed = 1f;
-            suicideTutAnim.SetBool("playLearnSuicide", true);
-            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
-            skipBtn.SetActive(false);
-            PlayerPrefs.SetInt("SuicideTut", 0);
-        }
+       
 
         if (SceneGetter.Instance.isDestroyQuest())
         {
@@ -58,6 +53,32 @@ public class Gameplay_Dialog : MonoBehaviour
         {
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 13);
         }
+
+        if (PlayerPrefs.GetInt("SuicideLevel") == 0)
+        {
+
+
+            suicideTutAnim = suicideTut.GetComponent<Animator>();
+            yield return new WaitForSeconds(6f);
+            Time.timeScale = 0.1f;
+
+            suicideTut.SetActive(true);
+            skipBtn.SetActive(false);
+            //suicideTutAnim.speed = 1f;
+            swordAnimator.speed = 10f;
+            swordBubbleAnimator.speed = 10f;
+            suicideTutAnim.SetBool("playLearnSuicide", true);
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
+            
+            PlayerPrefs.SetInt("SuicideLevel", 1);
+        }
+    }
+
+    public void StopTutorSlides()
+    {
+        swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame
