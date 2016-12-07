@@ -67,6 +67,8 @@ public class TextGeneration : MonoBehaviour {
     public string CreateQuestText(QuestData data)
     {
         var questDesc = new StringBuilder();
+        Debug.Log("enemy"+ data.EnemyCount);
+        Debug.Log("friend"+ data.FriendlyCount);
         if(PlayerPrefs.GetString("Language") == "English")
         {
             if (data.Type == QuestType.Destroy)
