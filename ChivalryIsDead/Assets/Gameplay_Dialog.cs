@@ -21,9 +21,11 @@ public class Gameplay_Dialog : MonoBehaviour
     bool isnotAFK;
 
     public GameObject skipBtn;
+    public Animator swordAnimator;
+    public Animator swordBubbleAnimator;
 
     // Use this for initialization
-    void Start()
+    IEnumerator Start()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
