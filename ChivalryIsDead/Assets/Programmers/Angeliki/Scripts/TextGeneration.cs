@@ -24,6 +24,12 @@ public class TextGeneration : MonoBehaviour {
 
     [HideInInspector]
     public List<TextAsset> sentences = new List<TextAsset>();
+    public DialogInfo[] dialogEnglish;
+    //public GameObject TooltipText;
+   
+    private List<String> scrObjects = new List<String>();
+
+
     [HideInInspector]
     public List<ShuffleBag> shuffleBags = new List<ShuffleBag>();
     //public List<string> filesNames = new List<string>();
@@ -34,6 +40,8 @@ public class TextGeneration : MonoBehaviour {
     Text Description;
     Text OurDescription;
     Text endTitle;
+    Text pQuestTitle;
+    Text ourQuestTitle;
 
     StringBuilder swordQuestDesc = new StringBuilder();
 
@@ -146,6 +154,14 @@ public class TextGeneration : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        //if (PlayerPrefs.GetString("Language") == "English")
+        //{
+        //    TooltipText.GetComponent<Text>().text = "Days until the wedding";         
+        //}
+        //else
+        //{
+        //    TooltipText.GetComponent<Text>().text = "Dage indtil brylluppet";
+        //}
         if (gameObject.tag == "IntroLetter")
         {
             HubDataMan = GameObject.FindGameObjectWithTag("HubDataManager");
@@ -158,34 +174,55 @@ public class TextGeneration : MonoBehaviour {
         Description = transform.FindChild("QuestDescription").GetComponent<Text>();
         OurDescription = transform.FindChild("OURQuest").GetComponent<Text>();
         endTitle = transform.FindChild("EndTitle").GetComponent<Text>();
+       
+        pQuestTitle = transform.FindChild("QuestDescriptionTitle").GetComponent<Text>();
+        ourQuestTitle = transform.FindChild("OURQuestTitle").GetComponent<Text>();
+
 
         QuestTitleText.text = QuestTitle;
         Description.text = QuestText;
         OurDescription.text = SwordQuestText;
     
-        //debugText = gameObject.GetComponent<Text>();
         mainText.text = "";
 
-        foreach (TextAsset textFile in Resources.LoadAll("txts", typeof(TextAsset)))
+  
+        for(int i = 0; i<dialogEnglish.Length;i++)
         {
-            
-            sentences.Add(textFile);
-            //filesNames.Add(textFile.name);
+
+            scrObjects.Add(dialogEnglish[i].Text[0]);
         }
 
-        foreach (TextAsset textFile in sentences)
+        foreach (String textFile in scrObjects)
         {
-            shuffleBags.Add(new ShuffleBag(textFile.text.Split('/').Length));
+            shuffleBags.Add(new ShuffleBag(textFile.Split('/').Length));
         }
-     
+
         for (int i = 0; i < shuffleBags.Count; i++)
         {
-            shuffleBags[i] = LoadShuffleBag(shuffleBags[i], sentences[i].text, 1);
+            shuffleBags[i] = LoadShuffleBag(shuffleBags[i], scrObjects[i], 1);
         }
 
-       
-        TitleGenerator(shuffleBags[1]);
-        TitleGenerator(shuffleBags[2]);
+        if(PlayerPrefs.GetString("Language") == "English")
+        {
+            if (SceneGetter.Instance.isHubWorld())
+            {
+                pQuestTitle.text = "Peasant Quest";
+                ourQuestTitle.text = "Our Quest";
+            }           
+            TitleGenerator(shuffleBags[0]);
+            TitleGenerator(shuffleBags[1]);
+        }
+        else
+        {
+            if (PlayerPrefs.GetString("Language") == "English")
+            {
+                pQuestTitle.text = "Bondemission";
+                ourQuestTitle.text = "Vores mission";
+            }             
+            TitleGenerator(shuffleBags[5]);
+            TitleGenerator(shuffleBags[6]);
+        }
+        
         
         //EndTitleGenerator(shuffleBags[3]);
 
@@ -279,15 +316,15 @@ public class TextGeneration : MonoBehaviour {
         {
             if (diff == "Easy")
             {
-                sequence.Add(4);
+                sequence.Add(2);
             }
             else if (diff == "Medium")
             {
-                sequence.Add(5);
+                sequence.Add(3);
             }
             else
             {
-                sequence.Add(6);
+                sequence.Add(4);
             }
         }
         else

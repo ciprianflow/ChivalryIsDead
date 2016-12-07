@@ -56,8 +56,8 @@ public class GameMenu : MonoBehaviour {
 
         // Start the background music.
         //WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
-        AkSoundEngine.PostEvent("musicquest", gameObject);
-        AkSoundEngine.PostEvent("start_world_1_ambience", gameObject);
+        //AkSoundEngine.PostEvent("musicquest", gameObject);
+        //AkSoundEngine.PostEvent("start_world_1_ambience", gameObject);
 
         endLetter.SetActive(false);
         introLetter.SetActive(false);

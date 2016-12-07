@@ -80,7 +80,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
 
         if (!learnedToOverreact)
         {
-            if (Player.GetComponent<PlayerScript>().overreacting && Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
+            if (Player.GetComponent<PlayerActionController>().OverHit == true)    //overreacting && Player.GetComponent<PlayerActionController>().GetPlayerState() == PlayerState.HIT)
             {
                 gameObject.GetComponent<DialogObject>().StopDialog();
                 StartCoroutine("DialogFive");
@@ -290,6 +290,7 @@ public class Tutorial_03_Dialog : MonoBehaviour
         //handAnimator.speed = 10f;
         yield return new WaitForSeconds(4f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
+        Player.GetComponent<PlayerActionController>().OverHit = false;
         learnedToOverreact = false;
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();

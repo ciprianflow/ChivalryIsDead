@@ -20,8 +20,8 @@ public class SetupData : MonoBehaviour {
 
             PlayerPrefs.SetInt("Sound", 1);
             PlayerPrefs.SetFloat("SoundVolume", 1);
-            PlayerPrefs.SetFloat("SoundMusic", 1);
-            PlayerPrefs.SetFloat("SoundSound", 1);
+            PlayerPrefs.SetFloat("MusicVolume", 1);
+            //PlayerPrefs.SetFloat("SoundSound", 1);
             PlayerPrefs.SetInt("Swapped", 0);
 
             // Gameplay
