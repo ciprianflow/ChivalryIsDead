@@ -26,18 +26,17 @@ public class MenuOptions : MonoBehaviour {
         musicVolume.value = PlayerPrefs.GetFloat("MusicVolume");
 
         // Check Mute
-
-        if (PlayerPrefs.GetInt("Sound") == 0)
+        if (IsMuted)
         {
             muteSound.GetComponent<Image>().color = Color.red;
-            //WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
-            WwiseInterface.Instance.SetVolume(0, VolumeHandle.SFX);
-            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Music);
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
         }
-        else if (PlayerPrefs.GetInt("Sound") == 1)
+        else
         {
             muteSound.GetComponent<Image>().color = Color.white;
+            WwiseInterface.Instance.SetVolume(100, VolumeHandle.Master);
             // Volume is set correctly in update loop, and doesn't need to be set here.
+            // EDIT: MASTER VOLUME IS INACCESSIBLE EXCEPT THROUGH BUTTONS, AND IS NOT UPDATED IN UPDATE LOOP!
         }
 
     }
@@ -80,20 +79,20 @@ public class MenuOptions : MonoBehaviour {
 
     public void SoundMute()
     {
-        if (PlayerPrefs.GetInt("Sound") == 1)
-        {
+        // Check Mute
+        if (!IsMuted) {
             WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
             PlayerPrefs.SetInt("Sound", 0);
-            WwiseInterface.Instance.SetVolume(0, VolumeHandle.SFX);
-            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Music);
             muteSound.GetComponent<Image>().color = Color.red;
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
         }
-        else if (PlayerPrefs.GetInt("Sound") == 0)
-        {
+        else {
             WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
             PlayerPrefs.SetInt("Sound", 1);
             muteSound.GetComponent<Image>().color = Color.white;
+            WwiseInterface.Instance.SetVolume(100, VolumeHandle.Master);
             // Volume is set correctly in update loop, and doesn't need to be set here.
+            // EDIT: MASTER VOLUME IS INACCESSIBLE EXCEPT THROUGH BUTTONS, AND IS NOT UPDATED IN UPDATE LOOP!
         }
     }
 
