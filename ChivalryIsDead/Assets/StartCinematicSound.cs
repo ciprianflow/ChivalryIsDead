@@ -8,6 +8,7 @@ public class StartCinematicSound : MonoBehaviour {
         WwiseInterface.Instance.StopEvent("music1Play");
         WwiseInterface.Instance.StopEvent("musicquest");
         WwiseInterface.Instance.StopEvent("start_world_1_ambience");
+        WwiseInterface.Instance.StopEvent("reward_combo_start");
 
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
         AkSoundEngine.PostEvent("cinematicIntro", gameObject);
