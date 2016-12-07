@@ -268,6 +268,7 @@ public class SuicideAI : MonsterAI
 
     void MoveToIdle()
     {
+        Debug.Log("MOVE TO IDLE");
         state = State.Idle;
         stateFunc = Idle;
         StopNavMeshAgent();

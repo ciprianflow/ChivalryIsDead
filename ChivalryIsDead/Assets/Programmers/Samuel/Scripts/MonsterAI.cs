@@ -153,6 +153,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     {
         if (aggro && !aggroed)
         {
+            Debug.Log("IM GETTING AGGROED");
             ToMove();
             aggroed = true;
 
@@ -202,7 +203,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void AttackToMove()
     {
-        //Debug.Log("AttackToMove");
+        Debug.Log("AttackToMove");
         ResumeNavMeshAgent();
         agent.velocity = Vector3.zero;
         ToMove();
@@ -210,7 +211,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     protected void IdleToMove()
     {
-        //Debug.Log("IdleToMove");
+        Debug.Log("IdleToMove");
         ToMove();
     }
 
@@ -396,8 +397,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     public int HitMonsterReputation()
     {
-        if (StaticData.currQuest.Data.Type == QuestType.Destroy)
-        {
+        
+        if (StaticData.currQuest != null && StaticData.currQuest.Data.Type == QuestType.Destroy) {
             return -(MonsterRep);
         }
         return MonsterRep;
