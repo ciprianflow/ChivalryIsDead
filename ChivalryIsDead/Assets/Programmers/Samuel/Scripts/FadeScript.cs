@@ -8,9 +8,6 @@ public class FadeScript : MonoBehaviour {
     public float stayTime = 2f;
     public float fadeTime = 1f;
     public GameObject howToPlay;
-    public GameObject Unity;
-    public GameObject DADIU;
-    public GameObject Menu;
 
     float timer = 0;
 
@@ -19,22 +16,13 @@ public class FadeScript : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start ()
     {
-        DADIU.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        DADIU.SetActive(false);
-        Unity.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        Unity.SetActive(false);
-
-        if (!PlayerPrefs.HasKey("Setup"))
+        if(!PlayerPrefs.HasKey("Setup"))
         {
-            
+            yield return new WaitForSeconds(4f);
             howToPlay.SetActive(true);
-            yield return new WaitForSeconds(2f);
         }
 
         howToPlay.SetActive(false);
-        Menu.SetActive(true);
         this.gameObject.SetActive(true);
         CG = GetComponent<CanvasGroup>();
         StartCoroutine(stay());

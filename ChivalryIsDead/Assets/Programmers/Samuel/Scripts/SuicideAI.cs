@@ -4,9 +4,6 @@ using System;
 
 public class SuicideAI : MonsterAI
 {
-    #region Overrides
-    public new int ObjectiveSheepRep = -100;
-    #endregion
 
     [Header("Suicide Specific Variables")]
     public float tauntTime = 5f;
@@ -230,11 +227,11 @@ public class SuicideAI : MonsterAI
 
     public override int GetObjectiveAttackReputation()
     {
-        int rep = ObjectiveAttackRep * 2; // Base is 25, 25 * 2 = 50.
+        int rep = ObjectiveAttackRep;
         //this means taunted..
         if (taunted)
         {
-            rep *= 2;                     // Rep is 50, 50 * 2 = 100.
+            rep *= 2;
         }
 
         return rep;
