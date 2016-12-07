@@ -34,11 +34,11 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     //MONSTER ATTACk REP
     public int AttackRep = -20;
     public int OverreactRep = -60;
-    public int ObjectiveAttackRep = -20;
-    public int ObjectiveSheepRep = -100;
-    public int MonsterRep = 50;
+    public int ObjectiveAttackRep = -25;
+    public int ObjectiveSheepRep = -50;
+    public int MonsterRep = -50;
     //KNIGHT ATTACk REP
-    public int PlayerAttackRep = 30;
+    public int PlayerAttackRep = 200; //30;
 
     public MonsterHandle monsterHandle;
 
@@ -396,10 +396,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     public int HitMonsterReputation()
     {
-        if (StaticData.currQuest.Data.Type == QuestType.Destroy)
-        {
-            return -(MonsterRep);
-        }
+        //if (StaticData.currQuest.Data.Type == QuestType.Destroy)
+        //{
+        //    return -(MonsterRep);
+        //}
         return MonsterRep;
     }
 
