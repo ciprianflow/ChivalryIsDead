@@ -29,16 +29,24 @@ public class Gameplay_Dialog : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         isnotAFK = false;
 
-        if (PlayerPrefs.GetInt("SuicideTut") == 1)
+        if (PlayerPrefs.GetInt("SuicideLevel") == 1)
         {
 
-            suicideTut.SetActive(true);
+
             suicideTutAnim = suicideTut.GetComponent<Animator>();
-            suicideTutAnim.speed = 1f;
+            yield return new WaitForSeconds(6f);
+            Time.timeScale = 0.1f;
+
+            suicideTut.SetActive(true);
+            skipBtn.SetActive(false);
+            //suicideTutAnim.speed = 1f;
+            swordAnimator.speed = 10f;
+            swordBubbleAnimator.speed = 10f;
             suicideTutAnim.SetBool("playLearnSuicide", true);
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
-            skipBtn.SetActive(false);
-            PlayerPrefs.SetInt("SuicideTut", 0);
+
+            PlayerPrefs.SetInt("SuicideTut", 1);
+            PlayerPrefs.SetInt("SuicideLevel", 0);
         }
 
         if (SceneGetter.Instance.isDestroyQuest())
@@ -138,8 +146,9 @@ public class Gameplay_Dialog : MonoBehaviour
 
     }
 
-    public void HalfTime()
+    public IEnumerator HalfTime()
     {
+        yield return new WaitForSeconds(1f);
         if (SceneGetter.Instance.isDestroyQuest())
         {
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 20);
@@ -163,7 +172,8 @@ public class Gameplay_Dialog : MonoBehaviour
     public IEnumerator WakeUp()
     {
         Vector3 startingPos = player.transform.position;
-        
+
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
         skipBtn.SetActive(false);
         while (!isnotAFK)

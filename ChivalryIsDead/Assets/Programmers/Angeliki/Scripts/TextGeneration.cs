@@ -67,39 +67,40 @@ public class TextGeneration : MonoBehaviour {
     public string CreateQuestText(QuestData data)
     {
         var questDesc = new StringBuilder();
-        Debug.Log("enemy"+ data.EnemyCount);
-        Debug.Log("friend"+ data.FriendlyCount);
-        if(PlayerPrefs.GetString("Language") == "English")
+       
+        if (PlayerPrefs.GetString("Language") == "English")
         {
             if (data.Type == QuestType.Destroy)
             { //Dræb de {0} fjender. (Der er 2 __)
-                questDesc.Append(string.Format("• Destroy the {0} enemies. (There are {1})" + Environment.NewLine,
+                questDesc.Append(string.Format("• Destroy the {0} enemies. ({1})" + Environment.NewLine,
                     data.EnemyCount,
                     string.Join(", ", data.GetEnemies().ToArray()))
                 );                                     //Brug de {0} fjender til at miste omdømme
-                swordQuestDesc.Append(string.Format("• Use the {0} enemies to lose reputation" + Environment.NewLine,
-                    data.EnemyCount)
+                swordQuestDesc.Append(string.Format("• Use the {0} enemies ({1}) to lose reputation" + Environment.NewLine,
+                    data.EnemyCount,
+                    string.Join(", ", data.GetEnemies().ToArray()))
                 );
             }
             else if (data.Type == QuestType.Protect)
             {
                 questDesc.Append(   //Dræb de {0} fjender. (Der er {1})
-                    string.Format("• Destroy the {0} enemies." + Environment.NewLine,
+                    string.Format("• Destroy the {0} enemies ({1})." + Environment.NewLine,
                         data.EnemyCount,
                         string.Join(", ", data.GetEnemies().ToArray()))
                 );
                 swordQuestDesc.Append( //Brug de {0} fjender
-                    string.Format("• Use the {0} enemies" + Environment.NewLine,
-                        data.EnemyCount)
+                    string.Format("• Use the {0} enemies ({1})" + Environment.NewLine,
+                        data.EnemyCount,
+                        string.Join(", ", data.GetEnemies().ToArray()))
                 );
                 questDesc.Append(   //Beskyt de {0} venlige. (Der er {1})
-                    string.Format("• Protect the {0} friendlies." + Environment.NewLine,
-                        data.FriendlyCount,
+                    string.Format("• Protect the {0} sheep and the objective." + Environment.NewLine,
+                        data.FriendlyCount-1,
                         string.Join(", ", data.GetFriends().ToArray()))
                 );
                 swordQuestDesc.Append(  //til at ødelægge {0} {1}                   og miste ømdømme
-                    string.Format("to destroy the {0} friendlies" + Environment.NewLine + " and lose reputation" + Environment.NewLine,
-                        data.FriendlyCount,
+                    string.Format("to kill the {0} sheep and destroy the objective" + Environment.NewLine + " to lose reputation" + Environment.NewLine,
+                        data.FriendlyCount-1,
                         string.Join(", ", data.GetFriends().ToArray()))
                 );
             }                //Du har 150 sekunder.
