@@ -457,8 +457,8 @@ public class PlayerActionController : MonoBehaviour
         StartCoroutine(releaseAttackedCoroutine);
 
         overreactTimestamp = 0;
-
-        OverreactTimer.SetActive(true);
+        if(!SceneGetter.Instance.isTutorial1() && !SceneGetter.Instance.isTutorial2())
+            OverreactTimer.SetActive(true);
 
         //can overreact
         playerState = PlayerState.HIT;
