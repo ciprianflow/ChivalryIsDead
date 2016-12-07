@@ -13514,9 +13514,6 @@
 						<Reference Name="Conversion">
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 						</Reference>
-						<Reference Name="Effect0" PluginName="Wwise Compressor" CompanyID="0" PluginID="108" PluginType="3">
-							<ObjectRef Name="Dialog_Leveler_Hard" ID="{865FB36F-8717-4D30-AD05-14E56375CD40}" WorkUnitID="{E8613F7D-BAD3-45CD-A3ED-505576F31277}"/>
-						</Reference>
 						<Reference Name="OutputBus">
 							<ObjectRef Name="dialogue" ID="{8B0CCFBE-E709-4A1F-A9B1-A743FFFB93B1}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 						</Reference>
@@ -14569,7 +14566,7 @@
 							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
 						</Reference>
 						<Reference Name="OutputBus">
-							<ObjectRef Name="ambience" ID="{274B38EF-37D2-44E0-9CBB-2909F0D8DE94}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
+							<ObjectRef Name="sfx" ID="{9B61301A-EA66-4285-89E0-4AC6E0209D74}" WorkUnitID="{907AFF45-16AF-4708-93BE-B0FF9D3A6728}"/>
 						</Reference>
 					</ReferenceList>
 					<ChildrenList>
@@ -15282,6 +15279,13 @@
 					</ReferenceList>
 					<ChildrenList>
 						<Sound Name="cinematic intro v1" ID="{8B57DD09-3A44-4529-AC5F-CF6383586C94}" ShortID="110058772" Type="SoundFX">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-11</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{79A7EC2E-2B5C-4137-8282-52945CCB9A84}"/>
