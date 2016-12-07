@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class RangedAI : MonsterAI
 {
+    #region Overrides
+    public new int AttackRep = -10;
+    #endregion
 
     [Header("Ranged Specific Values")]
     public GameObject projectile;
