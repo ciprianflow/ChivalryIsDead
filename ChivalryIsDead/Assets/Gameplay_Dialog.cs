@@ -51,7 +51,7 @@ public class Gameplay_Dialog : MonoBehaviour
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 13);
         }
 
-        if (PlayerPrefs.GetInt("SuicideLevel") == 0)
+        if (PlayerPrefs.GetInt("SuicideLevel") == 1)
         {
 
 
@@ -67,7 +67,8 @@ public class Gameplay_Dialog : MonoBehaviour
             suicideTutAnim.SetBool("playLearnSuicide", true);
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
             
-            PlayerPrefs.SetInt("SuicideLevel", 1);
+            PlayerPrefs.SetInt("SuicideTut", 1);
+            PlayerPrefs.SetInt("SuicideLevel", 0);
         }
     }
 

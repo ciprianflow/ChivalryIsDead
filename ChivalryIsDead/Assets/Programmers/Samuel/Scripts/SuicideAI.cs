@@ -27,6 +27,8 @@ public class SuicideAI : MonsterAI
     void Start()
     {
         GameDialogUI = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<Gameplay_Dialog>();
+        if(PlayerPrefs.GetInt("SuicideTut") == 0)
+            PlayerPrefs.SetInt("SuicideLevel", 1); 
     }
 
     void OnDrawGizmos()
@@ -271,6 +273,7 @@ public class SuicideAI : MonsterAI
 
     void MoveToIdle()
     {
+        Debug.Log("MOVE TO IDLE");
         state = State.Idle;
         stateFunc = Idle;
         StopNavMeshAgent();

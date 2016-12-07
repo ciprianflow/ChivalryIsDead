@@ -142,7 +142,9 @@ public class PlayerActionController : MonoBehaviour
 
     // Use this for initialization
     void Start () {
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        WwiseInterface.Instance.StopEvent("music1Play");
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicQuest);
+        //WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
         WwiseInterface.Instance.SetAmbience(AmbienceHandle.WorldOne);
         //numDay = PlayerPrefs.GetInt("numDay");
         globalCooldown = 0;
