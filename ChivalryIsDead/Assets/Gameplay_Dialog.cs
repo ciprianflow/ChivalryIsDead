@@ -150,7 +150,10 @@ public class Gameplay_Dialog : MonoBehaviour
 
     public IEnumerator HalfTime()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
+        Debug.Log("halftime");
         if (SceneGetter.Instance.isDestroyQuest())
         {
             this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 20);
@@ -174,6 +177,7 @@ public class Gameplay_Dialog : MonoBehaviour
     public IEnumerator WakeUp()
     {
         Vector3 startingPos = player.transform.position;
+        this.GetComponent<DialogObject>().StopDialog();
 
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 4);
@@ -201,59 +205,78 @@ public class Gameplay_Dialog : MonoBehaviour
 
     public IEnumerator WrongOverreact()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
     }
 
     public IEnumerator YouHitSheep()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
     }
 
     public IEnumerator StopAttacking()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 0);
     }
 
     public IEnumerator SpamingTaunt()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 8);
     }
 
     public IEnumerator LowCombo()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 10);
     }
 
     public IEnumerator NoSheepKilled()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 2);
     }
 
     public IEnumerator NoTaunting()
     {
+        this.GetComponent<DialogObject>().StopDialog();
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 6);
     }
 
     public IEnumerator NoOverreacting()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 7);
     }
     public IEnumerator NoGettingHit()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 9);
     }
 
     public IEnumerator TauntSuicide()
     {
+        this.GetComponent<DialogObject>().StopDialog();
+
         yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 12);
     }
