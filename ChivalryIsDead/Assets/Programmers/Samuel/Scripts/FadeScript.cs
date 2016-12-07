@@ -8,6 +8,9 @@ public class FadeScript : MonoBehaviour {
     public float stayTime = 2f;
     public float fadeTime = 1f;
     public GameObject howToPlay;
+    public GameObject Unity;
+    public GameObject DADIU;
+    public GameObject Menu;
 
     float timer = 0;
 
@@ -16,13 +19,33 @@ public class FadeScript : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start ()
     {
-        if(!PlayerPrefs.HasKey("Setup"))
+
+        if(!PlayerPrefs.HasKey("SkipSplash"))
         {
-            yield return new WaitForSeconds(4f);
-            howToPlay.SetActive(true);
+            PlayerPrefs.SetInt("SkipSplash", 0);
         }
 
-        howToPlay.SetActive(false);
+        if(PlayerPrefs.GetInt("SkipSplash") == 0)
+        {
+            DADIU.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            DADIU.SetActive(false);
+            Unity.SetActive(true);
+            yield return new WaitForSeconds(2f);
+            Unity.SetActive(false);
+
+            if (!PlayerPrefs.HasKey("Setup"))
+            {
+
+                howToPlay.SetActive(true);
+                yield return new WaitForSeconds(2f);
+            }
+
+            howToPlay.SetActive(false);
+            PlayerPrefs.SetInt("SkipSplash", 1);
+        }
+       
+        Menu.SetActive(true);
         this.gameObject.SetActive(true);
         CG = GetComponent<CanvasGroup>();
         StartCoroutine(stay());
