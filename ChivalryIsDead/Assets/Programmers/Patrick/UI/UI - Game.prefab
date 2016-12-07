@@ -303,6 +303,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000012637025678}
+  - 95: {fileID: 95000013590463100}
   m_Layer: 5
   m_Name: PrincessDialog
   m_TagString: PrincessBubble
@@ -1216,6 +1217,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 224000010604965560}
+  - 95: {fileID: 95000013405477674}
   m_Layer: 5
   m_Name: SwordDialog
   m_TagString: SwordBubble
@@ -1701,6 +1703,40 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 875f344dc5ac3394fa7c171fbec4f596, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95000013405477674
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013629453612}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5eef91e035ffe8b4e85c75c30afe384e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!95 &95000013590463100
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010639211158}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1867368a2d583bd49ae2dbec5e209690, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2889,6 +2925,7 @@ MonoBehaviour:
   killString: 
   NewBagInitializer: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   sentences: []
+  dialogEnglish: []
 --- !u!114 &114000011189616110
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4648,6 +4685,8 @@ MonoBehaviour:
   enemyTauntBubble: {fileID: 1000012915544526}
   suicideTut: {fileID: 1000011113244740}
   skipBtn: {fileID: 1000012317403292}
+  swordAnimator: {fileID: 95000011601404944}
+  swordBubbleAnimator: {fileID: 95000013405477674}
 --- !u!114 &114000013658249916
 MonoBehaviour:
   m_ObjectHideFlags: 1
