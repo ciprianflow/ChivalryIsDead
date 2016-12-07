@@ -55,6 +55,7 @@ public class TextGeneration : MonoBehaviour {
     private string QuestDifficulty = "";
     private string QuestText = "";
     private string SwordQuestText = "";
+    QuestType questType;
 
     public void SetQuestText(QuestDescription desc, QuestData data)
     {
@@ -67,7 +68,7 @@ public class TextGeneration : MonoBehaviour {
     public string CreateQuestText(QuestData data)
     {
         var questDesc = new StringBuilder();
-       
+        questType = data.Type;
         if (PlayerPrefs.GetString("Language") == "English")
         {
             if (data.Type == QuestType.Destroy)
