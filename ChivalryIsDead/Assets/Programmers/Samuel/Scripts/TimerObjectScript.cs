@@ -41,7 +41,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
         if (!isReminded && timer > halfTime)
         {
             Dsystem = GameObject.FindGameObjectWithTag("DialogSystem");
-            Dsystem.GetComponent<Gameplay_Dialog>().HalfTime();
+            Dsystem.GetComponent<Gameplay_Dialog>().StartCoroutine("HalfTime");
             isReminded = true;
         }
 

@@ -333,7 +333,7 @@ public class HubDataManager : MonoBehaviour {
     {
         BaseQuest quest = (BaseQuest)AvailableQuests[currSelectedQuestIndex];
         QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description, quest.Data);
-
+       
         bool boolean = Convert.ToBoolean(i);
         //QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
         QuestLetter.SetActive(boolean);
