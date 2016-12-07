@@ -138,7 +138,7 @@ public class PlayerScript : MonoBehaviour {
             if(hit.transform.CompareTag("Ground"))
             {
                 transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
-                Debug.Log("FOUND GROUND");
+                //Debug.Log("FOUND GROUND");
                 flying = false;
                 break;
             }

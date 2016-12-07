@@ -282,7 +282,6 @@ public class DummyManager : MonoBehaviour
             bonus = currentTime * 20;
         }
 
-        Debug.Log("Time Left" + time);
         if (time <= 0.1)
         {
             score = 5000;

@@ -316,7 +316,7 @@ public class PlayerActionController : MonoBehaviour
                 //Debug.Log("Overreact points:" + -points + " Attack dur: " + AttackedDuration + " - timestamp: " + overreactTimestamp);
                 //@@HARDCODED
                 // perfect overreact
-                if (points > 99)
+                if (points > 75)
                 {
                     WwiseInterface.Instance.PlayKnightCombatVoiceSound(KnightCombatVoiceHandle.OverreactPerfect, this.gameObject);
                     if (OverreactGreatParticle != null)
@@ -421,7 +421,7 @@ public class PlayerActionController : MonoBehaviour
     //objective attacked by monsters
     public void ObjectiveAttacked(MonsterAI monster)
     {
-        Debug.Log("Objective attacked " + monster.name);
+       // Debug.Log("Objective attacked " + monster.name + " REP: " + monster.GetObjectiveAttackReputation());
 
         pb.ChangeRepScore(monster.GetObjectiveAttackReputation());
         pb.Invoke();
@@ -431,7 +431,7 @@ public class PlayerActionController : MonoBehaviour
     //sheep attacked by monsters
     public void SheepAttacked(MonsterAI monster)
     {
-        Debug.Log("Sheep attacked " + monster.name);
+        //Debug.Log("Sheep attacked " + monster.name + "REP :" + monster.GetSheepAttackReputation());
         noSheepKilled = 0;
         PlayerPrefs.SetInt("noSheepKill", noSheepKilled);
         pb.ChangeRepScore(monster.GetSheepAttackReputation());
@@ -441,7 +441,7 @@ public class PlayerActionController : MonoBehaviour
 
     public void MonsterAttackedMonster(MonsterAI monster)
     {
-        Debug.Log("MONSTER ATACKED MONSTER" + monster.name);
+        //Debug.Log("MONSTER ATACKED MONSTER" + monster.name + " REP: " + monster.HitMonsterReputation());
 
         pb.ChangeRepScore(monster.HitMonsterReputation());
         pb.Invoke();

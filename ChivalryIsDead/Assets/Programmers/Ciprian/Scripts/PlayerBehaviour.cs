@@ -50,6 +50,9 @@ class PlayerBehaviour : ScorePublisher
 
             RepLossParticle.SetActive(false);
 
+
+            Debug.Log("REP LOSS: " + score);
+
             ScoreChange = dummyManager.GetComboMultiplier(score);
             //increase combo
             dummyManager.IncreaseCombo();
@@ -69,7 +72,7 @@ class PlayerBehaviour : ScorePublisher
             ResetCombo();
 
             ScoreChange = dummyManager.GetComboMultiplier(score);
-           
+            Debug.Log("REP GAINED: " + score);
         }   
     }
 
