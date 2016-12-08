@@ -52,7 +52,7 @@ public class MeleeAI2 : MonsterAI
         }
         else
         {
-            Debug.Log("IM DONE");
+            //Debug.Log("IM DONE");
             AttackToMove();
         }
 
@@ -291,7 +291,7 @@ public class MeleeAI2 : MonsterAI
         //this means taunted..
         if (state == State.Charge)
         {
-            rep *= 2;
+            rep *= 3;
         }
 
         return rep;
@@ -522,7 +522,7 @@ public class MeleeAI2 : MonsterAI
     {
         yield return new WaitForSeconds(f);
         if (!hitPlayer)
-            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 30, this))
+            if (DoAOEAttack(transform.position, attackLength + 2.5f, attackForce, attackForce * 30, this))
                 hitPlayer = true;
     }
 

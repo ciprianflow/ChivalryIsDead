@@ -24,6 +24,8 @@ public class SuicideAI : MonsterAI
     void Start()
     {
         GameDialogUI = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<Gameplay_Dialog>();
+        if (PlayerPrefs.GetInt("SuicideTut") == 0)
+            PlayerPrefs.SetInt("SuicideLevel", 1);
     }
 
     void OnDrawGizmos()
@@ -200,7 +202,8 @@ public class SuicideAI : MonsterAI
                 
                 Debug.Log("EXPLODE ON PLAYER");
 
-                if (PlayerPrefs.GetInt("SuicideTut") == 0) {
+                if (PlayerPrefs.GetInt("SuicideTut") == 0)
+                {
                     GameDialogUI.StartCoroutine("TauntSuicide");
                     PlayerPrefs.SetInt("SuicideTut", 1);
                 }

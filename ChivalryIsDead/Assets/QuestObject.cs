@@ -59,7 +59,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
             obj.transform.position = pos;
         }
 
-        Debug.Log("IM hit " + transform.name);
+        //Debug.Log("IM hit " + transform.name);
 
         if (healthScript.takeDamage(dmg))
         {   
@@ -70,7 +70,7 @@ public class QuestObject : MonoBehaviour, IObjectiveTarget
                 ActivateDestroyedVersion();
             }
 
-            Debug.Log("Quest Objective died");
+            //Debug.Log("Quest Objective died");
             if(StaticIngameData.mapManager != null)
                 StaticIngameData.mapManager.CheckObjectives(this);
         }

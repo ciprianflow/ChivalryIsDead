@@ -118,7 +118,7 @@ public class DummyManager : MonoBehaviour
         int secondsAFK = (int) Math.Floor(timestamp);
         if (GameDialogUI != null && firstTimeAFK && secondsAFK == StartAFKSeconds)
         {
-            GameDialogUI.WakeUp();
+            GameDialogUI.StartCoroutine("WakeUp");
             firstTimeAFK = false;
         }
 
@@ -264,7 +264,16 @@ public class DummyManager : MonoBehaviour
 
         float time = 0;
         if (TimerObjectScript.Instance != null)
+        {
             time = TimerObjectScript.Instance.GetElapsedTime();
+        } 
+        else
+        {
+            Debug.LogWarning("Can't get timer => 0 bonus");
+            return score;
+            
+        }
+
 
         float bonus = 0;
         // bonus
@@ -282,9 +291,11 @@ public class DummyManager : MonoBehaviour
             bonus = currentTime * 20;
         }
 
-        if (time == 0)
+        if (time <= 0.1)
         {
-            score = 5000;
+            //it's actually plus rep
+            bonus = -5000;
+            Debug.Log("BONUS REPPED TIMER DOWN" + time);
         }
 
         if (score > 0)

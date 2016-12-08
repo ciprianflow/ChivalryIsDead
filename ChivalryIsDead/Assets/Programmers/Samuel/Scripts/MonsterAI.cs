@@ -32,13 +32,13 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     [Header("Reputation values")]
     //MONSTER ATTACk REP
-    public int AttackRep = -20;
-    public int OverreactRep = -60;
-    public int ObjectiveAttackRep = -20;
-    public int ObjectiveSheepRep = -100;
-    public int MonsterRep = 50;
+    public int AttackRep;
+    public int OverreactRep;
+    public int ObjectiveAttackRep;
+    public int ObjectiveSheepRep;
+    public int MonsterRep;
     //KNIGHT ATTACk REP
-    public int PlayerAttackRep = 30;
+    public int PlayerAttackRep;
 
     public MonsterHandle monsterHandle;
 
@@ -396,10 +396,12 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     public int HitMonsterReputation()
     {
+        /*
         if (StaticData.currQuest.Data.Type == QuestType.Destroy)
         {
             return -(MonsterRep);
         }
+        */
         return MonsterRep;
     }
 
@@ -497,8 +499,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 }
                 else
                 {
+                    //Debug.Log("WTF ATTACKED PLAYER??" + m.name);
                     //hit monster
-                    Monster.playerAction.MonsterAttackedMonster(Monster);
+                    //Monster.playerAction.MonsterAttackedMonster(Monster);
                 }
             }
 
@@ -509,7 +512,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                 if (body)
                 {
-                    Debug.Log(playerForce);
+                    //Debug.Log(playerForce);
                     body.AddExplosionForce(playerForce, pos, radius);
                 }
 
