@@ -122,7 +122,7 @@ public class HubDataManager : MonoBehaviour {
     public void PushToHubData(float repChange, int dayChange)
     {
         var hubData = LoadHubData();
-        hubData.GlobalReputation += Mathf.Clamp(repChange, -10, 10);
+        hubData.GlobalReputation += Mathf.Clamp(repChange, -16, 16);
         hubData.DaysLeft += dayChange;
         hubData.RandomSeed = UnityEngine.Random.Range(0, int.MaxValue);
 

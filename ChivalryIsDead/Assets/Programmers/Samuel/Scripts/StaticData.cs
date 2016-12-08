@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public static class StaticData {
 
-    internal static string VersionNumber = "RC02_0712";
+    internal static string VersionNumber = "RC03_0812";
 
     //Current quest and objectives
     public static bool pressedContinue = false;
