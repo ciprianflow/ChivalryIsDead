@@ -35,7 +35,7 @@ public class Melee_Events : MonoBehaviour {
         AkSoundEngine.PostEvent(sounds[sound], gameObject);
     }
 
-    void takeDamage() {
+    public void takeDamage() {
         AkSoundEngine.PostEvent("impact_flesh", gameObject);
     }
 }

@@ -98,7 +98,7 @@ public class SceneGetter : MonoBehaviour {
     public bool isWellQuest()
     {
         string n = SceneManager.GetActiveScene().name;
-        if (n == "01UR")
+        if (n == "02UR")
         {
             return true;
         }

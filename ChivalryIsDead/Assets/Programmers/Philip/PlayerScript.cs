@@ -36,6 +36,7 @@ public class PlayerScript : MonoBehaviour {
     public float UpperWeight = 0;
     public float LowerWeight = 0;
 
+    private bool flying = false;
     public GameObject SwordTrail;
     public GameObject DustParticle;
 
@@ -123,11 +124,45 @@ public class PlayerScript : MonoBehaviour {
         {
             zVel -= speedAcc;
         }
+        if(Camera.main != null)
+            transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
 
-        transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+        //check if in air..
+        /*
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(transform.position, Vector3.down, 1.5f);
+
+        flying = true;
+        foreach (RaycastHit hit in hits)
+        {
+
+            if(hit.transform.CompareTag("Ground"))
+            {
+                //CAREFUL HEREtransform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
+                //Debug.Log("FOUND GROUND");
+                flying = false;
+                break;
+            }
+        }
+        */
+        /*
+        //not on the ground still
+        if (flying)
+        {
+
+            anim.SetBool("flying", true);
+        }
+        else
+        {
+            anim.SetBool("flying", false);
+        }
+
+        */
         transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
-        //GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1000);
         anim.SetFloat("Speed", zVel * 2f);
+
+        //GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1000);
+
 
     }
 

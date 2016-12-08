@@ -8,7 +8,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     int id = 31;
 
     float timer = 0;
-    float maxTime = 120;
+    float maxTime = 90;
 
     float halfTime;
     public static bool isReminded;
@@ -41,7 +41,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
         if (!isReminded && timer > halfTime)
         {
             Dsystem = GameObject.FindGameObjectWithTag("DialogSystem");
-            Dsystem.GetComponent<Gameplay_Dialog>().HalfTime();
+            Dsystem.GetComponent<Gameplay_Dialog>().StartCoroutine("HalfTime");
             isReminded = true;
         }
 

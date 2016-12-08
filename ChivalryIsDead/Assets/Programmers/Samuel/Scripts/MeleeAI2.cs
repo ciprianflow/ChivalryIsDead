@@ -52,7 +52,7 @@ public class MeleeAI2 : MonsterAI
         }
         else
         {
-            Debug.Log("IM DONE");
+            //Debug.Log("IM DONE");
             AttackToMove();
         }
 
@@ -203,22 +203,22 @@ public class MeleeAI2 : MonsterAI
 
     }
 
-    void FixedUpdate()
-    {
-        if (Mathf.Abs(zVel - (agent.velocity.magnitude)) < 0.05f)
-        {
-            return;
-        }
-        else if (zVel < (agent.velocity.magnitude))
-        {
-            zVel += 0.1f;
-        }
-        else
-        {
-            zVel -= 0.1f;
-        }
-        anim.SetFloat("Speed", zVel);
-    }
+    //void FixedUpdate()
+    //{
+    //    if (Mathf.Abs(zVel - (agent.velocity.magnitude)) < 0.05f)
+    //    {
+    //        return;
+    //    }
+    //    else if (zVel < (agent.velocity.magnitude))
+    //    {
+    //        zVel += 0.1f;
+    //    }
+    //    else
+    //    {
+    //        zVel -= 0.1f;
+    //    }
+    //    anim.SetFloat("Speed", zVel);
+    //}
 
     //Called every frame in the Move state
     public override void Move()
@@ -291,7 +291,7 @@ public class MeleeAI2 : MonsterAI
         //this means taunted..
         if (state == State.Charge)
         {
-            rep *= 2;
+            rep *= 3;
         }
 
         return rep;
@@ -460,15 +460,18 @@ public class MeleeAI2 : MonsterAI
 
         Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
 
-        if (Mathf.Abs(q.eulerAngles.y - transform.eulerAngles.y) < 10)
+        if (Mathf.Abs(q.eulerAngles.y - transform.eulerAngles.y) < 20)
             return;
+        anim.SetTrigger("Turn");
 
-        if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
-            anim.SetTrigger("StartTurnRight");
-        }
-        else {
-            anim.SetTrigger("StartTurnLeft");
-        }
+        //if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
+        //    //anim.SetTrigger("StartTurnRight");
+        //    anim.SetTrigger("Turn");
+        //}
+        //else {
+        //    anim.SetTrigger("Turn");
+        //    //anim.SetTrigger("StartTurnLeft");
+        //}
     }
 
     public override void Turn()
@@ -522,7 +525,7 @@ public class MeleeAI2 : MonsterAI
     {
         yield return new WaitForSeconds(f);
         if (!hitPlayer)
-            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 30, this))
+            if (DoAOEAttack(transform.position, attackLength + 2.5f, attackForce, attackForce * 30, this))
                 hitPlayer = true;
     }
 

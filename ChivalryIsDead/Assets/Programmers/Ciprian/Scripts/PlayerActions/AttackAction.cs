@@ -87,6 +87,9 @@ class AttackAction : MonoBehaviour
         foreach (Collider collider in colliders)
         {
             MonsterAI m = collider.GetComponent<MonsterAI>();
+            if (m.getState() == State.Death)
+                continue;
+
             if (m.GetType().Equals(typeof(SheepAI)))
             {
                 m.HitSheep(collider.GetComponent<QuestObject>(), m, collider.gameObject, 750f, false, null);
