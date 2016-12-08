@@ -291,7 +291,7 @@ public class DummyManager : MonoBehaviour
             bonus = currentTime * 20;
         }
 
-        if (time <= 0.1)
+        if (time <= 0.01)
         {
             //it's actually plus rep
             bonus = -5000;
