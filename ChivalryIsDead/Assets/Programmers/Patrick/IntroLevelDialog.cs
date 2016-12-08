@@ -254,6 +254,7 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogFive()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
         //yield return new WaitForSeconds(2);
         //UI.GetComponent<GameMenu>().Sword();
