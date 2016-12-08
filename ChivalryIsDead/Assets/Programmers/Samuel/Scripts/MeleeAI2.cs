@@ -149,7 +149,29 @@ public class MeleeAI2 : MonsterAI
             //AccelTime is the time it takes for the charge to reach MAXIMUM SPEED
             accelTimer += Time.deltaTime;
             float accel = accelTimer / accelTime;
-            transform.Translate(Vector3.forward * chargeSpeedMultiplier * accel * Time.deltaTime);
+            Vector3 translation = Vector3.forward * chargeSpeedMultiplier * accel * Time.deltaTime;
+
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ADDED THIS SHIT AFTER NO PUSH TIME, IF FUCK UP DELETE SHIT BELOW
+            NavMeshHit hit;
+            if (NavMesh.Raycast(transform.position, transform.position + translation, out hit, 1))
+            {
+                anim.SetTrigger("HitObject");
+                ChargeToMove();
+                MeleeAttack();
+            }
+            //ADDED THIS SHIT AFTER NO PUSH TIME, IF FUCK UP DELETE SHIT ABOVE
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+
+            transform.Translate(translation);
         }
         else
         {
@@ -377,6 +399,7 @@ public class MeleeAI2 : MonsterAI
     //Charging collision
     void OnCollisionEnter(Collision coll)
     {
+
         //If the state is not charge do nothing
         if (state != State.Charge)
             return;
