@@ -284,14 +284,14 @@ public class DummyManager : MonoBehaviour
         float currentTime = maxTime - TimerObjectScript.Instance.GetTimer();
         if (currentTime > 45)
         {
-            bonus = currentTime * 40;
+            bonus = currentTime * 20;
         }
         else
         {
-            bonus = currentTime * 20;
+            bonus = currentTime * 10;
         }
 
-        if (time <= 0.1)
+        if (time <= 0.01)
         {
             //it's actually plus rep
             bonus = -5000;

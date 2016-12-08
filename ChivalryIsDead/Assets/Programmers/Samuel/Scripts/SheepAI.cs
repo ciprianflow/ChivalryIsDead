@@ -42,9 +42,14 @@ public class SheepAI : MonsterAI {
         patrolling = true;
         //Set the sheep to not aggro when in aggro range
         aggro = false;
+
+        WwiseInterface.Instance.PlaySheepSound(SheepAudioHandle.NeutralLoop, this.gameObject);
     }
 
-    public override void KillThis() { }
+    public override void KillThis()
+    {
+        Debug.Log("Killed sheep got called");
+    }
 
     public override void Move()
     {
@@ -62,6 +67,7 @@ public class SheepAI : MonsterAI {
 
     public override void Taunt()
     {
+
         if (state == State.Death)
             return;
 
@@ -71,6 +77,8 @@ public class SheepAI : MonsterAI {
 
         aggroed = true;
         ResetTimer();
+
+        WwiseInterface.Instance.PlaySheepSound(SheepAudioHandle.Taunted, this.gameObject);
     }
 
     public void MoveToIdle()
