@@ -55,8 +55,9 @@ public class GameMenu : MonoBehaviour {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
         // Start the background music.
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
-
+        //WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        //AkSoundEngine.PostEvent("musicquest", gameObject);
+        //AkSoundEngine.PostEvent("start_world_1_ambience", gameObject);
 
         endLetter.SetActive(false);
         introLetter.SetActive(false);
@@ -81,15 +82,15 @@ public class GameMenu : MonoBehaviour {
         soundVolume.GetComponent<Slider>().value = PlayerPrefs.GetFloat("SoundVolume");
 
         // Check Mute
-
-        if (PlayerPrefs.GetInt("Sound") == 0)
-        {
+        if (PlayerPrefs.GetInt("Sound") == 0) {
             muteSound.GetComponent<Image>().color = Color.red;
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
         }
-        else if (PlayerPrefs.GetInt("Sound") == 1)
-        {
+        else {
             muteSound.GetComponent<Image>().color = Color.white;
-
+            WwiseInterface.Instance.SetVolume(100, VolumeHandle.Master);
+            // Volume is set correctly in update loop, and doesn't need to be set here.
+            // EDIT: MASTER VOLUME IS INACCESSIBLE EXCEPT THROUGH BUTTONS, AND IS NOT UPDATED IN UPDATE LOOP!
         }
 
 
@@ -263,30 +264,44 @@ public class GameMenu : MonoBehaviour {
 
     public void SoundMute()
     {
-        
-
-        if (PlayerPrefs.GetInt("Sound") == 1)
-        {
-            PlayerPrefs.SetInt("Sound", 0);
-            Debug.Log("Off");
-        }
-        else if (PlayerPrefs.GetInt("Sound") == 0)
-        {
-            PlayerPrefs.SetInt("Sound", 1);
-            Debug.Log("On");
-        }
-
-        if (PlayerPrefs.GetInt("Sound") == 0)
-        {
+        // Check Mute
+        if (PlayerPrefs.GetInt("Sound") != 0) {
             WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
+            PlayerPrefs.SetInt("Sound", 0);
             muteSound.GetComponent<Image>().color = Color.red;
+            WwiseInterface.Instance.SetVolume(0, VolumeHandle.Master);
         }
-        else if (PlayerPrefs.GetInt("Sound") == 1)
-        {
+        else {
             WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
+            PlayerPrefs.SetInt("Sound", 1);
             muteSound.GetComponent<Image>().color = Color.white;
-
+            WwiseInterface.Instance.SetVolume(100, VolumeHandle.Master);
+            // Volume is set correctly in update loop, and doesn't need to be set here.
+            // EDIT: MASTER VOLUME IS INACCESSIBLE EXCEPT THROUGH BUTTONS, AND IS NOT UPDATED IN UPDATE LOOP!
         }
+
+
+        //if (PlayerPrefs.GetInt("Sound") == 1)
+        //{
+        //    PlayerPrefs.SetInt("Sound", 0);
+        //    Debug.Log("Off");
+        //}
+        //else if (PlayerPrefs.GetInt("Sound") == 0)
+        //{
+        //    PlayerPrefs.SetInt("Sound", 1);
+        //    Debug.Log("On");
+        //}
+
+        //if (PlayerPrefs.GetInt("Sound") == 0)
+        //{
+        //    WwiseInterface.Instance.PlayMenuSound(MenuHandle.BackwardsButtonPressed);
+        //    muteSound.GetComponent<Image>().color = Color.red;
+        //}
+        //else if (PlayerPrefs.GetInt("Sound") == 1)
+        //{
+        //    WwiseInterface.Instance.PlayMenuSound(MenuHandle.ForwardButtonPressed);
+        //    muteSound.GetComponent<Image>().color = Color.white;
+        //}
     }
 
     public void SwapControl()

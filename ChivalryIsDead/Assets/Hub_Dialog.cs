@@ -5,8 +5,16 @@ public class Hub_Dialog : MonoBehaviour {
 
     public GameObject skipBtn;
 
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public GameObject end;
+
 	// Use this for initialization
 	IEnumerator Start () {
+
+        
+
+        yield return new WaitForSeconds(0.5f);
 
         if (StaticData.Reputation <= 110 && StaticData.Reputation > 100)
         {
@@ -88,4 +96,62 @@ public class Hub_Dialog : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public IEnumerator Win()
+    {
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 11);
+        end.SetActive(true);
+        skipBtn.SetActive(false);
+        yield return new WaitForSeconds(8f);
+        HubDataManager.ResetHubData();
+
+        ResetData();
+
+        winScreen.SetActive(true);
+        StaticData.Reputation = StaticData.MaxReputation;
+    }
+
+    public IEnumerator Lose()
+    {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StopDialog();
+        this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 12);
+        end.SetActive(true);
+        skipBtn.SetActive(false);
+        yield return new WaitForSeconds(8f);
+        HubDataManager.ResetHubData();
+
+        ResetData();
+
+        loseScreen.SetActive(true);
+        StaticData.Reputation = StaticData.MaxReputation;
+    }
+
+    private void ResetData()
+    {
+        PlayerPrefs.SetInt("lowCombo", 0);
+        PlayerPrefs.SetInt("noGetHit", 1); 
+        PlayerPrefs.SetInt("noSheepKill", 1);
+        PlayerPrefs.SetInt("noTaunt", 1);
+        PlayerPrefs.SetInt("noOverreact", 1);
+        PlayerPrefs.SetInt("poorlyOverreact", 1);
+
+        PlayerPrefs.SetInt("SuicideLevel", 0);
+        PlayerPrefs.SetInt("SuicideTut", 0);
+
+
+        //Reset to Tut
+        /*
+        // Player Controls
+        PlayerPrefs.SetInt("Attack", 0);
+        PlayerPrefs.SetInt("Taunt", 0);
+        PlayerPrefs.SetInt("Overreact", 0);
+
+        // Tut Levels
+        PlayerPrefs.SetInt("AttackLevel", 0);
+        PlayerPrefs.SetInt("TauntLevel", 0);
+        PlayerPrefs.SetInt("OverreactLevel", 0);
+        */
+
+    }
 }

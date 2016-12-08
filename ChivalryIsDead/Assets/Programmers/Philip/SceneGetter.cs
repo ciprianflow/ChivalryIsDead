@@ -82,4 +82,46 @@ public class SceneGetter : MonoBehaviour {
         }
         return false;
     }
+
+    public bool isDestroyQuest()
+    {
+        string n = SceneManager.GetActiveScene().name;
+        if (n == "01UR" ||
+            n == "03UR" ||
+            n == "05UR")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool isWellQuest()
+    {
+        string n = SceneManager.GetActiveScene().name;
+        if (n == "02UR")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool isBakeryQuest()
+    {
+        string n = SceneManager.GetActiveScene().name;
+        if (n == "04UR")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool isFarmhouseQuest()
+    {
+        string n = SceneManager.GetActiveScene().name;
+        if (n == "06UR")
+        {
+            return true;
+        }
+        return false;
+    }
 }

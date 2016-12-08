@@ -52,7 +52,7 @@ public class MeleeAI2 : MonsterAI
         }
         else
         {
-            Debug.Log("IM DONE");
+            //Debug.Log("IM DONE");
             AttackToMove();
         }
 
@@ -80,7 +80,9 @@ public class MeleeAI2 : MonsterAI
                     {
                         Debug.Log((accelTime / accelTimer));
                         body.AddExplosionForce(attackForceOnOtherMonsters, transform.position, attackLength + 5);
-                    }   
+                    }
+                    base.playerAction.MonsterAttackedMonster(this);
+
                 }
 
                 if (Colliders[i].tag == "Player")
@@ -289,7 +291,7 @@ public class MeleeAI2 : MonsterAI
         //this means taunted..
         if (state == State.Charge)
         {
-            rep *= 2;
+            rep *= 3;
         }
 
         return rep;
@@ -393,14 +395,7 @@ public class MeleeAI2 : MonsterAI
                 return;
             }
             //If its not a sheep it must be a static questObjective
-            else if(QO != null)
-            {
-                Debug.Log("Hit static quest object");
-                anim.SetTrigger("HitObject");
-                QO.takeDamage(GetBaseAttackDamage(), true);
-                base.playerAction.ObjectiveAttacked(this);
-                ChargeToMove();
-            }else if (m.GetType() == typeof(MeleeAI2))
+            else if (m.GetType() == typeof(MeleeAI2))
             {
                 Debug.Log("Melee's collided with angle : " + Vector3.Dot(m.gameObject.transform.forward, transform.forward));
                 if (m.getState() == State.Charge && Vector3.Dot(m.gameObject.transform.forward, transform.forward) > 0.8)
@@ -415,7 +410,8 @@ public class MeleeAI2 : MonsterAI
         {
             anim.SetTrigger("HitObject");
             Debug.Log("Hit quest object");
-            QO.takeDamage(1, true);
+            QO.takeDamage(1, true, coll.contacts[0].point);
+            base.playerAction.ObjectiveAttacked(this);
             ChargeToMove();
         }
         else {
@@ -526,7 +522,7 @@ public class MeleeAI2 : MonsterAI
     {
         yield return new WaitForSeconds(f);
         if (!hitPlayer)
-            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 30, this))
+            if (DoAOEAttack(transform.position, attackLength + 2.5f, attackForce, attackForce * 30, this))
                 hitPlayer = true;
     }
 

@@ -168,6 +168,7 @@ public class MapManager : MonoBehaviour {
         {
             return;
         }
+        WwiseInterface.Instance.StopEvent("reward_combo_start");
 
         isQuestDone = true;
 

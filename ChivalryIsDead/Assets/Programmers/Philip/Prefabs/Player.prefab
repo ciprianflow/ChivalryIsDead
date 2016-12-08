@@ -5698,10 +5698,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013612086222}
-  m_LocalRotation: {x: -0, y: -0.9934563, z: -0, w: 0.11421316}
-  m_LocalPosition: {x: 17.31, y: 0.23, z: 9.48}
+  m_LocalRotation: {x: -0, y: -0.6648554, z: -0, w: 0.74697214}
+  m_LocalPosition: {x: 9.96, y: 0.844, z: 3.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: -58.876003, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -83.526, z: 0}
   m_Children:
   - {fileID: 4000012824637414}
   - {fileID: 4000011734748242}
@@ -8327,7 +8327,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013394371984}
   m_LocalRotation: {x: 0.6018795, y: 0.37113485, z: -0.37113485, w: 0.6018795}
-  m_LocalPosition: {x: 0, y: -0.26, z: -0}
+  m_LocalPosition: {x: 0, y: -0.23, z: -0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_LocalEulerAnglesHint: {x: 89.981, y: 0, z: -63.432003}
   m_Children: []
@@ -10107,9 +10107,9 @@ MonoBehaviour:
   AttackDamage: 1
   AttackRange: 3
   AttackAngle: 0.3
-  TauntRadius: 15
+  TauntRadius: 13
   TauntDuration: 3
-  AggroRadius: 6
+  AggroRadius: 13
   AttackedDuration: 1.5
   AttackCooldown: 0.3
   OverreactCooldown: 2.5
@@ -10121,8 +10121,10 @@ MonoBehaviour:
   ComboUpwardParticle: {fileID: 1000012733980786}
   OverreactGreatParticle: {fileID: 1000012923371104}
   OverreactOkParticle: {fileID: 1000011631234410}
+  OverreactTimer: {fileID: 0}
   hitParticle: {fileID: 1000014194934342, guid: bfbed7d8566cb7645a20009fabc231db,
     type: 2}
+  OverHit: 0
 --- !u!114 &114000010075091632
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10257,7 +10259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34a2ac17a00aceb478813cdd802cc0f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AggroRadius: 7.5
+  AggroRadius: 10
 --- !u!114 &114000010547712420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10815,7 +10817,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TauntDuration: 3
-  TauntRadius: 7.5
+  TauntRadius: 10
   TauntCooldown: 5
   GameDialogUI: {fileID: 0}
 --- !u!114 &114000013927124806
@@ -13147,7 +13149,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1407215884
+  randomSeed: -676927105
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -24990,7 +24992,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 2137348595
+  randomSeed: -845423440
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -26744,7 +26746,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1804227735
+  randomSeed: 1517574886
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -33485,7 +33487,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1345143265
+  randomSeed: -595749924
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -35194,7 +35196,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: 1277127467
+  randomSeed: -1419955002
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -35599,7 +35601,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 0
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -35633,11 +35635,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    cnt0: 1
+    cnt0: 3
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    cntmax0: 1
+    cntmax0: 3
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30
@@ -43874,7 +43876,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -919291941
+  randomSeed: 2042068294
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -44279,7 +44281,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 2
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -44313,11 +44315,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    cnt0: 1
+    cnt0: 6
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    cntmax0: 1
+    cntmax0: 6
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30
@@ -45628,7 +45630,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -728067799
+  randomSeed: 1848251027
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -46033,7 +46035,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 5
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -46067,11 +46069,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    cnt0: 1
+    cnt0: 9
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    cntmax0: 1
+    cntmax0: 9
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30
@@ -49076,7 +49078,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 1
-  randomSeed: -919291941
+  randomSeed: -173848870
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -49481,7 +49483,7 @@ ParticleSystem:
     serializedVersion: 2
     m_Type: 0
     rate:
-      scalar: 2
+      scalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -49515,11 +49517,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
       minMaxState: 0
-    cnt0: 1
+    cnt0: 3
     cnt1: 30
     cnt2: 30
     cnt3: 30
-    cntmax0: 1
+    cntmax0: 3
     cntmax1: 30
     cntmax2: 30
     cntmax3: 30

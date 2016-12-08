@@ -14,7 +14,7 @@ public class Credits : MonoBehaviour {
 	
 	}
     
-    void Menu()
+    public void Menu()
     {
         SceneManager.LoadScene(0);
     }

@@ -17,9 +17,12 @@ public class MainMenu : MonoBehaviour {
 	void Start ()
     {
         SetVolumes();
-
+        WwiseInterface.Instance.StopEvent("musicquest");
+        WwiseInterface.Instance.StopEvent("start_world_1_ambience");
+        WwiseInterface.Instance.StopEvent("reward_combo_start");
         // Start the background music.
         WwiseInterface.Instance.SetMusic(MusicHandle.MusicOnePlay);
+        //AkSoundEngine.PostEvent("musicquest", gameObject);
 
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
@@ -36,6 +39,8 @@ public class MainMenu : MonoBehaviour {
         {
             Application.Quit();
         }
+
+        
     }
 
 
@@ -54,8 +59,10 @@ public class MainMenu : MonoBehaviour {
 
     public void Continue()
     {
+        StaticData.pressedContinue = true;
+
         WwiseInterface.Instance.PlayMenuSound(MenuHandle.PlayButtonPressed);
-        
+
         if (PlayerPrefs.GetInt("TauntLevel") == 0 && PlayerPrefs.GetInt("AttackLevel") == 1)
         {
             Debug.Log("Level2");

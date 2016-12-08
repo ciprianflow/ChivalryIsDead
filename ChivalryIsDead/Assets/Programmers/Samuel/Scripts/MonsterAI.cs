@@ -17,6 +17,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
     public int attackDamage = 2;
     public float attackTime = 3f;
     public float attackRange = 5f;
+    
 
     [Space]
     public PlayerActionController playerAction;
@@ -31,12 +32,13 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
 
     [Header("Reputation values")]
     //MONSTER ATTACk REP
-    public int AttackRep = -20;
-    public int OverreactRep = -60;
-    public int ObjectiveAttackRep = -20;
-    public int ObjectiveSheepRep = -100;
+    public int AttackRep;
+    public int OverreactRep;
+    public int ObjectiveAttackRep;
+    public int ObjectiveSheepRep;
+    public int MonsterRep;
     //KNIGHT ATTACk REP
-    public int PlayerAttackRep = 30;
+    public int PlayerAttackRep;
 
     public MonsterHandle monsterHandle;
 
@@ -392,6 +394,17 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         return ObjectiveSheepRep;
     }
 
+    public int HitMonsterReputation()
+    {
+        /*
+        if (StaticData.currQuest.Data.Type == QuestType.Destroy)
+        {
+            return -(MonsterRep);
+        }
+        */
+        return MonsterRep;
+    }
+
     public void Hit(int damage)
     {
 
@@ -417,6 +430,10 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 anim.SetTrigger("Flying");
             }
 
+            Rigidbody body = GetComponent<Rigidbody>();
+            if (body != null)
+                Destroy(body);
+
         }
         else {
             anim.Play("TakeDamage");
@@ -440,8 +457,9 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         //Check the Quest Objective for nullpointer and if not make the sheep deed
         if (QO != null)
         {
-            QO.takeDamage(999, false);
-            playerAction.ObjectiveAttacked(this);
+            QO.takeDamage(999, false, Vector3.zero);
+            if(originMonster != null)
+                playerAction.ObjectiveAttacked(this);
         }
 
         //sheep goes fly
@@ -460,7 +478,8 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
         g.GetComponentInChildren<Animator>().SetTrigger("Flying");
         g.GetComponent<Sheep_flying>().flying = true;
 
-        originMonster.playerAction.SheepAttacked(originMonster);
+        if(originMonster != null)
+            originMonster.playerAction.SheepAttacked(originMonster);
     }
 
     public static bool DoAOEAttack(Vector3 pos, float radius, float force, float playerForce, MonsterAI Monster)
@@ -478,6 +497,12 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 {
                     Monster.HitSheep(m.GetComponent<QuestObject>(), m, m.gameObject, force, false, Monster);
                 }
+                else
+                {
+                    //Debug.Log("WTF ATTACKED PLAYER??" + m.name);
+                    //hit monster
+                    //Monster.playerAction.MonsterAttackedMonster(Monster);
+                }
             }
 
             //Debug.Log("One in range");
@@ -487,7 +512,7 @@ public abstract class MonsterAI : MonoBehaviour, IObjectiveTarget {
                 Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                 if (body)
                 {
-                    Debug.Log(playerForce);
+                    //Debug.Log(playerForce);
                     body.AddExplosionForce(playerForce, pos, radius);
                 }
 

@@ -6218,7 +6218,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010519441102}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.36, y: 14.31, z: 21.405073}
+  m_LocalPosition: {x: 16.99, y: -0.16, z: 8.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -7437,8 +7437,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010435365774}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013108909302}
@@ -8102,16 +8102,17 @@ MonoBehaviour:
   Health: 5
   attackDamage: 5
   attackTime: 0.5
-  attackRange: 10
+  attackRange: 12
   playerAction: {fileID: 0}
   targetObject: {fileID: 0}
   patrolling: 0
   attackRotateSpeed: 60
-  AttackRep: -20
-  OverreactRep: -60
-  ObjectiveAttackRep: -20
-  ObjectiveSheepRep: -100
-  PlayerAttackRep: 30
+  AttackRep: -10
+  OverreactRep: 0
+  ObjectiveAttackRep: -50
+  ObjectiveSheepRep: -50
+  MonsterRep: -50
+  PlayerAttackRep: 200
   monsterHandle: 2
   projectile: {fileID: 1000012329749918, guid: 95b10be1172ee3f4ba35e9b65b7b640f, type: 2}
   targetSprite: {fileID: 1000012462670054, guid: e269677dd49090c4eadd4f9939a56116,
@@ -8120,7 +8121,7 @@ MonoBehaviour:
   shootAngle: 60
   randomShootRange: 4
   randomShootAngle: 20
-  softAttackRangeBreak: 12
+  softAttackRangeBreak: 12.1
 --- !u!114 &114000013514499260
 MonoBehaviour:
   m_ObjectHideFlags: 1

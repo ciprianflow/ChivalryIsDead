@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour {
         if (setToDestroy || col.transform.CompareTag("Projectile") || originMonster == null  || col.gameObject == originMonster.transform.gameObject)
             return;
 
-        ProjectileCollision(col.gameObject);
+        ProjectileCollision(col.gameObject, col.contacts[0].point);
     }
 
     private void HitGround()
@@ -39,7 +39,7 @@ public class Projectile : MonoBehaviour {
         MonsterAI.DoAOEAttack(transform.position, ExplosionRadius, ExplosionForce, PlayerExplosionForce, originMonster);
     }
 
-    void ProjectileCollision(GameObject collObj)
+    void ProjectileCollision(GameObject collObj, Vector3 pos)
     {
         DestroyTarget();
         setToDestroy = true;
@@ -65,13 +65,14 @@ public class Projectile : MonoBehaviour {
                 {
                     body.AddExplosionForce(ExplosionForce, transform.position, ExplosionRadius, 0f);
                 }
+                originMonster.playerAction.MonsterAttackedMonster(originMonster);
             }
         }
 
         if (questObj != null)
         {
             Debug.Log("QuestObject hitttiittitiit");
-            questObj.takeDamage(3, false);
+                questObj.takeDamage(3, false, pos);
             //let player know objective is attacked
             originMonster.playerAction.ObjectiveAttacked(originMonster);
         }

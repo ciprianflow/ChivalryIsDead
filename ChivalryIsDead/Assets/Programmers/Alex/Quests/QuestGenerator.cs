@@ -104,11 +104,7 @@ public class QuestGenerator
         MQ.Objectives.Add(GenerateDestroyQuest(numNonSuicide, numSuicide));
         MQ.Objectives.Add(new TimerObjective(31));
 
-        //var hasHouse = MQ.GetAllObjectives().Any(o => (o as BaseObjective).targetID == 22);
         var AvailableFriendlies = HouseStatusToFriendlyTypes(QuestParameters.DifficultyDefs[(int)CurrentDifficulty].houseStatus);
-        //int AvailableFriendlies = (int)FriendlyTypes.None; // (int)FriendlyTypes.Sheep;
-        //AvailableFriendlies += (CurrentDifficulty == Difficulty.Easy || CurrentDifficulty == Difficulty.Medium) ? (int)FriendlyTypes.Bakery : (int)FriendlyTypes.None;
-        //AvailableFriendlies += (CurrentDifficulty == Difficulty.Medium || CurrentDifficulty == Difficulty.Hard) ? (int)FriendlyTypes.Farmhouse : (int)FriendlyTypes.None;
         MQ.Data = new QuestData(questType, numNonSuicide + numSuicide, numFriendlies, AvailableEnemies, AvailableFriendlies);
 
         // Adds sheep spawn.

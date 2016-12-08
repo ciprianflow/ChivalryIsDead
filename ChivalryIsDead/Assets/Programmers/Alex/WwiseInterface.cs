@@ -80,7 +80,7 @@ public enum MusicHandle
 
 public enum RewardHandle
 {
-    ComboBoost, ComboBoost2, ComboBoost3, ComboStart, ComboEnd, /*Big,*/ Small, Fail
+    PointCounter, ComboBoost, ComboBoost2, ComboBoost3, ComboStart, ComboEnd, Small, Fail
 }
 
 public enum SheepAudioHandle
@@ -121,6 +121,7 @@ public interface IWwiseInterface
     // Non-Targeted audio.
     void SetAmbience(AmbienceHandle handle);
     void SetMusic(MusicHandle handle);
+    void StopEvent(string eventName);
     void PlayRewardSound(RewardHandle handle);
     void PlayUISound(UIHandle handle);
     void PlayMenuSound(MenuHandle handle);
@@ -193,6 +194,11 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
         if (CurrentlyPlaying != handle)
             StartCoroutine(SwitchMusic(handle, 0.33f));
     }
+    public void StopEvent(string eventName) {
+        uint eventID;
+        eventID = AkSoundEngine.GetIDFromString(eventName);
+        AkSoundEngine.ExecuteActionOnEvent(eventID, AkActionOnEventType.AkActionOnEventType_Stop, gameObject, 0, AkCurveInterpolation.AkCurveInterpolation_Sine);
+    }
 
     public void SetAmbience(AmbienceHandle handle)
     {
@@ -208,6 +214,10 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
 
     public void PlayRewardSound(RewardHandle handle)
     {
+        if (handle == RewardHandle.PointCounter) {
+            AkSoundEngine.PostEvent("pointCounter", gameObject);
+            return;
+        }
         StringBuilder eventBuilder = new StringBuilder("reward_");
         eventBuilder.Append(HandleToEventString(handle));
 
@@ -271,6 +281,8 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
 
         AkSoundEngine.PostEvent(eventBuilder.ToString(), gameObject);
     }
+
+
     #endregion
 
     #region Targeted Audio
@@ -381,7 +393,6 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
     private IEnumerator SwitchMusic(MusicHandle handle, float delay)
     {
         AkSoundEngine.PostEvent("musicStop", gameObject);
-        CurrentlyPlaying = MusicHandle.MusicStop;
 
         yield return new WaitForSeconds(delay);
 
@@ -395,11 +406,18 @@ public class WwiseInterface : MonoBehaviour, IWwiseInterface
                 CurrentlyPlaying = MusicHandle.MusicQuest;
                 break;
             case MusicHandle.MusicStop:
+                Debug.Log("PLZ STOP");
+
+                CurrentlyPlaying = MusicHandle.MusicStop;
                 break;
             default:
                 LogError(handle); break;
         }
+
     }
+
+
+
 
     private void LogError(Enum handle)
     {

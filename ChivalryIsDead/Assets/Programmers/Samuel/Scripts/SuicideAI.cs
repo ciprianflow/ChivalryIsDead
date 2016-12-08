@@ -18,13 +18,14 @@ public class SuicideAI : MonsterAI
     bool taunted = false;
     SphereCollider col;
 
+    public Gameplay_Dialog GameDialogUI;
+
+
     void Start()
     {
-        if(PlayerPrefs.GetInt("SuicideLevel") == 0)
-        {
-            PlayerPrefs.SetInt("SuicideTut", 1);
+        GameDialogUI = GameObject.FindGameObjectWithTag("DialogSystem").GetComponent<Gameplay_Dialog>();
+        if (PlayerPrefs.GetInt("SuicideTut") == 0)
             PlayerPrefs.SetInt("SuicideLevel", 1);
-        }
     }
 
     void OnDrawGizmos()
@@ -149,19 +150,21 @@ public class SuicideAI : MonsterAI
                 {
                     if(m.GetType().Equals(typeof(SheepAI)))
                     {
-                        //Sheeps
+                        //Sheep
                         Debug.Log("I HIT A SHEEP");
                         HitSheep(QO, m, Colliders[i].gameObject, explosionForce, true, this);
 
                     }else
                     {
                         //Other monsters
+                        base.playerAction.MonsterAttackedMonster(this);
                         m.Hit(1);
                         Rigidbody body = Colliders[i].transform.GetComponent<Rigidbody>();
                         if (body)
                         {
                             body.AddExplosionForce(explosionForcePlayer * 4, transform.position, explosionRange + 2, 0f);
                         }
+
                     }
                 }
             }
@@ -171,7 +174,7 @@ public class SuicideAI : MonsterAI
                 if (QO != null)
                 {
                     Debug.Log("Hit static quest object");
-                    QO.takeDamage(5, true);
+                    QO.takeDamage(5, true, Vector3.zero);
                     base.playerAction.ObjectiveAttacked(this);
                 }
             }
@@ -193,8 +196,21 @@ public class SuicideAI : MonsterAI
             return;
 
         //EXPLODE WITH EVERYTHING
-        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility)
+        if (!coll.CompareTag("Ground") && state != State.Idle || state == State.Utility) {
+            if (coll.CompareTag("Player")) {
+                //ANGELIKI PUT THE THINGYMOJIGGI HERE
+                
+                Debug.Log("EXPLODE ON PLAYER");
+
+                if (PlayerPrefs.GetInt("SuicideTut") == 0)
+                {
+                    GameDialogUI.StartCoroutine("TauntSuicide");
+                    PlayerPrefs.SetInt("SuicideTut", 1);
+                }
+            }
             Explode();
+
+        }
 
         Debug.Log("Collided with something");
 
