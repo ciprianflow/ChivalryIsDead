@@ -12,8 +12,6 @@ public class Hub_Dialog : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
 
-        
-
         yield return new WaitForSeconds(0.5f);
 
         if (StaticData.Reputation <= 110 && StaticData.Reputation > 100)
