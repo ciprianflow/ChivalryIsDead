@@ -522,7 +522,7 @@ public class MeleeAI2 : MonsterAI
     {
         yield return new WaitForSeconds(f);
         if (!hitPlayer)
-            if (DoAOEAttack(transform.position, attackLength + 5, attackForce, attackForce * 30, this))
+            if (DoAOEAttack(transform.position, attackLength + 2.5f, attackForce, attackForce * 30, this))
                 hitPlayer = true;
     }
 

@@ -124,10 +124,11 @@ public class PlayerScript : MonoBehaviour {
         {
             zVel -= speedAcc;
         }
-
-        transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
+        if(Camera.main != null)
+            transform.eulerAngles = new Vector3(0, (Mathf.Rad2Deg * Mathf.Atan2(x, y)) + Camera.main.transform.eulerAngles.y, 0);
 
         //check if in air..
+        /*
         RaycastHit[] hits;
         hits = Physics.RaycastAll(transform.position, Vector3.down, 1.5f);
 
@@ -137,12 +138,13 @@ public class PlayerScript : MonoBehaviour {
 
             if(hit.transform.CompareTag("Ground"))
             {
-                transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
+                //CAREFUL HEREtransform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
                 //Debug.Log("FOUND GROUND");
                 flying = false;
                 break;
             }
         }
+        */
         /*
         //not on the ground still
         if (flying)
@@ -156,6 +158,7 @@ public class PlayerScript : MonoBehaviour {
         }
 
         */
+        transform.Translate(0, 0, new Vector2(x, y).magnitude * maxSpeed * Time.deltaTime);
         anim.SetFloat("Speed", zVel * 2f);
 
         //GetComponent<Rigidbody>().AddRelativeForce(0, 0, 1000);

@@ -31,6 +31,26 @@ public class Gameplay_Dialog : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         isnotAFK = false;
 
+        
+
+        if (SceneGetter.Instance.isDestroyQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 16);
+
+        }
+        else if (SceneGetter.Instance.isWellQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 15);
+        }
+        else if (SceneGetter.Instance.isBakeryQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 14);
+        }
+        else if (SceneGetter.Instance.isFarmhouseQuest())
+        {
+            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 13);
+        }
+
         if (PlayerPrefs.GetInt("SuicideLevel") == 1)
         {
 
@@ -50,24 +70,13 @@ public class Gameplay_Dialog : MonoBehaviour
             PlayerPrefs.SetInt("SuicideTut", 1);
             PlayerPrefs.SetInt("SuicideLevel", 0);
         }
+    }
 
-        if (SceneGetter.Instance.isDestroyQuest())
-        {
-            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 16);
-
-        }
-        else if (SceneGetter.Instance.isWellQuest())
-        {
-            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 15);
-        }
-        else if (SceneGetter.Instance.isBakeryQuest())
-        {
-            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 14);
-        }
-        else if (SceneGetter.Instance.isFarmhouseQuest())
-        {
-            this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 13);
-        }
+    public void StopTutorSlides()
+    {
+        swordAnimator.speed = 1f;
+        swordBubbleAnimator.speed = 1f;
+        Time.timeScale = 1f;
     }
 
     // Update is called once per frame

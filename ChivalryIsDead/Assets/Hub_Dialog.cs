@@ -113,6 +113,8 @@ public class Hub_Dialog : MonoBehaviour {
 
     public IEnumerator Lose()
     {
+        yield return new WaitForSeconds(1f);
+        this.gameObject.GetComponent<DialogObject>().StopDialog();
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 12);
         end.SetActive(true);
         skipBtn.SetActive(false);

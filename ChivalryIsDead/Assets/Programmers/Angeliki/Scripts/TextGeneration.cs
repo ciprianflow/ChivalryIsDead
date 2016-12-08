@@ -226,13 +226,13 @@ public class TextGeneration : MonoBehaviour {
         }
         else
         {
-            if (PlayerPrefs.GetString("Language") == "English")
+            if (SceneGetter.Instance.isHubWorld())
             {
                 pQuestTitle.text = "Bondemission";
                 ourQuestTitle.text = "Vores mission";
             }             
-            TitleGenerator(shuffleBags[5]);
-            TitleGenerator(shuffleBags[6]);
+            TitleGenerator(shuffleBags[7]);
+            TitleGenerator(shuffleBags[8]);
         }
         
         
@@ -345,8 +345,7 @@ public class TextGeneration : MonoBehaviour {
             {
                 if (diff == "Easy")
                 {
-                    //sequence.Add(2);
-                    Debug.Log("easy kill");
+                    sequence.Add(2);
                 }
                 else if (diff == "Medium")
                 {
@@ -380,9 +379,7 @@ public class TextGeneration : MonoBehaviour {
             {
                 if (diff == "Easy")
                 {
-                    //sequence.Add(7);
-                    Debug.Log("easy kill danish");
-
+                    sequence.Add(9);
                 }
                 else if (diff == "Medium")
                 {
