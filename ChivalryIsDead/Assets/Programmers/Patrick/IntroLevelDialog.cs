@@ -33,6 +33,7 @@ public class IntroLevelDialog : MonoBehaviour {
     GameMenu gameMenu;
     public GameObject skipBtn;
     public GameObject halfScreen;
+    public GameObject actionHalfScreen;
 
     public GameObject TrollA;
 
@@ -213,8 +214,8 @@ public class IntroLevelDialog : MonoBehaviour {
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 3);
         //yield return new WaitForSeconds(0.2f);
         //UI.GetComponent<GameMenu>().Sword();
-        halfScreen.SetActive(true);
-        halfScreen.transform.Translate(1024, 0, 0);
+        actionHalfScreen.SetActive(true);
+        //halfScreen.transform.Translate(1024*1.4f, 0, 0);
         handAnimator.SetBool("playRightJoy", true);
         PlayerPrefs.SetInt("Attack", 1);
         skipBtn.SetActive(false);
@@ -230,7 +231,7 @@ public class IntroLevelDialog : MonoBehaviour {
     {
         handAnimator.SetBool("playRightJoy", false);
         skipBtn.SetActive(true);
-        halfScreen.SetActive(false);
+        actionHalfScreen.SetActive(false);
         handAnimator.speed = 1f;
         swordAnimator.speed = 1f;
         swordBubbleAnimator.speed = 1f;
@@ -254,6 +255,7 @@ public class IntroLevelDialog : MonoBehaviour {
 
     public IEnumerator DialogFive()
     {
+        yield return new WaitForSeconds(1f);
         this.gameObject.GetComponent<DialogObject>().StartCoroutine("DialogSystem", 5);
         //yield return new WaitForSeconds(2);
         //UI.GetComponent<GameMenu>().Sword();

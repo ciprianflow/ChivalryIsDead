@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.68055195, g: 0.8008123, b: 0.87699205, a: 1}
+  m_IndirectSpecularColor: {r: 0.6771347, g: 0.7987713, b: 0.882913, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -824,6 +824,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fec8470547f4d1c42bab6469f716660d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &94326819 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010735415936, guid: 1ff69020aa975004c9243b16a7dd5d44,
+    type: 2}
+  m_PrefabInternal: {fileID: 1758082472}
 --- !u!1001 &96526759
 Prefab:
   m_ObjectHideFlags: 0
@@ -5247,6 +5252,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010913354426, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: SwordParticle
+      value: 
+      objectReference: {fileID: 75750854}
     - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
       propertyPath: Player
@@ -5266,7 +5276,7 @@ Prefab:
         type: 2}
       propertyPath: ScreenFreeze
       value: 
-      objectReference: {fileID: 963593993}
+      objectReference: {fileID: 94326819}
     - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
       propertyPath: ControlMove
@@ -5301,17 +5311,17 @@ Prefab:
         type: 2}
       propertyPath: halfScreen
       value: 
+      objectReference: {fileID: 1200156463}
+    - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
+        type: 2}
+      propertyPath: actionHalfScreen
+      value: 
       objectReference: {fileID: 1273309897}
     - target: {fileID: 114000013698914506, guid: 98f8ff744a171b846b1188deab12c9be,
         type: 2}
       propertyPath: TrollA
       value: 
       objectReference: {fileID: 1541762707}
-    - target: {fileID: 114000010913354426, guid: 98f8ff744a171b846b1188deab12c9be,
-        type: 2}
-      propertyPath: SwordParticle
-      value: 
-      objectReference: {fileID: 75750854}
     - target: {fileID: 1000013809427288, guid: 98f8ff744a171b846b1188deab12c9be, type: 2}
       propertyPath: m_Name
       value: UI - Tutorial - IntroDay
@@ -6545,11 +6555,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4000013493367484, guid: 23c63cfaf08162b46ae76450c05aa54c,
     type: 2}
   m_PrefabInternal: {fileID: 706667566}
---- !u!1 &963593993 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1000011668723404, guid: 1ff69020aa975004c9243b16a7dd5d44,
-    type: 2}
-  m_PrefabInternal: {fileID: 1758082472}
 --- !u!1001 &963904622
 Prefab:
   m_ObjectHideFlags: 0
@@ -8446,6 +8451,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.65, z: 0.39}
   m_Center: {x: 0, y: 0.88, z: 0}
+--- !u!1 &1200156463 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000013935261922, guid: 1ff69020aa975004c9243b16a7dd5d44,
+    type: 2}
+  m_PrefabInternal: {fileID: 1758082472}
 --- !u!1001 &1207091227
 Prefab:
   m_ObjectHideFlags: 0
@@ -11255,35 +11265,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010057150130, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -0.024
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010057150130, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.030000001
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010057150130, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000012961736172, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224000010385518424, guid: 1ff69020aa975004c9243b16a7dd5d44,
-        type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -39.340652
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011822690370, guid: 1ff69020aa975004c9243b16a7dd5d44, type: 2}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ff69020aa975004c9243b16a7dd5d44, type: 2}

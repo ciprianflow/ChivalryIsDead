@@ -254,7 +254,7 @@ public class DummyManager : MonoBehaviour
         //calculate bonus
         repGain = getLocalScore(ReputationHandler.Score);
         
-        float repGainDivision = 250;
+        float repGainDivision = 400;
         return repGain / repGainDivision;
 
     }
@@ -284,11 +284,11 @@ public class DummyManager : MonoBehaviour
         float currentTime = maxTime - TimerObjectScript.Instance.GetTimer();
         if (currentTime > 45)
         {
-            bonus = currentTime * 40;
+            bonus = currentTime * 20;
         }
         else
         {
-            bonus = currentTime * 20;
+            bonus = currentTime * 10;
         }
 
         if (time <= 0.01)

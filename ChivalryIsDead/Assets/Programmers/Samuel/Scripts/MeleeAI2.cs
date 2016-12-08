@@ -149,7 +149,29 @@ public class MeleeAI2 : MonsterAI
             //AccelTime is the time it takes for the charge to reach MAXIMUM SPEED
             accelTimer += Time.deltaTime;
             float accel = accelTimer / accelTime;
-            transform.Translate(Vector3.forward * chargeSpeedMultiplier * accel * Time.deltaTime);
+            Vector3 translation = Vector3.forward * chargeSpeedMultiplier * accel * Time.deltaTime;
+
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ADDED THIS SHIT AFTER NO PUSH TIME, IF FUCK UP DELETE SHIT BELOW
+            NavMeshHit hit;
+            if (NavMesh.Raycast(transform.position, transform.position + translation, out hit, 1))
+            {
+                anim.SetTrigger("HitObject");
+                ChargeToMove();
+                MeleeAttack();
+            }
+            //ADDED THIS SHIT AFTER NO PUSH TIME, IF FUCK UP DELETE SHIT ABOVE
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+            //ATTENTION!
+
+            transform.Translate(translation);
         }
         else
         {
@@ -203,22 +225,22 @@ public class MeleeAI2 : MonsterAI
 
     }
 
-    void FixedUpdate()
-    {
-        if (Mathf.Abs(zVel - (agent.velocity.magnitude)) < 0.05f)
-        {
-            return;
-        }
-        else if (zVel < (agent.velocity.magnitude))
-        {
-            zVel += 0.1f;
-        }
-        else
-        {
-            zVel -= 0.1f;
-        }
-        anim.SetFloat("Speed", zVel);
-    }
+    //void FixedUpdate()
+    //{
+    //    if (Mathf.Abs(zVel - (agent.velocity.magnitude)) < 0.05f)
+    //    {
+    //        return;
+    //    }
+    //    else if (zVel < (agent.velocity.magnitude))
+    //    {
+    //        zVel += 0.1f;
+    //    }
+    //    else
+    //    {
+    //        zVel -= 0.1f;
+    //    }
+    //    anim.SetFloat("Speed", zVel);
+    //}
 
     //Called every frame in the Move state
     public override void Move()
@@ -377,6 +399,7 @@ public class MeleeAI2 : MonsterAI
     //Charging collision
     void OnCollisionEnter(Collision coll)
     {
+
         //If the state is not charge do nothing
         if (state != State.Charge)
             return;
@@ -460,15 +483,18 @@ public class MeleeAI2 : MonsterAI
 
         Quaternion q = Quaternion.LookRotation(targetPoint - transform.position);
 
-        if (Mathf.Abs(q.eulerAngles.y - transform.eulerAngles.y) < 10)
+        if (Mathf.Abs(q.eulerAngles.y - transform.eulerAngles.y) < 20)
             return;
+        anim.SetTrigger("Turn");
 
-        if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
-            anim.SetTrigger("StartTurnRight");
-        }
-        else {
-            anim.SetTrigger("StartTurnLeft");
-        }
+        //if (((q.eulerAngles.y - transform.eulerAngles.y) > 0 && (q.eulerAngles.y - transform.eulerAngles.y) < 180) || (q.eulerAngles.y - transform.eulerAngles.y) < -180) {
+        //    //anim.SetTrigger("StartTurnRight");
+        //    anim.SetTrigger("Turn");
+        //}
+        //else {
+        //    anim.SetTrigger("Turn");
+        //    //anim.SetTrigger("StartTurnLeft");
+        //}
     }
 
     public override void Turn()

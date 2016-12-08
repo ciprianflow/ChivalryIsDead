@@ -27,7 +27,6 @@ public class RangedAI : MonsterAI
 
     public override void Attack()
     {
-        Debug.Log(t1 + " > " + attackTime);
         RotateTowardsTarget();
         if (t1 > attackTime && !wait)
         {
