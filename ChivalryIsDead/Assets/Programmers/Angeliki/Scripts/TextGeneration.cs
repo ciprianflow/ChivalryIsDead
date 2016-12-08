@@ -166,6 +166,7 @@ public class TextGeneration : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        ClearText();
         //if (PlayerPrefs.GetString("Language") == "English")
         //{
         //    TooltipText.GetComponent<Text>().text = "Days until the wedding";         
