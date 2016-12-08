@@ -30,7 +30,9 @@ public class MainMenu : MonoBehaviour {
         {
             ContinueButton.GetComponent<Image>().color = Color.red;
         }
-        
+
+        // Reset StaticData.currQuest to ensure that no reputation or day changes take place if a new game is started.
+        StaticData.currQuest = null;
     }
 	
 	// Update is called once per frame
