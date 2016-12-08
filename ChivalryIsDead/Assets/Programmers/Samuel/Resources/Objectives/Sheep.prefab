@@ -1814,7 +1814,7 @@ GameObject:
   - 114: {fileID: 114000011461743662}
   - 114: {fileID: 114000013970644064}
   - 114: {fileID: 114000012743887220}
-  - 114: {fileID: 114000011497700508}
+  - 114: {fileID: 114000013454230116}
   m_Layer: 0
   m_Name: Sheep
   m_TagString: Enemy
@@ -4265,30 +4265,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exclMark: {fileID: 1000010316292184}
---- !u!114 &114000011497700508
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013317938470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec744210434a4664bb8d32b471c6b196, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  triggerList: 
-  useOtherObject: 0
-  valueGuid: a22a7f1547746d458787632b57432150
-  eventID: -1937375323
-  soundEmitterObject: {fileID: 0}
-  enableActionOnEvent: 0
-  actionOnEventType: 0
-  curveInterpolation: 4
-  transitionDuration: 0
-  m_callbackData: {fileID: 0}
-  playingId: 0
-  multiPositionTypeLabel: 0
-  multiPositionArray: []
 --- !u!114 &114000011519477888
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4436,6 +4412,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114000013454230116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013317938470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8d3cba856774044385eafcf1d4dd5f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114000013572024412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4553,6 +4540,7 @@ MonoBehaviour:
   OverreactRep: -60
   ObjectiveAttackRep: -20
   ObjectiveSheepRep: -100
+  MonsterRep: 0
   PlayerAttackRep: 0
   monsterHandle: 0
   aggroTime: 10
@@ -4584,6 +4572,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6437938df979ef843bf27a97f598eb8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyedVersion: {fileID: 0}
+  damageParticles: {fileID: 0}
   id: 21
   health: 1
   ForceDestroyOnDeath: 0

@@ -17,7 +17,6 @@ public class Sheep_flying : MonoBehaviour {
     void OnCollisionStay(Collision coll) {
     
         if (coll.transform.CompareTag("Ground") && flying) {
-            Debug.Log("deadwadaw");
             GameObject dP = Instantiate(deathParticles) as GameObject;
             dP.transform.position = transform.position;
             this.gameObject.SetActive(false);
