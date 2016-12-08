@@ -8,7 +8,7 @@ public class TimerObjectScript : MonoBehaviour, IObjectiveTarget {
     int id = 31;
 
     float timer = 0;
-    float maxTime = 120;
+    float maxTime = 90;
 
     float halfTime;
     public static bool isReminded;
