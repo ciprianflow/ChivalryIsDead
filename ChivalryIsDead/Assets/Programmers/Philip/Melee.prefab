@@ -8383,11 +8383,12 @@ MonoBehaviour:
   targetObject: {fileID: 0}
   patrolling: 1
   attackRotateSpeed: 120
-  AttackRep: -20
-  OverreactRep: -60
-  ObjectiveAttackRep: -20
-  ObjectiveSheepRep: -100
-  PlayerAttackRep: 30
+  AttackRep: -5
+  OverreactRep: 0
+  ObjectiveAttackRep: -25
+  ObjectiveSheepRep: -50
+  MonsterRep: -50
+  PlayerAttackRep: 200
   monsterHandle: 1
   PreChargeTime: 0.5
   chargeSpeedMultiplier: 3
@@ -8395,6 +8396,8 @@ MonoBehaviour:
   attackAngleWidth: 0.6
   chargeForce: 250
   attackForce: 750
+  playerAttackForce: 25000
+  attackForceOnOtherMonsters: 1000000
   spinAttackDuration: 0.9
   spinAttackColddown: 1
 --- !u!114 &114000012670265610

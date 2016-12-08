@@ -65,13 +65,14 @@ public class Projectile : MonoBehaviour {
                 {
                     body.AddExplosionForce(ExplosionForce, transform.position, ExplosionRadius, 0f);
                 }
+                originMonster.playerAction.MonsterAttackedMonster(originMonster);
             }
         }
 
         if (questObj != null)
         {
             Debug.Log("QuestObject hitttiittitiit");
-            questObj.takeDamage(3, false, pos);
+                questObj.takeDamage(3, false, pos);
             //let player know objective is attacked
             originMonster.playerAction.ObjectiveAttacked(originMonster);
         }

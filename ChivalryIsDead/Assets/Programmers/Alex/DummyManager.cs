@@ -118,7 +118,7 @@ public class DummyManager : MonoBehaviour
         int secondsAFK = (int) Math.Floor(timestamp);
         if (GameDialogUI != null && firstTimeAFK && secondsAFK == StartAFKSeconds)
         {
-            GameDialogUI.WakeUp();
+            GameDialogUI.StartCoroutine("WakeUp");
             firstTimeAFK = false;
         }
 
@@ -282,7 +282,6 @@ public class DummyManager : MonoBehaviour
             bonus = currentTime * 20;
         }
 
-        Debug.Log("Time Left" + time);
         if (time <= 0.1)
         {
             score = 5000;

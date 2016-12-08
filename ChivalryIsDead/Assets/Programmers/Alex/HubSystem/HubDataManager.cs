@@ -68,13 +68,6 @@ public class HubDataManager : MonoBehaviour {
         //AkSoundEngine.PostEvent("start_hub_ambience", gameObject);
         Time.timeScale = 1f;
 
-        WwiseInterface.Instance.StopEvent("music1Play");
-        WwiseInterface.Instance.StopEvent("musicquest");
-        WwiseInterface.Instance.StopEvent("reward_combo_start");
-
-        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
-        WwiseInterface.Instance.SetAmbience(AmbienceHandle.Hub);
-
         hubDataPath = Application.persistentDataPath + "/HubData.json";
 
         if (StaticData.currQuest == null  || StaticData.pressedContinue)
@@ -87,7 +80,16 @@ public class HubDataManager : MonoBehaviour {
     }
 
     void Start () {
+
+        
+
         // Playing Hub Music.
+        WwiseInterface.Instance.StopEvent("music1Play");
+        WwiseInterface.Instance.StopEvent("musicquest");
+        WwiseInterface.Instance.StopEvent("reward_combo_start");
+
+        WwiseInterface.Instance.SetMusic(MusicHandle.MusicStop);
+        WwiseInterface.Instance.SetAmbience(AmbienceHandle.Hub);
 
         isClicked = false;
         checkForWin();
@@ -258,7 +260,7 @@ public class HubDataManager : MonoBehaviour {
     {
         if(StaticData.Reputation <= 0)
         {
-            StaticData.Reputation = StaticData.MaxReputation;
+            peasantLineScript.gameObject.SetActive(false);
             //StartCoroutine(StaticData.PlayStreamingVideo("ending good.mp4"));
             //WinScreen.SetActive(true);
             DialogSystem.GetComponent<Hub_Dialog>().StartCoroutine("Win");
@@ -333,7 +335,7 @@ public class HubDataManager : MonoBehaviour {
     {
         BaseQuest quest = (BaseQuest)AvailableQuests[currSelectedQuestIndex];
         QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description, quest.Data);
-
+       
         bool boolean = Convert.ToBoolean(i);
         //QuestLetter.GetComponent<TextGeneration>().SetQuestText(quest.Description.Description, quest.Description.Title, quest.Description.Difficulty.ToString());
         QuestLetter.SetActive(boolean);
