@@ -51,7 +51,7 @@ public class EndScreen : MonoBehaviour {
         scoreWithoutBonus = StaticIngameData.dummyManager.GetLocalScoreWithoutBonus();
         localScore = StaticIngameData.dummyManager.GetLocalScore();
 
-
+        //Debug.Log("SORE WITHOUT BONUS: " + scoreWithoutBonus);
 
         if (TimerObjectScript.Instance.GetElapsedTime() <= 0.01)
         {
@@ -158,7 +158,7 @@ public class EndScreen : MonoBehaviour {
             }
 
             //end loading monsters
-            if (xsc >= 18)
+            if (xsc >= 10 && xsc >= totalSheep)
             {
                 startMonsters = false;
                 Reputation.SetActive(true);
@@ -218,7 +218,7 @@ public class EndScreen : MonoBehaviour {
 
     private IEnumerator startTimerBonus()
     {
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.1f);
         Time.timeScale = 0f;
         startTimer = true;
         Timer.SetActive(true);
