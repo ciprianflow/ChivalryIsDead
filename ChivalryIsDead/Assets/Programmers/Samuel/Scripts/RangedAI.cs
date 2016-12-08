@@ -17,18 +17,26 @@ public class RangedAI : MonsterAI
     public float randomShootAngle = 20f;
     public float softAttackRangeBreak = 12;
 
-    [Space]
     private bool taunted = false;
 
-
+    private float waitAfterAttack = 3.68f;
+    private bool wait = false;
     public override void Init()
     {
     }
 
     public override void Attack()
     {
+        Debug.Log(t1 + " > " + attackTime);
         RotateTowardsTarget();
-        if (t1 > attackTime)
+        if (t1 > attackTime && !wait)
+        {
+
+            wait = true;
+            anim.SetTrigger("PickUpRock");
+            ResetTimer();
+
+        }else if( wait && t1 > waitAfterAttack)
         {
             if (RangeCheck(softAttackRangeBreak))
             {
@@ -36,7 +44,7 @@ public class RangedAI : MonsterAI
                 return;
             }
 
-            anim.SetTrigger("PickUpRock");
+            wait = false;
             ResetTimer();
         }
     }
