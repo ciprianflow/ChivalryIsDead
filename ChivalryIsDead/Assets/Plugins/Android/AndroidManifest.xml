@@ -10,12 +10,19 @@
     <activity android:name="com.izaron.androideffects.vibration.MyMainActivity"
               android:configChanges="keyboardHidden|orientation"
               android:label="@string/app_name"
-              android:screenOrientation = "landscape">
+              >
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+
+    <!-- Force Landscape-->
+    <activity
+      android:name=".ActivtyName"
+      android:screenOrientation="landscape">
+    </activity>
+    
   </application>
 
   <uses-permission android:name="android.permission.VIBRATE"/>
