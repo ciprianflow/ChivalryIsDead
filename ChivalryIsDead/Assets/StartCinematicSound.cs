@@ -3,6 +3,11 @@ using System.Collections;
 
 public class StartCinematicSound : MonoBehaviour {
 
+    void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
+
 	// Use this for initialization
 	void Start () {
         WwiseInterface.Instance.StopEvent("music1Play");

@@ -433,7 +433,7 @@ public class MeleeAI2 : MonsterAI
         {
             anim.SetTrigger("HitObject");
             Debug.Log("Hit quest object");
-            QO.takeDamage(1, true, coll.contacts[0].point);
+            QO.takeDamage(2, true, coll.contacts[0].point);
             base.playerAction.ObjectiveAttacked(this);
             ChargeToMove();
         }
